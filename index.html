@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>バルニバービグループ 人と経営のデータ｜2026年7月末時点</title>
+<style>
+:root{
+  --ink:#1E1C19; --ink-2:#57534C; --ink-3:#8A857C;
+  --paper:#FBFAF7; --card:#FFFFFF; --rule:#E3DFD6; --rule-2:#CFCABF;
+  --amber:#EF9F27; --amber-bg:#FAEEDA; --amber-ink:#854F0B;
+  --violet:#7F77DD; --violet-bg:#EEEDFE;
+  --green:#1D9E75; --green-2:#9FE1CB;
+  --red:#E24B4A; --red-2:#F7C1C1;
+  --blue:#378ADD; --blue-d:#185FA5; --coral:#D85A30;
+  --gray-dot:#B4B2A9;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Meiryo",system-ui,sans-serif;
+  font-size:14px; line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1240px; margin:0 auto; padding:0 32px 80px}
+header{border-bottom:1px solid var(--rule); padding:34px 0 20px; margin-bottom:0}
+h1{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  font-size:27px; font-weight:600; letter-spacing:.04em; margin:0 0 6px;
+}
+.sub{color:var(--ink-2); font-size:13px; letter-spacing:.02em}
+.tabs{display:flex; gap:0; border-bottom:1px solid var(--rule); margin:0 0 26px}
+.tab{
+  appearance:none; background:none; border:none; cursor:pointer;
+  font-family:inherit; font-size:14px; color:var(--ink-3);
+  padding:14px 22px; border-bottom:2px solid transparent; margin-bottom:-1px;
+  letter-spacing:.03em;
+}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--ink); border-bottom-color:var(--ink); font-weight:600}
+.panel{display:none}
+.panel.on{display:block}
+.grid{display:grid; grid-template-columns:280px 1fr; gap:34px; align-items:start}
+.rail{position:sticky; top:20px}
+.card{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:16px 18px}
+.card + .card{margin-top:14px}
+.lbl{font-size:11px; letter-spacing:.14em; color:var(--ink-3); text-transform:uppercase; margin:0 0 9px; font-weight:600}
+.seg{display:flex; gap:0; border:1px solid var(--rule-2); border-radius:7px; overflow:hidden}
+.seg button{
+  flex:1; appearance:none; border:none; background:var(--card); cursor:pointer;
+  font-family:inherit; font-size:12.5px; color:var(--ink-2); padding:8px 4px;
+  border-right:1px solid var(--rule); transition:.15s;
+}
+.seg button:last-child{border-right:none}
+.seg button:hover{background:var(--paper)}
+.seg button.on{background:var(--ink); color:#fff; font-weight:600}
+select{
+  width:100%; font-family:inherit; font-size:13.5px; color:var(--ink);
+  padding:8px 10px; border:1px solid var(--rule-2); border-radius:7px; background:var(--card);
+}
+input[type=range]{width:100%; accent-color:var(--ink); margin:2px 0}
+.slideHead{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2px}
+.slideVal{font-size:16px; font-weight:600; letter-spacing:.02em}
+.slideVal.vz{background:var(--amber-bg); color:var(--amber-ink); padding:2px 9px; border-radius:6px}
+.hint{font-size:11.5px; color:var(--ink-3); margin-top:5px; min-height:1.7em}
+.stats{display:grid; grid-template-columns:repeat(5,1fr); gap:11px; margin-bottom:22px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:13px 15px}
+.stat .k{font-size:11.5px; color:var(--ink-3); margin-bottom:3px}
+.stat .v{font-size:23px; font-weight:600; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+.stat .sub2{font-size:10.5px; color:var(--ink-3); margin-top:1px; font-variant-numeric:tabular-nums}
+.stat .v small{font-size:12px; font-weight:400; color:var(--ink-2); margin-left:2px}
+.secTitle{font-size:12.5px; font-weight:600; letter-spacing:.03em; margin:0 0 9px; display:flex; justify-content:space-between; align-items:baseline}
+.secTitle span{font-weight:400; color:var(--ink-3); font-size:11.5px}
+.dots{display:flex; flex-wrap:wrap; gap:5px; min-height:24px; margin-bottom:10px}
+.dot{width:16px; height:16px; border-radius:50%}
+.legend{display:flex; gap:15px; flex-wrap:wrap; font-size:11.5px; color:var(--ink-2); margin-bottom:24px}
+.legend i{display:inline-block; width:11px; height:11px; border-radius:50%; margin-right:5px; vertical-align:baseline}
+.legend i.sq{border-radius:2px}
+.bars{margin-bottom:22px}
+.row{display:flex; align-items:center; gap:10px; margin-bottom:5px; transition:opacity .3s}
+.row .rl{font-size:11.5px; color:var(--ink-2); width:74px; flex:none; text-align:right; font-variant-numeric:tabular-nums}
+.row .rl.max{color:var(--amber-ink); font-weight:600}
+.track{flex:1; height:17px; background:#F2F0EA; border-radius:4px; position:relative; overflow:hidden}
+.track .all{position:absolute; inset:0; width:0; background:var(--rule-2); border-radius:4px; transition:width .4s, background .3s}
+.track .sel{position:absolute; inset:0; width:0; background:var(--violet); border-radius:4px; transition:width .4s}
+.track .b{position:absolute; top:0; bottom:0; width:0; border-radius:3px; transition:all .4s}
+.track .zero{position:absolute; top:0; bottom:0; width:1px; background:var(--rule-2); display:none}
+.track .tick{position:absolute; top:0; bottom:0; width:1.5px; background:var(--ink-3); opacity:.45}
+.row .rn{font-size:11.5px; color:var(--ink-2); width:118px; flex:none; text-align:right; font-variant-numeric:tabular-nums}
+.mrow{margin-bottom:19px}
+.mhead{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px}
+.mhead .k{font-size:12.5px; color:var(--ink-2)}
+.mhead .v{font-size:17px; font-weight:600; font-variant-numeric:tabular-nums}
+.mhead .v.neg{color:var(--red)}
+.mtrack{height:22px; background:#F2F0EA; border-radius:5px; position:relative; overflow:hidden}
+.mnote{font-size:11px; color:var(--ink-3); margin-top:4px; font-variant-numeric:tabular-nums}
+.coName{display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--rule); padding-bottom:11px; margin-bottom:17px}
+.coName b{font-size:17px; font-weight:600; letter-spacing:.02em}
+.coName span{font-size:12.5px; color:var(--ink-2); font-variant-numeric:tabular-nums}
+.cmpRow{display:flex; align-items:center; gap:10px; padding:6px 8px; border-radius:7px; margin-bottom:2px; transition:background .3s}
+.cmpRow.lit{background:var(--amber-bg)}
+.cmpRow .cn{font-size:12.5px; font-weight:600; width:52px; flex:none}
+.cmpRow.lit .cn{color:var(--amber-ink)}
+.cmpRow .cv{font-size:11.5px; color:var(--ink-2); width:112px; flex:none; text-align:right; font-variant-numeric:tabular-nums}
+.metSeg{display:flex; flex-wrap:wrap; gap:6px}
+.metSeg button{
+  appearance:none; border:1px solid var(--rule-2); background:var(--card); cursor:pointer;
+  font-family:inherit; font-size:12px; color:var(--ink-2); padding:5px 11px; border-radius:6px;
+}
+.metSeg button.on{background:var(--ink); border-color:var(--ink); color:#fff; font-weight:600}
+.foot{font-size:11.5px; color:var(--ink-3); border-top:1px solid var(--rule); padding-top:13px; margin-top:26px; line-height:1.85}
+.warn{
+  background:var(--amber-bg); border-left:3px solid var(--amber); border-radius:0;
+  padding:9px 13px; font-size:12px; color:var(--amber-ink); margin-bottom:17px; display:none;
+}
+.warn.on{display:block}
+table.sum{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
+table.sum th,table.sum td{padding:5px 9px; text-align:right; font-size:13px}
+table.sum thead th{
+  font-size:11px; color:var(--ink-3); font-weight:600; letter-spacing:.1em;
+  border-bottom:1px solid var(--rule-2); padding-bottom:6px;
+}
+table.sum thead th.cur{color:var(--ink)}
+table.sum th:first-child,table.sum td:first-child{
+  text-align:left; color:var(--ink-2); font-size:11.5px; font-weight:400; letter-spacing:.02em; width:118px;
+}
+table.sum tbody tr{border-bottom:1px solid #F0EDE6}
+table.sum tr.sec td{
+  text-align:left; font-size:10px; letter-spacing:.18em; color:var(--ink-3); font-weight:600;
+  padding:11px 0 3px; border:none;
+}
+table.sum tr.sec:first-child td{padding-top:6px}
+table.sum td.cur{background:#FAF8F3}
+table.sum .n{font-size:15px; font-weight:600; letter-spacing:-.01em}
+table.sum td.cur .n{font-size:16px}
+table.sum .u{font-size:10px; color:var(--ink-3); margin-left:1px}
+table.sum .na{color:var(--rule-2)}
+.tnote{font-size:11.5px; color:var(--ink-3); margin-top:9px; line-height:1.8}
+.cmpRow.grp{border-bottom:1px solid var(--rule-2); border-radius:0; margin-bottom:8px; padding-bottom:9px}
+.cmpRow.grp .cn{color:var(--ink)}
+.track .avl{position:absolute; top:-1px; bottom:-1px; width:0; border-left:1px dashed var(--ink-2); opacity:.75; display:none}
+.grid.full{grid-template-columns:1fr; gap:16px}
+.rail.bar{position:static; display:flex; gap:12px; align-items:stretch}
+.rail.bar .card{margin-top:0; flex:0 0 auto; padding:11px 14px}
+.rail.bar .card:nth-child(2){flex:1}
+.rail.bar .lbl{margin-bottom:6px}
+.cmpGrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.mcard{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:16px 18px 14px}
+.mcTitle{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; border-bottom:1px solid var(--rule); padding-bottom:9px}
+.mcTitle>span:first-child{font-size:14px; font-weight:600; letter-spacing:.02em}
+.mcSub{font-size:11.5px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.mcRow{display:flex; align-items:center; gap:9px; margin-bottom:6px}
+.mcRow.top{margin-bottom:9px; padding-bottom:8px; border-bottom:1px dotted var(--rule)}
+.mcRow .cn{font-size:12px; font-weight:600; width:38px; flex:none; letter-spacing:-.02em}
+.mcRow.top .cn{color:var(--ink)}
+.mcRow.under .cn{color:var(--ink-3); font-weight:400}
+.mcRow .track{flex:1; height:16px}
+.mcRow .cv{font-size:11.5px; color:var(--ink-2); width:92px; flex:none; text-align:right; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.mcRow.grpfull .track{background:#EDEBE5}
+@media (max-width:980px){ .cmpGrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.cmpLeg{display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:11.5px; color:var(--ink-2); margin-bottom:11px}
+.cmpLeg i{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px}
+.cmpLeg .ex{color:var(--ink-3)}
+.cmpRow.under .cn{color:var(--ink-3)}
+.tick.grp{background:var(--ink); opacity:.85; width:2px}
+@media print{ .rail{position:static} body{background:#fff} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>人と経営のデータ</h1>
+  <div class="sub">バルニバービグループ　主要7社　従業員データ 2026年7月31日時点／業績 2022〜2026年度（各年度は8月〜翌7月）</div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-p="p1">人的資本推移</button>
+  <button class="tab" data-p="p2">グループ年度別推移</button>
+</div>
+
+<!-- ============ 人の構造 ============ -->
+<div class="panel on" id="p1">
+<div class="grid">
+  <div class="rail">
+    <div class="card">
+      <p class="lbl">表示</p>
+      <div class="seg" id="v1">
+        <button data-v="all" class="on">全体</button>
+        <button data-v="one">会社別</button>
+        <button data-v="cmp">全社一括</button>
+      </div>
+      <div id="co1wrap" style="margin-top:11px; display:none"><select id="co1"></select></div>
+    </div>
+    <div class="card">
+      <p class="lbl">軸</p>
+      <div class="seg" id="ax1">
+        <button data-a="t" class="on">勤続</button>
+        <button data-a="a">年齢</button>
+        <button data-a="p">給与</button>
+      </div>
+      <div style="margin-top:13px">
+        <div class="slideHead">
+          <span style="font-size:11.5px; color:var(--ink-3)">帯を選ぶ</span>
+          <span class="slideVal" id="slOut1">0年</span>
+        </div>
+        <input type="range" id="sl1" min="0" max="5" step="1" value="0">
+        <div class="hint" id="hint1"></div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="stats" id="stats1">
+      <div class="stat"><div class="k">該当人数</div><div class="v"><span id="s1n">—</span><small>人</small> <small id="s1p"></small></div></div>
+      <div class="stat"><div class="k">給与中央値</div><div class="v" id="s1m">—</div></div>
+      <div class="stat"><div class="k">平均年齢</div><div class="v" id="s1a">—</div></div>
+      <div class="stat"><div class="k">平均勤続</div><div class="v" id="s1t">—</div></div>
+      <div class="stat"><div class="k">昨年の離職率</div><div class="v" id="s1l">—</div><div class="sub2" id="s1ls"></div></div>
+    </div>
+    <div id="one1">
+      <div class="secTitle">構成<span>1つの円が1人／色は役職</span></div>
+      <div class="dots" id="dots1"></div>
+      <div class="legend">
+        <span><i style="background:#B4B2A9"></i>スタッフ</span>
+        <span><i style="background:#AFA9EC"></i>代理職</span>
+        <span><i style="background:#1D9E75"></i>店長</span>
+        <span><i style="background:#D85A30"></i>シェフ</span>
+        <span><i class="sq" style="background:#EF9F27"></i>最多ゾーン</span>
+      </div>
+      <div id="panes1"></div>
+    </div>
+    <div id="cmp1" style="display:none"></div>
+  </div>
+</div>
+</div>
+
+<!-- ============ 経営指標 ============ -->
+<div class="panel" id="p2">
+
+  <div class="secTitle" style="font-size:13.5px; margin-bottom:8px">全体（主要7社）の推移<span>年度は決算期（8月〜翌7月）／2026年度＝2025年8月〜2026年7月</span></div>
+  <table class="sum">
+    <thead><tr><th></th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th class="cur">2026</th></tr></thead>
+    <tbody id="sumBody"></tbody>
+  </table>
+  <div class="tnote">2022年度（2021年8月〜2022年7月）はコロナ禍（緊急事態宣言・まん延防止措置、第6波）。ここを起点にした増減は回復であり、実力の変化とは区別してください。<br>2026年度は組織再編（BBD・OPAS等の解散と店舗移管）を含むため、会社単位の前年比較には移管分が入ります。</div>
+
+  <div class="grid" id="g2" style="margin-top:22px">
+    <div class="rail" id="rail2">
+      <div class="card">
+        <p class="lbl">比べ方</p>
+        <div class="seg" id="v2">
+          <button data-v="one" class="on">会社別</button>
+          <button data-v="cmp">全社一括</button>
+        </div>
+        <div id="co2wrap" style="margin-top:11px"><select id="co2"></select></div>
+      </div>
+      <div class="card">
+        <p class="lbl">年度</p>
+        <div class="slideHead">
+          <span style="font-size:11.5px; color:var(--ink-3)">8月〜翌7月</span>
+          <span class="slideVal" id="yrOut">2026年度</span>
+        </div>
+        <input type="range" id="yr" min="2022" max="2026" step="1" value="2026">
+        <div class="hint" id="hint2"></div>
+      </div>
+
+    </div>
+
+    <div>
+      <div class="warn" id="covid">2022年度はコロナ禍。時短・酒類提供制限下の年であり、この年との比較は「回復」を意味します。</div>
+      <div class="coName" id="co2name"><b>全体（主要7社）</b><span id="co2hc"></span></div>
+      <div id="rows2"></div>
+      <div id="cmpLeg" class="cmpLeg" style="display:none"></div>
+      <div id="cmpGrid" class="cmpGrid" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<div class="foot" id="foot"></div>
+</div>
+
+<script>
+const D=[[4,2,3,0,0,160,38,31],[4,0,0,0,0,160,22,8],[2,2,1,0,0,160,26,33],[0,3,2,0,0,160,32,65],[0,0,1,0,0,160,29,3],[4,1,0,0,0,160,23,15],[6,0,0,0,0,160,22,7],[6,0,3,0,0,160,38,2],[4,0,2,0,0,160,30,9],[4,1,1,0,0,175,28,18],[2,1,0,0,0,180,24,19],[4,5,2,0,0,185,33,123],[6,1,0,0,0,190,24,17],[5,0,4,0,0,200,42,2],[0,3,6,0,0,220,51,79],[0,3,1,0,0,230,27,53],[1,3,1,0,0,240,28,73],[4,0,0,1,0,250,22,2],[7,0,1,1,0,250,28,4],[7,0,0,1,0,250,20,3],[0,0,0,1,0,250,21,7],[0,0,0,1,0,250,21,2],[0,1,0,1,0,250,24,10],[4,1,1,1,0,250,29,10],[0,0,0,1,0,250,23,3],[0,0,0,1,0,250,19,3],[1,0,0,1,0,250,20,3],[4,0,0,1,0,250,23,3],[4,0,1,1,0,250,26,3],[4,0,1,1,0,250,27,2],[5,1,1,1,0,250,27,13],[1,0,0,1,0,250,20,3],[1,0,0,1,0,250,21,3],[1,0,0,1,0,250,20,2],[4,0,0,1,0,250,20,3],[4,0,0,1,0,250,20,3],[1,0,0,1,0,250,22,3],[1,0,0,1,0,250,22,3],[3,0,0,1,0,250,20,3],[5,1,0,1,0,250,24,20],[5,1,0,1,0,250,24,13],[0,1,0,1,0,250,21,13],[0,0,0,1,0,250,23,3],[0,1,0,1,0,250,21,13],[0,1,0,1,0,250,23,17],[0,0,0,1,0,250,20,4],[4,0,0,1,0,250,22,3],[1,0,1,1,0,250,28,2],[1,0,0,1,0,250,21,2],[0,1,0,1,0,250,19,13],[1,0,0,1,0,250,23,3],[0,1,0,1,0,250,22,13],[0,1,1,1,0,250,25,23],[0,0,0,1,0,250,23,2],[4,0,0,1,0,250,20,3],[6,1,1,1,0,250,25,16],[6,0,1,1,0,250,26,9],[6,0,0,1,0,250,20,3],[0,0,0,1,0,250,23,3],[5,1,0,1,0,250,20,19],[5,1,2,1,0,250,30,16],[5,1,0,1,0,250,22,13],[6,0,0,1,0,250,20,2],[4,0,0,1,0,250,20,3],[1,0,2,1,0,250,33,3],[1,0,0,1,0,250,24,3],[1,0,0,1,0,250,21,3],[0,0,0,1,0,250,20,3],[0,0,0,1,0,250,22,6],[0,0,1,1,0,250,26,4],[0,0,0,1,0,250,24,3],[4,0,6,1,0,250,56,1],[1,0,0,1,0,250,23,1],[1,0,1,1,0,250,29,3],[1,0,0,1,0,250,23,8],[1,0,0,1,0,250,23,1],[1,0,0,1,0,250,23,3],[5,1,0,1,0,250,20,13],[6,1,0,1,0,250,22,15],[0,1,0,1,0,250,19,13],[4,0,0,1,0,250,23,3],[0,1,0,1,0,250,21,13],[1,0,0,1,0,250,20,3],[0,1,1,1,0,250,27,20],[0,1,0,1,0,250,24,22],[0,0,1,1,0,250,25,3],[1,0,0,1,0,250,20,3],[0,1,0,1,0,250,23,12],[1,0,0,1,0,250,21,3],[4,0,0,1,0,255,21,8],[5,3,1,1,0,255,25,53],[5,1,0,1,0,255,20,13],[5,1,0,1,0,255,23,13],[5,1,1,1,0,255,29,13],[6,0,0,1,0,255,23,2],[0,0,1,1,0,260,27,3],[0,1,0,1,0,260,22,11],[4,1,1,1,0,260,27,14],[4,1,0,1,0,260,22,14],[4,1,1,1,0,260,25,14],[0,0,1,1,0,260,26,2],[1,0,1,1,0,260,27,5],[0,1,0,1,0,260,21,13],[0,1,1,1,0,260,28,20],[1,1,4,1,0,260,42,10],[4,1,1,1,0,260,26,13],[0,0,0,1,0,260,23,2],[6,1,0,1,0,260,21,13],[0,0,2,1,0,260,31,9],[4,1,0,1,0,260,20,14],[0,1,0,1,0,260,20,23],[0,1,1,1,0,260,25,23],[1,0,0,1,0,260,24,5],[1,1,0,1,0,265,23,13],[3,1,1,1,0,265,27,21],[5,1,1,1,0,265,25,19],[5,1,1,1,0,265,26,13],[0,1,0,1,0,265,24,19],[0,2,1,1,0,265,29,32],[2,0,1,1,0,270,25,6],[2,0,0,1,0,270,19,6],[2,0,0,1,0,270,19,4],[2,0,1,1,0,270,27,3],[2,0,0,1,0,270,22,3],[2,0,1,1,0,270,28,2],[2,0,0,1,0,270,22,6],[2,0,1,1,0,270,25,2],[2,1,0,1,0,270,24,12],[2,0,2,1,0,270,32,6],[2,0,0,1,0,270,24,6],[2,0,2,1,0,270,33,6],[2,0,0,1,0,270,23,6],[2,0,2,1,0,270,30,6],[2,0,3,1,0,270,38,1],[2,0,1,1,0,270,25,6],[2,0,0,1,0,270,22,2],[7,0,0,1,0,270,20,3],[0,0,0,1,0,270,24,3],[0,2,0,1,0,270,24,43],[0,1,0,1,0,270,24,21],[0,1,1,1,0,270,26,13],[2,1,0,1,0,270,24,13],[2,0,0,1,0,270,23,6],[2,0,2,1,0,270,31,6],[2,0,0,1,0,270,22,2],[1,0,0,1,0,270,21,5],[3,1,0,1,0,270,22,14],[3,1,1,1,0,270,28,14],[4,1,1,1,0,270,27,24],[1,0,2,1,0,270,32,1],[3,1,0,1,0,270,23,14],[3,1,2,1,0,270,32,11],[5,1,0,1,0,270,24,23],[5,0,1,1,0,270,28,4],[3,1,1,1,0,270,27,14],[0,1,1,1,0,270,25,23],[0,1,0,1,0,270,22,13],[0,1,1,1,0,270,25,23],[3,1,1,1,0,270,28,14],[3,1,0,1,0,270,20,14],[2,0,0,1,0,270,24,6],[2,0,0,1,0,270,20,2],[3,1,0,1,0,270,22,14],[0,0,2,1,0,270,30,5],[0,1,1,1,0,270,28,13],[0,0,0,1,0,270,23,2],[6,1,1,1,0,270,25,14],[0,2,0,1,0,270,24,43],[0,3,1,1,0,270,29,73],[0,0,0,1,0,270,24,4],[6,0,1,1,0,270,27,2],[1,1,1,1,1,270,25,11],[0,1,2,1,0,270,32,20],[2,0,0,1,0,270,21,6],[0,0,1,1,0,270,26,8],[0,0,1,1,0,270,25,6],[2,2,1,1,0,270,27,43],[2,1,2,1,0,270,30,10],[2,0,1,1,0,270,26,6],[0,3,1,1,0,270,27,53],[0,2,1,1,0,270,25,33],[1,0,0,1,0,270,22,3],[0,1,0,1,0,275,22,17],[2,1,1,1,0,275,25,21],[4,2,1,1,0,275,26,33],[4,1,0,1,0,275,24,23],[3,1,1,1,0,275,25,17],[5,1,1,1,0,275,25,22],[0,1,1,1,0,275,26,23],[2,0,1,1,0,280,25,3],[0,4,2,1,0,280,32,80],[7,1,0,1,0,280,24,23],[0,0,1,1,0,280,26,5],[0,1,2,1,0,280,32,29],[0,2,1,1,0,280,25,33],[2,1,1,1,0,280,27,12],[2,0,0,1,0,280,22,3],[4,2,1,1,0,280,26,33],[4,0,0,1,0,280,21,3],[3,1,0,1,0,280,23,13],[3,1,0,1,0,280,24,14],[3,1,1,1,0,280,25,21],[0,1,5,1,0,280,45,23],[0,0,3,1,0,280,36,3],[4,1,0,1,0,280,22,23],[1,0,1,1,0,280,25,3],[3,1,1,1,0,280,29,14],[3,0,0,1,0,280,22,3],[5,0,0,1,0,280,22,3],[3,1,0,1,0,280,21,13],[3,1,0,1,0,280,20,14],[0,3,1,1,0,280,25,53],[0,1,6,1,0,280,51,12],[0,3,2,1,0,280,30,58],[2,0,2,1,0,280,32,1],[2,5,6,1,0,280,70,223],[4,1,6,1,0,280,50,14],[0,0,3,1,0,280,35,3],[3,1,0,1,0,280,22,17],[3,1,0,1,0,280,24,13],[0,2,1,1,0,280,26,33],[0,0,0,1,0,280,24,8],[6,1,2,1,0,280,30,17],[6,1,1,1,0,280,28,14],[6,0,2,1,0,280,30,4],[1,1,0,1,0,280,23,16],[1,1,2,1,0,280,33,23],[1,1,1,1,0,280,27,15],[0,1,0,1,0,280,24,12],[0,1,1,1,0,280,27,15],[2,0,5,1,0,280,46,6],[6,0,1,1,0,280,25,7],[1,0,3,1,0,280,37,4],[0,2,2,1,0,280,30,38],[0,0,1,1,0,280,27,7],[0,3,1,1,0,285,25,53],[2,1,4,1,0,285,41,29],[3,1,2,1,0,285,30,21],[5,4,4,1,0,285,40,91],[3,1,1,1,0,285,25,23],[4,2,1,1,0,285,28,33],[3,1,0,1,0,285,24,17],[1,2,1,1,0,285,26,43],[0,1,0,1,0,285,24,23],[0,4,1,1,0,290,28,83],[2,1,6,1,0,290,64,14],[2,1,0,1,0,290,22,22],[4,1,2,1,0,290,34,21],[2,1,0,1,0,290,24,22],[2,0,0,1,0,290,24,2],[1,2,1,1,0,290,25,33],[1,0,0,1,0,290,22,6],[3,1,1,1,0,290,29,21],[3,1,3,1,0,290,35,21],[5,1,2,1,0,290,33,21],[3,1,1,1,0,290,27,21],[0,2,1,1,0,290,25,43],[0,1,4,1,0,290,40,29],[3,1,1,1,0,290,29,17],[0,1,1,1,0,290,25,25],[5,2,1,1,0,290,27,34],[4,2,1,1,0,290,25,40],[4,2,1,1,0,290,25,34],[0,2,1,1,0,290,27,47],[0,2,0,1,0,290,23,31],[5,2,2,1,0,290,30,34],[6,3,1,1,0,290,29,63],[2,1,0,1,0,290,23,22],[1,2,0,1,0,290,24,44],[2,1,1,1,0,290,25,21],[5,1,5,1,0,290,45,13],[6,1,2,1,0,290,34,23],[0,3,2,1,0,290,32,54],[4,2,2,1,0,290,32,47],[4,2,1,1,0,290,25,33],[0,2,1,1,0,290,25,33],[3,1,2,1,0,290,31,17],[3,1,1,1,0,295,29,17],[3,1,0,1,0,295,21,17],[3,1,1,1,0,295,26,17],[3,1,0,1,0,295,24,21],[3,1,0,1,0,295,24,21],[3,1,1,1,0,295,26,17],[1,3,1,1,1,295,28,50],[0,1,1,1,0,295,27,19],[1,2,0,1,0,295,24,33],[0,0,2,2,0,300,32,2],[2,2,0,2,0,300,24,33],[2,1,1,2,0,300,27,18],[2,1,2,2,0,300,31,12],[1,3,4,2,0,300,42,62],[7,1,6,2,0,300,50,10],[0,1,2,2,0,300,34,22],[0,1,3,2,1,300,35,28],[0,0,5,2,0,300,46,1],[0,1,2,2,0,300,31,17],[1,2,0,2,0,300,22,37],[1,1,0,2,0,300,22,23],[4,1,0,2,0,300,23,28],[1,2,1,2,0,300,27,35],[1,0,0,2,0,300,23,2],[0,2,1,2,0,300,25,43],[0,1,5,2,0,300,47,12],[3,2,2,2,0,300,33,44],[0,4,3,2,0,300,38,80],[7,1,3,2,2,300,37,22],[2,1,1,2,0,300,28,21],[0,1,3,2,0,300,37,23],[1,1,4,2,0,300,42,23],[1,0,1,2,0,300,25,6],[3,1,1,2,0,300,26,22],[1,0,0,2,0,300,24,3],[4,1,1,2,0,300,27,12],[0,0,1,2,0,300,28,2],[0,1,2,2,0,300,32,18],[4,1,2,2,0,300,30,22],[6,2,1,2,2,300,25,33],[0,3,2,2,0,300,34,72],[0,1,0,2,0,300,24,11],[4,4,6,2,2,300,56,97],[1,2,5,2,0,300,45,40],[6,2,2,2,0,300,31,43],[4,3,1,2,2,300,25,53],[0,1,6,2,0,300,51,19],[1,2,5,2,0,300,47,32],[1,1,1,2,0,300,29,12],[3,0,1,2,0,300,28,2],[0,2,1,2,0,305,25,43],[2,1,1,2,0,310,26,29],[2,1,2,2,0,310,34,23],[2,1,1,2,0,310,26,18],[0,0,1,2,0,310,28,3],[1,2,6,2,0,310,57,37],[0,2,1,2,0,310,25,33],[0,1,2,2,0,310,30,22],[1,2,2,2,0,310,32,40],[0,2,0,2,1,310,24,33],[5,3,1,2,2,310,27,53],[0,2,5,2,0,310,48,46],[1,3,1,2,1,310,27,67],[1,3,1,2,0,310,29,73],[1,2,0,2,0,310,23,33],[0,0,2,2,0,310,32,3],[1,5,6,2,0,310,51,188],[1,3,1,2,1,310,27,53],[1,4,4,2,2,310,41,80],[0,3,1,2,0,310,28,50],[2,1,1,2,0,315,26,21],[3,3,1,2,0,315,25,53],[0,0,2,2,0,320,34,1],[0,2,2,2,0,320,33,42],[0,4,5,2,0,320,45,89],[3,1,3,2,0,320,37,21],[0,0,6,2,0,320,51,2],[3,1,0,2,0,320,20,12],[2,4,2,2,0,320,30,84],[4,5,4,2,0,320,42,125],[0,1,2,2,0,320,30,24],[0,1,4,2,0,320,40,12],[6,0,2,2,0,320,31,3],[0,0,2,2,3,320,31,8],[0,3,1,2,0,320,27,73],[0,1,2,2,0,320,32,29],[0,1,2,2,0,320,33,20],[2,1,3,2,0,325,38,22],[5,3,2,2,0,325,33,53],[0,2,1,2,0,330,25,43],[0,1,2,2,0,330,31,10],[0,5,3,2,0,330,36,114],[7,4,5,2,3,330,45,93],[0,2,1,2,2,330,25,33],[2,3,5,2,0,330,47,61],[3,2,1,2,0,330,26,33],[4,2,5,2,2,330,46,45],[4,0,4,2,0,330,42,8],[5,4,1,2,0,330,28,83],[4,1,6,2,0,330,53,19],[3,1,1,2,0,330,29,12],[7,1,2,2,0,330,30,26],[0,1,2,2,0,330,31,12],[0,2,1,2,0,330,26,31],[0,3,2,2,0,330,34,63],[1,3,1,2,3,330,29,67],[0,3,1,2,0,330,29,54],[0,2,1,2,0,330,26,43],[1,5,4,2,0,330,44,126],[0,1,1,2,1,330,25,17],[1,2,2,2,3,330,30,32],[0,5,5,2,0,330,49,111],[0,4,2,2,0,330,34,89],[0,1,6,2,0,330,54,13],[0,1,6,2,0,330,53,12],[1,0,5,2,0,330,47,3],[3,1,1,2,0,330,27,29],[2,5,2,2,0,335,34,127],[2,3,1,2,0,335,27,63],[2,1,5,2,0,335,46,27],[2,4,2,2,0,335,34,93],[2,1,3,2,0,335,38,21],[5,5,2,2,0,335,34,123],[0,0,6,2,0,335,64,2],[0,3,1,2,0,340,28,67],[4,0,6,2,0,340,53,7],[0,3,1,2,0,340,26,53],[0,3,6,2,0,340,58,72],[0,2,4,2,1,340,42,37],[0,5,3,2,0,340,39,124],[1,2,1,2,2,340,26,37],[1,3,2,2,2,340,34,51],[0,4,1,2,0,340,27,83],[0,1,3,2,0,340,37,19],[0,3,2,2,0,340,33,57],[5,1,1,2,2,340,29,29],[5,0,3,2,0,340,37,0],[4,5,3,2,0,340,38,180],[0,5,4,2,0,340,40,110],[6,1,5,2,3,340,45,19],[4,4,6,2,3,340,50,107],[0,2,6,2,0,340,53,46],[0,1,2,2,1,340,32,13],[2,2,1,2,2,340,28,44],[0,1,3,2,0,340,37,17],[0,1,2,2,1,340,31,15],[2,3,2,2,0,345,34,65],[2,2,1,2,0,345,28,41],[0,0,5,3,0,350,48,6],[2,2,1,3,2,350,27,43],[2,1,6,3,0,350,50,11],[2,1,4,3,0,350,40,18],[4,0,4,3,0,350,40,1],[0,2,3,3,0,350,38,32],[0,2,5,3,0,350,45,31],[2,0,3,3,0,350,37,7],[0,2,3,3,0,350,37,36],[0,0,5,3,0,350,46,8],[0,1,3,3,0,350,36,26],[7,0,3,3,0,350,37,4],[7,0,4,3,0,350,43,3],[7,0,3,3,0,350,35,3],[0,5,4,3,0,350,42,138],[0,2,6,3,0,350,51,47],[0,2,1,3,2,350,27,40],[4,3,4,3,2,350,42,67],[1,3,6,3,0,350,50,73],[1,0,6,3,0,350,52,3],[1,3,1,3,2,350,29,50],[0,3,1,3,2,350,29,73],[1,5,4,3,0,350,42,112],[1,3,2,3,0,355,33,73],[4,3,4,3,3,355,40,64],[5,2,1,3,0,355,29,34],[5,1,6,3,0,355,60,19],[4,4,2,3,3,355,32,103],[3,4,4,3,0,360,41,91],[0,3,1,3,3,360,29,73],[5,1,1,3,0,360,29,19],[5,0,2,3,0,360,33,4],[2,5,6,3,3,360,58,165],[0,4,2,3,2,360,31,99],[1,4,2,3,2,360,33,92],[2,1,6,3,0,365,53,13],[3,4,3,3,0,365,39,91],[2,1,2,3,0,365,34,11],[2,3,1,3,3,370,28,63],[4,4,5,3,2,370,46,95],[2,3,1,3,2,370,28,73],[0,3,1,3,2,370,28,73],[4,0,4,3,0,370,44,3],[4,1,6,3,3,370,59,29],[1,3,0,3,0,370,24,50],[0,5,5,3,0,370,48,144],[0,1,2,3,2,370,32,26],[2,1,2,3,2,370,32,13],[4,1,6,3,3,370,54,20],[6,2,2,3,3,370,34,35],[0,5,3,3,0,370,36,123],[6,3,3,3,3,370,36,68],[6,0,6,3,0,370,50,2],[0,5,4,3,0,370,40,143],[1,2,6,3,0,370,57,33],[0,5,5,3,0,375,48,113],[1,5,6,3,3,375,53,110],[0,3,2,3,3,380,34,53],[0,3,2,3,0,380,33,55],[4,0,4,3,2,380,44,7],[0,2,4,3,3,380,43,42],[2,3,1,3,2,380,27,73],[0,0,2,3,0,380,31,4],[3,5,3,3,0,380,36,123],[0,4,4,3,3,380,43,89],[5,5,4,3,0,380,40,113],[0,5,4,3,0,380,41,138],[0,5,2,3,2,380,33,113],[3,1,3,3,0,380,39,11],[5,1,4,3,0,380,43,19],[0,4,3,3,0,380,36,80],[0,3,1,3,0,380,29,72],[1,4,3,3,3,380,37,80],[0,0,4,3,0,380,40,8],[0,0,6,3,0,380,52,3],[2,5,2,3,3,385,33,113],[2,3,1,3,3,385,29,66],[3,2,6,3,0,385,50,44],[0,2,4,3,0,390,44,30],[0,4,4,3,0,390,43,109],[0,4,3,3,3,390,39,84],[4,5,4,3,2,390,41,137],[5,4,2,3,0,390,31,83],[0,3,1,3,3,390,29,53],[0,3,2,3,3,390,31,58],[2,1,3,3,2,390,37,27],[0,4,3,3,0,390,35,103],[3,1,4,3,3,390,41,29],[3,4,3,3,0,395,36,102],[5,2,5,3,0,395,47,44],[0,0,6,4,0,400,51,5],[2,5,4,4,3,400,42,127],[7,2,2,4,0,400,31,34],[0,4,2,4,0,400,33,103],[0,3,6,4,0,400,53,52],[0,4,2,4,2,400,31,93],[0,2,6,4,0,400,52,34],[3,4,2,4,0,400,31,93],[3,2,5,4,0,400,47,46],[0,3,6,4,3,400,51,73],[0,2,4,4,2,400,42,42],[3,5,5,4,0,400,45,153],[2,0,2,4,3,400,31,8],[1,3,2,4,2,400,33,54],[7,0,2,4,0,400,31,5],[1,3,4,4,2,400,40,79],[4,4,4,4,3,400,40,106],[4,5,2,4,3,400,34,112],[0,3,3,4,0,400,35,64],[6,2,1,4,2,400,29,43],[0,0,4,4,0,400,43,5],[1,5,3,4,2,400,38,138],[1,4,5,4,3,400,48,108],[5,2,5,4,0,400,49,35],[0,1,4,4,3,400,44,15],[0,5,2,4,2,400,34,124],[0,4,4,4,2,400,44,82],[1,5,3,4,2,400,36,125],[1,2,6,4,3,400,58,43],[2,4,1,4,0,405,29,93],[0,5,3,4,0,405,37,149],[3,5,4,4,0,405,41,168],[2,5,3,4,0,405,37,125],[3,4,2,4,2,410,32,103],[3,4,5,4,0,410,49,101],[5,3,4,4,3,410,41,68],[4,5,6,4,3,410,54,207],[0,2,3,4,3,410,39,44],[0,0,5,4,0,410,47,2],[0,4,3,4,2,410,38,109],[3,2,0,4,2,415,24,43],[0,4,6,4,0,415,56,104],[0,4,4,4,2,420,42,102],[0,1,6,4,0,420,56,27],[4,5,6,4,3,420,55,275],[3,5,4,4,0,420,41,120],[0,3,3,4,0,420,35,53],[0,0,4,4,0,420,42,7],[3,5,5,4,1,420,49,127],[0,1,5,4,0,420,45,12],[5,2,4,4,3,420,41,35],[0,0,5,4,0,420,48,2],[0,0,2,4,0,429,32,2],[1,4,3,4,2,430,35,80],[1,5,3,4,2,430,35,128],[5,2,4,4,2,430,40,42],[0,1,4,4,2,430,43,27],[0,3,5,4,3,430,47,73],[4,0,6,4,0,435,54,4],[3,1,6,4,3,435,53,11],[1,4,2,4,3,440,34,93],[0,1,5,4,3,440,49,29],[3,4,2,4,0,440,34,104],[3,5,4,4,0,445,40,128],[3,5,4,4,0,445,44,233],[0,5,5,5,2,450,48,151],[0,4,3,5,0,450,39,90],[1,5,4,5,0,450,41,121],[3,5,3,5,0,450,38,123],[0,3,3,5,3,450,36,52],[2,5,5,5,0,450,47,146],[2,3,1,5,0,450,28,78],[2,5,4,5,0,450,43,158],[0,4,2,5,3,450,33,99],[3,3,1,5,2,450,27,53],[7,0,3,5,2,450,39,5],[7,0,2,5,3,450,30,5],[1,4,4,5,2,450,43,102],[0,3,6,5,2,450,61,62],[0,3,4,5,3,460,43,57],[3,1,5,5,3,460,48,26],[0,4,3,5,2,460,35,108],[0,1,3,5,3,460,38,29],[0,0,4,5,3,460,44,9],[0,0,3,5,0,470,37,2],[0,4,3,5,3,470,37,84],[0,4,3,5,2,470,39,81],[0,3,4,5,3,480,41,79],[3,5,6,5,3,490,57,136],[5,5,6,5,2,490,52,146],[0,5,5,6,0,500,49,137],[0,5,4,6,0,500,44,129],[0,0,4,6,0,500,44,3],[3,4,1,6,3,500,29,92],[0,5,4,6,2,500,42,117],[0,5,5,6,2,500,47,147],[7,0,3,6,0,500,35,5],[5,1,4,6,0,500,40,13],[6,0,6,6,2,500,50,5],[3,5,5,6,2,500,46,115],[3,5,4,6,3,505,42,123],[0,4,5,6,0,515,45,107],[0,5,3,6,0,515,39,149],[5,3,4,6,0,520,41,51],[0,4,4,6,0,550,43,96],[0,5,4,6,0,550,44,138],[0,3,6,6,0,550,57,75],[0,3,5,6,0,550,45,64],[0,2,3,6,0,550,37,32],[0,5,4,6,0,595,40,177],[2,5,5,6,0,600,49,225],[0,5,5,6,0,600,46,142],[5,5,3,6,0,600,35,123],[5,1,3,6,0,600,36,15],[5,0,6,6,0,600,55,4],[5,0,5,6,0,700,46,5],[1,3,6,6,3,720,57,74]];
+const DB={"BWW":{"hc":{"2022":109,"2023":141,"2024":186,"2025":214,"2026":236},"sales":{"2022":2410321,"2023":3011991,"2024":4030022,"2025":4263103,"2026":5370199},"op":{"2022":16766,"2023":157660,"2024":220646,"2025":256469,"2026":301927},"opph":{"2022":15.4,"2023":111.8,"2024":118.6,"2025":119.8,"2026":127.9},"join":{"2023":49,"2024":62,"2025":63,"2026":57},"leave":{"2023":19,"2024":39,"2025":34,"2026":49},"raise":{"2023":8.2,"2024":5.1,"2025":4.7,"2026":3.8}},"BAG":{"hc":{"2022":92,"2023":98,"2024":103,"2025":86,"2026":87},"sales":{"2022":1667212,"2023":2201804,"2024":2401416,"2025":2491986,"2026":2469947},"op":{"2022":-25814,"2023":105298,"2024":109648,"2025":120122,"2026":103129},"opph":{"2022":-28.1,"2023":107.4,"2024":106.5,"2025":139.7,"2026":118.5},"join":{"2023":34,"2024":21,"2025":15,"2026":33},"leave":{"2023":28,"2024":18,"2025":28,"2026":32},"raise":{"2023":9.4,"2024":7.1,"2025":3.5,"2026":6.0}},"BSC":{"hc":{"2022":39,"2023":46,"2024":70,"2025":66,"2026":84},"sales":{"2022":841549,"2023":1123853,"2024":1335394,"2025":1794413,"2026":1969271},"op":{"2022":20306,"2023":55859,"2024":145153,"2025":181396,"2026":173719},"opph":{"2022":52.1,"2023":121.4,"2024":207.4,"2025":274.8,"2026":206.8},"join":{"2023":18,"2024":35,"2025":19,"2026":32},"leave":{"2023":12,"2024":9,"2025":22,"2026":15},"raise":{"2023":6.9,"2024":8.0,"2025":6.2,"2026":5.4}},"BCO":{"hc":{"2022":31,"2023":34,"2024":48,"2025":82,"2026":70},"sales":{"2022":660756,"2023":943028,"2024":1246951,"2025":1556901,"2026":1762668},"op":{"2022":-950,"2023":92880,"2024":79050,"2025":86640,"2026":118278},"opph":{"2022":-3.1,"2023":273.2,"2024":164.7,"2025":105.7,"2026":169.0},"join":{"2023":6,"2024":18,"2025":35,"2026":3},"leave":{"2023":3,"2024":4,"2025":4,"2026":15},"raise":{"2023":7.1,"2024":6.8,"2025":5.5,"2026":7.6}},"BIF":{"hc":{"2022":41,"2023":41,"2024":56,"2025":55,"2026":64},"sales":{"2022":882603,"2023":1154933,"2024":1614898,"2025":1541862,"2026":1529996},"op":{"2022":-14650,"2023":58367,"2024":111519,"2025":79345,"2026":36872},"opph":{"2022":-35.7,"2023":142.4,"2024":199.1,"2025":144.3,"2026":57.6},"join":{"2023":11,"2024":19,"2025":20,"2026":22},"leave":{"2023":11,"2024":10,"2025":21,"2026":13},"raise":{"2023":6.6,"2024":4.9,"2025":4.0,"2026":4.3}},"PB":{"hc":{"2022":14,"2023":17,"2024":34,"2025":45,"2026":48},"sales":{"2022":278902,"2023":365261,"2024":893187,"2025":1033250,"2026":1007058},"op":{"2022":24161,"2023":42200,"2024":91419,"2025":63357,"2026":76933},"opph":{"2022":172.6,"2023":248.2,"2024":268.9,"2025":140.8,"2026":160.3},"join":{"2023":4,"2024":13,"2025":22,"2026":17},"leave":{"2023":1,"2024":6,"2025":9,"2026":14},"raise":{"2023":9.9,"2024":8.7,"2025":1.2,"2026":2.5}},"TOC":{"hc":{"2022":19,"2023":24,"2024":25,"2025":25,"2026":27},"sales":{"2022":518635,"2023":629917,"2024":663396,"2025":683186,"2026":716306},"op":{"2022":6296,"2023":57895,"2024":67706,"2025":72838,"2026":71613},"opph":{"2022":33.1,"2023":241.2,"2024":270.8,"2025":291.4,"2026":265.2},"join":{"2023":16,"2024":10,"2025":12,"2026":12},"leave":{"2023":6,"2024":9,"2025":11,"2026":10},"raise":{"2023":10.3,"2024":6.4,"2025":6.6,"2026":3.6}},"ALL":{"hc":{"2022":345,"2023":401,"2024":522,"2025":573,"2026":616},"sales":{"2022":7259978,"2023":9430787,"2024":12185264,"2025":13364701,"2026":14825445},"op":{"2022":26115,"2023":570159,"2024":825141,"2025":860167,"2026":882471},"opph":{"2022":7.6,"2023":142.2,"2024":158.1,"2025":150.1,"2026":143.3},"join":{"2023":138,"2024":178,"2025":186,"2026":176},"leave":{"2023":80,"2024":95,"2025":129,"2026":148},"raise":{"2023":7.8,"2024":6.1,"2025":4.8,"2026":4.7}}};
+const ATT={"ALL":{"t":[[158,49],[184,74],[74,10],[60,6],[49,6],[48,4]],"a":[[152,51],[141,42],[81,15],[59,8],[66,20],[33,5],[41,8]],"p":[[9,2],[281,90],[115,26],[86,16],[50,11],[16,3],[16,1]]},"BWW":{"t":[[50,18],[65,22],[35,3],[30,4],[18,1],[16,2]],"a":[[47,12],[45,16],[34,4],[27,2],[30,9],[11,1],[20,6]],"p":[[3,0],[88,26],[46,8],[34,7],[23,7],[10,1],[10,1]]},"BAG":{"t":[[13,8],[32,18],[14,3],[12,0],[8,2],[7,1]],"a":[[26,15],[18,4],[12,3],[5,1],[12,5],[6,3],[7,1]],"p":[[0,0],[44,20],[23,8],[7,0],[8,2],[3,2],[1,0]]},"BSC":{"t":[[19,6],[24,8],[5,1],[9,0],[3,0],[6,0]],"a":[[15,6],[24,5],[10,2],[5,0],[4,1],[5,1],[3,0]],"p":[[1,0],[32,12],[17,1],[14,2],[2,0],[0,0],[0,0]]},"BCO":{"t":[[33,6],[22,7],[7,1],[0,0],[9,0],[11,1]],"a":[[26,6],[20,2],[9,2],[10,3],[8,1],[6,0],[3,1]],"p":[[0,0],[44,8],[9,4],[12,2],[12,1],[3,0],[2,0]]},"BIF":{"t":[[13,3],[20,6],[5,1],[3,1],[8,2],[6,0]],"a":[[18,7],[12,3],[6,1],[4,0],[5,2],[4,0],[6,0]],"p":[[3,0],[33,11],[12,2],[6,0],[1,0],[0,0],[0,0]]},"PB":{"t":[[18,4],[14,9],[5,0],[4,1],[2,0],[2,0]],"a":[[13,4],[11,5],[6,2],[6,1],[6,2],[1,0],[2,0]],"p":[[0,0],[24,8],[4,1],[10,4],[4,1],[0,0],[3,0]]},"TOC":{"t":[[12,4],[7,4],[3,1],[2,0],[1,1],[0,0]],"a":[[7,1],[11,7],[4,1],[2,1],[1,0],[0,0],[0,0]],"p":[[2,2],[16,5],[4,2],[3,1],[0,0],[0,0],[0,0]]}};
+
+/* ---------- 共通 ---------- */
+const COS=["BWW","BAG","BSC","BCO","BIF","PB","TOC"];
+const CO_LABEL={BWW:"バルニバービウィルワークス",BAG:"バルニバービオーガスト",BSC:"バルニバービスピリッツ＆カンパニー",BCO:"バルニバービコンシスタンス",BIF:"バルニバービインターフェイス",PB:"PIATTIBELLA",TOC:"to-Compass"};
+function med(a){ if(!a.length) return null; const s=[...a].sort((x,y)=>x-y),m=s.length>>1; return s.length%2? s[m]:(s[m-1]+s[m])/2; }
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.p));
+  setFoot();
+});
+function seg(id,attr,fn){
+  const el=document.getElementById(id);
+  el.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    el.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));
+    fn(b.dataset[attr]);
+  });
+}
+
+/* ---------- モジュール1：人の構造 ---------- */
+const TB=["0年","1-2年","3-4年","5-7年","8-10年","11年+"];
+const AB=["20-24","25-29","30-34","35-39","40-44","45-49","50+"];
+const PBL=["25万未満","25-30万","30-35万","35-40万","40-45万","45-50万","50万+"];
+const AX={t:{i:1,lbl:"勤続",b:TB},a:{i:2,lbl:"年齢",b:AB},p:{i:3,lbl:"給与",b:PBL}};
+const ROLE=["#B4B2A9","#AFA9EC","#1D9E75","#D85A30"];
+let v1="all", ax="t";
+const co1=document.getElementById("co1");
+COS.forEach((c,i)=>{ const o=document.createElement("option"); o.value=i; o.textContent=c+"（"+D.filter(r=>r[0]===i).length+"人）"; co1.appendChild(o); });
+const panes={}, panesEl=document.getElementById("panes1");
+[["p","給与帯"],["t","勤続"],["a","年齢"]].forEach(([k,t])=>{
+  const d=document.createElement("div"); d.className="bars";
+  d.innerHTML='<div class="secTitle"><span class="tt"></span><span class="tn"></span></div><div class="rr"></div>';
+  panesEl.appendChild(d);
+  const rr=d.querySelector(".rr"), bars=[];
+  AX[k].b.forEach(b=>{
+    const r=document.createElement("div"); r.className="row";
+    r.innerHTML='<span class="rl">'+b+'</span><div class="track"><div class="all"></div><div class="sel"></div></div><span class="rn"></span>';
+    rr.appendChild(r);
+    bars.push({row:r,rl:r.querySelector(".rl"),all:r.querySelector(".all"),sel:r.querySelector(".sel"),rn:r.querySelector(".rn")});
+  });
+  panes[k]={tt:d.querySelector(".tt"),tn:d.querySelector(".tn"),bars};
+});
+const cmp1El=document.getElementById("cmp1"), cmp1Rows=[];
+COS.forEach(c=>{
+  const r=document.createElement("div"); r.className="cmpRow";
+  r.innerHTML='<span class="cn">'+c+'</span><div class="track"><div class="b" style="background:#7F77DD"></div></div><span class="cv"></span>';
+  cmp1El.appendChild(r);
+  cmp1Rows.push({row:r,cn:r.querySelector(".cn"),b:r.querySelector(".b"),cv:r.querySelector(".cv")});
+});
+const sl1=document.getElementById("sl1");
+let base1key="ALL";
+function ATTn(key,ax,band){
+  const a=ATT[key]&&ATT[key][ax]&&ATT[key][ax][band];
+  if(!a||!a[0]) return null;
+  return Math.round(a[1]/a[0]*100);
+}
+function topIdx(base,k){ let bi=0,bn=-1; AX[k].b.forEach((_,i)=>{const n=base.filter(r=>r[AX[k].i]===i).length; if(n>bn){bn=n;bi=i;}}); return bi; }
+function draw1(){
+  const A=AX[ax], band=+sl1.value;
+  document.getElementById("co1wrap").style.display= v1==="one"?"block":"none";
+  document.getElementById("one1").style.display= v1==="cmp"?"none":"block";
+  cmp1El.style.display= v1==="cmp"?"block":"none";
+  const ci= v1==="one"? +co1.value : -1;
+  base1key= (v1==="one")? COS[ci] : "ALL";
+  const base=D.filter(r=> ci<0||r[0]===ci), sel=base.filter(r=>r[A.i]===band);
+  const vz=topIdx(base,ax), isVZ=(band===vz);
+  const so=document.getElementById("slOut1");
+  so.textContent=A.b[band]+(isVZ&&v1!=="cmp"?" ★":"");
+  so.className="slideVal"+((isVZ&&v1!=="cmp")?" vz":"");
+  document.getElementById("hint1").textContent= v1==="cmp"
+    ? A.lbl+"「"+A.b[band]+"」を各社が社内の何％抱えているか"
+    : (isVZ? "★この集団で最も人数が多い帯（"+sel.length+"／"+base.length+"人）" : "最多は "+A.b[vz]);
+  document.getElementById("s1n").textContent=sel.length;
+  document.getElementById("s1p").textContent= base.length? "("+Math.round(sel.length/base.length*100)+"%)":"";
+  const m=med(sel.map(r=>r[5]));
+  document.getElementById("s1m").textContent= m!==null? (m/10).toFixed(1)+"万":"—";
+  document.getElementById("s1a").textContent= sel.length? (sel.reduce((s,r)=>s+r[6],0)/sel.length).toFixed(1)+"歳":"—";
+  document.getElementById("s1t").textContent= sel.length? (sel.reduce((s,r)=>s+r[7],0)/sel.length/10).toFixed(1)+"年":"—";
+  const aK= (v1==="one")? COS[ci]:"ALL";
+  const aRec= ATT[aK]&&ATT[aK][ax]&&ATT[aK][ax][band];
+  const aPc= ATTn(aK,ax,band);
+  document.getElementById("s1l").textContent= aPc!==null? aPc+"%":"—";
+  document.getElementById("s1ls").textContent= aRec&&aRec[0]? aRec[0]+"人中"+aRec[1]+"人":"データなし";
+  if(v1==="cmp"){
+    const shares=COS.map((c,i)=>{const cb=D.filter(r=>r[0]===i); return cb.length? cb.filter(r=>r[A.i]===band).length/cb.length:0;});
+    const mxSh=Math.max(...shares);
+    COS.forEach((c,i)=>{
+      const cb=D.filter(r=>r[0]===i), cs=cb.filter(r=>r[A.i]===band);
+      const sh=shares[i], lit=(sh===mxSh&&mxSh>0), vz=(band===topIdx(cb,ax));
+      const cm=med(cs.map(r=>r[5])), R=cmp1Rows[i];
+      R.b.style.width=Math.round(sh/(mxSh||1)*100)+"%";
+      R.b.style.background= lit? "var(--amber)":"var(--violet)";
+      const at=ATTn(c,ax,band);
+      R.cv.textContent=cs.length+"人 "+Math.round(sh*100)+"%"+(cm!==null? " / "+(cm/10).toFixed(0)+"万":"")+(at? " / 離職"+at+"%":"");
+      R.cn.textContent=c+(lit?" ●":"")+(vz?" ★":"");
+      R.row.classList.toggle("lit",lit);
+    });
+  } else {
+    const dz=document.getElementById("dots1"); dz.innerHTML="";
+    [...sel].sort((a,b)=>a[4]-b[4]).forEach(r=>{ const d=document.createElement("div"); d.className="dot"; d.style.background=ROLE[r[4]]; dz.appendChild(d); });
+    ["p","t","a"].forEach(k=>{
+      const P=AX[k], isAx=(k===ax), kvz=topIdx(base,k), pane=panes[k];
+      pane.tt.textContent=P.lbl+"の分布";
+      pane.tn.textContent= isAx? "選択中の軸／琥珀＝最多帯" : "灰＝全体・紫＝選択集団";
+      const mx=Math.max(1,...P.b.map((_,j)=>base.filter(r=>r[P.i]===j).length));
+      P.b.forEach((b,i)=>{
+        const tot=base.filter(r=>r[P.i]===i).length, ins=sel.filter(r=>r[P.i]===i).length;
+        const bar=pane.bars[i], isMax=(i===kvz);
+        bar.all.style.width=Math.round(tot/mx*100)+"%";
+        bar.all.style.background= isMax? "var(--amber)":"var(--rule-2)";
+        bar.sel.style.width=Math.round(ins/mx*100)+"%";
+        if(isAx){ const at=ATTn(base1key,k,i); bar.rn.textContent= tot+"人"+(at? "　離職"+at+"%":""); }
+        else bar.rn.textContent= ins+" / "+tot;
+        bar.rl.textContent=b+(isMax?" ★":"");
+        bar.rl.classList.toggle("max",isMax);
+        bar.row.style.opacity= (isAx&&i!==band)? .5:1;
+      });
+    });
+  }
+  setFoot();
+}
+seg("v1","v",v=>{v1=v; draw1();});
+seg("ax1","a",a=>{ax=a; sl1.max=AX[a].b.length-1; if(+sl1.value>+sl1.max) sl1.value=0; draw1();});
+sl1.oninput=draw1; co1.onchange=draw1;
+
+/* ---------- モジュール2：経営指標 ---------- */
+const YRS=[2022,2023,2024,2025,2026];
+let v2="one";
+const co2=document.getElementById("co2");
+COS.forEach(c=>{ const o=document.createElement("option"); o.value=c; o.textContent=c+"　"+CO_LABEL[c]; co2.appendChild(o); });
+function G(r,k,y){ const v=r[k]&&r[k][y]; return (v===undefined||v===null)? null:v; }
+function RT(r,k,y){ const n=G(r,k,y), b=G(r,"hc",y-1); return (n===null||!b)? null: Math.round(n/b*1000)/10; }
+const MET=[
+ {k:"sales",lbl:"売上",c:"var(--blue)",f:v=>(v/100000).toFixed(1)+"億円",s:v=>(v/100000).toFixed(1)+"億",get:(r,y)=>G(r,"sales",y),sum:true},
+ {k:"op",lbl:"営業利益",c:"var(--blue-d)",f:v=>(v/100000).toFixed(2)+"億円",s:v=>(v/100000).toFixed(2)+"億",get:(r,y)=>G(r,"op",y),sum:true},
+ {k:"opph",lbl:"一人当たり利益",c:"var(--green)",cl:"#A8DFC9",u:"万",f:v=>v.toFixed(0)+"万円/人",s:v=>v.toFixed(0)+"万",get:(r,y)=>G(r,"opph",y)},
+ {k:"joinr",lbl:"入社率",c:"#5C8F1F",cl:"#CBE3A6",u:"pt",f:(v,c)=>v+"%（"+c+"人）",s:v=>v+"%",get:(r,y)=>RT(r,"join",y),cnt:(r,y)=>G(r,"join",y)},
+ {k:"leaver",lbl:"退社率",c:"var(--red)",cl:"#F5C3C2",u:"pt",f:(v,c)=>v+"%（"+c+"人）",s:v=>v+"%",get:(r,y)=>RT(r,"leave",y),cnt:(r,y)=>G(r,"leave",y),low:true},
+ {k:"raise",lbl:"昇給率",c:"var(--violet)",cl:"#CFCCF7",u:"pt",f:v=>v+"%",s:v=>v+"%",get:(r,y)=>G(r,"raise",y)}
+];
+/* 全体の推移テーブル */
+(function(){
+  const A=DB.ALL, tb=document.getElementById("sumBody");
+  const cell=(n,u)=> n===null? '<span class="na">—</span>' : '<span class="n">'+n+'</span><span class="u">'+u+'</span>';
+  const defs=[
+    ["sec","業績"],
+    ["売上", y=>A.sales[y]!=null? cell((A.sales[y]/100000).toFixed(1),"億"):null],
+    ["営業利益", y=>A.op[y]!=null? cell((A.op[y]/100000).toFixed(2),"億"):null],
+    ["営業利益率", y=>(A.op[y]!=null&&A.sales[y])? cell((A.op[y]/A.sales[y]*100).toFixed(1),"%"):null],
+    ["sec","人"],
+    ["社員数", y=>A.hc[y]!=null? cell(A.hc[y],"人"):null],
+    ["一人当たり利益", y=>A.opph[y]!=null? cell(A.opph[y].toFixed(0),"万"):null],
+    ["入社率", y=>{const v=RT(A,"join",y); return v!=null? cell(v,"%"):null;}],
+    ["退社率", y=>{const v=RT(A,"leave",y); return v!=null? cell(v,"%"):null;}],
+    ["昇給率", y=>A.raise[y]!=null? cell(A.raise[y],"%"):null]
+  ];
+  defs.forEach(([lbl,fn])=>{
+    const tr=document.createElement("tr");
+    if(lbl==="sec"){ tr.className="sec"; tr.innerHTML='<td colspan="6">'+fn+'</td>'; tb.appendChild(tr); return; }
+    let h="<td>"+lbl+"</td>";
+    YRS.forEach((y,i)=>{
+      const t=fn(y);
+      h+='<td class="'+(i===YRS.length-1?"cur":"")+'">'+(t===null? '<span class="na">—</span>':t)+"</td>";
+    });
+    tr.innerHTML=h; tb.appendChild(tr);
+  });
+})();
+const rows2=document.getElementById("rows2"), R2={};
+MET.forEach(m=>{
+  const d=document.createElement("div"); d.className="mrow";
+  d.innerHTML='<div class="mhead"><span class="k">'+m.lbl+'</span><span class="v"></span></div>'
+   +'<div class="mtrack"><div class="zero"></div><div class="b"></div><div class="tk"></div></div>'
+   +'<div class="mnote"></div>';
+  rows2.appendChild(d);
+  R2[m.k]={v:d.querySelector(".v"),b:d.querySelector(".b"),zero:d.querySelector(".zero"),tk:d.querySelector(".tk"),note:d.querySelector(".mnote")};
+});
+const cmpGrid=document.getElementById("cmpGrid");
+const CARD={};
+MET.forEach(m=>{
+  const d=document.createElement("div"); d.className="mcard";
+  let h='<div class="mcTitle"><span>'+m.lbl+'</span><span class="mcSub"></span></div><div class="mcRows">';
+  ["ALL"].concat(COS).forEach((c,i)=>{
+    h+='<div class="mcRow'+(i===0?" top":"")+'"><span class="cn">'+(i===0?"全体":c)+'</span>'
+      +'<div class="track"><div class="zero"></div><div class="b"></div><div class="avl"></div></div>'
+      +'<span class="cv"></span></div>';
+  });
+  h+='</div>';
+  d.innerHTML=h;
+  cmpGrid.appendChild(d);
+  CARD[m.k]={sub:d.querySelector(".mcSub"), rows:[...d.querySelectorAll(".mcRow")].map((r,i)=>({
+    row:r, cn:r.querySelector(".cn"), b:r.querySelector(".b"), zero:r.querySelector(".zero"),
+    avl:r.querySelector(".avl"), cv:r.querySelector(".cv"), key: i===0? "ALL": COS[i-1]
+  }))};
+});
+function place(el,v,lo,hi){
+  const neg=lo<0, span= neg? hi-lo : (hi||1), z= neg? (-lo/span*100):0;
+  if(el.zero){ el.zero.style.display= neg?"block":"none"; el.zero.style.left=z+"%"; }
+  if(v===null){ el.b.style.width="0"; return; }
+  if(neg){
+    const w=Math.abs(v)/span*100;
+    el.b.style.left=(v>=0? z : z-w)+"%"; el.b.style.width=Math.max(1.2,w)+"%";
+  } else { el.b.style.left="0"; el.b.style.width=Math.max(1.2,v/(hi||1)*100)+"%"; }
+}
+const yr=document.getElementById("yr");
+function draw2(){
+  const y=+yr.value;
+  document.getElementById("yrOut").textContent=y+"年度";
+  document.getElementById("covid").classList.toggle("on", y===2022);
+  document.getElementById("co2wrap").style.display= v2==="one"?"block":"none";
+
+  rows2.style.display= v2==="cmp"?"none":"block";
+  cmpGrid.style.display= v2==="cmp"?"grid":"none";
+  document.getElementById("g2").classList.toggle("full", v2==="cmp");
+  document.getElementById("rail2").classList.toggle("bar", v2==="cmp");
+  document.getElementById("cmpLeg").style.display= v2==="cmp"?"flex":"none";
+  document.getElementById("co2name").style.display= v2==="cmp"?"none":"flex";
+  document.getElementById("hint2").textContent= y===2022? "コロナ禍の年":"";
+  if(v2==="one"){
+    const cn=co2.value, rec=DB[cn], A=DB.ALL;
+    document.getElementById("co2name").querySelector("b").textContent= cn+"　"+CO_LABEL[cn];
+    const hc=G(rec,"hc",y), ph=G(rec,"hc",y-1);
+    document.getElementById("co2hc").textContent= hc!==null? "社員 "+hc+"人"+(ph? "／前年 "+ph+"人":""):"";
+    MET.forEach(m=>{
+      const el=R2[m.k], v=m.get(rec,y), av=m.get(A,y);
+      let lo=0,hi=1,note="",tk="";
+      const pr=COS.map(c=>({c,v:m.get(DB[c],y)})).filter(x=>x.v!==null);
+      if(pr.length){
+        const pv=pr.map(x=>x.v);
+        hi=Math.max(...pv, (m.sum? 0 : (av||0)));
+        lo=Math.min(0,...pv);
+        const span= lo<0? hi-lo:hi;
+        pr.filter(x=>x.c!==cn).forEach(x=>{
+          const L=Math.min(99,Math.max(0,((lo<0? x.v-lo:x.v)/span*100)));
+          tk+='<div class="tick" style="left:'+L.toFixed(1)+'%"></div>';
+        });
+        if(!m.sum && av!==null){
+          const L=Math.min(99,Math.max(0,((lo<0? av-lo:av)/span*100)));
+          tk+='<div class="tick grp" style="left:'+L.toFixed(1)+'%"></div>';
+        }
+        const rk=[...pr].sort((a,b)=> m.low? a.v-b.v : b.v-a.v).findIndex(x=>x.c===cn)+1;
+        if(v!==null){
+          if(m.sum){
+            const share= (av? v/av*100:0).toFixed(1);
+            note="全体 "+m.s(av)+" の "+share+"%（7社中"+rk+"位）";
+          } else {
+            const d= (av!==null)? (v-av) : null;
+            note="7社中"+rk+"位"+(m.low?"（低い順）":"")+"　全体平均 "+m.s(av)+(d!==null? "（"+(d>=0?"＋":"−")+m.s(Math.abs(d))+"）":"");
+          }
+        }
+      }
+      el.tk.innerHTML=tk;
+      place(el,v,lo,hi);
+      el.b.style.background= v===null? "transparent": (v<0? "var(--red)":m.c);
+      el.v.textContent= v===null? "—": m.cnt? m.f(v,m.cnt(rec,y)):m.f(v);
+      el.v.classList.toggle("neg", v!==null&&v<0);
+      el.note.textContent=note;
+    });
+  } else {
+    const A=DB.ALL;
+    MET.forEach(m=>{
+      const C=CARD[m.k], av=m.get(A,y);
+      const cv=COS.map(c=>m.get(DB[c],y)), nums=cv.filter(v=>v!==null);
+      if(!nums.length){
+        C.sub.textContent="集計対象なし";
+        C.rows.forEach(R=>{ R.b.style.width="0"; R.cv.textContent="—"; R.avl.style.display="none"; R.row.classList.remove("under"); });
+        return;
+      }
+      const coHi=Math.max(...nums), lo=Math.min(0,...nums,(av||0));
+      const hi= m.sum? coHi : Math.max(...nums,(av||0));
+      const span= lo<0? hi-lo : (hi||1);
+      const avPct= (av!==null&&!m.sum)? Math.min(99.4,Math.max(0,((lo<0? av-lo:av)/span*100))) : null;
+      C.sub.textContent= av===null? "" : (m.sum? "全体 "+m.s(av) : "平均 "+m.s(av));
+      C.rows.forEach((R,i)=>{
+        const isAll=(i===0), v= isAll? av : cv[i-1];
+        if(isAll && m.sum) place(R,v,0,(av||1)); else place(R,v,lo,hi);
+        const over= (!m.sum && !isAll && v!==null && av!==null)? (v>=av):null;
+        R.b.style.background= v===null? "transparent"
+          : isAll? "var(--ink)"
+          : (v<0? "var(--red)" : (m.sum? m.c : (over? m.c : m.cl)));
+        R.avl.style.display= (!isAll && avPct!==null)? "block":"none";
+        R.avl.style.left=(avPct||0)+"%";
+        let txt= v===null? "—" : m.s(v);
+        if(!isAll && v!==null && m.sum && av) txt+="  "+(v/av*100).toFixed(0)+"%";
+        R.cv.textContent=txt;
+        R.row.classList.toggle("under", over===false);
+        R.row.classList.toggle("grpfull", isAll&&m.sum);
+      });
+    });
+  }
+  if(v2==="cmp"){
+    document.getElementById("cmpLeg").innerHTML=
+      '<span><i style="background:var(--ink)"></i>全体（売上・利益は合計、率は平均）</span>'
+      +'<span><i style="background:var(--green)"></i>平均以上</span>'
+      +'<span><i style="background:#A8DFC9"></i>平均未満</span>'
+      +'<span class="ex">売上・営業利益は最大の会社を100とした長さ／右の％は全体に占める割合。破線は全体平均。退社率は低いほど良い</span>';
+  }
+  setFoot();
+}
+seg("v2","v",v=>{v2=v; draw2();});
+yr.oninput=draw2; co2.onchange=draw2;
+
+/* ---------- 脚注 ---------- */
+function setFoot(){
+  const p1=document.getElementById("p1").classList.contains("on");
+  document.getElementById("foot").innerHTML= p1
+    ? "従業員632人（主要7社・役員除く・2026年7月31日時点）。給与は固定残業代（見込み残業代）を含む支給総額で、残業の有無にかかわらず支給される保障額。役職の「代理職」は店長代理・シェフ代理・支配人代理。<br>★＝その集団で最も人数が多い帯（全社一括では●＝この帯の比率が最も高い会社）。<br>離職率は2025年度→2026年度の実績。前年（2025年7月末）にその帯にいた人のうち、1年後に在籍していなかった割合で、いま在籍中の人の見通しではありません。"
+    : "売上・営業利益は店舗別月次予算実績対比の累計（運営店舗ベース）。一人当たり利益＝営業利益÷正社員数。入社率・退社率＝当年の人数÷前年の社員数。昇給率は同一人物の前年比平均（構成変化の影響を除去）。<br>2022年度の入社率・退社率・昇給率は、前年（2021年度）の名簿がないため算出できません。";
+}
+draw1(); draw2();
+</script>
+</body>
+</html>
