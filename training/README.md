@@ -7,6 +7,7 @@ Zoomで画面共有して投影する、HTMLの研修資料です。
 - `ch02_eisei.html`：第2章 衛生管理（15枚）
 - `ch03_roumu.html`：第3章 労務管理（14枚）
 - `ch04_keiri.html`：第4章 経理管理（15枚）
+- `ch05_houmu.html`：第5章 法務実務（15枚）
 - `assets/deck.css`：見た目（色・文字・部品）
 - `assets/deck.js`：ページ送り・段階表示・火の粉・進行メモ
 

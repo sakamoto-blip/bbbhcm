@@ -1,0 +1,710 @@
+<meta charset="utf-8">
+<title>第5章 法務実務</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+/* 第5章だけで使う部品 */
+/* アンテナの電波 */
+.ant .wave { fill: none; stroke: #2f74d9; stroke-width: 5; opacity: 0; transform-box: view-box; transform-origin: var(--ox) var(--oy); animation: wave 3s ease-out infinite; }
+@keyframes wave { 0% { opacity: .9; transform: scale(.35); } 100% { opacity: 0; transform: scale(3.2); } }
+.ant-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.qmark { animation: qm 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes qm { 0%, 40% { opacity: 1; transform: none; } 50%, 90% { opacity: 0; transform: scale(.6); } 100% { opacity: 1; } }
+.emark { animation: em 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes em { 0%, 45% { opacity: 0; transform: scale(.6); } 55%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+.illus { width: 100%; height: auto; display: block; overflow: visible; }
+.illus .pop, .pop-g { transform-box: fill-box; transform-origin: center; }
+
+/* 03 カードを裏返す */
+.flips { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.flip { perspective: 1800px; height: 300px; }
+.flip[data-step] { opacity: 1; transform: none; }
+.flip .in { position: relative; height: 100%; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.3,.1,.2,1); }
+.flip.on .in { transform: rotateY(180deg); }
+.flip .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 18px; padding: 26px 30px; display: flex; flex-direction: column; gap: 12px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.07); }
+.flip .back { transform: rotateY(180deg); border: 3px solid var(--danger); background: #fffafa; }
+.flip .case { font-size: 24px; font-weight: 700; color: var(--accent-ink); letter-spacing: .06em; }
+.flip h3 { font-size: 36px; font-weight: 900; display: flex; align-items: center; gap: 14px; }
+.flip p { font-size: 27px; line-height: 1.5; }
+.flip .law { font-size: 34px; font-weight: 900; color: var(--danger); }
+.flip .front .hint { margin-top: auto; font-size: 24px; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+.flip .front .hint i { font-style: normal; display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 900; animation: hintq 2.4s ease-in-out infinite; }
+@keyframes hintq { 0%, 100% { transform: none; } 50% { transform: rotate(-14deg) scale(1.15); } }
+
+/* 04 静かな時間の帯 */
+.cur { animation: cur 9s linear infinite; }
+@keyframes cur { 0% { transform: translateX(0); } 85%, 100% { transform: translateX(1160px); } }
+.ev1 { animation: ev1 9s ease infinite; }
+@keyframes ev1 { 0%, 8% { opacity: 0; transform: scale(.4); } 11%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.ev2 { animation: ev2 9s ease infinite; }
+@keyframes ev2 { 0%, 33% { opacity: 0; transform: scaleY(.1); } 37%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.ev3 { animation: ev3 9s ease infinite; }
+@keyframes ev3 { 0%, 82% { opacity: 0; transform: translateY(-40px) scale(.6); } 87%, 95% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.heart { animation: heart 2.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes heart { 0% { opacity: 0; transform: translateY(10px) scale(.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-36px) scale(1); } }
+.ev1, .ev2, .ev3 { transform-box: fill-box; transform-origin: center bottom; }
+
+/* 05 処分の種類 */
+.kind.admin { background: #fbf0d3; color: #8f6200; }
+.kind.inhouse { background: var(--surface-2); color: var(--ink-2); }
+.lose2 { display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px; }
+.lose2 .card { gap: 12px; padding: 26px 30px; }
+.lose2 .card p { font-size: 26px; line-height: 1.5; }
+.lose2 .card p .cap { font-size: 22px; }
+
+/* 06 事前申請の流れ */
+.evchips { display: flex; flex-wrap: wrap; gap: 10px; }
+.evchips span { font-size: 24px; font-weight: 700; padding: 8px 16px; border-radius: 999px; background: var(--surface); box-shadow: 0 4px 12px rgba(29,33,40,.06); animation: chip 7s ease-in-out infinite; }
+@keyframes chip { 0%, 10%, 100% { background: var(--surface); color: var(--ink); } 4% { background: var(--accent); color: #fff; } }
+.flowdoc { animation: fdoc 5s ease-in-out infinite; }
+@keyframes fdoc { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 70% { transform: translateX(560px); opacity: 1; } 80%, 100% { transform: translateX(560px); opacity: 0; } }
+.stampok { animation: stok 5s ease-in-out infinite; }
+@keyframes stok { 0%, 70% { opacity: 0; transform: scale(.4); } 76%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.strike { position: relative; display: inline-block; }
+.strike::after { content: ""; position: absolute; left: -4px; right: -4px; top: 52%; height: 4px; background: var(--danger); transform: scaleX(0); transform-origin: left; animation: strk 4s ease-in-out infinite; }
+@keyframes strk { 0%, 20% { transform: scaleX(0); } 35%, 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+.cd-num { animation: cdn 1s steps(1) infinite; }
+
+/* 07 更新日の旗 */
+.flag { animation: flag 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: left bottom; }
+@keyframes flag { 0%, 100% { transform: none; } 50% { transform: rotate(-8deg); } }
+.eqp { animation: eqp 2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes eqp { 0%, 100% { transform: none; } 50% { transform: scale(1.2); } }
+
+/* 08 年齢確認・PR表記 */
+.idcard { animation: idc 6s ease-in-out infinite; }
+@keyframes idc { 0%, 35% { opacity: 0; transform: translateX(80px); } 45%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.idok { animation: idok 6s ease-in-out infinite; }
+@keyframes idok { 0%, 52% { opacity: 0; transform: scale(.3); } 60%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.prtag { animation: prt 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes prt { 0%, 100% { transform: none; } 50% { transform: scale(1.12); } }
+.prring { animation: prr 3s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes prr { 0% { opacity: .9; transform: scale(.9); } 100% { opacity: 0; transform: scale(1.5); } }
+
+/* 08 景品の上限の計算機 */
+.calc { display: grid; grid-template-columns: 560px 1fr; gap: 36px; align-items: stretch; }
+.calc .in { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.calc .row1 { display: flex; align-items: baseline; gap: 14px; font-size: 30px; font-weight: 700; }
+.calc .num { font-family: var(--f-num); font-weight: 400; font-size: 60px; color: var(--accent); }
+.calc [contenteditable] { outline: none; border-bottom: 4px dashed var(--accent); padding: 0 6px; cursor: text; }
+.calc [contenteditable]:focus { background: var(--accent-soft); border-radius: 8px; }
+.calc .lim { font-family: var(--f-num); font-weight: 400; font-size: 72px; color: var(--accent-ink); }
+.bars { display: flex; flex-direction: column; gap: 26px; justify-content: center; position: relative; padding: 10px 0; }
+.bars .lbl { font-size: 26px; font-weight: 700; margin-bottom: 8px; display: flex; justify-content: space-between; }
+.bars .track { position: relative; height: 54px; border-radius: 12px; background: var(--surface-2); }
+.bars .fill { position: absolute; inset: 0 auto 0 0; border-radius: 12px; background: var(--accent); transform-origin: left; }
+.bars .prize .fill { animation: prize 6s ease-in-out infinite; width: 100%; }
+@keyframes prize { 0% { transform: scaleX(0); } 40%, 92% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+.bars .over { position: absolute; top: 0; bottom: 0; right: 0; border-radius: 0 12px 12px 0; background: repeating-linear-gradient(135deg, var(--danger) 0 14px, #d95b50 14px 28px); animation: over 6s ease-in-out infinite; }
+@keyframes over { 0%, 36% { opacity: 0; } 44%, 92% { opacity: 1; } 100% { opacity: 0; } }
+.bars .line { position: absolute; top: -14px; bottom: -14px; width: 0; border-left: 5px dashed var(--ink); }
+.bars .line b { position: absolute; top: -40px; left: 0; transform: translateX(-50%); font-size: 24px; white-space: nowrap; background: var(--bg, #fff); padding: 0 8px; }
+.bars .overtag { font-size: 30px; font-weight: 900; color: var(--danger); animation: over 6s ease-in-out infinite; }
+.bars.safe .over, .bars.safe .overtag { display: none; }
+.lim-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+.lim-table th, .lim-table td { font-size: 26px; text-align: left; padding: 14px 20px; background: var(--surface); line-height: 1.45; }
+.lim-table th { font-weight: 900; border-radius: 12px 0 0 12px; width: 34%; }
+.lim-table td:last-child { border-radius: 0 12px 12px 0; }
+.lim-table small { display: block; font-size: 22px; color: var(--ink-2); }
+
+/* 09 店の前のイラスト */
+.storefront { width: 100%; height: auto; display: block; overflow: visible; }
+.hot { transform-box: fill-box; transform-origin: center; }
+.hot .ring { fill: none; stroke: #2f74d9; stroke-width: 6; animation: hring 2s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes hring { 0% { opacity: .9; transform: scale(.8); } 100% { opacity: 0; transform: scale(1.8); } }
+.tv-play { animation: tvp 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes tvp { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+.steam { animation: steam 3s ease-in-out infinite; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(6px); } 40% { opacity: .8; } 100% { opacity: 0; transform: translateY(-18px); } }
+.car { animation: car 7s linear infinite; }
+@keyframes car { 0% { transform: translateX(-160px); } 100% { transform: translateX(1000px); } }
+.laws { display: flex; flex-direction: column; gap: 10px; }
+.laws .card { padding: 12px 20px; gap: 4px; }
+.laws h3 { font-size: 28px; gap: 12px; }
+.laws h3 .no { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--f-num); font-weight: 400; font-size: 26px; flex: none; }
+.laws p { font-size: 22px; line-height: 1.4; }
+.laws small { font-size: 21px; color: var(--ink-2); }
+
+/* 10 カスハラ：盾で受け止める */
+.bolt { animation: bolt 3.6s ease-in infinite; }
+@keyframes bolt { 0% { opacity: 0; transform: translateX(0); } 10% { opacity: 1; } 45% { opacity: 1; transform: translateX(210px); } 60% { opacity: 0; transform: translateX(170px) translateY(-30px) rotate(-20deg); } 100% { opacity: 0; } }
+.shieldp { animation: shp 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes shp { 0%, 40%, 100% { transform: none; } 46% { transform: scale(1.08); } }
+.roles { display: flex; flex-direction: column; gap: 12px; }
+.roles li { display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: center; font-size: 28px; line-height: 1.45; padding: 14px 22px; background: var(--surface); border-radius: 14px; box-shadow: 0 4px 12px rgba(29,33,40,.05); }
+.roles li::before { content: attr(data-n); display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--f-num); font-size: 26px; }
+.vs2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.vs2 .card { padding: 22px 28px; gap: 10px; }
+.vs2 .tagx { align-self: flex-start; font-size: 26px; font-weight: 900; padding: 6px 16px; border-radius: 10px; }
+
+/* 13 修了レポート */
+.report { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; flex: 1; }
+.report-cards { display: flex; flex-direction: column; gap: 10px; }
+.report-cards .card { flex-direction: row; align-items: center; gap: 28px; padding: 14px 30px; }
+.report-cards .lead { font-size: 34px; }
+.report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.report-qr .ph { width: 260px; height: 260px; }
+
+/* 14 クロージング */
+.moments { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.moments span { font-size: 28px; font-weight: 700; padding: 14px 20px; border-radius: 14px; background: var(--surface); box-shadow: 0 4px 12px rgba(29,33,40,.05); display: flex; align-items: center; gap: 12px; animation: mom 8s ease-in-out infinite; }
+@keyframes mom { 0%, 14%, 100% { box-shadow: 0 4px 12px rgba(29,33,40,.05); } 6% { box-shadow: 0 0 0 5px var(--accent); } }
+.qa .qlist p { font-size: 27px; }
+.qa .qlist li { padding: 14px 22px; }
+</style>
+
+<div class="deck" data-chapter="第5章　法務実務" data-accent="water">
+
+  <!-- 01 タイトル -->
+  <section class="slide glow cover" data-min="3" data-no-footer>
+    <div class="split" style="align-items:center">
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <div class="chapter" data-in style="--d:0">第5章</div>
+        <h1 data-in style="--d:1">法務実務</h1>
+        <p class="sub" data-in style="--d:2">知らなかったでは、<br>済まされない。</p>
+        <p class="lead muted" data-in style="--d:3">全部覚える必要はありません。<br>持ち帰るのは、「確認した方がいい」と気づくアンテナです。</p>
+      </div>
+      <svg class="ant-svg" viewBox="0 0 620 520" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+        <g class="ant" style="--ox:310px;--oy:170px"><circle class="wave" cx="310" cy="170" r="75.0" style="animation-delay:0s"/><circle class="wave" cx="310" cy="170" r="75.0" style="animation-delay:1s"/><circle class="wave" cx="310" cy="170" r="75.0" style="animation-delay:2s"/>
+      <path d="M310 170v275.0M235.0 445.0h150.0M310 220.0l-62.5 187.5M310 220.0l62.5 187.5M265.0 357.5h90.0" stroke="#1f5bb5" stroke-width="10.0" stroke-linecap="round" fill="none"/>
+      <circle cx="310" cy="170" r="20.0" fill="#2f74d9"/></g>
+        <g class="qmark"><circle cx="120" cy="120" r="46" fill="#fff" stroke="#e0ebfb" stroke-width="4"/><text x="120" y="138" font-size="52" fill="#2f74d9" text-anchor="middle">?</text></g>
+        <g class="emark"><circle cx="500" cy="120" r="46" fill="#2f74d9"/><text x="500" y="138" font-size="52" fill="#fff" text-anchor="middle">!</text></g>
+      </g></svg>
+    </div>
+    <aside class="notes">本日はお集まりいただきありがとうございます。第5章、法務実務です。
+この章は、これまでの章と少し性格が違います。
+防災は「備える」、衛生は「防ぐ」、労務は「正しく管理する」、経理は「仕組みで守る」でした。
+この章は、「知らないことを、知らないまま進めない」という話です。
+正直に申し上げると、今日お話しする法律は、全部覚える必要はありません。むしろ、覚えきれる量ではありません。
+今日持ち帰っていただきたいのは、「あ、これは確認した方がいいかもしれない」と気づくアンテナです。そして、迷ったら確認するということです。
+確認することは、弱さではありません。店と自分自身を守る、いちばんの武器です。</aside>
+  </section>
+  <!-- 02 まず、お答えください -->
+  <section class="slide" data-min="8">
+    <div class="eyebrow" data-in>まず、お答えください</div>
+    <h2 class="title" data-in style="--d:1">4つの質問に、Zoomの投票で回答してください</h2>
+    <div class="qa">
+      <ol class="qlist" data-in style="--d:2">
+        <li><span class="qn">Q1</span><div><p>過去6ヶ月以内に、イベントの企画・実施や、新しい事業者との取引（無料・有料問わず）を行いましたか。</p><small>行った ／ 行っていない ／ わからない</small></div><span class="qk">選択</span></li>
+        <li><span class="qn">Q2</span><div><p>その際、本部・法務（事業開発部 岡井）へリーガルチェックを行いましたか。</p><small>行った ／ 行っていない ／ 取引や企画がなかった ／ 窓口を知らなかった</small></div><span class="qk">選択</span></li>
+        <li><span class="qn">Q3</span><div><p>景品表示法（おとり広告・景品の上限・ステマ規制など）を意識して、取り組んでいることはありますか。</p><small>ある ／ ない ／ わからない・判断がつかない</small></div><span class="qk">選択</span></li>
+        <li><span class="qn">Q4</span><div><p>お弁当の販売（テイクアウト・配達・仕出し）を、現在または過去に行っていますか。</p><small>現在行っている ／ 過去に行っていた ／ 行ったことがない</small></div><span class="qk">選択</span></li>
+      </ol>
+      <div class="howto" data-in style="--d:3">
+        <h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>回答のしかた</h3>
+        <ol>
+          <li><span>画面に出る<b>「投票」</b>の画面を見る</span></li>
+          <li><span>4問それぞれ、<b>当てはまるもの</b>を1つ選ぶ</span></li>
+          <li><span>最後に<b>「送信」</b>を押す</span></li>
+        </ol>
+        <p class="ex">回答は匿名です</p>
+        <p class="cap">「知らなかった」「わからない」を選んでいただいて構いません。確認する場であって、責める場ではありません。</p>
+      </div>
+    </div>
+    <aside class="notes">早速ですが、これから4つ質問をします。今わかる範囲で、正直にお答えください。
+今回は、すべて選択式です。Zoomの投票で回答してください。回答は匿名です。
+「知らなかった」「わからない」という選択肢を選んでいただいて構いません。この場は、確認する場であって、責める場ではありません。むしろ、正直に答えていただけることの方が大事です。
+（進行役：Zoomの投票を起動。全問選択式・4問・匿名）
+では、5分ほど時間を取ります。どうぞ。
+（投票を締め切ったら）
+（進行役：投票結果を画面共有）
+ありがとうございます。皆さんの回答を見てみましょう。
+［Q1・Q2はセットで読む］「◯％の方が、イベントや新しい取引を行っていらっしゃいます」「そのうち、『リーガルチェックは行っていない』が◯％。『必要性や相談窓口を知らなかった』という方も◯％いらっしゃいました」
+（「知らなかった」が一定数あれば）「知らなかった、という回答は、皆さん個人の落ち度ではなく、私たちの周知の課題です。今日はまさに、そこをお伝えする時間です」
+［Q3・景品表示法］「『わからない・判断がつかない』が◯％。これは、とても正直で、正常な反応だと思います」
+［Q4・お弁当の販売］「現在行っている、過去に行っていた、という店舗が◯％ありますね。これは後半で触れます」
+今の回答を頭の片隅に置いたまま、次の話を聞いてください。</aside>
+  </section>
+  <!-- 03 良かれと思って -->
+  <section class="slide" data-min="5">
+    <div class="eyebrow" data-in>4つのケース</div>
+    <h2 class="title" data-in style="--d:1">「良かれと思って」が、いちばん危ない</h2>
+    <div class="flips" data-in style="--d:2">
+        <div class="flip" data-step="1"><div class="in">
+          <div class="face front"><span class="case">ケース1</span><h3><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span>周年祭の抽選会</h3><p>客単価3,000円のディナーで、<b>10万円相当の旅行券</b>を1等にした</p><span class="hint"><i>?</i>何に触れるでしょうか</span></div>
+          <div class="face back"><span class="case">ケース1　周年祭の抽選会</span><span class="law">景品表示法</span><p>一般懸賞の上限は取引価額の20倍。3,000円×20倍＝<b>6万円</b>。<b>4万円の超過</b></p></div>
+        </div></div>
+        <div class="flip" data-step="2"><div class="in">
+          <div class="face front"><span class="case">ケース2</span><h3><span class="ico"><svg class="i"><use href="#i-store"/></svg></span>人気メニューの看板</h3><p>「<b>本日限定10食</b>」と掲示。実際の仕込みは1〜2食分</p><span class="hint"><i>?</i>何に触れるでしょうか</span></div>
+          <div class="face back"><span class="case">ケース2　人気メニューの看板</span><span class="law">おとり広告</span><p>実際には買えない商品で、お客様を引き寄せる表示。景品表示法で禁止</p></div>
+        </div></div>
+        <div class="flip" data-step="3"><div class="in">
+          <div class="face front"><span class="case">ケース3</span><h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>インフルエンサーの招待</h3><p>話題づくりに<b>無料で招待</b>し、SNSへの投稿をお願いした</p><span class="hint"><i>?</i>何に触れるでしょうか</span></div>
+          <div class="face back"><span class="case">ケース3　インフルエンサーの招待</span><span class="law">ステマ規制</span><p>「広告」「PR」の表記がなければ違反。<b>処分されるのは依頼した店舗・会社側</b></p></div>
+        </div></div>
+        <div class="flip" data-step="4"><div class="in">
+          <div class="face front"><span class="case">ケース4</span><h3><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span>「無料で求人掲載しませんか」</h3><p>人手不足で困っていたので、<b>その場でサイン</b>した</p><span class="hint"><i>?</i>何に触れるでしょうか</span></div>
+          <div class="face back"><span class="case">ケース4　「無料で求人掲載しませんか」</span><span class="law">無料求人広告の契約トラブル</span><p>気づかぬうちに有料契約へ。<b>55万〜139万円超</b>の請求を受けた裁判例</p></div>
+        </div></div>
+    </div>
+    <aside class="notes">この章でお伝えする事例は、悪意のある不正ではありません。
+すべて「良かれと思って」「お客様に喜んでもらいたくて」やったことです。
+（進行役：カードを1枚ずつ読み、「何に触れるでしょうか」と問いかけてからクリックで裏返す）
+［クリック］【ケース1】周年祭の抽選会。日頃の感謝を込めて、客単価3,000円のディナーで、10万円相当の旅行券を1等にした抽選会を企画しました。
+→ 景品表示法違反の可能性があります。一般懸賞の景品上限は、取引価額が5,000円未満なら取引価額の20倍、5,000円以上なら10万円です。客単価3,000円であれば、上限は3,000円×20倍で6万円。10万円の旅行券は、上限を4万円超えています。
+［クリック］【ケース2】人気メニューの「限定10食」。看板に「本日限定10食」と掲げていましたが、実際に仕込んでいるのは1〜2食分でした。
+→ おとり広告にあたります。実際には購入できない商品で客を引き寄せる行為は、景品表示法で禁止されています。
+［クリック］【ケース3】インフルエンサーの無料招待。話題づくりのため、フォロワーの多い方を無料でご招待し、SNSへの投稿をお願いしました。
+→ ステルスマーケティング規制違反です。しかも、処分を受けるのは投稿したインフルエンサーではなく、依頼した店舗・会社側です。
+［クリック］【ケース4】「無料で求人掲載しませんか」という営業電話。人手不足で困っていたところに、無料掲載の提案。断る理由もないのでサインしました。
+→ 気づかぬうちに有料契約へ移行し、55万円から139万円超の高額請求を受けた裁判例があります。</aside>
+  </section>
+  <!-- 04 なぜ法務は知らないと詰むのか -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>なぜ、法務は「知らないと詰む」のか</div>
+    <h2 class="title" data-in style="--d:1">違反していても、その場では何も起きない</h2>
+    <div class="card" data-in style="--d:2;padding:24px 34px">
+      <svg class="illus" viewBox="0 0 1600 340" role="img" aria-label="火災や食中毒はその場で見える。労務や経理は数字に出る。法務は違反していても何も起きず、ある日、措置命令や弁護士からの通知が届く"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+        <text x="0" y="72" font-size="34" fill="#1d2128">火災・食中毒</text><text x="0" y="168" font-size="34" fill="#1d2128">労務・経理</text><text x="0" y="276" font-size="34" fill="#2f74d9">法務</text>
+        <rect x="300" y="78" width="1200" height="8" rx="4" fill="#eef1f5"/><rect x="300" y="170" width="1200" height="8" rx="4" fill="#eef1f5"/><rect x="300" y="282" width="1200" height="8" rx="4" fill="#e0ebfb"/>
+        <g class="ev1"><path d="M440 78c-26 0-40-18-40-38 0-16 10-26 18-34 0 10 6 16 12 18 0-18 6-30 16-40 4 20 34 30 34 56 0 22-16 38-40 38z" fill="#ff7a2f"/><text x="510" y="58" font-size="28" fill="#d4561a">その場で見える</text></g>
+        <rect x="400" y="140" width="40" height="30" rx="6" fill="#cfd8e3"/><rect x="480" y="134" width="40" height="36" rx="6" fill="#cfd8e3"/><rect x="560" y="142" width="40" height="28" rx="6" fill="#cfd8e3"/><rect x="640" y="136" width="40" height="34" rx="6" fill="#cfd8e3"/><rect x="860" y="140" width="40" height="30" rx="6" fill="#cfd8e3"/><rect x="940" y="134" width="40" height="36" rx="6" fill="#cfd8e3"/><rect x="1020" y="140" width="40" height="30" rx="6" fill="#cfd8e3"/><rect x="1100" y="136" width="40" height="34" rx="6" fill="#cfd8e3"/><rect x="1180" y="142" width="40" height="28" rx="6" fill="#cfd8e3"/><rect x="1260" y="138" width="40" height="32" rx="6" fill="#cfd8e3"/>
+        <g class="ev2"><rect x="740" y="80" width="40" height="90" rx="6" fill="#c23a2e"/><text x="800" y="112" font-size="28" fill="#c23a2e">数字に出る</text></g>
+        <path class="heart" style="animation-delay:0s" d="M560 262c-6-8-20-6-20 4 0 8 12 14 20 20 8-6 20-12 20-20 0-10-14-12-20-4z" fill="#f08aa0"/><path class="heart" style="animation-delay:0.7s" d="M700 262c-6-8-20-6-20 4 0 8 12 14 20 20 8-6 20-12 20-20 0-10-14-12-20-4z" fill="#f08aa0"/><path class="heart" style="animation-delay:1.4s" d="M840 262c-6-8-20-6-20 4 0 8 12 14 20 20 8-6 20-12 20-20 0-10-14-12-20-4z" fill="#f08aa0"/><path class="heart" style="animation-delay:0.3s" d="M980 262c-6-8-20-6-20 4 0 8 12 14 20 20 8-6 20-12 20-20 0-10-14-12-20-4z" fill="#f08aa0"/><path class="heart" style="animation-delay:1.0s" d="M1120 262c-6-8-20-6-20 4 0 8 12 14 20 20 8-6 20-12 20-20 0-10-14-12-20-4z" fill="#f08aa0"/><path class="heart" style="animation-delay:1.8s" d="M1260 262c-6-8-20-6-20 4 0 8 12 14 20 20 8-6 20-12 20-20 0-10-14-12-20-4z" fill="#f08aa0"/>
+        <text x="760" y="324" font-size="26" fill="#4f5661" text-anchor="middle">SNSは普通に盛り上がる。指摘されるまで、誰も気づかない</text>
+        <g class="ev3"><rect x="1384" y="214" width="110" height="74" rx="8" fill="#fff" stroke="#c23a2e" stroke-width="5"/><path d="M1384 218l55 38 55-38" fill="none" stroke="#c23a2e" stroke-width="5"/><text x="1440" y="196" font-size="26" fill="#c23a2e" text-anchor="middle">措置命令・通知</text></g>
+        <g class="cur"><path d="M300 20v300" stroke="#2f74d9" stroke-width="4"/><circle cx="300" cy="20" r="9" fill="#2f74d9"/></g>
+      </g></svg>
+    </div>
+    <div class="alert" data-step="1"><svg class="i"><use href="#i-alert"/></svg><p><b>気づいた時には、もう遅い。</b>だからこそ、事前に確認するしかありません。</p></div>
+    <aside class="notes">ここで考えていただきたいのですが、なぜ法務だけ、こんなに「知らなかった」が起きるのでしょうか。
+火災や食中毒は、起きたら見えます。煙が出る、お客様が体調を崩す。何かが起きたことが、その場でわかります。
+労務や経理も、数字に出ます。残業時間、レジの違算。データを見れば異常に気づけます。
+でも、法務は違います。
+景品の上限を超えていても、その場では何も起きません。ステマ規制に違反していても、SNSは普通に盛り上がります。指摘されるまで、誰も気づきません。
+そして、指摘が来るときは、すでに措置命令や、弁護士からの通知という形で来ます。
+［クリック］気づいた時には、もう遅い。これが、法務という領域の性格です。
+だからこそ、事前に確認するしかないんです。</aside>
+  </section>
+  <!-- 05 何を失うか -->
+  <section class="slide" data-min="5">
+    <div class="eyebrow" data-in>何を失うか</div>
+    <h2 class="title" data-in style="--d:1">会社も、あなた個人も、大きな代償を負う</h2>
+    <div class="lose2">
+      <div class="card" data-step="1">
+        <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
+        <ul class="points plain">
+          <li><div><b>風営法違反</b>（無届の深夜営業）<small class="cap" style="display:block">営業停止などの行政処分。商業施設からの退去、上場廃止リスク、数千万〜数億円規模の損失</small></div></li>
+          <li><div><b>景品表示法違反</b><small class="cap" style="display:block">措置命令。企業名・店名が公表される</small></div></li>
+        </ul>
+      </div>
+      <div class="card is-accent" data-step="2">
+        <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
+        <p><span class="kind">刑事</span><b>風営法違反</b>　深夜酒類提供の届出を怠ると、罰則の対象</p>
+        <p><span class="kind">刑事</span><span class="kind civil">民事</span><b>著作権法違反</b>　商用利用不可のサービスを無断使用 → 刑事罰・損害賠償</p>
+        <p><span class="kind">刑事</span><b>未成年者飲酒禁止法違反</b>　20歳未満と知りながら提供 → 50万円以下の罰金<br><span class="cap">法人も罰せられる両罰規定あり</span></p>
+        <p><span class="kind admin">行政</span><b>ステマ規制違反</b>　措置命令・企業名の公表<br><span class="cap">刑事罰ではないが、ブランドの毀損は致命的</span></p>
+      </div>
+    </div>
+    <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p><span class="kind inhouse">社内</span>事前申請・リーガルチェックを怠り、会社に損害を与えた場合は、<b>懲戒解雇を含む厳重な処分</b>の対象になります。</p></div>
+    <aside class="notes">では、法令違反が発覚した場合、何を失うのか。
+［クリック］【会社が負うもの】
+風営法違反、つまり無届での深夜営業が発覚した場合、営業停止などの行政処分を受けます。商業施設からの退去強制、上場廃止リスク、数千万円から数億円規模の損失に直結します。
+景品表示法違反の場合は、措置命令が下され、企業名・店名がメディアや全国へ公表されます。
+［クリック］【あなた個人が負うもの】
+風営法違反。深夜酒類提供飲食店営業の届出を怠った場合、罰則の対象となります。
+著作権法違反。商用利用不可のサービスを無断で使った場合、刑事罰と、民事の損害賠償の対象です。
+未成年者飲酒禁止法違反。20歳未満と知りながら酒類を提供した場合、50万円以下の罰金。しかも、法人自体も罰せられる両罰規定があります。
+ステルスマーケティング規制違反。措置命令による企業名公表。刑事罰ではありませんが、ブランド毀損は致命的です。
+［クリック］そして、「事業開発部への事前申請・リーガルチェックを怠った」という著しい管理怠慢によって会社に損害を与えた場合、社内規程に基づき、懲戒解雇を含む厳重な処分の対象となります。</aside>
+  </section>
+  <!-- 06 プラン -->
+  <section class="slide" data-min="4">
+    <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）</b></div>
+    <div class="phase" data-until="2" style="top:190px">
+      <h2 class="title">通常と違うことをやるなら、まず確認する</h2>
+      <div class="card" data-step="1" style="padding:24px 30px;gap:14px">
+        <h3><span class="badge" style="font-size:44px">1</span>イレギュラーなイベントは、必ず事前申請</h3>
+        <div class="evchips"><span style="animation-delay:0s">周年祭</span><span style="animation-delay:1s">季節イベント</span><span style="animation-delay:2s">コラボ企画</span><span style="animation-delay:3s">じゃんけん大会</span><span style="animation-delay:4s">抽選会</span><span style="animation-delay:5s">SNS連動プレゼント</span><span style="animation-delay:6s">深夜0時以降の酒類提供</span></div>
+        <svg class="illus" viewBox="0 0 1600 170" style="height:170px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="40" y="40" width="300" height="100" rx="18" fill="#e0ebfb"/><text x="190" y="84" font-size="28" fill="#1f5bb5">企画書／</text><text x="190" y="120" font-size="28" fill="#1f5bb5">チケット作成依頼書</text>
+          <path d="M360 90h200" stroke="#2f74d9" stroke-width="6"/><path d="M560 76l22 14-22 14z" fill="#2f74d9"/>
+          <rect x="600" y="40" width="380" height="100" rx="18" fill="#fff" stroke="#2f74d9" stroke-width="4"/><text x="790" y="84" font-size="28" fill="#1d2128">事業開発部（岡井）が</text><text x="790" y="120" font-size="28" fill="#1d2128">チェック</text>
+          <path d="M1000 90h200" stroke="#2f74d9" stroke-width="6"/><path d="M1200 76l22 14-22 14z" fill="#2f74d9"/>
+          <rect x="1240" y="40" width="320" height="100" rx="18" fill="#ddf2e7"/><text x="1400" y="102" font-size="32" fill="#22915c">告知・実施</text>
+          <g class="flowdoc"><rect x="378" y="56" width="52" height="66" rx="6" fill="#fff" stroke="#1f5bb5" stroke-width="4"/><path d="M390 76h28M390 90h28M390 104h18" stroke="#1f5bb5" stroke-width="4" stroke-linecap="round"/></g>
+          <g class="stampok pop-g"><circle cx="965" cy="48" r="24" fill="#22915c"/><path d="M954 48l8 8 14 -15" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </g></svg>
+      </div>
+      <div class="row" data-step="2" style="gap:20px;align-items:center">
+        <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p><b>確認するかどうかを、その場で判断しない。</b>これをルールに。</p></div>
+        <span class="poll" data-q="Q1・Q2">チェックなしで進めた <b contenteditable="true">◯</b>%　窓口を知らなかった <b contenteditable="true">◯</b>%</span>
+      </div>
+    </div>
+    <div class="phase" data-step="3" style="top:190px">
+      <h2 class="title">契約書とリーガルチェック、深夜営業の届出</h2>
+      <div class="cols cols-2">
+        <div class="card" data-step="3" style="padding:24px 30px">
+          <h3><span class="badge" style="font-size:44px">2</span>契約書を締結してから、取引を開始</h3>
+          <svg class="illus" viewBox="0 0 700 200" style="height:190px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <rect x="40" y="10" width="170" height="180" rx="12" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="125" y="50" font-size="26" fill="#1d2128" text-anchor="middle">契約書</text>
+            <path d="M66 80h118M66 106h118M66 132h80" stroke="#cfd8e3" stroke-width="7" stroke-linecap="round"/><path d="M70 168c14-14 22 8 34-4s18 4 30-2" stroke="#2f74d9" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M300 40l60-22 60 22v52c0 46-30 72-60 86-30-14-60-40-60-86z" fill="#e0ebfb" stroke="#2f74d9" stroke-width="5"/>
+            <text x="360" y="104" font-size="26" fill="#1f5bb5" text-anchor="middle">反社</text><text x="360" y="136" font-size="26" fill="#1f5bb5" text-anchor="middle">チェック</text>
+            <text x="470" y="58" font-size="28" fill="#4f5661">本部・法務の</text><text x="470" y="98" font-size="28" fill="#4f5661">リーガルチェック</text><text x="470" y="138" font-size="28" fill="#4f5661">を必ず先に</text>
+          </g></svg>
+          <p style="font-size:26px">金額の大小・関係性にかかわらず事前に確認。独断での電子契約の完結も厳禁</p>
+          <p style="font-size:26px;display:flex;gap:18px;flex-wrap:wrap"><span class="strike">「知り合いだから」</span><span class="strike" style="--d:0">「急いでいるから」</span><span class="strike">「無料だから」</span></p>
+        </div>
+        <div class="card" data-step="4" style="padding:24px 30px">
+          <h3><span class="badge" style="font-size:44px">3</span>深夜0時以降にお酒を出すなら</h3>
+          <svg class="illus" viewBox="0 0 700 200" style="height:190px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <path d="M120 40a70 70 0 1 0 70 92 56 56 0 1 1-70-92z" fill="#f2c94c"/>
+            <text x="120" y="190" font-size="26" fill="#4f5661">0:00〜</text>
+            <rect x="240" y="20" width="200" height="170" rx="16" fill="#fff" stroke="#d5dae1" stroke-width="4"/><rect x="240" y="20" width="200" height="44" rx="16" fill="#2f74d9"/><rect x="240" y="48" width="200" height="16" fill="#2f74d9"/>
+            <text x="340" y="52" font-size="24" fill="#fff">営業開始の</text><text x="340" y="140" font-size="72" fill="#1f5bb5" font-family="Dela Gothic One, sans-serif" font-weight="400">10</text><text x="340" y="176" font-size="24" fill="#1d2128">日前までに</text>
+            <path d="M460 105h80" stroke="#2f74d9" stroke-width="6"/><path d="M540 91l22 14-22 14z" fill="#2f74d9"/>
+            <rect x="580" y="54" width="110" height="110" rx="12" fill="#e0ebfb"/><text x="635" y="104" font-size="26" fill="#1f5bb5">警察署</text><text x="635" y="138" font-size="26" fill="#1f5bb5">へ届出</text>
+          </g></svg>
+          <p style="font-size:26px">「深夜酒類提供飲食店営業開始届」を、所轄の警察署へ提出する（風営法）</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">では、どうすればいいか。プラン、計画の段階です。
+［クリック］一つ目、イレギュラーなイベントは、必ず事前申請。
+周年祭、季節イベント、コラボ企画、じゃんけん大会、抽選会、SNS連動プレゼント、深夜0時以降の酒類提供。
+通常営業と違うことをやるときは、必ず事前に企画書か「チケット作成依頼書」を作成し、担当窓口である事業開発部のチェックを受けてから告知・実施してください。
+［クリック］冒頭の投票で、イベントや新しい取引を行った方のうち、リーガルチェックを経ていない方が◯％、相談窓口を知らなかった方が◯％いらっしゃいました。
+確認するかどうかを、その場で判断しないでください。通常と違うことをやるなら、まず確認する。これをルールにしてください。
+［クリック］二つ目、契約書の締結とリーガルチェック。
+あらゆる取引は、必ず契約書を締結してから開始します。責任者の独断で電子契約を完結させることも厳禁です。
+そして、金額の大小や関係性の深さにかかわらず、必ず事前に本部・法務によるリーガルチェックを受けてください。これには反社会的勢力でないことの確認も含まれます。
+「知り合いだから」「急いでいるから」でこのプロセスを省略することが、反社との取引や、不利な契約条件の見逃しに直結します。冒頭の無料求人広告のように、「無料だから」も同じです。
+［クリック］三つ目、深夜営業の届出。
+深夜0時以降に酒類を提供する場合、営業開始の10日前までに「深夜酒類提供飲食店営業開始届」を所轄の警察署へ提出する必要があります。</aside>
+  </section>
+  <!-- 07 キープ -->
+  <section class="slide" data-min="3">
+    <div class="tracker" data-in><span>P</span><em></em><span class="on">K</span><em></em><span>A</span><b>キープ（維持）</b></div>
+    <h2 class="title" data-in style="--d:1">許可と契約は、出して終わり・結んで終わりではない</h2>
+    <div class="cols cols-2" style="flex:1;align-items:start">
+      <div class="card" data-step="1">
+        <h3><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>許可・届出の維持管理</h3>
+        <svg class="illus" viewBox="0 0 700 220" style="height:210px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="30" y="20" width="250" height="180" rx="16" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="155" y="64" font-size="28" fill="#1d2128">届出の内容</text>
+          <path d="M60 104h190M60 136h190M60 168h120" stroke="#cfd8e3" stroke-width="8" stroke-linecap="round"/>
+          <g class="eqp"><path d="M318 96h64M318 124h64" stroke="#2f74d9" stroke-width="9" stroke-linecap="round"/></g>
+          <rect x="420" y="20" width="250" height="180" rx="16" fill="#e0ebfb"/><text x="545" y="64" font-size="28" fill="#1f5bb5">営業の実態</text>
+          <path d="M470 160v-60h150v60" fill="none" stroke="#2f74d9" stroke-width="6" stroke-linejoin="round"/><path d="M455 104l90-40 90 40" fill="none" stroke="#2f74d9" stroke-width="6" stroke-linejoin="round"/><path d="M530 160v-34h30v34" fill="none" stroke="#2f74d9" stroke-width="5"/>
+        </g></svg>
+        <p>自店の許可・届出の<b>内容と範囲</b>を定期的に確認。深夜酒類提供の届出は出ているか、<b>実態とズレがないか</b></p>
+      </div>
+      <div class="card" data-step="2">
+        <h3><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span>契約書の保管と更新管理</h3>
+        <svg class="illus" viewBox="0 0 700 220" style="height:210px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="40" y="30" width="200" height="170" rx="14" fill="#fff" stroke="#d5dae1" stroke-width="4"/><rect x="60" y="14" width="160" height="40" rx="10" fill="#e0ebfb"/><text x="140" y="42" font-size="24" fill="#1f5bb5">契約書ファイル</text>
+          <path d="M70 90h140M70 120h140M70 150h140M70 180h90" stroke="#cfd8e3" stroke-width="8" stroke-linecap="round"/>
+          <rect x="330" y="30" width="330" height="170" rx="14" fill="#fff" stroke="#d5dae1" stroke-width="4"/><rect x="330" y="30" width="330" height="40" rx="14" fill="#2f74d9"/><rect x="330" y="56" width="330" height="14" fill="#2f74d9"/>
+          <text x="495" y="60" font-size="24" fill="#fff">更新の時期</text>
+          <rect x="350" y="86" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="394" y="86" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="438" y="86" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="482" y="86" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="526" y="86" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="570" y="86" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="614" y="86" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="350" y="122" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="394" y="122" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="438" y="122" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="482" y="122" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="526" y="122" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="570" y="122" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="614" y="122" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="350" y="158" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="394" y="158" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="438" y="158" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="482" y="158" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="526" y="158" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="570" y="158" width="34" height="26" rx="5" fill="#eef1f5"/><rect x="614" y="158" width="34" height="26" rx="5" fill="#eef1f5"/>
+          <rect x="526" y="122" width="34" height="26" rx="5" fill="#2f74d9"/>
+          <g class="flag"><path d="M543 122v-56" stroke="#c23a2e" stroke-width="5"/><path d="M543 66h44l-10 14 10 14h-44z" fill="#c23a2e"/></g>
+        </g></svg>
+        <p>締結済みの契約書を整理・保管。<b>更新時期はいつか、条項の変更は必要ないか</b>を管理する</p>
+      </div>
+    </div>
+    <aside class="notes">次に、キープ。維持し、管理する段階です。
+［クリック］自店が持っている許可・届出の内容と範囲を、定期的に確認してください。深夜酒類提供の届出をしているか。その内容と、実際の営業実態にズレがないか。
+［クリック］そして、締結済みの契約書の保管と更新管理です。更新時期はいつか、条項の変更が必要ないか。契約書を締結して終わりではありません。</aside>
+  </section>
+  <!-- 08 アクト -->
+  <section class="slide" data-min="4" id="act-slide">
+    <div class="tracker" data-in><span>P</span><em></em><span>K</span><em></em><span class="on">A</span><b>アクト（実行）</b></div>
+    <div class="phase" data-until="2" style="top:190px">
+      <h2 class="title">年齢確認と広告表記を、正しく運用する</h2>
+      <div class="cols cols-2">
+        <div class="card" data-step="1" style="padding:24px 30px">
+          <h3><span class="badge" style="font-size:44px">1</span>年齢確認は、身分証で</h3>
+          <svg class="illus" viewBox="0 0 700 250" style="height:240px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <use href="#i-person" x="20" y="40" width="160" height="200" style="color:#8d7bc7"/>
+            <path d="M190 40h200a20 20 0 0 1 20 20v60a20 20 0 0 1-20 20h-150l-30 26v-26h-20a20 20 0 0 1-20-20v-60a20 20 0 0 1 20-20z" fill="#fff" stroke="#d5dae1" stroke-width="4"/>
+            <text x="300" y="104" font-size="34" fill="#1d2128">「20歳です」</text>
+            <g class="idcard"><rect x="430" y="80" width="240" height="150" rx="14" fill="#e0ebfb" stroke="#2f74d9" stroke-width="4"/><circle cx="490" cy="145" r="30" fill="#fff"/><use href="#i-person" x="466" y="118" width="48" height="56" style="color:#2f74d9"/><path d="M540 126h100M540 156h100M540 186h70" stroke="#2f74d9" stroke-width="8" stroke-linecap="round"/><text x="550" y="72" font-size="24" fill="#1f5bb5">身分証</text></g>
+            <g class="idok pop-g"><circle cx="660" cy="90" r="30" fill="#22915c"/><path d="M646 90l10 10 18 -19" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </g></svg>
+          <p style="font-size:26px">見た目や口頭の申告だけで判断しない。<b>申告だけを信じて提供すると、「知らなかった」では済まないおそれ</b></p>
+        </div>
+        <div class="card" data-step="2" style="padding:24px 30px">
+          <h3><span class="badge" style="font-size:44px">2</span>投稿を依頼するなら「PR」表記</h3>
+          <svg class="illus" viewBox="0 0 700 250" style="height:240px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <rect x="60" y="4" width="200" height="244" rx="26" fill="#fff" stroke="#4f5661" stroke-width="5"/><rect x="80" y="30" width="160" height="110" rx="10" fill="#f3e6d6"/>
+            <circle cx="125" cy="90" r="26" fill="#e2c58f"/><rect x="150" y="70" width="70" height="44" rx="8" fill="#d8b98a"/>
+            <path d="M84 168h110M84 192h80" stroke="#cfd8e3" stroke-width="8" stroke-linecap="round"/>
+            <rect class="prring" x="170" y="212" width="74" height="34" rx="10" fill="none" stroke="#2f74d9" stroke-width="4"/>
+            <g class="prtag"><rect x="170" y="212" width="74" height="34" rx="10" fill="#2f74d9"/><text x="207" y="237" font-size="22" fill="#fff" text-anchor="middle">#PR</text></g>
+            <text x="300" y="70" font-size="28" fill="#1d2128">無料招待・謝礼と</text><text x="300" y="108" font-size="28" fill="#1d2128">引き換えの投稿には</text>
+            <text x="300" y="160" font-size="34" fill="#2f74d9">「広告」「PR」</text><text x="300" y="200" font-size="28" fill="#1d2128">の表記を必ず入れてもらう</text>
+          </g></svg>
+          <p style="font-size:26px">ステマ規制で処分を受けるのは、<b>依頼した店舗・会社側</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="3" style="top:190px">
+      <h2 class="title">懸賞・景品の上限は、1円の超過も許されない</h2>
+      <div class="card" style="padding:24px 34px">
+        <div class="calc">
+          <div class="in">
+            <div class="row1">客単価 <span class="num" id="calc-price" contenteditable="true">3000</span>円</div>
+            <div class="row1">× 20倍 ＝ 景品の上限</div>
+            <div class="lim" id="calc-limit">60,000円</div>
+            <p class="cap">客単価は、その場で書き換えられます <span class="ex-tag">例</span></p>
+          </div>
+          <div class="bars" id="calc-bars">
+            <div>
+              <div class="lbl"><span>1等の景品（旅行券）</span><span>100,000円</span></div>
+              <div class="track prize"><div class="fill"></div><div class="over" id="calc-over" style="left:60%"></div><div class="line" id="calc-line" style="left:60%"><b>上限</b></div></div>
+            </div>
+            <div class="overtag" id="calc-tag">上限を 40,000円 超過</div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="gap:20px;align-items:flex-start">
+        <table class="lim-table" style="flex:1">
+          <tr><th>一般懸賞<small>抽選・じゃんけん等</small></th><td>最高額：取引価額の<b>20倍</b>（5,000円以上は<b>10万円</b>）<small>総額：売上予定総額の2%まで</small></td></tr>
+          <tr><th>総付景品<small>来店者全員プレゼント等</small></th><td>取引価額の<b>20%</b>（1,000円未満は<b>200円</b>）</td></tr>
+        </table>
+        <span class="poll" data-q="Q3" style="margin-top:14px">「わからない・判断がつかない」<b contenteditable="true">◯</b>%</span>
+      </div>
+    </div>
+    <aside class="notes">最後に、アクト。実際の運用です。
+［クリック］一つ目、年齢確認の徹底。
+お酒を提供する際は、見た目や本人の口頭申告だけで判断しないでください。お酒を出すお店には、年齢確認などの必要な措置をとる義務があります。「20歳です」という自己申告だけを信じて提供し、実際には未成年だった場合、「知らなかった」では済まないおそれがあります。
+身分証等による年齢確認を徹底してください。
+［クリック］二つ目、SNS・インフルエンサー起用時の広告表記。
+インフルエンサーへの無料招待や謝礼提供と引き換えにSNS投稿を依頼する場合、「広告」「PR」等、消費者が広告とわかる表記を必ず入れてもらってください。
+繰り返しますが、処分を受けるのは依頼した側です。
+［クリック］三つ目、懸賞・景品の上限厳守。
+（進行役：客単価の数字はクリックして書き換えられる。参加者の店の客単価を聞いて入れてもよい）
+一般懸賞、抽選やじゃんけん等は、景品の最高額が取引価額の20倍まで、かつ上限10万円。景品の総額にも、売上予定総額の2%という上限があります。
+総付景品、来店者全員プレゼント等は、取引価額の20%（取引価額が1,000円未満の場合は200円）が上限です。
+1円の超過も許されません。
+冒頭の投票では、景品表示法について「わからない・判断がつかない」という方が◯％いらっしゃいました。全部を覚える必要はありません。景品やプレゼントを出す企画のときに、「上限があったな」と気づければ十分です。</aside>
+  </section>
+  <!-- 09 イベントで関わる法律 -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>イベントで関わる、もう一つの法律</div>
+    <h2 class="title" data-in style="--d:1">店の形が変わるときは、保健所・警察・権利元へ</h2>
+    <div class="split" style="grid-template-columns:1fr 900px;gap:28px;align-items:start">
+      <svg class="storefront" viewBox="0 0 900 640" data-in style="--d:2" role="img" aria-label="店の前のイラスト。テイクアウトの窓口、店内の大型モニター、歩道のテント、公道"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+        <rect x="0" y="540" width="900" height="100" fill="#d9dee5"/><path d="M0 590h900" stroke="#fff" stroke-width="6" stroke-dasharray="40 30"/>
+        <g class="car"><rect x="0" y="560" width="120" height="44" rx="14" fill="#2f74d9"/><rect x="20" y="540" width="70" height="30" rx="10" fill="#7fb0f0"/><circle cx="26" cy="606" r="12" fill="#1d2128"/><circle cx="94" cy="606" r="12" fill="#1d2128"/></g>
+        <rect x="0" y="500" width="900" height="40" fill="#eef1f5"/>
+        <rect x="40" y="110" width="520" height="390" fill="#fff" stroke="#d5dae1" stroke-width="5"/>
+        <path d="M30 110h540l-30-60H60z" fill="#2f74d9"/><text x="300" y="94" font-size="30" fill="#fff">BALNIBARBI DINING</text>
+        <rect x="80" y="160" width="250" height="160" rx="10" fill="#2a2e39"/><path class="tv-play" d="M188 210l46 30-46 30z" fill="#fff"/><text x="205" y="350" font-size="24" fill="#4f5661">大型モニター</text>
+        <rect x="370" y="160" width="160" height="150" rx="10" fill="#f3f5f8" stroke="#d5dae1" stroke-width="4"/><rect x="400" y="230" width="100" height="56" rx="8" fill="#e2c58f" stroke="#c9a560" stroke-width="3"/><path d="M400 252h100M450 230v56" stroke="#c9a560" stroke-width="3"/>
+        <path class="steam" d="M430 220c-8-10 8-16 0-26M470 220c-8-10 8-16 0-26" stroke="#9aa3ae" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <text x="450" y="340" font-size="24" fill="#4f5661">テイクアウト</text>
+        <rect x="230" y="380" width="120" height="120" fill="#f3f5f8" stroke="#d5dae1" stroke-width="4"/>
+        <path d="M620 300l130-70 130 70z" fill="#f08a5d"/><path d="M620 300h260v14H620z" fill="#e06b3a"/><path d="M640 314v186M860 314v186" stroke="#4f5661" stroke-width="6"/><rect x="660" y="420" width="180" height="80" rx="6" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="750" y="470" font-size="24" fill="#4f5661">屋外の出店</text>
+        <g class="hot" data-step="1"><circle class="ring" cx="450" cy="160" r="34"/><circle cx="450" cy="160" r="30" fill="#2f74d9"/><text x="450" y="171" font-size="30" fill="#fff">1</text></g>
+        <g class="hot" data-step="2"><circle class="ring" cx="750" cy="236" r="34"/><circle cx="750" cy="236" r="30" fill="#2f74d9"/><text x="750" y="247" font-size="30" fill="#fff">2</text></g>
+        <g class="hot" data-step="3"><circle class="ring" cx="560" cy="520" r="34"/><circle cx="560" cy="520" r="30" fill="#2f74d9"/><text x="560" y="531" font-size="30" fill="#fff">3</text></g>
+        <g class="hot" data-step="4"><circle class="ring" cx="80" cy="160" r="34"/><circle cx="80" cy="160" r="30" fill="#2f74d9"/><text x="80" y="171" font-size="30" fill="#fff">4</text></g>
+      </g></svg>
+      <div class="laws">
+        <div class="card" data-step="1"><h3><span class="no">1</span>テイクアウト・弁当販売<small>食品衛生法</small></h3><p>店で調理して来店客・注文者に売る弁当・仕出しは、<b>飲食店営業許可の範囲内</b>。20食超の大量調理、小売・ECへの出荷、菓子・パン・アイス・食肉製品は<b>別の許可が必要なことも</b> → 保健所へ</p><span class="poll" data-q="Q4" style="align-self:flex-start;font-size:21px;padding:4px 16px 4px 6px">お弁当を販売している・していた <b contenteditable="true">◯</b>%</span></div>
+        <div class="card" data-step="2"><h3><span class="no">2</span>屋外イベントでの出店<small>食品衛生法</small></h3><p>テント等の仮設施設は<b>臨時営業の許可や届出</b>が必要なことも。<b>1ヶ月〜2週間前</b>までに出店先の保健所へ</p></div>
+        <div class="card" data-step="3"><h3><span class="no">3</span>歩道・公道を使う<small>道路法・道路交通法</small></h3><p><b>道路占用許可</b>（道路管理者）と<b>道路使用許可</b>（警察署）の両方が必要なことも。無許可は罰則の対象</p></div>
+        <div class="card" data-step="4"><h3><span class="no">4</span>店内でのスポーツ中継<small>著作権法</small></h3><p>大型モニターでの営利目的の上映は<b>「公の伝達権」</b>に関わり、権利元への申請・ライセンス料が必要なことも。「家庭用テレビと同じ」は通用しない</p></div>
+      </div>
+    </div>
+    <aside class="notes">イベントを企画する際、メニューや景品以外にも、複数の法律が関わってきます。
+［クリック］一つ目、テイクアウト・弁当販売。
+実は、現行の食品衛生法には「弁当製造業」という独立した許可区分はありません。店舗で調理して、来店客や注文者に販売する弁当・仕出しは、飲食店営業許可の範囲内でできます。
+ただし、1回の盛り付けが20食を超えるような大量調理、小売店やECへの継続的な出荷、菓子・パン・アイス・食肉製品のテイクアウトは、別の許可が必要になることがあります。判断に迷う場合は、必ず保健所に相談してください。
+冒頭の投票で、お弁当の販売を行っている、または行っていたという店舗が◯％ありました。該当する店舗は、今の販売の形が許可の範囲に収まっているか、一度確認してみてください。
+［クリック］二つ目、屋外イベントでの出店。
+テント等の仮設施設で調理・提供する場合、通常の営業許可とは別に、臨時営業の許可や届出が必要になることがあります。施設基準もあるので、イベントの1ヶ月から2週間前までに、出店先の保健所へ相談してください。
+［クリック］三つ目、公道を使うイベント。
+店舗前の歩道や公道にテントや什器を出す場合、道路占用許可（道路法・道路管理者）と道路使用許可（道路交通法・所轄警察署）の両方が必要になることがあります。無許可での実施は罰則の対象です。
+［クリック］四つ目、店内でのスポーツ中継。
+大型モニターでスポーツ中継を営利目的で上映する、いわゆるパブリックビューイング。これは著作権法上の「公の伝達権」に関わり、放送事業者や権利元への申請とライセンス料の支払いが必要になることがあります。
+「家庭用のテレビと同じ映像だから」は通用しません。集客を目的とした大型スクリーンでの上映は、営利目的とみなされやすいためです。</aside>
+  </section>
+  <!-- 10 カスタマーハラスメント -->
+  <section class="slide" data-min="5">
+    <div class="phase" data-until="2">
+      <div class="eyebrow" data-in>お客様から、スタッフを守る</div>
+      <h2 class="title" data-in style="--d:1">カスハラ対策は、会社の法的義務になった</h2>
+      <div class="split" style="grid-template-columns:640px 1fr;gap:40px;align-items:start">
+        <div class="card" data-in style="--d:2;padding:22px 26px;gap:10px">
+          <p style="font-size:26px;font-weight:900;color:var(--accent-ink)">2026年10月1日施行　改正労働施策総合推進法</p>
+          <svg class="illus" viewBox="0 0 600 300" style="height:280px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <g class="bolt" style="animation-delay:0s"><path d="M20 90l40-16-10 22 40-14" stroke="#c23a2e" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="bolt" style="animation-delay:1.2s"><path d="M20 150l40-16-10 22 40-14" stroke="#c23a2e" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="bolt" style="animation-delay:2.4s"><path d="M20 210l40-16-10 22 40-14" stroke="#c23a2e" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="shieldp"><path d="M270 50l70-26 70 26v70c0 60-36 96-70 112-34-16-70-52-70-112z" fill="#e0ebfb" stroke="#2f74d9" stroke-width="6"/><path d="M310 128l20 20 40-42" stroke="#2f74d9" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <use href="#i-person" x="420" y="70" width="120" height="160" style="color:#c98a00"/>
+            <use href="#i-users" x="470" y="150" width="130" height="120" style="color:#9aa3ae"/>
+            <text x="300" y="292" font-size="26" fill="#4f5661">一人で我慢させない。組織で受け止める</text>
+          </g></svg>
+          <p class="cap">農林水産省・厚生労働省「飲食店におけるカスタマーハラスメント対策ガイドライン」（2026年2月）</p>
+        </div>
+        <ol class="roles">
+          <li data-n="1" data-step="1"><span>スタッフに<b>「一人で我慢させない」</b>体制を整える</span></li>
+          <li data-n="2" data-step="1"><span><b>すぐ相談・報告できる</b>窓口と流れを決め、全員に周知する</span></li>
+          <li data-n="3" data-step="2"><span>必要なら、お客様への対応を<b>個人ではなく組織</b>として行う</span></li>
+          <li data-n="4" data-step="2"><span><b>正当なクレームと、カスハラ</b>を切り分けて判断する</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="phase" data-step="3">
+      <div class="eyebrow">切り分けと、入店のお断り</div>
+      <h2 class="title">クレームとカスハラを切り分け、組織で対応する</h2>
+      <div class="vs2">
+        <div class="card"><span class="tagx" style="background:var(--ok-soft);color:var(--ok)">正当なクレーム</span><p>商品やサービスの<b>改善につながる指摘</b></p></div>
+        <div class="card"><span class="tagx" style="background:var(--danger-soft);color:var(--danger)">カスハラ</span><p><b>人格否定、土下座の強要、長時間の拘束、SNSでの晒し行為</b></p></div>
+      </div>
+      <div class="card" data-step="4" style="padding:22px 28px;gap:12px">
+        <h3><span class="ico"><svg class="i"><use href="#i-door"/></svg></span>出禁（入店をお断りすること）について</h3>
+        <p style="font-size:27px">民法の「契約自由の原則」により、お断りすること自体は可能。ただし<b>伝え方を誤ると、名誉毀損や差別的取扱いを主張される</b>おそれがある</p>
+        <div class="row" style="gap:16px">
+          <div class="alert" style="flex:1;padding:14px 22px;font-size:26px"><svg class="i"><use href="#i-alert"/></svg><p>判断・通告は独断でせず、<b>必ず事前に本部・法務へ相談</b></p></div>
+          <div class="alert is-info" style="flex:1;padding:14px 22px;font-size:26px"><svg class="i"><use href="#i-clipboard"/></svg><p>経緯を記録：<b>日時・言動の内容・対応したスタッフ</b></p></div>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">ここからは、少し性格の違う話をします。お客様からスタッフを守る、という話です。
+2026年10月1日から、カスタマーハラスメント対策が、法律上の会社の義務になりました。
+2025年6月に公布された改正労働施策総合推進法によるもので、これを受けて農林水産省と厚生労働省は、2026年2月に「飲食店におけるカスタマーハラスメント対策ガイドライン」を策定しています。
+これまで「お客様は神様」という前提で、個人の忍耐に委ねられがちだったカスハラ対応が、会社として体制を整備すべき法的義務に変わりました。
+［クリック］皆さんに求められる役割。
+一つ目、スタッフがカスハラを受けた際に、「一人で我慢させない」体制を整えること。
+二つ目、「即座に相談・報告できる」窓口とフローを明確にし、スタッフ全員に周知すること。
+［クリック］三つ目、必要に応じてお客様への対応を、個人ではなく組織として行うこと。
+そして四つ目、正当なクレームと、カスハラを切り分けて判断することです。
+［クリック］商品やサービスの改善につながる指摘は、正当なクレームです。一方、人格否定、土下座の強要、長時間の拘束、SNSでの晒し行為。これらはカスハラです。
+［クリック］出禁、つまり入店をお断りすることについて。
+迷惑行為を繰り返すお客様について、入店をお断りすること自体は、法的に可能です。民法上の「契約自由の原則」に基づきます。
+ただし、伝え方を誤ると、名誉毀損や差別的取扱いを主張され、かえって大きなトラブルを招くリスクがあります。
+ですから、出禁の判断・通告は、店舗責任者の独断で行わず、必ず事前に本部・法務へ相談してください。
+そして、対応の経緯を客観的に記録しておくこと。日時、言動の内容、対応したスタッフ。これが後々、店舗とスタッフを守る証拠になります。</aside>
+  </section>
+  <!-- 11 初動対応 -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>それでも起きたら：初動対応</div>
+    <h2 class="title" data-in style="--d:1">止める、残す、すぐ本部へ</h2>
+    <ol class="timeline compact" style="gap:12px">
+      <li data-n="1" data-step="1" class="slide-in"><h3>即座の提供・販売停止と、現状の保存</h3><p>疑いのある販売・提供はすべて止める。契約書類や画面のスクリーンショット等、<b>証拠をすぐ保存</b></p></li>
+      <li data-n="2" data-step="2" class="slide-in"><h3>本部へ即時報告し、指示を仰ぐ</h3><div class="chain" style="margin-top:6px"><span style="font-size:24px;padding:8px 18px">店長・シェフ</span><i class="grow" style="width:44px"></i><span style="font-size:24px;padding:8px 18px">本部（各社の代表・役員・営業本部・事業開発部・管理本部 等）</span></div><p class="cap" style="margin-top:6px">独断での示談・判断はしない。公的機関への報告・相談も、本部の指示に従う</p></li>
+      <li data-n="3" data-step="3" class="slide-in"><h3>誠実な訂正・対応の執行</h3><p>本部の承認のもと、HP等での訂正・謝罪、返金対応など。<b>店舗スタッフ全員に事実を共有</b></p></li>
+    </ol>
+    <aside class="notes">法令違反の疑いや、トラブルが発生した場合の対応です。
+［クリック］一つ目、即座の提供・販売停止、および現状保存。
+法令違反の疑いがある販売・提供は、即座にすべて停止します。そして、契約書類や画面のスクリーンショット等、現状のエビデンスを速やかに保存してください。
+［クリック］二つ目、本部への即時報告。
+特定した事実関係を、即座に本部へ報告し、指示を仰ぎます。責任者の独断で示談したり、生半可な判断をしてはいけません。公的機関への報告・相談も、本部の指示に従ってください。
+［クリック］三つ目、誠実な訂正・対応の執行。
+本部の承認のもと、HP等での訂正・謝罪公表、返金対応などを執行します。同時に、店舗スタッフ全員に対し、事実を透明性を持って共有してください。</aside>
+  </section>
+  <!-- 12 事後対応 -->
+  <section class="slide" data-min="3">
+    <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
+    <h2 class="title" data-in style="--d:1">発言は一本化し、仕組みから見直す</h2>
+    <div class="cols cols-3" style="align-items:start">
+      <div class="card" data-step="1"><span class="badge" style="font-size:52px">1</span><h3>処分への対応</h3><p style="font-size:27px">営業停止などの処分を受けた場合は、本部と連携して再開・再取得の手続きを進める</p></div>
+      <div class="card is-accent" data-step="2"><span class="badge" style="font-size:52px">2</span><h3>SNS炎上・報道</h3>
+        <svg class="illus" viewBox="0 0 460 150" style="height:130px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <use href="#i-person" x="10" y="20" width="90" height="120" style="color:#9aa3ae"/>
+          <path d="M110 50l70 60M180 50l-70 60" stroke="#c23a2e" stroke-width="8" stroke-linecap="round"/>
+          <path d="M200 80h100" stroke="#2f74d9" stroke-width="6"/><path d="M300 66l22 14-22 14z" fill="#2f74d9"/>
+          <rect x="336" y="24" width="114" height="112" rx="14" fill="#e0ebfb"/><text x="393" y="74" font-size="24" fill="#1f5bb5">本部・</text><text x="393" y="106" font-size="24" fill="#1f5bb5">広報窓口</text>
+        </g></svg>
+        <p style="font-size:27px">店舗責任者が個別にSNSやメディアで発言するのは厳禁。<b>必ず本部・広報窓口に一本化</b></p></div>
+      <div class="card" data-step="3"><span class="badge" style="font-size:52px">3</span><h3>再発防止と記録</h3><p style="font-size:27px">原因を踏まえて、事前申請や許可・届出の管理の流れを見直し、<b>実行状況を記録に残す</b></p></div>
+    </div>
+    <aside class="notes">［クリック］一つ目、免許取消・営業停止処分への対応。
+風営法違反等により処分を受けた場合、本部と連携して、再取得・再開の手続きを進めます。
+［クリック］二つ目、SNS炎上・報道対応。
+法令違反が報道やSNSで拡散した場合、店舗責任者が個別にSNSやメディアに対応・発言することは厳禁です。必ず本部・広報窓口に一本化してください。
+［クリック］三つ目、再発防止策の実行と記録。
+発覚した違反の原因を踏まえ、事前申請や許可・免許管理のフローを見直し、実行状況を記録に残します。</aside>
+  </section>
+  <!-- 13 修了レポート -->
+  <section class="slide light" data-min="3">
+    <div class="eyebrow" data-in>研修修了レポートについて</div>
+    <h2 class="title" data-in style="--d:1">レポートの提出をもって「受講完了」となります</h2>
+    <div class="report" data-in style="--d:2">
+      <div class="report-cards">
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
+        <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-store"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>店舗を確認しながら記入</b></p></div></div>
+      </div>
+      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
+    </div>
+    <p class="lead" data-step="1" style="font-size:36px">書きながら<b>「これは確認した方がいいな」</b>と気づいたものが、今日持ち帰っていただきたいアンテナです。</p>
+    <div class="row" data-step="2">
+      <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
+      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>該当しないものは「なし」で構いません</p></div>
+    </div>
+    <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
+（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
+提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
+このレポートは、実際にお店の状況を確認しながら記入してください。
+直近6ヶ月に行ったイベントや新規の取引で、リーガルチェックを受けたか。深夜0時以降にお酒を提供しているか、そしてその届出は出ているか。景品や懸賞の企画があれば、上限を確認しているか。お弁当を販売しているなら、必要な許可を確認しているか。カスハラが起きたときの相談・報告の流れを、スタッフが知っているか。
+［クリック］今日お話しした通り、全部を覚える必要はありません。書きながら「これは確認した方がいいな」と気づいたものがあれば、それが今日持ち帰っていただきたいアンテナです。
+［クリック］最後に、店に戻って、実際に確認したこと・対応したことを書いていただきます。
+自店に該当しないものは「なし」で構いません。確認して気づいたことがあれば、あわせて書いてください。書き終えたレポートは、そのまま店舗のチェックリストとして使えます。</aside>
+  </section>
+  <!-- 14 クロージング -->
+  <section class="slide glow" data-min="3">
+    <div class="split" style="grid-template-columns:1fr 520px;align-items:center;flex:1">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div class="eyebrow" data-in>最後に</div>
+        <p class="quote" data-step="1" style="font-size:60px">「あ、これは<br><span class="hl2">確認した方がいいかもしれない</span>」</p>
+        <div class="moments" data-step="2"><span style="animation-delay:0s"><svg class="i" style="color:var(--accent)"><use href="#i-search"/></svg>通常と違うことをやるとき</span><span style="animation-delay:2s"><svg class="i" style="color:var(--accent)"><use href="#i-search"/></svg>新しい取引先と契約するとき</span><span style="animation-delay:4s"><svg class="i" style="color:var(--accent)"><use href="#i-search"/></svg>「無料」と言われたとき</span><span style="animation-delay:6s"><svg class="i" style="color:var(--accent)"><use href="#i-search"/></svg>お客様対応で困ったとき</span></div>
+        <p class="lead" data-step="3">確認することは、弱さではありません。<br><b>店と、スタッフと、皆さん自身を守る、いちばんの武器</b>です。</p>
+        <div class="contact" data-step="4"><svg class="i"><use href="#i-chat"/></svg><div><b>迷ったら、事業開発部 岡井へ</b><p class="cap">LINE WORKS：事業開発部 岡井ゆかり ／ okai@garb.co.jp</p></div></div>
+      </div>
+      <svg class="ant-svg" viewBox="0 0 520 520" aria-hidden="true"><g><g class="ant" style="--ox:260px;--oy:170px"><circle class="wave" cx="260" cy="170" r="72.0" style="animation-delay:0s"/><circle class="wave" cx="260" cy="170" r="72.0" style="animation-delay:1s"/><circle class="wave" cx="260" cy="170" r="72.0" style="animation-delay:2s"/>
+      <path d="M260 170v264.0M188.0 434.0h144.0M260 218.0l-60.0 180.0M260 218.0l60.0 180.0M216.8 350.0h86.39999999999999" stroke="#1f5bb5" stroke-width="9.6" stroke-linecap="round" fill="none"/>
+      <circle cx="260" cy="170" r="19.2" fill="#2f74d9"/></g></g></svg>
+    </div>
+    <aside class="notes">最後に、もう一度お伝えします。
+今日お話しした法律を、全部覚える必要はありません。
+景品の上限が20倍だったか、上限10万円だったか。道路の許可が2種類必要だったか。そんなことを暗記していただく必要は、まったくありません。
+今日持ち帰っていただきたいのは、たった一つです。
+［クリック］「あ、これは確認した方がいいかもしれない」
+この感覚です。
+［クリック］通常と違うことをやるとき。新しい取引先と契約するとき。「無料」と言われたとき。お客様対応で困ったとき。
+そのときに、一度立ち止まれるかどうか。
+［クリック］確認することは、弱さではありません。判断が遅いことでもありません。
+店と、スタッフと、そして皆さん自身を守る、いちばんの武器です。
+［クリック］迷ったら、本部に聞いてください。それだけで、防げることがほとんどです。
+本日は以上です。ありがとうございました。</aside>
+  </section>
+  <!-- 15 質疑応答 -->
+  <section class="slide center" data-min="0" data-no-footer>
+    <span class="ico pulse" data-in style="width:120px;height:120px;font-size:68px;border-radius:50%"><svg class="i"><use href="#i-chat"/></svg></span>
+    <h2 class="statement" data-in style="--d:1">質疑応答</h2>
+    <p class="lead muted" data-in style="--d:2">ご質問があれば、チャットまたは挙手でお願いします。</p>
+    <aside class="notes">ご質問があれば、チャットまたは挙手でお願いします。
+（進行役：質問がない場合も、10〜15秒は間を取る）</aside>
+  </section>
+
+</div>
+<script src="assets/deck.js"></script>
+<script>
+/* 第5章だけの演出：景品の上限の計算機（客単価を書き換えると上限が変わる） */
+(function () {
+  const price = document.getElementById('calc-price');
+  const PRIZE = 100000;
+  const yen = n => n.toLocaleString('ja-JP') + '円';
+  function update() {
+    const p = parseInt(price.textContent.replace(/[^0-9]/g, ''), 10) || 0;
+    const limit = p >= 5000 ? 100000 : p * 20;
+    const ratio = Math.min(limit / PRIZE, 1) * 100;
+    document.getElementById('calc-limit').textContent = yen(limit);
+    document.getElementById('calc-line').style.left = ratio + '%';
+    document.getElementById('calc-over').style.left = ratio + '%';
+    document.getElementById('calc-tag').textContent = '上限を ' + yen(Math.max(PRIZE - limit, 0)) + ' 超過';
+    document.getElementById('calc-bars').classList.toggle('safe', limit >= PRIZE);
+  }
+  price.addEventListener('input', update);
+  price.addEventListener('blur', () => { price.textContent = (parseInt(price.textContent.replace(/[^0-9]/g, ''), 10) || 0); update(); });
+  update();
+})();
+</script>
