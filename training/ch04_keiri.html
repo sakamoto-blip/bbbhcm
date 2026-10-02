@@ -1,0 +1,577 @@
+<meta charset="utf-8">
+<title>第4章 経理管理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+/* 第4章だけで使う部品 */
+/* タイルの隙間に、鍵のピースがはまる */
+.tiles { width: 100%; height: auto; display: block; overflow: visible; }
+.tiles .t { fill: #fff; stroke: #e6dcc3; stroke-width: 3; }
+.tiles .slot { fill: none; stroke: #c98a00; stroke-width: 4; stroke-dasharray: 10 8; animation: slot 6s ease-in-out infinite; }
+.tiles .piece { animation: piece 6s cubic-bezier(.5,0,.3,1) infinite; transform-box: view-box; }
+.tiles .glow { animation: glow 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes piece { 0%, 18% { transform: translate(230px, -150px) rotate(-12deg); } 42%, 92% { transform: none; } 100% { transform: translate(230px, -150px) rotate(-12deg); opacity: 0; } }
+@keyframes slot { 0%, 38% { opacity: 1; } 46%, 92% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes glow { 0%, 44% { opacity: 0; transform: scale(.8); } 52% { opacity: .9; transform: scale(1.15); } 70%, 92% { opacity: 0; transform: scale(1.5); } 100% { opacity: 0; } }
+
+.ladder { width: 100%; height: auto; display: block; overflow: visible; }
+.ladder .mk { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.on .ladder .mk { animation: mk-in .5s cubic-bezier(.3,1.6,.5,1) forwards, mk-pulse 2.4s ease-in-out 1.2s infinite; }
+@keyframes mk-in { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: scale(1); } }
+@keyframes mk-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+
+.storemap { width: 100%; height: auto; display: block; overflow: visible; }
+.storemap .spot { fill: none; stroke: #c98a00; stroke-width: 6; opacity: 0; transform-box: fill-box; transform-origin: center; animation: spot 10s ease-in-out infinite; }
+@keyframes spot { 0% { opacity: 0; transform: scale(.7); } 4% { opacity: 1; transform: scale(1); } 16% { opacity: 1; transform: scale(1.06); } 20%, 100% { opacity: 0; transform: scale(1.3); } }
+.storemap .tag { opacity: 0; animation: tagin 10s ease-in-out infinite; }
+@keyframes tagin { 0% { opacity: 0; } 4%, 16% { opacity: 1; } 20%, 100% { opacity: 0; } }
+
+.keypad { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 18px 22px; border-radius: 18px; background: #2a2e39; color: #fff; }
+.keypad .code { display: flex; gap: 10px; }
+.keypad .code b { width: 58px; height: 74px; border-radius: 10px; background: #1d2128; display: grid; place-items: center; font-family: var(--f-num); font-weight: 400; font-size: 42px; color: #f2be3d; }
+.keypad p { font-size: 22px; color: #d9dee5; text-align: center; }
+
+.quotes { display: flex; flex-direction: column; gap: 10px; }
+.quotes .q { display: grid; grid-template-columns: 90px 1fr 120px; align-items: center; gap: 14px; font-size: 26px; font-weight: 700; }
+.quotes .bar { height: 30px; border-radius: 8px; background: var(--surface-2); position: relative; overflow: hidden; }
+.quotes .bar i { position: absolute; inset: 0 auto 0 0; border-radius: 8px; background: #d8c48f; transform-origin: left; animation: qbar 1s ease both; }
+.quotes .q.best .bar i { background: var(--accent); }
+.quotes .q.best span:last-child { color: var(--accent-ink); }
+@keyframes qbar { from { transform: scaleX(0); } }
+
+.dayband { position: relative; }
+.dayband svg { width: 100%; height: auto; display: block; overflow: visible; }
+.dayband .seg-bad { opacity: 0; animation: segbad 6s ease-in-out infinite; }
+@keyframes segbad { 0%, 30% { opacity: 0; } 40%, 85% { opacity: 1; } 100% { opacity: 0; } }
+.dayband .chk { animation: chk 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes chk { 0%, 100% { transform: scale(1); } 10% { transform: scale(1.25); } 20% { transform: scale(1); } }
+
+.react { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.react .card { padding: 20px 24px; gap: 10px; }
+.react .say { font-size: 30px; font-weight: 900; padding: 12px 18px; border-radius: 16px; background: var(--surface-2); align-self: flex-start; }
+.react .bad .say { background: var(--danger-soft); color: var(--danger); }
+.react .good .say { background: var(--ok-soft); color: var(--ok); }
+.react .res { font-size: 28px; font-weight: 700; }
+.zure { display: inline-flex; align-items: center; gap: 14px; font-size: 34px; font-weight: 900; padding: 14px 26px; border-radius: 22px; background: #fff; box-shadow: 0 8px 24px rgba(29,33,40,.08); }
+
+.lose2 { display: grid; grid-template-columns: 1fr 1.25fr; gap: 26px; }
+.lose2 .card { gap: 10px; }
+.lose2 .card p { font-size: 26px; }
+.strike2 { position: relative; display: inline-block; color: var(--ink-2); }
+.strike2::after { content: ""; position: absolute; left: -4px; right: -4px; top: 55%; height: 4px; background: var(--danger); transform: scaleX(0); transform-origin: left; transition: transform .6s ease .6s; }
+.on .strike2::after { transform: scaleX(1); }
+
+.report { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; flex: 1; }
+.report-cards { display: flex; flex-direction: column; gap: 10px; }
+.report-cards .card { flex-direction: row; align-items: center; gap: 28px; padding: 14px 30px; }
+.report-cards .lead { font-size: 34px; }
+.report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.report-qr .ph { width: 260px; height: 260px; }
+</style>
+
+<div class="deck" data-chapter="第4章　経理管理" data-accent="gold">
+
+  <!-- 01 タイトル -->
+  <section class="slide glow cover" data-min="3" data-no-footer>
+    <div class="split" style="align-items:center">
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <div class="chapter" data-in style="--d:0">第4章</div>
+        <h1 data-in style="--d:1">経理管理</h1>
+        <p class="sub" data-in style="--d:2">魔が差すのは、誰にでもある。<br>だから、仕組みで防ぐ。</p>
+        <p class="lead muted" data-in style="--d:3">人を疑わないために、仕組みを整える。</p>
+      </div>
+      <svg class="tiles" viewBox="0 0 620 460" aria-hidden="true">
+        <g>
+          <rect class="t" x="10" y="10" width="110" height="100" rx="14"/><rect class="t" x="130" y="10" width="110" height="100" rx="14"/><rect class="t" x="250" y="10" width="110" height="100" rx="14"/><rect class="t" x="370" y="10" width="110" height="100" rx="14"/><rect class="t" x="490" y="10" width="110" height="100" rx="14"/>
+          <rect class="t" x="10" y="120" width="110" height="100" rx="14"/><rect class="t" x="130" y="120" width="110" height="100" rx="14"/><rect class="t" x="250" y="120" width="110" height="100" rx="14"/><rect class="slot" x="370" y="120" width="110" height="100" rx="14"/><rect class="t" x="490" y="120" width="110" height="100" rx="14"/>
+          <rect class="t" x="10" y="230" width="110" height="100" rx="14"/><rect class="t" x="130" y="230" width="110" height="100" rx="14"/><rect class="t" x="250" y="230" width="110" height="100" rx="14"/><rect class="t" x="370" y="230" width="110" height="100" rx="14"/><rect class="t" x="490" y="230" width="110" height="100" rx="14"/>
+          <rect class="t" x="10" y="340" width="110" height="100" rx="14"/><rect class="t" x="130" y="340" width="110" height="100" rx="14"/><rect class="t" x="250" y="340" width="110" height="100" rx="14"/><rect class="t" x="370" y="340" width="110" height="100" rx="14"/><rect class="t" x="490" y="340" width="110" height="100" rx="14"/>
+          <rect class="glow" x="360" y="110" width="130" height="120" rx="20" fill="none" stroke="#f2be3d" stroke-width="10"/>
+          <g class="piece"><rect x="370" y="120" width="110" height="100" rx="14" fill="#c98a00"/><g transform="translate(395 140) scale(2.5)" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g></g>
+        </g>
+      </svg>
+    </div>
+    <aside class="notes">本日はお集まりいただきありがとうございます。第4章、経理管理です。
+この章でお伝えしたいことは、実はたった一つです。
+「人を疑わないために、仕組みを整える」
+これに尽きます。
+「うちのスタッフは信頼しているから大丈夫」「これまで事故が起きていないから大丈夫」。その気持ちは、よくわかります。
+ただ、管理の隙間を放っておくことは、大切な仲間を、魔が差してしまうような環境に晒すことと同じです。
+今日お話しするのは、スタッフを疑うための話ではありません。誰もが過ちを犯さずに済む環境をつくり、仲間と自分自身を守るための話です。</aside>
+  </section>
+
+  <!-- 02 まず、お答えください -->
+  <section class="slide" data-min="8">
+    <div class="eyebrow" data-in>まず、お答えください</div>
+    <h2 class="title" data-in style="--d:1">4つの質問に、Zoomのチャットで回答してください</h2>
+    <div class="qa">
+      <ol class="qlist" data-in style="--d:2">
+        <li><span class="qn">Q1</span><div><p>日頃の金銭・物品管理（レジ・高額商品・備品など）で「特に意識して気をつけていること」を教えてください。</p></div><span class="qk">記述</span></li>
+        <li><span class="qn">Q2</span><div><p>レジの違算や棚卸のズレが発生するのは、どのようなケースですか。</p><small>発生しない場合は「特になし」</small></div><span class="qk">記述</span></li>
+        <li><span class="qn">Q3</span><div><p>店舗の金庫の暗証番号を知っている人は、何人いますか。</p><small>異動・退職者が知っている可能性も含めて</small></div><span class="qk">記述</span></li>
+        <li><span class="qn">Q4</span><div><p>取引先・業者さんから、接待（食事・ゴルフ・金品やギフト）を受けたことはありますか。</p><small>選択肢：はい ／ いいえ</small></div><span class="qk">選択</span></li>
+      </ol>
+      <div class="howto" data-in style="--d:3">
+        <h3><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>回答のしかた</h3>
+        <ol>
+          <li><span>画面下の<b>「チャット」</b>を開く</span></li>
+          <li><span>送信先を<b>「全員」</b>にする</span></li>
+          <li><span><b>「Q1：〇〇」</b>のように、番号を付けて送る</span></li>
+        </ol>
+        <p class="ex">例）Q1：レジ締めのダブルチェック</p>
+        <p class="cap">「わからない」「できていない」も、そのまま書いてください。確認する場であって、責める場ではありません。</p>
+      </div>
+    </div>
+    <aside class="notes">早速ですが、これから4つ質問をします。画面の質問に、Zoomのチャットで回答してください。今わかる範囲で、正直にお答えください。
+「わからない」「できていない」と書いていただいて構いません。この場は、確認する場であって、責める場ではありません。むしろ、正直に書けることの方が大事です。
+（進行役：Zoomのチャットで回答してもらう。質問を読み上げ、送信先と書き方を案内する）
+では、5分ほど時間を取ります。どうぞ。
+（回答がそろったら）
+（進行役：届いたチャットの回答を見ながら、拾って話す）
+ありがとうございます。皆さんの回答を見てみましょう。
+［Q1・普段から気をつけていること］（拾い方の例）「レジ締めのダブルチェック、と書かれた方が多いですね」「高額ワインの本数確認。これも複数いらっしゃいます」「◯◯と書かれた方がいます。そこまで見ていらっしゃるんですね」
+皆さん、日頃からきちんと気をつけていらっしゃることがよくわかります。
+［Q2・違算や棚卸のズレが発生するケース］（件数のみを扱い、個人は特定しない）「ピーク時の打ち間違い、納品時の検収漏れ。◯◯と書かれた方が複数いらっしゃいます。同じことで悩んでいるのは、あなただけではありません」
+［Q3・金庫の暗証番号を知っている人数］「思った以上に多い、という数字が並んでいますね」
+［Q4・取引先からの接待］「『はい』が◯％ありました」
+日々きちんと気をつけている。でも、気になりながら手をつけられていないことがある。これは、決して珍しいことではありません。今の回答を頭の片隅に置いたまま、次の話を聞いてください。</aside>
+  </section>
+
+  <!-- 03 自社の実例 -->
+  <section class="slide" data-min="5">
+    <div class="eyebrow" data-in>自社の実例</div>
+    <h2 class="title" data-in style="--d:1">他社の話ではなく、私たちの会社で実際に起きたこと</h2>
+    <div class="split" style="align-items:start;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div class="card is-accent" data-step="1"><div class="stat"><div class="v"><span data-count="10">10</span><small>件以上</small></div><div class="k">2022年以降の、売上現金の着服</div></div><p class="cap">多くは全額返納のうえ諭旨退職。警察への相談・被害届の提出に至ったケースもある</p></div>
+        <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-store"/></svg></span>2026年5月　不正な仕入れの転売</h3><p class="cap">社員が全額返済のうえ諭旨退職</p></div>
+      </div>
+      <div data-step="2" style="display:flex;flex-direction:column;gap:14px">
+        <svg class="ladder" style="max-height:430px" viewBox="0 0 760 470" role="img" aria-label="スタッフから代表取締役まで、どの役職でも着服が起きている">
+          <g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <rect x="40" y="10" width="14" height="450" rx="7" fill="#e6dcc3"/><rect x="380" y="10" width="14" height="450" rx="7" fill="#e6dcc3"/>
+            <g fill="#fff" stroke="#e6dcc3" stroke-width="3">
+              <rect x="54" y="20" width="326" height="64" rx="12"/><rect x="54" y="110" width="326" height="64" rx="12"/><rect x="54" y="200" width="326" height="64" rx="12"/><rect x="54" y="290" width="326" height="64" rx="12"/><rect x="54" y="380" width="326" height="64" rx="12"/>
+            </g>
+            <g font-size="32" fill="#1d2128" text-anchor="middle"><text x="217" y="63">代表取締役</text><text x="217" y="153">役員・取締役</text><text x="217" y="243">店長</text><text x="217" y="333">社員</text><text x="217" y="423">ホール・キッチン</text></g>
+            <g fill="#c98a00">
+              <circle class="mk" cx="440" cy="412" r="20" style="animation-delay:.1s,1.3s"/><circle class="mk" cx="440" cy="322" r="20" style="animation-delay:.4s,1.6s"/><circle class="mk" cx="440" cy="232" r="20" style="animation-delay:.7s,1.9s"/><circle class="mk" cx="440" cy="142" r="20" style="animation-delay:1s,2.2s"/><circle class="mk" cx="440" cy="52" r="20" style="animation-delay:1.3s,2.5s"/>
+            </g>
+            <text x="480" y="62" font-size="26" fill="#8f6200">売上金を横領</text>
+            <text x="480" y="152" font-size="26" fill="#8f6200">着服が複数件</text>
+            <text x="480" y="422" font-size="26" fill="#8f6200">着服が繰り返し</text>
+          </g>
+        </svg>
+        <p class="cap">代表取締役の横領は、別件のハラスメントで店舗を離れる際の、引き継ぎ作業中に発覚</p>
+      </div>
+    </div>
+    <div class="alert" data-step="4"><svg class="i"><use href="#i-alert"/></svg><p><b>役職の高さは、不正の抑止力になりません。</b></p></div>
+    <aside class="notes">今日は他社の事例ではなく、私たちの会社で実際に起きたことをお話しします。
+［クリック］2022年以降、ホール社員・キッチン社員による売上現金の着服は、10件以上、繰り返し発生しています。多くは本人が全額返納したうえで諭旨退職となっていますが、警察への相談、被害届の提出に至ったケースもあります。
+［クリック］そして、着服は現場のスタッフだけの話ではありません。役員・取締役による着服も、複数件発生しています。
+ある店舗では、代表取締役自身が売上金を横領していました。しかもこの横領は、別件のハラスメントでその店舗を離れることになり、引き継ぎ作業をしている最中に発覚したという経緯があります。
+［クリック］さらに、直近では2026年5月に、不正な仕入れの転売が発覚し、社員が全額返済のうえ諭旨退職となった事例もあります。
+［クリック］役職の高さは、不正の抑止力になりません。</aside>
+  </section>
+
+  <!-- 04 現金だけの話ではない -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>現金だけの話ではない</div>
+    <h2 class="title" data-in style="--d:1">店にあるあらゆる資産と判断に、隙間が潜んでいる</h2>
+    <div class="split" style="align-items:center;gap:40px;flex:1">
+      <svg class="storemap" viewBox="0 0 860 560" role="img" aria-label="店の見取り図。レジ、ワインセラー、冷蔵庫、備品棚、事務所の発注書に、順に隙間の印が灯る">
+        <g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="10" y="10" width="840" height="540" rx="24" fill="#fff" stroke="#e6dcc3" stroke-width="4"/>
+          <rect x="30" y="30" width="480" height="300" rx="16" fill="#fbf6ea"/><text x="270" y="190" font-size="30" fill="#b8a77a">客席</text>
+          <rect x="530" y="30" width="300" height="300" rx="16" fill="#f3f5f8"/><text x="680" y="110" font-size="28" fill="#9aa1ab">厨房</text>
+          <rect x="30" y="350" width="300" height="180" rx="16" fill="#f3f5f8"/><text x="180" y="390" font-size="26" fill="#9aa1ab">バックヤード</text>
+          <rect x="350" y="350" width="480" height="180" rx="16" fill="#fbf6ea"/>
+          <g><rect x="410" y="400" width="140" height="80" rx="12" fill="#e6dcc3"/><text x="480" y="452" font-size="28" fill="#5e4a1a">レジ</text></g>
+          <g><rect x="60" y="430" width="120" height="80" rx="12" fill="#e6dcc3"/><text x="120" y="480" font-size="24" fill="#5e4a1a">備品棚</text></g>
+          <g><rect x="200" y="430" width="110" height="80" rx="12" fill="#e6dcc3"/><text x="255" y="468" font-size="22" fill="#5e4a1a">事務所</text><text x="255" y="496" font-size="20" fill="#5e4a1a">発注書</text></g>
+          <g><rect x="560" y="150" width="120" height="150" rx="12" fill="#e6dcc3"/><text x="620" y="220" font-size="24" fill="#5e4a1a">冷蔵庫</text><text x="620" y="252" font-size="20" fill="#5e4a1a">和牛</text></g>
+          <g><rect x="700" y="150" width="110" height="150" rx="12" fill="#e6dcc3"/><text x="755" y="215" font-size="22" fill="#5e4a1a">ワイン</text><text x="755" y="245" font-size="22" fill="#5e4a1a">セラー</text></g>
+          <rect class="spot" x="398" y="388" width="164" height="104" rx="18" style="animation-delay:0s"/>
+          <rect class="spot" x="688" y="138" width="134" height="174" rx="18" style="animation-delay:2s"/>
+          <rect class="spot" x="548" y="138" width="144" height="174" rx="18" style="animation-delay:4s"/>
+          <rect class="spot" x="48" y="418" width="144" height="104" rx="18" style="animation-delay:6s"/>
+          <rect class="spot" x="188" y="418" width="134" height="104" rx="18" style="animation-delay:8s"/>
+          <g font-size="26" fill="#fff">
+            <g class="tag" style="animation-delay:0s"><rect x="580" y="410" width="220" height="56" rx="28" fill="#c98a00"/><text x="690" y="447">売上金・レジ金</text></g>
+            <g class="tag" style="animation-delay:2s"><rect x="560" y="60" width="270" height="56" rx="28" fill="#c98a00"/><text x="695" y="97">高額ワイン</text></g>
+            <g class="tag" style="animation-delay:4s"><rect x="540" y="60" width="290" height="56" rx="28" fill="#c98a00"/><text x="685" y="97">和牛・キャビア</text></g>
+            <g class="tag" style="animation-delay:6s"><rect x="40" y="360" width="250" height="56" rx="28" fill="#c98a00"/><text x="165" y="397">高価格帯の備品</text></g>
+            <g class="tag" style="animation-delay:8s"><rect x="40" y="360" width="290" height="56" rx="28" fill="#c98a00"/><text x="185" y="397">業者選定の利害</text></g>
+          </g>
+        </g>
+      </svg>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <p class="lead" data-step="1">先ほどの「不正な仕入れの転売」も、<b>現金を抜いたわけではありません。</b></p>
+        <p class="text" data-step="1">仕入れという業務の中に、隙間があったということです。</p>
+        <div class="bubbles" data-step="2" style="display:flex;gap:18px;flex-wrap:wrap">
+          <span class="zure">「少しの持ち出しなら」</span><span class="zure">「慣れているから」</span>
+        </div>
+        <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p>その<b>油断と、管理の隙間</b>が、引き金になります。</p></div>
+      </div>
+    </div>
+    <aside class="notes">ここで一つ、認識を変えていただきたいことがあります。
+店舗で起きる不正は、売上金やレジ金といった「現金」だけで起きるわけではありません。
+高級ワイン、和牛、キャビアといった高額食材。そして備品。さらに、業者選定における個人的な利害関係。
+店舗にあるあらゆる資産、あらゆる判断に、不正のリスクが潜んでいます。（左の見取り図で、隙間の印が順に灯る）
+［クリック］先ほどの「不正な仕入れの転売」も、現金を抜いたわけではありません。仕入れという業務の中に、隙間があったということです。
+［クリック］「少しの持ち出しなら」「慣れているから」。
+［クリック］その油断と、管理の隙間が、引き金になります。</aside>
+  </section>
+
+  <!-- 05 何を失うか -->
+  <section class="slide" data-min="5">
+    <div class="phase" data-until="2">
+      <div class="eyebrow" data-in>何を失うか</div>
+      <h2 class="title" data-in style="--d:1">会社も、不正をした本人も、大きな代償を負う</h2>
+      <div class="lose2">
+        <div class="card" data-step="1">
+          <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
+          <ul class="points plain">
+            <li><div><b>重加算税</b>などの追徴課税<small class="cap" style="display:block">売上や在庫の操作で申告が不正確になった場合。過少申告なら35%、無申告なら40%</small></div></li>
+            <li><div>上場企業として<b>信用の失墜</b><small class="cap" style="display:block">内部統制の重大な不備として開示。株価の下落、融資の停止、最悪は上場廃止</small></div></li>
+          </ul>
+        </div>
+        <div class="card is-accent" data-step="2">
+          <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>不正をした本人が負うもの</h3>
+          <p><span class="kind">刑事</span><b>業務上横領罪</b>　10年以下の拘禁刑<br><span class="cap"><span class="strike2">罰金</span>　罰金刑の規定がなく、有罪なら必ず拘禁刑</span></p>
+          <p><span class="kind">刑事</span><b>背任罪</b>　5年以下の拘禁刑または50万円以下の罰金<br><span class="cap">取引先から便宜を受けた見返りに、不当な発注をする等</span></p>
+          <p><span class="kind civil">民事</span>会社に与えた損害の賠償</p>
+          <p class="cap">社内では、懲戒解雇を含む処分。逮捕・告訴に直結する</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="3">
+      <div class="eyebrow">あなた個人 ── 直接不正を行っていなくても</div>
+      <h2 class="title">管理を怠っていた責任者も、処分の対象になる</h2>
+      <div class="chain" style="justify-content:flex-start">
+        <span><svg class="i"><use href="#i-yen"/></svg>不正・差異の発生</span><i class="grow"></i><span><svg class="i"><use href="#i-search"/></svg>管理体制の不備</span><i class="grow"></i><span style="background:var(--accent-soft)"><svg class="i"><use href="#i-person"/></svg>責任者も降格・減給</span>
+      </div>
+      <ul class="timeline compact" data-step="4">
+        <li data-n="1"><h3>小口現金・売上現金の管理不備（差異の発生）</h3><p>代表が報酬減額</p></li>
+        <li data-n="2"><h3>杜撰な棚卸管理</h3><p>代表が減給</p></li>
+      </ul>
+      <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p>本人が着服していなくても、<b>管理体制の不備そのものが処分の対象</b>になります。</p></div>
+    </div>
+    <aside class="notes">では、不正や著しい管理不備が発生した場合、何を失うのか。
+［クリック］まず会社です。売上や在庫の不正操作によって正しい申告が行われなかった場合、重加算税などの追徴課税を受けます。上場企業として、内部統制に重大な不備があるとみなされれば、信用は失墜し、融資の停止や、最悪の場合は上場廃止にもつながります。
+［クリック］そして、不正を行った本人です。
+業務上横領、窃盗、背任行為。これらは明確な刑事犯罪です。懲戒解雇や損害賠償請求だけでなく、逮捕や告訴といった刑事責任に直結します。
+業務上横領罪には、罰金刑の規定がありません。つまり、有罪となれば必ず拘禁刑です。
+民事では、会社に与えた損害を賠償する責任を負います。
+［クリック］そして、皆さん個人です。直接不正を行っていなくても、です。
+ここが重要です。自分が不正をしていなくても、管理を怠っていた店舗責任者は処分の対象になります。
+著しい管理怠慢として、降格・減給等の厳しい懲戒処分が下されます。ひとたび事故が起きれば、これまで築いてきたキャリアと、周囲からの信頼を一瞬で失うことになります。
+［クリック］これも、実際に起きています。
+小口現金・売上現金の管理不備、つまり差異が発生していたことを理由に、代表が報酬減額処分を受けた例があります。杜撰な棚卸管理を理由に、代表が減給処分を受けた例もあります。
+［クリック］本人が着服していなくても、管理体制の不備そのものが処分の対象になる。これが現実です。</aside>
+  </section>
+
+  <!-- 06 仕組みで守る -->
+  <section class="slide" data-min="3">
+    <div class="eyebrow" data-in>仕組みで守る</div>
+    <h2 class="title" data-in style="--d:1">個人の良心や信頼関係ではなく、すべてを「仕組み」で守る</h2>
+    <p class="lead muted" data-in style="--d:2">スタッフを疑うためではありません。誰もが過ちを犯せない環境で、仲間と自分自身を守るためです。</p>
+    <div class="cols cols-3">
+      <div class="card pillar" data-step="1" style="padding:30px 32px"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><span class="n">P</span><h3 style="font-size:44px">プラン（計画）</h3><p style="font-size:26px">不正やミスが起こらない仕組み・アクセス制限・ルールを、あらかじめ設計する</p></div>
+      <div class="card pillar" data-step="2" style="padding:30px 32px"><span class="ico"><svg class="i"><use href="#i-check"/></svg></span><span class="n">K</span><h3 style="font-size:44px">キープ（維持）</h3><p style="font-size:26px">ルールを形骸化させず、日々の二重確認や点検を愚直に続ける</p></div>
+      <div class="card pillar" data-step="3" style="padding:30px 32px"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><span class="n">A</span><h3 style="font-size:44px">アクト（実行）</h3><p style="font-size:26px">確定処理や帳簿付けを正しく実行し、店舗の文化として定着させる</p></div>
+    </div>
+    <aside class="notes">だからこそ、個人の良心や信頼関係に頼るのではなく、すべてを「仕組み」で守ります。
+繰り返しますが、これはスタッフを疑うためではありません。誰もが過ちを犯せない環境をつくり、大切な仲間と自分自身を守るためです。
+そのために回していくのが、プラン・キープ・アクトです。
+［クリック］プラン、計画。不正やミスが起こらない仕組み、アクセス制限、ルールをあらかじめ設計する。
+［クリック］キープ、維持。設計したルールを形骸化させず、日々の二重確認や点検を愚直に維持する。
+［クリック］アクト、アクション・実行。確定処理や帳簿付けを正しく実行し、店舗の文化として定着させる。
+では、それぞれ見ていきます。</aside>
+  </section>
+
+  <!-- 07 プラン -->
+  <section class="slide" data-min="4" id="plan-slide">
+    <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）</b></div>
+    <div class="phase" data-until="2" style="top:200px">
+      <h2 class="title">ルールを決める</h2>
+      <div class="row" style="gap:28px;flex:1;align-items:stretch">
+        <div class="card" data-step="1" style="flex:1"><span class="badge" style="font-size:56px">1</span><h3>「売上金及び現金管理ルール同意書」の受領</h3><p>金銭・レジ業務を扱うスタッフは、アルバイトを含め全員。入社・配属時に<b>SmartHR</b>で受領する</p><p class="cap">ルールの存在と、責任の所在をあらかじめ明確にする</p></div>
+        <div class="card" data-step="2" style="flex:1.3">
+          <span class="badge" style="font-size:56px">2</span><h3>アクセス制限と、金庫番号・鍵の管理</h3>
+          <div class="row" style="gap:22px;align-items:center">
+            <div class="keypad"><div class="code" id="code"><b>4</b><b>8</b><b>1</b><b>7</b></div><p>異動・退職者が出たら<br>その日のうちに変更</p></div>
+            <ul class="points plain" style="flex:1"><li><div>暗証番号・レジの管理者権限は、必要最小限の役職者だけ</div></li><li><div>鍵は回収し、<b>鍵管理台帳</b>と照合する</div></li></ul>
+          </div>
+          <span class="poll" data-q="Q3" style="align-self:flex-start">金庫の暗証番号を知っている人数</span>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="3" style="top:200px">
+      <h2 class="title">利益相反をなくし、高額商品は鍵の中へ</h2>
+      <div class="row" style="gap:28px;flex:1;align-items:stretch">
+        <div class="card" style="flex:1.2"><span class="badge" style="font-size:56px">3</span><h3>利益相反を排除する業者選定</h3>
+          <div class="quotes"><div class="q"><span>A社</span><span class="bar"><i style="right:18%"></i></span><span>見積①</span></div><div class="q best"><span>B社</span><span class="bar"><i style="right:34%;animation-delay:.2s"></i></span><span>見積②</span></div><div class="q"><span>C社</span><span class="bar"><i style="right:8%;animation-delay:.4s"></i></span><span>見積③</span></div></div>
+          <p>個人的な付き合いを排除し、<b>必ず相見積もり</b>。上長・本部の承認を得る</p>
+          <p class="cap">取引先からの個人的な接待・金品・ギフトは、禁止・辞退が原則</p>
+          <span class="poll" data-q="Q4" style="align-self:flex-start">取引先からの接待「はい」<b contenteditable="true">◯</b>%</span>
+        </div>
+        <div class="card" data-step="4" style="flex:1"><span class="badge" style="font-size:56px">4</span><h3><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span>大金・高額商品の管理体制</h3><p>パーティーの数百万円規模の現金売上、高額ワイン、高級食材、高価格帯の備品</p><p><b class="hl">誰でも自由に触れられる状態を無くす</b>。金庫での施錠、ワインセラー・鍵付き棚での保管を、ハウスルールに</p></div>
+      </div>
+    </div>
+    <aside class="notes">まず、プラン。計画を立てて、ルールを決める段階です。
+［クリック］一つ目、「売上金及び現金管理ルール同意書」の受領。
+金銭やレジ業務を扱うスタッフには、アルバイトを含め全員、入社・配属時にSmartHRを通じて同意書を受領させてください。ルールの存在と、責任の所在をあらかじめ明確にしておきます。
+［クリック］二つ目、アクセス制限と、金庫番号・鍵の管理。
+金庫の暗証番号やレジの管理者権限は、必要最小限の役職者に限定します。異動や退職者が出た場合は、その日のうちに金庫番号を変更してください。
+冒頭の質問で、金庫の暗証番号を知っている人数を伺いました。思った以上に多い、という数字が並んでいました。
+店舗の鍵も同様です。回収と、鍵管理台帳との照合を徹底してください。元スタッフが店舗に侵入できる隙間を、完全に塞ぐということです。
+［クリック］三つ目、利益相反を排除する業者選定ルール。
+新規業者の選定や、食材・設備の購入にあたっては、個人的な付き合いや過去の人間関係を完全に排除します。必ず複数社から相見積もりを取り、上長および本部の承認を得る。取引先からの個人的な接待や、金品・ギフトの受領は禁止・辞退が原則です。
+冒頭の質問で、取引先から接待を受けたことがあるかを伺いました。「はい」が◯％でした。（進行役：スライドの◯をクリックして数字を入力）
+［クリック］四つ目、大金・高額商品の管理体制。
+大人数貸切やパーティーで発生する数百万円規模の現金売上、高額ワイン、高級食材、高価格帯の備品。これらが誰でも自由に触れられる状態を無くします。金庫での施錠管理、ワインセラーや鍵付き棚での保管を、ハウスルールとして設定してください。</aside>
+  </section>
+
+  <!-- 08 キープ -->
+  <section class="slide" data-min="4">
+    <div class="tracker" data-in><span>P</span><em></em><span class="on">K</span><em></em><span>A</span><b>キープ（維持）</b></div>
+    <div class="phase" data-until="2" style="top:200px">
+      <h2 class="title">1日3回のレジ確認と、任せきりにしない体制</h2>
+      <div class="card dayband" data-step="1">
+        <p style="display:flex;align-items:center;gap:12px;font-size:26px;font-weight:700">1日の営業 <span class="ex-tag">例</span></p>
+        <svg viewBox="0 0 1560 200" style="height:170px" role="img" aria-label="開店時、ランチ後、ディナー前の3回レジを確認すると、ズレが出た時間帯を特定できる">
+          <g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="20" y="80" width="1520" height="36" rx="18" fill="#f3f5f8"/>
+            <rect class="seg-bad" x="620" y="80" width="540" height="36" fill="#f9e3e0"/>
+            <text class="seg-bad" x="890" y="60" font-size="26" fill="#c23a2e">ズレはこの時間帯で起きた</text>
+            <g class="chk" style="animation-delay:0s"><circle cx="80" cy="98" r="34" fill="#c98a00"/><path d="M64 98l11 11 21-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="chk" style="animation-delay:.6s"><circle cx="620" cy="98" r="34" fill="#c98a00"/><path d="M604 98l11 11 21-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="chk" style="animation-delay:1.2s"><circle cx="1160" cy="98" r="34" fill="#c98a00"/><path d="M1144 98l11 11 21-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="80" y="170" font-size="30" fill="#1d2128">開店時</text><text x="620" y="170" font-size="30" fill="#1d2128">ランチ後</text><text x="1160" y="170" font-size="30" fill="#1d2128">ディナー前</text><text x="1480" y="170" font-size="26" fill="#4f5661">閉店・レジ締め</text>
+          </g>
+        </svg>
+        <p class="cap">回数を増やすと、誤差が出たときに「どの時間帯で起きたか」をすぐ特定できる</p>
+      </div>
+      <div class="row" data-step="2" style="gap:24px">
+        <div class="card" style="flex:1"><h3><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>2人体制でのダブルチェック</h3><p>レジ締め・現金の保管・入金を、相互のサインや確認記録とともに</p></div>
+        <div class="card" style="flex:1"><h3>1人にならざるを得ない日も</h3><p><b>同じ人が担当し続けない</b>。曜日ごとに担当を変える、責任者が後から記録を確認する、でも可</p></div>
+      </div>
+    </div>
+    <div class="phase" data-step="3" style="top:200px">
+      <h2 class="title">棚卸・空き瓶・検収・業者取引を、点検し続ける</h2>
+      <div class="cols cols-3" style="flex:1">
+        <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-search"/></svg></span>棚卸は複数人で</h3><p>全品目を複数人では現実的でない。<b>高額商品と、大量に在庫を持つ商品</b>に絞って、現物と帳簿を照合する</p></div>
+        <div class="card" data-step="4"><h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>空き瓶確認と検収</h3><p>高額ワインの空き瓶は、詰め替えや持ち出しの隠蔽に悪用される。<b>責任者が現物を確認</b>してから破棄・記録。納品時は伝票と現物をその場で照合</p></div>
+        <div class="card" data-step="5"><h3><span class="ico"><svg class="i"><use href="#i-store"/></svg></span>業者取引の検証</h3><p>発注量の不自然な偏り、市場価格とかけ離れた高額な仕入れがないか</p></div>
+      </div>
+      <div class="alert is-ok" data-step="4"><svg class="i"><use href="#i-shield"/></svg><p>任せきりにしないことは、誰かを疑うためではなく、<b>担当したスタッフを「疑われる立場」から守るため</b>でもあります。</p></div>
+    </div>
+    <aside class="notes">次に、キープ。決めたことを維持し、点検し続ける段階です。
+［クリック］一つ目、1日3回のレジ金点検と、2人体制の徹底。
+開店時、ランチ終了時、ディナー前の1日3回、定時でレジ金を確認します。回数を増やすことで、誤差が出たときに「どの時間帯で起きたか」を即座に特定できます。
+［クリック］そして、レジ締めや、多額の現金の保管・銀行入金業務について。ここで大事なのは、特定の誰かに任せきりにしないということです。
+方法の一つが、2人体制でのダブルチェックです。相互にサインや確認記録を残せば、確実性は高まります。
+ただ、人数の都合で、どうしても1人で対応せざるを得ないケースもあると思います。その場合でも、同じ人がずっと1人で担当し続ける状態は避けてください。曜日ごとに担当を変える、責任者が後から記録を確認する、といった形でも構いません。
+これは誰かを疑うためのルールではありません。万が一の時に、担当したスタッフを「疑われる立場」から守るためのルールでもあります。任せきりにしないことが、結果的にその人を守ります。
+［クリック］二つ目、複数人による月末棚卸。
+棚卸を1人に丸投げすると、原価率の調整やロス隠しのための架空在庫の計上といった、データ操作が起きやすくなります。
+とはいえ、全品目を複数人で確認するのは現実的ではありません。特に高額商品、そして大量に在庫を持っている商品については、必ず複数人で確認してください。金額の大きいところ、動きの大きいところに絞って、現物と帳簿を照合します。
+［クリック］三つ目、高額商品の空き瓶確認と、検収の徹底。
+高額ワインの空き瓶は、安価なお酒に詰め替える不正や、未会計での持ち出しを隠すために悪用されるケースがあります。責任者が現物を確認したうえで破棄し、記録を残してください。
+納品時には、伝票と現物をその場で照合する検収を徹底します。先ほどお話しした「不正な仕入れの転売」を防ぐためのルールです。
+［クリック］四つ目、業者取引の検証。
+発注量の不自然な偏りや、市場価格と乖離した高額な仕入れが行われていないか。日々チェックしてください。</aside>
+  </section>
+
+  <!-- 09 アクト -->
+  <section class="slide" data-min="4">
+    <div class="tracker" data-in><span>P</span><em></em><span>K</span><em></em><span class="on">A</span><b>アクト（実行）</b></div>
+    <div class="phase" data-until="3" style="top:200px">
+      <h2 class="title">期日を守り、帳簿と現物を完全に一致させる</h2>
+      <div class="cols cols-3">
+        <div class="card" data-step="1"><span class="badge" style="font-size:56px">1</span><h3>月次確定処理の期日厳守</h3><p>納品書・請求書・領収書とPOSデータの照合を完了。伝票の溜め込み・先送りはゼロに</p></div>
+        <div class="card" data-step="2"><span class="badge" style="font-size:56px">2</span><h3>小口現金・経費精算</h3><p>明細のある領収書と引き換えに即日精算。キャッシュレス売上も、POSと決済会社の入金を照合</p></div>
+        <div class="card" data-step="3"><span class="badge" style="font-size:56px">3</span><h3>帳簿と現物の「完全一致」</h3><p>現金残高・棚卸在庫数が一致してから確定</p><p class="hl" style="font-weight:900">原因不明のズレを、数字を合わせた報告で埋めない</p></div>
+      </div>
+    </div>
+    <div class="phase" data-step="4" style="top:200px">
+      <h2 class="title">「ズレました」と言いやすい環境を、作れていますか</h2>
+      <div style="display:flex;align-items:center;gap:24px"><span class="zure"><svg class="i" style="font-size:40px;color:var(--accent)"><use href="#i-person"/></svg>「すみません、ズレました」</span><span class="poll" data-q="Q2">違算・ズレが発生するケース</span></div>
+      <div class="react" data-step="5">
+        <div class="card bad"><span class="say">「なんでズレたの！」</span><p class="res">→ 次から<b>隠す</b>。自分のお金で埋めようとするかもしれない</p></div>
+        <div class="card good"><span class="say">「教えてくれてありがとう」</span><p class="res">→ 次も<b>報告</b>してくれる。原因を一緒に探せる</p></div>
+      </div>
+      <p class="lead" data-step="6">隠蔽は、隠したくなる環境から生まれます。<br><b>「ズレることはある。でも、隠さないでほしい」</b>の一言を、日頃から。</p>
+      <p class="cap" data-step="7">異動や新しいスタッフにも、「なぜ2人体制か」「なぜ1日3回か」「なぜ相見積もりか」という目的とセットで伝える</p>
+    </div>
+    <aside class="notes">最後に、アクト。実際に行動して、記録する段階です。
+［クリック］一つ目、月次確定処理の期日厳守。
+締め日を厳守し、納品書・請求書・領収書とPOSデータの照合を確実に完了させます。伝票の溜め込みや処理の先送りをゼロに。処理の遅れは、不適正な処理を隠蔽する要因になります。
+［クリック］二つ目、小口現金・経費精算の適正処理。
+小口現金の使用は必要最小限に留め、明細が明記された領収書と引き換えに即日精算・記録します。領収書のない精算や私的流用は一切認めません。
+キャッシュレス売上についても、POSデータと決済会社の入金データが一致しているか照合してください。
+［クリック］三つ目、確定データと現物の「完全一致」確認。
+月次確定では、帳簿上の数値と現物、つまり実際の現金残高や棚卸在庫数が、完全に一致している状態を確認したうえで確定します。
+万が一、原因不明のズレが発生した場合、数値を合わせた嘘の報告、いわゆる穴埋め処理は絶対にしないでください。直ちに事実関係を調査し、上長・本部へ正確に報告・相談します。
+［クリック］ここで、皆さんに考えていただきたいことがあります。
+どれだけ丁寧にやっても、ズレが出ることはあります。完璧な現場はありません。冒頭の質問でも、ズレが発生するケースをたくさん書いていただきました。
+だからこそ大事なのが、スタッフが「ズレました」と言いやすい環境を、皆さんが作れているかということです。
+［クリック］ズレを報告したときに強く叱責される。そんな空気があれば、スタッフは次から隠します。自分のお金で埋めようとするかもしれません。
+［クリック］隠蔽は、隠したくなる環境から生まれます。
+「ズレることはある。でも、隠さないでほしい」。この一言を、日頃から伝えておいてください。
+［クリック］四つ目、仕組みを文化として定着させる。
+異動や新入社員の入社があった際も、ルールと、「なぜ2人体制なのか」「なぜ1日3回なのか」「なぜ相見積もりを取るのか」という目的を必ず教育し、引き継いでください。
+店長やシェフ個人に依存するのではなく、誰が担当しても正しく回る仕組みを、店舗の当たり前の文化として根付かせる。これがアクトの最終ゴールです。</aside>
+  </section>
+
+  <!-- 10 禁忌事項 -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>5つの禁忌事項</div>
+    <h2 class="title" data-in style="--d:1">「良かれと思って」「少しなら大丈夫」から始まる</h2>
+    <ul class="xlist" style="gap:12px">
+      <li data-step="1" class="slide-in"><div><b>レジ違算・棚卸誤差の隠蔽と、数字の穴埋め</b><small>自腹で補填せず、事実をそのまま報告する</small></div></li>
+      <li data-step="2" class="slide-in"><div><b>本部・上長の承認なしの決済・立て替え・先払い</b><small>正規の決裁フローを経ない支払いは厳禁</small></div></li>
+      <li data-step="3" class="slide-in"><div><b>金庫番号の未変更・鍵の共有放置・1人きりでの現金操作</b><small>「不正の機会」を野放しにする。例外はない</small></div></li>
+      <li data-step="4" class="slide-in"><div><b>利益相反行為</b><small>相見積もりなしの知人業者への発注、取引先からの接待・金品の受領は背任</small></div></li>
+      <li data-step="5" class="slide-in"><div><b>高額商品の無断持ち出し・自家消費・売上未計上</b><small>「サンプル」「破損」と偽る持ち出し、レジを通さない売上は、窃盗・横領</small></div></li>
+    </ul>
+    <aside class="notes">ここで、絶対にやってはいけないことを5つ、まとめてお伝えします。
+現場で最も警戒すべきなのは、「良かれと思って」「少しなら大丈夫だろう」という自己判断から始まる不適正処理と、隠蔽です。
+［クリック］一つ目、レジ違算・棚卸誤差の隠蔽と、数字の穴埋め。自分のポケットマネーで穴埋めしたり、帳簿の数値を操作して「誤差ゼロ」に見せかける行為は絶対禁止です。誤差が出たら、自腹で補填せず、事実をそのまま報告してください。
+［クリック］二つ目、本部・上長の未承認での独自決済・立て替え・先払い。正規の決裁フローを経ずに、店舗判断で業者へ先払いや立て替えを行うことは厳禁です。
+［クリック］三つ目、金庫番号の未変更・鍵の共有放置・1人きりでの現金操作。これらは「不正の機会」を野放しにする行為です。アクセス制限と2人体制の徹底に、例外はありません。
+［クリック］四つ目、利益相反行為。相見積もりを取らずに知人の業者へ優先発注する、取引先から個人的な接待や金品を受領する。これは背任行為にあたります。
+［クリック］五つ目、高額商品の無断持ち出し・自家消費・売上未計上。「サンプル」「破損・廃棄」と偽っての持ち出し、関係者での自家消費、パーティー売上をレジを通さず抜き取る行為。これらは明確な窃盗・横領です。</aside>
+  </section>
+
+  <!-- 11 初動対応 -->
+  <section class="slide" data-min="5">
+    <div class="eyebrow" data-in>それでも起きたら：初動対応</div>
+    <h2 class="title" data-in style="--d:1">対応を誤ると、単純なミスが「改ざん」「隠蔽」になる</h2>
+    <ol class="timeline compact" style="gap:10px">
+      <li data-n="1" data-step="1" class="slide-in"><h3>独断での穴埋め・補填・数値修正は絶対禁止</h3><p>「いつ・いくらの違算が発生したか」を、そのまま記録する</p></li>
+      <li data-n="2" data-step="2" class="slide-in"><h3>一次調査</h3><p>レジ操作ログ、伝票・領収書・打ち損じレシートの再点検、釣銭機・金庫の現物を再カウント</p></li>
+      <li data-n="3" data-step="3" class="slide-in"><h3>上長・本部へ即時報告</h3><div class="chain" style="margin-top:6px"><span style="font-size:24px;padding:8px 18px">店長・シェフ</span><i class="grow" style="width:44px"></i><span style="font-size:24px;padding:8px 18px">エリアマネージャー／担当役員</span><i class="grow" style="width:44px"></i><span style="font-size:24px;padding:8px 18px">経理部・内部統制室</span></div></li>
+      <li data-n="4" data-step="4" class="slide-in"><h3>原因の追究と、仕組みの作り直し</h3><p>「なぜ起きたか」だけでなく、<b>「どのチェック工程が抜けていたか」</b>を検証する</p></li>
+    </ol>
+    <aside class="notes">どんなに仕組みを徹底しても、レジの過不足や棚卸の異常、鍵の紛失といったトラブルが起きる可能性はゼロではありません。
+大切なのは、そのときの最初の行動です。ここで対応を誤ると、単純なミスで済んだはずのものが「改ざん」「隠蔽」とみなされ、取り返しのつかない事態に発展します。
+［クリック］一つ目、独断での穴埋め・補填・数値修正の絶対禁止。
+違算が出たとき、ポケットマネーで補填したり、データを操作して「合わせた数値」で報告することは、絶対にやってはいけません。「いつ、いくらの違算が発生したか」を、そのまま記録してください。
+［クリック］二つ目、一次調査の実施。
+レジ操作ログ、当日の伝票・領収書・打ち損じレシートの再点検、自動釣銭機や金庫の現物再カウント。まずは入力ミスや打刻漏れといった、人為的なミスがないかを確認します。
+［クリック］三つ目、上長・本部への即時報告。
+原因が特定できない場合、あるいは明らかに盗難・着服が疑われる場合は、店舗内で揉み消したり抱え込んだりせず、直ちに報告してください。
+店長・シェフから、エリアマネージャーまたは担当役員へ。そこから経理部・内部統制室へ。
+報告を遅らせたり、自分たちの判断でうやむやにすることは、責任者自身の管理責任と悪質性を跳ね上げます。
+［クリック］四つ目、原因の追究と、仕組みの再構築。
+「なぜ起きたのか」だけでなく、「どのチェック工程が抜け落ちていたのか」を検証してください。個人のミスを責めて終わらせず、二度と起こらない仕組みに作り直すことが、本当の解決です。</aside>
+  </section>
+
+  <!-- 12 事後対応 -->
+  <section class="slide" data-min="4" style="gap:22px">
+    <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
+    <h2 class="title" data-in style="--d:1">不正や重大な管理不備が確定した後</h2>
+    <div class="cols cols-3">
+      <div class="card" data-step="1" style="padding:24px 28px"><span class="badge" style="font-size:52px">1</span><h3>調査への全面協力</h3><p style="font-size:26px">本部・監査法人・警察等の調査に、隠蔽・虚偽報告なく協力。レジログ、POS、防犯カメラ、金庫の開閉履歴、伝票を提出</p></div>
+      <div class="card" data-step="2" style="padding:24px 28px"><span class="badge" style="font-size:52px">2</span><h3>厳正な処分と、損失の精算</h3><p style="font-size:26px">当事者には懲戒解雇・損害賠償請求・刑事告訴等。管理を怠っていた責任者にも降格・減給等</p></div>
+      <div class="card" data-step="3" style="padding:24px 28px"><span class="badge" style="font-size:52px">3</span><h3>仕組みの作り直し</h3><p style="font-size:26px">原因はプラン（ルール）か、キープ（形骸化）か、アクト（締め処理）か。「以後気をつけます」で終わらせない</p></div>
+    </div>
+    <div class="card is-accent" data-step="4" style="padding:22px 28px"><h3>4　組織で連携する</h3>
+      <div class="chain"><span style="font-size:26px;padding:10px 20px">店長・シェフ</span><i class="grow" style="width:40px"></i><span style="font-size:26px;padding:10px 20px">エリアマネージャー／担当役員</span><i class="grow" style="width:40px"></i><span style="font-size:26px;padding:10px 20px">代表取締役／常務取締役</span><i class="grow" style="width:40px"></i><span style="font-size:24px;padding:10px 20px">総務人事部・リスク管理委員会・経理部</span></div>
+    </div>
+    <aside class="notes">不正や重大な管理不備が確定した後の対応です。
+［クリック］一つ目、調査への全面協力。
+本部や監査法人、場合によっては警察の調査に対し、一切の隠蔽・虚偽報告を行わず、全面的に協力します。レジログ、POSデータ、防犯カメラ映像、金庫の開閉履歴、各種伝票。客観的な証拠を正しく提出してください。
+［クリック］二つ目、厳正な処分と、損失の精算。
+不正を行った当事者には、就業規則に基づき懲戒解雇や損害賠償請求、刑事告訴といった対処が行われます。同時に、管理を怠っていた責任者にも、降格や減給等の処分が下されます。
+［クリック］三つ目、再発防止策と、仕組みの再構築。
+原因が「ルールの不備、つまりプランの問題なのか」「日常管理の形骸化、キープの問題なのか」「締め処理の曖昧さ、アクトの問題なのか」を明確に特定してください。
+「以後気をつけます」という精神論で終わらせず、金庫暗証番号の運用見直し、レジ点検フローの改修など、オペレーションそのものを作り直します。
+［クリック］四つ目、組織連携。
+報告・連携ラインは、店長・シェフ → エリアマネージャー／担当役員 → 代表取締役／常務取締役 → 総務人事部・リスク管理委員会・経理部です。
+経営陣まで正しく情報が共有されたうえで、店舗全体でルールを再教育する。それが、失われた信頼を回復する唯一の道です。</aside>
+  </section>
+
+  <!-- 13 修了レポート -->
+  <section class="slide light" data-min="3">
+    <div class="eyebrow" data-in>研修修了レポートについて</div>
+    <h2 class="title" data-in style="--d:1">レポートの提出をもって「受講完了」となります</h2>
+    <div class="report" data-in style="--d:2">
+      <div class="report-cards">
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
+        <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-store"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>店舗を確認しながら記入</b></p></div></div>
+      </div>
+      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
+    </div>
+    <p class="lead" data-step="1" style="font-size:36px">どれも、誰かを疑うための確認ではありません。<b>人を疑わないために、仕組みが整っているか</b>を確認するものです。</p>
+    <div class="row" data-step="2">
+      <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
+      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>該当しないものは「なし」で構いません</p></div>
+    </div>
+    <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
+（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
+提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
+このレポートは、実際にお店を確認しながら記入してください。
+金庫の暗証番号を知っている人が何人いて、その中に異動・退職した人がいないか。店舗の鍵がどこにあり、台帳と合っているか。レジ点検を1日3回、決まったタイミングで行えているか。そして、一人に任せきりになっていないか。高額商品が施錠保管され、台帳の記録や空き瓶の処理ができているか。「売上金及び現金管理ルール同意書」を、スタッフから受け取っているか。
+［クリック］どれも、誰かを疑うための確認ではありません。人を疑わないために、仕組みが整っているかを確認するものです。
+［クリック］最後に、店に戻って、実際に確認したこと・対応したことを書いていただきます。
+自店に該当しないものは「なし」で構いません。確認して気づいたことがあれば、あわせて書いてください。書き終えたレポートは、そのまま店舗のチェックリストとして使えます。</aside>
+  </section>
+
+  <!-- 14 クロージング -->
+  <section class="slide glow" data-min="3">
+    <div class="split" style="align-items:center;flex:1">
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div class="eyebrow" data-in>最後に</div>
+        <p class="quote" data-step="1" style="font-size:64px">人を疑わないために、<br><span class="hl2">仕組みを整える。</span></p>
+        <p class="lead" data-step="2">魔が差すことは、役職に関係なく、誰にでもあります。<br>だからこそ、個人の意志の強さに頼らない。仕組みで防ぐ。</p>
+        <p class="text" data-step="3">それは会社のお金を守るためだけではありません。<b>店舗で働く仲間全員のキャリアと、皆さん自身の信頼</b>を守ることに、直結しています。</p>
+      </div>
+      <svg class="tiles" viewBox="0 0 620 460" aria-hidden="true">
+        <g>
+          <rect class="t" x="10" y="10" width="110" height="100" rx="14"/><rect class="t" x="130" y="10" width="110" height="100" rx="14"/><rect class="t" x="250" y="10" width="110" height="100" rx="14"/><rect class="t" x="370" y="10" width="110" height="100" rx="14"/><rect class="t" x="490" y="10" width="110" height="100" rx="14"/>
+          <rect class="t" x="10" y="120" width="110" height="100" rx="14"/><rect class="t" x="130" y="120" width="110" height="100" rx="14"/><rect class="t" x="250" y="120" width="110" height="100" rx="14"/><rect class="slot" x="370" y="120" width="110" height="100" rx="14"/><rect class="t" x="490" y="120" width="110" height="100" rx="14"/>
+          <rect class="t" x="10" y="230" width="110" height="100" rx="14"/><rect class="t" x="130" y="230" width="110" height="100" rx="14"/><rect class="t" x="250" y="230" width="110" height="100" rx="14"/><rect class="t" x="370" y="230" width="110" height="100" rx="14"/><rect class="t" x="490" y="230" width="110" height="100" rx="14"/>
+          <rect class="t" x="10" y="340" width="110" height="100" rx="14"/><rect class="t" x="130" y="340" width="110" height="100" rx="14"/><rect class="t" x="250" y="340" width="110" height="100" rx="14"/><rect class="t" x="370" y="340" width="110" height="100" rx="14"/><rect class="t" x="490" y="340" width="110" height="100" rx="14"/>
+          <rect class="glow" x="360" y="110" width="130" height="120" rx="20" fill="none" stroke="#f2be3d" stroke-width="10"/>
+          <g class="piece"><rect x="370" y="120" width="110" height="100" rx="14" fill="#c98a00"/><g transform="translate(395 140) scale(2.5)" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g></g>
+        </g>
+      </svg>
+    </div>
+    <aside class="notes">最後に、今日いちばんお伝えしたかったことを、もう一度だけ。
+［クリック］「人を疑わないために、仕組みを整える」
+「うちのスタッフは信頼しているから大丈夫」。その気持ちは、大切なものです。
+ただ、管理の隙間を放っておくことは、その大切な仲間を、魔が差してしまうような環境に晒すことと同じです。
+［クリック］魔が差すことは、役職に関係なく、誰にでもあります。今日お話しした自社の実例が、それを示しています。
+だからこそ、個人の意志の強さに頼らない。仕組みで防ぐ。
+［クリック］それは会社のお金を守るためだけではありません。店舗で働く仲間全員のキャリアと、皆さん自身の信頼を守ることに、直結しています。
+本日は以上です。ありがとうございました。</aside>
+  </section>
+
+  <!-- 15 質疑応答 -->
+  <section class="slide center" data-min="0" data-no-footer>
+    <span class="ico pulse" data-in style="width:120px;height:120px;font-size:68px;border-radius:50%"><svg class="i"><use href="#i-chat"/></svg></span>
+    <h2 class="statement" data-in style="--d:1">質疑応答</h2>
+    <p class="lead muted" data-in style="--d:2">ご質問があれば、チャットまたは挙手でお願いします。</p>
+    <aside class="notes">ご質問があれば、チャットまたは挙手でお願いします。
+（進行役：質問がない場合も、10〜15秒は間を取る）</aside>
+  </section>
+
+</div>
+<script src="assets/deck.js"></script>
+<script>
+/* 第4章だけの演出：金庫の暗証番号が切り替わり続ける */
+(function () {
+  const code = document.getElementById('code');
+  const plan = document.getElementById('plan-slide');
+  setInterval(() => {
+    if (!plan.classList.contains('active')) return;
+    code.querySelectorAll('b').forEach(b => { b.textContent = Math.floor(Math.random() * 10); });
+  }, 1800);
+})();
+</script>
