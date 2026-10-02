@@ -56,6 +56,9 @@
 .src-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .src-cards .card { padding: 22px; gap: 14px; }
 .src-cards .ph { height: 250px; }
+.photo { position: relative; margin: 0; height: 250px; border-radius: 14px; overflow: hidden; background: #1d2128; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 72%; display: block; }
+.photo figcaption { position: absolute; left: 12px; bottom: 12px; font-size: 22px; font-weight: 900; padding: 4px 14px; border-radius: 999px; background: var(--accent); color: #fff; }
 
 .cal { display: grid; grid-template-columns: 220px repeat(12, 1fr); align-items: center; row-gap: 14px; background: var(--surface); border-radius: 18px; padding: 24px 32px; box-shadow: 0 8px 24px rgba(29,33,40,.06); }
 .cal .m { font-size: 24px; color: var(--ink-2); text-align: center; font-weight: 700; }
@@ -287,7 +290,7 @@
       <div class="src-cards">
         <div class="card" data-step="6"><div class="ph"><span>自社店舗のピザ窯</span></div><h3>ピザ窯</h3></div>
         <div class="card" data-step="6"><div class="ph"><span>自社店舗のグリル</span></div><h3>グリル</h3></div>
-        <div class="card is-accent" data-step="7"><div class="ph"><span>アクアフィルター<br>（排気フード内の設備）</span></div><h3>アクアフィルター</h3><p class="cap">本来は異常加熱時に水を噴射して、ダクト火災を防ぐ設備。故障・整備不良で、フィルター付近から出火した事例がある</p></div>
+        <div class="card is-accent" data-step="7"><figure class="photo"><img src="assets/img/ch01_aquafilter.jpg" alt="火災で焼けたアクアフィルター。本体やフィルターが黒くすすけている"><figcaption>実際に燃えたアクアフィルター</figcaption></figure><h3>アクアフィルター</h3><p class="cap">本来は異常加熱時に水を噴射して、ダクト火災を防ぐ設備。故障・整備不良で、フィルター付近から出火した事例がある</p></div>
       </div>
       <p class="lead" data-step="8"><b>自分の店に何があるか、把握できているでしょうか。</b></p>
     </div>
