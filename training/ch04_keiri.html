@@ -69,6 +69,53 @@
 .report-cards .lead { font-size: 34px; }
 .report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .report-qr .ph { width: 260px; height: 260px; }
+
+/* 図解のSVG（08・09） */
+.illus { width: 100%; height: auto; display: block; overflow: visible; }
+.illus .pop { transform-box: fill-box; transform-origin: center; }
+.kcards .card { padding: 24px 28px; gap: 12px; }
+.kcards .card h3 { font-size: 34px; }
+.kcards .card p { font-size: 26px; line-height: 1.5; }
+/* 2人で確認：チェックが交互に入る */
+.dc { animation: dc 4s ease-in-out infinite; }
+@keyframes dc { 0%, 8% { opacity: 0; transform: scale(.3); } 18%, 46% { opacity: 1; transform: scale(1); } 56%, 100% { opacity: 0; transform: scale(.3); } }
+.pass { stroke-dasharray: 10 10; animation: pass 1.2s linear infinite; }
+@keyframes pass { to { stroke-dashoffset: -20; } }
+/* 担当の曜日を枠が移動 */
+.wk-hl { animation: wkhl 7s steps(7, jump-none) infinite; }
+@keyframes wkhl { from { transform: translateX(0); } to { transform: translateX(432px); } }
+/* 棚卸：重点の棚が交互に光る */
+.shelf-spot { animation: shspot 5s ease-in-out infinite; }
+@keyframes shspot { 0%, 100% { opacity: .25; } 15%, 45% { opacity: 1; } 60% { opacity: .25; } }
+/* 使用後の確認：ボトルが空き、確認のチェック */
+.btl-liq { transform-box: fill-box; transform-origin: bottom; animation: btl 7s ease-in-out infinite; }
+@keyframes btl { 0%, 8% { transform: scaleY(1); } 45%, 92% { transform: scaleY(.04); } 100% { transform: scaleY(1); } }
+.gls-liq { transform-box: fill-box; transform-origin: bottom; animation: gls 7s ease-in-out infinite; }
+@keyframes gls { 0%, 8% { transform: scaleY(0); } 45%, 92% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
+.btl-ok { animation: btlok 7s ease-in-out infinite; }
+@keyframes btlok { 0%, 52% { opacity: 0; transform: scale(.3); } 60%, 92% { opacity: 1; transform: scale(1); } 100% { opacity: 0; } }
+/* 検収：伝票の行と現物を順に照合 */
+.mt { animation: mt 6s ease-in-out infinite; }
+@keyframes mt { 0%, 6% { opacity: 0; transform: scale(.3); } 14%, 86% { opacity: 1; transform: scale(1); } 96%, 100% { opacity: 0; } }
+.eq { animation: eq 2s ease-in-out infinite; }
+@keyframes eq { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+/* 期日：溜め込む／その都度 */
+.today { animation: today 8s linear infinite; }
+@keyframes today { 0% { transform: translateX(0); } 80%, 100% { transform: translateX(1040px); } }
+.r1 { animation: r1 8s ease infinite; }
+@keyframes r1 { 0%, 3% { opacity: 0; transform: translateY(-16px); } 6%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.r2 { animation: r2 8s ease infinite; }
+@keyframes r2 { 0%, 16% { opacity: 0; transform: translateY(-16px); } 19%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.r3 { animation: r3 8s ease infinite; }
+@keyframes r3 { 0%, 29% { opacity: 0; transform: translateY(-16px); } 32%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.r4 { animation: r4 8s ease infinite; }
+@keyframes r4 { 0%, 42% { opacity: 0; transform: translateY(-16px); } 45%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.r5 { animation: r5 8s ease infinite; }
+@keyframes r5 { 0%, 55% { opacity: 0; transform: translateY(-16px); } 58%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.r6 { animation: r6 8s ease infinite; }
+@keyframes r6 { 0%, 68% { opacity: 0; transform: translateY(-16px); } 71%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.endtag { animation: endtag 8s ease infinite; }
+@keyframes endtag { 0%, 80% { opacity: 0; transform: scale(.85); } 85%, 95% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 </style>
 
 <div class="deck" data-chapter="第4章　経理管理" data-accent="gold">
@@ -338,36 +385,80 @@
   <!-- 08 キープ -->
   <section class="slide" data-min="4">
     <div class="tracker" data-in><span>P</span><em></em><span class="on">K</span><em></em><span>A</span><b>キープ（維持）</b></div>
-    <div class="phase" data-until="2" style="top:200px">
+    <div class="phase" data-until="2" style="top:180px">
       <h2 class="title">1日3回のレジ確認と、任せきりにしない体制</h2>
-      <div class="card dayband" data-step="1">
-        <p style="display:flex;align-items:center;gap:12px;font-size:26px;font-weight:700">1日の営業 <span class="ex-tag">例</span></p>
-        <svg viewBox="0 0 1560 200" style="height:170px" role="img" aria-label="開店時、ランチ後、ディナー前の3回レジを確認すると、ズレが出た時間帯を特定できる">
+      <div class="card dayband" data-step="1" style="padding:20px 34px;gap:6px">
+        <svg viewBox="0 0 1560 200" style="height:140px" role="img" aria-label="開店時、ランチ後、ディナー前の3回レジを確認すると、ズレが出た時間帯を特定できる">
           <g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
             <rect x="20" y="80" width="1520" height="36" rx="18" fill="#f3f5f8"/>
             <rect class="seg-bad" x="620" y="80" width="540" height="36" fill="#f9e3e0"/>
             <text class="seg-bad" x="890" y="60" font-size="26" fill="#c23a2e">ズレはこの時間帯で起きた</text>
-            <g class="chk" style="animation-delay:0s"><circle cx="80" cy="98" r="34" fill="#c98a00"/><path d="M64 98l11 11 21-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <g class="chk" style="animation-delay:.6s"><circle cx="620" cy="98" r="34" fill="#c98a00"/><path d="M604 98l11 11 21-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <g class="chk" style="animation-delay:1.2s"><circle cx="1160" cy="98" r="34" fill="#c98a00"/><path d="M1144 98l11 11 21-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="chk" style="animation-delay:0s"><circle cx="80" cy="98" r="34" fill="#c98a00"/><path d="M65 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="chk" style="animation-delay:.6s"><circle cx="620" cy="98" r="34" fill="#c98a00"/><path d="M605 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="chk" style="animation-delay:1.2s"><circle cx="1160" cy="98" r="34" fill="#c98a00"/><path d="M1145 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
             <text x="80" y="170" font-size="30" fill="#1d2128">開店時</text><text x="620" y="170" font-size="30" fill="#1d2128">ランチ後</text><text x="1160" y="170" font-size="30" fill="#1d2128">ディナー前</text><text x="1480" y="170" font-size="26" fill="#4f5661">閉店・レジ締め</text>
           </g>
         </svg>
-        <p class="cap">回数を増やすと、誤差が出たときに「どの時間帯で起きたか」をすぐ特定できる</p>
       </div>
-      <div class="row" data-step="2" style="gap:24px">
-        <div class="card" style="flex:1"><h3><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>2人体制でのダブルチェック</h3><p>レジ締め・現金の保管・入金を、相互のサインや確認記録とともに</p></div>
-        <div class="card" style="flex:1"><h3>1人にならざるを得ない日も</h3><p><b>同じ人が担当し続けない</b>。曜日ごとに担当を変える、責任者が後から記録を確認する、でも可</p></div>
+      <div class="cols cols-2 kcards" data-step="2">
+        <div class="card"><h3><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>2人体制でのダブルチェック</h3>
+          <svg class="illus" viewBox="0 0 520 140" style="height:118px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <path class="pass" d="M120 34 Q260 -14 400 34" fill="none" stroke="#c98a00" stroke-width="4"/>
+            <use href="#i-person" x="40" y="24" width="96" height="116" style="color:#c98a00"/>
+            <use href="#i-person" x="384" y="24" width="96" height="116" style="color:#5b6b84"/>
+            <rect x="200" y="74" width="120" height="62" rx="10" fill="#f3f5f8" stroke="#d5dae1" stroke-width="3"/>
+            <rect x="222" y="40" width="76" height="40" rx="6" fill="#2a2e39"/><text x="260" y="70" font-size="26" fill="#f2be3d" text-anchor="middle">¥</text>
+            <g class="pop dc"><circle cx="88" cy="14" r="18" fill="#22915c"/><path d="M80 14l6 6 11 -11" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pop dc" style="animation-delay:1.2s"><circle cx="432" cy="14" r="18" fill="#22915c"/><path d="M424 14l6 6 11 -11" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </g></svg>
+          <p>レジ締め・保管・入金を、<b>相互のサインや記録</b>とともに</p></div>
+        <div class="card"><h3><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span>1人にならざるを得ない日も</h3>
+          <svg class="illus" viewBox="0 0 520 140" style="height:118px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle"><rect x="10" y="36" width="64" height="96" rx="10" fill="#fff" stroke="#e1e5ea" stroke-width="3"/><text x="42" y="24" font-size="22" fill="#4f5661">月</text><use href="#i-person" x="17" y="54" width="50" height="60" style="color:#c98a00"/><rect x="82" y="36" width="64" height="96" rx="10" fill="#fff" stroke="#e1e5ea" stroke-width="3"/><text x="114" y="24" font-size="22" fill="#4f5661">火</text><use href="#i-person" x="89" y="54" width="50" height="60" style="color:#5b6b84"/><rect x="154" y="36" width="64" height="96" rx="10" fill="#fff" stroke="#e1e5ea" stroke-width="3"/><text x="186" y="24" font-size="22" fill="#4f5661">水</text><use href="#i-person" x="161" y="54" width="50" height="60" style="color:#8d7bc7"/><rect x="226" y="36" width="64" height="96" rx="10" fill="#fff" stroke="#e1e5ea" stroke-width="3"/><text x="258" y="24" font-size="22" fill="#4f5661">木</text><use href="#i-person" x="233" y="54" width="50" height="60" style="color:#c98a00"/><rect x="298" y="36" width="64" height="96" rx="10" fill="#fff" stroke="#e1e5ea" stroke-width="3"/><text x="330" y="24" font-size="22" fill="#4f5661">金</text><use href="#i-person" x="305" y="54" width="50" height="60" style="color:#5b6b84"/><rect x="370" y="36" width="64" height="96" rx="10" fill="#fff" stroke="#e1e5ea" stroke-width="3"/><text x="402" y="24" font-size="22" fill="#4f5661">土</text><use href="#i-person" x="377" y="54" width="50" height="60" style="color:#8d7bc7"/><rect x="442" y="36" width="64" height="96" rx="10" fill="#fff" stroke="#e1e5ea" stroke-width="3"/><text x="474" y="24" font-size="22" fill="#4f5661">日</text><use href="#i-person" x="449" y="54" width="50" height="60" style="color:#c98a00"/>
+            <rect class="wk-hl" x="10" y="36" width="64" height="96" rx="10" fill="none" stroke="#c98a00" stroke-width="5"/>
+          </g></svg>
+          <p><b>同じ人が担当し続けない</b>。曜日で担当を変える、責任者が後から記録を確認する、でも可</p></div>
       </div>
+      <div class="alert is-ok" data-step="2" style="padding:12px 28px;font-size:27px"><svg class="i"><use href="#i-shield"/></svg><p>任せきりにしないのは、<b>担当したスタッフを「疑われる立場」から守るため</b>でもあります。</p></div>
     </div>
     <div class="phase" data-step="3" style="top:200px">
-      <h2 class="title">棚卸・空き瓶・検収・業者取引を、点検し続ける</h2>
-      <div class="cols cols-3" style="flex:1">
-        <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-search"/></svg></span>棚卸は複数人で</h3><p>全品目を複数人では現実的でない。<b>高額商品と、大量に在庫を持つ商品</b>に絞って、現物と帳簿を照合する</p></div>
-        <div class="card" data-step="4"><h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>空き瓶確認と検収</h3><p>高額ワインの空き瓶は、詰め替えや持ち出しの隠蔽に悪用される。<b>責任者が現物を確認</b>してから破棄・記録。納品時は伝票と現物をその場で照合</p></div>
-        <div class="card" data-step="5"><h3><span class="ico"><svg class="i"><use href="#i-store"/></svg></span>業者取引の検証</h3><p>発注量の不自然な偏り、市場価格とかけ離れた高額な仕入れがないか</p></div>
+      <h2 class="title">棚卸・使用後の確認・検収を、点検し続ける</h2>
+      <div class="cols cols-3 kcards">
+        <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-search"/></svg></span>棚卸は複数人で</h3>
+          <svg class="illus" viewBox="0 0 460 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <rect x="24" y="6" width="300" height="186" rx="12" fill="#faf7ef" stroke="#e6dcc3" stroke-width="3"/>
+            <path d="M24 80h300M24 150h300" stroke="#e6dcc3" stroke-width="5"/>
+            <rect x="48" y="34" width="28" height="40" rx="7" fill="#7a2e3a"/><rect x="58" y="18" width="8" height="18" rx="3" fill="#7a2e3a"/><rect x="53" y="48" width="18" height="12" rx="2" fill="#f2be3d"/><rect x="100" y="34" width="28" height="40" rx="7" fill="#7a2e3a"/><rect x="110" y="18" width="8" height="18" rx="3" fill="#7a2e3a"/><rect x="105" y="48" width="18" height="12" rx="2" fill="#f2be3d"/><rect x="152" y="34" width="28" height="40" rx="7" fill="#7a2e3a"/><rect x="162" y="18" width="8" height="18" rx="3" fill="#7a2e3a"/><rect x="157" y="48" width="18" height="12" rx="2" fill="#f2be3d"/><rect x="204" y="34" width="28" height="40" rx="7" fill="#7a2e3a"/><rect x="214" y="18" width="8" height="18" rx="3" fill="#7a2e3a"/><rect x="209" y="48" width="18" height="12" rx="2" fill="#f2be3d"/><rect x="256" y="34" width="28" height="40" rx="7" fill="#7a2e3a"/><rect x="266" y="18" width="8" height="18" rx="3" fill="#7a2e3a"/><rect x="261" y="48" width="18" height="12" rx="2" fill="#f2be3d"/><rect x="44" y="96" width="46" height="46" rx="4" fill="#e2c58f" stroke="#c9a560" stroke-width="2"/><rect x="96" y="96" width="46" height="46" rx="4" fill="#e2c58f" stroke="#c9a560" stroke-width="2"/><rect x="148" y="96" width="46" height="46" rx="4" fill="#e2c58f" stroke="#c9a560" stroke-width="2"/><rect x="200" y="96" width="46" height="46" rx="4" fill="#e2c58f" stroke="#c9a560" stroke-width="2"/><rect x="252" y="96" width="46" height="46" rx="4" fill="#e2c58f" stroke="#c9a560" stroke-width="2"/><rect x="52" y="146" width="30" height="30" rx="5" fill="#dfe3e9"/><rect x="100" y="136" width="30" height="40" rx="5" fill="#dfe3e9"/><rect x="150" y="150" width="30" height="26" rx="5" fill="#dfe3e9"/><rect x="200" y="140" width="30" height="36" rx="5" fill="#dfe3e9"/><rect x="252" y="146" width="30" height="30" rx="5" fill="#dfe3e9"/>
+            <rect class="shelf-spot" x="34" y="12" width="280" height="64" rx="10" fill="none" stroke="#c98a00" stroke-width="5" stroke-dasharray="12 8"/>
+            <rect class="shelf-spot" x="34" y="88" width="280" height="58" rx="10" fill="none" stroke="#c98a00" stroke-width="5" stroke-dasharray="12 8" style="animation-delay:2.5s"/>
+            <text x="346" y="52" font-size="24" fill="#8f6200">高額</text><text x="346" y="126" font-size="24" fill="#8f6200">大量在庫</text>
+            <use href="#i-users" x="344" y="132" width="100" height="70" style="color:#c98a00"/>
+          </g></svg>
+          <p>全品目を複数人で行うのが望ましい。特に<b>高額商品・大量在庫は、必ず複数人で</b>現物と帳簿を照合</p></div>
+        <div class="card" data-step="4"><h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>消費・使用後も確認</h3>
+          <svg class="illus" viewBox="0 0 460 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <rect x="78" y="10" width="26" height="54" rx="6" fill="#fff" stroke="#7a2e3a" stroke-width="4"/>
+            <rect x="56" y="58" width="70" height="136" rx="16" fill="#fff" stroke="#7a2e3a" stroke-width="4"/>
+            <rect class="btl-liq" x="62" y="66" width="58" height="122" rx="11" fill="#7a2e3a"/>
+            <path d="M176 86 Q176 140 212 140 Q248 140 248 86 Z" fill="#fff" stroke="#9aa3ae" stroke-width="4"/>
+            <path class="gls-liq" d="M180 108 Q184 136 212 136 Q240 136 244 108 Z" fill="#7a2e3a"/>
+            <path d="M212 140v46M190 188h44" stroke="#9aa3ae" stroke-width="4" stroke-linecap="round"/>
+            <use href="#i-person" x="306" y="40" width="120" height="150" style="color:#c98a00"/>
+            <g class="pop btl-ok"><circle cx="91" cy="128" r="30" fill="#22915c"/><path d="M78 128l10 10 18 -19" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </g></svg>
+          <p>高額ワイン・高額商品は、<b>消費・使用した後も確認</b>。ワインなら空きボトルを責任者が確かめてから破棄・記録</p></div>
+        <div class="card" data-step="5"><h3><span class="ico"><svg class="i"><use href="#i-store"/></svg></span>検収と業者取引</h3>
+          <svg class="illus" viewBox="0 0 460 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <rect x="20" y="8" width="160" height="186" rx="12" fill="#fff" stroke="#d5dae1" stroke-width="3"/>
+            <text x="100" y="44" font-size="26" fill="#1d2128" text-anchor="middle">伝票</text>
+            <path d="M42 84h80M42 124h80M42 164h80" stroke="#c9ced6" stroke-width="8" stroke-linecap="round"/>
+            <g class="pop mt"><circle cx="152" cy="84" r="15" fill="#22915c"/><path d="M145 84l5 5 9 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pop mt" style="animation-delay:.8s"><circle cx="152" cy="124" r="15" fill="#22915c"/><path d="M145 124l5 5 9 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pop mt" style="animation-delay:1.6s"><circle cx="152" cy="164" r="15" fill="#22915c"/><path d="M145 164l5 5 9 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="pop eq"><path d="M206 108h34M206 124h34" stroke="#c98a00" stroke-width="7" stroke-linecap="round"/></g>
+            <text x="350" y="44" font-size="26" fill="#1d2128" text-anchor="middle">現物</text>
+            <rect x="280" y="96" width="150" height="98" rx="8" fill="#e2c58f" stroke="#c9a560" stroke-width="3"/>
+            <path d="M280 96l-14 -24h80l14 24M430 96l14 -24h-80" fill="#ecd3a3" stroke="#c9a560" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="300" y="60" width="26" height="40" rx="5" fill="#7a2e3a"/><rect x="336" y="68" width="30" height="32" rx="4" fill="#dfe3e9"/><rect x="376" y="56" width="26" height="44" rx="5" fill="#7a2e3a"/>
+          </g></svg>
+          <p>納品時は<b>伝票と現物をその場で照合</b>。発注量の偏りや、相場とかけ離れた仕入れがないかも</p></div>
       </div>
-      <div class="alert is-ok" data-step="4"><svg class="i"><use href="#i-shield"/></svg><p>任せきりにしないことは、誰かを疑うためではなく、<b>担当したスタッフを「疑われる立場」から守るため</b>でもあります。</p></div>
     </div>
     <aside class="notes">次に、キープ。決めたことを維持し、点検し続ける段階です。
 ［クリック］一つ目、1日3回のレジ金点検と、2人体制の徹底。
@@ -378,12 +469,13 @@
 これは誰かを疑うためのルールではありません。万が一の時に、担当したスタッフを「疑われる立場」から守るためのルールでもあります。任せきりにしないことが、結果的にその人を守ります。
 ［クリック］二つ目、複数人による月末棚卸。
 棚卸を1人に丸投げすると、原価率の調整やロス隠しのための架空在庫の計上といった、データ操作が起きやすくなります。
-とはいえ、全品目を複数人で確認するのは現実的ではありません。特に高額商品、そして大量に在庫を持っている商品については、必ず複数人で確認してください。金額の大きいところ、動きの大きいところに絞って、現物と帳簿を照合します。
-［クリック］三つ目、高額商品の空き瓶確認と、検収の徹底。
+本来は、全品目を複数人で確認することが望ましいです。そのうえで、特に高額商品、そして大量に在庫を持っている商品については、必ず複数人で、現物と帳簿を照合してください。
+［クリック］三つ目、消費・使用した後の確認。
+高額ワインや高額商品は、使った後の確認まで行います。ワインであれば、空きボトルの確認です。
 高額ワインの空き瓶は、安価なお酒に詰め替える不正や、未会計での持ち出しを隠すために悪用されるケースがあります。責任者が現物を確認したうえで破棄し、記録を残してください。
+［クリック］四つ目、検収と業者取引の検証。
 納品時には、伝票と現物をその場で照合する検収を徹底します。先ほどお話しした「不正な仕入れの転売」を防ぐためのルールです。
-［クリック］四つ目、業者取引の検証。
-発注量の不自然な偏りや、市場価格と乖離した高額な仕入れが行われていないか。日々チェックしてください。</aside>
+あわせて、発注量の不自然な偏りや、市場価格と乖離した高額な仕入れが行われていないか。日々チェックしてください。</aside>
   </section>
 
   <!-- 09 アクト -->
@@ -391,10 +483,21 @@
     <div class="tracker" data-in><span>P</span><em></em><span>K</span><em></em><span class="on">A</span><b>アクト（実行）</b></div>
     <div class="phase" data-until="3" style="top:200px">
       <h2 class="title">期日を守り、帳簿と現物を完全に一致させる</h2>
-      <div class="cols cols-3">
-        <div class="card" data-step="1"><span class="badge" style="font-size:56px">1</span><h3>月次確定処理の期日厳守</h3><p>納品書・請求書・領収書とPOSデータの照合を完了。伝票の溜め込み・先送りはゼロに</p></div>
-        <div class="card" data-step="2"><span class="badge" style="font-size:56px">2</span><h3>小口現金・経費精算</h3><p>明細のある領収書と引き換えに即日精算。キャッシュレス売上も、POSと決済会社の入金を照合</p></div>
-        <div class="card" data-step="3"><span class="badge" style="font-size:56px">3</span><h3>帳簿と現物の「完全一致」</h3><p>現金残高・棚卸在庫数が一致してから確定</p><p class="hl" style="font-weight:900">原因不明のズレを、数字を合わせた報告で埋めない</p></div>
+      <div class="card" data-step="1" style="padding:22px 34px">
+        <svg class="illus" viewBox="0 0 1600 250" style="height:230px" role="img" aria-label="伝票を溜め込むと締め日に照合漏れやミスが出る。その都度処理すれば締め日もすぐ確定できる"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+          <text x="0" y="80" font-size="34" fill="#c23a2e">溜め込む</text><text x="0" y="198" font-size="34" fill="#22915c">その都度</text>
+          <rect x="260" y="64" width="1040" height="8" rx="4" fill="#eef1f5"/><rect x="260" y="182" width="1040" height="8" rx="4" fill="#eef1f5"/>
+          <g class="r1"><rect x="283" y="46" width="34" height="44" rx="5" fill="#fff" stroke="#c9ced6" stroke-width="3"/><path d="M291 59h18M291 68h18M291 77h11" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/></g><g class="r2"><rect x="453" y="46" width="34" height="44" rx="5" fill="#fff" stroke="#c9ced6" stroke-width="3"/><path d="M461 59h18M461 68h18M461 77h11" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/></g><g class="r3"><rect x="623" y="46" width="34" height="44" rx="5" fill="#fff" stroke="#c9ced6" stroke-width="3"/><path d="M631 59h18M631 68h18M631 77h11" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/></g><g class="r4"><rect x="793" y="46" width="34" height="44" rx="5" fill="#fff" stroke="#c9ced6" stroke-width="3"/><path d="M801 59h18M801 68h18M801 77h11" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/></g><g class="r5"><rect x="963" y="46" width="34" height="44" rx="5" fill="#fff" stroke="#c9ced6" stroke-width="3"/><path d="M971 59h18M971 68h18M971 77h11" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/></g><g class="r6"><rect x="1133" y="46" width="34" height="44" rx="5" fill="#fff" stroke="#c9ced6" stroke-width="3"/><path d="M1141 59h18M1141 68h18M1141 77h11" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/></g><g class="r1"><rect x="283" y="164" width="34" height="44" rx="5" fill="#fff" stroke="#9fd4b9" stroke-width="3"/><path d="M291 177h18M291 186h18M291 195h11" stroke="#9fd4b9" stroke-width="3" stroke-linecap="round"/><circle cx="316" cy="170" r="14" fill="#22915c"/><path d="M310 170l4 4 8 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="r2"><rect x="453" y="164" width="34" height="44" rx="5" fill="#fff" stroke="#9fd4b9" stroke-width="3"/><path d="M461 177h18M461 186h18M461 195h11" stroke="#9fd4b9" stroke-width="3" stroke-linecap="round"/><circle cx="486" cy="170" r="14" fill="#22915c"/><path d="M480 170l4 4 8 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="r3"><rect x="623" y="164" width="34" height="44" rx="5" fill="#fff" stroke="#9fd4b9" stroke-width="3"/><path d="M631 177h18M631 186h18M631 195h11" stroke="#9fd4b9" stroke-width="3" stroke-linecap="round"/><circle cx="656" cy="170" r="14" fill="#22915c"/><path d="M650 170l4 4 8 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="r4"><rect x="793" y="164" width="34" height="44" rx="5" fill="#fff" stroke="#9fd4b9" stroke-width="3"/><path d="M801 177h18M801 186h18M801 195h11" stroke="#9fd4b9" stroke-width="3" stroke-linecap="round"/><circle cx="826" cy="170" r="14" fill="#22915c"/><path d="M820 170l4 4 8 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="r5"><rect x="963" y="164" width="34" height="44" rx="5" fill="#fff" stroke="#9fd4b9" stroke-width="3"/><path d="M971 177h18M971 186h18M971 195h11" stroke="#9fd4b9" stroke-width="3" stroke-linecap="round"/><circle cx="996" cy="170" r="14" fill="#22915c"/><path d="M990 170l4 4 8 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="r6"><rect x="1133" y="164" width="34" height="44" rx="5" fill="#fff" stroke="#9fd4b9" stroke-width="3"/><path d="M1141 177h18M1141 186h18M1141 195h11" stroke="#9fd4b9" stroke-width="3" stroke-linecap="round"/><circle cx="1166" cy="170" r="14" fill="#22915c"/><path d="M1160 170l4 4 8 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <path d="M1300 22v220" stroke="#9aa3ae" stroke-width="3" stroke-dasharray="8 8"/><text x="1300" y="16" font-size="22" fill="#4f5661" text-anchor="middle">締め日</text>
+          <g class="today"><path d="M260 30v214" stroke="#c98a00" stroke-width="4"/><circle cx="260" cy="30" r="8" fill="#c98a00"/></g>
+          <g class="endtag pop"><rect x="1330" y="40" width="270" height="64" rx="14" fill="#f9e3e0"/><text x="1465" y="83" font-size="28" fill="#c23a2e" text-anchor="middle">照合漏れ・ミス</text></g>
+          <g class="endtag pop"><rect x="1330" y="158" width="270" height="64" rx="14" fill="#ddf2e7"/><text x="1465" y="201" font-size="28" fill="#22915c" text-anchor="middle">すぐ確定できる</text></g>
+        </g></svg>
+      </div>
+      <div class="cols cols-3 kcards">
+        <div class="card" data-step="1"><h3><span class="badge" style="font-size:44px">1</span>月次確定の期日厳守</h3><p>納品書・請求書・領収書とPOSを照合。<b>溜め込まず、その都度処理する</b>ことがミスを防ぐ</p></div>
+        <div class="card" data-step="2"><h3><span class="badge" style="font-size:44px">2</span>小口現金・経費精算</h3><p>明細のある領収書と引き換えに即日精算。キャッシュレス売上も、POSと入金を照合</p></div>
+        <div class="card" data-step="3"><h3><span class="badge" style="font-size:44px">3</span>帳簿と現物の完全一致</h3><p>現金残高・在庫数が一致してから確定。<b class="hl">原因不明のズレを、数字合わせで埋めない</b></p></div>
       </div>
     </div>
     <div class="phase" data-step="4" style="top:200px">
@@ -410,6 +513,7 @@
     <aside class="notes">最後に、アクト。実際に行動して、記録する段階です。
 ［クリック］一つ目、月次確定処理の期日厳守。
 締め日を厳守し、納品書・請求書・領収書とPOSデータの照合を確実に完了させます。伝票の溜め込みや処理の先送りをゼロに。処理の遅れは、不適正な処理を隠蔽する要因になります。
+伝票は溜め込まず、届いたとき、使ったときに、その都度処理してください。締め日の直前にまとめて処理しようとすると、照合漏れや入力ミスが起きやすくなります。適時に処理することが、ミスを防ぐいちばんの方法です。
 ［クリック］二つ目、小口現金・経費精算の適正処理。
 小口現金の使用は必要最小限に留め、明細が明記された領収書と引き換えに即日精算・記録します。領収書のない精算や私的流用は一切認めません。
 キャッシュレス売上についても、POSデータと決済会社の入金データが一致しているか照合してください。
