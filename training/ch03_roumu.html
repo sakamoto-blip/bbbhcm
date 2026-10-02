@@ -1,0 +1,577 @@
+<meta charset="utf-8">
+<title>第3章 労務管理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+/* 第3章だけで使う部品 */
+.mail { display: flex; gap: 24px; align-items: flex-start; padding: 26px 32px; border-radius: 18px; background: var(--surface); box-shadow: 0 10px 30px rgba(29,33,40,.08); }
+.mail .ico { width: 84px; height: 84px; font-size: 48px; }
+.mail .from { font-size: 24px; color: var(--ink-2); }
+.mail .body { font-size: 44px; font-weight: 900; line-height: 1.4; margin-top: 6px; }
+.thinks { display: flex; gap: 22px; flex-wrap: wrap; }
+.thinks span { position: relative; font-size: 32px; font-weight: 700; padding: 18px 28px; border-radius: 28px; background: var(--surface-2); }
+.thinks span::after { content: ""; position: absolute; left: 40px; bottom: -16px; border: 11px solid transparent; border-top: 14px solid var(--surface-2); }
+
+.tc { background: var(--surface); border-radius: 18px; padding: 24px 30px; box-shadow: 0 10px 30px rgba(29,33,40,.08); }
+.tc table { width: 100%; border-collapse: collapse; font-size: 30px; }
+.tc th { text-align: left; font-size: 24px; color: var(--ink-2); padding: 8px 14px; border-bottom: 2px solid var(--line); }
+.tc td { padding: 14px; border-bottom: 1px solid var(--surface-2); font-family: var(--f-num); font-size: 34px; }
+.tc td.lbl { font-family: var(--f-body); font-size: 28px; font-weight: 700; }
+.cell { position: relative; display: inline-flex; align-items: center; gap: 14px; }
+.cell .old { position: relative; }
+.cell .old::after { content: ""; position: absolute; left: -4px; right: -4px; top: 52%; height: 4px; background: var(--danger); transform: scaleX(0); transform-origin: left; transition: transform .5s ease .1s; }
+.cell:has(.new.on) .old { color: var(--ink-2); }
+.cell:has(.new.on) .old::after { transform: scaleX(1); }
+.cell .new { color: var(--danger); }
+.tc .sum { display: flex; align-items: center; gap: 24px; margin-top: 16px; font-size: 30px; font-weight: 700; }
+.tc .sum .num { font-size: 52px; }
+
+.stack { display: flex; align-items: flex-end; gap: 22px; height: 300px; padding: 0 10px; }
+.stack .col { display: flex; flex-direction: column-reverse; gap: 6px; width: 170px; }
+.stack .blk { height: 70px; border-radius: 10px; display: grid; place-items: center; font-size: 24px; font-weight: 700; color: #fff; }
+.stack .y { background: var(--accent); }
+.stack .p { background: var(--danger); }
+.stack .f { background: transparent; border: 3px dashed var(--accent); color: var(--accent-ink); }
+.stack .cap { text-align: center; }
+
+.hl-chart { width: 100%; height: auto; display: block; overflow: visible; }
+.hl-chart .bar { transform-box: fill-box; transform-origin: bottom; transform: scaleY(0); transition: transform .9s cubic-bezier(.3,1.2,.5,1); }
+.on .hl-chart .bar, .hl-chart.on .bar { transform: scaleY(1); }
+.counter { display: flex; align-items: baseline; gap: 10px; font-weight: 700; font-size: 30px; }
+.counter b { font-family: var(--f-num); font-weight: 400; font-size: 84px; color: var(--accent); line-height: 1; }
+
+.rest { position: relative; }
+.rest .track { position: relative; height: 64px; border-radius: 14px; background: var(--surface-2); }
+.rest .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 85.7%; border-radius: 14px; background: var(--accent); transition: width .8s ease, background .4s ease; }
+.rest.over .fill { width: 86.3%; background: var(--danger); }
+.rest .lab { position: absolute; top: 0; bottom: 0; left: 24px; display: flex; align-items: center; color: #fff; font-family: var(--f-num); font-size: 32px; }
+.rest .axis { display: flex; justify-content: space-between; font-size: 22px; color: var(--ink-2); margin-top: 8px; }
+.rest .msg { margin-top: 14px; font-size: 34px; font-weight: 900; }
+.rest .msg .bad { display: none; color: var(--danger); }
+.rest.over .msg .ok { display: none; }
+.rest.over .msg .bad { display: inline; }
+
+.dates { display: flex; gap: 22px; }
+.dates .card { flex: 1; flex-direction: row; align-items: center; gap: 22px; padding: 18px 26px; }
+.dates .day { font-family: var(--f-num); font-size: 64px; color: var(--accent); line-height: 1; white-space: nowrap; }
+.dates .day small { font-family: var(--f-body); font-size: 26px; font-weight: 900; margin-left: 4px; }
+
+.screen { background: #fff; border-radius: 16px; border: 3px solid var(--line); overflow: hidden; box-shadow: 0 10px 30px rgba(29,33,40,.08); }
+.screen .bar { display: flex; align-items: center; gap: 10px; padding: 10px 18px; background: var(--surface-2); font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.screen .bar i { width: 12px; height: 12px; border-radius: 50%; background: var(--line); }
+.screen table { width: 100%; border-collapse: collapse; font-size: 26px; }
+.screen th { text-align: left; font-size: 22px; color: var(--ink-2); padding: 10px 16px; border-bottom: 2px solid var(--line); }
+.screen td { padding: 12px 16px; border-bottom: 1px solid var(--surface-2); }
+.screen .ok { color: var(--ok); font-weight: 900; opacity: 0; transition: opacity .4s ease; }
+.on .screen .ok { opacity: 1; }
+.on .screen tr:nth-child(3) .ok { transition-delay: .4s; } .on .screen tr:nth-child(4) .ok { transition-delay: .8s; }
+
+.win { background: var(--surface); border-radius: 18px; padding: 22px 26px; box-shadow: 0 10px 30px rgba(29,33,40,.08); display: flex; flex-direction: column; gap: 14px; }
+.win .days { position: relative; display: grid; grid-template-columns: repeat(14, 1fr); gap: 6px; }
+.win .d { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0; border-radius: 8px; background: var(--surface-2); }
+.win .d span { font-size: 20px; color: var(--ink-2); }
+.win .d b { font-family: var(--f-num); font-weight: 400; font-size: 26px; }
+.win .d.in { background: var(--accent-soft); }
+.win .frame { position: absolute; top: -6px; bottom: -6px; border: 4px solid var(--accent); border-radius: 12px; transition: left .5s ease, border-color .3s ease; pointer-events: none; }
+.win.bad .frame { border-color: var(--danger); }
+.win .total { font-size: 34px; font-weight: 900; }
+.win .total b { font-family: var(--f-num); font-weight: 400; font-size: 52px; color: var(--accent); }
+.win.bad .total b { color: var(--danger); }
+.win .verdict { font-size: 28px; font-weight: 900; color: var(--ok); }
+.win.bad .verdict { color: var(--danger); }
+
+.evid { display: flex; flex-direction: column; gap: 10px; }
+.evid .row2 { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; padding: 12px 20px; border-radius: 12px; background: var(--surface); box-shadow: 0 4px 12px rgba(29,33,40,.05); font-size: 26px; }
+.evid .row2 b { font-family: var(--f-num); font-weight: 400; font-size: 32px; }
+.evid .row2.tc2 { background: var(--danger-soft); }
+.evid .row2.tc2 b { color: var(--danger); }
+.evid .row2.real b { color: var(--accent-ink); }
+
+#ans-slide .card h3 { font-size: 32px; }
+#post-slide .card { padding: 24px 30px; gap: 10px; }
+.report { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; flex: 1; }
+.report-cards { display: flex; flex-direction: column; gap: 14px; }
+.report-cards .card { flex-direction: row; align-items: center; gap: 28px; padding: 16px 30px; }
+.report-cards .lead { font-size: 40px; }
+.report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.report-qr .ph { width: 320px; height: 320px; }
+</style>
+
+<div class="deck" data-chapter="第3章　労務管理" data-accent="violet">
+
+  <!-- 01 タイトル -->
+  <section class="slide glow cover" data-ticks data-min="3" data-no-footer>
+    <div class="chapter" data-in style="--d:0">第3章</div>
+    <h1 data-in style="--d:1">労務管理</h1>
+    <p class="sub" data-in style="--d:2">誤魔化しは、必ず明らかになる。</p>
+    <p class="lead muted" data-in style="--d:3">失うのは、スタッフの信頼そのもの。</p>
+    <div class="chips" data-in style="--d:4"><span>オンライン研修</span><span>60分</span></div>
+    <aside class="notes">本日はお集まりいただきありがとうございます。第3章、労務管理です。
+店舗責任者である皆さんには、2つの役割があります。1つは従業員の雇用と生活を守る役割、もう1つは労働法を守る役割です。
+労働基準監督署の立ち入り調査で重大な違法行為が発覚した場合、単なる指導や是正勧告では終わりません。書類送検や、企業名の公表に直結します。
+「知らなかった」「うっかりしていた」では済まされず、店舗の営業だけでなく、責任者個人への罰則・前科にもつながります。
+今日はその前提で、話を進めていきます。</aside>
+  </section>
+
+  <!-- 02 まず、お答えください -->
+  <section class="slide center" data-min="5">
+    <div class="eyebrow" data-in>まず、お答えください</div>
+    <h2 class="statement" data-in style="--d:1">これから<span class="hl2">4つ</span>の質問をします。<small>今わかる範囲で、正直にお答えください。</small></h2>
+    <div class="cols cols-3">
+      <div class="card" data-step="1"><h3><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>正直に</h3><p>今わかる範囲で書いてください</p></div>
+      <div class="card" data-step="2"><h3><span class="ico"><svg class="i"><use href="#i-search"/></svg></span>自信がない、でOK</h3><p>「わからない」「できていない」と書いて構いません</p></div>
+      <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span>責める場ではない</h3><p>現状を確認し、気づくための場です</p></div>
+    </div>
+    <div class="chips" data-step="3"><span><svg class="i"><use href="#i-clipboard"/></svg>記述式3問＋選択式1問</span><span><svg class="i"><use href="#i-person"/></svg>匿名</span></div>
+    <aside class="notes">早速ですが、これから4つ質問をします。
+［クリック］今わかる範囲で、正直にお答えください。
+［クリック］「わからない」「できていない」「自信がない」と書いていただいて構いません。
+［クリック］この場は、現状を確認し、気づくための場であって、誰かを責める場ではありません。むしろ、正直に書けることの方が大事です。
+（進行役：Zoomの投票を起動。記述式3問＋選択式1問・匿名）
+では、5分ほど時間を取ります。どうぞ。</aside>
+  </section>
+
+  <!-- 03 皆さんの回答 -->
+  <section class="slide" data-min="3" id="ans-slide">
+    <div class="eyebrow" data-in>皆さんの回答</div>
+    <h2 class="title" data-in style="--d:1">気をつけていること、曖昧なまま運用していること</h2>
+    <p class="lead muted" data-in style="--d:2">同じ状況で悩んでいるのは、あなただけではありません。</p>
+    <div class="cols cols-4" style="flex:1">
+      <div class="card" data-step="1"><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span><p class="cap">Q1・記述</p><h3>勤怠・シフトで<br>気をつけていること</h3><p class="cap">投票結果を画面共有して確認</p></div>
+      <div class="card" data-step="2"><span class="ico"><svg class="i"><use href="#i-tool"/></svg></span><p class="cap">Q2・記述</p><h3>打刻の手修正を<br>行うケース</h3><p class="cap">投票結果を画面共有して確認</p></div>
+      <div class="card" data-step="3"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><p class="cap">Q3・記述</p><h3>36協定の<br>ハイロー管理</h3><p class="cap">投票結果を画面共有して確認</p></div>
+      <div class="card" data-step="4"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><p class="cap">Q4・選択</p><h3>スポットワークの<br>確認書への署名</h3><p class="cap">投票結果を画面共有して確認</p></div>
+    </div>
+    <aside class="notes">（進行役：投票結果を画面共有）
+ありがとうございます。皆さんの回答を見てみましょう。
+［クリック］［Q1・普段から気をつけていること］
+（拾い方の例）「シフト作成時の時間調整、と書かれた方が多いですね」「打刻漏れの確認、休憩をちゃんと取らせること。これも複数いらっしゃいます」「◯◯と書かれた方がいます。そこまで日常的に目配りされているんですね」
+皆さん、日頃から現場で意識して取り組まれていることがよくわかります。
+［クリック］［Q2・打刻の手修正を行うケース］（件数のみを扱い、個人は特定しない）
+「ピーク時の打刻忘れ、締めの遅れ。◯◯と書かれた方が複数いらっしゃいます」「同じ状況で悩んでいるのは、あなただけではありません」
+［クリック］［Q3・36協定特別条項のハイロー管理］
+「『わからない』という回答や、年間で何回使っているか把握していない、という回答がありました」
+［クリック］［Q4・スポットワーク利用時の確認書］
+「『全員からもらえていない』が◯％ありました」
+日々きちんと気をつけている。でも、曖昧なまま運用しているところがある。これは決して珍しいことではありません。今の回答を頭の片隅に置いたまま、次の話を聞いてください。</aside>
+  </section>
+
+  <!-- 04 事例 -->
+  <section class="slide" data-min="5">
+    <div class="phase" data-until="3">
+      <div class="eyebrow" data-in>事例｜タイムカード改ざんの結末</div>
+      <h2 class="title" data-in style="--d:1">私たちの会社で、実際に起きたことです</h2>
+      <div class="mail" data-step="1"><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span><div><p class="from">本部の相談窓口に届いた、1通の告発メール</p><p class="body">「店長によってタイムカードが<br>意図的に改ざんされている」</p></div></div>
+      <div class="alert" data-step="2"><svg class="i"><use href="#i-clock"/></svg><p><b>慢性的な人手不足。</b>36協定の特別条項の上限「月75時間」の超過が頻発していた</p></div>
+      <div class="thinks" data-step="3"><span>現場が回らない</span><span>人件費がオーバーする</span><span>評価が下がるのが怖い</span></div>
+    </div>
+    <div class="phase" data-step="4" data-until="7">
+      <div class="eyebrow">手口</div>
+      <h2 class="title">追い詰められた店長は、勤怠データを書き換え始めた</h2>
+      <div class="tc">
+        <p style="display:flex;align-items:center;gap:12px;font-size:26px;font-weight:700;margin-bottom:6px">タイムカード（イメージ）<span class="ex-tag">例</span></p>
+        <table>
+          <tr><th>日付</th><th>出勤</th><th>退勤</th><th>休憩</th></tr>
+          <tr><td class="lbl">10/14</td><td>10:00</td><td><span class="cell"><span class="old">23:40</span><span class="new" data-step="6">20:40</span></span></td><td><span class="cell"><span class="old">0:00</span><span class="new" data-step="5">1:00</span></span></td></tr>
+          <tr><td class="lbl">10/15</td><td>10:00</td><td><span class="cell"><span class="old">23:10</span><span class="new" data-step="6">21:10</span></span></td><td><span class="cell"><span class="old">0:00</span><span class="new" data-step="5">1:00</span></span></td></tr>
+          <tr><td class="lbl">10/16</td><td>9:30</td><td><span class="cell"><span class="old">22:50</span><span class="new" data-step="6">20:50</span></span></td><td><span class="cell"><span class="old">0:00</span><span class="new" data-step="5">1:00</span></span></td></tr>
+        </table>
+        <div class="sum"><span>月の残業合計</span><span class="cell"><span class="old num">92時間</span><span class="new num" data-step="7">74時間</span></span><span class="cap" data-step="7">上限の75時間以内に「収まった」ことに</span></div>
+      </div>
+      <div class="chips" style="gap:12px"><span data-step="5">取っていない休憩を追加</span><span data-step="6">退勤時刻を数時間早く手修正</span></div>
+    </div>
+    <div class="phase" data-step="8">
+      <div class="eyebrow">発覚と結末</div>
+      <h2 class="title">本部のヒアリングで、他のスタッフのデータ改ざんも判明</h2>
+      <div class="cols cols-2" data-step="9">
+        <div class="card is-accent"><span class="ico"><svg class="i"><use href="#i-yen"/></svg></span><h3>3年間遡り、数百万円の未払い賃金を支払い</h3></div>
+        <div class="card is-accent"><span class="ico"><svg class="i"><use href="#i-users"/></svg></span><h3>信頼関係は完全に崩壊。<br>一斉に多数の退職者</h3></div>
+      </div>
+    </div>
+    <aside class="notes">こちらの事例を見てください。私たちの会社で実際に起きたことです。
+［クリック］ある店舗のスタッフから、本部の相談窓口に1通のメールが届きました。内容は「店長によってタイムカードが意図的に改ざんされている」という告発です。
+［クリック］その店舗では慢性的な人手不足が続いていて、36協定の特別条項である「月75時間」という残業上限を、スタッフがどうしても超えてしまう状況になっていました。
+［クリック］「現場が回らない」「人件費がオーバーする」「自分の管理能力のなさが露呈して、評価が下がるのが怖い」。
+［クリック］追い詰められた店長は、勤怠データの不正修正に手を染め始めます。
+［クリック］実際にはまったく取っていない架空の休憩時間をシステム上で追加して残業時間を削り、
+［クリック］さらに実際の退勤時間よりも数時間早く退勤したかのようにデータを手修正して、
+［クリック］上限の75時間以内に収まるよう辻褄を合わせたのです。
+［クリック］本部が本人と他のスタッフにヒアリング調査を行ったところ、この改ざんが発覚し、他のスタッフのデータも同様に書き換えられていたことが判明しました。
+［クリック］最終的に会社は3年間遡り、数百万円の未払い賃金を支払いました。そして何より、スタッフとの信頼関係は完全に崩壊し、一斉に多数の退職者を出す事態となりました。</aside>
+  </section>
+
+  <!-- 05 3原則 -->
+  <section class="slide" data-min="3">
+    <div class="eyebrow" data-in>労務管理の3原則</div>
+    <h2 class="title" data-in style="--d:1">1つでも崩れれば、違法状態になる</h2>
+    <div class="cols cols-3">
+      <div class="card pillar" data-step="1" style="padding:30px 32px"><span class="ico"><svg class="i"><use href="#i-search"/></svg></span><span class="n">1</span><h3 style="font-size:48px">正しく把握する</h3><p style="font-size:26px">実労働時間の1分単位の記録、外国人の週28時間、特別条項の回数、契約時間、有給の取得状況</p></div>
+      <div class="card pillar" data-step="2" style="padding:30px 32px"><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span><span class="n">2</span><h3 style="font-size:48px">基準を守る</h3><p style="font-size:26px">36協定の上限（原則月45時間／特別条項月75時間）、法定の休憩時間</p></div>
+      <div class="card pillar" data-step="3" style="padding:30px 32px"><span class="ico"><svg class="i"><use href="#i-yen"/></svg></span><span class="n">3</span><h3 style="font-size:48px">正しく支払う</h3><p style="font-size:26px">1分単位での割増賃金・残業代の支払い。未払いをゼロに</p></div>
+    </div>
+    <div class="alert" data-step="4"><svg class="i"><use href="#i-alert"/></svg><p>3つのうち1つでも崩れれば、<b>違法状態となり、巨額のリスクが発生します。</b></p></div>
+    <aside class="notes">では、どうすれば防げるのか。
+労務管理には、3つの原則があります。
+［クリック］一つ目、正しく把握する。実労働時間を1分単位で正確に記録することはもちろん、外国人スタッフの28時間管理、36協定特別条項のカウント、アルバイトの契約労働時間、有給の取得状況。お店のすべての労務状態を正確に把握するということです。
+［クリック］二つ目、基準を守る。36協定の上限、そして法定の休憩時間を確実に守ります。
+［クリック］三つ目、正しく支払う。働いた時間に対する賃金を、1分単位で正しく支払います。
+［クリック］この3つのうち、1つでも崩れれば違法状態となり、巨額のリスクが発生します。
+この3原則を現場で機能させるための具体的な行動が、これからお話しするプラン・キープ・アクトです。</aside>
+  </section>
+
+  <!-- 06 何を失うか -->
+  <section class="slide" data-min="5">
+    <div class="phase" data-until="4">
+      <div class="eyebrow" data-in>何を失うか</div>
+      <h2 class="title" data-in style="--d:1">1人の訴えから、全スタッフ・過去3年分へ</h2>
+      <div class="row" style="gap:48px;align-items:flex-end;flex:1">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="stack">
+            <div class="col" data-step="1"><div class="blk y">1年目</div><div class="blk y">2年目</div><div class="blk y">3年目</div><div class="blk f" data-step="3">4年目</div><div class="blk f" data-step="3">5年目</div></div>
+            <div class="col" data-step="2"><div class="blk p">付加金</div><div class="blk p">付加金</div><div class="blk p">付加金</div></div>
+          </div>
+          <div style="display:flex;gap:22px;padding:0 10px"><p class="cap" style="width:170px;text-align:center">未払い賃金</p><p class="cap" style="width:170px;text-align:center" data-step="2">同額の付加金</p></div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:16px">
+          <div class="card" data-step="1"><h3>会社：最長3年遡り、全スタッフ分を支払う</h3><p>数千万円〜億単位の民事債務</p></div>
+          <div class="card" data-step="2"><h3>悪質なら、同額の「付加金」</h3><p>ダメージは<b class="hl">実質2倍</b></p></div>
+          <p class="cap" data-step="3">賃金の時効は本来5年。今は経過措置で3年。終われば5年に広がる</p>
+          <div class="card is-accent" data-step="4"><h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人</h3><p>労働基準法違反　<b>6ヶ月以下の拘禁刑または30万円以下の罰金</b>。前科がつく</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="5">
+      <div class="eyebrow">自社の実例</div>
+      <h2 class="title">これは、他社の話ではありません</h2>
+      <ul class="timeline compact">
+        <li data-n="1"><h3>勤怠管理の怠慢</h3><p>複数の店舗で繰り返し、役員報酬の減額（5〜30%・1〜3ヶ月）</p></li>
+        <li data-n="2"><h3>運転者台帳が未登録のまま、無免許で運転させた</h3><p>代表・スタッフともに減給</p></li>
+        <li data-n="3"><h3>キッチンシェフが泥酔した状態で警備員に暴行</h3><p>降格</p></li>
+        <li data-n="4"><h3>直近：労務・店舗管理の怠慢</h3><p>代表取締役・常務取締役全員の報酬減額（10%・3ヶ月）</p></li>
+      </ul>
+      <div class="alert" data-step="6"><svg class="i"><use href="#i-alert"/></svg><p>現場の勤怠管理の緩みが、最終的に<b>経営層の責任として跳ね返ってくる。</b></p></div>
+    </div>
+    <aside class="notes">では、不適切な勤怠管理があった場合、何を失うのか。
+［クリック］まず会社です。打刻漏れの放置や恣意的な手修正が「データの改ざん」とみなされた場合、最長3年間に遡って、全スタッフを対象に割増賃金等を全額支払う必要があります。1名の訴えから全スタッフへ波及し、数千万円から億単位の民事債務が発生します。
+［クリック］さらに、裁判所から悪質と認められた場合、未払い金と同額の「付加金」の支払いが命じられます。経済的なダメージは、実質2倍になるということです。
+［クリック］なお、法改正により賃金の消滅時効は本来5年へと延長されており、現在は経過措置として3年が適用されています。経過措置が終了すれば、遡及範囲は5年に拡大します。
+［クリック］次に、皆さん個人です。打刻の改ざん、賃金未払い、36協定違反の上限超過労働を行わせた場合、会社だけでなく、行為者である責任者個人も処罰の対象となります。6ヶ月以下の拘禁刑または30万円以下の罰金等が科され、前科がつきます。
+［クリック］そして、これは他社の話ではありません。
+勤怠管理の怠慢は、複数の店舗で繰り返し処分対象になっています。役員報酬の減額、5〜30%を1〜3ヶ月という形で、店舗の管理不備が経営陣の処分に直結しています。
+運転者台帳が未登録のまま無免許でスタッフに運転させていた店舗では、代表・スタッフともに減給処分。キッチンシェフが泥酔した状態で警備員に暴行し、降格処分となった例もあります。
+そして直近では、労務管理と店舗管理の怠慢を理由に、代表取締役・常務取締役全員の報酬減額、10%を3ヶ月という重い処分が下されました。
+［クリック］現場の勤怠管理の緩みが、最終的に経営層の責任として跳ね返ってくる。これが現実です。</aside>
+  </section>
+
+  <!-- 07 プラン -->
+  <section class="slide" data-min="4">
+    <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）</b></div>
+    <div class="phase" data-until="2" style="top:200px">
+      <h2 class="title">シフトは、年間・月間で計画して組む</h2>
+      <div class="card" data-step="1">
+        <h3><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span>36協定・特別条項の枠を踏まえて、年間と1ヶ月のシフトイメージを持つ</h3>
+        <div class="chain" style="margin-top:10px"><span style="font-size:28px">その場しのぎのシフト</span><i class="grow"></i><span style="font-size:28px">月の途中で管理不能</span><i class="grow"></i><span style="font-size:28px;color:var(--danger)">改ざんへ追い込まれる</span></div>
+        <p class="cap">冒頭の事例が、まさにこの流れでした</p>
+      </div>
+      <div class="alert is-info" data-step="2"><svg class="i"><use href="#i-alert"/></svg><p>本来は「1ヶ月単位の変形労働時間制」を活用できますが、<b>現在は1ヶ月分のシフトを事前に提出・確定できていない</b>ため、リスクをなくすために、<b>1日8時間・週40時間を超えた分は残業代として支払う運用</b>としています。</p></div>
+    </div>
+    <div class="phase" data-step="3" style="top:200px">
+      <h2 class="title">雇用契約と、入社前の手続き</h2>
+      <div class="cols cols-3" style="flex:1">
+        <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>アルバイト契約</h3><ul class="points plain"><li><div>「週40時間以内・1日8時間以内」で記載</div></li><li><div>「週2日・30時間」のような契約は違法</div></li><li><div>契約日数を大幅に下回るシフトは、休業補償（平均賃金の60%以上）のリスク</div></li></ul></div>
+        <div class="card" data-step="4"><h3><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span>入社手続き</h3><ul class="points plain"><li><div>初出勤日までに<b>ガルフ登録</b>と<b>SmartHR</b>を完了</div></li><li><div>未登録での労働は禁止</div></li></ul></div>
+        <div class="card is-accent" data-step="5"><h3><span class="ico"><svg class="i"><use href="#i-search"/></svg></span>外国人採用の2段階確認</h3>
+          <ol class="points plain"><li><div>面接時に<b>在留カードの現物</b>を確認。他社とのダブルワークも確認</div></li><li><div>内定を伝える前に、パスポート・ビザを添えて<b>LR部へ確認</b></div></li><li><div>LR部の確認を受けて、初めて内定を伝える</div></li></ol></div>
+      </div>
+    </div>
+    <aside class="notes">まず、プラン。計画を立てて、正しい前提を作る段階です。
+［クリック］シフト作成において最も重要なのは、計画的に組むことです。
+36協定、特別条項の適用枠を踏まえたうえで、年間のシフトイメージと1ヶ月のシフトイメージを元に計画を立ててください。
+その場しのぎで目先のシフトを組んでいると、月の途中で残業時間のコントロールができなくなります。そして最終的に、上限を超過して打刻改ざんへと追い込まれる。先ほどの事例が、まさにそれです。
+［クリック］なお、本来は1ヶ月単位の変形労働時間制を活用できます。ただし、現在は1ヶ月分のシフトを事前に提出・確定できていないため、リスクをなくすために、1日8時間・週40時間を超えた分は残業代として支払う運用としています。
+［クリック］次に、雇用契約です。
+アルバイトを採用する際は、「週40時間以内・1日8時間以内」での契約記載を徹底してください。「週2日・30時間勤務」のような、法定基準を超過する契約は違法です。
+また、契約書に書いた日数を大幅に下回るシフトを組むと、店舗都合でのシフト削減とみなされ、休業補償（平均賃金の60%以上）を請求されるリスクがあります。実態に即した条件で契約を結んでください。
+［クリック］入社手続きも事前準備が不可欠です。初出勤日までに、ガルフ登録とSmartHRの手続きを完了させてください。未登録状態での労働は禁止されています。
+［クリック］そして、外国人採用の「2段階確認」です。
+面接時に必ず「在留カード」の現物を確認し、他社でのダブルワークがないか確認します。採用を進めたい場合は、本人に内定を伝える前に、必ずパスポートとビザを添えてLR部へ確認を入れてください。LR部の確認を受けて初めて、本人へ内定を伝えることができます。</aside>
+  </section>
+
+  <!-- 08 キープ -->
+  <section class="slide" data-min="5">
+    <div class="tracker" data-in><span>P</span><em></em><span class="on">K</span><em></em><span>A</span><b>キープ（維持）</b></div>
+    <div class="phase" data-until="3" style="top:200px">
+      <h2 class="title">残業の上限を、通常月と延長月で管理する</h2>
+      <div class="row" style="gap:36px;flex:1;align-items:stretch">
+        <div class="card" data-step="1" style="flex:1.6;gap:6px">
+          <p style="display:flex;align-items:center;gap:12px;font-size:26px;font-weight:700">あるスタッフの1年間の残業時間<span class="ex-tag">例</span></p>
+          <svg class="hl-chart" viewBox="0 0 1000 340" role="img" aria-label="12ヶ月の残業時間の棒グラフ。45時間と75時間の線があり、45時間を超えた月は5回">
+            <g font-family="Zen Kaku Gothic New, sans-serif">
+              <line x1="60" y1="300" x2="990" y2="300" stroke="#d9dee5" stroke-width="2"/>
+              <line x1="60" y1="131" x2="990" y2="131" stroke="#6b5ce7" stroke-width="3" stroke-dasharray="10 8"/>
+              <line x1="60" y1="18" x2="990" y2="18" stroke="#c23a2e" stroke-width="3" stroke-dasharray="10 8"/>
+              <text x="52" y="137" font-size="22" text-anchor="end" fill="#5243c9" font-weight="700">45h</text>
+              <text x="52" y="24" font-size="22" text-anchor="end" fill="#c23a2e" font-weight="700">75h</text>
+              <g fill="#b9b0f5">
+                <rect class="bar" x="80" y="157" width="54" height="143" rx="6"/><rect class="bar" x="157" y="142" width="54" height="158" rx="6" style="transition-delay:.05s"/>
+                <rect class="bar" x="234" y="75" width="54" height="225" rx="6" fill="#6b5ce7" style="transition-delay:.1s"/><rect class="bar" x="311" y="135" width="54" height="165" rx="6" style="transition-delay:.15s"/>
+                <rect class="bar" x="388" y="38" width="54" height="262" rx="6" fill="#6b5ce7" style="transition-delay:.2s"/><rect class="bar" x="465" y="150" width="54" height="150" rx="6" style="transition-delay:.25s"/>
+                <rect class="bar" x="542" y="30" width="54" height="270" rx="6" fill="#6b5ce7" style="transition-delay:.3s"/><rect class="bar" x="619" y="139" width="54" height="161" rx="6" style="transition-delay:.35s"/>
+                <rect class="bar" x="696" y="56" width="54" height="244" rx="6" fill="#6b5ce7" style="transition-delay:.4s"/><rect class="bar" x="773" y="146" width="54" height="154" rx="6" style="transition-delay:.45s"/>
+                <rect class="bar" x="850" y="154" width="54" height="146" rx="6" style="transition-delay:.5s"/><rect class="bar" x="927" y="22" width="54" height="278" rx="6" fill="#6b5ce7" style="transition-delay:.55s"/>
+              </g>
+              <g font-size="20" fill="#4f5661" text-anchor="middle"><text x="107" y="328">4月</text><text x="184" y="328">5月</text><text x="261" y="328">6月</text><text x="338" y="328">7月</text><text x="415" y="328">8月</text><text x="492" y="328">9月</text><text x="569" y="328">10月</text><text x="646" y="328">11月</text><text x="723" y="328">12月</text><text x="800" y="328">1月</text><text x="877" y="328">2月</text><text x="954" y="328">3月</text></g>
+            </g>
+          </svg>
+          <p class="cap">原則「月45時間以内」。特別条項でも「月75時間以内・年6回まで」</p>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:18px">
+          <div class="card" data-step="2"><p class="cap">45時間を超えた月（特別条項の使用）</p><div class="counter"><b data-count="5">5</b>/ 6回</div><p style="font-size:28px"><b class="hl">回数は、スタッフ一人ひとりで数えます。</b>店舗単位ではありません</p></div>
+          <div class="card is-accent" data-step="3"><h3>2026年4月〜<br>責任者も上限管理の対象に</h3><p style="font-size:26px">店長・シェフも一般社員と同じ。いわゆる「名ばかり管理職」状態の解消。<b>皆さん自身も対象です</b></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="4" style="top:200px">
+      <h2 class="title">休憩の罠と、有給休暇</h2>
+      <div class="row" style="gap:36px;flex:1">
+        <div class="card" style="flex:1.4;gap:18px">
+          <h3>6時間を超えたら45分、8時間を超えたら1時間</h3>
+          <div class="rest" id="rest">
+            <div class="track"><div class="fill"></div><div class="lab" id="rest-lab">6:00</div></div>
+            <div class="axis"><span>0h</span><span>2h</span><span>4h</span><span>6h</span><span>7h</span></div>
+            <p class="msg"><span class="ok">シフトは「6時間ちょうど」</span><span class="bad">1分の残業で6時間を超えた瞬間、45分の休憩がないと違法</span></p>
+          </div>
+          <p class="cap" data-step="5">シフトを組む段階で、余裕を持った休憩を設定しておく</p>
+        </div>
+        <div class="card" data-step="6" style="flex:1"><h3><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span>有給休暇</h3><p>年10日以上付与される全スタッフに、<b class="hl">年5日の取得</b>が義務</p><div class="alert" style="padding:16px 20px;font-size:26px"><svg class="i"><use href="#i-alert"/></svg><p>台風休業などへの勝手な充当は違法。<b>必ず本人の意思を確認</b></p></div></div>
+      </div>
+    </div>
+    <aside class="notes">次に、キープ。日々の労働時間や休憩を管理・維持する段階です。
+［クリック］残業時間の上限は、原則「月45時間以内」を厳守します。特別条項を使う場合でも「月75時間以内・年6回まで」です。この、通常月と延長月の回数管理を「ハイロー管理」と呼びます。
+［クリック］この年6回は、店舗単位ではなく、スタッフ一人ひとりで数えます。
+［クリック］ここで、大きな変更点があります。
+2026年4月より、これまで管理監督者扱いとされてきた店長・シェフ等の責任者クラスも、一般社員と同様に労働時間の上限管理の対象となります。いわゆる「名ばかり管理職」状態を解消し、法令に適合させるための措置です。
+つまり、皆さん自身も上限管理の対象になるということです。
+［クリック］次に休憩時間です。
+6時間を超える労働には45分以上、8時間を超える労働には1時間以上の休憩が必要です。
+［クリック］実務上の注意点として、シフト上「6時間ちょうど」で組んでいても、残業が発生して6時間を超えた瞬間、45分の休憩を与えていないと違法になります。シフトを組む段階で、余裕を持った休憩設定が必要です。
+［クリック］最後に有給休暇です。
+年10日以上付与される全スタッフに対し、年5日の確実な取得が義務付けられています。
+台風での休業時などに、本人の同意なく勝手に有給消化処理をすることは違法です。必ず本人の意思を確認してください。</aside>
+  </section>
+
+  <!-- 09 アクト -->
+  <section class="slide" data-min="4">
+    <div class="tracker" data-in><span>P</span><em></em><span>K</span><em></em><span class="on">A</span><b>アクト（実行）</b></div>
+    <div class="phase" data-until="2" style="top:200px">
+      <h2 class="title">適正に打刻し、期日までに確定する</h2>
+      <div class="card" data-step="1"><h3><span class="ico"><svg class="i"><use href="#i-clock"/></svg></span>日々の打刻確認（1分単位）</h3><p>実労働時間を正確に打刻しているかを、毎日確認する。<b class="hl">退勤打刻後の残作業・出勤前の作業は、絶対にさせない</b></p></div>
+      <div class="dates" data-step="2">
+        <div class="card"><span class="day">1日<small>9:00</small></span><div><h3 style="font-size:32px">月次勤怠（ガルフ）の締め切り</h3><p class="cap">毎月1日の午前9時まで</p></div></div>
+        <div class="card"><span class="day">6日</span><div><h3 style="font-size:32px">タイムカードの全員承認</h3><p class="cap">毎月6日まで</p></div></div>
+      </div>
+    </div>
+    <div class="phase" data-step="3" style="top:200px">
+      <h2 class="title">推測で直さない。本人と一緒に確認する</h2>
+      <div class="row" style="gap:36px;flex:1">
+        <div style="flex:1;display:flex;flex-direction:column;gap:18px">
+          <span class="poll" data-q="Q2" style="align-self:flex-start">打刻の手修正を行うケース</span>
+          <p class="lead">手修正そのものが悪いのではありません。<br><b>本人の確認を経ずに、推測で書き換えること</b>が問題です。</p>
+          <div class="alert is-ok" data-step="5"><svg class="i"><use href="#i-shield"/></svg><p>本人との共同確認こそが、いざという時に<b>店舗と皆さん自身を守る、最大の証拠</b>になります。</p></div>
+        </div>
+        <div class="screen" data-step="4" style="flex:1;align-self:flex-start">
+          <div class="bar"><i></i><i></i><i></i>勤怠の確認画面（イメージ）</div>
+          <table>
+            <tr><th>スタッフ</th><th>修正内容</th><th>本人確認</th></tr>
+            <tr><td>スタッフA</td><td>退勤の打刻漏れ</td><td class="ok">✓ 確認済み</td></tr>
+            <tr><td>スタッフB</td><td>休憩の開始時刻</td><td class="ok">✓ 確認済み</td></tr>
+            <tr><td>スタッフC</td><td>出勤の打刻漏れ</td><td class="ok">✓ 確認済み</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">最後に、アクト。実際に行動し、記録を確定させる段階です。
+［クリック］日々の打刻確認を行います。従業員が実労働時間を正確に打刻しているかを、毎日確認します。退勤打刻後の残作業や、出勤前の作業は絶対にさせてはいけません。
+［クリック］そして、月末の勤怠確認です。
+月次勤怠、ガルフの締め切りは「毎月1日の午前9時まで」、タイムカードの全員承認は「毎月6日まで」です。期日を守ってください。
+［クリック］ここで、いちばん重要なことをお伝えします。
+責任者が自分の推測で勝手に時間を手修正することは、データの改ざんとみなされるリスクがあります。
+冒頭の投票で、打刻の手修正をするケースについて伺いました。手修正そのものが悪いのではありません。本人の確認を経ずに、推測で書き換えることが問題です。
+［クリック］必ず月末に、従業員本人と一緒に勤怠情報を確認し、双方の合意のもとで確定させてください。
+［クリック］そして、本人との共同確認こそが、いざという時に店舗と皆さん自身を守る最大の証拠になります。</aside>
+  </section>
+
+  <!-- 10 禁忌事項 -->
+  <section class="slide" data-min="5" id="ng-slide">
+    <div class="eyebrow" data-in>実務で陥りやすい法的リスクと禁忌事項</div>
+    <h2 class="title" data-in style="--d:1">絶対にやってはいけない、5つのこと</h2>
+    <div class="row" style="gap:32px;flex:1;align-items:flex-start">
+      <ul class="xlist" style="flex:1;gap:10px">
+        <li data-step="1" class="slide-in"><div><b>打刻データの恣意的な手修正</b><small>残業隠しや推測での書き換えは「データの改ざん」</small></div></li>
+        <li data-step="2" class="slide-in"><div><b>外国人スタッフの「週28時間」超過</b><small>どこを切り取っても7日間で28時間以内。ダブルワークも合算</small></div></li>
+        <li data-step="3" class="slide-in"><div><b>スポットワークの店舗都合キャンセル</b><small>マッチング成立後は、休業補償（平均賃金の60%以上）</small></div></li>
+        <li data-step="4" class="slide-in"><div><b>本人の同意なき有給の充当</b><small>店都合の休業や欠勤への勝手な有給処理は違法</small></div></li>
+        <li data-step="5" class="slide-in"><div><b>変形労働時間制の思い込み</b><small>現在は「1日8時間・週40時間」超を残業代として支払う運用</small></div></li>
+      </ul>
+      <div class="win" id="win" data-step="2" style="width:720px">
+        <p style="display:flex;align-items:center;gap:12px;font-size:28px;font-weight:900">任意の7日間を切り取る<span class="ex-tag">例</span></p>
+        <div class="days" id="days"></div>
+        <p class="total">この7日間　<b id="win-sum">28</b> 時間</p>
+        <p class="verdict" id="win-verdict">28時間以内</p>
+        <p class="cap">月〜日の区切りでは28時間以内でも、木〜水で切ると超えることがある</p>
+      </div>
+    </div>
+    <aside class="notes">ここからは、現場で陥りやすい法的リスクと、絶対にやってはいけないことを5つお伝えします。
+［クリック］一つ目、打刻データの恣意的な手修正。残業隠蔽や36協定回避のためのデータ書き換え、推測での勝手な手修正は「データの改ざん」とみなされます。
+［クリック］二つ目、外国人スタッフの「どこを切り取っても週28時間以内」。「留学」等の資格を持つスタッフの労働時間は、カレンダー上のどの7日間を切り取っても、累計28時間を超えてはいけません。店舗の締め枠、月曜から日曜といった区切りだけで管理していると、見落とします。（右の例：枠が1日ずつ動き、ある7日間で28時間を超えた瞬間に赤くなる）他社とのダブルワークも含めて合算管理が必要です。1分の超過も違法です。
+［クリック］三つ目、スポットワークの利用責任。タイミー等でマッチングが成立した後、店舗都合で勝手にキャンセルした場合、休業補償（平均賃金の60%以上）の支払い義務が発生します。「単発だから」と安易にキャンセルすることはできません。
+［クリック］四つ目、本人の同意なき有給休暇の勝手な充当。台風での休業日や欠勤日に対し、本人の同意なく独断で有給消化処理をすることは違法です。
+［クリック］五つ目、変形労働時間制の運用実態。本来は1ヶ月分のシフトを事前確定させる必要がありますが、現状は1〜2週間単位での組み立てのため、変形労働時間制が無効と判定されるリスクがあります。
+そのため会社としては、「1日8時間・週40時間」を超えた分について、原則通り残業代を支払う運用としています。この前提を正しく理解して、日々の残業を管理してください。</aside>
+  </section>
+
+  <!-- 11 初動対応 -->
+  <section class="slide" data-min="5">
+    <div class="eyebrow" data-in>それでも起きたら：初動対応</div>
+    <h2 class="title" data-in style="--d:1">手修正や架空の休憩は、一瞬で見破られる</h2>
+    <div class="row" style="gap:32px;flex:1;align-items:flex-start">
+      <ol class="timeline compact" style="flex:1;gap:10px">
+        <li data-n="1" data-step="1" class="slide-in"><h3>突然の弁護士通知・労基署の臨検</h3><p>事前連絡なしに、立ち入り調査が来る</p></li>
+        <li data-n="2" data-step="2" class="slide-in"><h3>客観的な証拠と照合される</h3><p>POSのログ、防犯カメラ、LINEの業務指示、メールの送信時刻</p></li>
+        <li data-n="3" data-step="3" class="slide-in"><h3>全スタッフ・過去3年分・退職者へ</h3><p>1人の訴えから、店舗全体・他店舗にも拡大</p></li>
+        <li data-n="4" data-step="4" class="slide-in"><h3>改ざんした個人への追及</h3><p>取調べの対象。刑事責任と社内処分</p></li>
+      </ol>
+      <div class="evid" data-step="2" style="width:640px">
+        <p style="display:flex;align-items:center;gap:12px;font-size:26px;font-weight:900">ある日の記録を照らし合わせると<span class="ex-tag">例</span></p>
+        <div class="row2 tc2"><span>タイムカードの退勤</span><b>20:40</b></div>
+        <div class="row2 real"><span>POSレジの精算ログ</span><b>23:12</b></div>
+        <div class="row2 real"><span>防犯カメラの退店</span><b>23:35</b></div>
+        <div class="row2 real"><span>LINEの業務指示</span><b>23:38</b></div>
+        <div class="row2 real"><span>メールの送信</span><b>23:41</b></div>
+      </div>
+    </div>
+    <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p><b>独断の対応・自己判断での回答は絶対禁止。</b>その場での交渉や過去データの修正は、悪質性を跳ね上げます。直ちに本部（LR・法務）へ報告してください。</p></div>
+    <aside class="notes">もし、打刻管理の不備や残業隠蔽について、スタッフが労働基準監督署や弁護士に相談・提訴した場合、どうなるか。
+［クリック］一つ目、突然の弁護士通知や、労基署の臨検です。ある日突然、弁護士から「未払い残業代の請求書」が届く。あるいは労基署の調査官が、事前連絡なしに店舗へ立ち入り調査にやってきます。
+［クリック］二つ目、打刻データと実態の照合です。調査では、タイムカードのデータだけでなく、POSレジの精算ログ、防犯カメラの映像、LINEの業務指示履歴、電子メールの発信時刻など、あらゆる客観的証拠が照合されます。
+システム上の手修正や架空休憩の付加は、プロの調査によって一瞬で見破られます。
+［クリック］三つ目、1人の訴えから、全スタッフ・退職者への波及です。1人のスタッフの訴えから、過去に遡って店舗全体、さらには他店舗や退職者にまで調査が拡大します。最長3年分、将来的には5年分の未払い残業代、遅延損害金、そして悪質と判定された場合の付加金が重なり、数千万円から億単位の支払いに直結します。
+［クリック］四つ目、責任者個人への追及です。改ざんを指示・実行した店長やシェフ自身も、労基署からの取調べ対象となり、刑事責任や社内での厳しい処分を免れません。
+［クリック］では、実際に起きたらどうするか。
+独断での対応、自己判断での回答は絶対禁止です。その場で一人で交渉したり、言い訳をしたり、過去のデータを後から修正しようとすることは、絶対にしてはいけません。悪質性を跳ね上げるだけです。
+直ちに本部（LR・法務）へ報告し、指示に従ってください。</aside>
+  </section>
+
+  <!-- 12 事後対応 -->
+  <section class="slide" data-min="4" id="post-slide" style="gap:22px">
+    <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
+    <h2 class="title" data-in style="--d:1">是正勧告が入った後</h2>
+    <div class="cols cols-2">
+      <div class="card" data-step="1"><span class="badge">1</span><h3>是正勧告への対応と「是正報告書」</h3><p>期限内に確実に改善し、労基署へ提出する。形式ではなく、運用の根本から改善する</p></div>
+      <div class="card" data-step="2"><span class="badge">2</span><h3>過去データの全数調査と精算</h3><p>在籍者だけでなく<b>退職者も含めて</b>、過去の全データを調査し、未払い賃金を精算する</p></div>
+    </div>
+    <div class="card is-accent" data-step="3"><span class="badge">3</span><h3>組織的な報告フローを徹底する</h3>
+      <div class="chain"><span>担当役員</span><i class="grow"></i><span>代表</span><i class="grow"></i><span>総務人事部</span></div>
+      <p class="cap">現場で抱え込む・隠蔽する行為は、被害を決定的に拡大させる</p></div>
+    <aside class="notes">労基署からの是正勧告が入った後の対応です。
+［クリック］一つ目、是正勧告への対応と「是正報告書」の提出。指摘された違法事項や管理不備について、期限内に確実に改善を実行し、労基署へ「是正報告書」を提出します。形式的な報告ではなく、現場での運用の根底からの改善が求められます。
+［クリック］二つ目、過去データの全数調査と未払い賃金の精算。不適正な打刻や手修正があった場合、過去に遡って対象スタッフ、在籍者だけでなく退職者も含めて全データを調査・計算し、未払い賃金の精算を行います。
+［クリック］三つ目、組織的報告フローの徹底。トラブル発生から事後対応に至るまで、報告フローは「担当役員へ連絡 → 担当役員から代表へ報告 → 総務人事部へ連携」です。
+現場で抱え込んだり、隠蔽しようとする行為は、被害を決定的に拡大させます。必ず組織として連携して対処してください。</aside>
+  </section>
+
+  <!-- 13 修了レポート -->
+  <section class="slide light" data-min="3">
+    <div class="eyebrow" data-in>研修修了レポートについて</div>
+    <h2 class="title" data-in style="--d:1">レポートの提出をもって「受講完了」となります</h2>
+    <div class="report" data-in style="--d:2">
+      <div class="report-cards">
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
+        <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-store"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>勤怠データを確認しながら記入</b></p></div></div>
+      </div>
+      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
+    </div>
+    <div class="row" data-step="1">
+      <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
+      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>該当しないものは「なし」で構いません</p></div>
+    </div>
+    <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
+（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
+提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
+このレポートは、実際に自店の勤怠データを確認しながら記入してください。記憶で書くのではなく、データを見て書いていただくことが大事です。
+36協定の特別条項を、スタッフ一人ひとりが、年度内に何回使っているか。店舗単位ではなく、個人ごとに年6回まで、というお話をしました。直近1ヶ月で、残業が45時間を超えたスタッフがいるか。休憩が取れていない日がなかったか。有給の年5日を取れていないスタッフがいないか。そして、打刻の手修正が、どんな場面で発生しているか。
+あわせて、今日お話しした数字、36協定の上限、休憩時間、外国人スタッフの週28時間なども、書いていただきます。
+［クリック］最後に、店に戻って、実際に確認したこと・対応したことを書いていただきます。
+自店に該当しないものは「なし」で構いません。確認して気づいたことがあれば、あわせて書いてください。書き終えたレポートは、そのまま店舗のチェックリストとして使えます。</aside>
+  </section>
+
+  <!-- 14 クロージング -->
+  <section class="slide glow center" data-ticks data-min="3">
+    <div class="eyebrow" data-in>最後に</div>
+    <p class="lead" data-step="1">打刻のズレ、休憩の不足、推測による手修正。<br>日々の曖昧な運用が、最終的に大きな労務トラブルや未払い請求につながります。</p>
+    <div class="chips" data-step="2" style="gap:24px">
+      <span style="font-size:40px;font-weight:900;color:var(--ink);padding:14px 36px">正しく把握し</span>
+      <span style="font-size:40px;font-weight:900;color:var(--ink);padding:14px 36px">基準を守り</span>
+      <span style="font-size:40px;font-weight:900;color:var(--ink);padding:14px 36px">正しく支払う</span>
+    </div>
+    <p class="quote" data-step="3">その基本が、働く仲間を守り、店舗を守り、<br><span class="hl2">皆さん自身のキャリア</span>を守ります。</p>
+    <aside class="notes">労務管理は、単なる事務処理ではありません。店舗とスタッフを守るための、基本的な取り組みです。
+［クリック］打刻のズレ、休憩の不足、推測による手修正。日々の曖昧な運用が、最終的に大きな労務トラブルや未払い請求へとつながります。
+［クリック］正しく把握し、基準を守り、正しく支払う。
+［クリック］この基本を徹底することが、働いているスタッフを守り、店舗を守り、そして責任者である皆さん自身のキャリアを守ることにつながります。
+今日確認した内容を、自店の管理体制の確認・改善に活かしてください。
+本日は以上です。ありがとうございました。</aside>
+  </section>
+
+  <!-- 15 質疑応答 -->
+  <section class="slide center" data-min="0" data-no-footer>
+    <span class="ico pulse" data-in style="width:120px;height:120px;font-size:68px;border-radius:50%"><svg class="i"><use href="#i-chat"/></svg></span>
+    <h2 class="statement" data-in style="--d:1">質疑応答</h2>
+    <p class="lead muted" data-in style="--d:2">ご質問があれば、チャットまたは挙手でお願いします。</p>
+    <aside class="notes">ご質問があれば、チャットまたは挙手でお願いします。
+（進行役：質問がない場合も、10〜15秒は間を取る）</aside>
+  </section>
+
+</div>
+<script src="assets/deck.js"></script>
+<script>
+/* 第3章だけの演出 */
+(function () {
+  /* 週28時間：7日間の枠が1日ずつ動く（例の数値） */
+  const H = [2, 2, 4, 4, 5, 5, 6, 5, 4, 2, 2, 2, 2, 1];
+  const W = ['月', '火', '水', '木', '金', '土', '日', '月', '火', '水', '木', '金', '土', '日'];
+  const days = document.getElementById('days');
+  days.innerHTML = H.map((h, i) => `<div class="d"><span>${W[i]}</span><b>${h}h</b></div>`).join('') + '<div class="frame" id="frame"></div>';
+  const win = document.getElementById('win'), sumEl = document.getElementById('win-sum'), verdict = document.getElementById('win-verdict'), frame = document.getElementById('frame');
+  const cells = days.querySelectorAll('.d');
+  let pos = 0, timer = null;
+  function place() {
+    const a = cells[pos], b = cells[pos + 6];
+    frame.style.left = (a.offsetLeft - 6) + 'px';
+    frame.style.width = (b.offsetLeft + b.offsetWidth - a.offsetLeft + 12) + 'px';
+    cells.forEach((c, i) => c.classList.toggle('in', i >= pos && i < pos + 7));
+    const sum = H.slice(pos, pos + 7).reduce((x, y) => x + y, 0);
+    sumEl.textContent = sum;
+    win.classList.toggle('bad', sum > 28);
+    verdict.textContent = sum > 28 ? '28時間を超過 → 違法' : '28時間以内';
+  }
+  function run(on) {
+    if (on && !timer) { pos = 0; place(); timer = setInterval(() => { if (pos < 4) { pos++; place(); } else { clearInterval(timer); timer = 'done'; } }, 1100); }
+    if (!on && timer) { if (timer !== 'done') clearInterval(timer); timer = null; pos = 0; place(); }
+  }
+  place();
+  /* 休憩の罠：6時間ちょうど → 1分の残業 */
+  const rest = document.getElementById('rest'), restLab = document.getElementById('rest-lab');
+  const deck = document.querySelector('.deck');
+  deck.addEventListener('slidechange', e => {
+    const s = e.detail.slide;
+    run(s.id === 'ng-slide' && e.detail.step >= 2);
+    const over = s.contains(rest) && e.detail.step >= 5;
+    rest.classList.toggle('over', over);
+    restLab.textContent = over ? '6:01' : '6:00';
+  });
+})();
+</script>

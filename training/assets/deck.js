@@ -4,7 +4,7 @@
    - [data-step="n"] の要素は n 回目の操作で表示
    - [data-until="n"] の要素は n 回目より後で消える（場面の入れ替え）
    - [data-count="365"] は表示時に数え上げ、[data-countdown="10"] は数え下げ
-   - <section data-embers> で火の粉、data-germs で光がなぞると浮かぶ粒、data-pun/data-life で天秤、
+   - <section data-embers> で火の粉、data-germs で光がなぞると浮かぶ粒、data-ticks で時間の目盛り、data-pun/data-life で天秤、
      contenteditable の要素はクリックで入力（Enterで確定）、data-min="3" で予定時間、data-no-footer でロゴ以外のフッターを隠す
    ========================================================= */
 (function () {
@@ -207,16 +207,17 @@
   const embers = (() => {
     const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rand = (a, b) => a + Math.random() * (b - a);
-    const list = slides.filter(s => s.hasAttribute('data-embers') || s.hasAttribute('data-germs')).map(s => {
+    const list = slides.filter(s => s.hasAttribute('data-embers') || s.hasAttribute('data-germs') || s.hasAttribute('data-ticks')).map(s => {
       const cv = document.createElement('canvas');
       cv.className = 'd-embers'; cv.width = 1920; cv.height = 1080;
       cv.setAttribute('aria-hidden', 'true');
       s.prepend(cv);
       const germs = s.hasAttribute('data-germs');
+      const ticks = s.hasAttribute('data-ticks');
       const count = +(germs ? s.dataset.germs : s.dataset.embers) || (germs ? 220 : 90);
       const P = Array.from({ length: count }, () => ({ x: rand(germs ? 0 : 700, 1920), y: rand(0, 1080), v: rand(.4, 1.6), r: rand(germs ? 2 : 1, germs ? 6 : 3.6), w: rand(0, 6.28), a: rand(.25, .9) }));
       const rgb = getComputedStyle(deck).getPropertyValue('--accent').trim() || '#22915c';
-      return { s, ctx: cv.getContext('2d'), P, germs, rgb, t0: performance.now() };
+      return { s, ctx: cv.getContext('2d'), P, germs, ticks, rgb, t0: performance.now() };
     });
     let running = false;
     function frame(now) {
@@ -225,7 +226,19 @@
       for (const e of live) {
         const c = e.ctx;
         c.clearRect(0, 0, 1920, 1080);
-        if (e.germs) {
+        if (e.ticks) {
+          /* 時間の目盛りが、下の帯をゆっくり左へ流れる */
+          const off = still ? 0 : ((now - e.t0) / 60) % 240;
+          c.strokeStyle = e.rgb; c.lineWidth = 2;
+          for (let k = -1; k < 90; k++) {
+            const x = k * 24 - off % 24, n = Math.round((k * 24 - off % 24 + off) / 24);
+            const big = n % 10 === 0, mid = n % 5 === 0;
+            c.globalAlpha = big ? .28 : mid ? .18 : .1;
+            const h = big ? 70 : mid ? 44 : 24;
+            c.beginPath(); c.moveTo(x, 1080); c.lineTo(x, 1080 - h); c.stroke();
+          }
+          c.globalAlpha = 1;
+        } else if (e.germs) {
           /* 光の帯が左から右へなぞり、帯の近くだけ粒が見える */
           const band = still ? 1300 : ((now - e.t0) / 7000 % 1) * 2600 - 340;
           const g = c.createLinearGradient(band - 260, 0, band + 260, 0);
