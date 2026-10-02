@@ -173,6 +173,11 @@ b, strong { font-weight: 900; }
 .timeline > li::before { content: attr(data-n); position: absolute; left: -96px; top: 50%; margin-top: -38px; width: 76px; height: 76px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--f-num); font-size: 36px; display: grid; place-items: center; box-shadow: 0 0 0 8px var(--bg); }
 .timeline h3 { font-size: 36px; font-weight: 900; }
 .timeline p { font-size: 28px; line-height: 1.5; color: var(--ink-2); }
+.timeline.compact { gap: 12px; }
+.timeline.compact > li { padding: 12px 28px; }
+.timeline.compact > li::before { width: 64px; height: 64px; margin-top: -32px; left: -90px; font-size: 30px; }
+.timeline.compact h3 { font-size: 32px; }
+.timeline.compact p { font-size: 26px; }
 
 /* ---------- 注意書き ---------- */
 .alert { display: flex; gap: 24px; align-items: flex-start; padding: 24px 32px; border-radius: 16px; background: var(--accent-soft); font-size: 30px; line-height: 1.55; }
@@ -255,7 +260,57 @@ b, strong { font-weight: 900; }
 .pillar h3 { font-size: 56px; }
 .pillar p.text { font-size: 34px; }
 
+/* ---------- 投票の回収バッジ ---------- */
+.poll { display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px 8px 10px; border-radius: 999px; background: var(--water-soft); color: var(--ink); font-size: 26px; font-weight: 700; }
+.poll::before { content: "冒頭の投票 " attr(data-q); font-size: 22px; padding: 4px 14px; border-radius: 999px; background: var(--water); color: #fff; letter-spacing: .04em; }
+.poll [contenteditable] { min-width: 1.6em; padding: 0 6px; border-bottom: 3px dashed var(--water); text-align: center; outline: none; cursor: text; font-family: var(--f-num); font-weight: 400; }
+.poll [contenteditable]:focus { background: #fff; border-radius: 6px; }
+
+/* ---------- 横のタイムライン ---------- */
+.htl { position: relative; display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 32px; padding-top: 64px; }
+.htl::before { content: ""; position: absolute; left: 0; right: 0; top: 26px; height: 6px; border-radius: 3px; background: var(--line); }
+.htl > li { position: relative; display: flex; flex-direction: column; gap: 8px; }
+.htl > li::before { content: ""; position: absolute; left: 0; top: -50px; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 8px var(--bg); }
+.htl .d { font-family: var(--f-num); font-size: 40px; color: var(--accent-ink); line-height: 1.1; }
+.htl h3 { font-size: 36px; font-weight: 900; line-height: 1.35; }
+.htl p { font-size: 26px; line-height: 1.5; color: var(--ink-2); }
+.htl > li.is-end::before { background: var(--ink); }
+.htl > li.is-end .d { color: var(--ink); }
+
+/* ---------- 「例」ラベル ---------- */
+.ex-tag { display: inline-block; font-size: 22px; font-weight: 700; padding: 2px 12px; border-radius: 6px; background: var(--surface-2); color: var(--ink-2); letter-spacing: .1em; }
+
+/* ---------- ×印のリスト ---------- */
+.xlist { display: flex; flex-direction: column; gap: 14px; }
+.xlist li { display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: center; font-size: 32px; line-height: 1.45; padding: 14px 24px; background: var(--surface); border-radius: 14px; }
+.xlist li::before { content: "×"; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--danger-soft); color: var(--danger); font-weight: 900; font-size: 34px; }
+.xlist li small { display: block; font-size: 26px; color: var(--ink-2); }
+
+/* ---------- 相談窓口カード ---------- */
+.contact { display: inline-flex; align-items: center; gap: 20px; padding: 16px 28px; border-radius: 16px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); font-size: 28px; }
+.contact .i { font-size: 40px; color: var(--accent); }
+.contact b { font-size: 32px; }
+
+/* ---------- 天秤（何よりも重いもの） ---------- */
+.scale { width: 100%; height: auto; display: block; overflow: visible; }
+.scale #beam, .scale .beam { transform-box: view-box; transform-origin: 832px 110px; transition: transform 1.4s cubic-bezier(.3,1.35,.5,1) .9s; }
+.scale .panL, .scale .panR { transition: transform 1.4s cubic-bezier(.3,1.35,.5,1) .9s; }
+.s-pun .scale .beam { transform: rotate(-5deg); }
+.s-pun .scale .panL { transform: translateY(45px); }
+.s-pun .scale .panR { transform: translateY(-45px); }
+.s-life .scale .beam { transform: rotate(10deg); transition: transform 1.1s cubic-bezier(.25,1.6,.45,1) .55s; }
+.s-life .scale .panL { transform: translateY(-91px); transition: transform 1.1s cubic-bezier(.25,1.6,.45,1) .55s; }
+.s-life .scale .panR { transform: translateY(91px); transition: transform 1.1s cubic-bezier(.25,1.6,.45,1) .55s; }
+.scale .chip { transform: translateY(-120px); }
+.scale .chip.on { transform: none; transition-timing-function: ease, cubic-bezier(.3,1.3,.5,1); }
+.scale .life { transform: translateY(-300px); transition: opacity .2s ease, transform .6s cubic-bezier(.55,0,.9,.4); }
+.scale .life.on { transform: none; }
+.scale .life-ring { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.s-life .scale .life-ring { animation: life-ring 2.4s ease-out 2s infinite; }
+@keyframes life-ring { from { transform: scale(1); opacity: .6; } to { transform: scale(1.7); opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
+  .s-life .scale .life-ring { animation: none; }
   .slide, [data-step], .card, .d-progress, .grow, .draw { transition: none; }
   .slide.active [data-in], .pulse { animation: none; }
 }

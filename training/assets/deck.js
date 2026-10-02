@@ -4,7 +4,8 @@
    - [data-step="n"] の要素は n 回目の操作で表示
    - [data-until="n"] の要素は n 回目より後で消える（場面の入れ替え）
    - [data-count="365"] は表示時に数え上げ、[data-countdown="10"] は数え下げ
-   - <section data-embers> で火の粉、data-min="3" で予定時間、data-no-footer でロゴ以外のフッターを隠す
+   - <section data-embers> で火の粉、data-germs で光がなぞると浮かぶ粒、data-pun/data-life で天秤、
+     contenteditable の要素はクリックで入力（Enterで確定）、data-min="3" で予定時間、data-no-footer でロゴ以外のフッターを隠す
    ========================================================= */
 (function () {
   const ICONS = {
@@ -136,6 +137,12 @@
     footer.classList.toggle('on-light', s.classList.contains('light'));
     footer.classList.toggle('brand-only', s.hasAttribute('data-no-footer'));
     progress.style.width = ((cur + (m ? step / m : 1)) / slides.length * 100) + '%';
+    slides.forEach((x, i) => {
+      if (!x.hasAttribute('data-pun')) return;
+      const at = i === cur ? step : -1;
+      x.classList.toggle('s-pun', at >= +x.dataset.pun && at < +x.dataset.life);
+      x.classList.toggle('s-life', at >= +x.dataset.life);
+    });
     deck.dispatchEvent(new CustomEvent('slidechange', { detail: { index: cur, step, slide: s } }));
     try { history.replaceState(null, '', '#s' + (cur + 1)); } catch (e) {}
     renderNotes();
@@ -176,8 +183,10 @@
     } catch (e) {}
   }
 
+  const editing = t => t && t.closest && t.closest('[contenteditable]');
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (editing(e.target)) { if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); e.target.blur(); } return; }
     if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
     else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
     else if (e.key === 'Home') go(0);
@@ -185,7 +194,7 @@
     else if (e.key === 'f' || e.key === 'F') fullscreen();
     else if (e.key === 'n' || e.key === 'N') { notes.hidden = !notes.hidden; renderNotes(); }
   });
-  viewport.addEventListener('click', e => { e.clientX < window.innerWidth / 3 ? prev() : next(); });
+  viewport.addEventListener('click', e => { if (editing(e.target)) return; e.clientX < window.innerWidth / 3 ? prev() : next(); });
   let tx = null;
   document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   document.addEventListener('touchend', e => {
@@ -194,31 +203,51 @@
     if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
   });
 
-  /* ---------- 火の粉 ---------- */
+  /* ---------- 背景の動き（火の粉・浮かび上がる粒） ---------- */
   const embers = (() => {
     const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rand = (a, b) => a + Math.random() * (b - a);
-    const list = slides.filter(s => s.hasAttribute('data-embers')).map(s => {
+    const list = slides.filter(s => s.hasAttribute('data-embers') || s.hasAttribute('data-germs')).map(s => {
       const cv = document.createElement('canvas');
       cv.className = 'd-embers'; cv.width = 1920; cv.height = 1080;
       cv.setAttribute('aria-hidden', 'true');
       s.prepend(cv);
-      const count = +s.dataset.embers || 90;
-      const P = Array.from({ length: count }, () => ({ x: rand(700, 1920), y: rand(0, 1080), v: rand(.4, 1.6), r: rand(1, 3.6), w: rand(0, 6.28), a: rand(.25, .9) }));
-      return { s, ctx: cv.getContext('2d'), P };
+      const germs = s.hasAttribute('data-germs');
+      const count = +(germs ? s.dataset.germs : s.dataset.embers) || (germs ? 220 : 90);
+      const P = Array.from({ length: count }, () => ({ x: rand(germs ? 0 : 700, 1920), y: rand(0, 1080), v: rand(.4, 1.6), r: rand(germs ? 2 : 1, germs ? 6 : 3.6), w: rand(0, 6.28), a: rand(.25, .9) }));
+      const rgb = getComputedStyle(deck).getPropertyValue('--accent').trim() || '#22915c';
+      return { s, ctx: cv.getContext('2d'), P, germs, rgb, t0: performance.now() };
     });
     let running = false;
-    function frame() {
+    function frame(now) {
+      now = now || performance.now();
       const live = list.filter(e => e.s.classList.contains('active'));
       for (const e of live) {
-        e.ctx.clearRect(0, 0, 1920, 1080);
-        for (const p of e.P) {
-          if (!still) { p.y -= p.v; p.w += .02; p.x += Math.sin(p.w) * .6; if (p.y < -10) { p.y = 1090; p.x = rand(700, 1920); } }
-          const fade = Math.min(1, p.y / 700);
-          e.ctx.beginPath();
-          e.ctx.fillStyle = `rgba(${230 + Math.round(p.r * 6)},${100 + Math.round(p.r * 22)},20,${(p.a * fade * .75).toFixed(3)})`;
-          e.ctx.arc(p.x, p.y, p.r, 0, 6.283);
-          e.ctx.fill();
+        const c = e.ctx;
+        c.clearRect(0, 0, 1920, 1080);
+        if (e.germs) {
+          /* 光の帯が左から右へなぞり、帯の近くだけ粒が見える */
+          const band = still ? 1300 : ((now - e.t0) / 7000 % 1) * 2600 - 340;
+          const g = c.createLinearGradient(band - 260, 0, band + 260, 0);
+          g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(.5, 'rgba(255,255,255,.55)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+          c.fillStyle = g; c.fillRect(band - 260, 0, 520, 1080);
+          c.fillStyle = e.rgb;
+          for (const p of e.P) {
+            if (!still) { p.w += .01; p.x += Math.sin(p.w) * .15; p.y += Math.cos(p.w) * .15; }
+            const d = (p.x - band) / 200;
+            c.globalAlpha = Math.min(.75, .03 + .7 * Math.exp(-d * d)) * p.a;
+            c.beginPath(); c.arc(p.x, p.y, p.r, 0, 6.283); c.fill();
+          }
+          c.globalAlpha = 1;
+        } else {
+          for (const p of e.P) {
+            if (!still) { p.y -= p.v; p.w += .02; p.x += Math.sin(p.w) * .6; if (p.y < -10) { p.y = 1090; p.x = rand(700, 1920); } }
+            const fade = Math.min(1, p.y / 700);
+            c.beginPath();
+            c.fillStyle = `rgba(${230 + Math.round(p.r * 6)},${100 + Math.round(p.r * 22)},20,${(p.a * fade * .75).toFixed(3)})`;
+            c.arc(p.x, p.y, p.r, 0, 6.283);
+            c.fill();
+          }
         }
       }
       running = live.length > 0 && !still;

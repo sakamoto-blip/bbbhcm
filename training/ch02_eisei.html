@@ -1,0 +1,605 @@
+<meta charset="utf-8">
+<title>第2章 衛生管理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+/* 第2章だけで使う部品 */
+.contrast-row { display: flex; gap: 20px; align-items: center; font-size: 30px; font-weight: 700; }
+.contrast-row span { padding: 10px 24px; border-radius: 12px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.05); }
+.contrast-row span.now { background: var(--accent); color: #fff; }
+
+.case2 { display: grid; grid-template-columns: 520px 1fr; column-gap: 64px; row-gap: 24px; flex: 1; }
+.case2 .when { display: flex; flex-direction: column; gap: 14px; }
+.case2 .when .y { font-family: var(--f-num); font-size: 120px; line-height: .95; color: var(--accent); }
+.case2 .when p { font-size: 32px; line-height: 1.6; }
+.case2 .steps { display: flex; flex-direction: column; gap: 14px; }
+.case2 .steps li { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: 22px; padding: 16px 26px; background: var(--surface); border-radius: 14px; box-shadow: 0 6px 18px rgba(29,33,40,.05); }
+.case2 .steps .ico { width: 76px; height: 76px; font-size: 44px; }
+.case2 .steps p { font-size: 32px; line-height: 1.45; }
+.case2 .steps p small { display: block; font-size: 26px; color: var(--ink-2); }
+.strike { position: relative; display: inline-block; }
+.strike::after { content: ""; position: absolute; left: -4px; right: -4px; top: 55%; height: 5px; border-radius: 3px; background: var(--danger); transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.5,0,.2,1) .2s; }
+.struck .strike::after { transform: scaleX(1); }
+.result { grid-column: 1 / -1; display: flex; align-items: center; gap: 48px; padding: 24px 36px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.result .stat .v { font-size: 104px; }
+
+.germ-board { position: relative; width: 100%; height: 100%; }
+.venn { width: 100%; height: auto; display: block; overflow: visible; }
+.venn .c { transition: transform 1.1s cubic-bezier(.3,1.2,.5,1) .2s; transform-box: view-box; }
+.venn .c1 { transform: translate(-90px, -40px); } .venn .c2 { transform: translate(90px, -40px); } .venn .c3 { transform: translate(0, 90px); }
+.on .venn .c { transform: none; }
+.venn .core { opacity: 0; transition: opacity .6s ease 1.1s; }
+.on .venn .core { opacity: 1; }
+.voice { font-size: 64px; font-weight: 900; line-height: 1.4; color: var(--ink-2); }
+.bubbles { display: flex; gap: 28px; flex-wrap: wrap; }
+.bubbles span { position: relative; font-size: 38px; font-weight: 700; padding: 22px 34px; border-radius: 28px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.07); }
+.bubbles span::after { content: ""; position: absolute; left: 44px; bottom: -18px; border: 12px solid transparent; border-top: 16px solid var(--surface); }
+
+.lawflow { display: flex; align-items: stretch; gap: 0; }
+.lawflow > div { flex: 1; padding: 14px 18px; border-radius: 12px; background: var(--surface-2); font-size: 24px; line-height: 1.45; font-weight: 700; }
+.lawflow > i { flex: none; width: 34px; display: grid; place-items: center; color: var(--accent); font-style: normal; font-size: 30px; font-weight: 900; }
+.lawflow > div.last { background: var(--accent-soft); color: var(--accent-ink); }
+
+.verdict2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.verdict2 .card .tag { align-self: flex-start; font-size: 26px; font-weight: 900; padding: 6px 18px; border-radius: 999px; }
+.verdict2 .ok .tag { background: var(--danger-soft); color: var(--danger); }
+.verdict2 .no .tag { background: var(--ok-soft); color: var(--ok); }
+
+.band { position: relative; height: 150px; }
+.band svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+.house { width: 100%; height: auto; display: block; overflow: visible; }
+.house .gap { opacity: 0; transition: opacity .6s ease .3s; }
+.on .house .gap, .house.on .gap { opacity: 1; }
+
+.keep-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 22px; flex: 1; }
+.keep-grid .card { padding: 22px 26px; gap: 10px; }
+.keep-grid .card h3 { font-size: 32px; }
+.keep-grid .card p { font-size: 26px; }
+.keep-grid .ph { min-height: 0; height: 170px; }
+.temp-big { display: flex; gap: 22px; }
+.temp-big div { flex: 1; padding: 10px; border-radius: 12px; background: var(--water-soft); text-align: center; }
+.temp-big b { display: block; font-family: var(--f-num); font-weight: 400; font-size: 56px; color: var(--water); line-height: 1.1; }
+.temp-big span { font-size: 24px; font-weight: 700; }
+
+.act-wrap { display: grid; grid-template-columns: 1fr 720px; gap: 40px; flex: 1; min-height: 0; }
+.act-list { display: flex; flex-direction: column; gap: 12px; }
+.act-list li { display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 18px; padding: 12px 22px; background: var(--surface); border-radius: 14px; box-shadow: 0 6px 18px rgba(29,33,40,.05); }
+.act-list .ico { width: 64px; height: 64px; font-size: 38px; border-radius: 16px; }
+.act-list p { font-size: 28px; line-height: 1.4; }
+.act-list p small { display: block; font-size: 24px; color: var(--ink-2); }
+.log { background: var(--surface); border-radius: 18px; padding: 22px 26px; box-shadow: 0 8px 24px rgba(29,33,40,.06); display: flex; flex-direction: column; gap: 10px; }
+.log table { width: 100%; border-collapse: collapse; font-size: 26px; }
+.log th { text-align: left; font-size: 22px; color: var(--ink-2); padding: 6px 10px; border-bottom: 2px solid var(--line); }
+.log td { padding: 10px; border-bottom: 1px solid var(--surface-2); font-variant-numeric: tabular-nums; }
+.log td.t { font-family: var(--f-num); font-size: 28px; }
+.log td.bad { color: var(--danger); background: var(--danger-soft); transition: background .4s ease; }
+
+.fields { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.fields span { font-size: 22px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
+.ng-say { display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; font-size: 24px; font-weight: 700; color: var(--danger); }
+
+.post-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+.post-grid .card { padding: 26px 30px; }
+.post-grid .card .badge { font-size: 54px; }
+
+.after-stmt { font-size: 76px; font-weight: 900; line-height: 1.3; text-align: left; }
+#ans-slide .card h3 { font-size: 32px; }
+.report { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; flex: 1; }
+.report-cards { display: flex; flex-direction: column; gap: 14px; }
+.report-cards .card { flex-direction: row; align-items: center; gap: 28px; padding: 14px 30px; }
+.report-cards .lead { font-size: 38px; }
+.report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.report-qr .ph { width: 300px; height: 300px; }
+</style>
+
+<div class="deck" data-chapter="第2章　衛生管理" data-accent="green">
+
+  <!-- 01 タイトル -->
+  <section class="slide glow cover" data-germs data-min="3" data-no-footer>
+    <div class="chapter" data-in style="--d:0">第2章</div>
+    <h1 data-in style="--d:1">衛生管理</h1>
+    <p class="sub" data-in style="--d:2">少しの妥協が、<br>惨事につながる</p>
+    <div class="chips" data-in style="--d:3"><span>オンライン研修</span><span>60分</span></div>
+    <div class="contrast-row" data-step="1"><span>第1章 防災：起きた時に<b>備える</b></span><svg class="i" style="font-size:40px;color:var(--accent)"><use href="#i-arrow"/></svg><span class="now">第2章 衛生：起こさないよう<b>防ぐ</b></span></div>
+    <aside class="notes">本日はお集まりいただきありがとうございます。第2章、衛生管理です。
+前回の防災管理と同じく、この章も命に関わる話です。ただ、火災とは決定的に違うところがあります。
+［クリック］火災は「備える」ことでした。どれだけ注意していても起きる可能性があるから、起きた時に動けるように準備しておく。それが前回の話です。
+一方、衛生は「防ぐ」ことです。なぜなら、火は見えますが、食中毒の菌は見えないからです。
+においもしない、味も変わらない。起きた時には、もう手遅れ。これが現実です。お客様が召し上がった後、数時間から数日経ってから症状が出る。その時点で、できることはほとんど残っていません。
+だからこそ、この章は「起こさないこと」がすべてです。今日はその前提で、話を進めていきます。</aside>
+  </section>
+
+  <!-- 02 まず、お答えください -->
+  <section class="slide center" data-min="5">
+    <div class="eyebrow" data-in>まず、お答えください</div>
+    <h2 class="statement" data-in style="--d:1">これから<span class="hl2">4つ</span>の質問をします。<small>今わかる範囲で、正直にお答えください。</small></h2>
+    <div class="cols cols-3">
+      <div class="card" data-step="1"><h3><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>正直に</h3><p>今わかる範囲で書いてください</p></div>
+      <div class="card" data-step="2"><h3><span class="ico"><svg class="i"><use href="#i-search"/></svg></span>できていない、でOK</h3><p>「わからない」「できていない」と書いて構いません</p></div>
+      <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span>責める場ではない</h3><p>この場は、確認する場です</p></div>
+    </div>
+    <div class="chips" data-step="3"><span><svg class="i"><use href="#i-clipboard"/></svg>記述式3問＋選択式1問</span><span><svg class="i"><use href="#i-person"/></svg>匿名</span></div>
+    <aside class="notes">早速ですが、これから4つ質問をします。
+［クリック］今わかる範囲で、正直にお答えください。
+［クリック］「わからない」「できていない」と書いていただいて構いません。
+［クリック］この場は、確認する場であって、責める場ではありません。むしろ、正直に書けることの方が大事です。
+（進行役：Zoomの投票を起動。記述式3問＋選択式1問・匿名）
+では、5分ほど時間を取ります。どうぞ。</aside>
+  </section>
+
+  <!-- 03 皆さんの回答 -->
+  <section class="slide" data-min="3" id="ans-slide">
+    <div class="eyebrow" data-in>皆さんの回答</div>
+    <h2 class="title" data-in style="--d:1">気をつけていること、手がつけられていないこと</h2>
+    <p class="lead muted" data-in style="--d:2">同じことで悩んでいるのは、あなただけではありません。</p>
+    <div class="cols cols-4" style="flex:1">
+      <div class="card" data-step="1"><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span><p class="cap">Q1・記述</p><h3>普段から<br>気をつけていること</h3><p class="cap">投票結果を画面共有して確認</p></div>
+      <div class="card is-accent" data-step="2"><span class="ico"><svg class="i"><use href="#i-search"/></svg></span><p class="cap">Q2・記述</p><h3>気になっているが、<br>手がつけられていないこと</h3><p class="cap">この章の中心になる問いです</p></div>
+      <div class="card" data-step="3"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><p class="cap">Q3・記述</p><h3>検便の<br>提出状況</h3><p class="cap">投票結果を画面共有して確認</p></div>
+      <div class="card" data-step="4"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><p class="cap">Q4・選択</p><h3>マキトリでの<br>記録</h3><p class="cap">この数字は、後半でもう一度出てきます</p></div>
+    </div>
+    <aside class="notes">（進行役：投票結果を画面共有）
+ありがとうございます。皆さんの回答を見てみましょう。
+［クリック］［Q1・普段から気をつけていること］
+（拾い方の例）「手洗いの徹底、と書かれた方が多いですね」「まな板の使い分け。これも複数いらっしゃいます」「◯◯と書かれた方がいます。そこまで見ていらっしゃるんですね」
+皆さん、日頃からきちんと気をつけていらっしゃることがよくわかります。
+［クリック］［Q2・気になっているが、手がつけられていないこと］（件数のみを扱い、個人は特定しない。複数挙がった内容を共有する）
+「一方で、こちらには具体的な回答がたくさん出ています」「◯◯と書かれた方が複数いらっしゃいます。同じことで悩んでいるのは、あなただけではありません」
+［クリック］［Q3・検便の提出状況］「『わからない』という回答が◯件ありました」
+［クリック］［Q4・マキトリでの記録］「『いいえ』が◯％。この数字は、後半でもう一度出てきます」
+日々きちんと気をつけている。でも、気になりながら手をつけられていないことがある。これは、決して珍しいことではありません。今の回答を頭の片隅に置いたまま、次の話を聞いてください。</aside>
+  </section>
+
+  <!-- 04 事例 -->
+  <section class="slide" data-min="4" id="case-slide">
+    <div class="eyebrow" data-in>事例｜商業施設内の店舗</div>
+    <div class="case2">
+      <div class="when" data-in style="--d:1">
+        <div class="y">2024.7</div>
+        <p>横浜市の商業施設内の店舗。<br><b class="hl">うなぎの蒲焼</b>と<b class="hl">うなぎ弁当</b>を販売していた。</p>
+      </div>
+      <ol class="steps">
+        <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-person"/></svg></span><p>従業員が<b>手袋を使わず、素手</b>で作業していた</p></li>
+        <li data-step="2" class="slide-in"><span class="ico"><svg class="i"><use href="#i-search"/></svg></span><p>調理場の<b>作業台</b>からも、同じ菌が検出された<small>黄色ブドウ球菌</small></p></li>
+        <li data-step="3" class="slide-in" id="record-row"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><p>体調・手指の傷の<b class="strike">記録表は、あった</b><small data-step="4">まとめて記入され、責任者も確認していなかった。機能していなかった</small></p></li>
+      </ol>
+      <div class="result" data-step="5">
+        <div class="stat"><div class="v"><span data-count="159">159</span><small>〜161人</small></div><div class="k">嘔吐・下痢等を発症</div></div>
+        <p class="lead">そして、<b>90代の女性1名</b>が亡くなりました。</p>
+      </div>
+    </div>
+    <aside class="notes">こちらの事例を見てください。2024年7月、横浜市の商業施設内にある店舗で実際に起きたことです。
+うなぎの蒲焼と、うなぎ弁当を販売していました。
+［クリック］まず、従業員が手袋を使わず、素手で作業をしていました。
+［クリック］そして、調理場の作業台からも、同じ黄色ブドウ球菌が検出されています。
+［クリック］さらに、この店舗には体調や手指の傷を確認する記録表が、きちんとありました。
+［クリック］ただ、実態はどうだったか。「やりなさい」と言われてやってはいたけれど、まとめて記入していたり、責任者が確認もしていなかった。書類としては存在しているけれど、機能していなかったということです。
+［クリック］結果、159人から161人が嘔吐や下痢の症状を発症し、90代の女性が1名、亡くなっています。</aside>
+  </section>
+
+  <!-- 05 見えない菌 -->
+  <section class="slide" data-germs="160" data-min="4">
+    <div class="phase" data-until="3">
+      <div class="eyebrow" data-in>見えない菌と、時間の勝負</div>
+      <h2 class="title" data-in style="--d:1">食中毒菌は、目に見えません。<br>においも、味もしません。</h2>
+      <div class="split" style="flex:1;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <div class="card" data-step="1"><h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>黄色ブドウ球菌</h3><p>人の手指の傷や化膿巣にいる菌。<br><b class="hl">手袋を1回外しただけ</b>で、食材に付着する</p></div>
+          <div class="alert" data-step="3"><svg class="i"><use href="#i-clock"/></svg><p><b>常温放置</b>は、菌にとって最も都合のいい環境です</p></div>
+        </div>
+        <div data-step="2">
+          <svg class="venn" viewBox="0 0 700 520" role="img" aria-label="菌が増える3つの条件：栄養・水分・温度。厨房はこの3つが揃っている">
+            <g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+              <circle class="c c1" cx="270" cy="200" r="160" fill="#22915c" opacity=".16"/>
+              <circle class="c c2" cx="430" cy="200" r="160" fill="#2f74d9" opacity=".16"/>
+              <circle class="c c3" cx="350" cy="330" r="160" fill="#f5a524" opacity=".2"/>
+              <text class="c c1" x="200" y="160" font-size="38" fill="#17744a">栄養</text>
+              <text class="c c2" x="500" y="160" font-size="38" fill="#1f5bb5">水分</text>
+              <text class="c c3" x="350" y="440" font-size="38" fill="#8f6200">温度</text>
+              <g class="core"><circle cx="350" cy="250" r="62" fill="#22915c"/><text x="350" y="264" font-size="38" fill="#fff">厨房</text></g>
+            </g>
+          </svg>
+          <p class="cap" style="text-align:center">菌が増えるのに必要な3つが、厨房にはすべて揃っている</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="4" style="justify-content:center;gap:40px">
+      <p class="voice">「いつも、いつも、<br>なんで毎日、こんな面倒なことを」</p>
+      <p class="lead" data-step="5">その「いつもやっていること」を<b class="hl">1回省いただけ</b>で、菌は増えます。</p>
+      <div class="bubbles" data-step="6"><span>今日は忙しいから、手袋なしでいいか</span><span>これくらいなら、少し常温に置いても大丈夫だろう</span></div>
+      <p class="statement" data-step="7" style="font-size:80px">その1回が、<span class="hl2">命</span>に関わります。</p>
+    </div>
+    <aside class="notes">ここで、なぜこんなことが起きるのかを考えてみたいと思います。
+食中毒菌は、目に見えません。においもしないし、味も変わりません。
+［クリック］今回の事例で検出された黄色ブドウ球菌は、人の手指の傷や化膿巣にいる菌です。つまり、手に傷があるスタッフが手袋を1回外しただけで、食材に付着します。
+［クリック］そして、菌が増えるために必要なのは、栄養・水分・温度の3つです。厨房は、この3つがすべて揃っている環境です。
+［クリック］常温で放置すれば、菌にとってこれほど都合のいい場所はありません。
+［クリック］「いつも、いつも、なんで毎日、こんな面倒なことを」
+そう思うことが、あると思います。手洗い、手袋、温度チェック、記録。毎日毎日、同じことの繰り返しです。
+［クリック］でも、その「いつもやっていること」を1回省いただけで、菌は増えます。
+［クリック］「今日は忙しいから、手袋なしでいいか」「これくらいなら、少し常温に置いても大丈夫だろう」
+［クリック］その1回が、命に関わります。</aside>
+  </section>
+
+  <!-- 06 何を失うか -->
+  <section class="slide" data-min="5" data-pun="6" data-life="7">
+    <div class="phase" data-until="2">
+      <div class="eyebrow" data-in>何を失うか</div>
+      <h2 class="title" data-in style="--d:1">会社も、あなた個人も、責任を負います</h2>
+      <div class="cols cols-2">
+        <div class="card" data-step="1">
+          <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
+          <ul class="points plain">
+            <li><div>営業停止処分（通常3〜7日）＋行政による公表</div></li>
+            <li><div>治療費・休業損害・慰謝料などの損害賠償</div></li>
+            <li><div>ブランドの失墜、顧客離れ</div></li>
+            <li><div>閉店すれば、内装・設備・什器への投資は回収できない<small class="cap" style="display:block">冒頭の事例は、2ヶ月後に再開せず閉店</small></div></li>
+          </ul>
+        </div>
+        <div class="card is-accent" data-step="2">
+          <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
+          <p><b>業務上過失致死傷罪</b>　死者が出なくても、負傷の段階で対象<br><span class="cap">5年以下の拘禁刑または100万円以下の罰金</span></p>
+          <p style="margin-top:6px"><b>食品衛生法違反</b></p>
+          <div class="lawflow">
+            <div>HACCPの未実施など<br><span class="cap" style="font-size:22px">これ自体に直接の罰則はない</span></div><i>→</i>
+            <div>保健所の改善命令・営業停止命令</div><i>→</i>
+            <div class="last">従わない場合<br>3年以下の拘禁刑または300万円以下の罰金</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="3" data-until="5" style="gap:20px">
+      <div class="eyebrow">過去の重大事例</div>
+      <h2 class="title">2011年　焼肉チェーンのユッケ食中毒</h2>
+      <p class="text">腸管出血性大腸菌（O-157）により、<b>181人が発症、5名が死亡</b>。遺族が運営会社と元社長個人を提訴。</p>
+      <div class="verdict2">
+        <div class="card ok"><span class="tag">2018年 東京地裁</span><h3>運営会社</h3><p class="lead"><b>約1億6,900万円</b>の支払いを命令</p><p class="cap">運営会社は2023年に破産</p></div>
+        <div class="card no" data-step="4"><span class="tag">請求は棄却</span><h3>元社長・元店長（個人）</h3>
+          <ul class="points plain"><li><div>理由①　当時は国の衛生基準が周知されていなかった</div></li><li><div>理由②　元店長は<b class="hl">会社のマニュアルに従って</b>調理していた</div></li></ul>
+        </div>
+      </div>
+      <div class="alert is-ok" data-step="5"><svg class="i"><use href="#i-shield"/></svg><p><b>決められた通りにやっていたことが、結果として個人を守った。</b>逆に言えば、マニュアルを逸脱していたら、判断は違っていた可能性があります。</p></div>
+    </div>
+    <div class="phase" data-step="6" style="gap:20px">
+      <div class="eyebrow">何よりも重いもの</div>
+      <p class="lead">営業停止、損害賠償、罰金、閉店。処分や罰金は、確かに重いものです。</p>
+      <p class="statement" data-step="7" style="font-size:72px">でも、いちばん重いのは、<span class="hl2">命</span>が失われること。<small style="margin-top:12px">お客様の命です。</small></p>
+      <svg class="scale" viewBox="0 0 1664 470" role="img" aria-label="天秤の図：左の皿に処分を載せると左に傾くが、右の皿に命を載せると大きく右に傾く">
+        <g font-family="Zen Kaku Gothic New, sans-serif" text-anchor="middle">
+          <rect x="732" y="440" width="200" height="22" rx="11" fill="#c9cfd7"/>
+          <rect x="824" y="110" width="16" height="335" rx="8" fill="#c9cfd7"/>
+          <g class="beam"><rect x="292" y="102" width="1080" height="16" rx="8" fill="#79808b"/></g>
+          <circle cx="832" cy="110" r="22" fill="#4f5661"/>
+          <g class="panL">
+            <path d="M312 110L182 290M312 110L442 290" stroke="#9aa1ab" stroke-width="3"/>
+            <path d="M162 290h300a150 46 0 0 1-300 0z" fill="#e3e7ec" stroke="#9aa1ab" stroke-width="3"/>
+            <g class="chip" data-step="6" style="transition-delay:.15s"><rect x="186" y="236" width="122" height="50" rx="12" fill="#fff" stroke="#d9dee5" stroke-width="3"/><text x="247" y="270" font-size="24" font-weight="700" fill="#4f5661">営業停止</text></g>
+            <g class="chip" data-step="6" style="transition-delay:.35s"><rect x="316" y="236" width="122" height="50" rx="12" fill="#fff" stroke="#d9dee5" stroke-width="3"/><text x="377" y="270" font-size="24" font-weight="700" fill="#4f5661">損害賠償</text></g>
+            <g class="chip" data-step="6" style="transition-delay:.55s"><rect x="186" y="180" width="122" height="50" rx="12" fill="#fff" stroke="#d9dee5" stroke-width="3"/><text x="247" y="214" font-size="26" font-weight="700" fill="#4f5661">罰金</text></g>
+            <g class="chip" data-step="6" style="transition-delay:.75s"><rect x="316" y="180" width="122" height="50" rx="12" fill="#fff" stroke="#d9dee5" stroke-width="3"/><text x="377" y="214" font-size="26" font-weight="700" fill="#4f5661">閉店</text></g>
+            <text x="312" y="380" font-size="32" font-weight="900" fill="#4f5661">処分</text>
+          </g>
+          <g class="panR">
+            <path d="M1352 110L1222 290M1352 110L1482 290" stroke="#9aa1ab" stroke-width="3"/>
+            <path d="M1202 290h300a150 46 0 0 1-300 0z" fill="#e3e7ec" stroke="#9aa1ab" stroke-width="3"/>
+            <g class="life" data-step="7">
+              <circle class="life-ring" cx="1352" cy="250" r="44" fill="none" stroke="#22915c" stroke-width="4"/>
+              <ellipse cx="1352" cy="290" rx="40" ry="6" fill="#1d2128" opacity=".18"/>
+              <rect x="1318" y="216" width="68" height="70" rx="16" fill="#17744a"/>
+              <rect x="1318" y="216" width="68" height="22" rx="11" fill="#22915c" opacity=".55"/>
+              <text x="1352" y="267" font-size="46" font-weight="900" fill="#fff">命</text>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <aside class="notes">では、実際に食中毒が起きた場合、何を失うのか。
+［クリック］まず会社です。保健所からの営業停止処分、通常3日から7日間。処分内容は行政のホームページ等で公表されます。被害に遭われた方への治療費、休業損害、慰謝料。そして、ブランドの失墜と顧客離れです。
+先ほどの事例のうなぎ店は、レストランと物販、両方の店舗を、2ヶ月後に再開せずに閉店しています。
+ここで考えていただきたいのですが、仮にそれが新店舗だったとしたら、どうなるか。内装、厨房設備、什器。かけた投資は一切回収されないまま、そのまま損失になります。
+［クリック］次に、皆さん個人です。
+業務上過失致死傷罪。前回もお話ししましたが、死者が出なくても、負傷の段階で対象になります。5年以下の拘禁刑、または100万円以下の罰金です。
+そしてもう一つ、食品衛生法違反があります。HACCP計画を実施していないこと自体に、直接の罰則はありません。まず保健所から、改善命令や営業停止命令が出されます。その命令に従わなかった場合に、3年以下の拘禁刑または300万円以下の罰金が科されます。
+［クリック］過去には、こんな事例もあります。
+2011年、焼肉チェーンでの生肉メニュー、ユッケの提供による腸管出血性大腸菌、O-157の食中毒で、181人が発症し、5名が亡くなりました。
+遺族の方々は、運営会社と元社長個人を相手に裁判を起こしました。2018年、東京地裁は運営会社に対して約1億6,900万円の支払いを命じています。なお、この会社は2023年に破産しています。
+［クリック］ただし、元社長と元店長、つまり個人への請求は棄却されました。理由は2つです。
+一つは、当時は国の衛生基準が周知されていなかったこと。生食用の肉に関するルールが、まだ明確に定まっていなかった時期でした。
+もう一つは、元店長については「会社のマニュアルに従って調理をしていた」からです。
+［クリック］ここは、皆さんにとって重要なポイントです。決められた通りにやっていたことが、結果として個人を守りました。逆に言えば、マニュアルを逸脱していたら、判断は違っていた可能性があります。
+［クリック］そして先ほどお話しした、2024年のうなぎ弁当の事例で1名。
+ここまでお話ししてきた処分や罰金は、確かに重いものです。
+［クリック］ただ、いちばん重いのは、お客様の命が失われるということです。</aside>
+  </section>
+
+  <!-- 07 3原則 -->
+  <section class="slide" data-min="2">
+    <div class="eyebrow" data-in>食中毒予防の3原則</div>
+    <h2 class="title" data-in style="--d:1">1つでも崩れれば、リスクは一気に高まる</h2>
+    <div class="cols cols-3">
+      <div class="card pillar" data-step="1" style="padding:28px 32px"><span class="ico" style="width:96px;height:96px;font-size:56px"><svg class="i"><use href="#i-water"/></svg></span><span class="n">1</span><h3 style="font-size:48px">付けない</h3><p class="text" style="font-size:28px">手洗い・器具の使い分け・交差汚染の防止</p></div>
+      <div class="card pillar" data-step="2" style="padding:28px 32px"><span class="ico water" style="width:96px;height:96px;font-size:56px"><svg class="i"><use href="#i-clock"/></svg></span><span class="n">2</span><h3 style="font-size:48px">増やさない</h3><p class="text" style="font-size:28px">温度管理<br>冷蔵10℃以下・冷凍−15℃以下</p></div>
+      <div class="card pillar" data-step="3" style="padding:28px 32px"><span class="ico" style="width:96px;height:96px;font-size:56px;background:var(--danger-soft);color:var(--danger)"><svg class="i"><use href="#i-fire"/></svg></span><span class="n">3</span><h3 style="font-size:48px">やっつける</h3><p class="text" style="font-size:28px">確実な加熱<br>中心温度75℃・1分以上</p></div>
+    </div>
+    <div class="band" data-step="4">
+      <svg viewBox="0 0 1664 150" role="img" aria-label="温度の帯：冷凍−15℃以下、冷蔵10℃以下、菌が増えやすい20〜50℃、加熱は中心75℃">
+        <defs><linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#7fb2f0"/><stop offset=".3" stop-color="#bfe3cf"/><stop offset=".45" stop-color="#f5a524"/><stop offset=".7" stop-color="#f5a524"/><stop offset="1" stop-color="#c23a2e"/></linearGradient></defs>
+        <g font-family="Zen Kaku Gothic New, sans-serif" text-anchor="middle">
+          <rect class="grow" x="20" y="56" width="1624" height="30" rx="15" fill="url(#tg)"/>
+          <rect x="530" y="48" width="465" height="46" rx="10" fill="none" stroke="#c23a2e" stroke-width="4" stroke-dasharray="10 8"/>
+          <text x="762" y="34" font-size="28" font-weight="900" fill="#c23a2e">20〜50℃ 菌が増えやすい</text>
+          <text x="80" y="128" font-size="26" font-weight="700" fill="#1f5bb5">冷凍 −15℃以下</text>
+          <text x="370" y="128" font-size="26" font-weight="700" fill="#1f5bb5">冷蔵 10℃以下</text>
+          <text x="1500" y="128" font-size="26" font-weight="700" fill="#c23a2e">加熱 中心75℃・1分以上</text>
+          <text x="20" y="34" font-size="22" text-anchor="start" fill="#4f5661">低い</text><text x="1644" y="34" font-size="22" text-anchor="end" fill="#4f5661">高い</text>
+        </g>
+      </svg>
+    </div>
+    <aside class="notes">では、どうすれば防げるのか。
+食中毒の予防には、3つの原則があります。
+［クリック］「付けない」──手洗い、器具の使い分け、交差汚染の防止です。
+［クリック］「増やさない」──温度管理。冷蔵は10℃以下、冷凍は−15℃以下。
+［クリック］「やっつける」──中心温度75℃で1分以上の、確実な加熱です。
+［クリック］この3つのうち、1つでも崩れれば、食中毒のリスクは一気に高まります。
+この3つを、日常の業務としてどう組み立てるか。それが、これからお話しするプラン・キープ・アクトです。</aside>
+  </section>
+
+  <!-- 08 プラン -->
+  <section class="slide" data-min="4">
+    <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）</b></div>
+    <div class="phase" data-until="3" style="top:200px">
+      <h2 class="title">ルールを決める</h2>
+      <div class="row" style="gap:28px;flex:1">
+        <div class="card is-accent" data-step="1" style="flex:1.05">
+          <h3><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>食品衛生責任者の設置・掲示</h3>
+          <ul class="points plain">
+            <li><div>施設ごとに1名。変更は<b class="hl">15日以内</b>に保健所へ届出</div></li>
+            <li><div>営業許可書と併せて、レジ付近など見えやすい場所に掲示</div></li>
+            <li><div>調理師・栄養士等は講習会免除。それ以外は養成講習会で取得</div></li>
+          </ul>
+          <div class="ph" style="min-height:0;height:150px"><span>レジ付近の掲示（責任者の表示と営業許可書）</span></div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+          <div class="card" data-step="2"><h3><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span>HACCPの2つの計画</h3><p>「一般衛生管理計画」と「重要管理計画」を作成し、全従業員に周知する。検食の実施手順も明確に</p></div>
+          <div class="card" data-step="3" style="background:var(--accent-soft);box-shadow:none"><h3>その計画を毎日回すのが「マキトリ」</h3><p>社内の記録作業ではなく、法律上の義務を実務として回す仕組み</p><p class="cap">計画は保健所への提出は不要。店舗に備え置き、立入検査で提示できる状態に</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="4" style="top:200px">
+      <h2 class="title">衛生ルールに加えて、ハウスルールを明確にする</h2>
+      <svg class="house" viewBox="0 0 1664 470" role="img" aria-label="全体の衛生ルールの円の外に、店舗ごとの事情がはみ出している。そのはみ出した部分をハウスルールとして明文化する">
+        <g font-family="Zen Kaku Gothic New, sans-serif" text-anchor="middle" font-weight="900">
+          <circle cx="560" cy="235" r="210" fill="#ddf2e7" stroke="#22915c" stroke-width="4"/>
+          <text x="560" y="220" font-size="38" fill="#17744a">バルニバービ全体の</text>
+          <text x="560" y="268" font-size="38" fill="#17744a">衛生ルール</text>
+          <g class="gap">
+            <path d="M720 110c140-40 300 0 340 110s-60 200-200 200c-60 0-110-20-140-50" fill="#fde8d9" stroke="#e2600f" stroke-width="4" stroke-dasharray="12 8"/>
+            <text x="930" y="230" font-size="32" fill="#b44a0a">店舗ごとの事情</text>
+            <text x="930" y="275" font-size="26" font-weight="700" fill="#4f5661">食材・厨房の広さ・動線</text>
+            <path d="M1090 240h140" stroke="#e2600f" stroke-width="5"/><path d="M1222 226l18 14-18 14" fill="none" stroke="#e2600f" stroke-width="5"/>
+            <rect x="1260" y="160" width="380" height="160" rx="22" fill="#fff" stroke="#e2600f" stroke-width="4"/>
+            <text x="1450" y="230" font-size="38" fill="#b44a0a">ハウスルール</text>
+            <text x="1450" y="278" font-size="26" font-weight="700" fill="#4f5661">として決めて、明文化する</text>
+          </g>
+        </g>
+      </svg>
+      <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p>これがないと、<b>スタッフによって判断がバラバラ</b>になります。</p></div>
+    </div>
+    <aside class="notes">まず、プラン。計画を立てて、ルールを決める段階です。
+［クリック］最初にお伝えしたいのは、食品衛生責任者の設置と掲示です。これは各都道府県等の条例に基づく義務で、施設ごとに1名の設置が必要です。
+変更があった場合は、15日以内に保健所へ届出をしてください。そして、営業許可書と併せて、レジ付近など見えやすい場所に掲示する義務もあります。
+資格の取得については、調理師や栄養士等の有資格者であれば講習会は免除されます。それ以外の方は、都道府県の食品衛生協会が実施する養成講習会を受講することで取得できます。
+［クリック］そのうえで、HACCPに基づく「一般衛生管理計画」と「重要管理計画」を作成し、全従業員に周知すること。そして、検食の実施手順を明確にしておくことです。
+［クリック］ここで一つ、補足しておきます。この計画に沿って、日々実施している内容が、皆さんが使っている「マキトリ」というシステムです。
+冷蔵庫の温度、衛生管理の状況、重要管理点のチェック。あれは、単なる社内の記録作業ではありません。HACCPという法律上の義務を、実務として回すための仕組みです。
+なお、この計画の作成は法的な義務ですが、保健所へ提出する必要はありません。店舗に備え置いて、立入検査の際に提示できる状態にしておくことが求められます。
+［クリック］そしてもう一つ、衛生ルールに加えて、ハウスルールを明確にすることです。
+あくまで基準は、バルニバービ全体の衛生ルールです。そのうえで、店舗によって、全体ルールに収まらない部分が出てきます。扱う食材、厨房の広さ、動線。店舗ごとに事情が違いますから。
+その、ルールから漏れる部分を、ちゃんと決めて明文化しておく。
+［クリック］これがないと、スタッフによって判断がバラバラになります。</aside>
+  </section>
+
+  <!-- 09 キープ -->
+  <section class="slide" data-min="3">
+    <div class="tracker" data-in><span>P</span><em></em><span class="on">K</span><em></em><span>A</span><b>キープ（維持）</b></div>
+    <h2 class="title" data-in style="--d:1">維持・点検する</h2>
+    <div class="keep-grid">
+      <div class="card" data-step="1"><h3>温度管理と、毎日の記録</h3><p>毎日定時に測定し、記録する</p><div class="temp-big"><div><b>10℃</b><span>冷蔵 以下</span></div><div><b>−15℃</b><span>冷凍 以下</span></div></div></div>
+      <div class="card" data-step="2"><h3>手洗い設備の補充状況</h3><div class="ph"><span>手洗い場（液体洗剤・ペーパータオル・アルコール）</span></div><p class="cap">設備があっても、消毒液が空では意味がない</p></div>
+      <div class="card" data-step="3"><h3>まな板の5色使い分け</h3><div class="ph"><span>まな板5色が並んだ様子</span></div><div class="fields"><span>肉</span><span>魚</span><span>野菜</span><span>生食用</span><span>その他</span></div></div>
+      <div class="card" data-step="4"><h3>ダスターの交換ルール</h3><p>決められた周期で交換・廃棄を徹底する</p></div>
+      <div class="card" data-step="5" style="grid-column:span 2;flex-direction:row;align-items:center;gap:28px"><span class="ico"><svg class="i"><use href="#i-duct"/></svg></span><div><h3>ダクト・グリストラップの清掃　月1回</h3><p>ダクト清掃は、第1章の防災管理でも出てきた、<b>火災対策と衛生管理の両方</b>に関わる項目です</p></div></div>
+    </div>
+    <aside class="notes">次に、キープ。決めたことを維持し、点検し続ける段階です。
+［クリック］温度管理は、冷蔵10℃以下、冷凍−15℃以下。これを毎日記録します。
+［クリック］手洗い設備については、石けん、消毒液、ペーパータオルの補充状況を確認してください。設備があっても、消毒液が空では意味がありません。
+［クリック］まな板の5色使い分け。肉、魚、野菜、生食用、その他です。
+［クリック］そしてダスターの交換ルールの徹底。
+［クリック］ダクトとグリストラップの清掃は月1回です。ダクト清掃は、前回の防災管理でもお話ししましたが、火災対策と衛生管理の両方に関わる項目です。</aside>
+  </section>
+
+  <!-- 10 アクト -->
+  <section class="slide" data-min="3" id="act-slide">
+    <div class="tracker" data-in><span>P</span><em></em><span>K</span><em></em><span class="on">A</span><b>アクト（実行）</b></div>
+    <h2 class="title" data-in style="--d:1">実施して、記録する</h2>
+    <div class="act-wrap">
+      <ul class="act-list">
+        <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-person"/></svg></span><p><b>体調申告</b>の日次記録<small>下痢・発熱・嘔吐・手の傷。冒頭の事例で形骸化していたのが、これ</small></p></li>
+        <li data-step="2" class="slide-in"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><p><b>検便</b>（腸内細菌検査）<small>毎月実施し、記録を保管</small></p></li>
+        <li data-step="3" class="slide-in"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><p><b>検食</b>　10名以上に同一メニューを提供する際<small>1検体50gを、2週間冷凍保管</small></p></li>
+        <li data-step="4" class="slide-in"><span class="ico"><svg class="i"><use href="#i-check"/></svg></span><p><b>マキトリ</b>への確実な記録<small><span class="poll" data-q="Q4">「いいえ」<b contenteditable="true">◯</b>%</span></small></p></li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="alert is-info" data-step="5"><svg class="i"><use href="#i-clipboard"/></svg><p>記録がなければ、<b>「やっていた」ことの証明になりません。</b></p></div>
+        <div class="log" data-step="6">
+          <p style="font-size:28px;font-weight:900;display:flex;align-items:center;gap:12px">入力した時刻は、ログに残る <span class="ex-tag">例</span></p>
+          <table>
+            <tr><th>記録の項目</th><th>実施すべき時刻</th><th>入力された時刻</th></tr>
+            <tr><td>冷蔵庫の温度</td><td class="t">9:00</td><td class="t bad">17:02</td></tr>
+            <tr><td>体調申告</td><td class="t">出勤時</td><td class="t bad">17:02</td></tr>
+            <tr><td>安全点検</td><td class="t">15:00</td><td class="t bad">17:03</td></tr>
+          </table>
+          <p class="cap" style="font-size:26px;color:var(--ink)">後からまとめて入力すると、<b>一目でわかります</b>。悪質な隠蔽として、行政処分・刑事ペナルティが重くなります。</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">最後に、アクト。アクション、つまり実際に行動して、記録する段階です。
+［クリック］体調申告。下痢、発熱、嘔吐、手の傷。これを毎日記録します。冒頭の事例で形骸化していたのが、まさにこの記録でした。
+［クリック］検便、腸内細菌検査は毎月実施し、記録を保管します。
+［クリック］検食は、10名以上に同一メニューを提供する際、1検体50gを2週間冷凍保管します。
+［クリック］そして、マキトリシステムへの記録です。
+ここで、冒頭の投票を思い出してください。「マキトリで日々の記録ができていますか」という質問に、「いいえ」と答えた方が◯％いらっしゃいました。（進行役：スライドの◯をクリックすると、数字を入力できます）
+［クリック］記録がなければ、「やっていた」ことの証明になりません。
+［クリック］そしてもう一つ、重要なことがあります。事後にまとめて記載する行為は、保健所の立入検査で即座に見破られます。マキトリには、入力した時刻のログが残ります。後からまとめて入力したことは、ログを見れば一目でわかります。
+そして、それが発覚した場合、悪質な隠蔽として、行政処分や刑事ペナルティが劇的に重くなります。記録を忘れたことより、後から取り繕ったことの方が、はるかに重く扱われるということです。</aside>
+  </section>
+
+  <!-- 11 初動対応 -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>それでも起きたら：初動対応</div>
+    <h2 class="title" data-in style="--d:1">「食べた後に体調を崩した」と連絡が入ったら</h2>
+    <ol class="timeline compact" style="gap:12px">
+      <li data-n="1" data-step="1" class="slide-in"><h3>傾聴と、正確な記録</h3><div class="fields"><span>発症の日時</span><span>症状</span><span>受診の有無</span><span>来店の日時</span><span>注文内容</span></div></li>
+      <li data-n="2" data-step="2" class="slide-in"><h3>店長・責任者への即時報告</h3><p>本部（各社の代表・役員）へ速やかに報告し、指示を仰ぐ</p></li>
+      <li data-n="3" data-step="3" class="slide-in"><h3>保健所への連絡の要否は、本部の指示を確認</h3><p class="ng-say"><svg class="i"><use href="#i-x"/></svg>自己判断で「うちは大丈夫です」と答えない</p></li>
+      <li data-n="4" data-step="4" class="slide-in"><h3>店舗内の証拠確保</h3><div class="fields"><span>調理記録</span><span>温度管理表</span><span>仕入伝票</span><span>検食の有無</span></div></li>
+    </ol>
+    <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p><b>独断での隠蔽・示談は絶対禁止。</b>他にも同じものを食べたお客様がいるかもしれません。</p></div>
+    <aside class="notes">ここからは、それでも起きてしまった場合の話です。
+お客様から「あの店で食べた後に、体調を崩した」という連絡が入りました。その瞬間から、何をするか。
+［クリック］一つ目、傾聴と正確な記録です。
+発症の日時、症状、病院を受診されたかどうか、来店の日時、そして何を注文されたか。これを漏れなく確認し、記録してください。
+［クリック］二つ目、店長・責任者への即時報告です。
+本部、各社の代表や役員へ速やかに報告し、指示を仰いでください。
+［クリック］三つ目、保健所への連絡が必要かどうかは、本部の指示を確認してください。
+ここで絶対にやってはいけないのが、自己判断で「うちは大丈夫です」と答えてしまうことです。
+［クリック］四つ目、店舗内の証拠確保です。
+調理記録、温度管理表、仕入伝票、そして検食があるかどうか。これらを確認してください。
+［クリック］そして、独断での隠蔽や示談は絶対に禁止です。本部への報告を怠ることは、被害の拡大に直結します。他にも同じものを食べたお客様がいるかもしれないからです。</aside>
+  </section>
+
+  <!-- 12 事後対応 -->
+  <section class="slide" data-min="3">
+    <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
+    <h2 class="title" data-in style="--d:1">保健所の調査が入った後</h2>
+    <div class="post-grid">
+      <div class="card" data-step="1"><span class="badge">1</span><h3>調査への協力</h3><p>立入調査、そして検食の提出に協力する</p></div>
+      <div class="card" data-step="2"><span class="badge">2</span><h3>誠実な謝罪とサポート</h3><p>医療対応・治療費等の確認を含め、被害を受けた方へ誠実に対応する</p></div>
+      <div class="card" data-step="3"><span class="badge">3</span><h3>是正措置の実行</h3><p>原因食材の完全廃棄、厨房と器具の徹底した洗浄・消毒</p></div>
+      <div class="card is-accent" data-step="4"><span class="badge">4</span><h3>記録の正確性が、命運を分ける</h3><p>日頃の温度記録・体調申告の記録が「管理していた証拠」になる</p><p class="cap">第1章と同じ：日々の記録は、いざという時に自分と店を守る</p></div>
+    </div>
+    <aside class="notes">保健所の調査が入った後の対応です。
+［クリック］一つ目、調査への協力。立入調査、そして検食の提出に協力します。
+［クリック］二つ目、誠実な謝罪とサポート。医療対応、治療費等の確認を含め、被害を受けた方へ誠実に対応します。
+［クリック］三つ目、是正措置の実行。原因となった食材の完全廃棄、厨房と器具の徹底した洗浄消毒です。
+［クリック］四つ目、これが最も重要です。記録の正確性が、命運を分けます。
+日頃つけていた温度記録、体調申告の記録。これが「きちんと管理していた」という証拠になります。逆に記録がなければ、管理を怠っていたとみなされます。
+前回の防災管理でもお話ししましたが、日々の記録は、いざという時に自分と店を守る証拠になるということです。</aside>
+  </section>
+
+  <!-- 13 事例のその後 -->
+  <section class="slide" data-min="3">
+    <div class="phase" data-until="4">
+      <div class="eyebrow" data-in>冒頭の事例は、その後どうなったか</div>
+      <h2 class="title" data-in style="--d:1">処分は、1ヶ月半ほどで終わりました</h2>
+      <ol class="htl">
+        <li data-step="1"><span class="d">2024.7.29</span><h3>営業禁止処分</h3><p>保健所による処分</p></li>
+        <li data-step="2"><span class="d">2024.9.11</span><h3>営業禁止処分が解除</h3><p>手洗い方法の見直し、従事者の健康確認・記録の徹底など、改善が認められた</p></li>
+        <li data-step="3" class="is-end"><span class="d">2024.10末</span><h3>しかし、再開せずに閉店</h3><p>10階のレストランも、地下1階の食品フロアの売店も、両方。原因は最後まで特定できなかった</p></li>
+      </ol>
+      <p class="after-stmt" data-step="4">処分は解けた。<br>でも、<span class="hl2">戻れなかった。</span></p>
+    </div>
+    <div class="phase" data-step="5">
+      <div class="eyebrow">どれだけ誠実に対応しても、批判がゼロになることはない</div>
+      <h2 class="title">やるべきことができていなかった時、<br>批判は<span class="hl">「言い訳のできないもの」</span>に変わる</h2>
+      <ul class="xlist">
+        <li data-step="6" class="slide-in"><div><b>手袋をしていなかった</b><small>やるべきことが、できていなかった</small></div></li>
+        <li data-step="7" class="slide-in"><div><b>記録はあったが、機能していなかった</b><small>マニュアルは、存在していた</small></div></li>
+        <li data-step="8" class="slide-in"><div><b>会見で、現場の実態を答えられなかった</b><small>いつ製造したものかという質問に、責任者が答えられなかった</small></div></li>
+      </ul>
+      <p class="lead" data-step="9">老舗であることも、有名百貨店に入っていることも、<b>盾にはなりませんでした。</b></p>
+    </div>
+    <aside class="notes">最後に、冒頭の事例がその後どうなったか、お伝えします。
+［クリック］2024年7月29日、保健所から営業禁止処分が出されました。
+［クリック］そして、9月11日に営業禁止処分が解除されています。保健所の指導に対する改善を行ったと認められたからです。処分そのものは、1ヶ月半ほどで終わりました。
+［クリック］しかし、店は再開しませんでした。そして10月末、閉店しています。地下1階の食品フロアの店舗も、10階のレストランも、両方です。原因は、最後まで特定できませんでした。
+［クリック］処分は解けた。でも、戻れなかった。
+［クリック］どれだけ誠実に対応しても、批判がゼロになることはありません。
+ただ、やるべきことができていなかった時、その批判は「言い訳のできないもの」に変わります。
+この事例で問われたのは、3つでした。
+［クリック］一つ目、手袋をしていなかった。やるべきことが、できていなかった。
+［クリック］二つ目、記録はあったが、機能していなかった。マニュアルは、存在していたんです。
+［クリック］三つ目、会見で、現場の実態を答えられなかった。いつ製造したものかという質問に、責任者が答えられませんでした。
+［クリック］老舗であることも、有名百貨店に入っていることも、盾にはなりませんでした。
+そして、この3つ目が、皆さんにとって最も身近な話だと思います。現場を把握していない責任者は、いざという時に、何も答えられません。日々の記録と確認は、そのための準備でもあります。</aside>
+  </section>
+
+  <!-- 14 修了レポート -->
+  <section class="slide light" data-min="3">
+    <div class="eyebrow" data-in>研修修了レポートについて</div>
+    <h2 class="title" data-in style="--d:1">レポートの提出をもって「受講完了」となります</h2>
+    <div class="report" data-in style="--d:2">
+      <div class="report-cards">
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
+        <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-store"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>店舗を確認しながら記入</b></p></div></div>
+      </div>
+      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
+    </div>
+    <div class="card is-soft" data-step="1" style="flex-direction:row;align-items:center;gap:24px;padding:18px 28px"><span class="poll" data-q="Q2">気になっているが、手がつけられていないこと</span><svg class="i" style="font-size:40px;color:var(--accent)"><use href="#i-arrow"/></svg><p class="lead" style="font-size:36px"><b>いつまでに、何をするか</b>を書く</p></div>
+    <div class="row" data-step="2">
+      <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
+      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>該当しないものは「なし」で構いません</p></div>
+    </div>
+    <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
+（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
+提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
+このレポートは、実際にお店を確認しながら記入してください。
+食中毒が起きたとき、責任者が負う責任。検便の提出状況。HACCP計画の内容と、自店のメニューが重要管理点のどのグループに当たるか。警戒すべき食中毒菌と、その対策。検食のルール。マキトリの記録。アレルギー情報の共有。今日お話しした内容を、自店に当てはめて書いていただきます。
+［クリック］そして、一つ、特にお願いしたいことがあります。
+冒頭の投票で、「気になっているけれど、手がつけられていないこと」を書いていただきました。レポートでは、それをいつまでに、何をするかという形で書いてください。
+気になっているということは、すでに気づいているということです。あとは、手をつけるだけです。
+［クリック］最後に、店に戻って、実際に確認したこと・対応したことを書いていただきます。自店に該当しないものは「なし」で構いません。</aside>
+  </section>
+
+  <!-- 15 クロージング -->
+  <section class="slide glow center" data-germs="140" data-min="3">
+    <div class="eyebrow" data-in>最後に</div>
+    <p class="lead" data-step="1">食中毒は、目に見えない菌が起こします。においも、味もしません。<br>だからこそ、防げるのは<b>「いつもやっていること」を、いつも通りにやり続けること</b>だけです。</p>
+    <div class="bubbles" data-step="2"><span>今日は忙しいから</span><span>これくらいなら大丈夫だろう</span></div>
+    <p class="lead" data-step="3">その少しの妥協が、惨事につながります。</p>
+    <p class="quote" data-step="4">その「まあいいか」を止められるのは、<br>今この店にいる、<span class="hl2">あなた自身</span>です。</p>
+    <div class="contact" data-step="4" style="align-self:flex-start"><svg class="i"><use href="#i-chat"/></svg><span>食品衛生の相談</span><b>BRC 執行役員　勝間</b></div>
+    <aside class="notes">［クリック］食中毒は、目に見えない菌が起こします。においも、味もしません。
+だからこそ、防げるのは「いつもやっていること」を、いつも通りにやり続けることだけです。
+［クリック］「今日は忙しいから」「これくらいなら大丈夫だろう」
+［クリック］その少しの妥協が、惨事につながります。
+［クリック］そして、その「まあいいか」を止められるのは、今この店にいる、皆さん自身です。
+食品衛生で迷ったことは、BRCの勝間に相談してください。
+本日は以上です。ありがとうございました。</aside>
+  </section>
+
+  <!-- 16 質疑応答 -->
+  <section class="slide center" data-min="0" data-no-footer>
+    <span class="ico pulse" data-in style="width:120px;height:120px;font-size:68px;border-radius:50%"><svg class="i"><use href="#i-chat"/></svg></span>
+    <h2 class="statement" data-in style="--d:1">質疑応答</h2>
+    <p class="lead muted" data-in style="--d:2">ご質問があれば、チャットまたは挙手でお願いします。</p>
+    <aside class="notes">ご質問があれば、チャットまたは挙手でお願いします。
+（進行役：質問がない場合も、10〜15秒は間を取る）</aside>
+  </section>
+
+</div>
+<script src="assets/deck.js"></script>
+<script>
+/* 第2章だけの演出：記録表に取り消し線 */
+(function () {
+  const deck = document.querySelector('.deck');
+  deck.addEventListener('slidechange', e => {
+    const at = e.detail.slide.id === 'case-slide' ? e.detail.step : -1;
+    document.getElementById('record-row').classList.toggle('struck', at >= 4);
+  });
+})();
+</script>
