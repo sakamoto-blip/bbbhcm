@@ -230,7 +230,7 @@ b, strong { font-weight: 900; }
 /* ---------- フッター ---------- */
 .d-footer { position: absolute; left: 128px; right: 128px; bottom: 44px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 32px; font-size: 24px; color: var(--ink-2); pointer-events: none; z-index: 5; }
 .d-brand { display: inline-flex; align-items: center; gap: 14px; font-size: 24px; font-weight: 700; color: #1f4359; letter-spacing: .08em; }
-.d-brand img { width: 40px; height: 40px; display: block; }
+.d-brand img { height: 34px; width: auto; display: block; }
 .d-right { display: flex; justify-content: flex-end; align-items: center; gap: 28px; }
 .d-footer.brand-only .d-chapter, .d-footer.brand-only .d-right { visibility: hidden; }
 .d-dots { display: flex; gap: 10px; }

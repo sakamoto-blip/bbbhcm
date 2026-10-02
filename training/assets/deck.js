@@ -60,9 +60,9 @@
   slides.forEach(s => stage.appendChild(s));
   const footer = document.createElement('div');
   footer.className = 'd-footer';
-  const logo = deck.dataset.logo || 'assets/logo-mark.svg';
-  const company = deck.dataset.company || '株式会社バルニバービ';
-  footer.innerHTML = `<span class="d-chapter">${deck.dataset.chapter || ''}</span><span class="d-brand"><img src="${logo}" alt="">${company}</span><span class="d-right"><span class="d-dots"></span><span class="d-page"></span></span>`;
+  const logo = deck.dataset.logo || 'assets/logo.svg';
+  const company = deck.dataset.company || 'BALNIBARBI';
+  footer.innerHTML = `<span class="d-chapter">${deck.dataset.chapter || ''}</span><span class="d-brand"><img src="${logo}" alt="${company}"></span><span class="d-right"><span class="d-dots"></span><span class="d-page"></span></span>`;
   const progress = document.createElement('div');
   progress.className = 'd-progress';
   stage.append(footer, progress);
