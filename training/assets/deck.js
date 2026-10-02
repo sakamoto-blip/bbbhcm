@@ -1,6 +1,7 @@
 /* =========================================================
    研修スライド 共通の動き
-   - → / Space / クリック：進む　← ：戻る　F：全画面　N：進行メモ
+   - → / Space / クリック：進む　← ：戻る　F：全画面　N：進行メモ　P：発表者ウィンドウ
+   - 画面の下にマウスを近づけると、スライド一覧のバーが出る（クリックで移動）
    - [data-step="n"] の要素は n 回目の操作で表示
    - [data-until="n"] の要素は n 回目より後で消える（場面の入れ替え）
    - [data-count="365"] は表示時に数え上げ、[data-countdown="10"] は数え下げ
@@ -17,8 +18,9 @@
     check: '<path d="M5 12l5 5 9-10"/>',
     clipboard: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM8 12h8M8 16h5"/>',
     building: '<path d="M4 21V5l8-3 8 3v16M2 21h20"/><path d="M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/>',
-    person: '<circle cx="12" cy="7" r="3.5"/><path d="M5 21v-1.5a7 7 0 0 1 14 0V21"/>',
-    users: '<circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14a5 5 0 0 1 4 5v1"/>',
+    person: '<g fill="currentColor" stroke="none"><circle cx="12" cy="3.4" r="2.5"/><path d="M8.7 6.9h6.6a2 2 0 0 1 2 2v5.6a1.15 1.15 0 0 1-2.3 0V10h-.5v11.8a1.45 1.45 0 0 1-2.9 0v-6.6h-.2v6.6a1.45 1.45 0 0 1-2.9 0V10H8v4.5a1.15 1.15 0 0 1-2.3 0V8.9a2 2 0 0 1 2-2z"/></g>',
+    run: '<g fill="currentColor" stroke="none"><circle cx="15.2" cy="3.3" r="2.3"/><path d="M13.6 6.4c.8-.2 1.6.1 2.1.8l1.9 2.9 2.4.7a1 1 0 0 1-.6 1.9l-2.8-.8a1 1 0 0 1-.5-.4l-.9-1.3-1 3.6 2.4 2.4c.2.2.3.4.3.7l.6 5a1.1 1.1 0 0 1-2.2.3l-.5-4.6-2.6-2.6-2.2 3.2-3.7 1.4a1.1 1.1 0 0 1-.8-2l3.3-1.3 3.1-4.6.7-2.4-1.4.6-1.6 2.4a1 1 0 0 1-1.7-1.1l1.8-2.7c.1-.2.3-.3.5-.4z"/></g>',
+    users: '<g fill="currentColor" stroke="none"><circle cx="7.5" cy="4.6" r="2.1"/><path d="M4.7 7.6h5.6a1.7 1.7 0 0 1 1.7 1.7v4.4a1 1 0 0 1-2 0v-3.3h-.4v10a1.2 1.2 0 0 1-2.4 0v-5.5h-.2v5.5a1.2 1.2 0 0 1-2.4 0v-10h-.4v3.3a1 1 0 0 1-2 0V9.3a1.7 1.7 0 0 1 1.7-1.7z"/><circle cx="16.5" cy="4.6" r="2.1"/><path d="M13.7 7.6h5.6a1.7 1.7 0 0 1 1.7 1.7v4.4a1 1 0 0 1-2 0v-3.3h-.4v10a1.2 1.2 0 0 1-2.4 0v-5.5h-.2v5.5a1.2 1.2 0 0 1-2.4 0v-10h-.4v3.3a1 1 0 0 1-2 0V9.3a1.7 1.7 0 0 1 1.7-1.7z"/></g>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     water: '<path d="M12 3C9 8 6 11 6 14a6 6 0 0 0 12 0c0-3-3-6-6-11z"/>',
     plug: '<path d="M9 3v5M15 3v5"/><rect x="6" y="8" width="12" height="6" rx="2"/><path d="M12 14v3a3 3 0 0 1-3 3"/>',
@@ -50,6 +52,14 @@
 
   const deck = document.querySelector('.deck');
   if (!deck) return;
+  /* 大きなアイコンタイル（.ico）は、アイコンの種類に合わせて小さく動き続ける */
+  const MOTION = { bell: 'a-ring', phone: 'a-ring', fire: 'a-flick', extinguisher: 'a-bob', water: 'a-bob', exit: 'a-nudge', run: 'a-nudge',
+    clock: 'a-tick', search: 'a-scan', alert: 'a-pulse', shield: 'a-pulse', yen: 'a-flip', calendar: 'a-flip', person: 'a-breath',
+    users: 'a-breath', duct: 'a-pulse', chat: 'a-bob', clipboard: 'a-tilt', doc: 'a-tilt', building: 'a-breath', store: 'a-breath', tool: 'a-tilt', plug: 'a-tilt', battery: 'a-pulse', check: 'a-pulse', eye: 'a-scan' };
+  deck.querySelectorAll('.ico svg.i use').forEach(u => {
+    const k = (u.getAttribute('href') || '').replace('#i-', '');
+    if (MOTION[k]) u.parentNode.classList.add(MOTION[k]);
+  });
   const slides = Array.from(deck.querySelectorAll(':scope > .slide'));
 
   const viewport = document.createElement('div');
@@ -70,6 +80,85 @@
   viewport.appendChild(stage);
   deck.appendChild(viewport);
   deck.classList.add('ready');
+
+  const titleOf = s => s.dataset.title || ((s.querySelector('h1, h2, .eyebrow') || {}).textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40);
+
+  /* スライド一覧のバー：画面の下にマウスを近づけると出る。クリックでそのスライドへ */
+  const nav = document.createElement('div');
+  nav.className = 'd-nav';
+  nav.innerHTML = slides.map((s, i) => `<button type="button" data-i="${i}" title="${(i + 1) + '. ' + titleOf(s).replace(/"/g, '')}">${i + 1}</button>`).join('');
+  deck.appendChild(nav);
+  nav.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { e.stopPropagation(); go(+b.dataset.i); } });
+  let navTimer = null;
+  document.addEventListener('mousemove', e => {
+    if (e.clientY > window.innerHeight - 110 || nav.matches(':hover')) {
+      nav.classList.add('show'); clearTimeout(navTimer);
+      navTimer = setTimeout(() => { if (!nav.matches(':hover')) nav.classList.remove('show'); }, 2500);
+    }
+  });
+
+  /* 発表者ウィンドウ（P キー）：台本・時間・次のスライド・一覧を、別のウィンドウに出す */
+  let pw = null;
+  function openPresenter() {
+    try { pw = window.open('', 'presenter-' + location.pathname, 'width=1180,height=780'); } catch (e) { pw = null; }
+    if (!pw) { notes.hidden = false; notes.innerHTML = '<p>発表者ウィンドウを開けませんでした。ブラウザのポップアップを許可するか、HTMLファイルをパソコンに保存して開いてください。</p>'; return; }
+    const d = pw.document;
+    d.open();
+    d.write(`<!doctype html><html lang="ja"><head><meta charset="utf-8"><title>発表者用｜${deck.dataset.chapter || ''}</title><style>
+      body{margin:0;font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:#f3f5f8;color:#1d2128;display:grid;grid-template-rows:auto 1fr auto;height:100vh}
+      header{display:flex;gap:20px;align-items:center;padding:12px 20px;background:#fff;border-bottom:1px solid #d9dee5;font-variant-numeric:tabular-nums}
+      header b{font-size:22px} header .t{font-size:28px;font-weight:700} header .sp{flex:1}
+      main{display:grid;grid-template-columns:1fr 320px;min-height:0}
+      #pn{overflow:auto;padding:18px 24px;font-size:22px;line-height:1.8;white-space:pre-wrap;color:#59606b}
+      #pn .now{color:#1d2128;background:#fff2b3;border-radius:6px}
+      aside{border-left:1px solid #d9dee5;background:#fff;display:flex;flex-direction:column;min-height:0}
+      aside h3{margin:0;padding:12px 16px 4px;font-size:14px;color:#59606b}
+      #nx{padding:0 16px 12px;font-size:18px;font-weight:700}
+      #ls{overflow:auto;flex:1;padding:0 8px 8px}
+      #ls button{display:block;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;font-size:15px;cursor:pointer;color:#1d2128}
+      #ls button.cur{background:#e9e6fd;font-weight:700}
+      footer{display:flex;gap:12px;padding:12px 20px;background:#fff;border-top:1px solid #d9dee5}
+      footer button{font-size:20px;padding:12px 28px;border-radius:10px;border:1px solid #d9dee5;background:#fff;cursor:pointer}
+      footer button.next{background:#1d2128;color:#fff;border-color:#1d2128;flex:1}
+      .hint{font-size:13px;color:#59606b;align-self:center}
+    </style></head><body>
+      <header><b id="pg"></b><span class="t" id="tt"></span><span class="sp"></span><span id="st"></span><span id="tm"></span></header>
+      <main><div id="pn"></div><aside><h3>次のスライド</h3><div id="nx"></div><h3>スライド一覧（クリックで移動）</h3><div id="ls"></div></aside></main>
+      <footer><button id="bp">← 戻る</button><button id="bn" class="next">進む →</button><span class="hint">このウィンドウで → ← キーでも操作できます</span></footer>
+    </body></html>`);
+    d.close();
+    d.getElementById('bp').onclick = () => prev();
+    d.getElementById('bn').onclick = () => next();
+    d.getElementById('ls').innerHTML = slides.map((s, i) => `<button type="button" data-i="${i}">${i + 1}. ${titleOf(s)}</button>`).join('');
+    d.getElementById('ls').onclick = e => { const b = e.target.closest('button'); if (b) go(+b.dataset.i); };
+    d.addEventListener('keydown', onKey);
+    renderPresenter();
+  }
+  function renderPresenter() {
+    if (!pw || pw.closed) return;
+    const d = pw.document, s = slides[cur], m = steps(s);
+    d.getElementById('pg').textContent = `${cur + 1} / ${slides.length}`;
+    d.getElementById('tt').textContent = titleOf(s);
+    d.getElementById('st').textContent = m ? `クリック ${step} / ${m}` : '';
+    d.getElementById('nx').textContent = cur < slides.length - 1 ? titleOf(slides[cur + 1]) : '（最後のスライド）';
+    d.querySelectorAll('#ls button').forEach((b, i) => b.classList.toggle('cur', i === cur));
+    const pn = d.getElementById('pn'); pn.innerHTML = '';
+    const n = s.querySelector('aside.notes');
+    (n ? n.textContent.trim() : '（メモなし）').split('［クリック］').forEach((t, k) => {
+      const sp = d.createElement('span'); sp.textContent = (k ? '［クリック］' : '') + t;
+      if (k === step) sp.className = 'now';
+      pn.appendChild(sp);
+    });
+    const now = pn.querySelector('.now'); if (now) now.scrollIntoView({ block: 'center' });
+    tickPresenter();
+  }
+  function tickPresenter() {
+    if (!pw || pw.closed) return;
+    const el = Math.floor((Date.now() - started) / 1000);
+    const plan = slides.slice(0, cur + 1).reduce((a, x) => a + (+x.dataset.min || 0), 0);
+    pw.document.getElementById('tm').textContent = `経過 ${Math.floor(el / 60)}:${String(el % 60).padStart(2, '0')}　予定（ここまで）${plan}分　このスライド ${slides[cur].dataset.min || '–'}分`;
+  }
+  setInterval(tickPresenter, 1000);
 
   const notes = document.createElement('div');
   notes.className = 'd-notes';
@@ -134,6 +223,7 @@
     const m = steps(s);
     dotsEl.innerHTML = m ? Array.from({ length: m }, (_, k) => `<i class="${k < step ? 'on' : ''}"></i>`).join('') : '';
     pageEl.textContent = `${cur + 1} / ${slides.length}`;
+    nav.querySelectorAll('button').forEach((b, i) => b.classList.toggle('cur', i === cur));
     footer.classList.toggle('on-light', s.classList.contains('light'));
     footer.classList.toggle('brand-only', s.hasAttribute('data-no-footer'));
     progress.style.width = ((cur + (m ? step / m : 1)) / slides.length * 100) + '%';
@@ -146,6 +236,7 @@
     deck.dispatchEvent(new CustomEvent('slidechange', { detail: { index: cur, step, slide: s } }));
     try { history.replaceState(null, '', '#s' + (cur + 1)); } catch (e) {}
     renderNotes();
+    renderPresenter();
     embers.wake();
   }
 
@@ -184,7 +275,7 @@
   }
 
   const editing = t => t && t.closest && t.closest('[contenteditable]');
-  document.addEventListener('keydown', e => {
+  function onKey(e) {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (editing(e.target)) { if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); e.target.blur(); } return; }
     if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
@@ -193,7 +284,9 @@
     else if (e.key === 'End') go(slides.length - 1, true);
     else if (e.key === 'f' || e.key === 'F') fullscreen();
     else if (e.key === 'n' || e.key === 'N') { notes.hidden = !notes.hidden; renderNotes(); }
-  });
+    else if (e.key === 'p' || e.key === 'P') openPresenter();
+  }
+  document.addEventListener('keydown', onKey);
   viewport.addEventListener('click', e => { if (editing(e.target)) return; e.clientX < window.innerWidth / 3 ? prev() : next(); });
   let tx = null;
   document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
