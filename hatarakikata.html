@@ -90,12 +90,14 @@ button{font-family:inherit;color:inherit}
 .eb{font-size:12px;letter-spacing:.18em;color:var(--ink3);font-weight:700}
 h1,h2,.key,.huge{font-family:var(--f-disp);font-weight:800;margin:0;text-wrap:balance;word-break:auto-phrase;letter-spacing:.02em}
 h1{font-size:clamp(40px,7vw,92px);line-height:1.2}
-h2{font-size:clamp(30px,4.6vw,60px);line-height:1.28}
+h2{font-size:clamp(28px,4vw,52px);line-height:1.32}
 .key{font-size:clamp(22px,2.9vw,36px);line-height:1.5;color:var(--ink)}
 p{margin:0;max-width:36em;color:var(--ink2);word-break:auto-phrase}
 p b,.em{color:var(--ink);font-weight:700}
 .sm{font-size:13px;color:var(--ink3)}
 .hand{font-family:var(--f-hand);color:var(--kaki);font-weight:600}
+/* 改行は文節の切れ目（<wbr>）でだけ起こす */
+h1,h2,.key,p,.chip,.box,li,.hint,.hc,.flow,.drawer .panel{word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
 /* 赤線・マーカー：表示された時に引かれる */
 .rl{background:linear-gradient(var(--red),var(--red)) no-repeat 0 92%/100% .14em;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em}
 .hl{background:linear-gradient(var(--kaki-bg),var(--kaki-bg)) no-repeat 0 85%/100% .5em;-webkit-box-decoration-break:clone;box-decoration-break:clone;color:var(--ink)}
@@ -266,9 +268,9 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 
 <div class="app">
   <header class="top">
-    <div class="brand">バルニバービという働き方</div>
+    <div class="brand"><wbr>バルニバービという<wbr>働き方</div>
     <nav class="chaps" id="chaps" aria-label="章"></nav>
-    <button class="srcbtn" id="srcbtn" type="button">原文を読む</button>
+    <button class="srcbtn" id="srcbtn" type="button"><wbr>原文を<wbr>読む</button>
   </header>
 
   <main class="stage" id="stage" aria-live="polite">
@@ -277,10 +279,10 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide on" data-ch="序" data-y="2026" data-rg="bb" data-era="2026" data-place="バルニバービ" data-ghost="2026" data-where="バルニバービ">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">人事制度の考え方</div>
-      <h1 class="fu" style="--d:.15s">バルニバービ<br>という働き方</h1>
-      <p class="key fu" style="--d:.35s;color:var(--ink2);font-size:clamp(18px,2.2vw,26px)">ライフワーク<s style="text-decoration-color:var(--red);text-decoration-thickness:3px">バランス</s>から<br>ライフワーク<span class="rl" style="--d:4.2s;color:var(--ink)">ウィズイン</span>へ</p>
-      <div class="hint fd" style="--d:1.2s">画面をクリック、または <kbd>→</kbd> キーで進みます。赤い「つづく」が出ている間は、同じ札の続きが現れます。左端のクリックか <kbd>←</kbd> キーで戻ります。</div>
+      <div class="eb fu"><wbr>人事制度の<wbr>考え方</div>
+      <h1 class="fu" style="--d:.15s"><wbr>バルニバービという<wbr>働き方</h1>
+      <p class="key fu" style="--d:.35s;color:var(--ink2);font-size:clamp(18px,2.2vw,26px)"><wbr>ライフワーク<s style="text-decoration-color:var(--red);text-decoration-thickness:3px"><wbr>バランス</s>から、<wbr><br><wbr>ライフワーク<span class="rl" style="--d:4.2s;color:var(--ink)"><wbr>ウィズイン</span>へ</p>
+      <div class="hint fd" style="--d:1.2s"><wbr>画面を<wbr>クリック、<wbr>または <kbd>→</kbd> <wbr>キーで<wbr>進みます。<wbr>赤い<wbr>「つづく」が<wbr>出ている間は、<wbr>同じ札の<wbr>続きが<wbr>現れます。<wbr>左端を<wbr>クリックするか <kbd>←</kbd> <wbr>キーで<wbr>戻ります。<wbr></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 400 320" role="img" aria-label="天秤が消えて、人生の円の中に仕事の円が入る図">
@@ -335,11 +337,11 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
       </svg>
     </div>
     <div class="txt">
-      <div class="eb fu">序章</div>
-      <h2 class="fu" style="--d:.2s">今、バルニバービに<br>必要な人事制度とは<br>何か？</h2>
-      <div data-step="1"><p class="key fu" style="color:var(--ink2);font-size:clamp(18px,2vw,24px)">流行りや他社の真似では、答えにならない。</p></div>
-      <div data-step="2"><p class="key fu">だから、まず<span class="rl" style="--d:.6s">労働の歴史</span>を紐解く。</p>
-        <p class="sm fu" style="--d:.3s">世界と日本の労働がどう作られてきたのか、時代の流れに沿ってたどります。</p></div>
+      <div class="eb fu"><wbr>序章</div>
+      <h2 class="fu" style="--d:.2s"><wbr>今、<wbr>バルニバービに<wbr>必要な<wbr>人事制度とは<wbr>何でしょうか？<wbr></h2>
+      <div data-step="1"><p class="key fu" style="color:var(--ink2);font-size:clamp(18px,2vw,24px)"><wbr>流行りや<wbr>他社の<wbr>真似では、<wbr>答えに<wbr>なりません。<wbr></p></div>
+      <div data-step="2"><p class="key fu">だから、<wbr>まず<span class="rl" style="--d:.6s"><wbr>労働の<wbr>歴史</span>を<wbr>紐解きます。<wbr></p>
+        <p class="sm fu" style="--d:.3s"><wbr>世界と<wbr>日本の<wbr>労働が<wbr>どう<wbr>作られてきたのかを、<wbr>時代の<wbr>流れに<wbr>沿ってた<wbr>どります。<wbr></p></div>
     </div>
   </div>
 </section>
@@ -348,11 +350,11 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="1" data-y="1500" data-lab="中世" data-rg="eu" data-era="中世" data-place="ヨーロッパ" data-ghost="中世" data-where="中世ヨーロッパ">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第1章　労働が生まれる前</div>
-      <h2 class="fu" style="--d:.1s">資産は、<br>個人に収まっていた</h2>
-      <p class="fu" style="--d:.3s">鍛冶屋の金槌と鉄床、機織りの織機、大工の道具箱。道具も資本も、一人で所有し、持ち運べる大きさだった。</p>
-      <div data-step="1"><p class="fu">職人は都市を渡り歩く<b>遍歴修業（Wanderjahre）</b>を経て、誰もが<span class="hl" style="--d:.5s">親方（独立）</span>を目指せた。</p></div>
-      <div data-step="2"><p class="key fu">時間を売るのではなく、<br><span class="rl">技能と人格で生きていた。</span></p></div>
+      <div class="eb fu"><wbr>第1章　労働が<wbr>生まれる<wbr>前</div>
+      <h2 class="fu" style="--d:.1s"><wbr>資産は、<wbr>個人に<wbr>収まっていました</h2>
+      <p class="fu" style="--d:.3s"><wbr>鍛冶屋の<wbr>金槌と<wbr>鉄床、<wbr>機織りの<wbr>織機、<wbr>大工の<wbr>道具箱。<wbr>道具も<wbr>資本も、<wbr>一人で<wbr>所有し、<wbr>持ち<wbr>運べる<wbr>大きさでした。<wbr></p>
+      <div data-step="1"><p class="fu"><wbr>職人は<wbr>都市を<wbr>渡り<wbr>歩く<b><wbr>遍歴修業<wbr>（Wanderjahre）<wbr></b>を<wbr>経て、<wbr>誰もが<span class="hl" style="--d:.5s"><wbr>親方<wbr>（独立）<wbr></span>を<wbr>目指せました。<wbr></p></div>
+      <div data-step="2"><p class="key fu"><wbr>時間を<wbr>売るのではなく、<wbr><br><span class="rl"><wbr>技能と<wbr>人格で<wbr>生きていました。<wbr></span></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 330" role="img" aria-label="職人の道具と、都市を渡り歩いて親方になる道のり">
@@ -374,14 +376,14 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
   </div>
 </section>
 
-<!-- ===== 1-2 産業革命（大きく） ===== -->
+<!-- ===== 1-2 産業革命 ===== -->
 <section class="slide" data-ch="1" data-y="1780" data-rg="eu" data-era="1780年代" data-place="イギリス" data-ghost="1780" data-where="1780年代 イギリス">
   <div class="in">
-    <div class="eb fu">第1章　労働の始まり</div>
+    <div class="eb fu"><wbr>第1章　労働の<wbr>始まり</div>
     <svg class="ill" viewBox="0 0 960 400" style="max-height:58vh" role="img" aria-label="産業革命。巨大な工場と蒸気機関">
       <text x="0" y="118" class="td sl" style="--d:.1s;font-size:112px">産業革命</text>
       <text x="6" y="172" class="td tr fd" style="--d:.6s;font-size:34px">Industrial Revolution ─ 1780s</text>
-      <text x="6" y="226" class="t2 fd" style="--d:.9s;font-size:19px">個人では持てない、蒸気機関と工場（資本）が登場した。</text>
+      <text x="6" y="226" class="t2 fd" style="--d:.9s;font-size:19px">個人では持てない、蒸気機関と工場（資本）が登場しました。</text>
       <g class="sc" style="--d:.4s">
         <use href="#i-factory" x="560" y="40" width="400" height="360" class="c-i"/>
         <circle cx="900" cy="90" r="16" class="fi-3 smoke"/><circle cx="902" cy="90" r="20" class="fi-3 smoke" style="animation-delay:1.1s"/><circle cx="898" cy="90" r="14" class="fi-3 smoke" style="animation-delay:2.1s"/>
@@ -402,8 +404,8 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           @keyframes spl{from{transform:translateX(90px)}}@keyframes spr{from{transform:translateX(-90px)}}</style>
       </div>
       <div class="txt">
-        <div data-step="1"><p class="fu" style="--d:.8s"><b>生産手段を持てる者（資本家）</b>と、<b>労働力しか売るものがない者（労働者）</b>に、構造が分かれた。</p></div>
-        <div data-step="2"><p class="key fu">一生、組織に従属せざるを得ない<br><span class="rl">「労働」が、ここで誕生した。</span></p></div>
+        <div data-step="1"><p class="fu" style="--d:.8s"><b><wbr>生産手段を<wbr>持てる<wbr>者<wbr>（資本家）<wbr></b>と、<wbr><b><wbr>労働力しか<wbr>売る<wbr>ものが<wbr>ない<wbr>者<wbr>（労働者）<wbr></b>に、<wbr>構造が<wbr>分かれました。<wbr></p></div>
+        <div data-step="2"><p class="key fu"><wbr>一生、<wbr>組織に<wbr>従属せざるを<wbr>得ない<br><span class="rl"><wbr>「労働」が、<wbr>ここで<wbr>誕生しました。<wbr></span></p></div>
       </div>
     </div>
   </div>
@@ -413,12 +415,12 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="1" data-y="1865" data-rg="us" data-era="1865年" data-place="アメリカ" data-ghost="1865" data-where="1865年 アメリカ">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第1章</div>
-      <h2 class="fu" style="--d:.1s">もうひとつの始まり、<br><span style="color:var(--us)">アメリカ</span></h2>
-      <p class="fu" style="--d:.3s">年季奉公や奴隷制という、人そのものを所有する仕組みが広く行われていた。</p>
-      <div data-step="1"><p class="fu">1865年、憲法修正第13条で奴隷制を廃止。産業化（欧州より約80年遅れ）とともに、ようやく賃金の出る雇用が生まれた。</p></div>
-      <div data-step="2"><p class="fu">ただし保障されたのは「契約を結べる人間である」という<b>形式的な資格だけ</b>。多くの人がシェアクロッピング（小作契約）という、奴隷時代と変わらない契約を結ばされた。</p></div>
-      <div data-step="3"><p class="key fu"><span class="rl">自由に契約できること</span>と、<br>契約の中身が公正であることは、<br>別の話だった。</p></div>
+      <div class="eb fu"><wbr>第1章</div>
+      <h2 class="fu" style="--d:.1s">もう<wbr>ひとつの<wbr>始まり、<wbr><br><span style="color:var(--us)"><wbr>アメリカ</span></h2>
+      <p class="fu" style="--d:.3s"><wbr>年季奉公や<wbr>奴隷制という、<wbr>人その<wbr>ものを<wbr>所有する<wbr>仕組みが<wbr>広く<wbr>行われていました。<wbr></p>
+      <div data-step="1"><p class="fu"><wbr>1865年、<wbr>憲法修正第13条で<wbr>奴隷制が<wbr>廃止されます。<wbr>産業化<wbr>（欧州より<wbr>約80年遅れ）とともに、<wbr>ようやく<wbr>賃金の<wbr>出る<wbr>雇用が<wbr>生まれました。<wbr></p></div>
+      <div data-step="2"><p class="fu">ただし<wbr>保障されたのは、<wbr>「契約を<wbr>結べる<wbr>人間である」という<b><wbr>形式的な<wbr>資格だけ</b>でした。<wbr>多くの<wbr>人が、<wbr>シェアクロッピング<wbr>（小作契約）という<wbr>奴隷時代と<wbr>変わらない<wbr>契約を<wbr>結ば<wbr>されました。<wbr></p></div>
+      <div data-step="3"><p class="key fu"><span class="rl"><wbr>自由に<wbr>契約できる<wbr>こと</span>と、<wbr>契約の<wbr>中身が<wbr>公正である<wbr>ことは、<wbr>別の<wbr>話だったのです。<wbr></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 330" role="img" aria-label="鎖が切れ、契約の自由という箱を開けると中身が空の図">
@@ -477,12 +479,12 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
       </style>
     </div>
     <div class="txt">
-      <div class="eb fu">第2章　近代の労働</div>
-      <h2 class="fu" style="--d:.1s">機械を止めないほど、<br>儲かる</h2>
-      <p class="fu" style="--d:.3s">高価な工場を手にした経営者は、投資を回収しようと機械を動かし続けた。</p>
-      <div data-step="1"><p class="fu">労働時間はどこまでも延び、子どもが安い労働力として働かされ、機械に巻き込まれる事故も日常だった。</p></div>
-      <div data-step="2"><p class="key fu">それを追うように、<br><span class="rl">「法律」が生まれた。</span></p>
-        <p class="sm fu" style="--d:.5s">ただし、法律が生まれた動機は地域によって大きく違う。</p></div>
+      <div class="eb fu"><wbr>第2章　近代の<wbr>労働</div>
+      <h2 class="fu" style="--d:.1s"><wbr>機械を<wbr>止めない<wbr>ほど、<wbr>儲かりました</h2>
+      <p class="fu" style="--d:.3s"><wbr>高価な<wbr>工場を<wbr>手に<wbr>した<wbr>経営者は、<wbr>投資を<wbr>回収しようと<wbr>機械を<wbr>動かし<wbr>続けました。<wbr></p>
+      <div data-step="1"><p class="fu"><wbr>労働時間は<wbr>どこまでも<wbr>延び、<wbr>子どもが<wbr>安い<wbr>労働力と<wbr>して<wbr>働かされ、<wbr>機械に<wbr>巻き込まれる<wbr>事故も<wbr>日常的に<wbr>起きていました。<wbr></p></div>
+      <div data-step="2"><p class="key fu">それを<wbr>追うように、<wbr><br><span class="rl"><wbr>「法律」が<wbr>生まれました。<wbr></span></p>
+        <p class="sm fu" style="--d:.5s">ただし、<wbr>法律が<wbr>生まれた<wbr>動機は、<wbr>地域に<wbr>よって<wbr>大きく<wbr>違います。<wbr></p></div>
     </div>
   </div>
 </section>
@@ -491,26 +493,26 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="2" data-y="1900" data-rg="eu" data-era="1802〜1981" data-place="欧州と米国" data-ghost="VS" data-where="ヨーロッパ と アメリカ">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第2章　世界の法律のスタンス</div>
-      <h2 class="fu" style="--d:.1s">同じ問題に、<span class="rl" style="--d:.8s">正反対の答え</span></h2>
+      <div class="eb fu"><wbr>第2章　世界の<wbr>法律の<wbr>スタンス</div>
+      <h2 class="fu" style="--d:.1s"><wbr>同じ<wbr>問題に、<wbr><span class="rl" style="--d:.8s"><wbr>正反対の<wbr>答え</span>を<wbr>出しました</h2>
     </div>
     <div class="cols">
       <div data-step="1"><div class="box eu sl">
-        <div class="yr" style="color:var(--eu)">ヨーロッパ</div><h3>国が社会を守る「保護」</h3>
+        <div class="yr" style="color:var(--eu)"><wbr>ヨーロッパ</div><h3><wbr>国が<wbr>社会を<wbr>守る<wbr>「保護」<wbr></h3>
         <ul class="tl">
-          <li class="fu" style="--d:.3s"><b>1802</b><span>イギリス工場法（1833年にも）</span></li>
-          <li class="fu" style="--d:.5s"><b>1883〜</b><span>ビスマルクの疾病・災害・老齢保険。社会主義運動を抑える「アメとムチ」</span></li>
-          <li class="fu" style="--d:.7s"><b>戦後</b><span>国が生活を丸ごと保障する福祉国家へ</span></li>
+          <li class="fu" style="--d:.3s"><b>1802</b><span><wbr>イギリス工場法<wbr>（1833年にも）<wbr></span></li>
+          <li class="fu" style="--d:.5s"><b>1883〜</b><span><wbr>ビスマルクの<wbr>疾病・災害・老齢保険。<wbr>社会主義運動を<wbr>抑える<wbr>「アメと<wbr>ムチ」でした</span></li>
+          <li class="fu" style="--d:.7s"><b><wbr>戦後</b><span><wbr>国が<wbr>生活を<wbr>丸ごと<wbr>保障する<wbr>福祉国家へ</span></li>
         </ul></div></div>
       <div data-step="2"><div class="box us sr">
-        <div class="yr" style="color:var(--us)">アメリカ</div><h3>「契約の自由」が保護をつぶす武器に</h3>
+        <div class="yr" style="color:var(--us)"><wbr>アメリカ</div><h3><wbr>「契約の<wbr>自由」が<wbr>保護を<wbr>つぶす武器に</h3>
         <ul class="tl">
-          <li class="fu" style="--d:.3s"><b>1877</b><span>理由なくいつでも解雇できる「随意雇用」。以後140年の原則に</span></li>
-          <li class="fu" style="--d:.5s"><b>1935</b><span><span class="up">▲ 保護へ</span> ワグナー法、1938年 FLSA</span></li>
-          <li class="fu" style="--d:.7s"><b>1947</b><span><span class="dn">▼ 後退</span> タフト・ハートレー法、1981年 PATCOスト鎮圧</span></li>
+          <li class="fu" style="--d:.3s"><b>1877</b><span><wbr>理由なく<wbr>いつでも<wbr>解雇できる<wbr>「随意雇用」。<wbr>以後<wbr>140年の<wbr>原則に<wbr>なりました</span></li>
+          <li class="fu" style="--d:.5s"><b>1935</b><span><span class="up"><wbr>▲ 保護へ</span> <wbr>ワグナー法、<wbr>1938年 FLSA</span></li>
+          <li class="fu" style="--d:.7s"><b>1947</b><span><span class="dn"><wbr>▼ 後退</span> <wbr>タフト・ハートレー法、<wbr>1981年 PATCOスト鎮圧</span></li>
         </ul></div></div>
       <div data-step="3"><div class="box fu">
-        <div class="yr">アメリカの労働組合加入率</div>
+        <div class="yr"><wbr>アメリカの<wbr>労働組合加入率</div>
         <svg class="ill" viewBox="0 0 320 120" role="img" aria-label="労働組合加入率 1954年 約35%、現在 約10%">
           <text x="0" y="36" class="t2">1954年</text>
           <rect x="60" y="18" width="196" height="26" rx="3" class="fi-e gw" style="--d:.3s"/>
@@ -527,12 +529,12 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="2" data-y="2024" data-rg="eu" data-era="2024年" data-place="EUと米国" data-ghost="2024" data-where="2024年 EU と アメリカ">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第2章　現在の分裂</div>
-      <h2 class="fu" style="--d:.1s">ギグワーカーをめぐる<br>綱引き</h2>
-      <p class="fu" style="--d:.3s">単発・短時間で働く人を、どう扱うか。</p>
-      <div data-step="1"><div class="box us sl" style="transform:rotate(-.6deg)"><div class="yr" style="color:var(--us)">アメリカ</div><h3>独立請負人のまま（自由）</h3></div></div>
-      <div data-step="2"><div class="box eu sr" style="transform:rotate(.6deg)"><div class="yr" style="color:var(--eu)">EU　2024年 プラットフォーム労働指令</div><h3>指揮命令があれば雇用と推定（保護）</h3></div></div>
-      <div data-step="3"><p class="key fu">偶然ではない。<br><span class="rl">出発点の違いが、今も生きている。</span></p></div>
+      <div class="eb fu"><wbr>第2章　現在の<wbr>分裂</div>
+      <h2 class="fu" style="--d:.1s"><wbr>ギグワーカーを<wbr>めぐる<wbr>綱引き</h2>
+      <p class="fu" style="--d:.3s"><wbr>単発・短時間で<wbr>働く<wbr>人を、<wbr>どう<wbr>扱うのでしょうか。<wbr></p>
+      <div data-step="1"><div class="box us sl" style="transform:rotate(-.6deg)"><div class="yr" style="color:var(--us)"><wbr>アメリカ</div><h3><wbr>独立請負人の<wbr>まま<wbr>（自由）<wbr></h3></div></div>
+      <div data-step="2"><div class="box eu sr" style="transform:rotate(.6deg)"><div class="yr" style="color:var(--eu)"><wbr>EU　2024年 プラットフォーム労働指令</div><h3><wbr>指揮命令が<wbr>あれば、<wbr>雇用と<wbr>推定<wbr>（保護）<wbr></h3></div></div>
+      <div data-step="3"><p class="key fu">これは<wbr>偶然ではありません。<wbr><br><span class="rl"><wbr>出発点の<wbr>違いが、<wbr>今も<wbr>生きているのです。<wbr></span></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 280" role="img" aria-label="アメリカとEUの綱引き">
@@ -560,11 +562,11 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="3" data-y="1800" data-lab="江戸" data-rg="jp" data-era="江戸時代" data-place="日本" data-ghost="江戸" data-where="江戸時代の日本">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第3章　日本の労働が生まれる前</div>
-      <h2 class="fu" style="--d:.1s">丁稚から、<br>のれん分けへ</h2>
-      <p class="fu" style="--d:.3s">商家の丁稚奉公には、段階を上がっていく道筋があった。</p>
-      <div data-step="1"><p class="fu" style="--d:2.4s">道具も資本も個人サイズだったから、誰もが修行を経て<b>独立</b>を目指せた。</p></div>
-      <div data-step="2"><p class="key fu"><span class="rl">ヨーロッパのギルドと、同じ構造</span>だった。</p></div>
+      <div class="eb fu"><wbr>第3章　日本の<wbr>労働が<wbr>生まれる<wbr>前</div>
+      <h2 class="fu" style="--d:.1s"><wbr>丁稚から、のれん分けへ</h2>
+      <p class="fu" style="--d:.3s"><wbr>商家の<wbr>丁稚奉公には、<wbr>段階を<wbr>上がっていく<wbr>道筋が<wbr>ありました。<wbr></p>
+      <div data-step="1"><p class="fu" style="--d:2.4s"><wbr>道具も<wbr>資本も<wbr>個人サイズだったので、<wbr>誰もが<wbr>修行を<wbr>経て<b><wbr>独立</b>を<wbr>目指せました。<wbr></p></div>
+      <div data-step="2"><p class="key fu"><span class="rl"><wbr>ヨーロッパの<wbr>ギルドと、<wbr>同じ<wbr>構造</span>だったのです。<wbr></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 470 320" role="img" aria-label="丁稚、手代、番頭、のれん分けの階段">
@@ -598,8 +600,8 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="3" data-y="1877" data-rg="jp" data-era="明治" data-place="日本" data-ghost="1877" data-where="明治の日本">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第3章　日本の労働が生まれるとき</div>
-      <h2 class="fu" style="--d:.1s">ヨーロッパは技術で、<br>日本は<span class="rl" style="--d:.9s">政策で</span>分けた</h2>
+      <div class="eb fu"><wbr>第3章　日本の<wbr>労働が<wbr>生まれる<wbr>とき</div>
+      <h2 class="fu" style="--d:.1s"><wbr>ヨーロッパは<wbr>技術で、<wbr><br><wbr>日本は<span class="rl" style="--d:.9s"><wbr>政策で</span><wbr>分けました</h2>
     </div>
     <svg class="ill" viewBox="0 0 900 300" role="img" aria-label="地租改正、秩禄処分、官営工場の払い下げから、労働者と資本家が生まれる流れ">
       <g class="fu" style="--d:.3s"><rect x="10" y="10" width="250" height="104" rx="10" class="fi-c"/><rect x="10" y="10" width="250" height="104" rx="10" class="ln"/>
@@ -629,7 +631,7 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <text x="632" y="246" class="tk td" style="font-size:24px">資本家</text><text x="632" y="270" class="t2" style="font-size:12px">元武士・財閥</text></g>
       </g>
     </svg>
-    <div data-step="3"><p class="key fu center" style="max-width:none">国が、<span class="rl">人為的に</span>資本家と労働者を分けた。</p></div>
+    <div data-step="3"><p class="key fu center" style="max-width:none"><wbr>国が、<wbr><span class="rl"><wbr>人為的に</span><wbr>資本家と<wbr>労働者を<wbr>分けたのです。<wbr></p></div>
   </div>
 </section>
 
@@ -637,13 +639,13 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="3" data-y="1900" data-rg="jp" data-era="明治〜大正" data-place="日本の工場" data-ghost="1900" data-where="明治〜大正の工場">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第3章　工場で働く人の二つの顔</div>
-      <h2 class="fu" style="--d:.1s">紡績の女性と、<br>親方に付く職人</h2>
+      <div class="eb fu"><wbr>第3章　工場で<wbr>働く<wbr>人の<wbr>二つの<wbr>顔</div>
+      <h2 class="fu" style="--d:.1s"><wbr>紡績の<wbr>女性と、<wbr>親方に<wbr>付く<wbr>職人</h2>
     </div>
     <div class="cols">
       <div data-step="1"><div class="box jp sl">
-        <h3>紡績工場の女性労働者</h3>
-        <p>昼夜二交代の長時間労働。寄宿舎では結核がまん延した。</p>
+        <h3><wbr>紡績工場の<wbr>女性労働者</h3>
+        <p><wbr>昼夜<wbr>二交代の<wbr>長時間<wbr>労働でした。<wbr>寄宿舎では<wbr>結核が<wbr>まん延しました。<wbr></p>
         <svg class="ill" viewBox="0 0 300 74" role="img" aria-label="年間離職率50%超">
           <text x="0" y="18" class="t3">年間離職率</text>
           <rect x="0" y="28" width="280" height="26" rx="3" class="fi-r"/>
@@ -651,8 +653,8 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <text x="156" y="48" class="td tr" style="font-size:18px">50%超も</text>
         </svg></div></div>
       <div data-step="2"><div class="box jp sr">
-        <h3>重工業の熟練職人</h3>
-        <p><b>親方請負制</b>。会社ではなく親方から仕事と賃金を受け取る。</p>
+        <h3><wbr>重工業の<wbr>熟練職人</h3>
+        <p><b><wbr>親方請負制</b>。<wbr>会社ではなく、<wbr>親方から<wbr>仕事と<wbr>賃金を<wbr>受け取っていました。<wbr></p>
         <svg class="ill" viewBox="0 0 300 110" role="img" aria-label="親方が工場Aから工場Bへ移ると職人もついていく">
           <use href="#i-factory" x="0" y="40" width="56" height="56" class="c-3"/><text x="28" y="108" text-anchor="middle" class="t3">工場A</text>
           <use href="#i-factory" x="244" y="40" width="56" height="56" class="c-3"/><text x="272" y="108" text-anchor="middle" class="t3">工場B</text>
@@ -661,10 +663,10 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <g class="mv" style="animation-delay:.45s"><use href="#i-person" x="80" y="76" width="22" height="22" class="c-a"/></g>
           <g class="mv" style="animation-delay:.65s"><use href="#i-person" x="44" y="76" width="22" height="22" class="c-a"/></g>
         </svg>
-        <p class="fu" style="--d:1.2s">親方が移れば、<b>職人もまとめて移った</b>。</p></div></div>
+        <p class="fu" style="--d:1.2s"><wbr>親方が<wbr>移れば、<wbr><b><wbr>職人も<wbr>まとめて<wbr>移りました</b>。</p></div></div>
     </div>
     <style>.mv{animation:mv 5s ease-in-out infinite}@keyframes mv{0%,20%{transform:translateX(0)}55%,80%{transform:translateX(130px)}100%{transform:translateX(0)}}</style>
-    <div data-step="3"><p class="key fu center" style="max-width:none">まだ、<span class="rl">終身雇用も年功賃金もなかった。</span></p></div>
+    <div data-step="3"><p class="key fu center" style="max-width:none">まだ、<wbr><span class="rl"><wbr>終身雇用も<wbr>年功賃金も<wbr>ありませんでした。<wbr></span></p></div>
   </div>
 </section>
 
@@ -672,11 +674,11 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="3" data-y="1911" data-rg="jp" data-era="1911年" data-place="日本" data-ghost="1911" data-where="1911年 日本">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第3章　日本初の工場法</div>
-      <h2 class="fu" style="--d:.1s">構想から24年、<br>英国から<span class="red">109年</span>遅れ</h2>
-      <p class="fu" style="--d:.3s">紡績の女性労働者の環境を危惧して1887年に構想。業界団体の反対で先延ばしにされ、1911年にようやく成立した。</p>
-      <div data-step="2"><p class="fu">輸出産業の競争力を優先した<b>骨抜き</b>の法律。年少者と女性だけが「保護すべき弱い立場」とされた。</p></div>
-      <div data-step="3"><p class="key fu"><span class="rl">成人男性には、適用されなかった。</span></p></div>
+      <div class="eb fu"><wbr>第3章　日本初の<wbr>工場法</div>
+      <h2 class="fu" style="--d:.1s"><wbr>構想から<wbr>24年、<wbr><br><wbr>英国から<span class="red"><wbr>109年</span><wbr>遅れ</h2>
+      <p class="fu" style="--d:.3s"><wbr>紡績の<wbr>女性労働者の<wbr>環境を<wbr>危惧して、<wbr>1887年に<wbr>構想されました。<wbr>業界団体の<wbr>反対で<wbr>先延ばしに<wbr>され、<wbr>1911年に<wbr>ようやく<wbr>成立します。<wbr></p>
+      <div data-step="2"><p class="fu"><wbr>輸出産業の<wbr>競争力を<wbr>優先した、<wbr><b><wbr>骨抜き</b>の<wbr>法律でした。<wbr>「保護すべき<wbr>弱い<wbr>立場」と<wbr>されたのは、<wbr>年少者と<wbr>女性だけです。<wbr></p></div>
+      <div data-step="3"><p class="key fu"><span class="rl"><wbr>成人男性には、<wbr>適用されませんでした。<wbr></span></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 330" role="img" aria-label="1802年英国工場法、1887年構想、1911年成立の年表と、対象者">
@@ -704,35 +706,47 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
   </div>
 </section>
 
-<!-- ===== 3-5 戦時→戦後 ===== -->
+<!-- ===== 3-5 戦時→戦後（生活給の変化） ===== -->
 <section class="slide" data-ch="3" data-y="1940" data-rg="jp" data-era="戦時〜戦後" data-place="日本" data-ghost="1940s" data-where="戦時〜戦後の日本">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第3章　年功序列・終身雇用・退職金のはじまり</div>
-      <h2 class="fu" style="--d:.1s">国のための制度が、<br>生活のための制度になった</h2>
+      <div class="eb fu"><wbr>第3章　年功序列・終身雇用・退職金の<wbr>はじまり</div>
+      <h2 class="fu" style="--d:.1s"><wbr>戦争の<wbr>ための<wbr>生活給が、<wbr><br><wbr>生活を<wbr>守る<wbr>ための<wbr>生活給に<wbr>変わりました</h2>
     </div>
-    <div data-step="1"><div class="flow">
-      <span class="chip fu">軍需工場が<br>労働者を奪い合う</span><span class="arr fd" style="--d:.3s">→</span>
-      <span class="chip fu" style="--d:.4s">賃金の吊り上げ合い</span><span class="arr fd" style="--d:.7s">→</span>
-      <span class="chip fu" style="--d:.8s">インフレの恐れ</span><span class="arr fd" style="--d:1.1s">→</span>
-      <span class="chip fu" style="--d:1.2s">戦費の国債が目減り</span><span class="arr fd" style="--d:1.5s">→</span>
-      <span class="chip r stampin" style="--d:1.7s">国家総動員体制が揺らぐ</span>
-    </div></div>
-    <div data-step="2">
-      <svg class="ill" viewBox="0 0 900 200" role="img" aria-label="生活給というバトンが、国から労働組合へ渡される">
-        <line x1="20" y1="170" x2="880" y2="170" class="ln ln-r"/>
-        <g class="fu"><use href="#i-person" x="90" y="60" width="100" height="100" class="c-3"/><text x="140" y="194" text-anchor="middle" class="tb">国（戦時の統制）</text></g>
-        <g class="fu" style="--d:.2s"><use href="#i-person" x="690" y="60" width="100" height="100" class="c-a"/><text x="740" y="194" text-anchor="middle" class="tb ta">労働組合（戦後）</text></g>
-        <g class="baton"><rect x="196" y="102" width="120" height="38" rx="19" class="fi-k"/><text x="256" y="128" text-anchor="middle" class="td tp" style="font-size:18px">生活給</text></g>
-        <text x="450" y="34" text-anchor="middle" class="t2 fd" style="--d:.3s;font-size:15px">働きの中身ではなく、年齢や家族の人数で賃金を決める</text>
-        <text x="450" y="60" text-anchor="middle" class="tb tr fd" style="--d:2s;font-size:14px">1946 電産型賃金体系「生活していけるだけの賃金を」</text>
-      </svg>
-      <style>.slide.on .baton{animation:baton 1.6s .5s ease-in-out both}.ill .baton{transform:translateX(370px)}@keyframes baton{from{transform:translateX(0)}to{transform:translateX(370px)}}</style>
+    <div class="flow fu" style="--d:.3s">
+      <span class="chip"><wbr>軍需工場が<br><wbr>労働者を<wbr>奪い合う</span><span class="arr">→</span>
+      <span class="chip"><wbr>賃金の<wbr>吊り上げ合い</span><span class="arr">→</span>
+      <span class="chip"><wbr>インフレの<wbr>恐れ</span><span class="arr">→</span>
+      <span class="chip"><wbr>戦費の<wbr>国債が<wbr>目減り</span><span class="arr">→</span>
+      <span class="chip r stampin" style="--d:1s"><wbr>国家総動員体制が<wbr>揺らぐ</span>
     </div>
-    <div data-step="3"><div class="cols">
-      <div class="box fu"><div class="yr">1936</div><h3>工場退職積立金及退職手当法</h3><p>熟練工の転職を防ぐため、勤続年数で積み上がる退職金を義務化。税制の優遇もあり、工場以外にも広がった。</p></div>
-      <div class="box fu" style="--d:.2s"><div class="yr">1946</div><h3>電産型賃金体系</h3><p>「年齢・勤続で本給が決まる」考え方が、多くの日本企業の基本給のひな形に。</p></div>
-    </div></div>
+    <div class="cols" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+      <div data-step="1"><div class="box sl" style="border-color:var(--ink3)">
+        <div class="yr"><wbr>戦時中　つくったのは<wbr>「国」<wbr></div>
+        <h3><wbr>国の<wbr>ための<wbr>統制</h3>
+        <ul class="tl" style="margin-top:4px">
+          <li class="fu" style="--d:.3s"><b><wbr>生活給</b><span><wbr>働きの<wbr>中身ではなく、<wbr>年齢や<wbr>家族の<wbr>人数で<wbr>賃金を<wbr>決める<wbr>基準を、<wbr>国が<wbr>強制しました</span></li>
+          <li class="fu" style="--d:.6s"><b>1936</b><span><wbr>工場退職積立金及退職手当法。<wbr>熟練工の<wbr>転職を<wbr>防ぐ<wbr>ため、<wbr><b><wbr>退職金制度を<wbr>義務化</b>しました</span></li>
+        </ul>
+        <p class="sm fu" style="--d:.9s"><wbr>労働者を<wbr>守る<wbr>ためではなく、<wbr>戦争を<wbr>続ける<wbr>ための<wbr>制度でした。<wbr></p>
+      </div></div>
+      <div data-step="2"><div class="box fu" style="border-style:dashed">
+        <div class="yr"><wbr>1945　敗戦</div>
+        <h3><wbr>本来の<wbr>目的を<wbr>失う</h3>
+        <svg class="ill" viewBox="0 0 240 70" role="img" aria-label="国のための統制という目的が消える">
+          <text x="120" y="42" text-anchor="middle" class="td t2" style="font-size:22px">国のための統制</text>
+          <line x1="14" y1="36" x2="226" y2="36" class="ln ln-red w4 dr" pathLength="1" style="--d:.5s"/>
+        </svg>
+        <p>それでも<wbr>「年齢・家族で<wbr>決める」という<b><wbr>決め方</b>は<wbr>残りました。<wbr></p>
+      </div></div>
+      <div data-step="3"><div class="box sr" style="border-color:var(--ai)">
+        <div class="yr" style="color:var(--ai)"><wbr>1946　担い手は<wbr>「労働組合」へ</div>
+        <h3><wbr>電産型賃金体系</h3>
+        <p><wbr>戦後の<wbr>激しい<wbr>インフレの<wbr>中、<wbr>電産<wbr>（全日<wbr>本電気産業労働組合）が<wbr>「生活していけるだけの<wbr>賃金を」と<wbr>勝ち取りました。<wbr></p>
+        <p class="fu" style="--d:.6s"><span class="hl" style="--d:.9s"><wbr>言葉通りの<wbr>「生活の<wbr>ための<wbr>給与」<wbr></span>と<wbr>して、<wbr>生まれ変わったのです。<wbr></p>
+      </div></div>
+    </div>
+    <div data-step="4"><p class="key fu center" style="max-width:none"><wbr>「年齢・勤続で<wbr>本給が<wbr>決まる」<wbr>この<wbr>形が、<wbr><br><span class="rl"><wbr>今の<wbr>日本企業の<wbr>基本給の<wbr>原型</span>に<wbr>なりました。<wbr></p></div>
   </div>
 </section>
 
@@ -740,14 +754,14 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="3" data-y="1965" data-rg="jp" data-era="高度成長期" data-place="日本" data-ghost="1960s" data-where="高度成長期の日本">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第3章　三種の神器の完成</div>
-      <h2 class="fu" style="--d:.1s">会社の成長＝<br><span class="rl" style="--d:.9s">自分の給料の伸び</span></h2>
+      <div class="eb fu"><wbr>第3章　三種の<wbr>神器の<wbr>完成</div>
+      <h2 class="fu" style="--d:.1s"><wbr>会社の<wbr>成長＝<br><span class="rl" style="--d:.9s"><wbr>自分の<wbr>給料の<wbr>伸び</span></h2>
       <div class="flow fu" style="--d:.4s">
-        <span class="chip"><small>電産型の</small>決め方</span><span class="arr">＋</span>
-        <span class="chip"><small>年10%成長の</small>原資</span><span class="arr">＝</span>
-        <span class="chip k"><small>実体のある</small>右肩上がりの賃金</span>
+        <span class="chip"><small><wbr>電産型の</small><wbr>決め方</span><span class="arr">＋</span>
+        <span class="chip"><small><wbr>年10%成長の</small><wbr>原資</span><span class="arr">＝</span>
+        <span class="chip k"><small><wbr>実体の<wbr>ある</small><wbr>右肩上がりの<wbr>賃金</span>
       </div>
-      <div data-step="2"><p class="fu">会社単位の<b>企業別組合</b>は業績が伸びれば要求にも応えやすく、「会社のために頑張る」一体感が生まれた。</p></div>
+      <div data-step="2"><p class="fu"><wbr>会社単位の<b><wbr>企業別組合</b>は、<wbr>業績が<wbr>伸びれば<wbr>賃上げの<wbr>要求にも<wbr>応えやすくなります。<wbr>「会社の<wbr>ために<wbr>頑張る」という<wbr>一体<wbr>感が<wbr>生まれました。<wbr></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 330" role="img" aria-label="右肩上がりの賃金カーブと三種の神器">
@@ -783,15 +797,15 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
       </svg>
     </div>
     <div class="txt">
-      <div class="eb fu">第3章　すべての労働者を一つの法律で</div>
-      <h2 class="fu" style="--d:.1s">1947年、<br>労働基準法</h2>
-      <p class="fu" style="--d:.3s">工場法から36年後。GHQは日本の低賃金構造を大陸進出の動機の一つと考え、財閥解体・農地改革と並ぶ経済民主化として労働者保護を進めた。</p>
+      <div class="eb fu"><wbr>第3章　すべての<wbr>労働者を<wbr>一つの<wbr>法律で</div>
+      <h2 class="fu" style="--d:.1s"><wbr>1947年、<wbr>労働基準法</h2>
+      <p class="fu" style="--d:.3s"><wbr>工場法から<wbr>36年後の<wbr>ことです。<wbr>GHQは<wbr>日本の<wbr>低賃金構造を<wbr>大陸進出の<wbr>動機の<wbr>一つと<wbr>考え、<wbr>財閥解体・農地改革と<wbr>並ぶ経済民主化と<wbr>して、<wbr>労働者保護を<wbr>進めました。<wbr></p>
       <div data-step="1"><ul class="tl">
-        <li class="fu"><b>1945.12</b><span><span class="em">労働組合法</span>　憲法より先に制定</span></li>
-        <li class="fu" style="--d:.3s"><b>1947.5</b><span>日本国憲法 施行</span></li>
+        <li class="fu"><b>1945.12</b><span><span class="em"><wbr>労働組合法</span>　<wbr>憲法より<wbr>先に<wbr>制定されました</span></li>
+        <li class="fu" style="--d:.3s"><b>1947.5</b><span><wbr>日本国憲法 施行</span></li>
       </ul></div>
-      <div data-step="2"><p class="fu">この直後、アメリカの方針が変わり、GHQは保護に積極的でなくなる。</p>
-        <p class="key fu" style="--d:.3s">労基法の成立は、<br><span class="rl" style="--d:.8s">転換が始まるギリギリ手前</span>だった。</p></div>
+      <div data-step="2"><p class="fu">この<wbr>直後に<wbr>アメリカの<wbr>方針が<wbr>変わり、<wbr>GHQは<wbr>保護に<wbr>積極的でなくなっていきます。<wbr></p>
+        <p class="key fu" style="--d:.3s"><wbr>労基法の<wbr>成立は、<wbr><span class="rl" style="--d:.8s"><wbr>転換が<wbr>始まる<wbr>ギリギリ手前</span>だったのです。<wbr></p></div>
     </div>
   </div>
 </section>
@@ -800,12 +814,12 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="3" data-y="1995" data-rg="jp" data-era="1995年〜" data-place="日本" data-ghost="1995" data-where="1995年以降の日本">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第3章　非正規雇用の増大</div>
-      <h2 class="fu" style="--d:.1s">変えたのは、<br><span class="rl" style="--d:.9s">入り口だけ</span></h2>
-      <p class="fu" style="--d:.3s">1995年、日経連の「雇用ポートフォリオ」。社員を3つに分け、人件費の固定費を減らそうとした。</p>
-      <div class="chips fu" style="--d:.5s"><span class="chip a">長期蓄積能力活用型</span><span class="chip">高度専門能力活用型</span><span class="chip k">雇用柔軟型</span></div>
-      <div data-step="1"><p class="fu">既存の正社員は、判例で積み上がった<b>整理解雇の4要件</b>に守られている。</p></div>
-      <div data-step="2"><p class="fu">そこで企業は、<b>新卒・中途の採用を非正規に</b>切り替えた。</p></div>
+      <div class="eb fu"><wbr>第3章　非正規雇用の<wbr>増大</div>
+      <h2 class="fu" style="--d:.1s"><wbr>変えたのは、<wbr><span class="rl" style="--d:.9s"><wbr>入り口だけ</span>でした</h2>
+      <p class="fu" style="--d:.3s"><wbr>1995年、<wbr>日経連が<wbr>「雇用ポートフォリオ」を<wbr>発表しました。<wbr>社員を<wbr>3つに<wbr>分け、<wbr>人件費の<wbr>固定費を<wbr>減らそうとしたのです。<wbr></p>
+      <div class="chips fu" style="--d:.5s"><span class="chip a"><wbr>長期蓄積能力活用型</span><span class="chip"><wbr>高度専門能力活用型</span><span class="chip k"><wbr>雇用柔軟型</span></div>
+      <div data-step="1"><p class="fu"><wbr>既存の<wbr>正社員は、<wbr>判例で<wbr>積み上がった<b><wbr>整理解雇の<wbr>4要件</b>に<wbr>守られています。<wbr></p></div>
+      <div data-step="2"><p class="fu">そこで<wbr>企業は、<wbr><b><wbr>新卒・中途の<wbr>採用を<wbr>非正規に</b><wbr>切り<wbr>替えました。<wbr></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 340" role="img" aria-label="正社員は4要件の盾で守られ、新しい採用は非正規へ。非正規比率は1990年約20%から2019年約40%へ">
@@ -834,13 +848,13 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="3" data-y="2012" data-rg="jp" data-era="2008〜2019" data-place="日本" data-ghost="2008" data-where="2008〜2019年の日本">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第3章　現在の二重構造へ</div>
-      <h2 class="fu" style="--d:.1s">別々の衝撃が、<br><span class="rl" style="--d:.9s">同じ方向</span>を向いた</h2>
+      <div class="eb fu"><wbr>第3章　現在の<wbr>二重構造へ</div>
+      <h2 class="fu" style="--d:.1s"><wbr>別々の<wbr>衝撃が、<wbr><span class="rl" style="--d:.9s"><wbr>同じ<wbr>方向</span>を<wbr>向きました</h2>
       <div class="cols" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
-        <div data-step="1"><div class="box sl"><div class="yr">2008</div><h3>リーマンショック</h3><p>派遣切り、年越し派遣村</p></div></div>
-        <div data-step="2"><div class="box sl"><div class="yr">2015</div><h3>電通過労死事件</h3></div></div>
-        <div data-step="3"><div class="box sl"><div class="yr">長期</div><h3>少子高齢化</h3><p>労働力不足</p></div></div>
-        <div data-step="4"><div class="box sl"><div class="yr">長期</div><h3>労働生産性</h3><p>G7で最下位</p></div></div>
+        <div data-step="1"><div class="box sl"><div class="yr">2008</div><h3><wbr>リーマンショック</h3><p><wbr>派遣切り、<wbr>年越し派遣村</p></div></div>
+        <div data-step="2"><div class="box sl"><div class="yr">2015</div><h3><wbr>電通過労死事件</h3></div></div>
+        <div data-step="3"><div class="box sl"><div class="yr"><wbr>長期</div><h3><wbr>少子高齢化</h3><p><wbr>労働力不足</p></div></div>
+        <div data-step="4"><div class="box sl"><div class="yr"><wbr>長期</div><h3><wbr>労働生産性</h3><p><wbr>G7で<wbr>最下位</p></div></div>
       </div>
     </div>
     <div class="txt">
@@ -856,9 +870,9 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         .slide[data-at="3"] .p2{transform:rotate(22deg)} .slide[data-at="4"] .p2,.slide[data-at="5"] .p2{transform:rotate(32deg)}
       </style>
       <div data-step="5"><ul class="tl">
-        <li class="fu"><b>2012</b><span>無期転換ルール（労働契約法）</span></li>
-        <li class="fu" style="--d:.2s"><b>2015</b><span>3年ルール（労働者派遣法）</span></li>
-        <li class="fu" style="--d:.4s"><b>2018</b><span><span class="em">働き方改革関連法</span>　残業上限規制など<span class="red tb">70年ぶり</span>の大改正</span></li>
+        <li class="fu"><b>2012</b><span><wbr>無期転換ルール<wbr>（労働契約法）<wbr></span></li>
+        <li class="fu" style="--d:.2s"><b>2015</b><span><wbr>3年ルール<wbr>（労働者派遣法）<wbr></span></li>
+        <li class="fu" style="--d:.4s"><b>2018</b><span><span class="em"><wbr>働き方改革関連法</span>　<wbr>残業上限規制など、<wbr><span class="red tb"><wbr>70年ぶり</span>の<wbr>大改正</span></li>
       </ul></div>
     </div>
   </div>
@@ -868,19 +882,19 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="4" data-y="1970" data-rg="food" data-era="1970年" data-place="飲食業" data-ghost="1970" data-where="1970年 日本の飲食業">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第4章　日本の飲食の歴史</div>
-      <h2 class="fu" style="--d:.1s">飲食の近代化は、<br>アメリカからやってきた</h2>
+      <div class="eb fu"><wbr>第4章　日本の<wbr>飲食の<wbr>歴史</div>
+      <h2 class="fu" style="--d:.1s"><wbr>飲食の<wbr>近代化は、<wbr>アメリカから<wbr>やってきました</h2>
       <ul class="tl fu" style="--d:.3s">
-        <li><b>1969</b><span>資本自由化で、アメリカ資本が参入</span></li>
-        <li><b>1970</b><span>すかいらーく、ロイヤルホスト</span></li>
-        <li><b>1971</b><span>日本マクドナルド</span></li>
+        <li><b>1969</b><span><wbr>資本自由化で、<wbr>アメリカ資本が<wbr>参入</span></li>
+        <li><b>1970</b><span>すかいらーく、<wbr>ロイヤルホスト</span></li>
+        <li><b>1971</b><span><wbr>日本マクドナルド</span></li>
       </ul>
       <div data-step="1"><div class="flow">
-        <span class="chip fu"><small>移民国家</small>熟練職人が足りない</span><span class="chip fu" style="--d:.2s"><small>国土</small>広い</span><span class="chip fu" style="--d:.4s"><small>人口</small>増え続ける</span>
-        <span class="arr fd" style="--d:.6s">→</span><span class="chip k stampin" style="--d:.8s">単純化・標準化して<br>早く大きく展開する</span>
+        <span class="chip fu"><small><wbr>移民国家</small><wbr>熟練職人が<wbr>足りない</span><span class="chip fu" style="--d:.2s"><small><wbr>国土</small><wbr>広い</span><span class="chip fu" style="--d:.4s"><small><wbr>人口</small><wbr>増え続ける</span>
+        <span class="arr fd" style="--d:.6s">→</span><span class="chip k stampin" style="--d:.8s"><wbr>単純化・標準化して<br><wbr>早く<wbr>大きく<wbr>展開する</span>
       </div></div>
-      <div data-step="3"><p class="key fu">製造業より約100年、<br>欧州から<span class="rl">約200年遅れ</span>の近代化。</p>
-        <p class="sm fu" style="--d:.4s">つい50年前まで、飲食は「のれん分け」が当たり前の世界だった。</p></div>
+      <div data-step="3"><p class="key fu"><wbr>製造業より<wbr>約100年、<wbr>欧州から<span class="rl"><wbr>約200年遅れ</span>の<wbr>近代化です。<wbr></p>
+        <p class="sm fu" style="--d:.4s">つい50年前まで、<wbr>飲食は<wbr>「のれん分け」が<wbr>当たり前の<wbr>世界でした。<wbr></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 300" role="img" aria-label="調理を単純な工程に分けた流れ作業">
@@ -905,8 +919,8 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="4" data-y="2020" data-rg="food" data-era="分離から50年" data-place="3つを比べる" data-ghost="50" data-where="分離から50年の比較">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第4章　「分離から50年」で並べてみる</div>
-      <h2 class="fu" style="--d:.1s">資本と労働が分かれて<br>50年後、何が起きていたか</h2>
+      <div class="eb fu"><wbr>第4章　<wbr>「分離から<wbr>50年」で<wbr>並べてみる</div>
+      <h2 class="fu" style="--d:.1s"><wbr>資本と<wbr>労働が<wbr>分かれて<wbr>50年後、<wbr><br><wbr>何が<wbr>起きていたのでしょうか</h2>
     </div>
     <div style="overflow-x:auto">
     <svg class="ill" viewBox="0 0 920 300" style="min-width:640px;max-height:48vh" role="img" aria-label="欧州、日本の製造業、飲食業を、資本と労働が分離した年でそろえて50年後を比べる">
@@ -927,8 +941,8 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
     </svg>
     </div>
     <style>.slide.on .sweep{animation:sweep 1.6s ease-in-out both}@keyframes sweep{from{transform:translateX(-500px);opacity:0}10%{opacity:1}}</style>
-    <div data-step="5"><p class="key fu center" style="max-width:none">たった50年あまりで、<span class="rl">ここまで来ている。</span></p>
-      <p class="sm fu center" style="--d:.5s;max-width:none">欧米や製造業が200年かけた「工場型の労働ルール」を、数十年で当てはめようとする無理。それでも今の飲食は、まだ相当マシだと言える。</p></div>
+    <div data-step="5"><p class="key fu center" style="max-width:none">たった<wbr>50年あまりで、<wbr><span class="rl">ここまで<wbr>来ているのです。<wbr></span></p>
+      <p class="sm fu center" style="--d:.5s;max-width:none"><wbr>欧米や<wbr>製造業が<wbr>200年かけた<wbr>「工場型の<wbr>労働ルール」を、<wbr>数十年で<wbr>当てはめようと<wbr>するのには<wbr>無理が<wbr>あります。<wbr>それでも<wbr>今の<wbr>飲食は、<wbr>まだ<wbr>相当マシだと<wbr>言えます。<wbr></p></div>
   </div>
 </section>
 
@@ -936,16 +950,18 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="5" data-y="2026" data-rg="jp" data-era="2018〜2026" data-place="日本" data-ghost="2026" data-where="2018〜2026年の日本">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第5章　人手不足と法改正への向き合い方</div>
-      <h2 class="fu" style="--d:.1s">日本の労働法は、<br>国内の力学で揺れる</h2>
+      <div class="eb fu"><wbr>第5章　人手不足と<wbr>法改正への<wbr>向き合い方</div>
+      <h2 class="fu" style="--d:.1s"><wbr>保護と<wbr>緩和の<wbr>あいだで、<wbr>揺れ続けています</h2>
       <ul class="tl">
-        <li data-step="1" class="fu"><b>2018〜</b><span>残業上限規制など<span class="up">強化</span>と、副業解禁・高プロなど<span class="dn">緩和</span>が同時に進む</span></li>
-        <li data-step="2" class="fu"><b>ギグ</b><span>全体は欧州寄りなのに、ここだけ米国寄り（独立事業者のまま）</span></li>
-        <li data-step="3" class="fu"><b>2025秋</b><span>高市政権が労働時間規制の「緩和」検討を指示</span></li>
-        <li data-step="4" class="fu"><b>2026</b><span>約40年ぶりの労基法抜本改正、法案提出を見送り。20項目のうち前進は裁量労働制の拡大くらい</span></li>
-        <li data-step="5" class="fu"><b>2026.9</b><span>労基署が45時間超えの指導を緩める</span></li>
+        <li data-step="1" class="fu"><b>2018</b><span><span class="up"><wbr>保護</span>　<wbr>働き方改革関連法。<wbr>残業上限規制などの<wbr>規制強化</span></li>
+        <li data-step="2" class="fu"><b><wbr>同時に</b><span><span class="dn"><wbr>緩和</span>　<wbr>副業解禁や<wbr>高度プロフェッショナル制度</span></li>
+        <li data-step="3" class="fu"><b>2025.5</b><span><span class="up"><wbr>保護</span>　<wbr>ストレスチェックを<wbr>50人未満の<wbr>事業場へ<wbr>拡大する<wbr>法改正</span></li>
+        <li data-step="4" class="fu"><b>2025</b><span><span class="up"><wbr>保護</span>　<wbr>労基法の<wbr>抜本改正を<wbr>議論。<wbr>つながらない<wbr>権利、<wbr>勤務間インターバルなど<wbr>海外の<wbr>潮流を<wbr>追う</span></li>
+        <li data-step="5" class="fu"><b><wbr>2025秋</b><span><span class="dn"><wbr>緩和</span>　<wbr>高市政権が<wbr>労働時間規制の<wbr>「緩和」<wbr>検討を<wbr>指示</span></li>
+        <li data-step="6" class="fu"><b>2026</b><span><span class="dn"><wbr>緩和</span>　<wbr>労基法改正案の<wbr>提出を<wbr>見送り。<wbr>前進は<wbr>裁量労働制の<wbr>拡大くらい</span></li>
+        <li data-step="7" class="fu"><b>2026.9</b><span><span class="dn"><wbr>緩和</span>　<wbr>労基署が<wbr>45時間<wbr>超えの<wbr>指導を<wbr>緩める</span></li>
       </ul>
-      <div data-step="6"><p class="key fu">材料は世界から拾うが、<br><span class="rl">決める軸は常に国内</span>にある。</p></div>
+      <div data-step="8"><p class="key fu"><wbr>材料は<wbr>世界から<wbr>拾いますが、<wbr><span class="rl"><wbr>決める<wbr>軸は<wbr>常に<wbr>国内</span>に<wbr>あります。<wbr></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 340" role="img" aria-label="保護と緩和のあいだを揺れる振り子。2035〜2040年には深刻な人手不足">
@@ -956,11 +972,13 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         <g class="fu" style="--d:.8s"><rect x="100" y="304" width="240" height="34" rx="17" class="fi-ks"/><text x="220" y="326" text-anchor="middle" class="tb" style="font-size:13px">2035〜2040年 人手不足の深刻化</text></g>
       </svg>
       <style>
-        .p5{transform:rotate(30deg)}
-        .slide[data-at="1"] .p5{animation:pswing 1.8s ease-in-out infinite alternate}
-        @keyframes pswing{from{transform:rotate(26deg)}to{transform:rotate(-26deg)}}
-        .slide[data-at="2"] .p5{transform:rotate(-10deg)} .slide[data-at="3"] .p5{transform:rotate(-20deg)}
-        .slide[data-at="4"] .p5{transform:rotate(-28deg)} .slide[data-at="5"] .p5,.slide[data-at="6"] .p5{transform:rotate(-34deg)}
+        .p5{transform:rotate(18deg)}
+        .slide[data-at="1"] .p5{transform:rotate(28deg)} .slide[data-at="2"] .p5{transform:rotate(-6deg)}
+        .slide[data-at="3"] .p5{transform:rotate(18deg)} .slide[data-at="4"] .p5{transform:rotate(30deg)}
+        .slide[data-at="5"] .p5{transform:rotate(-16deg)} .slide[data-at="6"] .p5{transform:rotate(-24deg)}
+        .slide[data-at="7"] .p5{transform:rotate(-28deg)}
+        .slide[data-at="8"] .p5{animation:pswing 1.9s ease-in-out infinite alternate}
+        @keyframes pswing{from{transform:rotate(28deg)}to{transform:rotate(-28deg)}}
       </style>
     </div>
   </div>
@@ -971,15 +989,15 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
   <div class="in two rev">
     <div class="vis" data-step="1">
       <div class="pie sc" role="img" aria-label="24時間の円の中で、仕事と生活が時間を奪い合っている"></div>
-      <div class="pie-lab fd" style="--d:.6s"><span class="w">仕事</span><span class="l">生活</span></div>
+      <div class="pie-lab fd" style="--d:.6s"><span class="w"><wbr>仕事</span><span class="l"><wbr>生活</span></div>
     </div>
     <div class="txt">
-      <div class="eb fu">第5章　ライフワークバランスという考え方</div>
-      <h2 class="fu" style="--d:.1s">ライフワーク<br>バランス</h2>
-      <p class="fu" style="--d:.3s">2008年から2020年代半ばまで、振り子は労働者を守る側に振れてきた。その象徴がこの考え方。働きすぎを防ぎ、生活の時間を守る。<b>大切な価値観であり、否定はしない。</b></p>
-      <div data-step="1"><p class="fu">ただ、仕事と生活を対立するものと捉えると……</p></div>
-      <div data-step="2"><p class="key fu"><span class="rl">「仕事の時間をどれだけ減らせるか」</span><br>という、24時間の奪い合いになる。</p>
-        <p class="sm fu" style="--d:.4s">そしてここ2年ほどで、緩和の色が見え始めている。</p></div>
+      <div class="eb fu"><wbr>第5章　ライフワークバランスという<wbr>考え方</div>
+      <h2 class="fu" style="--d:.1s"><wbr>ライフワークバランス</h2>
+      <p class="fu" style="--d:.3s"><wbr>2008年から<wbr>2020年代半ばまで、<wbr>振り子は<wbr>労働者を<wbr>守る<wbr>側に<wbr>振れてきました。<wbr>その<wbr>象徴が<wbr>この<wbr>考え方です。<wbr>働きすぎを<wbr>防ぎ、<wbr>生活の<wbr>時間を<wbr>守る。<wbr><b><wbr>大切な<wbr>価値観であり、<wbr>否定する<wbr>ものではありません。<wbr></b></p>
+      <div data-step="1"><p class="fu">ただ、<wbr>仕事と<wbr>生活を<wbr>対立する<wbr>ものと<wbr>捉えると……</p></div>
+      <div data-step="2"><p class="key fu"><span class="rl"><wbr>「仕事の<wbr>時間を<wbr>どれだけ減らせるか」<wbr></span>という、<wbr>24時間の<wbr>奪い合いに<wbr>なってしまいます。<wbr></p>
+        <p class="sm fu" style="--d:.4s">そして、<wbr>ここ2年ほどで<wbr>緩和の<wbr>色が<wbr>見え始めています。<wbr></p></div>
     </div>
   </div>
 </section>
@@ -988,12 +1006,12 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="6" data-y="2026" data-rg="bb" data-era="これから" data-place="バルニバービ" data-ghost="NEO" data-where="バルニバービ">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第6章　僕らはどうあるべきか</div>
-      <h2 class="fu" style="--d:.1s">工場型ではなく、<br><span class="rl" style="--d:.9s">ネオ・ギルド</span>へ</h2>
-      <p class="fu" style="--d:.3s">バルニバービは、画一的なマニュアルで縛るチェーン店ではない。一人ひとりが「食でやりたいこと」を持ち、店ごとの個性を発揮し、独立や新しい店づくりに挑戦してきた。</p>
+      <div class="eb fu"><wbr>第6章　<wbr>僕らは<wbr>どう<wbr>あるべきか</div>
+      <h2 class="fu" style="--d:.1s"><wbr>工場型ではなく、<wbr><span class="rl" style="--d:.9s"><wbr>ネオ・ギルド</span>へ</h2>
+      <p class="fu" style="--d:.3s"><wbr>バルニバービは、<wbr>画一的な<wbr>マニュアルで<wbr>縛る<wbr>チェーン店ではありません。<wbr>一人<wbr>ひとりが<wbr>「食で<wbr>やりたい<wbr>こと」を<wbr>持ち、<wbr>店ごとの<wbr>個性を<wbr>発揮し、<wbr>独立や<wbr>新しい<wbr>店づくりに<wbr>挑戦してきました。<wbr></p>
       <div class="cols">
-        <div data-step="1"><div class="box sl"><div class="yr" style="color:var(--ok)">引き継ぐ</div><p>様々な場所で学び、スキルを自分のものにする文化</p><p>のれん分け。自分の店（実質的な店舗の責任者）を持つ道</p></div></div>
-        <div data-step="2"><div class="box sr"><div class="yr" style="color:var(--red)">更新する</div><p><s>閉鎖的な徒弟制</s></p><p><s>長い下積みと低い待遇</s></p><p>時代・法律に合わせ、時には世の中の基準に合わせる</p></div></div>
+        <div data-step="1"><div class="box sl"><div class="yr" style="color:var(--ok)"><wbr>引き継ぐ</div><p><wbr>様々な<wbr>場所で<wbr>学び、<wbr>スキルを<wbr>自分の<wbr>ものに<wbr>する<wbr>文化</p><p>のれん分け。<wbr>自分の<wbr>店<wbr>（実質的な<wbr>店舗の<wbr>責任者）を<wbr>持つ道</p></div></div>
+        <div data-step="2"><div class="box sr"><div class="yr" style="color:var(--red)"><wbr>更新する</div><p><s><wbr>閉鎖的な<wbr>徒弟制</s></p><p><s><wbr>長い<wbr>下積みと<wbr>低い<wbr>待遇</s></p><p><wbr>時代・法律に<wbr>合わせ、<wbr>時には<wbr>世の<wbr>中の<wbr>基準にも<wbr>合わせる</p></div></div>
       </div>
     </div>
     <div class="vis">
@@ -1006,28 +1024,45 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <text x="200" y="227" text-anchor="middle" class="td tp" style="font-size:26px;letter-spacing:.12em">NEO GUILD</text>
         </g>
         <text x="200" y="300" text-anchor="middle" class="td fd" style="--d:1.9s;font-size:22px">ネオ・ギルド</text>
-        <text x="200" y="330" text-anchor="middle" class="tk fd" style="--d:2.1s;font-family:var(--f-hand);font-size:16px">良い部分は引き継ぎ、悪い部分は更新する</text>
+        <text x="200" y="330" text-anchor="middle" class="tk fd" style="--d:2.1s;font-family:var(--f-hand);font-size:16px">良い部分は引き継ぎ、悪い部分は更新します</text>
       </svg>
     </div>
   </div>
 </section>
 
-<!-- ===== 7-0 LIFE-WORK WITHIN（大きく） ===== -->
+<!-- ===== 7-0 Life-Work Within ===== -->
 <section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="これから" data-place="バルニバービ" data-ghost="WITHIN" data-where="バルニバービ">
-  <div class="in center" style="gap:10px">
-    <div class="eb fu">第7章　『Life-Work Within』</div>
-    <div class="huge fu" style="--d:.2s;font-size:clamp(46px,9vw,124px);line-height:1.1">ライフワーク</div>
-    <div class="huge" style="position:relative;display:inline-block;font-size:clamp(28px,4.5vw,60px);color:var(--ink3);line-height:1.2">
-      <span class="fu" style="--d:.5s;display:inline-block">バランス</span>
-      <svg viewBox="0 0 100 20" preserveAspectRatio="none" style="position:absolute;left:-4%;top:30%;width:108%;height:40%;overflow:visible" aria-hidden="true"><path d="M2 12 C 30 4, 60 16, 98 6" class="ln ln-red w6 dr" pathLength="1" style="--d:1.2s;stroke-width:5"/></svg>
+  <div class="in two">
+    <div class="txt">
+      <div class="eb fu"><wbr>第7章　『Life-Work Within』<wbr></div>
+      <p class="key fu" style="--d:.2s;font-size:clamp(19px,2.2vw,27px)"><wbr>仕事と<wbr>生活を<wbr>対立させて<wbr>天秤に<wbr>かける<wbr>「ライフワークバランス」ではなく、<wbr><span class="rl" style="--d:1.2s"><wbr>人生と<wbr>共に<wbr>仕事が<wbr>あり続けた</span>のが、<wbr>バルニバービらしさではないでしょうか。<wbr></p>
+      <div data-step="1" class="lww">
+        <div class="fu" style="font-family:var(--f-disp);font-weight:800;font-size:clamp(20px,2.4vw,30px);color:var(--ink3)"><wbr>ライフワーク<span style="position:relative;display:inline-block"><wbr>バランス<svg viewBox="0 0 100 20" preserveAspectRatio="none" style="position:absolute;left:-4%;top:34%;width:108%;height:40%;overflow:visible" aria-hidden="true"><path d="M2 12 C 30 4, 60 16, 98 6" class="ln ln-red w4 dr" pathLength="1" style="--d:.6s"/></svg></span>から、<wbr></div>
+        <div class="stampin" style="--d:1.2s;font-family:var(--f-disp);font-weight:800;font-size:clamp(26px,3vw,40px);line-height:1.2;color:var(--kaki);letter-spacing:.04em;white-space:nowrap">LIFE-WORK WITHIN</div>
+        <div class="fd sm" style="--d:1.6s"><wbr>ライフワークウィズインへ</div>
+      </div>
     </div>
-    <div class="huge stampin" style="--d:2s;font-size:clamp(64px,13vw,180px);line-height:1;color:var(--kaki)">ウィズイン</div>
-    <div class="fd" style="--d:2.6s;font-family:var(--f-disp);font-weight:800;letter-spacing:.32em;font-size:clamp(14px,2vw,24px);color:var(--ai)">LIFE-WORK WITHIN</div>
-    <div data-step="1"><p class="key fu" style="max-width:none;margin-top:10px">仕事と生活を天秤にかけるのではなく、<br><span class="rl">人生そのものの中に、仕事があり続ける。</span></p></div>
+    <div class="vis">
+      <svg class="ill" viewBox="0 0 400 320" role="img" aria-label="天秤から、人生の円の中に仕事がある形へ">
+        <g class="bal2">
+          <line x1="200" y1="70" x2="200" y2="250" class="ln w4"/><path d="M160 260h80" class="ln w4"/>
+          <line x1="70" y1="80" x2="330" y2="80" class="ln w4"/>
+          <path d="M70 80l-34 70h68z" class="ln ln-k"/><path d="M36 150a34 12 0 0 0 68 0" class="fi-k"/>
+          <path d="M330 80l-34 70h68z" class="ln ln-a"/><path d="M296 150a34 12 0 0 0 68 0" class="fi-a"/>
+          <text x="70" y="182" text-anchor="middle" class="tb">仕事</text><text x="330" y="182" text-anchor="middle" class="tb">生活</text>
+        </g>
+        <g data-step="1">
+          <g class="sc" style="--d:.6s"><circle cx="200" cy="160" r="140" class="fi-as"/><circle cx="200" cy="160" r="140" class="ln ln-a"/>
+            <text x="200" y="62" text-anchor="middle" class="ta td" style="font-size:22px">人生</text></g>
+          <g class="pop" style="--d:1s"><circle cx="200" cy="180" r="66" class="fi-k"/><text x="200" y="188" text-anchor="middle" class="td tp" style="font-size:24px">仕事</text></g>
+        </g>
+      </svg>
+      <style>.ill .bal2{transition:opacity .6s}.slide[data-at="1"] .bal2{opacity:0}</style>
+    </div>
   </div>
 </section>
 
-<!-- ===== 7-0b Within の中身 ===== -->
+<!-- ===== 7-0b 人生のあらゆるポイントで ===== -->
 <section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="これから" data-place="バルニバービ" data-ghost="WITHIN" data-where="バルニバービ">
   <div class="in two rev">
     <div class="vis">
@@ -1049,13 +1084,10 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
       <style>.rip{animation:rip 3s ease-out infinite}@keyframes rip{from{transform:scale(1);opacity:.8}to{transform:scale(1.35);opacity:0}}</style>
     </div>
     <div class="txt">
-      <div class="eb fu">第7章　Life-Work Within</div>
-      <h2 class="fu" style="--d:.1s">食の仕事を通して、<br><span class="rl" style="--d:.9s">なりたい自分</span>になる</h2>
-      <p class="fu" style="--d:.3s">バルニバービの理念。この「なりたい自分」は、人生のどの瞬間にも存在する。だから「バランス」ではなく「ウィズイン」の方が、私たちの働き方の実態に合っている。</p>
-      <div data-step="2"><div class="cols">
-        <div class="box fu"><div class="yr">柱 ①</div><h3>健康への取り組み</h3></div>
-        <div class="box fu" style="--d:.2s"><div class="yr">柱 ②</div><h3>採用・キャリア・ライフイベント・教育・評価</h3></div>
-      </div></div>
+      <div class="eb fu"><wbr>第7章　Life-Work Within</div>
+      <h2 class="fu" style="--d:.1s"><wbr>食の<wbr>仕事を<wbr>通して、<wbr><span class="rl" style="--d:.9s">なりたい<wbr>自分</span>に<wbr>なる</h2>
+      <p class="fu" style="--d:.3s">これが<wbr>バルニバービの<wbr>理念です。<wbr>この<wbr>「なりたい<wbr>自分」は、<wbr>人生の<wbr>どの<wbr>瞬間にも<wbr>存在します。<wbr></p>
+      <div data-step="2"><p class="key fu">だから、<wbr><span class="rl" style="--d:.5s"><wbr>人生の<wbr>あらゆる<wbr>ポイントで<wbr>働きやすい<wbr>環境</span>を<wbr>目指します。<wbr></p></div>
     </div>
   </div>
 </section>
@@ -1064,13 +1096,14 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="柱 ①" data-place="健康" data-ghost="BRIDGE" data-where="バルニバービ">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第7章 ①　健康への取り組み</div>
-      <h2 class="fu" style="--d:.1s">福利厚生は、時代とバルニバービを<br>つなぐ<span class="rl" style="--d:.9s">架け橋</span>でありたい</h2>
+      <div class="eb fu"><wbr>第7章 ①　健康への<wbr>取り組み</div>
+      <h2 class="fu" style="--d:.1s"><wbr>福利厚生は、<wbr>時代や<wbr>法律と<wbr>ズレが<wbr>ある<wbr>飲食業を<wbr>つなぐ<span class="rl" style="--d:.9s"><wbr>架け橋</span>と<wbr>して<wbr>考えていきます</h2>
     </div>
-    <svg class="ill" viewBox="0 0 900 250" style="max-height:38vh" role="img" aria-label="時代・法律の岸と、バルニバービの在り方の岸を、福利厚生という橋がつなぐ">
-      <path d="M0 200h170v50H0z" class="fi-as"/><path d="M730 200h170v50H730z" class="fi-ks"/>
-      <text x="85" y="186" text-anchor="middle" class="td ta" style="font-size:18px">時代・法律</text>
-      <text x="815" y="186" text-anchor="middle" class="td tk" style="font-size:18px">飲食業・バルニバービ</text>
+    <svg class="ill" viewBox="0 0 900 270" style="max-height:38vh" role="img" aria-label="時代・法律の岸と、ズレた位置にある飲食業の岸を、福利厚生という橋がつなぐ">
+      <path d="M0 170h170v100H0z" class="fi-as"/><path d="M730 220h170v50H730z" class="fi-ks"/>
+      <text x="85" y="156" text-anchor="middle" class="td ta" style="font-size:18px">時代・法律</text>
+      <text x="815" y="206" text-anchor="middle" class="td tk" style="font-size:18px">飲食業・バルニバービ</text>
+      <g class="fd" style="--d:.4s"><path d="M720 170v50" class="ln ln-red w3 dash"/><text x="700" y="198" text-anchor="end" class="tr td" style="font-size:18px">ズレ</text></g>
       <g data-step="1">
         <circle cx="300" cy="30" r="5" class="fi-3 pop"/><text x="310" y="35" class="t3 fd">ポイント還元</text>
         <circle cx="440" cy="20" r="5" class="fi-3 pop" style="--d:.2s"/><text x="450" y="25" class="t3 fd" style="--d:.2s">割引</text>
@@ -1078,15 +1111,15 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         <text x="450" y="68" text-anchor="middle" class="t2 fd" style="--d:.6s">その場しのぎの“点”の施策</text>
       </g>
       <g data-step="2">
-        <path d="M170 200 Q 450 40 730 200" class="ln w4 dr" pathLength="1"/>
-        <line x1="170" y1="200" x2="730" y2="200" class="ln w4 dr" pathLength="1" style="--d:.2s"/>
-        <g class="ln ln-3 fd" style="--d:1.2s"><line x1="240" y1="200" x2="240" y2="152"/><line x1="310" y1="200" x2="310" y2="122"/><line x1="380" y1="200" x2="380" y2="105"/><line x1="450" y1="200" x2="450" y2="100"/><line x1="520" y1="200" x2="520" y2="105"/><line x1="590" y1="200" x2="590" y2="122"/><line x1="660" y1="200" x2="660" y2="152"/></g>
-        <text x="450" y="236" text-anchor="middle" class="td tr fd" style="--d:1.4s;font-size:22px">人の人生と共にある“線”の制度</text>
+        <path d="M170 170 Q 450 30 730 220" class="ln w4 dr" pathLength="1"/>
+        <path d="M170 170 L 730 220" class="ln w4 dr" pathLength="1" style="--d:.2s"/>
+        <g class="ln ln-3 fd" style="--d:1.2s"><line x1="240" y1="176" x2="240" y2="137"/><line x1="310" y1="182" x2="310" y2="112"/><line x1="380" y1="189" x2="380" y2="100"/><line x1="450" y1="195" x2="450" y2="98"/><line x1="520" y1="201" x2="520" y2="107"/><line x1="590" y1="207" x2="590" y2="128"/><line x1="660" y1="214" x2="660" y2="160"/></g>
+        <text x="450" y="250" text-anchor="middle" class="td tr fd" style="--d:1.4s;font-size:22px">人の人生と共にある“線”の制度</text>
       </g>
     </svg>
     <div data-step="3"><div class="cols">
-      <div class="box fu"><div class="yr">バルニバービの軸</div><p>人の人生と共にある。だから法や制度がどう変わっても、働き方と生き方をつなぎ続けられる。</p></div>
-      <div class="box fu" style="--d:.2s"><div class="yr">前提</div><p>法律は守る。自由度を高めることは、<b>労務管理を曖昧にすることではない。</b></p></div>
+      <div class="box fu"><div class="yr"><wbr>バルニバービの<wbr>軸</div><p><wbr>人の<wbr>人生と<wbr>共に<wbr>あります。<wbr>だから<wbr>法や<wbr>制度が<wbr>どう<wbr>変わっても、<wbr>働き方と<wbr>生き方を<wbr>つなぎ続けられます。<wbr></p></div>
+      <div class="box fu" style="--d:.2s"><div class="yr"><wbr>前提</div><p><wbr>法律は<wbr>守ります。<wbr>自由度を<wbr>高める<wbr>ことは、<wbr><b><wbr>労務管理を<wbr>曖昧に<wbr>する<wbr>ことではありません。<wbr></b></p></div>
     </div></div>
   </div>
 </section>
@@ -1095,31 +1128,31 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="柱 ①" data-place="3つの健康" data-ghost="HEALTH" data-where="バルニバービ">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第7章 ①　外部に左右されない「3つの健康」</div>
-      <h2 class="fu" style="--d:.1s">長く働くために、<br><span class="red">体・体力・心</span>へ投資する</h2>
-      <p class="sm fu" style="--d:.2s">カードを押すと詳しい内容が開きます。</p>
+      <div class="eb fu"><wbr>第7章 ①　外部に<wbr>左右されない<wbr>「3つの<wbr>健康」<wbr></div>
+      <h2 class="fu" style="--d:.1s"><wbr>長く<wbr>働く<wbr>ために、<wbr><span class="red"><wbr>体・体力・心</span>へ<wbr>投資します</h2>
+      <p class="sm fu" style="--d:.2s"><wbr>カードを<wbr>押すと、<wbr>詳しい<wbr>内容が<wbr>開きます。<wbr></p>
     </div>
     <div class="hcards">
       <div data-step="1"><button class="hc fu" type="button" aria-expanded="false">
         <svg viewBox="0 0 240 64" aria-hidden="true"><polyline points="0,34 60,34 74,34 84,10 96,56 106,34 240,34" class="ln ln-a w3 ecg"/></svg>
-        <span class="h">体<small>MEDICAL</small></span>
-        <span class="sum">年1回の健康診断だけでは足りない。</span>
-        <span class="more" hidden>20代、30代、40代で求められることも、家族構成も変わっていく。その変化に応じて、体の健康をどう測り、維持し、向上させていけるかを、これから考えていきたい。</span>
-        <span class="tog">詳しく見る ＋</span>
+        <span class="h"><wbr>体<small>MEDICAL</small></span>
+        <span class="sum"><wbr>年1回の<wbr>健康診断だけでは<wbr>足りません。<wbr></span>
+        <span class="more" hidden><wbr>20代、<wbr>30代、<wbr>40代で<wbr>求められる<wbr>ことも、<wbr>家族構成も<wbr>変わっていきます。<wbr>その<wbr>変化に<wbr>応じて、<wbr>体の<wbr>健康を<wbr>どう<wbr>測り、<wbr>維持し、<wbr>向上させていけるかを、<wbr>これから<wbr>考えていきます。<wbr></span>
+        <span class="tog"><wbr>詳しく<wbr>見る<wbr> ＋</span>
       </button></div>
       <div data-step="2"><button class="hc fu" type="button" aria-expanded="false">
         <svg viewBox="0 0 240 64" aria-hidden="true"><g class="bob"><use href="#i-person" x="96" y="4" width="48" height="56" class="c-k"/></g><line x1="40" y1="62" x2="200" y2="62" class="ln ln-r"/></svg>
-        <span class="h">体力<small>PHYSICAL</small></span>
-        <span class="sum">飲食人をアスリートと捉える。</span>
-        <span class="more" hidden>一生現場に立ち続けられるよう、怪我や腰痛などを防ぐ身体機能のケアを整える。</span>
-        <span class="tog">詳しく見る ＋</span>
+        <span class="h"><wbr>体力<small>PHYSICAL</small></span>
+        <span class="sum"><wbr>飲食人を、<wbr>アスリートと<wbr>捉えます。<wbr></span>
+        <span class="more" hidden><wbr>一生現場に<wbr>立ち続けられるよう、<wbr>怪我や<wbr>腰痛などを<wbr>防ぐ身体機能の<wbr>ケアを<wbr>整えます。<wbr></span>
+        <span class="tog"><wbr>詳しく<wbr>見る<wbr> ＋</span>
       </button></div>
       <div data-step="3"><button class="hc fu" type="button" aria-expanded="false" style="border-color:var(--red)">
         <svg viewBox="0 0 240 64" aria-hidden="true"><g class="beat"><use href="#i-heart" x="96" y="4" width="48" height="56" class="c-r"/></g></svg>
-        <span class="h">心<small>SPIRIT</small></span>
-        <span class="sum"><span class="rl" style="--d:.6s">これから一番大事にしたい健康。</span></span>
-        <span class="more" hidden>今は年2回のエンゲージメントサーベイで熱量を測り始めた段階。そこにとどまらず、職人・表現者としてのやりがいや成長実感、仲間との信頼関係を含めた心の状態そのものを可視化していきたい。難しい領域だからこそ、挑戦する価値がある。</span>
-        <span class="tog">詳しく見る ＋</span>
+        <span class="h"><wbr>心<small>SPIRIT</small></span>
+        <span class="sum"><span class="rl" style="--d:.6s">これから<wbr>一番<wbr>大事に<wbr>したい<wbr>健康です。<wbr></span></span>
+        <span class="more" hidden><wbr>今は<wbr>年2回の<wbr>エンゲージメントサーベイで、<wbr>熱量を<wbr>測り<wbr>始めた<wbr>段階です。<wbr>そこに<wbr>とどまらず、<wbr>職人・表現者と<wbr>しての<wbr>やりが<wbr>いや<wbr>成長実感、<wbr>仲間との<wbr>信頼関係を<wbr>含めた、<wbr>心の<wbr>状態<wbr>その<wbr>ものを<wbr>可視化していきます。<wbr>難しい<wbr>領域だからこそ、<wbr>挑戦する<wbr>価値が<wbr>あります。<wbr></span>
+        <span class="tog"><wbr>詳しく<wbr>見る<wbr> ＋</span>
       </button></div>
     </div>
     <style>.ecg{stroke-dasharray:300;animation:ecg 2.2s linear infinite}@keyframes ecg{from{stroke-dashoffset:300}to{stroke-dashoffset:-300}}</style>
@@ -1130,16 +1163,16 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="7" data-y="2028" data-rg="jp" data-era="仮説" data-place="これからの日本" data-ghost="2028" data-where="これからの日本（仮説）">
   <div class="in two">
     <div class="txt">
-      <div class="eb fu">第7章 ①　今後の見通し（仮説）</div>
-      <h2 class="fu" style="--d:.1s">「時間で縛る」から<br>「健康を基準に」へ？</h2>
+      <div class="eb fu"><wbr>第7章 ①　<wbr>今後の<wbr>見通し<wbr>（仮説）<wbr></div>
+      <h2 class="fu" style="--d:.1s"><wbr>「時間で<wbr>縛る」から<wbr>「健康を<wbr>基準に」へ？<wbr></h2>
       <ul class="tl">
-        <li class="fu" style="--d:.3s"><b>2015</b><span>ストレスチェック、常時50人以上の事業場に義務化</span></li>
-        <li data-step="1" class="fu"><b>2025.5</b><span>法改正で、50人未満への拡大が決定</span></li>
-        <li data-step="1" class="fu" style="--d:.2s"><b>2028.4</b><span>50人未満の事業場でも義務化</span></li>
-        <li data-step="2" class="fu"><b>2026</b><span>14連勤禁止・勤務間インターバル義務化などを含む労基法改正は、提出見送り</span></li>
+        <li class="fu" style="--d:.3s"><b>2015</b><span><wbr>ストレスチェック、<wbr>常時50人以上の<wbr>事業場に<wbr>義務化</span></li>
+        <li data-step="1" class="fu"><b>2025.5</b><span><wbr>法改正で、<wbr>50人未満への<wbr>拡大が<wbr>決定</span></li>
+        <li data-step="1" class="fu" style="--d:.2s"><b>2028.4</b><span><wbr>50人未満の<wbr>事業場でも<wbr>義務化</span></li>
+        <li data-step="2" class="fu"><b>2026</b><span><wbr>14連勤禁止・勤務間インターバル義務化などを<wbr>含む労基法改正は、<wbr>提出<wbr>見送り</span></li>
       </ul>
-      <div data-step="3"><p class="key fu">先回りして<span class="rl">「心の健康」を可視化</span>していれば、<br>大きな裏付けになる。</p>
-        <p class="sm fu" style="--d:.4s">あくまで憶測であり、確定した方針ではない。</p></div>
+      <div data-step="3"><p class="key fu"><wbr>先回りして<span class="rl"><wbr>「心の<wbr>健康」を<wbr>可視化</span>していれば、<wbr>大きな<wbr>裏付けに<wbr>なるはずです。<wbr></p>
+        <p class="sm fu" style="--d:.4s">あくまで<wbr>憶測であり、<wbr>確定した<wbr>方針ではありません。<wbr></p></div>
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 300" role="img" aria-label="時計のアイコンがハートのアイコンに変わる">
@@ -1162,15 +1195,15 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="柱 ②" data-place="ライフステージ" data-ghost="LIFE" data-where="バルニバービ">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第7章 ②　ライフステージワーク</div>
-      <h2 class="fu" style="--d:.1s">人生の季節に沿って、<br>働き方を<span class="rl" style="--d:.9s">都度設計</span>する</h2>
-      <p class="fu" style="--d:.2s">外から労働力を奪い合うのではなく、自社から多様な仲間を育む。</p>
+      <div class="eb fu"><wbr>第7章 ②　ライフステージワーク</div>
+      <h2 class="fu" style="--d:.1s"><wbr>人生の<wbr>季節に<wbr>沿って、<wbr>働き方を<span class="rl" style="--d:.9s"><wbr>都度設計</span>します</h2>
+      <p class="fu" style="--d:.2s"><wbr>外から<wbr>労働力を<wbr>奪い合うのではなく、<wbr>自社から<wbr>多様な<wbr>仲間を<wbr>育みます。<wbr></p>
     </div>
     <div style="overflow-x:auto">
     <svg class="ill" viewBox="0 0 900 270" style="min-width:640px;max-height:44vh" role="img" aria-label="アルバイトから50代までの人生の道と、各時期の制度">
       <path id="road" d="M30 200 C 150 200, 160 90, 280 90 S 420 200, 520 190 S 680 80, 870 90" class="ln ln-r" style="stroke-width:28"/>
       <path d="M30 200 C 150 200, 160 90, 280 90 S 420 200, 520 190 S 680 80, 870 90" class="ln ln-3 dash"/>
-      <g class="stampin" style="--d:.8s"><circle cx="60" cy="199" r="11" class="fi-k"/><text x="60" y="240" text-anchor="middle" class="td" style="font-size:16px">アルバイト → 正社員</text><text x="60" y="260" text-anchor="middle" class="t3">GEMS（技能評価）で道をつくる</text></g>
+      <g class="stampin" style="--d:.8s"><circle cx="60" cy="199" r="11" class="fi-k"/><text x="20" y="240" class="td" style="font-size:16px">アルバイト → 正社員</text><text x="20" y="260" class="t3">GEMS（技能評価）で道をつくる</text></g>
       <g class="stampin" style="--d:1.3s"><circle cx="280" cy="90" r="11" class="fi-k"/><text x="280" y="48" text-anchor="middle" class="td" style="font-size:16px">夫婦・家族で働ける</text><text x="280" y="68" text-anchor="middle" class="t3">結婚・出産・育児を手厚く</text></g>
       <g class="stampin" style="--d:1.8s"><circle cx="430" cy="172" r="11" class="fi-k"/><text x="430" y="232" text-anchor="middle" class="td" style="font-size:16px">家賃補助・紹介料</text><text x="430" y="252" text-anchor="middle" class="t3">ライフステージに寄り添う社内ルール</text></g>
       <g class="stampin" style="--d:2.3s"><circle cx="640" cy="122" r="11" class="fi-k"/><text x="640" y="58" text-anchor="middle" class="td" style="font-size:16px">育休明けの働き方</text><text x="640" y="78" text-anchor="middle" class="t3">雇用形態・条件を固定しない</text></g>
@@ -1179,64 +1212,47 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         <animateMotion dur="3.2s" begin="indefinite" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" keyTimes="0;1" keyPoints="0;1"><mpath href="#road"/></animateMotion></g>
     </svg>
     </div>
-    <div data-step="1"><p class="key fu center" style="max-width:none">アルバイトは、社員不足を補う雇用ではなく<br><span class="rl">長く共に働くパートナー</span>。</p></div>
+    <div data-step="1"><p class="key fu center" style="max-width:none"><wbr>アルバイトは、<wbr>社員不足を<wbr>補う<wbr>雇用ではなく、<wbr><span class="rl"><wbr>長く<wbr>共に<wbr>働く<wbr>パートナー</span>です。<wbr></p></div>
   </div>
 </section>
 
-<!-- ===== 7-2 ネオギルド：100店舗 ===== -->
-<section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="柱 ②" data-place="ネオギルド" data-ghost="100" data-where="バルニバービ">
-  <div class="in two">
-    <div class="txt">
-      <div class="eb fu">第7章 ②　ネオギルド</div>
-      <h2 class="fu" style="--d:.1s">約100の店が、<br><span class="rl" style="--d:.9s">学びの場</span>になる</h2>
-      <p class="fu" style="--d:.3s">一つの職場に固定せず、キャリアに沿って<b>異動・転籍・ジョイナー（ヘルプ）</b>で他店を経験しやすくする。ギルドの遍歴修業を、現代の育成の仕組みとして。</p>
-      <div data-step="2"><div class="chips"><span class="chip fu"><small>交流の場</small>研修・勉強会・セミナー（他社も交えて）</span><span class="chip fu" style="--d:.2s"><small>評価制度</small>人間力と、現場で磨いたスキル</span></div></div>
-    </div>
-    <div class="vis">
-      <svg class="ill" id="storegrid" viewBox="0 0 420 250" role="img" aria-label="約100の店舗を渡り歩いて学ぶ道のり"></svg>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 7-2 3つのルート ===== -->
-<section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="柱 ②" data-place="3つのルート" data-ghost="ROUTE" data-where="バルニバービ">
+<!-- ===== 7-2 ネオギルド：3つのキャリアが同時に進む ===== -->
+<section class="slide" data-ch="7" data-y="2026" data-rg="bb" data-era="柱 ②" data-place="ネオギルド" data-ghost="GUILD" data-where="バルニバービ">
   <div class="in">
     <div class="txt">
-      <div class="eb fu">第7章 ②　多様なルートの併存</div>
-      <h2 class="fu" style="--d:.1s">独立や出世だけが、<br>すべてではない</h2>
+      <div class="eb fu"><wbr>第7章 ②　ネオギルド</div>
+      <h2 class="fu" style="--d:.1s"><wbr>3つの<wbr>キャリアが、<wbr><span class="rl" style="--d:.9s"><wbr>同時に<wbr>進んでいける</span><wbr>形を<wbr>つくります</h2>
+      <p class="fu" style="--d:.3s"><wbr>約100ある<wbr>ブランド・店舗を、<wbr>一つの<wbr>職場に<wbr>固定しません。<wbr><b><wbr>異動・転籍・ジョインター</b>で<wbr>他店を<wbr>経験する<wbr>ことは、<wbr>ギルドで<wbr>学ぶことと<wbr>同じ<wbr>意味を<wbr>持ちます。<wbr></p>
     </div>
     <div style="overflow-x:auto">
-    <svg class="ill" viewBox="0 0 960 400" style="min-width:700px;max-height:56vh" role="img" aria-label="ジェネラリスト、スペシャリスト、ライフワークの3つのルートが年代とともに進む">
+    <svg class="ill" viewBox="0 0 960 400" style="min-width:700px;max-height:52vh" role="img" aria-label="ジェネラリスト、スペシャリスト、ライフワークの3つのキャリアが、年代とともに同時に進む">
       <g class="fd">
         <line x1="150" y1="380" x2="900" y2="380" class="ln ln-r"/>
         <text x="150" y="398" text-anchor="middle" class="t3">20代</text><text x="337" y="398" text-anchor="middle" class="t3">30代</text><text x="525" y="398" text-anchor="middle" class="t3">40代</text><text x="712" y="398" text-anchor="middle" class="t3">50代</text><text x="900" y="398" text-anchor="middle" class="t3">60代</text>
         <line x1="337" y1="30" x2="337" y2="376" class="ln ln-r dash"/><line x1="525" y1="30" x2="525" y2="376" class="ln ln-r dash"/><line x1="712" y1="30" x2="712" y2="376" class="ln ln-r dash"/>
-      </g>
-      <!-- ジェネラリスト -->
-      <g data-step="1">
         <text x="0" y="86" class="td ta" style="font-size:19px">ジェネラリスト</text><text x="0" y="106" class="t3">入社から役員・取締役へ</text>
+        <text x="0" y="206" class="td tk" style="font-size:19px">スペシャリスト</text><text x="0" y="226" class="t3">腕を極める</text>
+        <text x="0" y="316" class="td tr" style="font-size:19px">ライフワーク</text><text x="0" y="336" class="t3">人生の季節と共に</text>
+      </g>
+      <g data-step="1">
+        <!-- ジェネラリスト -->
         <line x1="187" y1="92" x2="767" y2="92" class="ln ln-a w6 lane" pathLength="1"/>
         <g class="ms" style="--d:.3s"><circle cx="187" cy="92" r="9" class="fi-a"/><text x="187" y="72" text-anchor="middle" class="tb">入社</text></g>
+        <g class="ms gm" style="--d:.8s"><circle cx="262" cy="92" r="9" class="fi-a"/><text x="262" y="124" text-anchor="middle" class="tb">異動</text></g>
         <g class="ms" style="--d:1.2s"><circle cx="337" cy="92" r="9" class="fi-a"/><text x="337" y="72" text-anchor="middle" class="tb">店長</text></g>
         <g class="ms" style="--d:2.6s"><circle cx="618" cy="92" r="9" class="fi-a"/><text x="618" y="72" text-anchor="middle" class="tb">役員</text></g>
         <g class="ms" style="--d:3.5s"><use href="#i-star" x="749" y="74" width="36" height="36" class="c-a"/><text x="767" y="64" text-anchor="middle" class="td ta" style="font-size:17px">取締役</text></g>
         <g class="runner" style="--dx:580px"><use href="#i-person" x="171" y="40" width="32" height="32" class="c-a"/></g>
-      </g>
-      <!-- スペシャリスト -->
-      <g data-step="2">
-        <text x="0" y="206" class="td tk" style="font-size:19px">スペシャリスト</text><text x="0" y="226" class="t3">腕を極める</text>
+        <!-- スペシャリスト -->
         <line x1="187" y1="212" x2="487" y2="212" class="ln ln-k w6 lane" pathLength="1"/>
         <g class="ms" style="--d:.3s"><circle cx="187" cy="212" r="9" class="fi-k"/><text x="187" y="192" text-anchor="middle" class="tb">入社</text></g>
-        <g class="ms" style="--d:.7s"><circle cx="235" cy="212" r="9" class="fi-k"/><text x="235" y="244" text-anchor="middle" class="tb">転籍</text><text x="235" y="262" text-anchor="middle" class="t3">パスタ</text></g>
+        <g class="ms gm" style="--d:.7s"><circle cx="235" cy="212" r="9" class="fi-k"/><text x="235" y="244" text-anchor="middle" class="tb">転籍</text><text x="235" y="262" text-anchor="middle" class="t3">パスタ</text></g>
         <g class="ms" style="--d:1.3s"><circle cx="290" cy="212" r="9" class="fi-k"/><text x="290" y="192" text-anchor="middle" class="tb">デザート</text></g>
-        <g class="ms" style="--d:2.1s"><circle cx="370" cy="212" r="9" class="fi-k"/><text x="370" y="244" text-anchor="middle" class="tb">異動</text><text x="370" y="262" text-anchor="middle" class="t3">ピッツァ</text></g>
+        <g class="ms gm" style="--d:2.1s"><circle cx="370" cy="212" r="9" class="fi-k"/><text x="370" y="244" text-anchor="middle" class="tb">異動</text><text x="370" y="262" text-anchor="middle" class="t3">ピッツァ</text></g>
         <g class="ms" style="--d:3.5s"><use href="#i-star" x="463" y="188" width="48" height="48" class="c-k"/>
           <text x="530" y="206" class="td tk" style="font-size:20px">ピッツァイオーロ</text><text x="530" y="232" class="td tr" style="font-size:24px">世界2位</text></g>
         <g class="runner" style="--dx:300px"><use href="#i-person" x="171" y="160" width="32" height="32" class="c-k"/></g>
-      </g>
-      <!-- ライフワーク -->
-      <g data-step="3">
-        <text x="0" y="316" class="td tr" style="font-size:19px">ライフワーク</text><text x="0" y="336" class="t3">人生の季節と共に</text>
+        <!-- ライフワーク -->
         <line x1="187" y1="322" x2="806" y2="322" class="ln ln-red w6 lane" pathLength="1"/>
         <g class="ms" style="--d:.3s"><circle cx="187" cy="322" r="9" class="fi-red"/><text x="187" y="302" text-anchor="middle" class="tb">入社</text></g>
         <g class="ms" style="--d:.9s"><circle cx="300" cy="322" r="9" class="fi-red"/><text x="300" y="302" text-anchor="middle" class="tb">出産</text></g>
@@ -1245,16 +1261,29 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         <g class="ms" style="--d:3.5s"><use href="#i-heart" x="784" y="300" width="44" height="44" class="c-r"/><text x="806" y="292" text-anchor="middle" class="td tr" style="font-size:17px">働き続ける</text></g>
         <g class="runner" style="--dx:619px"><use href="#i-person" x="171" y="270" width="32" height="32" class="c-r"/></g>
       </g>
+      <g data-step="2">
+        <g class="gring" style="--d:.1s"><circle cx="262" cy="92" r="17" class="ln ln-red w3"/></g>
+        <g class="gring" style="--d:.3s"><circle cx="235" cy="212" r="17" class="ln ln-red w3"/></g>
+        <g class="gring" style="--d:.5s"><circle cx="370" cy="212" r="17" class="ln ln-red w3"/></g>
+        <g class="fd" style="--d:.8s"><rect x="700" y="0" width="240" height="30" rx="15" class="fi-ks"/><text x="820" y="20" text-anchor="middle" class="tb tr" style="font-size:13px">◯ ＝ ギルドで学ぶのと同じ</text></g>
+      </g>
     </svg>
     </div>
     <style>
+      .ill .lane{filter:none}
       .slide.on .lane{stroke-dasharray:1;animation:draw 3.2s .3s linear both}
       .slide.on .ms{animation:stamp2 .5s var(--d) cubic-bezier(.3,1.5,.5,1) both}
       .slide.on .runner{animation:run 3.2s .3s linear both}
       .ill .runner{transform:translateX(var(--dx));opacity:0}
       @keyframes run{0%{transform:translateX(0);opacity:1}90%{transform:translateX(var(--dx));opacity:1}100%{transform:translateX(var(--dx));opacity:0}}
+      .slide.on .gring{animation:ring 1.6s var(--d) ease-out both}
+      @keyframes ring{0%{opacity:0;transform:scale(2.4)}40%{opacity:1;transform:scale(1)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
     </style>
-    <div data-step="4"><p class="key fu center" style="max-width:none">どのルートも、<span class="rl">同じように誇りを持てる道</span>として並べる。</p></div>
+    <div data-step="3"><div class="chips" style="justify-content:center">
+      <span class="chip fu"><small><wbr>交流の<wbr>場</small><wbr>研修・勉強会・セミナー<wbr>（他社も<wbr>交えて）<wbr></span>
+      <span class="chip fu" style="--d:.2s"><small><wbr>評価制度</small><wbr>人間力と、<wbr>現場で<wbr>磨いた<wbr>スキル</span>
+    </div>
+    <p class="key fu center" style="--d:.4s;max-width:none;margin-top:10px">どの<wbr>キャリアも、<wbr><span class="rl" style="--d:.9s"><wbr>同じように<wbr>誇りを<wbr>持てる<wbr>道</span>です。<wbr></p></div>
   </div>
 </section>
 
@@ -1276,19 +1305,19 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
       <style>.slide.on .gather{animation:gather 1.2s var(--ease) both}@keyframes gather{from{opacity:0;transform:translate(var(--gx),var(--gy)) scale(.6)}}</style>
     </div>
     <div class="txt">
-      <div class="eb fu">結び</div>
-      <h2 class="fu" style="--d:.1s">他人のルールに、<br>そのまま合わせない</h2>
-      <p class="fu" style="--d:.3s">時代が変われば、法律も揺れ動く。国と大企業がつくったルールに乗るだけでは、僕らが大事にしたいものまで薄れかねない。かといって、真正面から対抗する意味もない。歩んできた歴史が違うのだから。</p>
-      <div data-step="1"><div class="chips"><span class="chip fu">20代の修業期</span><span class="chip fu" style="--d:.2s">子育て期</span><span class="chip fu" style="--d:.4s">ベテラン期</span></div></div>
-      <div data-step="2"><p class="key fu" style="font-size:clamp(26px,3.4vw,44px)">食べる仕事を通して、<br><span class="rl" style="--d:.7s">なりたい自分になる。</span></p></div>
-      <div data-step="3"><p class="fu">法では補えない。時代の流れでは解釈できない。その隙間を埋めるのが、<b>ライフワークウィズイン</b>に沿った制度設計でありたい。</p>
-        <p class="hand fu" style="--d:.4s;font-size:20px">バルニバービは、一人ひとりが食でやりたいことを形にする、現代のネオ・ギルドでありたい。</p>
-        <div class="fu" style="--d:.8s"><button class="srcbtn" id="restart" type="button">最初から見る</button></div></div>
+      <div class="eb fu"><wbr>結び</div>
+      <h2 class="fu" style="--d:.1s"><wbr>Life-Work Within という<wbr>考え方</h2>
+      <p class="fu" style="--d:.3s"><wbr>時代が<wbr>変われば、<wbr>法律も<wbr>揺れ<wbr>動きます。<wbr>国と<wbr>大企業が<wbr>つくった<wbr>ルールに<wbr>乗るだけでは、<wbr>僕らが<wbr>大事に<wbr>したい<wbr>ものまで<wbr>薄れかねません。<wbr>かと<wbr>いって、<wbr>真<wbr>正面から<wbr>対抗する<wbr>意味も<wbr>ありません。<wbr>歩んできた<wbr>歴史が<wbr>違うのですから。<wbr></p>
+      <div data-step="1"><div class="chips"><span class="chip fu"><wbr>20代の<wbr>修業期</span><span class="chip fu" style="--d:.2s"><wbr>子育て<wbr>期</span><span class="chip fu" style="--d:.4s"><wbr>ベテラン期</span></div></div>
+      <div data-step="2"><p class="key fu" style="font-size:clamp(26px,3.4vw,44px)"><wbr>食べる<wbr>仕事を<wbr>通して、<wbr><br><span class="rl" style="--d:.7s">なりたい<wbr>自分に<wbr>なる。<wbr></span></p></div>
+      <div data-step="3"><p class="fu"><wbr>法では<wbr>補えず、<wbr>時代の<wbr>流れでも<wbr>解釈できない。<wbr>その<wbr>隙間を<wbr>埋めるのが、<wbr><b><wbr>ライフワークウィズイン</b>に<wbr>沿った<wbr>制度設計でありたいと<wbr>考えています。<wbr></p>
+        <p class="hand fu" style="--d:.4s;font-size:20px"><wbr>バルニバービは、<wbr>一人<wbr>ひとりが<wbr>食で<wbr>やりたい<wbr>ことを<wbr>形に<wbr>する、<wbr>現代の<wbr>ネオ・ギルドでありたいと<wbr>思います。<wbr></p>
+        <div class="fu" style="--d:.8s"><button class="srcbtn" id="restart" type="button"><wbr>最初から<wbr>見る</button></div></div>
     </div>
   </div>
 </section>
 
-    <div class="cont" id="cont" hidden>つづく ▶</div>
+    <div class="cont" id="cont" hidden>つづく<wbr> ▶</div>
   </main>
 
   <footer class="bottom">
@@ -1308,8 +1337,8 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <div class="drawer" id="drawer" hidden>
   <div class="shade" id="shade"></div>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="srcTitle">
-    <button class="x" id="srcclose" type="button">閉じる</button>
-    <div class="eb">原文</div>
+    <button class="x" id="srcclose" type="button"><wbr>閉じる</button>
+    <div class="eb"><wbr>原文</div>
     <h3 id="srcTitle"></h3>
     <div id="srcBody"></div>
   </div>
@@ -1317,107 +1346,107 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 
 <!-- 原文（章ごと） -->
 <template id="src-序" data-title="0. 人事制度をどう考えていくか">
-<p>私たちは今、「働き方改革」や「人手不足」「法改正」という大きな波の中にいる。しかし、世間の流行りや他社の真似をして制度を作っても、形骸化するか、現場を混乱させるだけである。それは皆わかっているからこそ、なかなか手を出せずにいる。</p>
-<p>今、バルニバービにとって必要な人事制度とは何か。この問いを考えるために、私たちはまず、世界と日本の労働がどう作られてきたのかという歴史を紐解き、時代の流れを見ながら考えていきたい。</p>
+<p><wbr>私たちは<wbr>今、<wbr>「働き方改革」や<wbr>「人手不足」<wbr>「法改正」という<wbr>大きな<wbr>波の<wbr>中に<wbr>いる。<wbr>しかし、<wbr>世間の<wbr>流行りや<wbr>他社の<wbr>真似を<wbr>して<wbr>制度を<wbr>作っても、<wbr>形骸化するか、<wbr>現場を<wbr>混乱させるだけである。<wbr>それは<wbr>皆わかっているからこそ、<wbr>なかなか<wbr>手を<wbr>出せずに<wbr>いる。<wbr></p>
+<p><wbr>今、<wbr>バルニバービに<wbr>とって<wbr>必要な<wbr>人事制度とは<wbr>何か。<wbr>この<wbr>問いを<wbr>考える<wbr>ために、<wbr>私たちは<wbr>まず、<wbr>世界と<wbr>日本の<wbr>労働が<wbr>どう<wbr>作られてきたのかという<wbr>歴史を<wbr>紐解き、<wbr>時代の<wbr>流れを<wbr>見ながら<wbr>考えていきたい。<wbr></p>
 </template>
 <template id="src-1" data-title="第1章：世界の「労働が生まれる前」と「生まれるとき」">
-<p>そもそも、労働とはいつ生まれたのだろうか。</p>
-<p><b>労働が生まれる前（職人の世界・ギルド）</b> 中世ヨーロッパでは、道具や資本は個人サイズに収まっていた。例えば、鍛冶屋の金槌と鉄床、機織り職人の織機、大工の道具箱など、一人の職人が自分の手で所有し、持ち運べる規模のものだった。職人は複数の都市を渡り歩く遍歴修業（Wanderjahre）を経て、誰もが「親方（独立）」を目指せる物語が存在していた。「時間分の労働力を売る」のではなく、技能と人格そのもので生きていた時代である。</p>
-<p><b>労働の始まり（産業革命と資本主義）</b> 18世紀後半（1780年代ころ）の産業革命により、個人では所有できない巨大な蒸気機関や工場（資本）が登場。ここで「生産手段を持てる者（資本家）」と「労働力しか売るものがない者（労働者）」が構造分離し、一生組織に従属せざるを得ない「労働」が誕生した。</p>
-<p><b>もう一つの始まり（アメリカ）</b> 大西洋の向こう側、アメリカの労働の始まりは、これとはまったく違う出発点を持つ。</p>
-<p>労働が生まれる前、移民国家であるアメリカでは、年季奉公（インデンチャード・サーバント、渡航費の代わりに一定期間タダ同然で働く契約労働者）や奴隷制という、そもそも「労働」とすら呼べない、人そのものを所有・拘束する仕組みが広く行われていた。奴隷には契約も賃金もなく、文字通り「所有物」として扱われていたのである。</p>
-<p>アメリカで「労働」が始まったのは、1865年、リンカーン大統領がきっかけを作った憲法修正第13条による奴隷制の廃止と、同時期に進んでいた産業革命・工業化（ヨーロッパから遅れること約80年後、南北戦争前後から本格化した）によって、ようやく賃金の発生する雇用関係が生まれてからである。ただし、ここで手に入った「自由」の中身には注意が必要だ。奴隷制の廃止によって保障されたのは、「給料を払わなければならない」「労働時間に上限を設ける」「安全に働けるようにする」といった、労働者としての具体的な権利ではない。保障されたのは、あくまで「もう誰かの所有物ではなく、自分の意志で雇用主と契約を結べる人間である」という、契約主体としての形式的な資格だけだった。実際、解放された黒人の多くは、契約の自由を得たにもかかわらず、シェアクロッピング（小作契約）のような、実質的に奴隷時代とあまり変わらない低賃金・重労働の契約を結ばされ続けた。「自由に契約できる」ことと、「その契約の中身が公正である」ことは、まったく別の話だったのである。この出発点の違いが、次章で見るヨーロッパとアメリカの労働法の方向性の違いを生み出していくことになる。</p>
+<p>そもそも、<wbr>労働とは<wbr>いつ生まれたのだろうか。<wbr></p>
+<p><b><wbr>労働が<wbr>生まれる<wbr>前<wbr>（職人の<wbr>世界・ギルド）<wbr></b> <wbr>中世ヨーロッパでは、<wbr>道具や<wbr>資本は<wbr>個人サイズに<wbr>収まっていた。<wbr>例えば、<wbr>鍛冶屋の<wbr>金槌と<wbr>鉄床、<wbr>機織り職人の<wbr>織機、<wbr>大工の<wbr>道具箱など、<wbr>一人の<wbr>職人が<wbr>自分の<wbr>手で<wbr>所有し、<wbr>持ち<wbr>運べる<wbr>規模の<wbr>ものだった。<wbr>職人は<wbr>複数の<wbr>都市を<wbr>渡り<wbr>歩く<wbr>遍歴修業<wbr>（Wanderjahre）を<wbr>経て、<wbr>誰もが<wbr>「親方<wbr>（独立）」を<wbr>目指せる<wbr>物語が<wbr>存在していた。<wbr>「時間分の<wbr>労働力を<wbr>売る」のではなく、<wbr>技能と<wbr>人格<wbr>その<wbr>もので<wbr>生きていた<wbr>時代である。<wbr></p>
+<p><b><wbr>労働の<wbr>始まり<wbr>（産業革命と<wbr>資本主義）<wbr></b> <wbr>18世紀後半<wbr>（1780年代ころ）の<wbr>産業革命に<wbr>より、<wbr>個人では<wbr>所有できない<wbr>巨大な<wbr>蒸気機関や<wbr>工場<wbr>（資本）が<wbr>登場。<wbr>ここで<wbr>「生産手段を<wbr>持てる<wbr>者<wbr>（資本家）」と<wbr>「労働力しか<wbr>売る<wbr>ものが<wbr>ない<wbr>者<wbr>（労働者）」が<wbr>構造分離し、<wbr>一生組織に<wbr>従属せざるを<wbr>得ない<wbr>「労働」が<wbr>誕生した。<wbr></p>
+<p><b>もう<wbr>一つの<wbr>始まり<wbr>（アメリカ）<wbr></b> <wbr>大西洋の<wbr>向こう側、<wbr>アメリカの<wbr>労働の<wbr>始まりは、<wbr>これとは<wbr>まったく<wbr>違う<wbr>出発点を<wbr>持つ。<wbr></p>
+<p><wbr>労働が<wbr>生まれる<wbr>前、<wbr>移民国家である<wbr>アメリカでは、<wbr>年季奉公<wbr>（インデンチャード・サーバント、<wbr>渡航費の<wbr>代わりに<wbr>一定期間タダ同然で<wbr>働く<wbr>契約労働者）<wbr>や<wbr>奴隷制という、<wbr>そもそも<wbr>「労働」と<wbr>すら<wbr>呼べない、<wbr>人その<wbr>ものを<wbr>所有・拘束する<wbr>仕組みが<wbr>広く<wbr>行われていた。<wbr>奴隷には<wbr>契約も<wbr>賃金も<wbr>なく、<wbr>文字通り<wbr>「所有物」と<wbr>して<wbr>扱われていたのである。<wbr></p>
+<p><wbr>アメリカで<wbr>「労働」が<wbr>始まったのは、<wbr>1865年、<wbr>リンカーン大統領が<wbr>きっかけを<wbr>作った<wbr>憲法修正第13条に<wbr>よる<wbr>奴隷制の<wbr>廃止と、<wbr>同時期に<wbr>進んでいた<wbr>産業革命・工業化<wbr>（ヨーロッパから<wbr>遅れる<wbr>こと<wbr>約80年後、<wbr>南北戦争前後から<wbr>本格化した）に<wbr>よって、<wbr>ようやく<wbr>賃金の<wbr>発生する<wbr>雇用関係が<wbr>生まれてからである。<wbr>ただし、<wbr>ここで<wbr>手に<wbr>入った<wbr>「自由」の<wbr>中身には<wbr>注意が<wbr>必要だ。<wbr>奴隷制の<wbr>廃止に<wbr>よって<wbr>保障されたのは、<wbr>「給料を<wbr>払わなければならない」<wbr>「労働時間に<wbr>上限を<wbr>設ける」<wbr>「安全に<wbr>働けるように<wbr>する」と<wbr>いった、<wbr>労働者と<wbr>しての<wbr>具体的な<wbr>権利ではない。<wbr>保障されたのは、<wbr>あくまで<wbr>「もう<wbr>誰かの<wbr>所有物ではなく、<wbr>自分の<wbr>意志で<wbr>雇用主と<wbr>契約を<wbr>結べる<wbr>人間である」という、<wbr>契約主体と<wbr>しての<wbr>形式的な<wbr>資格だけだった。<wbr>実際、<wbr>解放された<wbr>黒人の<wbr>多くは、<wbr>契約の<wbr>自由を<wbr>得たにも<wbr>かかわらず、<wbr>シェアクロッピング<wbr>（小作契約）のような、<wbr>実質的に<wbr>奴隷時代と<wbr>あまり<wbr>変わらない<wbr>低賃金・重労働の<wbr>契約を<wbr>結ば<wbr>され続けた。<wbr>「自由に<wbr>契約できる」ことと、<wbr>「その<wbr>契約の<wbr>中身が<wbr>公正である」ことは、<wbr>まったく<wbr>別の<wbr>話だったのである。<wbr>この<wbr>出発点の<wbr>違いが、<wbr>次章で<wbr>見るヨーロッパと<wbr>アメリカの<wbr>労働法の<wbr>方向性の<wbr>違いを<wbr>生み出していく<wbr>ことになる。<wbr></p>
 </template>
 <template id="src-2" data-title="第2章：世界の「近代の労働」と「法律」">
-<p>工場という高価な資本を手にした経営者は、その投資を最大限回収しようとする。機械を止めずに稼働させ続けるほど利益が出るため、労働時間はどこまでも延び、当時は安価な労働力として子どもも大量に工場で働かされた。安全対策もほとんどなく、機械に巻き込まれる事故も日常的に起きていた。</p>
-<p>こうして過酷な工場労働が発生したことで、それを追うように「法律」が生まれた。しかし、その動機は地域によって大きく異なる。</p>
-<p><b>【世界の法律のスタンスの違い】</b></p>
+<p><wbr>工場という<wbr>高価な<wbr>資本を<wbr>手に<wbr>した<wbr>経営者は、<wbr>その<wbr>投資を<wbr>最大限回収しようとする。<wbr>機械を<wbr>止めずに<wbr>稼働させ続ける<wbr>ほど<wbr>利益が<wbr>出る<wbr>ため、<wbr>労働時間は<wbr>どこまでも<wbr>延び、<wbr>当時は<wbr>安価な<wbr>労働力と<wbr>して<wbr>子どもも<wbr>大量に<wbr>工場で<wbr>働かされた。<wbr>安全対策も<wbr>ほとんどなく、<wbr>機械に<wbr>巻き込まれる<wbr>事故も<wbr>日常的に<wbr>起きていた。<wbr></p>
+<p>こうして<wbr>過酷な<wbr>工場労働が<wbr>発生した<wbr>ことで、<wbr>それを<wbr>追うように<wbr>「法律」が<wbr>生まれた。<wbr>しかし、<wbr>その<wbr>動機は<wbr>地域に<wbr>よって<wbr>大きく<wbr>異なる。<wbr></p>
+<p><b><wbr>【世界の<wbr>法律の<wbr>スタンスの<wbr>違い<wbr>】</b></p>
 <ul>
-<li>ヨーロッパ：産業革命の弊害から国家が社会を守る「保護」の歴史。イギリスの工場法（1802年・1833年）を皮切りに、ドイツではビスマルクが社会主義運動を抑えるための"アメとムチ"として疾病保険・災害保険・老齢保険（1883〜89年）を整備。戦後はさらに進んで、国がみんなの生活を丸ごと保障する福祉国家を目指す方向へ。</li>
-<li>アメリカ：奴隷制廃止のための理屈だった「自由な契約主体」という考え方が、そのあと労働者保護をつぶす武器として使われた歴史。1877年に唱えられた「理由なくいつでも解雇できる」随意雇用の原則が、以後140年間の基本原則に。1935年のワグナー法・1938年のFLSAでいったん労働者保護に舵を切るが、1947年のタフト・ハートレー法、1981年のPATCOストライキ鎮圧で後退。労働組合加入率は1954年の約35%から現在は約10%まで低下している。</li>
+<li><wbr>ヨーロッパ：産業革命の<wbr>弊害から<wbr>国家が<wbr>社会を<wbr>守る<wbr>「保護」の<wbr>歴史。<wbr>イギリスの<wbr>工場法<wbr>（1802年・1833年）を<wbr>皮切りに、<wbr>ドイツでは<wbr>ビスマルクが<wbr>社会主義運動を<wbr>抑える<wbr>ための<wbr>"アメと<wbr>ムチ"と<wbr>して<wbr>疾病保険・災害保険・老齢保険<wbr>（1883〜89年）を<wbr>整備。<wbr>戦後は<wbr>さらに<wbr>進んで、<wbr>国が<wbr>みんなの<wbr>生活を<wbr>丸ごと<wbr>保障する<wbr>福祉国家を<wbr>目指す方向へ。<wbr></li>
+<li><wbr>アメリカ：奴隷制廃止の<wbr>ための<wbr>理屈だった<wbr>「自由な<wbr>契約主体」という<wbr>考え方が、<wbr>その<wbr>あと<wbr>労働者保護を<wbr>つぶす武器と<wbr>して<wbr>使われた<wbr>歴史。<wbr>1877年に<wbr>唱えられた<wbr>「理由なく<wbr>いつでも<wbr>解雇できる」随意雇用の<wbr>原則が、<wbr>以後<wbr>140年間の<wbr>基本原則に。<wbr>1935年の<wbr>ワグナー法・<wbr>1938年の<wbr>FLSAで<wbr>いったん労働者保護に<wbr>舵を<wbr>切るが、<wbr>1947年の<wbr>タフト・ハートレー法、<wbr>1981年の<wbr>PATCOストライキ鎮圧で<wbr>後退。<wbr>労働組合加入率は<wbr>1954年の<wbr>約35%から<wbr>現在は<wbr>約10%まで<wbr>低下している。<wbr></li>
 </ul>
-<p><b>現在の分裂（ギグワーカーへの正反対の結論）</b> 単発・短時間労働に対し、米国は「独立請負人のまま（自由）」とし、EUは2024年のプラットフォーム労働指令で「指揮命令があれば雇用と推定（保護）」という正反対の結論を出した。これは偶然ではなく、上記で見た出発点の違いがそのまま今も生き続けている結果である。世界レベルで「保護」と「自由・緩和」の綱引きが今なお続いている。</p>
+<p><b><wbr>現在の<wbr>分裂<wbr>（ギグワーカーへの<wbr>正反対の<wbr>結論）<wbr></b> <wbr>単発・短時間労働に<wbr>対し、<wbr>米国は<wbr>「独立請負人の<wbr>まま<wbr>（自由）」とし、<wbr>EUは<wbr>2024年の<wbr>プラットフォーム労働指令で<wbr>「指揮命令が<wbr>あれば<wbr>雇用と<wbr>推定<wbr>（保護）」という<wbr>正反対の<wbr>結論を<wbr>出した。<wbr>これは<wbr>偶然ではなく、<wbr>上記で<wbr>見た<wbr>出発点の<wbr>違いが<wbr>そのまま<wbr>今も<wbr>生き続けている<wbr>結果である。<wbr>世界レベルで<wbr>「保護」と<wbr>「自由・緩和」の<wbr>綱引きが<wbr>今な<wbr>お続いている。<wbr></p>
 </template>
 <template id="src-3" data-title="第3章：日本の「労働が生まれる前」と「生まれてから現在まで」">
-<p>日本の労働史は、前近代の伝統から政策的な近代化を経て、独自の「日本型雇用」とその崩壊、そして現在の二重構造へと至る。</p>
-<p><b>3-1. 日本の労働が生まれる前（江戸・前近代）</b></p>
-<p>商家の丁稚奉公は「丁稚➔手代➔番頭➔のれん分け（独立）」という階梯をたどった。丁稚は、10歳前後で住み込みで働き始める見習いで、雑用をこなしながら商売の基本を覚える段階。手代は、丁稚を卒業し、実際の商売を任されるようになった中堅の段階。番頭は、店の経営全体を任されるまでに出世した、最も上の雇われ役職。そして、長年の奉公で主人に認められると、最後に「のれん分け」、つまり主人から屋号（のれん）の使用を許され、自分の店を持って独立する、という流れである。</p>
-<p>年季奉公などの契約関係はあったが、道具・資本が個人サイズだったため、誰もが修行を経て「親方（独立）」を目指せる関係だった（ヨーロッパのギルドと同構造）。</p>
-<p><b>3-2. 日本の労働が生まれるとき（明治の近代化）</b></p>
-<p>欧州が技術（産業革命）で分離したのに対し、日本は政策で人為的に資本家と労働者を分離した。地租改正（1873〜81年）は、税のかけ方を収穫高に応じた物納から土地の値段に応じた定額の金納に変え、不作の年でも同じ金額を現金で納めなければならないため、小規模農家を没落させ、土地を持たない農村の若者という労働力を生み出した。秩禄処分（1876年）は、武士への世襲的な給料（家禄）を打ち切り、その代わりに金禄公債証書という一時金の国債を渡す政策で、これを元手に銀行や会社を興す元武士が現れ、資本家層が生まれていった。加えて、政府が殖産興業のために建てた富岡製糸場のような官営工場も、1880年代に三井などの民間へ安く払い下げられ、これが財閥の資本形成を後押しすると同時に、工場で働く雇用労働者の層をより厚くしていった。</p>
-<p>この時期、工場で働く労働者には、大きく二つの顔があった。一つは、紡績工場で働く女性労働者たちである。昼夜二交代の長時間労働、寄宿舎での結核の蔓延といった劣悪な環境に置かれ、年間の離職率が50%を超える工場も珍しくなかった。もう一つは、造船・機械といった重工業の熟練職人たちである。彼らは会社に直接雇われるのではなく、親方個人から仕事を発注される形で賃金を得ていた。親方が会社と仕事を請け負い、配下の職人を自分で集めて管理・賃金支払いをする「親方請負制」が主流で、親方が別の工場に移れば、配下の職人もまとめて一緒に移る、というのが当たり前だった。まだ終身雇用も年功賃金も存在しない時代だった。</p>
-<p>工場法の構想自体は1887年から議論されており、紡績工場で働く女性労働者たちの、こうした劣悪な環境への危惧が、その背景にあった。しかし業界団体(紡績業界)の反対で実現は先延ばしにされ続け、1802年の英国工場法から109年遅れて、構想から実に24年後の1911年になって、ようやく日本初の「工場法」が成立する。だが、輸出産業（紡績等）の国際競争力を優先したため骨抜きであり、強く保護をするものではなかった。しかも、この法律は職人を含む成人男性には適用されない法律だった。当時は年少者と女性だけが「保護すべき弱い立場」とみなされ、成人男性は「一人前の労働者として自分で条件交渉できる存在」とされていたためである。</p>
-<p><b>3-3. 近代の労働と法律（日本型雇用〜バブル崩壊〜現在）</b></p>
-<p><b>年功序列・終身雇用・退職金は、そもそも国のためにできた</b> 第二次世界大戦中、軍需工場同士が労働者を奪い合って賃金を吊り上げ合い、これがインフレを招く恐れがあった。インフレが進めば、戦費調達のための国債の価値が目減りし、国家総動員体制そのものが揺らいでしまう。つまりこれは、労働者を守るためではなく、戦争を続けるために経済全体を安定させる、国のための統制だった。そこで政府は「生活給」、つまり働きの内容ではなく年齢や家族の人数で賃金を決める基準を、国が強制した。さらに1936年の工場退職積立金及退職手当法で、熟練工が他の工場へ転職するのを防ぐため、勤続年数に応じて積み上がる退職金制度も企業に義務づけられた。この義務づけは工場に限られていたが、退職金には税制上有利な扱い（退職所得控除）があり、企業にとっても人材をつなぎとめる効果があったため、工場以外の企業にも広く取り入れられていった。</p>
-<p>戦争を続けるために作られた「生活給」は、敗戦を経て、その立ち位置が一変する。国のための統制という本来の目的を失い、代わりに、言葉通りの意味――労働者が生活していくための給与――として、担い手を国から労働組合へと入れ替えながら生き残っていく。戦後の激しいインフレの中、電産（全日本電気産業労働組合）が「生活していけるだけの賃金をよこせ」と勝ち取ったのが、1946年の電産型賃金体系である。この「年齢・勤続で本給が決まる」という発想は、その後多くの日本企業が「基本給」を組み立てる際のひな形になっていった。</p>
-<p>ただし、これはあくまで「決め方」の話であり、実際に賃金が年々上がり続けるかどうかは、会社に賃上げの原資があるかどうか次第である。そして高度成長期（1950年代後半〜70年代前半）、日本経済が年10%前後で成長を続けたことで、会社の側に賃上げの原資が実際に生まれ、この「決め方」が初めて実体の伴った右肩上がりの賃金として機能するようになる。労働組合も欧米のような職種別ではなく会社単位の企業別組合として組織されたため、会社の業績が伸びれば企業別組合の賃上げ要求にも応えやすく、実際に給料が右肩上がりで上がり続けた。「会社の成長＝自分の給料の伸び」という実感が実体験として根付いたことで、「会社のために頑張る」という一体感・忠誠心が生まれた。そして、年功で賃金が上がり続ける年功序列と、その賃金カーブを前提に長く勤め続ける終身雇用が、企業別組合とあわせて「三種の神器」として、日本の雇用のあり方として完成した。</p>
-<p>話を法律の側に戻す。電産型賃金体系と同じ頃、翌1947年には労働基準法が成立する。工場法から数えて36年後のことだ。労働基準法は、戦後のGHQの占領政策のもとで制定され、性別や職業を問わず、すべての労働者に8時間労働制などの保護を初めて適用した法律である。年少者・女性だけを対象にしていた工場法とは違い、紡績業の女性労働者も、親方請負制のもとで働いていた職人も、初めて同じ一つの法律の対象になった。</p>
-<p>ここでのGHQの狙いは、アメリカ流の「自由」を輸出することではなかった。GHQは、日本の低賃金構造こそが大陸進出(戦争・侵略)の動機の一つだったと考え、財閥解体・農地改革と並ぶ経済民主化政策として、労働組合の結成・労働者保護を推し進めた。加えて、当時GHQの労働政策を担当した部局には、ニューディール政策を支持してきた労働者保護に積極的なアメリカの行政官・経済学者が多く入っていたことも、この時期の手厚い内容を後押ししたと見られている。労働組合法(1945年12月)が、日本国憲法の施行(1947年5月)より早く制定されていることに、その優先度の高さが表れている。</p>
-<p>ただし、この直後にアメリカ内部での方針の流れが変わり、GHQはこれほど労働者保護に積極的ではなくなっていく。労働基準法の成立(1947年)は、その転換が始まる、ギリギリ手前のタイミングだったとも言える。もし制定が数年ずれていたら、労基法の中身は今とは違うものになっていたかもしれない。</p>
-<p><b>バブル期を経て、1995年以降の非正規雇用の増大</b> 1995年、日経連（当時の経営者団体）が「雇用ポートフォリオ」という考え方を発表した。背景にあったのは、高度成長が終わり、もはや全社員に年功賃金と終身雇用を保証し続けるだけの体力が企業にない、という危機感である。社員を「長期蓄積能力活用型」「高度専門能力活用型」「雇用柔軟型」の3つに分け、人件費の固定費部分を減らそうとした。</p>
-<p>ただし実際には、三種の神器そのものを作り変えるのではなく、都合のいい部分だけを変える形で進んだ。戦後の日本では終身雇用が当たり前の前提として社会に根づいたことで、裁判所も「合理的な理由なく労働者を解雇するのは権利の濫用である」という考え方（解雇権濫用法理）を、判例を通じて発展させてきた。1970年代の石油危機による不況期に相次いだ人員整理をめぐる裁判の積み重ねから、整理解雇には①人員削減の必要性②解雇回避努力③人選の合理性④手続きの妥当性、という4つの要件を満たす必要がある、という判例法理（整理解雇の4要件）が確立していった。終身雇用が定着していたからこそ、それを守るための強い解雇規制が判例として積み上がっていった、という関係にある。この判例法理があるため、既存の正社員から年功賃金・終身雇用を取り上げるのは法的にも難しい。そこで企業は、既存の正社員には手をつけず、新卒・中途の採用を非正規に切り替えるという、"入り口"だけを変えるやり方を選んだ。結果として、非正規雇用の比率は1990年の約20%から2019年には約40%まで拡大した。</p>
-<p>しかし2008年のリーマンショックが、この流れに歯止めをかける転換点になる。派遣切りや年越し派遣村という実際の被害が目に見える形になったことで、日雇い派遣の禁止（労働者派遣法改正）、2012年の無期転換ルール（労働契約法改正）、2015年の3年ルール（労働者派遣法改正）といった保護強化の動きが相次いだ。リーマンショック以降、国の振り子は、労働者保護の方向へと強く振れてきたと言える。</p>
-<p><b>現在の二重構造と動向</b> 2008年から2019年にかけて、別々の衝撃が重なり、国の振り子は一気に労働者保護の方向へ振れた。2008年のリーマンショックによる派遣切り・年越し派遣村、2015年の電通過労死事件、そして少子高齢化による労働力不足と、G7最下位の労働生産性。これらは一本の因果関係でつながっているわけではなく、同じ10年ほどの間に起きた別々の出来事だが、たまたま同じ方向を向いたことで、2012年の無期転換ルール、2015年の3年ルール、そして2018年の働き方改革関連法(残業上限規制など、実に70年ぶりの労働法大改正)という、一連の保護強化につながった。</p>
-<p>2018年からの働き方改革以降、残業上限規制などの【規制強化】と、副業解禁や高プロなどの【緩和】が同時並行。直近（2026年9月）では労基署が45時間超え指導を緩めるなど、政治や人手不足の都合で国による「保護」と「緩和」がグラグラと揺れ動いている。</p>
+<p><wbr>日本の<wbr>労働史は、<wbr>前近代の<wbr>伝統から<wbr>政策的な<wbr>近代化を<wbr>経て、<wbr>独自の<wbr>「日本型雇用」と<wbr>その<wbr>崩壊、<wbr>そして<wbr>現在の<wbr>二重構造へと<wbr>至る。<wbr></p>
+<p><b><wbr>3-1. 日本の<wbr>労働が<wbr>生まれる<wbr>前<wbr>（江戸・前近代）<wbr></b></p>
+<p><wbr>商家の<wbr>丁稚奉公は<wbr>「丁稚➔手代➔番頭➔のれん分け<wbr>（独立）」という<wbr>階梯を<wbr>たどった。<wbr>丁稚は、<wbr>10歳前後で<wbr>住み込みで<wbr>働き始める<wbr>見習いで、<wbr>雑用を<wbr>こなしながら<wbr>商売の<wbr>基本を<wbr>覚える<wbr>段階。<wbr>手代は、<wbr>丁稚を<wbr>卒業し、<wbr>実際の<wbr>商売を<wbr>任されるようになった<wbr>中堅の<wbr>段階。<wbr>番頭は、<wbr>店の<wbr>経営全体を<wbr>任されるまでに<wbr>出世した、<wbr>最も<wbr>上の<wbr>雇われ役職。<wbr>そして、<wbr>長年の<wbr>奉公で<wbr>主人に<wbr>認められると、<wbr>最後に<wbr>「のれん分け」、<wbr>つまり<wbr>主人から<wbr>屋号<wbr>（のれん）の<wbr>使用を<wbr>許され、<wbr>自分の<wbr>店を<wbr>持って<wbr>独立する、という<wbr>流れである。<wbr></p>
+<p><wbr>年季奉公などの<wbr>契約関係は<wbr>あったが、<wbr>道具・資本が<wbr>個人サイズだった<wbr>ため、<wbr>誰もが<wbr>修行を<wbr>経て<wbr>「親方<wbr>（独立）」を<wbr>目指せる<wbr>関係だった<wbr>（ヨーロッパの<wbr>ギルドと<wbr>同構造）。<wbr></p>
+<p><b><wbr>3-2. 日本の<wbr>労働が<wbr>生まれる<wbr>とき<wbr>（明治の<wbr>近代化）<wbr></b></p>
+<p><wbr>欧州が<wbr>技術<wbr>（産業革命）で<wbr>分離したのに<wbr>対し、<wbr>日本は<wbr>政策で<wbr>人為的に<wbr>資本家と<wbr>労働者を<wbr>分離した。<wbr>地租改正<wbr>（1873〜81年）は、<wbr>税の<wbr>かけ方を<wbr>収穫高に<wbr>応じた<wbr>物納から<wbr>土地の<wbr>値段に<wbr>応じた<wbr>定額の<wbr>金納に<wbr>変え、<wbr>不作の<wbr>年でも<wbr>同じ<wbr>金額を<wbr>現金で<wbr>納めなければならないため、<wbr>小規模農家を<wbr>没落させ、<wbr>土地を<wbr>持たない<wbr>農村の<wbr>若者という<wbr>労働力を<wbr>生み出した。<wbr>秩禄処分<wbr>（1876年）は、<wbr>武士への<wbr>世襲的な<wbr>給料<wbr>（家禄）を<wbr>打ち切り、<wbr>その<wbr>代わりに<wbr>金禄公債証書という<wbr>一時金の<wbr>国債を<wbr>渡す政策で、<wbr>これを<wbr>元手に<wbr>銀行や<wbr>会社を<wbr>興す元武士が<wbr>現れ、<wbr>資本家層が<wbr>生まれていった。<wbr>加えて、<wbr>政府が<wbr>殖産興業の<wbr>ために<wbr>建てた<wbr>富岡製糸場のような<wbr>官営工場も、<wbr>1880年代に<wbr>三井などの<wbr>民間へ<wbr>安く<wbr>払い<wbr>下げられ、<wbr>これが<wbr>財閥の<wbr>資本形成を<wbr>後押しすると<wbr>同時に、<wbr>工場で<wbr>働く<wbr>雇用労働者の<wbr>層を<wbr>より<wbr>厚くしていった。<wbr></p>
+<p>この<wbr>時期、<wbr>工場で<wbr>働く<wbr>労働者には、<wbr>大きく<wbr>二つの<wbr>顔が<wbr>あった。<wbr>一つは、<wbr>紡績工場で<wbr>働く<wbr>女性労働者たちである。<wbr>昼夜<wbr>二交代の<wbr>長時間<wbr>労働、<wbr>寄宿舎での<wbr>結核の<wbr>蔓延と<wbr>いった<wbr>劣悪な<wbr>環境に<wbr>置かれ、<wbr>年間の<wbr>離職率が<wbr>50%を<wbr>超える<wbr>工場も<wbr>珍しくなかった。<wbr>もう<wbr>一つは、<wbr>造船・機械と<wbr>いった<wbr>重工業の<wbr>熟練職人たちである。<wbr>彼らは<wbr>会社に<wbr>直接雇われるのではなく、<wbr>親方個人から<wbr>仕事を<wbr>発注される<wbr>形で<wbr>賃金を<wbr>得ていた。<wbr>親方が<wbr>会社と<wbr>仕事を<wbr>請け負い、<wbr>配下の<wbr>職人を<wbr>自分で<wbr>集めて<wbr>管理・賃金支払いを<wbr>する<wbr>「親方請負制」が<wbr>主流で、<wbr>親方が<wbr>別の<wbr>工場に<wbr>移れば、<wbr>配下の<wbr>職人も<wbr>まとめて<wbr>一緒に<wbr>移る、というのが<wbr>当たり前だった。<wbr>まだ<wbr>終身雇用も<wbr>年功賃金も<wbr>存在しない<wbr>時代だった。<wbr></p>
+<p><wbr>工場法の<wbr>構想自体は<wbr>1887年から<wbr>議論されており、<wbr>紡績工場で<wbr>働く<wbr>女性労働者たちの、<wbr>こうした<wbr>劣悪な<wbr>環境への<wbr>危惧が、<wbr>その<wbr>背景に<wbr>あった。<wbr>しかし<wbr>業界団体<wbr>(紡績業界)の<wbr>反対で<wbr>実現は<wbr>先延ばしに<wbr>され続け、<wbr>1802年の<wbr>英国工場法から<wbr>109年遅れて、<wbr>構想から<wbr>実に<wbr>24年後の<wbr>1911年に<wbr>なって、<wbr>ようやく<wbr>日本初の<wbr>「工場法」が<wbr>成立する。<wbr>だが、<wbr>輸出産業<wbr>（紡績等）の<wbr>国際競争力を<wbr>優先した<wbr>ため骨抜きであり、<wbr>強く<wbr>保護を<wbr>する<wbr>ものではなかった。<wbr>しかも、<wbr>この<wbr>法律は<wbr>職人を<wbr>含む成人男性には<wbr>適用されない<wbr>法律だった。<wbr>当時は<wbr>年少者と<wbr>女性だけが<wbr>「保護すべき<wbr>弱い<wbr>立場」と<wbr>みな<wbr>され、<wbr>成人男性は<wbr>「一人前の<wbr>労働者と<wbr>して<wbr>自分で<wbr>条件交渉できる<wbr>存在」と<wbr>されていた<wbr>ためである。<wbr></p>
+<p><b><wbr>3-3. 近代の<wbr>労働と<wbr>法律<wbr>（日本型雇用〜バブル崩壊〜現在）<wbr></b></p>
+<p><b><wbr>年功序列・終身雇用・退職金は、<wbr>そもそも<wbr>国の<wbr>ために<wbr>できた</b> <wbr>第二次世界大戦中、<wbr>軍需工場同士が<wbr>労働者を<wbr>奪い合って<wbr>賃金を<wbr>吊り上げ合い、<wbr>これが<wbr>インフレを<wbr>招く<wbr>恐れが<wbr>あった。<wbr>インフレが<wbr>進めば、<wbr>戦費調達の<wbr>ための<wbr>国債の<wbr>価値が<wbr>目減りし、<wbr>国家総動員体制<wbr>その<wbr>ものが<wbr>揺らいでしまう。<wbr>つまり<wbr>これは、<wbr>労働者を<wbr>守る<wbr>ためではなく、<wbr>戦争を<wbr>続ける<wbr>ために<wbr>経済全体を<wbr>安定させる、<wbr>国の<wbr>ための<wbr>統制だった。<wbr>そこで<wbr>政府は<wbr>「生活給」、<wbr>つまり<wbr>働きの<wbr>内容ではなく<wbr>年齢や<wbr>家族の<wbr>人数で<wbr>賃金を<wbr>決める<wbr>基準を、<wbr>国が<wbr>強制した。<wbr>さらに<wbr>1936年の<wbr>工場退職積立金及退職手当法で、<wbr>熟練工が<wbr>他の<wbr>工場へ<wbr>転職するのを<wbr>防ぐ<wbr>ため、<wbr>勤続年数に<wbr>応じて<wbr>積み上がる<wbr>退職金制度も<wbr>企業に<wbr>義務づけられた。<wbr>この<wbr>義務づけは<wbr>工場に<wbr>限られていたが、<wbr>退職金には<wbr>税制上<wbr>有利な<wbr>扱い<wbr>（退職所得控除）が<wbr>あり、<wbr>企業に<wbr>とっても<wbr>人材を<wbr>つなぎとめる<wbr>効果が<wbr>あった<wbr>ため、<wbr>工場以外の<wbr>企業にも<wbr>広く<wbr>取り入れられていった。<wbr></p>
+<p><wbr>戦争を<wbr>続ける<wbr>ために<wbr>作られた<wbr>「生活給」は、<wbr>敗戦を<wbr>経て、<wbr>その<wbr>立ち位置が<wbr>一変する。<wbr>国の<wbr>ための<wbr>統制という<wbr>本来の<wbr>目的を<wbr>失い、<wbr>代わりに、<wbr>言葉通りの<wbr>意味――労働者が<wbr>生活していく<wbr>ための<wbr>給与――と<wbr>して、<wbr>担い手を<wbr>国から<wbr>労働組合へと<wbr>入れ替えながら<wbr>生き<wbr>残っていく。<wbr>戦後の<wbr>激しい<wbr>インフレの<wbr>中、<wbr>電産<wbr>（全日<wbr>本電気産業労働組合）が<wbr>「生活していけるだけの<wbr>賃金を<wbr>よこせ」と<wbr>勝ち取ったのが、<wbr>1946年の<wbr>電産型賃金体系である。<wbr>この<wbr>「年齢・勤続で<wbr>本給が<wbr>決まる」という<wbr>発想は、<wbr>その<wbr>後<wbr>多くの<wbr>日本企業が<wbr>「基本給」を<wbr>組み立てる<wbr>際の<wbr>ひな形に<wbr>なっていった。<wbr></p>
+<p>ただし、<wbr>これは<wbr>あくまで<wbr>「決め方」の<wbr>話であり、<wbr>実際に<wbr>賃金が<wbr>年々<wbr>上がり続けるか<wbr>どうかは、<wbr>会社に<wbr>賃上げの<wbr>原資が<wbr>あるか<wbr>どうか<wbr>次第である。<wbr>そして<wbr>高度成長期<wbr>（1950年代後半〜70年代前半）、<wbr>日本経済が<wbr>年10%前後で<wbr>成長を<wbr>続けた<wbr>ことで、<wbr>会社の<wbr>側に<wbr>賃上げの<wbr>原資が<wbr>実際に<wbr>生まれ、<wbr>この<wbr>「決め方」が<wbr>初めて<wbr>実体の<wbr>伴った<wbr>右肩上がりの<wbr>賃金と<wbr>して<wbr>機能するようになる。<wbr>労働組合も<wbr>欧米のような<wbr>職種別ではなく<wbr>会社単位の<wbr>企業別組合と<wbr>して<wbr>組織された<wbr>ため、<wbr>会社の<wbr>業績が<wbr>伸びれば<wbr>企業別組合の<wbr>賃上げ要求にも<wbr>応えやすく、<wbr>実際に<wbr>給料が<wbr>右肩上がりで<wbr>上がり続けた。<wbr>「会社の<wbr>成長＝自分の<wbr>給料の<wbr>伸び」という<wbr>実感が<wbr>実体験と<wbr>して<wbr>根付いた<wbr>ことで、<wbr>「会社の<wbr>ために<wbr>頑張る」という<wbr>一体感・忠誠心が<wbr>生まれた。<wbr>そして、<wbr>年功で<wbr>賃金が<wbr>上がり続ける<wbr>年功序列と、<wbr>その<wbr>賃金カーブを<wbr>前提に<wbr>長く<wbr>勤め続ける<wbr>終身雇用が、<wbr>企業別組合と<wbr>あわせて<wbr>「三種の<wbr>神器」と<wbr>して、<wbr>日本の<wbr>雇用の<wbr>あり方と<wbr>して<wbr>完成した。<wbr></p>
+<p><wbr>話を<wbr>法律の<wbr>側に<wbr>戻す。<wbr>電産型賃金体系と<wbr>同じ頃、<wbr>翌1947年には<wbr>労働基準法が<wbr>成立する。<wbr>工場法から<wbr>数えて<wbr>36年後の<wbr>ことだ。<wbr>労働基準法は、<wbr>戦後の<wbr>GHQの<wbr>占領政策のもとで<wbr>制定され、<wbr>性別や<wbr>職業を<wbr>問わず、<wbr>すべての<wbr>労働者に<wbr>8時間労働制などの<wbr>保護を<wbr>初めて<wbr>適用した<wbr>法律である。<wbr>年少者・女性だけを<wbr>対象に<wbr>していた<wbr>工場法とは<wbr>違い、<wbr>紡績業の<wbr>女性労働者も、<wbr>親方請負制のもとで<wbr>働いていた<wbr>職人も、<wbr>初めて<wbr>同じ<wbr>一つの<wbr>法律の<wbr>対象に<wbr>なった。<wbr></p>
+<p>ここでの<wbr>GHQの<wbr>狙いは、<wbr>アメリカ流の<wbr>「自由」を<wbr>輸出する<wbr>ことではなかった。<wbr>GHQは、<wbr>日本の<wbr>低賃金構造こそが<wbr>大陸進出(戦争・侵略)の<wbr>動機の<wbr>一つだったと<wbr>考え、<wbr>財閥解体・農地改革と<wbr>並ぶ経済民主化政策と<wbr>して、<wbr>労働組合の<wbr>結成・労働者保護を<wbr>推し進めた。<wbr>加えて、<wbr>当時GHQの<wbr>労働政策を<wbr>担当した<wbr>部局には、<wbr>ニューディール政策を<wbr>支持してきた<wbr>労働者保護に<wbr>積極的な<wbr>アメリカの<wbr>行政官・経済学者が<wbr>多く<wbr>入っていた<wbr>ことも、<wbr>この<wbr>時期の<wbr>手厚い<wbr>内容を<wbr>後押ししたと<wbr>見られている。<wbr>労働組合法(1945年12月)が、<wbr>日本国憲法の<wbr>施行(1947年5月)より<wbr>早く<wbr>制定されている<wbr>ことに、<wbr>その<wbr>優先度の<wbr>高さが<wbr>表れている。<wbr></p>
+<p>ただし、<wbr>この<wbr>直後に<wbr>アメリカ内部での<wbr>方針の<wbr>流れが<wbr>変わり、<wbr>GHQは<wbr>これほど<wbr>労働者保護に<wbr>積極的ではなくなっていく。<wbr>労働基準法の<wbr>成立(1947年)は、<wbr>その<wbr>転換が<wbr>始まる、<wbr>ギリギリ手前の<wbr>タイミングだったとも<wbr>言える。<wbr>もし<wbr>制定が<wbr>数年ずれていたら、<wbr>労基法の<wbr>中身は<wbr>今とは<wbr>違う<wbr>ものになっていたかもしれない。<wbr></p>
+<p><b><wbr>バブル期を<wbr>経て、<wbr>1995年以降の<wbr>非正規雇用の<wbr>増大</b> <wbr>1995年、<wbr>日経連<wbr>（当時の<wbr>経営者団体）が<wbr>「雇用ポートフォリオ」という<wbr>考え方を<wbr>発表した。<wbr>背景に<wbr>あったのは、<wbr>高度<wbr>成長が<wbr>終わり、<wbr>もはや<wbr>全社員に<wbr>年功賃金と<wbr>終身雇用を<wbr>保証し続けるだけの<wbr>体力が<wbr>企業に<wbr>ない、という<wbr>危機感である。<wbr>社員を<wbr>「長期蓄積能力活用型」<wbr>「高度専門能力活用型」<wbr>「雇用柔軟型」の<wbr>3つに<wbr>分け、<wbr>人件費の<wbr>固定費部分を<wbr>減らそうとした。<wbr></p>
+<p>ただし<wbr>実際には、<wbr>三種の<wbr>神器<wbr>その<wbr>ものを<wbr>作り<wbr>変えるのではなく、<wbr>都合の<wbr>いい部分だけを<wbr>変える<wbr>形で<wbr>進んだ。<wbr>戦後の<wbr>日本では<wbr>終身雇用が<wbr>当たり前の<wbr>前提と<wbr>して<wbr>社会に<wbr>根づいた<wbr>ことで、<wbr>裁判所も<wbr>「合理的な<wbr>理由なく<wbr>労働者を<wbr>解雇するのは<wbr>権利の<wbr>濫用である」という<wbr>考え方<wbr>（解雇権濫用法理）を、<wbr>判例を<wbr>通じて<wbr>発展させてきた。<wbr>1970年代の<wbr>石油危機に<wbr>よる<wbr>不況期に<wbr>相次いだ人員整理を<wbr>めぐる<wbr>裁判の<wbr>積み重ねから、<wbr>整理解雇には<wbr>①人員削減の<wbr>必要性②解雇回避努力③人選の<wbr>合理性④手続きの<wbr>妥当性、という<wbr>4つの<wbr>要件を<wbr>満たす必要が<wbr>ある、という<wbr>判例法理<wbr>（整理解雇の<wbr>4要件）が<wbr>確立していった。<wbr>終身雇用が<wbr>定着していたからこそ、<wbr>それを<wbr>守る<wbr>ための<wbr>強い<wbr>解雇規制が<wbr>判例と<wbr>して<wbr>積み上がっていった、という<wbr>関係に<wbr>ある。<wbr>この<wbr>判例法理が<wbr>ある<wbr>ため、<wbr>既存の<wbr>正社員から<wbr>年功賃金・終身雇用を<wbr>取り上げるのは<wbr>法的にも<wbr>難しい。<wbr>そこで<wbr>企業は、<wbr>既存の<wbr>正社員には<wbr>手を<wbr>つけず、<wbr>新卒・中途の<wbr>採用を<wbr>非正規に<wbr>切り<wbr>替えるという、<wbr>"入り口"だけを<wbr>変える<wbr>やり方を<wbr>選んだ。<wbr>結果と<wbr>して、<wbr>非正規雇用の<wbr>比率は<wbr>1990年の<wbr>約20%から<wbr>2019年には<wbr>約40%まで<wbr>拡大した。<wbr></p>
+<p>しかし<wbr>2008年の<wbr>リーマンショックが、<wbr>この<wbr>流れに<wbr>歯止めを<wbr>かける<wbr>転換点に<wbr>なる。<wbr>派遣切りや<wbr>年越し派遣村という<wbr>実際の<wbr>被害が<wbr>目に<wbr>見える<wbr>形に<wbr>なった<wbr>ことで、<wbr>日雇い<wbr>派遣の<wbr>禁止<wbr>（労働者派遣法改正）、<wbr>2012年の<wbr>無期転換ルール<wbr>（労働契約法改正）、<wbr>2015年の<wbr>3年ルール<wbr>（労働者派遣法改正）と<wbr>いった<wbr>保護強化の<wbr>動きが<wbr>相次いだ。<wbr>リーマンショック以降、<wbr>国の<wbr>振り子は、<wbr>労働者保護の<wbr>方向へと<wbr>強く<wbr>振れてきたと<wbr>言える。<wbr></p>
+<p><b><wbr>現在の<wbr>二重構造と<wbr>動向</b> <wbr>2008年から<wbr>2019年に<wbr>かけて、<wbr>別々の<wbr>衝撃が<wbr>重なり、<wbr>国の<wbr>振り子は<wbr>一気に<wbr>労働者保護の<wbr>方向へ<wbr>振れた。<wbr>2008年の<wbr>リーマンショックに<wbr>よる<wbr>派遣切り・年越し派遣村、<wbr>2015年の<wbr>電通過労死事件、<wbr>そして<wbr>少子高齢化に<wbr>よる<wbr>労働力不足と、<wbr>G7最下位の<wbr>労働生産性。<wbr>これらは<wbr>一本の<wbr>因果関係で<wbr>つながっているわけではなく、<wbr>同じ<wbr>10年ほどの<wbr>間に<wbr>起きた<wbr>別々の<wbr>出来事だが、<wbr>たまたま<wbr>同じ<wbr>方向を<wbr>向いた<wbr>ことで、<wbr>2012年の<wbr>無期転換ルール、<wbr>2015年の<wbr>3年ルール、<wbr>そして<wbr>2018年の<wbr>働き方改革関連法(残業上限規制など、<wbr>実に<wbr>70年ぶりの<wbr>労働法大改正)という、<wbr>一連の<wbr>保護強化に<wbr>つながった。<wbr></p>
+<p><wbr>2018年からの<wbr>働き方改革以降、<wbr>残業上限規制などの<wbr>【規制強化】と、<wbr>副業解禁や<wbr>高プロなどの<wbr>【緩和】が<wbr>同時並行。<wbr>直近<wbr>（2026年9月）では<wbr>労基署が<wbr>45時間<wbr>超え指導を<wbr>緩めるなど、<wbr>政治や<wbr>人手不足の<wbr>都合で<wbr>国に<wbr>よる<wbr>「保護」と<wbr>「緩和」が<wbr>グラグラと<wbr>揺れ動いている。<wbr></p>
 </template>
 <template id="src-4" data-title="第4章：日本の「飲食の歴史」">
-<p>世界の労働史と日本の歩みを踏まえた上で、私たちが身を置く「飲食業」の立ち位置を見ると、業界特有の構造的課題が見えてくる。</p>
-<p><b>100年遅れてやってきた「飲食の近代化」</b> 日本の製造業の資本分離（工場化）が明治10年代から20年代（1877年から1897年ごろ）であるのに対し、飲食業の資本分離（チェーンストア・セントラルキッチンの導入）は1970年前後である。この引き金になったのは、1969年の資本自由化によるアメリカ資本の参入だった。すかいらーく・ロイヤルホスト（ともに1970年）、日本マクドナルド（1971年）というチェーンストアの仕組みが、アメリカから日本に持ち込まれたことで、飲食業の資本主義的な分離が始まった。</p>
-<p>そもそも、なぜアメリカでこうした「仕組み化して売る」チェーンストア理論が発達したのか。アメリカは移民国家で、必ずしも熟練した職人を十分に確保できたわけではなかった。その一方で、国土は広く、人口もどんどん増えていく。この条件が重なると、腕のいい職人に頼るのではなく、誰にでもできるところまで仕事を単純化・標準化して、早く、大きく、大量に展開する、という発想が育ちやすくなる。実際、マクドナルドの前身であるマクドナルド兄弟の店も、自動車の組立ラインの考え方を調理工程に応用して、作業を単純な工程に分解したことで知られている。日本に持ち込まれたセントラルキッチンやチェーンストア理論は、こうしたアメリカ的な条件から生まれた仕組みだった。飲食業は製造業より約100年、欧州産業革命からは約200年遅れて「労働の近代化」を迎えた。つい50年前までは「のれん分け（修行と独立）」というギルド的な働き方が当たり前の世界だった。</p>
-<p><b>たった数十年で合わせることの無理</b> 欧米や製造業が200年かけて作った「工場型の労働ルール」を、最近まで「のれん分け」だった飲食業界にたった数十年で無理やり当てはめようとしているのだから、無理筋であるのは想像に易い。</p>
-<p>飲食業界が労働化(資本主義的な分離)を迎えてから、50年ほどが経ったことになる。この「50年ほど」という同じ経過年数を、ヨーロッパと日本の製造業、それぞれに当てはめてみる。</p>
-<p>欧州の産業革命（18世紀後半、1760〜80年代ごろ）に当てはめると、ちょうどラッダイト運動（1811〜1816年、機械打ち壊し運動）が起きていた時代に重なる。当時は児童労働への規制もほとんどなく、安全対策のない工場で怪我や死亡事故が日常的に起き、労働者が暴動を起こすほど追い詰められていた。</p>
-<p>日本の製造業（明治10年代から20年代、1877〜97年ごろの分離）に当てはめても、同じことが言える。工場法ができたのは分離から約34年後の1911年だが、業界団体の反対で「深夜業禁止は施行から15年間は適用しない」という猶予規定が法律そのものに盛り込まれ、分離から50年前後経った時点でもなお、昼夜二交代12〜15時間労働、寄宿舎での結核蔓延という実態が続いていた。</p>
-<p>つまり、ヨーロッパも日本の製造業も、「分離から50年ほど」という同じ地点では、どちらも壮絶な状態だった。それに比べれば、飲食業が「ブラックだ」と叩かれてきた今の局面は、まだ相当マシだと言える。むしろ、たった50年あまりでここまで来ている、と捉えるべきだろう。</p>
+<p><wbr>世界の<wbr>労働史と<wbr>日本の<wbr>歩みを<wbr>踏まえた<wbr>上で、<wbr>私たちが<wbr>身を<wbr>置く<wbr>「飲食業」の<wbr>立ち位置を<wbr>見ると、<wbr>業界特有の<wbr>構造的課題が<wbr>見えてくる。<wbr></p>
+<p><b><wbr>100年遅れて<wbr>やってきた<wbr>「飲食の<wbr>近代化」<wbr></b> <wbr>日本の<wbr>製造業の<wbr>資本分<wbr>離<wbr>（工場化）が<wbr>明治1<wbr>0年代から<wbr>20年代<wbr>（1877年から<wbr>1897年ごろ）であるのに<wbr>対し、<wbr>飲食業の<wbr>資本分<wbr>離<wbr>（チェーンストア・セントラルキッチンの<wbr>導入）は<wbr>1970年前後である。<wbr>この<wbr>引き金に<wbr>なったのは、<wbr>1969年の<wbr>資本自由化に<wbr>よる<wbr>アメリカ資本の<wbr>参入だった。<wbr>すかいらーく<wbr>・ロイヤルホスト<wbr>（ともに<wbr>1970年）、<wbr>日本マクドナルド<wbr>（1971年）という<wbr>チェーンストアの<wbr>仕組みが、<wbr>アメリカから<wbr>日本に<wbr>持ち込まれた<wbr>ことで、<wbr>飲食業の<wbr>資本主義的な<wbr>分離が<wbr>始まった。<wbr></p>
+<p>そもそも、<wbr>なぜアメリカで<wbr>こうした<wbr>「仕組み化して<wbr>売る」チェーンストア理論が<wbr>発達したのか。<wbr>アメリカは<wbr>移民国家で、<wbr>必ずしも<wbr>熟練した<wbr>職人を<wbr>十分に<wbr>確保できたわけではなかった。<wbr>その<wbr>一方で、<wbr>国土は<wbr>広く、<wbr>人口も<wbr>どんどん<wbr>増えていく。<wbr>この<wbr>条件が<wbr>重なると、<wbr>腕の<wbr>いい<wbr>職人に<wbr>頼るのではなく、<wbr>誰に<wbr>でも<wbr>できる<wbr>ところまで<wbr>仕事を<wbr>単純化・標準化して、<wbr>早く、<wbr>大きく、<wbr>大量に<wbr>展開する、という<wbr>発想が<wbr>育ちやすくなる。<wbr>実際、<wbr>マクドナルドの<wbr>前身である<wbr>マクドナルド兄弟の<wbr>店も、<wbr>自動車の<wbr>組立ラインの<wbr>考え方を<wbr>調理工程に<wbr>応用して、<wbr>作業を<wbr>単純な<wbr>工程に<wbr>分解した<wbr>ことで<wbr>知られている。<wbr>日本に<wbr>持ち込まれた<wbr>セントラルキッチンや<wbr>チェーンストア理論は、<wbr>こうした<wbr>アメリカ的な<wbr>条件から<wbr>生まれた<wbr>仕組みだった。<wbr>飲食業は<wbr>製造業より<wbr>約100年、<wbr>欧州産業革命からは<wbr>約200年遅れて<wbr>「労働の<wbr>近代化」を<wbr>迎えた。<wbr>つい50年前までは<wbr>「のれん分け<wbr>（修行と<wbr>独立）」という<wbr>ギルド的な<wbr>働き方が<wbr>当たり前の<wbr>世界だった。<wbr></p>
+<p><b>たった<wbr>数十年で<wbr>合わせる<wbr>ことの<wbr>無理</b> <wbr>欧米や<wbr>製造業が<wbr>200年かけて<wbr>作った<wbr>「工場型の<wbr>労働ルール」を、<wbr>最近まで<wbr>「のれん分け」だった<wbr>飲食業界に<wbr>たった<wbr>数十年で<wbr>無理やり当てはめようと<wbr>しているのだから、<wbr>無理筋であるのは<wbr>想像に<wbr>易い。<wbr></p>
+<p><wbr>飲食業界が<wbr>労働化(資本主義的な<wbr>分離)を<wbr>迎えてから、<wbr>50年ほどが<wbr>経った<wbr>ことになる。<wbr>この<wbr>「50年ほど」という<wbr>同じ<wbr>経過年数を、<wbr>ヨーロッパと<wbr>日本の<wbr>製造業、<wbr>それぞれに<wbr>当ては<wbr>めてみる。<wbr></p>
+<p><wbr>欧州の<wbr>産業革命<wbr>（18世紀後半、<wbr>1760〜80年代ごろ）に<wbr>当ては<wbr>めると、<wbr>ちょうど<wbr>ラッダイト運動<wbr>（1811〜1816年、<wbr>機械打ち壊し<wbr>運動）が<wbr>起きていた<wbr>時代に<wbr>重なる。<wbr>当時は<wbr>児童労働への<wbr>規制も<wbr>ほとんどなく、<wbr>安全対策の<wbr>ない<wbr>工場で<wbr>怪我や<wbr>死亡事故が<wbr>日常的に<wbr>起き、<wbr>労働者が<wbr>暴動を<wbr>起こすほど<wbr>追い<wbr>詰められていた。<wbr></p>
+<p><wbr>日本の<wbr>製造業<wbr>（明治1<wbr>0年代から<wbr>20年代、<wbr>1877〜97年ごろの<wbr>分離）に<wbr>当てはめても、<wbr>同じことが<wbr>言える。<wbr>工場法が<wbr>できたのは<wbr>分離から<wbr>約34年後の<wbr>1911年だが、<wbr>業界団体の<wbr>反対で<wbr>「深夜業禁止は<wbr>施行から<wbr>15年間は<wbr>適用しない」という<wbr>猶予規定が<wbr>法律<wbr>その<wbr>ものに<wbr>盛り込まれ、<wbr>分離から<wbr>50年前後<wbr>経った<wbr>時点でもな<wbr>お、<wbr>昼夜<wbr>二交代12〜15時間労働、<wbr>寄宿舎での<wbr>結核<wbr>蔓延という<wbr>実態が<wbr>続いていた。<wbr></p>
+<p>つまり、<wbr>ヨーロッパも<wbr>日本の<wbr>製造業も、<wbr>「分離から<wbr>50年ほど」という<wbr>同じ<wbr>地点では、<wbr>どちらも<wbr>壮絶な<wbr>状態だった。<wbr>それに<wbr>比べれば、<wbr>飲食業が<wbr>「ブラックだ」と<wbr>叩かれてきた<wbr>今の<wbr>局面は、<wbr>まだ<wbr>相当マシだと<wbr>言える。<wbr>むしろ、<wbr>たった<wbr>50年あまりで<wbr>ここまで<wbr>来ている、と<wbr>捉えるべきだろう。<wbr></p>
 </template>
 <template id="src-5" data-title="第5章：人手不足と法改正・規制緩和への向き合い方">
-<p>避けられない厳しい現実課題も存在する。</p>
-<ul><li>深刻化する人手不足（2035〜2040年問題）</li><li>揺れ動く法改正（規制強化と規制緩和の混迷）</li></ul>
-<p>国や法律の基準は、時代の変化と、経団連・大企業・JTCといった産業界の要請と、国とのせめぎ合いの中で、振り子のように揺れ動いているということである。</p>
-<p>ここで一つ押さえておきたいのは、日本の労働法は、他国がどう動いたとしても、独自路線で進む国だということだ。規制強化と緩和を同じ時期に同時並行させる二重構造そのものが、他国にあまり例のない動き方であることはすでに見た通りだが、それだけではない。ギグワーカーへの対応では、全体としてはヨーロッパ寄り（保護重視）の日本が、この論点だけはアメリカ寄り（独立事業者のまま）を選ぶ、という使い分けもしている。極めつけは、約40年ぶりとされた労働基準法の抜本改正である。これは本来、他国がすでに導入している「つながらない権利」や勤務間インターバルといった仕組みを日本も取り入れよう、という、海外の潮流を追いかける動機から始まった議論だった。それが、2025年秋に発足した高市政権が労働時間規制の「緩和」検討を指示したことで方向性が一変し、2026年の通常国会への法案提出が見送られた。20項目あった改正案のうち、前進したのは裁量労働制の拡大くらいだと言われている。つまり日本の労働法の行方は、「世界がどちらに動いているか」よりも、「その時の政権が何を優先するか」という国内の政治力学の方で、強く決まる。材料は世界から拾うが、意思決定の軸は常に国内にある、ということだ。</p>
-<p>2008年以降、2020年代半ばまでは、労働者を守る方向に振り子が振れ続けてきた局面と言える。その象徴が、世間で言われる「ライフワークバランス」という考え方だ。この考え方自体は、働きすぎを防ぎ、生活の時間を守るという点で大切な価値観であり、否定するものではない。ただし、ともすると仕事と生活を対立するものとして捉え、「1日24時間のうち、仕事の時間をどれだけ減らせるか」という、時間の奪い合いだけが目的化してしまう面もある。そしてまさにここ2年ほどで、上記で見た高市政権下の労基法改正見送りのように、緩和の色が見え始めている。</p>
+<p><wbr>避けられない<wbr>厳しい<wbr>現実課題も<wbr>存在する。<wbr></p>
+<ul><li><wbr>深刻化する<wbr>人手不<wbr>足<wbr>（2035〜2040年問題）<wbr></li><li><wbr>揺れ動く<wbr>法改正<wbr>（規制強化と<wbr>規制緩和の<wbr>混迷）<wbr></li></ul>
+<p><wbr>国や<wbr>法律の<wbr>基準は、<wbr>時代の<wbr>変化と、<wbr>経団連・<wbr>大企業・JTCと<wbr>いった<wbr>産業界の<wbr>要請と、<wbr>国との<wbr>せめぎ合いの<wbr>中で、<wbr>振り子のように<wbr>揺れ動いているという<wbr>ことである。<wbr></p>
+<p>ここで<wbr>一つ<wbr>押さえて<wbr>おきたいのは、<wbr>日本の<wbr>労働法は、<wbr>他国が<wbr>どう<wbr>動いたとしても、<wbr>独自路線で<wbr>進む国だという<wbr>ことだ。<wbr>規制強化と<wbr>緩和を<wbr>同じ<wbr>時期に<wbr>同時並行させる<wbr>二重構造<wbr>その<wbr>ものが、<wbr>他国に<wbr>あまり例の<wbr>ない<wbr>動き方である<wbr>ことはすでに<wbr>見た<wbr>通りだが、<wbr>それだけではない。<wbr>ギグワーカーへの<wbr>対応では、<wbr>全体と<wbr>しては<wbr>ヨーロッパ寄り<wbr>（保護重視）の<wbr>日本が、<wbr>この<wbr>論点だけは<wbr>アメリカ寄り<wbr>（独立事業者の<wbr>まま）を<wbr>選ぶ、という<wbr>使い分けも<wbr>している。<wbr>極めつけは、<wbr>約40年ぶりと<wbr>された<wbr>労働基準法の<wbr>抜本改正である。<wbr>これは<wbr>本来、<wbr>他国が<wbr>すでに<wbr>導入している<wbr>「つながらない<wbr>権利」や<wbr>勤務間インターバルと<wbr>いった<wbr>仕組みを<wbr>日本も<wbr>取り入れよう、という、<wbr>海外の<wbr>潮流を<wbr>追いかける<wbr>動機から<wbr>始まった<wbr>議論だった。<wbr>それが、<wbr>2025年秋に<wbr>発足した<wbr>高市政権が<wbr>労働時間規制の<wbr>「緩和」<wbr>検討を<wbr>指示した<wbr>ことで<wbr>方向性が<wbr>一変し、<wbr>2026年の<wbr>通常国会への<wbr>法案<wbr>提出が<wbr>見送られた。<wbr>20項目あった<wbr>改正案の<wbr>うち、<wbr>前進したのは<wbr>裁量労働制の<wbr>拡大くらいだと<wbr>言われている。<wbr>つまり<wbr>日本の<wbr>労働法の<wbr>行方は、<wbr>「世界が<wbr>どちらに<wbr>動いているか」よりも、<wbr>「その<wbr>時の<wbr>政権が<wbr>何を<wbr>優先するか」という<wbr>国内の<wbr>政治力学の<wbr>方で、<wbr>強く<wbr>決まる。<wbr>材料は<wbr>世界から<wbr>拾うが、<wbr>意思決定の<wbr>軸は<wbr>常に<wbr>国内に<wbr>ある、という<wbr>ことだ。<wbr></p>
+<p><wbr>2008年以降、<wbr>2020年代半ばまでは、<wbr>労働者を<wbr>守る<wbr>方向に<wbr>振り子が<wbr>振れ続けてきた<wbr>局面と<wbr>言える。<wbr>その<wbr>象徴が、<wbr>世間で<wbr>言われる<wbr>「ライフワークバランス」という<wbr>考え方だ。<wbr>この<wbr>考え方自体は、<wbr>働きすぎを<wbr>防ぎ、<wbr>生活の<wbr>時間を<wbr>守るという<wbr>点で<wbr>大切な<wbr>価値観であり、<wbr>否定する<wbr>ものではない。<wbr>ただし、<wbr>ともすると<wbr>仕事と<wbr>生活を<wbr>対立する<wbr>ものとして<wbr>捉え、<wbr>「1日24時間の<wbr>うち、<wbr>仕事の<wbr>時間を<wbr>どれだけ減らせるか」という、<wbr>時間の<wbr>奪い合いだけが<wbr>目的化してしまう<wbr>面も<wbr>ある。<wbr>そしてまさに<wbr>ここ2年ほどで、<wbr>上記で<wbr>見た<wbr>高市政権下の<wbr>労基法改正<wbr>見送りのように、<wbr>緩和の<wbr>色が<wbr>見え始めている。<wbr></p>
 </template>
 <template id="src-6" data-title="第6章：僕らはどうあるべきか？">
-<p>歴史を振り返れば、「製造業や大企業（JTC）が作った工場型の労働モデルや、世間と同じ働き方をそのまま追いかけること」自体が不毛であることは明らかである。</p>
-<p>世間のルールや他社の真似をするのではなく、バルニバービという会社が本来持っている強みと理念に立ち返った時、僕たちはどういう働き方を目指すべきなのか？人事はどうあるべきか、どういう制度を目指していくべきか？</p>
-<p>そもそもバルニバービは、画一的なマニュアルで縛るチェーン店ではない。</p>
-<p>一人ひとりが「食でやりたいこと」を持ち、店ごとの個性を発揮し、独立や新しい店づくりに挑戦していく――本質的に「のれん分け的・ギルド的」な理念を持ってやってきた会社である。</p>
-<p>工場型の「労働者を管理する仕組み」ではなく、職人や表現者が集う「ギルド的な働き方」こそが、バルニバービが取り組んできたことだ。</p>
-<p>ただし、これはギルドの歴史をそのまま模倣するという意味ではない。ギルドの良い部分――様々な場所で学び、経験を積んでスキルを自分のものにしていく文化や、のれん分け、つまり独立して自分の店（実質的な店舗の責任者）を持つという道筋――を、「なりたい自分になる」という理念に重ね合わせて引き継ぐ。一方で、閉鎖的な徒弟制や、長い下積み期間中の低待遇といった悪い部分は、当然、現代の時代・法律に合わせて更新していく必要もあり、時には世の中の基準に迎合させるべきところもある。この「良い部分は引き継ぎ、悪い部分は時代に合わせて更新する」という姿勢を、新しいギルド、新しいのれん分けの在り方として、「ネオ・ギルド」という呼び方にしたい。</p>
+<p><wbr>歴史を<wbr>振り返れば、<wbr>「製造業や<wbr>大企業<wbr>（JTC）が<wbr>作った<wbr>工場型の<wbr>労働モデルや、<wbr>世間と<wbr>同じ<wbr>働き方を<wbr>そのまま<wbr>追いかける<wbr>こと」自体が<wbr>不毛である<wbr>ことは<wbr>明らかである。<wbr></p>
+<p><wbr>世間の<wbr>ルールや<wbr>他社の<wbr>真似を<wbr>するのではなく、<wbr>バルニバービという<wbr>会社が<wbr>本来持っている<wbr>強みと<wbr>理念に<wbr>立ち返った<wbr>時、<wbr>僕たちは<wbr>どういう<wbr>働き方を<wbr>目指すべきなのか？<wbr>人事は<wbr>どう<wbr>あるべきか、<wbr>どういう<wbr>制度を<wbr>目指していく<wbr>べきか？<wbr></p>
+<p>そもそも<wbr>バルニバービは、<wbr>画一的な<wbr>マニュアルで<wbr>縛る<wbr>チェーン店ではない。<wbr></p>
+<p><wbr>一人<wbr>ひとりが<wbr>「食で<wbr>やりたい<wbr>こと」を<wbr>持ち、<wbr>店ごとの<wbr>個性を<wbr>発揮し、<wbr>独立や<wbr>新しい<wbr>店づくりに<wbr>挑戦していく<wbr>――本質的に<wbr>「のれん分け的・ギルド的」な<wbr>理念を<wbr>持って<wbr>やってきた<wbr>会社である。<wbr></p>
+<p><wbr>工場型の<wbr>「労働者を<wbr>管理する<wbr>仕組み」ではなく、<wbr>職人や<wbr>表現者が<wbr>集う<wbr>「ギルド的な<wbr>働き方」こそが、<wbr>バルニバービが<wbr>取り組んできた<wbr>ことだ。<wbr></p>
+<p>ただし、<wbr>これは<wbr>ギルドの<wbr>歴史を<wbr>そのまま<wbr>模倣するという<wbr>意味ではない。<wbr>ギルドの<wbr>良い<wbr>部分――様々な<wbr>場所で<wbr>学び、<wbr>経験を<wbr>積んで<wbr>スキルを<wbr>自分の<wbr>ものに<wbr>していく<wbr>文化や、のれん分け、<wbr>つまり<wbr>独立して<wbr>自分の<wbr>店<wbr>（実質的な<wbr>店舗の<wbr>責任者）を<wbr>持つという<wbr>道筋――を、<wbr>「なりたい<wbr>自分に<wbr>なる」という<wbr>理念に<wbr>重ね合わせて<wbr>引き継ぐ。<wbr>一方で、<wbr>閉鎖的な<wbr>徒弟制や、<wbr>長い<wbr>下積み期間中の<wbr>低待遇と<wbr>いった<wbr>悪い<wbr>部分は、<wbr>当然、<wbr>現代の<wbr>時代・法律に<wbr>合わせて<wbr>更新していく<wbr>必要も<wbr>あり、<wbr>時には<wbr>世の<wbr>中の<wbr>基準に<wbr>迎合させるべき<wbr>ところも<wbr>ある。<wbr>この<wbr>「良い<wbr>部分は<wbr>引き継ぎ、<wbr>悪い<wbr>部分は<wbr>時代に<wbr>合わせて<wbr>更新する」という<wbr>姿勢を、<wbr>新しい<wbr>ギルド、<wbr>新しいのれん分けの<wbr>在り方と<wbr>して、<wbr>「ネオ・ギルド」という<wbr>呼び方に<wbr>したい。<wbr></p>
 </template>
 <template id="src-7" data-title="第7章：『Life-Work Within』を元にした人事制度・福利厚生">
-<p>バルニバービの理念は「食の仕事を通してなりたい自分になる」ことだが、この「なりたい自分」は、人生のどの瞬間にも存在する。若手の時代になりたい自分、中堅の時代になりたい自分、マネジメントを担う時代になりたい自分、共に生きる家族ができた時のなりたい自分、後輩を指導し育てる時代になりたい自分――人生それぞれのタイミングで、常に「なりたい自分」を目指せる環境づくりを目指している。だからこそ、仕事と生活を対立させて天秤にかける「ライフワークバランス」ではなく、人生そのものの中に仕事があり続ける「ライフワークウィズイン」という働き方になる。こちらの方が、むしろ私たちの働き方の実態に則しているのではないだろうか。</p>
-<p>この考え方を元にした人事制度・福利厚生を、大きく2つに分けて作っていきたい。①健康への取り組み、②採用・キャリア・ライフイベント・教育・評価制度、の2つである。</p>
-<p><b>7-1. ①健康への取り組み：外部に左右されない「3つの健康」への投資</b></p>
-<p>福利厚生とは、法律で義務づけられた賃金や社会保険（法定福利厚生）とは別に、会社が働く人の生活や健康を独自に支えるために用意する制度（法定外福利厚生）を指す。今の世の中で語られる福利厚生は、ポイント還元や割引、時短補助といった、スタッフを辞めさせないためだけの、その場しのぎの"点"の施策になりがちだが、私たちは、福利厚生が「時代・法律と、飲食業、ひいてはバルニバービの在り方をつなぐ『架け橋』」でありたいと考えている。</p>
-<p>バルニバービの制度は、人の人生と共にあるという軸を元に考える。そうすることで、法や制度に振り回されるのではなく、法や制度がどう変わったとしても、働き方と生き方をつなぎ続けることができる。なお、当然のことだが、法律は守る。自由度を高めることは、労務管理を曖昧にすることではない。</p>
-<p>飲食業においての健康とは 1つ目として、長く働く上で大事なことは、「体・体力・心」の3つの健康である。会社は、この3つの健康に向けた福利厚生を愚直に推進する。</p>
+<p><wbr>バルニバービの<wbr>理念は<wbr>「食の<wbr>仕事を<wbr>通してなりたい<wbr>自分に<wbr>なる」ことだが、<wbr>この<wbr>「なりたい<wbr>自分」は、<wbr>人生の<wbr>どの<wbr>瞬間にも<wbr>存在する。<wbr>若手の<wbr>時代に<wbr>なりたい<wbr>自分、<wbr>中堅の<wbr>時代に<wbr>なりたい<wbr>自分、<wbr>マネジメントを<wbr>担う<wbr>時代に<wbr>なりたい<wbr>自分、<wbr>共に<wbr>生きる<wbr>家族が<wbr>できた<wbr>時の<wbr>なりたい<wbr>自分、<wbr>後輩を<wbr>指導し育てる<wbr>時代に<wbr>なりたい<wbr>自分――人生それぞれの<wbr>タイミングで、<wbr>常に<wbr>「なりたい<wbr>自分」を<wbr>目指せる<wbr>環境づくりを<wbr>目指している。<wbr>だからこそ、<wbr>仕事と<wbr>生活を<wbr>対立させて<wbr>天秤に<wbr>かける<wbr>「ライフワークバランス」ではなく、<wbr>人生<wbr>その<wbr>ものの<wbr>中に<wbr>仕事が<wbr>あり続ける<wbr>「ライフワークウィズイン」という<wbr>働き方に<wbr>なる。<wbr>こちらの<wbr>方が、<wbr>むしろ<wbr>私たちの<wbr>働き方の<wbr>実態に<wbr>則しているのではないだろうか。<wbr></p>
+<p>この<wbr>考え方を<wbr>元に<wbr>した<wbr>人事制度・<wbr>福利厚生を、<wbr>大きく<wbr>2つに<wbr>分けて<wbr>作っていきたい。<wbr>①健康への<wbr>取り組み、<wbr>②採用・キャリア・ライフイベント・教育・評価制度、<wbr>の<wbr>2つである。<wbr></p>
+<p><b><wbr>7-1. ①健康への<wbr>取り組み：外部に<wbr>左右されない<wbr>「3つの<wbr>健康」への<wbr>投資</b></p>
+<p><wbr>福利厚生とは、<wbr>法律で<wbr>義務づけられた<wbr>賃金や<wbr>社会保険<wbr>（法定<wbr>福利厚生）とは<wbr>別に、<wbr>会社が<wbr>働く<wbr>人の<wbr>生活や<wbr>健康を<wbr>独自に<wbr>支える<wbr>ために<wbr>用意する<wbr>制度<wbr>（法定外福利厚生）を<wbr>指す。<wbr>今の<wbr>世の<wbr>中で<wbr>語られる<wbr>福利厚生は、<wbr>ポイント還元や<wbr>割引、<wbr>時短補助と<wbr>いった、<wbr>スタッフを<wbr>辞めさせないためだけの、<wbr>その<wbr>場しの<wbr>ぎの<wbr>"点"の<wbr>施策に<wbr>なりがちだが、<wbr>私たちは、<wbr>福利厚生が<wbr>「時代・法律と、<wbr>飲食業、<wbr>ひいては<wbr>バルニバービの<wbr>在り方を<wbr>つなぐ<wbr>『架け橋』」でありたいと<wbr>考えている。<wbr></p>
+<p><wbr>バルニバービの<wbr>制度は、<wbr>人の<wbr>人生と<wbr>共に<wbr>あるという<wbr>軸を<wbr>元に<wbr>考える。<wbr>そうする<wbr>ことで、<wbr>法や<wbr>制度に<wbr>振り回されるのではなく、<wbr>法や<wbr>制度が<wbr>どう<wbr>変わったとしても、<wbr>働き方と<wbr>生き方を<wbr>つなぎ続ける<wbr>ことができる。<wbr>なお、<wbr>当然の<wbr>ことだが、<wbr>法律は<wbr>守る。<wbr>自由度を<wbr>高める<wbr>ことは、<wbr>労務管理を<wbr>曖昧に<wbr>する<wbr>ことではない。<wbr></p>
+<p><wbr>飲食業に<wbr>おいての<wbr>健康とは<wbr> 1つ目と<wbr>して、<wbr>長く<wbr>働く<wbr>上で<wbr>大事な<wbr>ことは、<wbr>「体・体力・心」の<wbr>3つの<wbr>健康である。<wbr>会社は、<wbr>この<wbr>3つの<wbr>健康に<wbr>向けた<wbr>福利厚生を<wbr>愚直に<wbr>推進する。<wbr></p>
 <ul>
-<li>「体」の健康（メディカル）：現在は年1回の健康診断を行っているが、それだけでは不十分だと考えている。Life-Work Withinの考え方に立てば、20代、30代、40代、それぞれの年代で求められることも、家族構成も変わっていく。その変化に応じて、体の健康をどう測り、維持し、向上させていけるかを、これから考えていきたい。</li>
-<li>「体力」の健康（フィジカル）：飲食人をアスリートと捉え、一生現場に立ち続けられる身体機能ケア（怪我・腰痛等の防止）を整える。</li>
-<li>「心」の健康（スピリット）：これから一番大事に考えていきたいのが、この「心」の健康である。今はまだ、年2回の「エンゲージメントサーベイ」を実施し、スタッフの熱量を測定し始めた段階だが、そこにとどまらず、職人・表現者としてのやりがいや成長実感、仲間との信頼関係を含めた、心の状態そのものを可視化していく取り組みを考えていきたい。可視化することが難しい領域であることは承知している。だからこそ、挑戦する価値がある。</li>
+<li><wbr>「体」の<wbr>健康<wbr>（メディカル）<wbr>：現在は<wbr>年1回の<wbr>健康診断を<wbr>行っているが、<wbr>それだけでは<wbr>不十分だと<wbr>考えている。<wbr>Life-Work Withinの<wbr>考え方に<wbr>立てば、<wbr>20代、<wbr>30代、<wbr>40代、<wbr>それぞれの<wbr>年代で<wbr>求められる<wbr>ことも、<wbr>家族構成も<wbr>変わっていく。<wbr>その<wbr>変化に<wbr>応じて、<wbr>体の<wbr>健康を<wbr>どう<wbr>測り、<wbr>維持し、<wbr>向上させていけるかを、<wbr>これから<wbr>考えていきたい。<wbr></li>
+<li><wbr>「体力」の<wbr>健康<wbr>（フィジカル）<wbr>：飲食人を<wbr>アスリートと<wbr>捉え、<wbr>一生現場に<wbr>立ち続けられる<wbr>身体機能ケア（怪我・腰痛等の<wbr>防止）を<wbr>整える。<wbr></li>
+<li><wbr>「心」の<wbr>健康<wbr>（スピリット）<wbr>：<wbr>これから<wbr>一番<wbr>大事に<wbr>考えていきたいのが、<wbr>この<wbr>「心」の<wbr>健康である。<wbr>今は<wbr>まだ、<wbr>年2回の<wbr>「エンゲージメントサーベイ」を<wbr>実施し、<wbr>スタッフの<wbr>熱量を<wbr>測定し始めた<wbr>段階だが、<wbr>そこに<wbr>とどまらず、<wbr>職人・表現者と<wbr>しての<wbr>やりが<wbr>いや<wbr>成長実感、<wbr>仲間との<wbr>信頼関係を<wbr>含めた、<wbr>心の<wbr>状態<wbr>その<wbr>ものを<wbr>可視化していく<wbr>取り組みを<wbr>考えていきたい。<wbr>可視化する<wbr>ことが<wbr>難しい<wbr>領域である<wbr>ことは<wbr>承知している。<wbr>だからこそ、<wbr>挑戦する<wbr>価値が<wbr>ある。<wbr></li>
 </ul>
-<p><b>【今後の見通し（仮説）】</b> ストレスチェック制度は、2015年から常時50人以上の事業場に義務化されていたが、2025年5月の法改正で、50人未満の事業場にも2028年4月から義務化が拡大されることが決まった。一方で、約40年ぶりとされた労働基準法の抜本改正(14連勤禁止、勤務間インターバル義務化、残業上限の特例縮小など)は、2025年秋の高市政権発足後、首相が労働時間規制の「緩和」検討を指示したことを機に方向性が転換し、2026年の通常国会への法案提出が見送られた。20項目あった改正案のうち、前進したのは裁量労働制の拡大くらいだと言われている。これらを重ねると、国の方針は「時間で一律に縛る」規制から、「健康を基準に、健康であれば柔軟に働ける」規制へと、軸足を移していく可能性がある。これはあくまで憶測であり、確定した方針ではないが、もしこの方向に進むなら、法律で義務化される前から自主的に「心の健康」を可視化する取り組みを積み重ねてきたことは、将来的に大きな裏付けになるはずだ。</p>
-<p><b>7-2. ②採用・キャリア・ライフイベント・教育：ネオギルド的な考え方</b></p>
-<p>外部から労働力を奪い合うのではなく、自社から多様な仲間を育み、様々な場所で学びながら、なりたい自分を目指せる環境をつくる。</p>
-<p><b>ライフステージワーク</b></p>
+<p><b><wbr>【<wbr>今後の<wbr>見通し<wbr>（仮説）<wbr>】</b> <wbr>ストレスチェック制度は、<wbr>2015年から<wbr>常時50人以上の<wbr>事業場に<wbr>義務化されていたが、<wbr>2025年5月の<wbr>法改正で、<wbr>50人未満の<wbr>事業場にも<wbr>2028年4月から<wbr>義務化が<wbr>拡大される<wbr>ことが<wbr>決まった。<wbr>一方で、<wbr>約40年ぶりと<wbr>された<wbr>労働基準法の<wbr>抜本改正(14連勤禁止、<wbr>勤務間インターバル義務化、<wbr>残業上限の<wbr>特例縮小など)は、<wbr>2025年秋の<wbr>高市政権発足後、<wbr>首相が<wbr>労働時間規制の<wbr>「緩和」<wbr>検討を<wbr>指示した<wbr>ことを<wbr>機に<wbr>方向性が<wbr>転換し、<wbr>2026年の<wbr>通常国会への<wbr>法案<wbr>提出が<wbr>見送られた。<wbr>20項目あった<wbr>改正案の<wbr>うち、<wbr>前進したのは<wbr>裁量労働制の<wbr>拡大くらいだと<wbr>言われている。<wbr>これらを<wbr>重ねると、<wbr>国の<wbr>方針は<wbr>「時間で<wbr>一律に<wbr>縛る」<wbr>規制から、<wbr>「健康を<wbr>基準に、<wbr>健康であれば<wbr>柔軟に<wbr>働ける」規制へと、<wbr>軸足を<wbr>移していく<wbr>可能性が<wbr>ある。<wbr>これは<wbr>あくまで<wbr>憶測であり、<wbr>確定した<wbr>方針ではないが、<wbr>もし<wbr>この<wbr>方向に<wbr>進むなら、<wbr>法律で<wbr>義務化される<wbr>前から<wbr>自主的に<wbr>「心の<wbr>健康」を<wbr>可視化する<wbr>取り組みを<wbr>積み重ねてきた<wbr>ことは、<wbr>将来的に<wbr>大きな<wbr>裏付けに<wbr>なるはずだ。<wbr></p>
+<p><b><wbr>7-2. ②採用・キャリア・ライフイベント・<wbr>教育：ネオギルド的な<wbr>考え方</b></p>
+<p><wbr>外部から<wbr>労働力を<wbr>奪い合うのではなく、<wbr>自社から<wbr>多様な<wbr>仲間を<wbr>育み、<wbr>様々な<wbr>場所で<wbr>学びながら、<wbr>なりたい<wbr>自分を<wbr>目指せる<wbr>環境を<wbr>つくる。<wbr></p>
+<p><b><wbr>ライフステージワーク</b></p>
 <ul>
-<li>アルバイトからの正社員登用：アルバイトという雇用を、社員の不足を補うための雇用として捉えるのではなく、長く共に働くパートナーとして、その立ち位置そのものを捉え直したい。GEMS（技能評価）等を活用し、アルバイトから正社員へシームレスにチャレンジできる道をつくるなど、制度を再考していく。</li>
-<li>夫婦・家族で働ける環境：ライフイベント（結婚・出産・育児）の時期に集中して手厚く支援し、夫婦や家族になっても安心して長く働き続けられる制度設計を行う。</li>
-<li>家賃補助・紹介料などの社内ルール：家賃補助や、社員・スタッフ紹介による採用時の紹介料といった社内ルールも、ライフステージに寄り添う形で整備していく。</li>
-<li>雇用形態・雇用条件：雇用形態や雇用条件についても、一度決めた形に固定するのではなく、時代やその人のライフステージに合わせて、都度設計していきたい。育休明けの働き方、50代を超えてからの働き方など、人生の季節に沿った形を当然考えていく。それがライフワークウィズインの考え方である。</li>
+<li><wbr>アルバイトからの<wbr>正社員登用：アルバイトという<wbr>雇用を、<wbr>社員の<wbr>不足を<wbr>補う<wbr>ための<wbr>雇用と<wbr>して<wbr>捉えるのではなく、<wbr>長く<wbr>共に<wbr>働く<wbr>パートナーと<wbr>して、<wbr>その<wbr>立ち位置<wbr>その<wbr>ものを<wbr>捉え直したい。<wbr>GEMS<wbr>（技能評価）<wbr>等を<wbr>活用し、<wbr>アルバイトから<wbr>正社員へ<wbr>シームレスに<wbr>チャレンジできる<wbr>道を<wbr>つくるなど、<wbr>制度を<wbr>再考していく。<wbr></li>
+<li><wbr>夫婦・家族で<wbr>働ける<wbr>環境：ライフイベント<wbr>（結婚・出産・育児）の<wbr>時期に<wbr>集中して<wbr>手厚く<wbr>支援し、<wbr>夫婦や<wbr>家族に<wbr>なっても<wbr>安心して<wbr>長く<wbr>働き続けられる<wbr>制度設計を<wbr>行う。<wbr></li>
+<li><wbr>家賃補助・紹介料などの<wbr>社内ルール：家賃補助や、<wbr>社員・スタッフ紹介に<wbr>よる<wbr>採用時の<wbr>紹介料と<wbr>いった<wbr>社内ルールも、<wbr>ライフステージに<wbr>寄り添う形で<wbr>整備していく。<wbr></li>
+<li><wbr>雇用形態・雇用条件：雇用形態や<wbr>雇用条件に<wbr>ついても、<wbr>一度<wbr>決めた<wbr>形に<wbr>固定するのではなく、<wbr>時代や<wbr>その<wbr>人の<wbr>ライフステージに<wbr>合わせて、<wbr>都度<wbr>設計していきたい。<wbr>育休明けの<wbr>働き方、<wbr>50代を<wbr>超えてからの<wbr>働き方など、<wbr>人生の<wbr>季節に<wbr>沿った<wbr>形を<wbr>当然<wbr>考えていく。<wbr>それが<wbr>ライフワークウィズインの<wbr>考え方である。<wbr></li>
 </ul>
-<p><b>ネオギルド</b></p>
+<p><b><wbr>ネオギルド</b></p>
 <ul>
-<li>様々な場所で学ぶ環境：約100あるブランド・店舗を、一つの職場に固定するのではなく、その人のキャリアに沿って異動したり、時に転籍したり、ジョイナー（ヘルプ）として他店を経験したりしやすい仕組みを用意する。様々な場所で経験を積み、スキルを自分のものにしていくというギルド本来の良さを、現代の育成・キャリアの仕組みとして体現する試みである。</li>
-<li>交流の場：スキル研修、勉強会、講習、セミナーなどを通じて、店舗間、さらには他社も交えた交流を生み出していく。</li>
-<li>評価制度：人間力や、現場で磨いてきたスキルそのものを評価する制度を導入していく。</li>
-<li>多様なルートの併存：独立や成長だけがすべてではない。のれん分け・独立を志す「表現者ルート」だけでなく、店舗運営を安定して支えたい「基盤支え手ルート」も、同じように誇りを持てる道として併存させる。</li>
+<li><wbr>様々な<wbr>場所で<wbr>学ぶ環境：約100ある<wbr>ブランド・店舗を、<wbr>一つの<wbr>職場に<wbr>固定するのではなく、<wbr>その<wbr>人の<wbr>キャリアに<wbr>沿って<wbr>異動したり、<wbr>時に<wbr>転籍したり、<wbr>ジョイナー<wbr>（ヘルプ）として<wbr>他店を<wbr>経験したりしやすい<wbr>仕組みを<wbr>用意する。<wbr>様々な<wbr>場所で<wbr>経験を<wbr>積み、<wbr>スキルを<wbr>自分の<wbr>ものに<wbr>していくという<wbr>ギルド本来の<wbr>良さを、<wbr>現代の<wbr>育成・キャリアの<wbr>仕組みと<wbr>して<wbr>体現する<wbr>試みである。<wbr></li>
+<li><wbr>交流の<wbr>場：スキル研修、<wbr>勉強会、<wbr>講習、<wbr>セミナーなどを<wbr>通じて、<wbr>店舗間、<wbr>さらには<wbr>他社も<wbr>交えた<wbr>交流を<wbr>生み出していく。<wbr></li>
+<li><wbr>評価制度：人間力や、<wbr>現場で<wbr>磨いてきた<wbr>スキル<wbr>その<wbr>ものを<wbr>評価する<wbr>制度を<wbr>導入していく。<wbr></li>
+<li><wbr>多様な<wbr>ルートの<wbr>併存：独立や<wbr>成長だけが<wbr>すべてではない。<wbr>のれん分け・独立を<wbr>志す<wbr>「表現者ルート」だけでなく、<wbr>店舗運営を<wbr>安定して<wbr>支えたい<wbr>「基盤支え手ルート」も、<wbr>同じように<wbr>誇りを<wbr>持てる<wbr>道と<wbr>して<wbr>併存させる。<wbr></li>
 </ul>
 </template>
 <template id="src-結" data-title="結び">
-<p>時代が変われば、法律も変わり、揺れ動く。大企業と国がつくり上げたルールにそのまま乗っかるだけでは、僕らが大事にしたいものまで一緒に薄れてしまいかねない。かといって、真正面から対抗する意味もない。そもそも、歩んできた歴史が違う。だから、他人のルールにそのまま合わせること自体がナンセンスだ。だからこそ、バルニバービ自身の答えを出すことが大事だと考えている。</p>
-<p>バルニバービは、一人ひとりが食でやりたいことを形にする、現代のネオ・ギルドでありたい。20代の修業期、子育て期、ベテラン期と、どの人生の季節にいても、『食べる仕事を通してなりたい自分になる』ことを目指せるための仕組みや制度をつくっていく。法では補えない。時代の流れでは解釈できない。そんな隙間を埋めるのが、ライフワークウィズインという考え方に沿った制度設計でありたいと考えている。</p>
+<p><wbr>時代が<wbr>変われば、<wbr>法律も<wbr>変わり、<wbr>揺れ動く。<wbr>大企業と<wbr>国が<wbr>つくり上げた<wbr>ルールに<wbr>そのまま<wbr>乗っかるだけでは、<wbr>僕らが<wbr>大事に<wbr>したい<wbr>ものまで<wbr>一緒に<wbr>薄れてしまいかねない。<wbr>かと<wbr>いって、<wbr>真<wbr>正面から<wbr>対抗する<wbr>意味も<wbr>ない。<wbr>そもそも、<wbr>歩んできた<wbr>歴史が<wbr>違う。<wbr>だから、<wbr>他人の<wbr>ルールに<wbr>そのまま合わせる<wbr>こと自体が<wbr>ナンセンスだ。<wbr>だからこそ、<wbr>バルニバービ自身の<wbr>答えを<wbr>出すことが<wbr>大事だと<wbr>考えている。<wbr></p>
+<p><wbr>バルニバービは、<wbr>一人<wbr>ひとりが<wbr>食で<wbr>やりたい<wbr>ことを<wbr>形に<wbr>する、<wbr>現代の<wbr>ネオ・ギルドでありたい。<wbr>20代の<wbr>修業期、<wbr>子育て<wbr>期、<wbr>ベテラン期と、<wbr>どの<wbr>人生の<wbr>季節に<wbr>いても、<wbr>『食べる<wbr>仕事を<wbr>通してなりたい<wbr>自分に<wbr>なる』ことを<wbr>目指せる<wbr>ための<wbr>仕組みや<wbr>制度を<wbr>つくっていく。<wbr>法では<wbr>補えない。<wbr>時代の<wbr>流れでは<wbr>解釈できない。<wbr>そんな<wbr>隙間を<wbr>埋めるのが、<wbr>ライフワークウィズインという<wbr>考え方に<wbr>沿った<wbr>制度設計でありたいと<wbr>考えている。<wbr></p>
 </template>
 
 
@@ -1550,24 +1579,6 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
   document.getElementById('srcbtn').addEventListener('click',openSrc);
   document.getElementById('srcclose').addEventListener('click',closeSrc);
   document.getElementById('shade').addEventListener('click',closeSrc);
-
-  // 約100店舗のグリッドと、異動・ジョイナー・転籍の道のり
-  (function(){
-    var svg=document.getElementById('storegrid'),NS='http://www.w3.org/2000/svg';
-    function el(n,a,p){var x=document.createElementNS(NS,n);for(var k in a)x.setAttribute(k,a[k]);(p||svg).appendChild(x);return x}
-    var cols=14,rows=7,pts=[];
-    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var x=20+c*29,y=20+r*29;pts.push([x,y]);
-      el('rect',{x:x-8,y:y-8,width:16,height:16,rx:3,class:'fi-r fd',style:'--d:'+((r*cols+c)*0.007).toFixed(3)+'s'});}
-    var g=el('g',{'data-step':'1'});
-    var path=[[1,1],[5,2],[4,5],[9,4],[12,1]],lab=['入社','異動','ジョイナー','転籍','いま'];
-    var d='M'+path.map(function(p){var q=pts[p[1]*cols+p[0]];return q[0]+' '+q[1]}).join(' L');
-    el('path',{d:d,class:'ln ln-red w4 dr',pathLength:'1',style:'--d:.2s;animation-duration:2.2s'},g);
-    path.forEach(function(p,i){var q=pts[p[1]*cols+p[0]];
-      el('rect',{x:q[0]-11,y:q[1]-11,width:22,height:22,rx:4,class:'fi-k stampin',style:'--d:'+(0.2+i*0.5)+'s'},g);
-      var t=el('text',{x:q[0],y:q[1]+(p[1]>3?30:-17),'text-anchor':'middle',class:'td fd',style:'--d:'+(0.3+i*0.5)+'s;font-size:14px'},g);t.textContent=lab[i];});
-    el('text',{x:210,y:236,'text-anchor':'middle',class:'t3'}).textContent='約100のブランド・店舗';
-    var s=svg.closest('.slide');s.dataset.steps=Math.max(+s.dataset.steps,1);
-  })();
 
   var m=/^#s(\d+)$/.exec(location.hash);
   cur=0;go(m?(+m[1]-1):0,false);
