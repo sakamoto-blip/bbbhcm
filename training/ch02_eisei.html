@@ -70,6 +70,14 @@
 .act-list .ico { width: 64px; height: 64px; font-size: 38px; border-radius: 16px; }
 .act-list p { font-size: 28px; line-height: 1.4; }
 .act-list p small { display: block; font-size: 24px; color: var(--ink-2); }
+.act-list li.key-item { grid-template-columns: 76px 1fr; align-items: start; padding: 16px 22px; background: var(--accent-soft); box-shadow: inset 6px 0 0 var(--accent); }
+.act-list li.key-item .ico { width: 76px; height: 76px; font-size: 44px; background: #fff; }
+.act-list li.key-item p { font-size: 32px; }
+.act-list li.key-item small { display: block; font-size: 24px; color: var(--ink-2); margin-top: 6px; }
+.must { display: inline-block; margin-left: 12px; font-size: 22px; font-weight: 900; padding: 2px 12px; border-radius: 999px; background: var(--accent); color: #fff; vertical-align: .2em; }
+.key-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.key-stats span { font-size: 24px; font-weight: 700; padding: 6px 14px; border-radius: 10px; background: #fff; }
+.key-stats b { font-family: var(--f-num); font-weight: 400; font-size: 32px; color: var(--accent-ink); margin-right: 4px; }
 .log { background: var(--surface); border-radius: 18px; padding: 22px 26px; box-shadow: 0 8px 24px rgba(29,33,40,.06); display: flex; flex-direction: column; gap: 10px; }
 .log table { width: 100%; border-collapse: collapse; font-size: 26px; }
 .log th { text-align: left; font-size: 22px; color: var(--ink-2); padding: 6px 10px; border-bottom: 2px solid var(--line); }
@@ -428,8 +436,12 @@
     <div class="act-wrap">
       <ul class="act-list">
         <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-person"/></svg></span><p><b>体調申告</b>の日次記録<small>下痢・発熱・嘔吐・手の傷。冒頭の事例で形骸化していたのが、これ</small></p></li>
-        <li data-step="2" class="slide-in"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><p><b>検便</b>（腸内細菌検査）<small>毎月実施し、記録を保管</small></p></li>
-        <li data-step="3" class="slide-in"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><p><b>検食</b>　10名以上に同一メニューを提供する際<small>1検体50gを、2週間冷凍保管</small></p></li>
+        <li data-step="2" class="pop key-item"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p><b>検便</b>（腸内細菌検査）<span class="must">必須</span></p>
+          <div class="key-stats"><span><b>毎月</b>実施</span><span><b>15日</b>までに提出</span><span>記録を保管</span></div>
+          <small>症状がなくても菌を持っている人を見つけるため。陽性なら、すぐに厨房業務を禁止</small></div></li>
+        <li data-step="3" class="pop key-item"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p><b>検食</b>　10名以上に同一メニューを提供する際<span class="must">必須</span></p>
+          <div class="key-stats"><span>1検体<b>50g</b></span><span><b>2週間</b>冷凍保管</span><span>調理後すぐ袋へ</span></div>
+          <small>万が一の時、原因を確かめる唯一の手がかりになる</small></div></li>
         <li data-step="4" class="slide-in"><span class="ico"><svg class="i"><use href="#i-check"/></svg></span><p><b>マキトリ</b>への確実な記録<small><span class="poll" data-q="Q4">「いいえ」<b contenteditable="true">◯</b>%</span></small></p></li>
       </ul>
       <div style="display:flex;flex-direction:column;gap:18px">
@@ -448,8 +460,8 @@
     </div>
     <aside class="notes">最後に、アクト。アクション、つまり実際に行動して、記録する段階です。
 ［クリック］体調申告。下痢、発熱、嘔吐、手の傷。これを毎日記録します。冒頭の事例で形骸化していたのが、まさにこの記録でした。
-［クリック］検便、腸内細菌検査は毎月実施し、記録を保管します。
-［クリック］検食は、10名以上に同一メニューを提供する際、1検体50gを2週間冷凍保管します。
+［クリック］検便、腸内細菌検査は毎月実施し、毎月15日までに提出、記録を保管します。症状がなくても菌を持っている人を見つけるためのものです。陽性の場合は、すぐに厨房業務を禁止します。
+［クリック］検食は、10名以上に同一メニューを提供する際、1検体50gを2週間冷凍保管します。調理が終わったものから、すぐに袋に入れて冷凍してください。万が一の時、原因を確かめる唯一の手がかりになります。
 ［クリック］そして、マキトリシステムへの記録です。
 ここで、冒頭の投票を思い出してください。「マキトリで日々の記録ができていますか」という質問に、「いいえ」と答えた方が◯％いらっしゃいました。（進行役：スライドの◯をクリックすると、数字を入力できます）
 ［クリック］記録がなければ、「やっていた」ことの証明になりません。
