@@ -106,7 +106,12 @@
 .ring .lbl span { font-size: 30px; font-weight: 900; }
 .roles svg { width: 100%; height: auto; display: block; }
 
-.qr { width: 220px; height: 220px; min-height: 0; flex: none; }
+.report { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: center; flex: 1; }
+.report-cards { display: flex; flex-direction: column; gap: 14px; }
+.report-cards .card { flex-direction: row; align-items: center; gap: 28px; padding: 16px 30px; }
+.report-cards .lead { font-size: 40px; }
+.report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.report-qr .ph { width: 320px; height: 320px; }
 .scale { width: 100%; height: auto; display: block; overflow: visible; }
 .scale #beam { transform-box: view-box; transform-origin: 832px 110px; transition: transform 1.4s cubic-bezier(.3,1.35,.5,1) .9s; }
 .scale #panL, .scale #panR { transition: transform 1.4s cubic-bezier(.3,1.35,.5,1) .9s; }
@@ -611,21 +616,15 @@ C火災、電気火災。コンセント、厨房機器、配線、分電盤な�
   <section class="slide light" data-min="3">
     <div class="eyebrow" data-in>研修修了レポートについて</div>
     <h2 class="title" data-in style="--d:1">レポートの提出をもって「受講完了」となります</h2>
-    <div class="row" data-in style="--d:2">
-      <div class="card" style="flex:1"><p class="cap">提出方法</p><p class="text"><b>フォームに回答</b></p><p class="cap">URL・QRコードを配布</p></div>
-      <div class="card is-accent pulse" style="flex:1"><p class="cap">提出期限</p><p class="text"><b>研修実施日から<span class="hl">3日以内</span></b></p></div>
-      <div class="card" style="flex:1"><p class="cap">記入方法</p><p class="text"><b>店舗を確認しながら記入</b></p></div>
-      <div class="ph qr"><span>フォームの<br>QRコード</span></div>
+    <div class="report" data-in style="--d:2">
+      <div class="report-cards">
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
+        <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-store"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>店舗を確認しながら記入</b></p></div></div>
+      </div>
+      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
     </div>
-    <ul class="checks" data-step="1">
-      <li><svg class="i"><use href="#i-check"/></svg>消火器の本数と、スタッフが設置場所を把握しているか</li>
-      <li><svg class="i"><use href="#i-check"/></svg>避難時の出口と、ルート上の障害物</li>
-      <li><svg class="i"><use href="#i-check"/></svg>消防設備点検・ダクト清掃の直近の実施日</li>
-      <li><svg class="i"><use href="#i-check"/></svg>特殊調理・排気設備の点検状況</li>
-      <li><svg class="i"><use href="#i-check"/></svg>布地類の防炎マーク・自店の収容人員</li>
-      <li><svg class="i"><use href="#i-check"/></svg>店に戻って、確認したこと・対応したこと</li>
-    </ul>
-    <div class="row" data-step="2">
+    <div class="row" data-step="1">
       <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
       <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>該当しないものは「なし」で構いません。気づいたことも記載してください</p></div>
     </div>
@@ -633,7 +632,7 @@ C火災、電気火災。コンセント、厨房機器、配線、分電盤な�
 （進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
 提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
 このレポートは、実際にお店を確認しながら記入してください。記憶で書くのではなく、店に戻って、自分の目で見て書いていただくことが大事です。
-［クリック］内容は、今日お話ししたことに沿っています。
+内容は、今日お話ししたことに沿っています。
 消火器が何本あって、スタッフ全員が場所を把握しているか。避難するときの出口と、そこまでのルートに物が置かれていないか。消防設備の点検と、ダクト清掃の直近の実施日。ピザ窯やアクアフィルターなど、フライヤー以外の設備の点検状況。カーテンやのれんの防炎マーク。そして、自店の収容人員。特に貸切パーティーや周年祭の予定がある方は、必ず確認してください。
 最後に、店に戻って、実際に確認したこと・対応したことを書いていただきます。
 ［クリック］自店に該当しないものは「なし」で構いません。書き終えたレポートは、そのまま店舗のチェックリストとして使えます。</aside>
