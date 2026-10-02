@@ -2,6 +2,8 @@
    研修スライド 共通の動き
    - → / Space / クリック：進む　← ：戻る　F：全画面　N：進行メモ
    - [data-step="n"] の要素は n 回目の操作で表示
+   - [data-until="n"] の要素は n 回目より後で消える（場面の入れ替え）
+   - [data-count="365"] は表示時に数え上げ、[data-countdown="10"] は数え下げ
    - <section data-embers> で火の粉、data-min="3" で予定時間
    ========================================================= */
 (function () {
@@ -99,9 +101,22 @@
 
   function render() {
     slides.forEach((s, i) => {
+      const at = i === cur ? step : (i < cur ? 999 : -1);
       s.classList.toggle('active', i === cur);
-      s.querySelectorAll('[data-step]').forEach(e => e.classList.toggle('on', i < cur || (i === cur && +e.dataset.step <= step)));
-      s.dataset.at = i === cur ? step : (i < cur ? 99 : 0);
+      s.querySelectorAll('[data-step]').forEach(e => e.classList.toggle('on', +e.dataset.step <= at));
+      s.querySelectorAll('[data-until]').forEach(e => e.classList.toggle('gone', at > +e.dataset.until));
+      s.dataset.at = Math.max(at, 0);
+      s.querySelectorAll('[data-count]').forEach(e => {
+        const shown = i === cur && !e.closest('.gone') && (!e.closest('[data-step]') || e.closest('[data-step]').classList.contains('on'));
+        if (shown && !e._counted) { e._counted = true; countUp(e); }
+        if (i !== cur) { e._counted = false; e.textContent = e.dataset.count; }
+      });
+      s.querySelectorAll('[data-countdown]').forEach(e => {
+        const host = e.closest('[data-step]');
+        const shown = i === cur && (!host || host.classList.contains('on')) && !e.closest('.gone');
+        if (shown && !e._timer) countDown(e);
+        if (!shown && e._timer) { clearInterval(e._timer); e._timer = null; e.textContent = e.dataset.countdown; }
+      });
     });
     const s = slides[cur];
     const m = steps(s);
@@ -114,6 +129,25 @@
     try { history.replaceState(null, '', '#s' + (cur + 1)); } catch (e) {}
     renderNotes();
     embers.wake();
+  }
+
+  function countUp(e) {
+    const to = +e.dataset.count, dur = +e.dataset.dur || 1200, t0 = performance.now();
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still) { e.textContent = to; return; }
+    (function tick(t) {
+      const k = Math.min(1, (t - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      e.textContent = v.toLocaleString('ja-JP');
+      if (k < 1 && e._counted) requestAnimationFrame(tick);
+    })(t0);
+  }
+  function countDown(e) {
+    let n = +e.dataset.countdown;
+    e.textContent = n;
+    e._timer = setInterval(() => {
+      n -= 1; e.textContent = Math.max(n, 0);
+      if (n <= 0) { clearInterval(e._timer); e._timer = 'done'; }
+    }, 1000);
   }
 
   function go(n, atEnd) {
@@ -171,7 +205,7 @@
           if (!still) { p.y -= p.v; p.w += .02; p.x += Math.sin(p.w) * .6; if (p.y < -10) { p.y = 1090; p.x = rand(700, 1920); } }
           const fade = Math.min(1, p.y / 700);
           e.ctx.beginPath();
-          e.ctx.fillStyle = `rgba(255,${150 + Math.round(p.r * 20)},64,${(p.a * fade).toFixed(3)})`;
+          e.ctx.fillStyle = `rgba(${230 + Math.round(p.r * 6)},${100 + Math.round(p.r * 22)},20,${(p.a * fade * .75).toFixed(3)})`;
           e.ctx.arc(p.x, p.y, p.r, 0, 6.283);
           e.ctx.fill();
         }

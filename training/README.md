@@ -3,6 +3,7 @@
 Zoomで画面共有して投影する、HTMLの研修資料です。
 
 - `template.html`：型の見本帳。使える部品を一通り並べています
+- `ch01_bosai.html`：第1章 防災管理（16枚）
 - `assets/deck.css`：見た目（色・文字・部品）
 - `assets/deck.js`：ページ送り・段階表示・火の粉・進行メモ
 
