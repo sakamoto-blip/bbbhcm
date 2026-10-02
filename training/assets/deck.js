@@ -95,9 +95,18 @@
     const el = Math.floor((Date.now() - started) / 1000);
     const plan = slides.slice(0, cur + 1).reduce((a, x) => a + (+x.dataset.min || 0), 0);
     notes.innerHTML = `<header><span><b>${cur + 1} / ${slides.length}</b></span><span>このスライド ${s.dataset.min || '–'}分</span><span>経過 ${Math.floor(el / 60)}:${String(el % 60).padStart(2, '0')}</span><span>予定（ここまで） ${plan}分</span></header><p></p>`;
-    notes.querySelector('p').textContent = n ? n.textContent.trim() : '（メモなし）';
+    const p = notes.querySelector('p');
+    const segs = (n ? n.textContent.trim() : '（メモなし）').split('［クリック］');
+    segs.forEach((t, k) => {
+      const span = document.createElement('span');
+      span.textContent = (k ? '［クリック］' : '') + t;
+      if (k === step) span.className = 'now';
+      p.appendChild(span);
+    });
+    const now = p.querySelector('.now');
+    if (now && notes.dataset.last !== cur + ':' + step) { notes.dataset.last = cur + ':' + step; now.scrollIntoView({ block: 'nearest' }); }
   }
-  setInterval(renderNotes, 1000);
+  setInterval(() => { const h = notes.querySelector('header'); if (h && !notes.hidden) { const el = Math.floor((Date.now() - started) / 1000); h.children[2].textContent = `経過 ${Math.floor(el / 60)}:${String(el % 60).padStart(2, '0')}`; } }, 1000);
 
   function render() {
     slides.forEach((s, i) => {

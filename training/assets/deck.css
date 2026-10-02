@@ -239,7 +239,8 @@ b, strong { font-weight: 900; }
 .d-notes { position: fixed; left: 16px; right: 16px; bottom: 16px; max-height: 40vh; overflow: auto; background: rgba(255,255,255,.97); color: var(--ink); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; font-size: 16px; line-height: 1.7; z-index: 20; box-shadow: 0 10px 30px rgba(29,33,40,.15); }
 .d-notes header { display: flex; gap: 20px; font-size: 14px; color: var(--ink-2); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
 .d-notes header b { color: var(--accent-ink); }
-.d-notes p { white-space: pre-wrap; }
+.d-notes p { white-space: pre-wrap; color: var(--ink-2); }
+.d-notes p .now { color: var(--ink); background: var(--accent-soft); border-radius: 4px; }
 
 /* ---------- 見本帳用のラベル ---------- */
 .pattern-tag { position: absolute !important; right: 40px; top: 32px; font-size: 22px; font-weight: 700; padding: 6px 16px; border-radius: 8px; background: var(--water-soft); color: var(--water); letter-spacing: .04em; }
