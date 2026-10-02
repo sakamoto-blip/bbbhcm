@@ -90,6 +90,7 @@ button{font-family:inherit;color:inherit}
 .eb{font-size:12px;letter-spacing:.18em;color:var(--ink3);font-weight:700}
 h1,h2,.key,.huge{font-family:var(--f-disp);font-weight:800;margin:0;text-wrap:balance;word-break:auto-phrase;letter-spacing:.02em}
 h1{font-size:clamp(40px,7vw,92px);line-height:1.2}
+.cover-t{font-size:clamp(34px,7.4vw,96px);overflow-wrap:normal;white-space:nowrap}
 h2{font-size:clamp(28px,4vw,52px);line-height:1.32}
 .key{font-size:clamp(22px,2.9vw,36px);line-height:1.5;color:var(--ink)}
 p{margin:0;max-width:36em;color:var(--ink2);word-break:auto-phrase}
@@ -277,44 +278,10 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 
 <!-- ===== 表紙 ===== -->
 <section class="slide on" data-ch="序" data-y="2026" data-rg="bb" data-era="2026" data-place="バルニバービ" data-ghost="2026" data-where="バルニバービ">
-  <div class="in two">
-    <div class="txt">
-      <div class="eb fu"><wbr>人事制度の<wbr>考え方</div>
-      <h1 class="fu" style="--d:.15s"><wbr>バルニバービという<wbr>働き方</h1>
-      <p class="key fu" style="--d:.35s;color:var(--ink2);font-size:clamp(18px,2.2vw,26px)"><wbr>ライフワーク<s style="text-decoration-color:var(--red);text-decoration-thickness:3px"><wbr>バランス</s>から、<wbr><br><wbr>ライフワーク<span class="rl" style="--d:4.2s;color:var(--ink)"><wbr>ウィズイン</span>へ</p>
-      <div class="hint fd" style="--d:1.2s"><wbr>画面を<wbr>クリック、<wbr>または <kbd>→</kbd> <wbr>キーで<wbr>進みます。<wbr>赤い<wbr>「つづく」が<wbr>出ている間は、<wbr>同じ札の<wbr>続きが<wbr>現れます。<wbr>左端を<wbr>クリックするか <kbd>←</kbd> <wbr>キーで<wbr>戻ります。<wbr></div>
-    </div>
-    <div class="vis">
-      <svg class="ill" viewBox="0 0 400 320" role="img" aria-label="天秤が消えて、人生の円の中に仕事の円が入る図">
-        <g class="bal">
-          <line x1="200" y1="70" x2="200" y2="250" class="ln w4"/>
-          <path d="M160 260h80" class="ln w4"/>
-          <g class="tilt">
-            <line x1="70" y1="80" x2="330" y2="80" class="ln w4"/>
-            <path d="M70 80l-34 70h68z" class="ln ln-k"/><path d="M36 150a34 12 0 0 0 68 0" class="fi-k"/>
-            <path d="M330 80l-34 70h68z" class="ln ln-a"/><path d="M296 150a34 12 0 0 0 68 0" class="fi-a"/>
-            <text x="70" y="182" text-anchor="middle" class="tb">仕事</text>
-            <text x="330" y="182" text-anchor="middle" class="tb">生活</text>
-          </g>
-        </g>
-        <g class="sc" style="--d:3.3s">
-          <circle cx="200" cy="160" r="140" class="fi-as"/>
-          <circle cx="200" cy="160" r="140" class="ln ln-a"/>
-          <text x="200" y="62" text-anchor="middle" class="ta td" style="font-size:22px">人生 Life</text>
-        </g>
-        <g class="pop" style="--d:3.8s">
-          <circle cx="200" cy="180" r="66" class="fi-k"/>
-          <text x="200" y="176" text-anchor="middle" class="td tp" style="font-size:24px">仕事</text>
-          <text x="200" y="202" text-anchor="middle" class="tp" style="font-size:13px">Work Within</text>
-        </g>
-      </svg>
-      <style>
-        .bal{opacity:0}.slide.on .bal{animation:balanceOut 3.2s .3s ease-in-out both}
-        .tilt{transform-origin:200px 80px;transform-box:view-box}.slide.on .tilt{animation:tilt 1.2s .3s ease-in-out 2 alternate both}
-        @keyframes tilt{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
-        @keyframes balanceOut{0%,80%{opacity:1}100%{opacity:0}}
-      </style>
-    </div>
+  <div class="in center" style="gap:22px">
+    <div class="eb fu"><wbr>人事制度の<wbr>考え方</div>
+    <h1 class="fu cover-t" style="--d:.15s"><wbr>バルニバービ<br>という<wbr>働き方</h1>
+    <p class="key fu" style="--d:.4s;max-width:none;color:var(--ink2);font-size:clamp(18px,2.2vw,26px)"><wbr>ライフワークバランスから、<wbr><br><wbr>ライフワーク<span class="rl" style="--d:1.2s;color:var(--ink)"><wbr>ウィズイン</span>へ</p>
   </div>
 </section>
 
