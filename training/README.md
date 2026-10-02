@@ -37,7 +37,7 @@ N キーの進行メモは画面の上に重ねて表示されるため、共有
 | `class="slide center"` | 中身を上下中央に寄せる |
 | `data-embers` | 火の粉を舞わせる（`data-embers="60"` で数を指定） |
 | `data-min="3"` | 予定時間（分）。進行メモに表示 |
-| `data-no-footer` | フッターを出さない |
+| `data-no-footer` | フッターは中央のロゴと社名だけを出す（表紙など） |
 | 要素に `data-step="1"` | 1回目の操作で表示（2, 3… と続く） |
 | `<aside class="notes">` | 進行メモの本文 |
 

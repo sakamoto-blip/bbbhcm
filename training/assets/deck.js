@@ -4,7 +4,7 @@
    - [data-step="n"] の要素は n 回目の操作で表示
    - [data-until="n"] の要素は n 回目より後で消える（場面の入れ替え）
    - [data-count="365"] は表示時に数え上げ、[data-countdown="10"] は数え下げ
-   - <section data-embers> で火の粉、data-min="3" で予定時間
+   - <section data-embers> で火の粉、data-min="3" で予定時間、data-no-footer でロゴ以外のフッターを隠す
    ========================================================= */
 (function () {
   const ICONS = {
@@ -60,7 +60,9 @@
   slides.forEach(s => stage.appendChild(s));
   const footer = document.createElement('div');
   footer.className = 'd-footer';
-  footer.innerHTML = `<span>${deck.dataset.chapter || ''}</span><span class="d-dots"></span><span class="d-page"></span>`;
+  const logo = deck.dataset.logo || 'assets/logo-mark.svg';
+  const company = deck.dataset.company || '株式会社バルニバービ';
+  footer.innerHTML = `<span class="d-chapter">${deck.dataset.chapter || ''}</span><span class="d-brand"><img src="${logo}" alt="">${company}</span><span class="d-right"><span class="d-dots"></span><span class="d-page"></span></span>`;
   const progress = document.createElement('div');
   progress.className = 'd-progress';
   stage.append(footer, progress);
@@ -132,7 +134,7 @@
     dotsEl.innerHTML = m ? Array.from({ length: m }, (_, k) => `<i class="${k < step ? 'on' : ''}"></i>`).join('') : '';
     pageEl.textContent = `${cur + 1} / ${slides.length}`;
     footer.classList.toggle('on-light', s.classList.contains('light'));
-    footer.classList.toggle('is-hidden', s.hasAttribute('data-no-footer'));
+    footer.classList.toggle('brand-only', s.hasAttribute('data-no-footer'));
     progress.style.width = ((cur + (m ? step / m : 1)) / slides.length * 100) + '%';
     deck.dispatchEvent(new CustomEvent('slidechange', { detail: { index: cur, step, slide: s } }));
     try { history.replaceState(null, '', '#s' + (cur + 1)); } catch (e) {}
