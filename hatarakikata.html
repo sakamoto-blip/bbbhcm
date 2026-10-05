@@ -248,6 +248,28 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* 人物イラスト：色はテーマに合わせて切り替え */
+:root{--fink:#141414;--fwh:#fff;--ffar:#e4dfd5;--ffarD:#4a4846}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--fink:#ECEDE9;--fwh:#2A2D34;--ffar:#41454e;--ffarD:#a9adb4}}
+:root[data-theme="dark"]{--fink:#ECEDE9;--fwh:#2A2D34;--ffar:#41454e;--ffarD:#a9adb4}
+.fig{color:var(--fink)}
+.fig *{transform-box:view-box}
+.ink{fill:none;stroke:var(--fink);stroke-linecap:round;stroke-linejoin:round;filter:url(#r)}
+.wh{fill:var(--fwh)}.bk{fill:var(--fink)}.far{fill:var(--ffar)}.farD{fill:var(--ffarD)}
+.smith-arm{transform-origin:192px 170px;animation:swing 1.1s cubic-bezier(.6,0,.9,.6) infinite}
+@keyframes swing{0%{transform:rotate(-62deg)}62%{transform:rotate(44deg)}70%{transform:rotate(38deg)}100%{transform:rotate(-62deg)}}
+.spark{opacity:0;animation:spark 1.1s linear infinite}
+@keyframes spark{0%,60%{opacity:0;transform:translate(0,0)}64%{opacity:1}90%{opacity:0;transform:translate(var(--x),var(--y))}100%{opacity:0}}
+.walk{animation:bobw .9s ease-in-out infinite}
+@keyframes bobw{0%,50%,100%{transform:translateY(0)}25%,75%{transform:translateY(-4px)}}
+.legNear{transform-origin:184px 262px;animation:pend .9s ease-in-out infinite alternate}
+.legFar{transform-origin:184px 262px;animation:pend .9s ease-in-out infinite alternate-reverse}
+.armNear{transform-origin:186px 170px;animation:pendA .9s ease-in-out infinite alternate-reverse}
+.armFar{transform-origin:186px 170px;animation:pendA .9s ease-in-out infinite alternate}
+@keyframes pend{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+@keyframes pendA{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
+
 </style>
 </head>
 <body>
@@ -256,6 +278,54 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <!-- ピクトグラムと手描き風フィルター -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+
+  <filter id="r" filterUnits="userSpaceOnUse" x="-500" y="-500" width="2000" height="2000"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>
+  <!-- 横顔 -->
+  <symbol id="face" viewBox="0 0 420 520">
+    <path class="wh" d="M162 92 Q188 82 202 104 Q206 118 198 128 L200 134 Q192 142 180 140 Q164 138 160 120 Z"/>
+    <path class="ink" stroke-width="3.2" d="M200 106 Q206 116 202 122 L206 126 Q200 130 198 134 Q192 142 180 140 Q166 138 162 124"/>
+    <circle cx="196" cy="110" r="1.8" class="bk"/>
+    <path class="ink" stroke-width="2" d="M172 112 q-6 2 -4 10 q4 4 8 0"/>
+    <path class="wh" d="M174 150 v-14 h14 v14 Z"/><path class="ink" stroke-width="3" d="M174 150 v-12 M188 150 v-14"/>
+  </symbol>
+  <!-- 短髪 -->
+  <symbol id="hair" viewBox="0 0 420 520"><path class="bk" d="M156 104 Q160 80 186 80 Q206 82 206 98 Q196 92 186 96 Q180 104 182 112 Q176 112 172 120 Q166 128 162 126 Q152 118 156 104 Z"/></symbol>
+  <!-- 江戸の髷 -->
+  <symbol id="mage" viewBox="0 0 420 520">
+    <path class="ink" stroke-width="3.2" d="M164 92 Q190 78 204 100"/>
+    <path class="bk" d="M158 100 Q154 118 164 130 L172 122 Q166 108 170 96 Z"/>
+    <path class="bk" d="M162 96 Q166 84 176 82 L174 92 Z"/>
+    <path class="bk" d="M172 84 Q190 74 206 80 L204 86 Q190 82 176 90 Z"/>
+  </symbol>
+  <!-- 黒いズボンの脚（立ち姿） -->
+  <symbol id="legsDark" viewBox="0 0 420 520">
+    <path class="farD" d="M170 262 L192 262 L190 466 L172 466 Z"/><path class="farD" d="M164 464 H196 Q198 472 198 480 H162 Z"/>
+    <path class="bk" d="M186 262 L208 262 L212 466 L194 466 Z"/><path class="bk" d="M190 464 H226 Q236 470 234 480 H190 Z"/>
+  </symbol>
+  <!-- 白いシャツの胴（横向き） -->
+  <symbol id="shirt" viewBox="0 0 420 520">
+    <path class="wh" d="M164 154 Q188 146 204 156 Q214 204 208 266 L162 266 Q156 210 164 154 Z"/>
+    <path class="ink" stroke-width="3.6" d="M164 154 Q188 146 204 156 Q214 204 208 266 L162 266 Q156 210 164 154 Z"/>
+    <path class="bk" d="M164 154 Q156 210 162 266 L172 266 Q166 212 174 156 Z"/>
+  </symbol>
+  <!-- 足首までの着物 -->
+  <symbol id="kimono" viewBox="0 0 420 520">
+    <path class="wh" d="M162 152 Q184 142 204 152 Q212 196 208 238 L218 462 Q186 470 148 462 L158 238 Q154 196 162 152 Z"/>
+    <path class="ink" stroke-width="3.8" d="M162 152 Q184 142 204 152 Q212 196 208 238 L218 462 Q186 470 148 462 L158 238 Q154 196 162 152 Z"/>
+    <path class="bk" d="M162 152 Q154 196 158 238 L148 462 L158 464 L168 240 Q164 198 170 154 Z"/>
+    <path class="ink" stroke-width="3" d="M184 146 Q200 160 208 204"/>
+    <path class="ink" stroke-width="1.6" d="M180 290 Q186 380 182 460 M196 296 Q202 384 202 462"/>
+    <path class="bk" d="M156 226 Q184 232 210 226 L211 246 Q184 252 155 246 Z"/>
+    <path class="wh" d="M150 470 H186 L188 478 H148 Z M188 470 H224 L226 478 H188 Z"/><path class="ink" stroke-width="2.4" d="M150 470 H186 L188 478 H148 Z M188 470 H224 L226 478 H188 Z"/>
+  </symbol>
+  <!-- 羽織 -->
+  <symbol id="haori" viewBox="0 0 420 520">
+    <path class="bk" d="M160 152 Q184 142 206 152 Q216 200 212 250 L216 330 L152 330 L158 250 Q152 200 160 152 Z"/>
+    <path d="M186 148 Q200 164 206 214" stroke="#fff" stroke-width="3" fill="none"/>
+    <path d="M204 230 l6 10 l-6 8" stroke="#fff" stroke-width="2.4" fill="none"/>
+    <circle cx="176" cy="180" r="7" fill="none" stroke="#fff" stroke-width="2"/>
+  </symbol>
+
     <filter id="rough" filterUnits="userSpaceOnUse" x="-3000" y="-3000" width="8000" height="8000"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.8"/></filter>
     <symbol id="i-person" viewBox="0 0 48 48"><circle cx="24" cy="10" r="7" fill="currentColor"/><path d="M11 46V33a13 13 0 0 1 26 0v13z" fill="currentColor"/></symbol>
     <symbol id="i-child" viewBox="0 0 48 48"><circle cx="24" cy="20" r="6" fill="currentColor"/><path d="M15 46V37a9 9 0 0 1 18 0v9z" fill="currentColor"/></symbol>
@@ -333,12 +403,69 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
       <div data-step="2"><p class="key fu"><wbr>時間を<wbr>売るのではなく、<wbr><br><span class="rl"><wbr>技能と<wbr>人格で<wbr>生きていました。<wbr></span></p></div>
     </div>
     <div class="vis">
-      <svg class="ill" viewBox="0 0 440 330" role="img" aria-label="職人の道具と、都市を渡り歩いて親方になる道のり">
-        <g class="pop" style="--d:.3s"><circle cx="80" cy="60" r="46" class="fi-c"/><circle cx="80" cy="60" r="46" class="ln"/><use href="#i-hammer" x="52" y="32" width="56" height="56" class="c-i"/></g>
-        <g class="pop" style="--d:.5s"><circle cx="220" cy="60" r="46" class="fi-c"/><circle cx="220" cy="60" r="46" class="ln"/><use href="#i-loom" x="192" y="32" width="56" height="56" class="c-i"/></g>
-        <g class="pop" style="--d:.7s"><circle cx="360" cy="60" r="46" class="fi-c"/><circle cx="360" cy="60" r="46" class="ln"/><use href="#i-box" x="332" y="32" width="56" height="56" class="c-i"/></g>
-        <text x="80" y="128" text-anchor="middle" class="t3">金槌と鉄床</text><text x="220" y="128" text-anchor="middle" class="t3">織機</text><text x="360" y="128" text-anchor="middle" class="t3">道具箱</text>
-        <g data-step="1">
+      <svg class="ill" viewBox="0 0 440 400" role="img" aria-label="金槌を振るう中世の職人と、都市を渡り歩いて親方になる道のり">
+        <g class="fu" style="--d:.3s"><svg class="fig " x="110" y="-14" width="220" height="272" viewBox="0 0 420 520" overflow="visible">
+  <path class="ink" stroke-width="2.5" d="M40 486 L120 484 M150 487 L380 485"/>
+  <!-- 台と金床 -->
+  <path class="wh" d="M252 350 H346 L352 484 H246 Z"/><path class="ink" stroke-width="3.5" d="M252 350 H346 L352 484 H246 Z"/>
+  <path class="ink" stroke-width="1.6" d="M266 366 L264 470 M282 362 Q286 420 280 476 M330 364 L334 470"/>
+  <path class="bk" d="M338 350 H346 L352 484 H344 Z"/>
+  <g transform="translate(-24 -88)">
+    <path class="wh" d="M258 372 H372 Q390 372 404 380 Q384 386 362 388 L350 396 H286 L276 388 H262 Z"/>
+    <path class="ink" stroke-width="3.5" d="M258 372 H372 Q390 372 404 380 Q384 386 362 388 L350 396 H286 L276 388 H262 Z"/>
+    <path class="bk" d="M290 396 H346 L338 436 H298 Z"/>
+    <path class="ink" stroke-width="3" d="M266 380 H352"/>
+    <rect x="300" y="364" width="40" height="8" rx="2" fill="#d2382b"/>
+    <g stroke="#d27f2a" stroke-width="2.5" stroke-linecap="round">
+      <line class="spark" x1="320" y1="362" x2="324" y2="356" style="--x:20px;--y:-40px"/>
+      <line class="spark" x1="320" y1="362" x2="316" y2="355" style="--x:-22px;--y:-34px"/>
+      <line class="spark" x1="320" y1="362" x2="328" y2="360" style="--x:38px;--y:-14px"/>
+    </g>
+  </g>
+  <!-- 奥の腕：火ばさみで鉄をつかむ -->
+  <path class="far" d="M176 168 L214 226 L250 252 L244 264 L204 238 L166 182 Z"/>
+  <path class="ink" stroke-width="3" d="M176 168 L214 226 L250 252 M244 264 L204 238 L166 182"/>
+  <path class="far" d="M244 248 q12 -2 12 10 q-2 10 -12 8 q-6 -8 0 -18z"/><path class="ink" stroke-width="2.6" d="M244 248 q12 -2 12 10 q-2 10 -12 8 q-6 -8 0 -18z"/>
+  <path class="ink" stroke-width="3" d="M254 256 L300 280 M254 262 L300 284"/>
+  <!-- 奥の脚 -->
+  <path class="far" d="M168 330 L166 450 L184 452 L188 330 Z"/>
+  <path class="ink" stroke-width="3" d="M168 330 L166 450 M188 330 L184 452"/>
+  <path class="ink" stroke-width="1.6" d="M168 410 L186 404 M168 424 L186 418 M167 438 L185 432"/>
+  <path class="farD" d="M160 452 Q160 470 156 478 H200 Q198 464 186 452 Z"/>
+  <!-- 手前の脚 -->
+  <path class="wh" d="M186 330 L194 440 L212 440 L206 330 Z"/>
+  <path class="ink" stroke-width="3.5" d="M186 330 L194 444 M206 330 L214 444"/>
+  <path class="ink" stroke-width="1.8" d="M194 414 L213 406 M195 428 L214 420"/>
+  <path class="bk" d="M190 444 Q188 462 184 478 H238 Q236 462 216 444 Z"/>
+  <!-- チュニック（横向き） -->
+  <path class="wh" d="M162 160 Q186 150 206 160 Q216 204 210 250 L224 334 Q186 344 148 334 L160 250 Q154 204 162 160 Z"/>
+  <path class="ink" stroke-width="3.8" d="M162 160 Q186 150 206 160 Q216 204 210 250 L224 334 Q186 344 148 334 L160 250 Q154 204 162 160 Z"/>
+  <path class="bk" d="M162 160 Q154 204 160 250 L148 334 L160 336 L170 252 Q166 206 172 162 Z"/>
+  <path class="ink" stroke-width="2.4" d="M196 156 Q204 168 206 184"/>
+  <path class="ink" stroke-width="1.8" d="M152 320 Q186 328 220 320"/>
+  <!-- ベルトと帯 -->
+  <path class="wh" d="M158 244 Q186 250 212 244 L213 258 Q186 264 157 258 Z"/>
+  <path class="ink" stroke-width="3" d="M158 244 Q186 250 212 244 L213 258 Q186 264 157 258 Z"/>
+  <path class="wh" d="M190 258 L188 312 L198 312 L198 260 Z"/>
+  <path class="ink" stroke-width="2.4" d="M190 258 L188 312 L198 312 L198 260"/>
+  <path class="ink" stroke-width="1.6" d="M189 312 v6 M193 312 v7 M197 312 v6"/>
+  <!-- 頭 -->
+  <use href="#face" x="0" y="0" width="420" height="520"/>
+  <path class="bk" d="M156 104 Q160 80 186 80 Q206 82 206 98 Q196 92 186 96 Q180 104 182 112 Q176 112 172 120 Q166 128 162 126 Q152 118 156 104 Z"/>
+  <path class="ink" stroke-width="1.4" d="M184 84 Q170 88 164 100 M194 86 Q182 90 176 102"/>
+  <!-- 手前の腕：金槌 -->
+  <g class="smith-arm">
+    <path class="wh" d="M186 164 L234 196 L256 192 L262 206 L232 214 L180 184 Z"/>
+    <path class="ink" stroke-width="3.4" d="M186 164 L234 196 L256 192 M262 206 L232 214 L180 184"/>
+    <path class="bk" d="M232 214 L262 206 L260 200 L234 206 Z"/>
+    <path class="wh" d="M254 188 q14 -4 16 8 q2 12 -12 14 q-8 -2 -4 -22z"/><path class="ink" stroke-width="3" d="M254 188 q14 -4 16 8 q2 12 -12 14 q-8 -2 -4 -22z"/>
+    <path class="ink" stroke-width="5" d="M262 198 L320 154"/>
+    <path class="wh" d="M310 136 L336 166 L348 156 L322 126 Z"/>
+    <path class="ink" stroke-width="3.4" d="M310 136 L336 166 L348 156 L322 126 Z"/>
+    <path class="bk" d="M336 166 L348 156 L344 150 L332 160 Z"/>
+  </g>
+</svg></g>
+        <g data-step="1" transform="translate(0 70)">
           <path id="wander" d="M40 290 C 90 200, 150 300, 200 230 S 300 170, 330 240 S 400 220, 400 175" class="ln ln-3 dash"/>
           <g class="fd"><circle cx="40" cy="290" r="8" class="fi-3"/><text x="40" y="318" text-anchor="middle" class="t3">修業の始まり</text>
             <circle cx="200" cy="230" r="8" class="fi-3"/><text x="200" y="262" text-anchor="middle" class="t3">別の都市</text>
@@ -356,7 +483,7 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
 <section class="slide" data-ch="1" data-y="1780" data-rg="eu" data-era="1780年代" data-place="イギリス" data-ghost="1780" data-where="1780年代 イギリス">
   <div class="in">
     <div class="eb fu"><wbr>第1章　労働の<wbr>始まり</div>
-    <svg class="ill" viewBox="0 0 960 400" style="max-height:58vh" role="img" aria-label="産業革命。巨大な工場と蒸気機関">
+    <svg class="ill" viewBox="0 0 960 400" style="max-height:40vh" role="img" aria-label="産業革命。巨大な工場と蒸気機関">
       <text x="0" y="118" class="td sl" style="--d:.1s;font-size:112px">産業革命</text>
       <text x="6" y="172" class="td tr fd" style="--d:.6s;font-size:34px">Industrial Revolution ─ 1780s</text>
       <text x="6" y="226" class="t2 fd" style="--d:.9s;font-size:19px">個人では持てない、蒸気機関と工場（資本）が登場しました。</text>
@@ -365,16 +492,93 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         <circle cx="900" cy="90" r="16" class="fi-3 smoke"/><circle cx="902" cy="90" r="20" class="fi-3 smoke" style="animation-delay:1.1s"/><circle cx="898" cy="90" r="14" class="fi-3 smoke" style="animation-delay:2.1s"/>
         <rect x="640" y="300" width="40" height="40" rx="3" class="fi-k"/><rect x="720" y="300" width="40" height="40" rx="3" class="fi-k"/><rect x="800" y="300" width="40" height="40" rx="3" class="fi-k"/>
       </g>
-      <g class="pop" style="--d:1s"><use href="#i-gear" x="430" y="250" width="130" height="130" class="c-k spin"/></g>
-      <g class="pop" style="--d:1.2s"><use href="#i-gear" x="530" y="214" width="76" height="76" class="c-a spin-r"/></g>
-      <g class="pop" style="--d:1.4s"><use href="#i-gear" x="370" y="236" width="56" height="56" class="c-3 spin-r"/></g>
+      <g class="pop" style="--d:1s"><g transform="translate(430 250)"><g transform="translate(0 0)"><use href="#i-gear" x="0" y="0" width="130" height="130" class="c-k spin"/></g></g></g>
+      <g class="pop" style="--d:1.2s"><g transform="translate(530 214)"><g transform="translate(0 0)"><use href="#i-gear" x="0" y="0" width="76" height="76" class="c-a spin-r"/></g></g></g>
+      <g class="pop" style="--d:1.4s"><g transform="translate(370 236)"><g transform="translate(0 0)"><use href="#i-gear" x="0" y="0" width="56" height="56" class="c-3 spin-r"/></g></g></g>
     </svg>
     <div class="two" style="gap:20px">
       <div data-step="1">
-        <svg class="ill" viewBox="0 0 440 130" role="img" aria-label="一人が資本家と労働者に分かれる">
-          <line x1="220" y1="6" x2="220" y2="126" class="ln ln-red w3 dash dr" pathLength="1" style="--d:.5s"/>
-          <g class="sp-l"><use href="#i-person" x="90" y="10" width="76" height="76" class="c-i"/><use href="#i-factory" x="52" y="48" width="40" height="38" class="c-i"/><text x="128" y="116" text-anchor="middle" class="tb td" style="font-size:20px">資本家</text></g>
-          <g class="sp-r"><use href="#i-person" x="276" y="10" width="76" height="76" class="c-a"/><use href="#i-clock" x="350" y="46" width="38" height="38" class="c-a"/><text x="314" y="116" text-anchor="middle" class="tb td ta" style="font-size:20px">労働者</text></g>
+        <svg class="ill" viewBox="0 0 440 250" style="max-height:34vh" role="img" aria-label="資本家と労働者に分かれる">
+          <line x1="200" y1="6" x2="200" y2="244" class="ln ln-red w3 dash dr" pathLength="1" style="--d:.5s"/>
+          <g class="sp-l"><svg class="fig " x="-10" y="0" width="190" height="235" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .cap-lid{transform-origin:236px 194px;animation:capLid 2.6s ease-in-out infinite}
+    @keyframes capLid{0%,30%{transform:rotate(0)}45%,80%{transform:rotate(-100deg)}95%,100%{transform:rotate(0)}}
+    .cap-arm{transform-origin:192px 168px;animation:capArm 2.6s ease-in-out infinite}
+    @keyframes capArm{0%,100%{transform:rotate(4deg)}40%,80%{transform:rotate(0)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M40 486 L190 484 M220 487 L390 485"/>
+  <!-- 奥の腕とステッキ -->
+  <path class="far" d="M176 166 L174 252 L190 254 L192 170 Z"/><path class="ink" stroke-width="3" d="M176 166 L174 252 M190 254 L192 170"/>
+  <path class="ink" stroke-width="4" d="M186 252 L222 476"/><circle cx="185" cy="248" r="7" fill="#d27f2a"/>
+  <!-- 縦縞のズボン -->
+  <path class="far" d="M170 262 L192 262 L190 466 L172 466 Z"/><path class="ink" stroke-width="2.6" d="M170 262 L172 466 M192 262 L190 466"/>
+  <path class="ink" stroke-width="1.2" d="M178 270 L178 460 M184 270 L184 460"/>
+  <path class="farD" d="M164 464 H196 Q198 472 198 480 H162 Z"/>
+  <path class="wh" d="M186 262 L208 262 L212 466 L194 466 Z"/><path class="ink" stroke-width="3" d="M186 262 L194 466 M208 262 L212 466"/>
+  <path class="ink" stroke-width="1.2" d="M194 270 L200 460 M200 270 L206 460"/>
+  <path class="bk" d="M190 464 H226 Q236 470 234 480 H190 Z"/>
+  <!-- 燕尾服 -->
+  <path class="bk" d="M164 154 Q188 146 206 156 Q214 204 208 262 L162 270 L148 336 L140 330 L156 262 Q154 206 164 154 Z"/>
+  <path class="wh" d="M196 152 L206 156 Q212 196 208 236 L198 238 Z"/><path class="ink" stroke-width="2" d="M196 152 L206 156 Q212 196 208 236 L198 238 Z"/>
+  <path class="wh" d="M192 150 L208 154 L204 168 L194 160 Z"/>
+  <path d="M206 238 Q196 246 204 258" stroke="#d27f2a" stroke-width="2" fill="none"/>
+  <!-- 頭とシルクハット -->
+  <use href="#face" width="420" height="520"/>
+  <path class="bk" d="M162 104 Q160 120 166 132 L172 124 Q168 112 172 102 Z"/>
+  <path class="bk" d="M164 42 H202 L204 90 H162 Z"/>
+  <path class="bk" d="M148 90 Q183 82 218 90 L216 98 Q183 92 150 98 Z"/>
+  <path d="M163 80 H203" stroke="#d27f2a" stroke-width="3"/>
+  <!-- 手前の腕と懐中時計 -->
+  <g class="cap-arm">
+    <path class="bk" d="M184 164 L196 232 L234 206 L226 194 L206 212 L198 164 Z"/>
+    <path class="wh" d="M226 192 l10 -4 l6 14 l-10 4 z"/>
+    <circle cx="240" cy="190" r="12" class="wh"/><circle cx="240" cy="190" r="12" class="ink" stroke-width="3"/>
+    <path class="ink" stroke-width="1.6" d="M240 190 v-7 M240 190 l5 3"/>
+    <path class="cap-lid" d="M228 190 a12 12 0 0 1 24 0 z" fill="#d27f2a" stroke="currentColor" stroke-width="2"/>
+    <path d="M236 202 Q220 226 204 240" stroke="#d27f2a" stroke-width="2" fill="none"/>
+  </g>
+</svg><text x="80" y="244" text-anchor="middle" class="tb td" style="font-size:20px">資本家</text></g>
+          <g class="sp-r"><svg class="fig " x="230" y="0" width="190" height="235" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .shovel{transform-origin:186px 172px;animation:shovel 1.8s ease-in-out infinite}
+    @keyframes shovel{0%,15%{transform:rotate(0)}55%,65%{transform:rotate(-28deg)}100%{transform:rotate(0)}}
+    .coal{animation:coal 1.8s linear infinite}
+    @keyframes coal{0%,55%{opacity:1}62%,100%{opacity:0}}
+    .fire{transform-origin:370px 384px;transform-box:view-box;animation:fire .5s ease-in-out infinite alternate}
+    @keyframes fire{from{transform:scaleY(.85)}to{transform:scaleY(1.1)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M30 486 L180 484 M210 487 L410 485"/>
+  <!-- ボイラー -->
+  <path class="ink" stroke-width="3" d="M374 230 V60 M392 230 V60"/>
+  <path class="wh" d="M300 230 H414 V484 H300 Z"/><path class="ink" stroke-width="3.5" d="M300 230 H414 V484 H300 Z"/>
+  <path class="ink" stroke-width="1.4" d="M300 270 H414 M300 310 H414 M300 430 H414 M330 230 V270 M370 270 V310 M340 430 V484 M384 430 V484"/>
+  <path class="bk" d="M328 384 V340 Q362 312 396 340 V384 Z"/>
+  <path class="fire" d="M336 384 Q340 356 352 362 Q356 340 368 354 Q376 336 384 358 Q392 352 390 384 Z" fill="#d2382b"/>
+  <path class="fire" d="M348 384 Q352 366 360 370 Q366 356 374 370 Q382 366 380 384 Z" fill="#d27f2a"/>
+  <!-- 石炭の山 -->
+  <path class="bk" d="M228 486 Q244 450 270 452 Q290 446 300 486 Z"/>
+  <use href="#legsDark" width="420" height="520"/>
+  <use href="#shirt" width="420" height="520"/>
+  <path class="ink" stroke-width="4" d="M172 156 L168 262 M198 154 L206 262"/>
+  <path class="bk" d="M160 258 H210 V268 H160 Z"/>
+  <!-- 頭とハンチング帽 -->
+  <use href="#face" width="420" height="520"/>
+  <path class="bk" d="M158 104 Q158 80 186 78 Q206 78 212 94 L224 100 Q210 104 160 108 Z"/>
+  <path class="ink" stroke-width="1.6" d="M168 88 Q186 82 206 90" style="stroke:#fff"/>
+  <!-- 腕とスコップ -->
+  <g class="shovel">
+    <path class="far" d="M178 166 L194 222 L226 262 L236 252 L206 216 L190 164 Z"/>
+    <path class="ink" stroke-width="2.8" d="M178 166 L194 222 L226 262 M236 252 L206 216 L190 164"/>
+    <path class="ink" stroke-width="5" d="M212 222 L288 440"/>
+    <path class="wh" d="M272 430 L306 424 L312 460 L282 470 Z"/><path class="ink" stroke-width="3" d="M272 430 L306 424 L312 460 L282 470 Z"/>
+    <path class="bk coal" d="M280 428 Q292 416 304 426 Z"/>
+    <path class="wh" d="M188 164 L206 236 L240 300 L252 290 L220 230 L202 162 Z"/>
+    <path class="ink" stroke-width="3" d="M188 164 L206 236 L240 300 M252 290 L220 230 L202 162"/>
+    <path class="ink" stroke-width="2" d="M204 226 L222 220"/>
+    <path class="wh" d="M236 290 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M236 290 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+  </g>
+</svg><text x="320" y="244" text-anchor="middle" class="tb td ta" style="font-size:20px">労働者</text></g>
         </svg>
         <style>.slide.on .sp-l{animation:spl 1.1s .2s var(--ease) both}.slide.on .sp-r{animation:spr 1.1s .2s var(--ease) both}
           @keyframes spl{from{transform:translateX(90px)}}@keyframes spr{from{transform:translateX(-90px)}}</style>
@@ -405,13 +609,55 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <g class="brk-l"><rect x="150" y="28" width="60" height="40" rx="20" class="ln w6"/></g>
           <g class="brk-r"><rect x="230" y="28" width="60" height="40" rx="20" class="ln w6"/></g>
           <rect x="310" y="28" width="90" height="40" rx="20" class="ln w6 ln-3"/>
-          <text x="220" y="108" text-anchor="middle" class="td fd" style="--d:.8s;font-size:18px">1865　憲法修正第13条</text>
+          <text x="220" y="98" text-anchor="middle" class="td fd" style="--d:.8s;font-size:18px">1865　憲法修正第13条</text>
         </g>
         <g data-step="2">
           <g class="fu"><rect x="140" y="150" width="160" height="110" rx="6" class="fi-c"/><rect x="140" y="150" width="160" height="110" rx="6" class="ln"/>
             <g class="lid"><rect x="132" y="132" width="176" height="22" rx="4" class="fi-i"/></g>
             <text x="220" y="206" text-anchor="middle" class="tb td" style="font-size:18px">契約の自由</text>
             <text x="220" y="232" text-anchor="middle" class="t3">中身は……？</text></g>
+          <g class="fd" style="--d:.4s"><svg class="fig " x="300" y="96" width="140" height="173" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .pick{transform-origin:192px 166px;animation:pick 2.2s ease-in-out infinite}
+    @keyframes pick{0%,100%{transform:rotate(18deg)}45%,60%{transform:rotate(-14deg)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M20 486 L200 484 M230 487 L410 485"/>
+  <!-- 引きずる綿袋 -->
+  <path class="wh" d="M30 470 Q40 420 110 410 Q150 404 168 430 L166 480 Q90 488 30 470 Z"/>
+  <path class="ink" stroke-width="3" d="M30 470 Q40 420 110 410 Q150 404 168 430 L166 480 Q90 488 30 470 Z"/>
+  <path class="ink" stroke-width="1.4" d="M60 440 Q80 450 90 470 M110 420 Q120 440 120 474"/>
+  <path class="ink" stroke-width="3" d="M168 430 L172 270"/>
+  <!-- 綿の木 -->
+  <g>
+    <path class="ink" stroke-width="2.4" d="M300 486 Q296 400 310 330 M300 400 Q330 380 344 350 M306 440 Q270 420 262 392 M310 360 Q290 330 280 300 M350 486 Q356 420 380 380"/>
+    <g class="wh"><circle cx="310" cy="324" r="13"/><circle cx="346" cy="344" r="12"/><circle cx="260" cy="388" r="12"/><circle cx="278" cy="296" r="11"/><circle cx="382" cy="374" r="12"/></g>
+    <g class="ink" stroke-width="2.4"><circle cx="310" cy="324" r="13"/><circle cx="346" cy="344" r="12"/><circle cx="260" cy="388" r="12"/><circle cx="278" cy="296" r="11"/><circle cx="382" cy="374" r="12"/></g>
+  </g>
+  <!-- 奥の腕：袋の紐を握る -->
+  <path class="far" d="M176 166 L170 230 L186 232 L192 170 Z"/><path class="ink" stroke-width="3" d="M176 166 L170 230 M186 232 L192 170"/>
+  <!-- 脚（継ぎの当たったズボン） -->
+  <path class="far" d="M170 262 L192 262 L190 466 L172 466 Z"/><path class="ink" stroke-width="2.6" d="M170 262 L172 466 M192 262 L190 466"/>
+  <path class="farD" d="M164 464 H196 Q198 472 198 480 H162 Z"/>
+  <path class="wh" d="M186 262 L208 262 L212 466 L194 466 Z"/><path class="ink" stroke-width="3" d="M186 262 L194 466 M208 262 L212 466"/>
+  <path class="ink" stroke-width="2" d="M196 380 H210 V400 H197 Z"/>
+  <path class="bk" d="M190 464 H226 Q236 470 234 480 H190 Z"/>
+  <use href="#shirt" width="420" height="520"/>
+  <path class="ink" stroke-width="3" d="M160 258 Q186 266 210 258"/>
+  <path class="ink" stroke-width="4" d="M198 156 L168 262"/>
+  <!-- 頭と麦わら帽子 -->
+  <use href="#face" width="420" height="520"/>
+  <path class="wh" d="M140 96 Q183 84 228 96 Q184 108 140 96 Z"/><path class="ink" stroke-width="2.8" d="M140 96 Q183 84 228 96 Q184 108 140 96 Z"/>
+  <path class="wh" d="M162 94 Q166 70 186 70 Q206 70 206 92 Z"/><path class="ink" stroke-width="2.8" d="M162 94 Q166 70 186 70 Q206 70 206 92"/>
+  <path class="ink" stroke-width="1.2" d="M170 90 Q174 78 180 74 M188 90 Q190 78 196 74 M150 98 Q170 96 180 98"/>
+  <!-- 手前の腕：綿を摘む -->
+  <g class="pick">
+    <path class="wh" d="M186 162 L206 230 L262 264 L270 252 L220 222 L200 160 Z"/>
+    <path class="ink" stroke-width="3" d="M186 162 L206 230 L262 264 M270 252 L220 222 L200 160"/>
+    <path class="ink" stroke-width="2" d="M204 218 L220 212"/>
+    <path class="wh" d="M258 250 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M258 250 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+    <circle cx="274" cy="252" r="8" class="wh"/><circle cx="274" cy="252" r="8" class="ink" stroke-width="2"/>
+  </g>
+</svg></g>
           <g class="fd" style="--d:.9s" font-size="13">
             <text x="10" y="302" class="t2">給料の保障</text><line x1="6" y1="297" x2="86" y2="297" class="ln ln-red w3 dr" pathLength="1" style="--d:1.2s"/>
             <text x="150" y="302" class="t2">労働時間の上限</text><line x1="146" y1="297" x2="254" y2="297" class="ln ln-red w3 dr" pathLength="1" style="--d:1.5s"/>
@@ -424,9 +670,9 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         .slide.on .lid{animation:lid .8s .6s var(--ease) both}
         @keyframes brkl{from{transform:translateX(30px)}to{transform:translate(-6px,8px) rotate(-14deg)}}
         @keyframes brkr{from{transform:translateX(-30px)}to{transform:translate(6px,8px) rotate(14deg)}}
-        @keyframes lid{from{transform:rotate(0)}to{transform:rotate(28deg) translateY(-6px)}}
+        @keyframes lid{from{transform:rotate(0)}to{transform:translateY(-10px) rotate(-7deg)}}
         .brk-l{transform:translate(-6px,8px) rotate(-14deg)} .brk-r{transform:translate(6px,8px) rotate(14deg)}
-        .ill .lid{transform-origin:right bottom;transform:rotate(28deg) translateY(-6px)}
+        .ill .lid{transform-origin:left bottom;transform:translateY(-10px) rotate(-7deg)}
       </style>
     </div>
   </div>
@@ -483,9 +729,52 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 440 280" role="img" aria-label="アメリカとEUの綱引き">
-        <text x="220" y="36" text-anchor="middle" class="td fu" style="font-size:20px">同じ働き方の人</text>
-        <use href="#i-person" x="200" y="46" width="40" height="40" class="c-k pop" style="--d:.3s"/>
-        <line x1="220" y1="92" x2="220" y2="140" class="ln ln-3 dash fd" style="--d:.5s"/>
+        <text x="220" y="16" text-anchor="middle" class="td fu" style="font-size:20px">同じ働き方の人</text>
+        <g class="pop" style="--d:.3s"><svg class="fig " x="168" y="8" width="100" height="124" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .g-walk{animation:gbob .9s ease-in-out infinite}
+    @keyframes gbob{0%,50%,100%{transform:translateY(0)}25%,75%{transform:translateY(-4px)}}
+    .g-legN{transform-origin:184px 262px;animation:gpend .9s ease-in-out infinite alternate}
+    .g-legF{transform-origin:184px 262px;animation:gpend .9s ease-in-out infinite alternate-reverse}
+    .g-armF{transform-origin:186px 170px;animation:gpendA .9s ease-in-out infinite alternate}
+    @keyframes gpend{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+    @keyframes gpendA{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
+    .ping{transform-origin:236px 168px;transform-box:view-box;animation:ping 1.8s ease-out infinite}
+    @keyframes ping{0%,20%{opacity:0;transform:scale(.3)}35%{opacity:1;transform:scale(1.15)}45%,80%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M30 486 L170 484 M200 487 L390 485"/>
+  <path class="ink" stroke-width="2" d="M60 470 h40 M70 458 h26"/>
+  <g class="g-walk">
+    <g class="g-armF">
+      <path class="far" d="M180 166 L176 252 L192 254 L194 172 Z"/><path class="ink" stroke-width="3" d="M180 166 L176 252 M192 254 L194 172"/>
+      <path class="far" d="M174 252 q8 10 18 2 l-2 -6 z"/><path class="ink" stroke-width="2.4" d="M174 252 q8 10 18 2"/>
+    </g>
+    <g class="g-legF"><path class="farD" d="M172 260 L196 260 L196 446 L176 446 Z"/><path class="far" d="M170 444 H206 Q218 448 218 458 H168 Z"/><path class="farD" d="M168 454 H218 V460 H168 Z"/></g>
+    <g class="g-legN"><path class="bk" d="M172 260 L196 260 L196 446 L176 446 Z"/><path class="wh" d="M170 444 H206 Q218 448 218 458 H168 Z"/><path class="ink" stroke-width="2.4" d="M170 444 H206 Q218 448 218 458 H168 Z"/><path class="bk" d="M168 454 H218 V462 H168 Z"/></g>
+    <!-- パーカー -->
+    <path class="wh" d="M164 154 Q188 146 206 156 Q216 204 210 270 L160 270 Q154 210 164 154 Z"/>
+    <path class="ink" stroke-width="3.6" d="M164 154 Q188 146 206 156 Q216 204 210 270 L160 270 Q154 210 164 154 Z"/>
+    <path class="ink" stroke-width="2.6" d="M162 150 Q172 140 186 146"/>
+    <path class="ink" stroke-width="2" d="M190 224 H208 M160 262 H210"/>
+    <path class="ink" stroke-width="2" d="M200 156 L202 190"/>
+    <!-- 配達バッグ -->
+    <path class="ink" stroke-width="4" d="M168 160 L160 170 M168 240 L160 236"/>
+    <path class="bk" d="M106 150 H164 V256 H106 Z"/>
+    <path d="M114 196 H156" stroke="#d27f2a" stroke-width="5"/>
+    <path d="M110 154 H160" stroke="#fff" stroke-width="1.4"/>
+    <!-- 頭とキャップ -->
+    <use href="#face" width="420" height="520"/>
+    <path class="bk" d="M158 106 Q156 80 184 78 Q206 78 208 96 L230 102 Q214 108 160 110 Z"/>
+    <path class="bk" d="M160 108 Q156 120 164 130 L170 122 Q166 114 170 108 Z"/>
+    <!-- 手前の腕：スマートフォン -->
+    <path class="wh" d="M184 164 L196 232 L234 214 L228 200 L206 212 L198 164 Z"/>
+    <path class="ink" stroke-width="3" d="M184 164 L196 232 L234 214 M228 200 L206 212 L198 164"/>
+    <path class="wh" d="M226 200 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M226 200 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+    <path class="bk" d="M230 178 L244 176 L248 204 L234 206 Z"/>
+    <path d="M233 181 L242 180 L245 200 L236 201 Z" fill="#cfe0f4"/>
+    <g class="ping"><circle cx="248" cy="160" r="12" fill="#d2382b"/><path d="M248 153 v8 M248 165 v1" stroke="#fff" stroke-width="3" stroke-linecap="round"/></g>
+  </g>
+</svg></g>
         <g class="tugg">
           <g data-step="1"><line x1="40" y1="170" x2="220" y2="170" class="ln w4 dr" pathLength="1"/>
             <use href="#i-person" x="40" y="124" width="50" height="50" class="c-u sl" style="--d:.2s"/><use href="#i-person" x="84" y="124" width="50" height="50" class="c-u sl" style="--d:.35s"/>
@@ -524,9 +813,149 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <text x="400" y="136" text-anchor="middle" class="tb td tk" style="font-size:20px">のれん分け</text><text x="400" y="156" text-anchor="middle" class="t3">屋号を許され独立</text>
         </g>
         <g data-step="1">
-          <g class="climb"><use href="#i-person" x="55" y="220" width="40" height="40" class="c-a"/></g>
-          <g class="pop" style="--d:3.2s"><use href="#i-store" x="400" y="50" width="58" height="58" class="c-k"/></g>
-          <g class="drop" style="--d:3.6s"><use href="#i-noren" x="411" y="84" width="36" height="26" class="c-k"/></g>
+          <g class="stampin" style="--d:.2s"><svg class="fig " x="22" y="140" width="110" height="136" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .d-sweep{transform-origin:188px 172px;animation:dsweep 1.4s ease-in-out infinite alternate}
+    @keyframes dsweep{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+    .d-dust{animation:ddust 1.4s ease-out infinite}
+    @keyframes ddust{0%{opacity:0;transform:translate(0,0) scale(.6)}30%{opacity:.8}100%{opacity:0;transform:translate(var(--x),-24px) scale(1.4)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M40 486 L200 484 M230 487 L390 485"/>
+  <g transform="translate(0 40)">
+  <path class="far" d="M166 340 L164 430 L178 430 L180 340 Z"/><path class="ink" stroke-width="3" d="M166 340 L164 430 M180 340 L178 430"/>
+  <path class="farD" d="M152 432 H186 L188 440 H150 Z"/>
+  <path class="wh" d="M186 340 L190 430 L204 430 L200 340 Z"/><path class="ink" stroke-width="3.2" d="M186 340 L190 430 M200 340 L204 430"/>
+  <path class="bk" d="M184 432 H222 L224 440 H184 Z"/>
+  <path class="wh" d="M162 152 Q184 142 204 152 Q212 196 208 238 L214 340 Q184 346 150 340 L158 238 Q154 196 162 152 Z"/>
+  <path class="ink" stroke-width="3.8" d="M162 152 Q184 142 204 152 Q212 196 208 238 L214 340 Q184 346 150 340 L158 238 Q154 196 162 152 Z"/>
+  <path class="bk" d="M162 152 Q154 196 158 238 L150 340 L160 342 L168 240 Q164 198 170 154 Z"/>
+  <path class="ink" stroke-width="3" d="M184 146 Q200 160 208 204"/>
+  <path class="bk" d="M156 226 Q184 232 210 226 L211 246 Q184 252 155 246 Z"/>
+  <path class="wh" d="M138 222 L158 234 L138 250 Z"/><path class="ink" stroke-width="2.6" d="M138 222 L158 234 L138 250 Z"/>
+  <path class="bk" d="M200 242 L214 240 L232 360 L206 366 Z"/>
+  <circle cx="214" cy="300" r="9" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M208 300 H220" stroke="#fff" stroke-width="2.4"/>
+  <use href="#face" y="-4" width="420" height="520"/>
+  <path class="ink" stroke-width="3.2" d="M164 92 Q190 78 204 100 M164 92 Q154 104 160 118"/>
+  <path class="ink" stroke-width="1.2" d="M170 92 l3 -3 M178 88 l3 -3 M186 87 l3 -3 M194 89 l3 -3 M174 96 l3 -3 M184 94 l3 -3"/>
+  <g class="d-sweep">
+    <path class="far" d="M178 160 L206 214 L236 212 L232 196 L214 196 L188 154 Z"/>
+    <path class="ink" stroke-width="2.8" d="M178 160 L206 214 L236 212 M232 196 L214 196 L188 154"/>
+    <path class="ink" stroke-width="4" d="M228 150 L264 400"/>
+    <path class="far" d="M232 192 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.4" d="M232 192 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+    <path class="wh" d="M254 394 L276 390 L302 454 L242 462 Z"/><path class="ink" stroke-width="3" d="M254 394 L276 390 L302 454 L242 462 Z"/>
+    <path class="ink" stroke-width="1.5" d="M258 402 L252 458 M264 400 L264 458 M270 398 L278 456 M274 396 L290 454"/>
+    <path class="bk" d="M252 394 L278 390 L280 400 L254 404 Z"/>
+    <path class="wh" d="M186 160 L210 230 L244 262 L252 250 L222 222 L200 158 Z"/>
+    <path class="ink" stroke-width="3" d="M186 160 L210 230 L244 262 M252 250 L222 222 L200 158"/>
+    <path class="wh" d="M188 166 L176 214 L190 246 L208 236 Z"/><path class="ink" stroke-width="2.6" d="M188 166 L176 214 L190 246 L208 236"/>
+    <path class="wh" d="M240 246 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M240 246 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+  </g>
+  </g>
+  <g fill="#b9b2a4">
+    <circle class="d-dust" cx="292" cy="478" r="6" style="--x:20px"/>
+    <circle class="d-dust" cx="278" cy="482" r="5" style="--x:-12px;animation-delay:.5s"/>
+  </g>
+</svg></g>
+          <g class="stampin" style="--d:.8s"><svg class="fig " x="128" y="82" width="110" height="136" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .t-cloth{transform-origin:280px 214px;animation:cloth 2.4s ease-in-out infinite alternate}
+    @keyframes cloth{from{transform:skewX(-4deg)}to{transform:skewX(5deg)}}
+    .t-arms{transform-origin:188px 168px;animation:tarms 2.4s ease-in-out infinite alternate}
+    @keyframes tarms{from{transform:rotate(2deg)}to{transform:rotate(-3deg)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M40 486 L200 484 M230 487 L390 485"/>
+  <use href="#kimono" width="420" height="520"/>
+  <path class="bk" d="M200 242 L214 240 L232 440 L206 446 Z"/>
+  <use href="#face" width="420" height="520"/>
+  <use href="#mage" width="420" height="520"/>
+  <g class="t-arms">
+    <!-- 奥の腕 -->
+    <path class="far" d="M178 162 L204 220 L252 210 L250 196 L214 202 L190 156 Z"/>
+    <path class="ink" stroke-width="2.8" d="M178 162 L204 220 L252 210 M250 196 L214 202 L190 156"/>
+    <!-- 反物 -->
+    <g class="t-cloth">
+      <path d="M262 214 H326 L330 420 H266 Z" fill="#24467a"/>
+      <path d="M266 240 H328 M266 270 H328 M267 300 H329 M267 330 H329 M268 360 H330 M268 390 H330" stroke="#fff" stroke-width="2" stroke-dasharray="6 6"/>
+      <path class="ink" stroke-width="2.8" d="M262 214 H326 L330 420 H266 Z"/>
+    </g>
+    <path class="wh" d="M252 198 H334 V222 H252 Z"/><path class="ink" stroke-width="3" d="M252 198 H334 V222 H252 Z"/>
+    <path class="ink" stroke-width="1.4" d="M262 202 V218 M274 202 V218"/>
+    <!-- 手前の腕と袂 -->
+    <path class="wh" d="M186 160 L210 230 L268 222 L266 206 L224 214 L200 158 Z"/>
+    <path class="ink" stroke-width="3" d="M186 160 L210 230 L268 222 M266 206 L224 214 L200 158"/>
+    <path class="wh" d="M188 166 L176 214 L190 248 L210 238 Z"/><path class="ink" stroke-width="2.6" d="M188 166 L176 214 L190 248 L210 238"/>
+    <path class="wh" d="M262 204 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M262 204 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+  </g>
+</svg></g>
+          <g class="stampin" style="--d:1.4s"><svg class="fig " x="232" y="50" width="110" height="136" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .b-hand{animation:bhand .9s ease-in-out infinite alternate}
+    @keyframes bhand{from{transform:translateX(-6px)}to{transform:translateX(6px)}}
+    .b-bead{animation:bbead .9s steps(1) infinite}
+    @keyframes bbead{50%{transform:translateY(-6px)}}
+  </style>
+  <!-- 畳 -->
+  <path class="ink" stroke-width="2.5" d="M20 420 H410"/>
+  <path class="ink" stroke-width="1.2" d="M20 440 H410 M120 420 V470 M260 420 V470"/>
+  <!-- 帳場格子 -->
+  <path class="wh" d="M352 270 H408 V420 H352 Z"/><path class="ink" stroke-width="3" d="M352 270 H408 V420 H352 Z"/>
+  <path class="ink" stroke-width="1.6" d="M366 270 V420 M380 270 V420 M394 270 V420 M352 300 H408 M352 330 H408 M352 360 H408 M352 390 H408"/>
+  <!-- 正座した下半身 -->
+  <path class="wh" d="M160 300 Q150 350 150 416 L268 416 Q270 386 246 370 Q220 356 214 300 Z"/>
+  <path class="ink" stroke-width="3.6" d="M160 300 Q150 350 150 416 L268 416 Q270 386 246 370 Q220 356 214 300"/>
+  <path class="ink" stroke-width="1.6" d="M172 356 Q206 368 240 372 M164 390 Q206 398 250 398"/>
+  <!-- 上半身（羽織） -->
+  <g transform="translate(0 64)">
+    <use href="#haori" width="420" height="520"/>
+    <use href="#face" width="420" height="520"/>
+    <use href="#mage" width="420" height="520"/>
+    <path class="ink" stroke-width="1.6" d="M168 120 l6 3 M168 126 l6 2"/>
+  </g>
+  <!-- 文机・算盤・大福帳 -->
+  <path class="wh" d="M244 330 H350 V340 H244 Z"/><path class="ink" stroke-width="3" d="M244 330 H350 V340 H244 Z M252 340 V418 M342 340 V418"/>
+  <path class="wh" d="M302 300 H342 V330 H302 Z"/><path class="ink" stroke-width="2.6" d="M302 300 H342 V330 H302 Z"/>
+  <path class="ink" stroke-width="1.6" d="M312 304 H322 V326 H312 Z"/>
+  <text x="317" y="324" font-size="7" text-anchor="middle" font-family="serif" writing-mode="tb">大福帳</text>
+  <path class="wh" d="M250 296 H298 V330 H250 Z"/><path class="ink" stroke-width="2.6" d="M250 296 H298 V330 H250 Z M250 306 H298"/>
+  <g class="bk"><circle cx="258" cy="301" r="2.4"/><circle cx="268" cy="301" r="2.4"/><circle cx="288" cy="301" r="2.4"/>
+    <circle cx="258" cy="314" r="2.4"/><circle cx="258" cy="321" r="2.4"/><circle cx="278" cy="318" r="2.4" class="b-bead"/><circle cx="288" cy="314" r="2.4"/><circle cx="288" cy="321" r="2.4"/></g>
+  <!-- 奥の腕：大福帳を押さえる -->
+  <path class="far" d="M178 230 L198 296 L312 316 L314 302 L212 284 L192 226 Z"/>
+  <path class="ink" stroke-width="2.8" d="M178 230 L198 296 L312 316 M314 302 L212 284 L192 226"/>
+  <!-- 手前の腕：算盤 -->
+  <g class="b-hand">
+    <path class="bk" d="M186 226 L206 300 L272 304 L272 290 L218 286 L200 224 Z"/>
+    <path class="wh" d="M266 288 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M266 288 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+  </g>
+</svg></g>
+          <g class="stampin" style="--d:2s"><svg class="fig " x="344" y="-18" width="110" height="136" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .n-noren{transform-origin:center top;transform-box:fill-box;animation:noren 2.6s ease-in-out infinite alternate}
+    @keyframes noren{from{transform:skewX(-5deg)}to{transform:skewX(4deg)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M20 486 L410 485"/>
+  <!-- 店構え -->
+  <path class="bk" d="M226 104 H414 L420 134 H220 Z"/>
+  <path class="ink" stroke-width="1.6" d="M240 110 V130 M260 110 V130 M280 110 V130 M300 110 V130 M320 110 V130 M340 110 V130 M360 110 V130 M380 110 V130 M400 110 V130" style="stroke:#fff"/>
+  <path class="wh" d="M238 134 H252 V486 H238 Z M398 134 H412 V486 H398 Z"/><path class="ink" stroke-width="3" d="M238 134 H252 V486 H238 Z M398 134 H412 V486 H398 Z"/>
+  <path class="ink" stroke-width="1.2" d="M256 270 H396 M256 300 H396 M256 330 H396 M256 360 H396 M256 390 H396 M256 420 H396 M256 450 H396" style="stroke:#c9c3b6"/>
+  <!-- のれん -->
+  <path class="ink" stroke-width="5" d="M232 158 H416"/>
+  <g class="n-noren"><path d="M254 160 H300 V252 H254 Z" fill="#24467a"/></g>
+  <g class="n-noren"><path d="M302 160 H348 V252 H302 Z" fill="#24467a"/><circle cx="325" cy="200" r="14" fill="none" stroke="#fff" stroke-width="3"/><path d="M315 200 H335" stroke="#fff" stroke-width="3.4"/></g>
+  <g class="n-noren"><path d="M350 160 H396 V252 H350 Z" fill="#24467a"/></g>
+  <!-- 人物 -->
+  <use href="#kimono" x="-30" width="420" height="520"/>
+  <use href="#haori" x="-30" width="420" height="520"/>
+  <use href="#face" x="-30" width="420" height="520"/>
+  <use href="#mage" x="-30" width="420" height="520"/>
+  <!-- 奥の腕：胸に手 -->
+  <path class="far" d="M148 166 L162 222 L190 214 L188 200 L172 204 L160 162 Z"/>
+  <path class="ink" stroke-width="2.6" d="M148 166 L162 222 L190 214 M188 200 L172 204 L160 162"/>
+  <!-- 手前の腕：のれんの竿に触れる -->
+  <path class="bk" d="M156 162 L192 210 L238 166 L228 156 L194 186 L170 154 Z"/>
+  <path class="wh" d="M228 152 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M228 152 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+</svg></g>
         </g>
       </svg>
       <style>
@@ -589,8 +1018,45 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
     </div>
     <div class="cols">
       <div data-step="1"><div class="box jp sl">
-        <h3><wbr>紡績工場の<wbr>女性労働者</h3>
-        <p><wbr>昼夜<wbr>二交代の<wbr>長時間<wbr>労働でした。<wbr>寄宿舎では<wbr>結核が<wbr>まん延しました。<wbr></p>
+        <svg class="ill fig" viewBox="0 0 420 520" overflow="visible" style="position:absolute;right:12px;top:-34px;width:118px;height:auto" aria-hidden="true">
+  <style>
+    .f-spin{animation:spinS .5s linear infinite}
+    @keyframes spinS{to{stroke-dashoffset:-12}}
+    .w-arm{transform-origin:192px 166px;animation:warm 1.6s ease-in-out infinite alternate}
+    @keyframes warm{from{transform:rotate(6deg)}to{transform:rotate(-8deg)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M20 486 L410 485"/>
+  <!-- 紡績機 -->
+  <path class="wh" d="M250 380 H414 V484 H250 Z"/><path class="ink" stroke-width="3" d="M250 380 H414 V484 H250 Z"/>
+  <path class="ink" stroke-width="3" d="M256 180 V380 M408 180 V380 M250 196 H414 M250 376 H414"/>
+  <circle cx="282" cy="196" r="6" class="bk"/><circle cx="330" cy="196" r="6" class="bk"/><circle cx="378" cy="196" r="6" class="bk"/>
+  <g class="ink" stroke-width="1" style="stroke:#7d7a73"><path d="M272 300 L282 196 M298 300 L282 196 M324 300 L330 196 M350 300 L330 196 M376 300 L378 196 M400 300 L378 196"/></g>
+  <g>
+    <rect x="266" y="300" width="12" height="60" class="wh"/><rect x="292" y="300" width="12" height="60" class="wh"/><rect x="318" y="300" width="12" height="60" class="wh"/><rect x="344" y="300" width="12" height="60" class="wh"/><rect x="370" y="300" width="12" height="60" class="wh"/><rect x="394" y="300" width="12" height="60" class="wh"/>
+    <g stroke="currentColor" stroke-width="12" stroke-dasharray="3 3" class="f-spin"><path d="M272 302 V358 M298 302 V358 M324 302 V358 M350 302 V358 M376 302 V358 M400 302 V358"/></g>
+  </g>
+  <!-- 人物 -->
+  <use href="#kimono" x="-20" width="420" height="520"/>
+  <path class="wh" d="M180 242 L196 240 L210 440 L186 446 Z"/><path class="ink" stroke-width="2.6" d="M180 242 L196 240 L210 440 L186 446 Z"/>
+  <path d="M146 158 L192 236 M186 154 L148 236" stroke="#d2382b" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <use href="#face" x="-20" width="420" height="520"/>
+  <circle cx="134" cy="106" r="12" class="bk"/>
+  <path class="bk" d="M138 100 Q140 84 166 80 Q184 80 188 94 L144 112 Z"/>
+  <path class="wh" d="M140 96 Q160 74 188 84 L190 94 Q164 88 144 104 Z"/><path class="ink" stroke-width="2.6" d="M140 96 Q160 74 188 84 L190 94 Q164 88 144 104 Z"/>
+  <path class="ink" stroke-width="2.4" d="M142 100 l-12 8 l2 -12 z"/>
+  <!-- 奥の腕 -->
+  <path class="far" d="M158 166 L182 224 L232 252 L240 240 L196 214 L172 160 Z"/>
+  <path class="ink" stroke-width="2.6" d="M158 166 L182 224 L232 252 M240 240 L196 214 L172 160"/>
+  <!-- 手前の腕（袖をたすきで上げている） -->
+  <g class="w-arm" style="transform-origin:172px 166px">
+    <path class="wh" d="M166 162 L188 222 L258 282 L268 270 L202 214 L180 160 Z"/>
+    <path class="ink" stroke-width="3" d="M166 162 L188 222 L258 282 M268 270 L202 214 L180 160"/>
+    <path class="ink" stroke-width="2" d="M184 206 L200 200"/>
+    <path class="wh" d="M256 268 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M256 268 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+  </g>
+</svg>
+        <h3 style="padding-right:120px"><wbr>紡績工場の<wbr>女性労働者</h3>
+        <p style="padding-right:120px"><wbr>昼夜<wbr>二交代の<wbr>長時間<wbr>労働でした。<wbr>寄宿舎では<wbr>結核が<wbr>まん延しました。<wbr></p>
         <svg class="ill" viewBox="0 0 300 74" role="img" aria-label="年間離職率50%超">
           <text x="0" y="18" class="t3">年間離職率</text>
           <rect x="0" y="28" width="280" height="26" rx="3" class="fi-r"/>
@@ -598,8 +1064,53 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <text x="156" y="48" class="td tr" style="font-size:18px">50%超も</text>
         </svg></div></div>
       <div data-step="2"><div class="box jp sr">
-        <h3><wbr>重工業の<wbr>熟練職人</h3>
-        <p><b><wbr>親方請負制</b>。<wbr>会社ではなく、<wbr>親方から<wbr>仕事と<wbr>賃金を<wbr>受け取っていました。<wbr></p>
+        <svg class="ill fig" viewBox="0 0 420 520" overflow="visible" style="position:absolute;right:12px;top:-34px;width:118px;height:auto" aria-hidden="true">
+  <style>
+    .h-swing{transform-origin:188px 170px;animation:hswing 1.5s cubic-bezier(.55,0,.9,.55) infinite}
+    @keyframes hswing{0%{transform:rotate(-125deg)}55%{transform:rotate(0)}63%{transform:rotate(-6deg)}100%{transform:rotate(-125deg)}}
+    .h-spark{opacity:0;animation:hspark 1.5s linear infinite}
+    @keyframes hspark{0%,53%{opacity:0;transform:translate(0,0)}57%{opacity:1}85%{opacity:0;transform:translate(var(--x),var(--y))}100%{opacity:0}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M20 486 L410 485"/>
+  <!-- 鉄板（船体） -->
+  <path class="wh" d="M290 150 L414 130 V484 H290 Z"/><path class="ink" stroke-width="3.5" d="M290 150 L414 130 V484 H290 Z"/>
+  <path class="ink" stroke-width="2" d="M290 250 L414 236 M290 370 L414 360 M350 142 V484"/>
+  <g class="bk"><circle cx="304" cy="166" r="3"/><circle cx="304" cy="200" r="3"/><circle cx="304" cy="234" r="3"/><circle cx="304" cy="268" r="3"/><circle cx="304" cy="336" r="3"/><circle cx="304" cy="370" r="3"/><circle cx="304" cy="404" r="3"/><circle cx="304" cy="438" r="3"/><circle cx="364" cy="160" r="3"/><circle cx="364" cy="200" r="3"/><circle cx="364" cy="240" r="3"/><circle cx="364" cy="280" r="3"/></g>
+  <circle cx="304" cy="302" r="5" fill="#d2382b"/>
+  <g stroke="#d27f2a" stroke-width="2.5" stroke-linecap="round">
+    <line class="h-spark" x1="300" y1="300" x2="294" y2="294" style="--x:-30px;--y:-30px"/>
+    <line class="h-spark" x1="300" y1="304" x2="292" y2="306" style="--x:-36px;--y:6px"/>
+    <line class="h-spark" x1="300" y1="300" x2="296" y2="292" style="--x:-14px;--y:-40px"/>
+  </g>
+  <!-- 股引と地下足袋 -->
+  <path class="farD" d="M170 290 L190 290 L188 466 L172 466 Z"/><path class="farD" d="M164 464 H196 L198 480 H162 Z"/>
+  <path class="bk" d="M186 290 L206 290 L212 466 L194 466 Z"/><path class="bk" d="M190 464 H226 Q232 470 232 480 H190 Z"/>
+  <path d="M214 466 V480" stroke="#fff" stroke-width="1.6"/>
+  <!-- 法被 -->
+  <path class="wh" d="M164 154 Q188 146 206 156 Q216 204 214 296 L156 296 Q154 210 164 154 Z"/>
+  <path class="ink" stroke-width="3.6" d="M164 154 Q188 146 206 156 Q216 204 214 296 L156 296 Q154 210 164 154 Z"/>
+  <path class="bk" d="M190 150 Q204 164 210 220 L214 296 L206 296 L202 222 Q196 166 184 154 Z"/>
+  <path class="bk" d="M156 280 H214 V296 H156 Z"/>
+  <circle cx="176" cy="200" r="13" fill="none" stroke="currentColor" stroke-width="3"/><path d="M170 200 H182 M176 194 V206" stroke="currentColor" stroke-width="2.6"/>
+  <!-- 頭とねじり鉢巻き -->
+  <use href="#face" width="420" height="520"/>
+  <use href="#hair" width="420" height="520"/>
+  <path class="wh" d="M156 100 L210 94 L212 104 L158 110 Z"/><path class="ink" stroke-width="2.4" d="M156 100 L210 94 L212 104 L158 110 Z"/>
+  <path class="ink" stroke-width="1.6" d="M166 100 l6 8 M178 98 l6 8 M190 97 l6 8 M202 96 l6 8"/>
+  <path class="ink" stroke-width="2.4" d="M206 96 l10 -8 l2 12 z"/>
+  <!-- 両腕と大槌 -->
+  <g class="h-swing">
+    <path class="far" d="M180 166 L210 226 L242 250 L250 238 L222 216 L192 160 Z"/>
+    <path class="ink" stroke-width="2.6" d="M180 166 L210 226 L242 250 M250 238 L222 216 L192 160"/>
+    <path class="ink" stroke-width="5" d="M232 240 L290 294"/>
+    <path class="bk" d="M276 276 L300 300 L290 312 L264 290 Z" transform="rotate(-4 284 294)"/>
+    <path class="wh" d="M186 162 L214 238 L258 262 L264 248 L228 228 L200 160 Z"/>
+    <path class="ink" stroke-width="3" d="M186 162 L214 238 L258 262 M264 248 L228 228 L200 160"/>
+    <path class="wh" d="M252 250 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M252 250 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+  </g>
+</svg>
+        <h3 style="padding-right:120px"><wbr>重工業の<wbr>熟練職人</h3>
+        <p style="padding-right:120px"><b><wbr>親方請負制</b>。<wbr>会社ではなく、<wbr>親方から<wbr>仕事と<wbr>賃金を<wbr>受け取っていました。<wbr></p>
         <svg class="ill" viewBox="0 0 300 110" role="img" aria-label="親方が工場Aから工場Bへ移ると職人もついていく">
           <use href="#i-factory" x="0" y="40" width="56" height="56" class="c-3"/><text x="28" y="108" text-anchor="middle" class="t3">工場A</text>
           <use href="#i-factory" x="244" y="40" width="56" height="56" class="c-3"/><text x="272" y="108" text-anchor="middle" class="t3">工場B</text>
@@ -712,6 +1223,52 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
       <svg class="ill" viewBox="0 0 440 330" role="img" aria-label="右肩上がりの賃金カーブと三種の神器">
         <line x1="40" y1="200" x2="420" y2="200" class="ln ln-r"/><line x1="40" y1="20" x2="40" y2="200" class="ln ln-r"/>
         <text x="420" y="220" text-anchor="end" class="t3">勤続年数</text><text x="46" y="30" class="t3">賃金</text>
+        <g class="fd" style="--d:.2s"><svg class="fig " x="46" y="36" width="110" height="136" viewBox="0 0 420 520" overflow="visible">
+  <path class="ink" stroke-width="2.5" d="M30 486 L170 484 M200 487 L390 485"/>
+  <path class="ink" stroke-width="2" d="M60 470 h40 M70 458 h26 M300 470 h40"/>
+  <g class="walk">
+  <!-- 奥の腕と鞄（手前の脚と同じ向きに振る） -->
+  <g class="armFar">
+    <path class="far" d="M180 166 L176 252 L192 254 L194 172 Z"/><path class="ink" stroke-width="3" d="M180 166 L176 252 M192 254 L194 172"/>
+    <path class="ink" stroke-width="3" d="M174 262 q10 -14 20 0"/>
+    <path class="farD" d="M152 262 H216 L214 310 H154 Z"/>
+    <path d="M178 276 h10" stroke="#fff" stroke-width="3"/>
+    <path class="far" d="M174 252 q8 10 18 2 l-2 -6 z"/><path class="ink" stroke-width="2.4" d="M174 252 q8 10 18 2"/>
+  </g>
+  <!-- 奥の脚 -->
+  <g class="legFar">
+    <path class="farD" d="M172 260 L196 260 L196 446 L176 446 Z"/>
+    <path class="farD" d="M172 444 H204 Q218 446 218 456 H170 Z"/>
+  </g>
+  <!-- 手前の脚 -->
+  <g class="legNear">
+    <path class="bk" d="M172 260 L196 260 L196 446 L176 446 Z"/>
+    <path d="M186 270 L187 440" stroke="#fff" stroke-width="1.6"/>
+    <path class="bk" d="M172 444 H204 Q218 446 218 456 H170 Z"/>
+  </g>
+  <!-- ワイシャツ（横向き） -->
+  <path class="wh" d="M164 154 Q188 146 204 156 Q214 204 208 266 L162 266 Q156 210 164 154 Z"/>
+  <path class="ink" stroke-width="3.6" d="M164 154 Q188 146 204 156 Q214 204 208 266 L162 266 Q156 210 164 154 Z"/>
+  <path class="bk" d="M164 154 Q156 210 162 266 L172 266 Q166 212 174 156 Z"/>
+  <!-- 細いネクタイ -->
+  <path class="bk" d="M198 152 L206 150 L208 160 L214 238 L206 244 L202 162 Z"/>
+  <path class="wh" d="M192 146 L206 148 L210 164 L198 160 Z"/><path class="ink" stroke-width="2" d="M192 146 L206 148 L210 164 L198 160"/>
+  <path d="M204 206 h10" stroke="#d27f2a" stroke-width="2.4"/>
+  <path class="bk" d="M162 260 H210 V268 H162 Z"/>
+  <!-- 頭（七三分けと眼鏡） -->
+  <use href="#face" x="0" y="0" width="420" height="520"/>
+  <path class="bk" d="M158 108 Q156 84 184 80 Q204 80 208 96 Q194 90 176 94 Q170 100 168 116 Q160 118 158 108 Z"/>
+  <path d="M176 92 Q190 86 206 94" stroke="#fff" stroke-width="1.6" fill="none"/>
+  <circle cx="196" cy="110" r="7" class="ink" stroke-width="2.6"/>
+  <path class="ink" stroke-width="2.2" d="M189 108 L172 106"/>
+  <!-- 手前の腕（手前の脚と逆に振る） -->
+  <g class="armNear">
+    <path class="wh" d="M180 162 L184 246 L200 246 L196 164 Z"/><path class="ink" stroke-width="3.2" d="M180 162 L184 246 M200 246 L196 164"/>
+    <path class="ink" stroke-width="2" d="M183 234 L200 234"/>
+    <path class="wh" d="M183 246 q8 12 18 0 l-2 -4z"/><path class="ink" stroke-width="2.6" d="M183 246 q8 12 18 0"/>
+  </g>
+  </g>
+</svg></g>
         <g data-step="1"><path d="M40 190 C 140 175, 240 120, 410 40" class="ln ln-red w4 dr" pathLength="1"/><circle cx="410" cy="40" r="8" class="fi-red pop" style="--d:1.3s"/>
           <text x="300" y="60" class="td tr fd" style="--d:1.4s;font-size:18px">右肩上がり</text></g>
         <g data-step="2">
@@ -822,7 +1379,7 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
         <p class="sm fu" style="--d:.4s">つい50年前まで、<wbr>飲食は<wbr>「のれん分け」が<wbr>当たり前の<wbr>世界でした。<wbr></p></div>
     </div>
     <div class="vis">
-      <svg class="ill" viewBox="0 0 440 300" role="img" aria-label="調理を単純な工程に分けた流れ作業">
+      <svg class="ill" viewBox="0 0 440 330" role="img" aria-label="調理を単純な工程に分けた流れ作業">
         <g data-step="2">
           <text x="20" y="30" class="t3 fd">自動車の組立ラインを、調理工程に応用</text>
           <text x="220" y="84" text-anchor="middle" class="td fd" style="--d:.4s;font-size:24px">誰にでもできるところまで</text>
@@ -830,9 +1387,109 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
           <g class="belt"><ellipse cx="0" cy="138" rx="24" ry="9" class="fi-k"/><rect x="-24" y="128" width="48" height="6" rx="3" class="fi-i"/><path d="M-24 126a24 14 0 0 1 48 0z" class="fi-k"/></g>
           <g class="belt" style="animation-delay:-1.6s"><ellipse cx="0" cy="138" rx="24" ry="9" class="fi-k"/><rect x="-24" y="128" width="48" height="6" rx="3" class="fi-i"/><path d="M-24 126a24 14 0 0 1 48 0z" class="fi-k"/></g>
           <g class="belt" style="animation-delay:-3.2s"><ellipse cx="0" cy="138" rx="24" ry="9" class="fi-k"/><rect x="-24" y="128" width="48" height="6" rx="3" class="fi-i"/><path d="M-24 126a24 14 0 0 1 48 0z" class="fi-k"/></g>
-          <g class="fu" style="--d:.3s"><use href="#i-person" x="60" y="190" width="54" height="54" class="c-3"/><text x="87" y="264" text-anchor="middle" class="t3">焼く</text></g>
-          <g class="fu" style="--d:.5s"><use href="#i-person" x="193" y="190" width="54" height="54" class="c-3"/><text x="220" y="264" text-anchor="middle" class="t3">挟む</text></g>
-          <g class="fu" style="--d:.7s"><use href="#i-person" x="326" y="190" width="54" height="54" class="c-3"/><text x="353" y="264" text-anchor="middle" class="t3">包む</text></g>
+          <g class="fu" style="--d:.3s"><svg class="fig " x="25" y="176" width="124" height="154" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .k-patty{transform-box:fill-box;transform-origin:center;animation:flip 1.6s ease-in-out infinite}
+    @keyframes flip{0%,10%{transform:translateY(0) rotate(0)}45%{transform:translateY(-44px) rotate(90deg)}80%,100%{transform:translateY(0) rotate(180deg)}}
+    .k-arm{transform-origin:190px 168px;animation:karm 1.6s ease-in-out infinite}
+    @keyframes karm{0%,10%{transform:rotate(3deg)}35%{transform:rotate(-12deg)}80%,100%{transform:rotate(3deg)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M20 486 L410 485"/>
+  <!-- 鉄板 -->
+  <path class="wh" d="M250 306 H414 V484 H250 Z"/><path class="ink" stroke-width="3" d="M250 306 H414 V484 H250 Z"/>
+  <path class="bk" d="M244 296 H418 V308 H244 Z"/>
+  <circle cx="290" cy="350" r="8" class="ink" stroke-width="2.4"/><circle cx="330" cy="350" r="8" class="ink" stroke-width="2.4"/><circle cx="370" cy="350" r="8" class="ink" stroke-width="2.4"/>
+  <ellipse cx="350" cy="290" rx="20" ry="6" fill="#7a5440"/><ellipse cx="392" cy="290" rx="18" ry="6" fill="#7a5440"/>
+  <ellipse class="k-patty" cx="304" cy="288" rx="20" ry="6" fill="#7a5440" stroke="currentColor" stroke-width="2"/>
+  <path class="ink" stroke-width="1.6" d="M346 278 q-4 -8 0 -16 M390 278 q-4 -8 0 -16" style="stroke:#9a958b"/>
+  <use href="#legsDark" width="420" height="520"/>
+  <use href="#shirt" width="420" height="520"/>
+  <path class="bk" d="M160 250 Q186 256 212 250 L218 380 Q188 386 156 380 Z"/>
+  <path class="wh" d="M196 176 H206 V184 H196 Z"/>
+  <path class="ink" stroke-width="2.6" d="M190 150 L202 164 L208 156"/>
+  <!-- 頭と紙の帽子 -->
+  <use href="#face" width="420" height="520"/>
+  <use href="#hair" width="420" height="520"/>
+  <path class="wh" d="M158 94 L208 88 L204 74 Q182 66 162 78 Z"/><path class="ink" stroke-width="2.6" d="M158 94 L208 88 L204 74 Q182 66 162 78 Z"/>
+  <path class="ink" stroke-width="3" d="M160 90 L206 84" style="stroke:#d2382b"/>
+  <!-- 奥の腕 -->
+  <path class="far" d="M178 166 L196 230 L236 262 L246 250 L208 222 L190 160 Z"/>
+  <path class="ink" stroke-width="2.6" d="M178 166 L196 230 L236 262 M246 250 L208 222 L190 160"/>
+  <!-- 手前の腕とヘラ（半袖） -->
+  <g class="k-arm">
+    <path class="wh" d="M186 160 L194 200 L210 200 L202 158 Z"/><path class="ink" stroke-width="3" d="M186 160 L194 200 L210 200 L202 158"/>
+    <path class="wh" d="M194 198 L210 246 L250 272 L258 260 L224 238 L210 198 Z"/>
+    <path class="ink" stroke-width="3" d="M194 198 L210 246 L250 272 M258 260 L224 238 L210 198"/>
+    <path class="wh" d="M248 258 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M248 258 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+    <path class="ink" stroke-width="4" d="M258 268 L284 286"/>
+    <path class="bk" d="M282 282 L314 290 L312 296 L280 290 Z"/>
+  </g>
+</svg><text x="87" y="326" text-anchor="middle" class="tb">焼く</text></g>
+          <g class="fu" style="--d:.5s"><svg class="fig " x="158" y="176" width="124" height="154" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .s-arm{transform-origin:190px 168px;animation:sarm 1.8s ease-in-out infinite}
+    @keyframes sarm{0%,15%{transform:rotate(-10deg)}55%,80%{transform:rotate(0)}100%{transform:rotate(-10deg)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M20 486 L410 485"/>
+  <!-- 作業台とバーガーの下半分 -->
+  <path class="wh" d="M244 316 H414 V484 H244 Z"/><path class="ink" stroke-width="3" d="M244 316 H414 V484 H244 Z M244 330 H414"/>
+  <path d="M290 316 Q290 300 330 300 Q370 300 370 316 Z" fill="#e3b77a" stroke="currentColor" stroke-width="2.4"/>
+  <path d="M288 300 Q330 290 372 300 L372 292 Q330 282 288 292 Z" fill="#7a5440" stroke="currentColor" stroke-width="2"/>
+  <path d="M286 292 q8 -8 16 0 q8 -8 16 0 q8 -8 16 0 q8 -8 16 0 q8 -8 16 0 q8 -8 10 0" fill="#6f9a6f" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M300 316 Q330 340 360 316" fill="none" stroke="#d2382b" stroke-width="0"/>
+  <use href="#legsDark" width="420" height="520"/>
+  <use href="#shirt" width="420" height="520"/>
+  <path class="bk" d="M160 250 Q186 256 212 250 L218 380 Q188 386 156 380 Z"/>
+  <path class="wh" d="M196 176 H206 V184 H196 Z"/>
+  <path class="ink" stroke-width="2.6" d="M190 150 L202 164 L208 156"/>
+  <use href="#face" width="420" height="520"/>
+  <use href="#hair" width="420" height="520"/>
+  <path class="wh" d="M158 94 L208 88 L204 74 Q182 66 162 78 Z"/><path class="ink" stroke-width="2.6" d="M158 94 L208 88 L204 74 Q182 66 162 78 Z"/>
+  <path class="ink" stroke-width="3" d="M160 90 L206 84" style="stroke:#d2382b"/>
+  <!-- 奥の腕：作業台に手 -->
+  <path class="far" d="M178 166 L196 232 L274 300 L282 288 L210 224 L190 160 Z"/>
+  <path class="ink" stroke-width="2.6" d="M178 166 L196 232 L274 300 M282 288 L210 224 L190 160"/>
+  <!-- 手前の腕：上のバンズ -->
+  <g class="s-arm">
+    <path class="wh" d="M186 160 L194 200 L210 200 L202 158 Z"/><path class="ink" stroke-width="3" d="M186 160 L194 200 L210 200 L202 158"/>
+    <path class="wh" d="M194 198 L214 250 L282 280 L288 266 L228 240 L210 198 Z"/>
+    <path class="ink" stroke-width="3" d="M194 198 L214 250 L282 280 M288 266 L228 240 L210 198"/>
+    <path d="M290 286 Q290 256 330 256 Q370 256 370 286 Z" fill="#e3b77a" stroke="currentColor" stroke-width="2.6"/>
+    <g fill="#fff"><ellipse cx="316" cy="268" rx="2.4" ry="1.4"/><ellipse cx="334" cy="264" rx="2.4" ry="1.4"/><ellipse cx="348" cy="272" rx="2.4" ry="1.4"/></g>
+    <path class="wh" d="M280 266 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M280 266 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+  </g>
+</svg><text x="220" y="326" text-anchor="middle" class="tb">挟む</text></g>
+          <g class="fu" style="--d:.7s"><svg class="fig " x="291" y="176" width="124" height="154" viewBox="0 0 420 520" overflow="visible">
+  <style>
+    .w-flap{transform-origin:center bottom;transform-box:fill-box;animation:flap 1.6s ease-in-out infinite}
+    @keyframes flap{0%,15%{transform:scaleY(1)}55%,85%{transform:scaleY(-1)}100%{transform:scaleY(1)}}
+  </style>
+  <path class="ink" stroke-width="2.5" d="M20 486 L410 485"/>
+  <path class="wh" d="M262 316 H414 V484 H262 Z"/><path class="ink" stroke-width="3" d="M262 316 H414 V484 H262 Z M262 330 H414"/>
+  <g><path class="wh" d="M300 316 L322 294 L352 294 L374 316 Z"/><path class="ink" stroke-width="2.4" d="M300 316 L322 294 L352 294 L374 316 Z"/>
+     <path class="wh" d="M312 294 L330 274 L350 274 L364 294 Z"/><path class="ink" stroke-width="2.4" d="M312 294 L330 274 L350 274 L364 294 Z"/>
+     <path class="ink" stroke-width="1.4" d="M326 304 H350 M336 284 H352" style="stroke:#d2382b"/></g>
+  <use href="#legsDark" width="420" height="520"/>
+  <use href="#shirt" width="420" height="520"/>
+  <path class="bk" d="M160 250 Q186 256 212 250 L218 380 Q188 386 156 380 Z"/>
+  <path class="ink" stroke-width="2.6" d="M190 150 L202 164 L208 156"/>
+  <use href="#face" width="420" height="520"/>
+  <use href="#hair" width="420" height="520"/>
+  <path class="wh" d="M158 94 L208 88 L204 74 Q182 66 162 78 Z"/><path class="ink" stroke-width="2.6" d="M158 94 L208 88 L204 74 Q182 66 162 78 Z"/>
+  <path class="ink" stroke-width="3" d="M160 90 L206 84" style="stroke:#d2382b"/>
+  <!-- 包み紙とハンバーガー -->
+  <path class="far" d="M178 166 L196 232 L232 244 L234 230 L208 222 L190 160 Z"/>
+  <path class="ink" stroke-width="2.6" d="M178 166 L196 232 L232 244 M234 230 L208 222 L190 160"/>
+  <path class="wh" d="M226 250 H300 L292 268 H234 Z"/><path class="ink" stroke-width="2.6" d="M226 250 H300 L292 268 H234 Z"/>
+  <path d="M240 250 Q240 232 262 232 Q284 232 284 250 Z" fill="#e3b77a" stroke="currentColor" stroke-width="2.2"/>
+  <path d="M238 252 H286 V258 H238 Z" fill="#7a5440"/>
+  <path class="w-flap" d="M226 250 H300 L286 214 H240 Z" fill="#fff" stroke="currentColor" stroke-width="2.6"/>
+  <!-- 手前の腕 -->
+  <path class="wh" d="M186 160 L194 200 L210 200 L202 158 Z"/><path class="ink" stroke-width="3" d="M186 160 L194 200 L210 200 L202 158"/>
+  <path class="wh" d="M194 198 L212 252 L292 262 L292 248 L226 240 L210 198 Z"/>
+  <path class="ink" stroke-width="3" d="M194 198 L212 252 L292 262 M292 248 L226 240 L210 198"/>
+  <path class="wh" d="M288 246 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/><path class="ink" stroke-width="2.6" d="M288 246 q12 -4 14 6 q2 10 -10 12 q-8 -2 -4 -18z"/>
+</svg><text x="353" y="326" text-anchor="middle" class="tb">包む</text></g>
         </g>
       </svg>
       <style>.belt{animation:belt 4.8s linear infinite}@keyframes belt{from{transform:translateX(20px)}to{transform:translateX(420px)}}</style>
@@ -941,9 +1598,9 @@ ul.tl li b{font-variant-numeric:tabular-nums;font-family:var(--f-disp);font-size
     </div>
     <div class="vis">
       <svg class="ill" viewBox="0 0 400 360" role="img" aria-label="ネオ・ギルドの紋章">
-        <use href="#i-shield" x="70" y="4" width="260" height="260" class="c-a sc" style="--d:.2s"/>
-        <use href="#i-noren" x="150" y="38" width="100" height="76" class="c-p pop" style="--d:.8s"/>
-        <use href="#i-knife" x="168" y="108" width="64" height="64" class="c-p pop" style="--d:1.1s"/>
+        <g transform="translate(70 4)"><use href="#i-shield" x="0" y="0" width="260" height="260" class="c-a sc" style="--d:.2s"/></g>
+        <g transform="translate(150 38)"><use href="#i-noren" x="0" y="0" width="100" height="76" class="c-p pop" style="--d:.8s"/></g>
+        <g transform="translate(168 108)"><use href="#i-knife" x="0" y="0" width="64" height="64" class="c-p pop" style="--d:1.1s"/></g>
         <g class="stampin" style="--d:1.5s">
           <path d="M30 196h340l-18 22 18 22H30l18-22z" class="fi-k"/>
           <text x="200" y="227" text-anchor="middle" class="td tp" style="font-size:26px;letter-spacing:.12em">NEO GUILD</text>
