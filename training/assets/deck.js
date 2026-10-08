@@ -216,7 +216,7 @@
         const host = e.closest('[data-step]');
         const shown = i === cur && (!host || host.classList.contains('on')) && !e.closest('.gone');
         if (shown && !e._timer) countDown(e);
-        if (!shown && e._timer) { clearInterval(e._timer); e._timer = null; e.textContent = e.dataset.countdown; }
+        if (!shown && e._timer) { clearInterval(e._timer); e._timer = null; e.textContent = cdText(e, +e.dataset.countdown); }
       });
     });
     const s = slides[cur];
@@ -250,11 +250,12 @@
       if (k < 1 && e._counted) requestAnimationFrame(tick);
     })(t0);
   }
+  const cdText = (e, v) => e.dataset.fmt === 'mmss' ? Math.floor(v / 60) + ':' + String(v % 60).padStart(2, '0') : v;
   function countDown(e) {
     let n = +e.dataset.countdown;
-    e.textContent = n;
+    e.textContent = cdText(e, n);
     e._timer = setInterval(() => {
-      n -= 1; e.textContent = Math.max(n, 0);
+      n -= 1; e.textContent = cdText(e, Math.max(n, 0));
       if (n <= 0) { clearInterval(e._timer); e._timer = 'done'; }
     }, 1000);
   }

@@ -363,4 +363,41 @@ b, strong { font-weight: 900; }
   .slide, [data-step], .card, .d-progress, .grow, .draw { transition: none; }
   .slide.active [data-in], .pulse { animation: none; }
 }
+/* ---------- クイズ（3択・はい/いいえ・記述） ---------- */
+.quiz { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 26px; }
+.quiz .qz-top { display: flex; align-items: center; gap: 20px; }
+.quiz .qz-no { font-family: var(--f-num); font-size: 30px; color: #fff; background: var(--accent); padding: 6px 20px; border-radius: 999px; letter-spacing: .04em; }
+.quiz .qz-how { font-size: 24px; font-weight: 700; color: var(--ink-2); padding: 6px 16px; border-radius: 999px; background: var(--surface-2); }
+.quiz .qz-timer { margin-left: auto; display: flex; align-items: center; gap: 14px; font-family: var(--f-num); font-size: 40px; color: var(--accent-ink); }
+.quiz .qz-timer .bar { width: 220px; height: 12px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
+.quiz .qz-timer .bar i { display: block; height: 100%; background: var(--accent); transform-origin: left; }
+.quiz .qz-timer .go[data-step] { opacity: 1; transform: none; display: flex; align-items: center; gap: 14px; }
+.quiz .qz-timer .hint { font-family: var(--f-body, inherit); font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.quiz .qz-timer .up { font-style: normal; font-family: var(--f-body, inherit); font-size: 26px; font-weight: 900; color: #fff; background: var(--danger); padding: 4px 14px; border-radius: 999px; opacity: 0; }
+.quiz .qz-timer .go.on .bar i { animation: qztime 120s linear forwards; }
+.quiz .qz-timer .go.on b { animation: qzred 0s linear 120s forwards; }
+.quiz .qz-timer .go.on .up { animation: qzup .5s cubic-bezier(.3,1.6,.5,1) 120s forwards; }
+@keyframes qzred { to { color: var(--danger); } }
+@keyframes qzup { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes qztime { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+.quiz .qz-q { font-size: 50px; font-weight: 900; line-height: 1.4; text-wrap: pretty; max-width: 1640px; }
+.quiz .qz-opts { display: flex; flex-direction: column; gap: 16px; }
+.quiz .qz-opts.two { flex-direction: row; gap: 28px; }
+.quiz .qz-opts.two .opt { flex: 1; justify-content: center; font-size: 44px; padding: 30px; }
+.quiz .opt { position: relative; display: flex; align-items: center; gap: 24px; padding: 20px 30px; border-radius: 18px; background: var(--surface); border: 4px solid transparent; box-shadow: 0 6px 18px rgba(29,33,40,.06); font-size: 32px; font-weight: 700; line-height: 1.45; transition: opacity .5s ease, transform .5s ease, border-color .5s ease, background .5s ease; }
+.quiz .opt .k { flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink); font-family: var(--f-num); font-size: 34px; }
+.quiz .opt .ok-tag { margin-left: auto; flex: none; font-size: 26px; font-weight: 900; color: #fff; background: var(--ok); padding: 6px 18px; border-radius: 999px; opacity: 0; transform: scale(.6); transition: opacity .4s ease .2s, transform .5s cubic-bezier(.3,1.6,.5,1) .2s; }
+.quiz:has(.reveal.on) .opt:not(.ok) { opacity: .35; transform: scale(.98); }
+.quiz:has(.reveal.on) .opt.ok { border-color: var(--ok); background: #f4fbf7; }
+.quiz:has(.reveal.on) .opt.ok .k { background: var(--ok); color: #fff; }
+.quiz:has(.reveal.on) .opt.ok .ok-tag { opacity: 1; transform: none; }
+.quiz .reveal { position: absolute; width: 0; height: 0; }
+.quiz .qz-after { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.quiz .qz-after p { font-size: 30px; line-height: 1.5; }
+.quiz .qz-mark { display: none; }
+@keyframes qzmark { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg) translateY(-10px); } }
+.quiz .chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.quiz .chips span { font-size: 28px; font-weight: 700; padding: 10px 20px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-ink); }
+.poll.qz::before { content: "投票結果"; }
+@media (prefers-reduced-motion: reduce) { .quiz .qz-mark { animation: none; } }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }

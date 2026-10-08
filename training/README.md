@@ -3,7 +3,7 @@
 Zoomで画面共有して投影する、HTMLの研修資料です。
 
 - `template.html`：型の見本帳。使える部品を一通り並べています
-- `ch01_bosai.html`：第1章 防災管理（15枚）
+- `ch01_bosai.html`：第1章 防災管理（19枚・クイズ4問を含む）
 - `ch02_eisei.html`：第2章 衛生管理（15枚）
 - `ch03_roumu.html`：第3章 労務管理（14枚）
 - `ch04_keiri.html`：第4章 経理管理（15枚）
