@@ -374,9 +374,9 @@ b, strong { font-weight: 900; }
 .quiz .qz-timer .go[data-step] { opacity: 1; transform: none; display: flex; align-items: center; gap: 14px; }
 .quiz .qz-timer .hint { font-family: var(--f-body, inherit); font-size: 22px; font-weight: 700; color: var(--ink-2); }
 .quiz .qz-timer .up { font-style: normal; font-family: var(--f-body, inherit); font-size: 26px; font-weight: 900; color: #fff; background: var(--danger); padding: 4px 14px; border-radius: 999px; opacity: 0; }
-.quiz .qz-timer .go.on .bar i { animation: qztime 120s linear forwards; }
-.quiz .qz-timer .go.on b { animation: qzred 0s linear 120s forwards; }
-.quiz .qz-timer .go.on .up { animation: qzup .5s cubic-bezier(.3,1.6,.5,1) 120s forwards; }
+.quiz .qz-timer .go.on .bar i { animation: qztime var(--qt, 30s) linear forwards; }
+.quiz .qz-timer .go.on b { animation: qzred 0s linear var(--qt, 30s) forwards; }
+.quiz .qz-timer .go.on .up { animation: qzup .5s cubic-bezier(.3,1.6,.5,1) var(--qt, 30s) forwards; }
 @keyframes qzred { to { color: var(--danger); } }
 @keyframes qzup { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
 @keyframes qztime { from { transform: scaleX(1); } to { transform: scaleX(0); } }
