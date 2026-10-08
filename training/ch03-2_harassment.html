@@ -29,6 +29,9 @@
 .ck { opacity: 0; animation: ck 8s ease infinite; }
 @keyframes ck { 0% { opacity: 0; transform: scale(.4); } 6%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
 
+/* 02 自分自身への問いかけ */
+.qa > .howto, .qa > .self { grid-row: 1; grid-column: 2; }
+.qa > .self { padding: 30px 32px; gap: 14px; align-self: stretch; justify-content: center; }
 /* 02 鏡の顔 */
 .mood-a { animation: wx2 6s steps(1) infinite; }
 .mood-b { animation: wx2 6s steps(1) -3s infinite; }
@@ -261,44 +264,26 @@
 
   <!-- 02 まず、お答えください -->
   <section class="slide" data-min="8">
-    <div class="phase" data-until="0">
-      <div class="eyebrow" data-in>まず、お答えください</div>
-      <h2 class="title" data-in style="--d:1">Zoomに表示される質問に答えてください</h2>
-      <div class="qa">
-        <ol class="qlist" data-in style="--d:2">
-          <li><span class="qn">Q1</span><div><p>「これはハラスメントになるのか」と迷ったことはありますか。どんな場面でしたか。</p></div><span class="qk">記述</span></li>
-          <li><span class="qn">Q2</span><div><p>かつて自分が受けたことがある、ハラスメントだと思うことはありますか。</p></div><span class="qk">記述</span></li>
-          <li><span class="qn">Q3</span><div><p>スタッフから相談を受けたことがある方。どんな相談内容でしたか。</p></div><span class="qk">記述</span></li>
-          <li><span class="qn">Q4</span><div><p>「今日この人、機嫌が悪いな」「感じが悪いな」と思った経験はありますか。</p><small>よくある ／ たまにある ／ ほとんどない</small></div><span class="qk">選択</span></li>
+    <div class="eyebrow" data-in>まず、お答えください</div>
+    <h2 class="title" data-in style="--d:1">Zoomに表示される質問に答えてください</h2>
+    <div class="qa">
+      <ol class="qlist" data-in style="--d:2">
+        <li><span class="qn">Q1</span><div><p>「これはハラスメントになるのか」と迷ったことはありますか。どんな場面でしたか。</p></div><span class="qk">記述</span></li>
+        <li><span class="qn">Q2</span><div><p>かつて自分が受けたことがある、ハラスメントだと思うことはありますか。</p></div><span class="qk">記述</span></li>
+        <li><span class="qn">Q3</span><div><p>スタッフから相談を受けたことがある方。どんな相談内容でしたか。</p></div><span class="qk">記述</span></li>
+        <li><span class="qn">Q4</span><div><p>「今日この人、機嫌が悪いな」「感じが悪いな」と思った経験はありますか。</p><small>よくある ／ たまにある ／ ほとんどない</small></div><span class="qk">選択</span></li>
+      </ol>
+      <div class="howto" data-in data-until="0" style="--d:3">
+        <h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>回答のしかた</h3>
+        <ol>
+          <li><span>画面に表示される<b>「投票」</b>を見る</span></li>
+          <li><span>Q1〜Q3は<b>記入欄に書く</b>、Q4は<b>1つ選ぶ</b></span></li>
+          <li><span>最後に<b>「送信」</b>を押す</span></li>
         </ol>
-        <div class="howto" data-in style="--d:3">
-          <h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>回答のしかた</h3>
-          <ol>
-            <li><span>画面に表示される<b>「投票」</b>を見る</span></li>
-            <li><span>Q1〜Q3は<b>記入欄に書く</b>、Q4は<b>1つ選ぶ</b></span></li>
-            <li><span>最後に<b>「送信」</b>を押す</span></li>
-          </ol>
-          <p class="ex">この投票は匿名です</p>
-          <p class="cap">誰が何を書いたかは、こちらにもわかりません。思い当たらない場合は「特にない」で構いません。</p>
-        </div>
+        <p class="ex">この投票は匿名です</p>
+        <p class="cap">誰が何を書いたかは、こちらにもわかりません。思い当たらない場合は「特にない」で構いません。</p>
       </div>
-    </div>
-    <div class="phase" data-step="1" style="justify-content:center">
-      <div class="split" style="grid-template-columns:1fr 480px;gap:60px">
-        <div style="display:flex;flex-direction:column;gap:36px">
-          <span class="poll" data-q="Q4" style="align-self:flex-start">「よくある」「たまにある」 <b contenteditable="true">◯</b>割</span>
-          <p class="lead">機嫌が悪いスタッフがいたら、<br>皆さんは注意されますよね。</p>
-          <h2 class="statement">では、<span class="hl2">皆さん自身</span>は、<br>どうですか。<small>常に機嫌よく、笑顔でいられていますか。</small></h2>
-        </div>
-        <svg class="illus" viewBox="0 0 480 520" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-          <rect x="70" y="20" width="340" height="440" rx="170" fill="#e9e6fd" stroke="#9d92ff" stroke-width="10"/>
-          <rect x="220" y="460" width="40" height="40" fill="#9d92ff"/><rect x="160" y="496" width="160" height="16" rx="8" fill="#9d92ff"/>
-          <circle cx="240" cy="230" r="110" fill="#fff"/>
-          <circle cx="200" cy="210" r="11" fill="#1d2128"/><circle cx="280" cy="210" r="11" fill="#1d2128"/>
-          <path class="mood-a" d="M195 265q45 40 90 0" fill="none" stroke="#1d2128" stroke-width="9" stroke-linecap="round"/>
-          <g class="mood-b"><path d="M195 285q45-36 90 0" fill="none" stroke="#1d2128" stroke-width="9" stroke-linecap="round"/><path d="M180 186l36 10M300 186l-36 10" stroke="#1d2128" stroke-width="8" stroke-linecap="round"/></g>
-        </g></svg>
-      </div>
+      <div class="card is-accent self" data-step="1"><p class="cap" style="margin-top:0">Q4の結果を見て</p><p style="font-size:32px">機嫌が悪いスタッフがいたら、注意しますよね。</p><p style="font-size:48px;font-weight:900;line-height:1.35">では、<span class="hl2">皆さん自身</span>は、<br>どうですか。</p><p style="font-size:30px;color:var(--ink-2)">常に機嫌よく、笑顔でいられていますか。</p></div>
     </div>
     <aside class="notes">早速ですが、これから4つ質問をします。Zoomに表示される質問に答えてください。
 この投票は匿名です。誰が何を書いたかは、こちらにもわかりません。思い当たらない場合は「特にない」で構いません。
@@ -654,12 +639,13 @@
     </div>
     <div class="phase" data-step="3">
       <div class="eyebrow">自社の実例（匿名化）</div>
-      <h2 class="title">役職の高さは、免罪符にならない</h2>
+      <h2 class="title">役職が高いからこそ、起こりうる</h2>
       <ul class="cases">
         <li data-step="3" class="slide-in"><span>取締役自身によるパワーハラスメントが発覚</span><b class="res">辞任</b></li>
         <li data-step="4" class="slide-in"><span>経営陣全体のハラスメント防止責任が問われた</span><b class="res">代表取締役・取締役全員の<br>報酬減額</b></li>
         <li data-step="5" class="slide-in"><span>執行役員・店長によるセクシャルハラスメントと、従業員によるパワハラ・セクハラが複合的に発覚</span><b class="res">複数名が<br>減給・諭旨退職</b></li>
       </ul>
+      <div class="alert" data-step="6"><svg class="i"><use href="#i-alert"/></svg><p>役職が高いほど、周りとの<b>差は大きくなる</b>。それだけ、言えない・断れない人が増える。<b>役職の高さは、免罪符ではなく、リスクそのもの</b></p></div>
     </div>
     <aside class="notes">では、この調整を誤ると、何が起きるか。
 ［クリック］【会社・店舗が失うもの】
@@ -672,7 +658,7 @@
 取締役自身によるパワーハラスメントが発覚し、辞任に至った事案。
 ［クリック］代表取締役・取締役全員の報酬減額という形で、経営陣全体のハラスメント防止責任が問われた事案。
 ［クリック］執行役員・店長によるセクシャルハラスメントと、従業員によるパワハラ・セクハラが複合的に発覚し、複数名が減給・諭旨退職となった事案。
-役職の高さは、免罪符になりません。</aside>
+［クリック］役職が高いからといって、許されるわけではありません。むしろ、役職が高いほど、周りとの差は大きくなり、言えない・断れない人が増えます。役職が高いからこそ、起こりうるのです。</aside>
   </section>
 
   <!-- 07 アジャストメントの2つの道具 -->
