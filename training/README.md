@@ -6,7 +6,7 @@ Zoomで画面共有して投影する、HTMLの研修資料です。
 - `ch01_bosai.html`：第1章 防災管理（19枚・クイズ4問を含む）
 - `ch02_eisei.html`：第2章 衛生管理（19枚・クイズ4問を含む）
 - `ch03_roumu.html`：第3章 労務管理（18枚・クイズ4問を含む）
-- `ch04_keiri.html`：第4章 経理管理（15枚）
+- `ch04_keiri.html`：第4章 経理管理（19枚・クイズ4問を含む）
 - `ch05_houmu.html`：第5章 法務実務（15枚）
 - `ch06_joho.html`：第6章 情報管理・SNS運用（14枚）
 - `assets/deck.css`：見た目（色・文字・部品）

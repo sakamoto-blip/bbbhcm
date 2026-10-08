@@ -395,6 +395,7 @@ b, strong { font-weight: 900; }
 .quiz .qz-after { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .quiz .qz-after p { font-size: 30px; line-height: 1.5; }
 .quiz .qz-mark { display: none; }
+.quiz:has(.reveal.on) .qz-opts.two .opt { opacity: 1; transform: none; }
 @keyframes qzmark { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg) translateY(-10px); } }
 .quiz .chips { display: flex; flex-wrap: wrap; gap: 12px; }
 .quiz .chips span { font-size: 28px; font-weight: 700; padding: 10px 20px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-ink); }
