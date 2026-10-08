@@ -1,0 +1,1075 @@
+<meta charset="utf-8">
+<title>第3-2章 ハラスメント防止</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+/* 第3-2章だけで使う部品 */
+.illus { width: 100%; height: auto; display: block; overflow: visible; }
+.fb { transform-box: fill-box; transform-origin: center; }
+
+/* 表紙・アジャスター：ミキサーのつまみが動き続ける */
+.fader { animation: fader 6s ease-in-out infinite; }
+@keyframes fader { 0%, 100% { transform: translateY(0); } 30% { transform: translateY(-110px); } 62% { transform: translateY(-40px); } }
+.eq rect { transform-box: fill-box; transform-origin: bottom; animation: eq 1.4s ease-in-out infinite alternate; }
+@keyframes eq { from { transform: scaleY(.25); } to { transform: scaleY(1); } }
+
+/* ワーク（書き出し） */
+.work .qz-q { font-size: 48px; }
+.work .wk { display: grid; grid-template-columns: 1fr 560px; gap: 40px; align-items: center; flex: 1; min-height: 0; }
+.work .wk-ex { display: flex; flex-direction: column; gap: 14px; }
+.work .wk-ex p { font-size: 32px; line-height: 1.5; font-weight: 700; padding: 18px 26px; border-radius: 16px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.05); }
+.work .rules { display: flex; gap: 16px; flex-wrap: wrap; }
+.work .rules span { font-size: 30px; font-weight: 900; padding: 12px 26px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); display: inline-flex; align-items: center; gap: 10px; }
+.wl { stroke-dasharray: 300; stroke-dashoffset: 300; animation: wl 9s linear infinite; }
+@keyframes wl { 0% { stroke-dashoffset: 300; } 30%, 92% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+.pen { animation: pen 9s linear infinite; }
+@keyframes pen { 0% { transform: translate(0, 0); } 10% { transform: translate(300px, 0); } 10.01% { transform: translate(0, 60px); } 20% { transform: translate(300px, 60px); } 20.01% { transform: translate(0, 120px); } 30% { transform: translate(240px, 120px); } 92% { transform: translate(240px, 120px); } 100% { transform: translate(0, 0); } }
+.ck { opacity: 0; animation: ck 8s ease infinite; }
+@keyframes ck { 0% { opacity: 0; transform: scale(.4); } 6%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+
+/* 02 鏡の顔 */
+.mood-a { animation: wx2 6s steps(1) infinite; }
+.mood-b { animation: wx2 6s steps(1) -3s infinite; }
+@keyframes mood { 0%, 40% { opacity: 1; } 50%, 90% { opacity: 0; } 100% { opacity: 1; } }
+
+/* 04 全体LINE */
+.line { border-radius: 36px; background: #fff; border: 6px solid #3a404a; overflow: hidden; box-shadow: 0 14px 40px rgba(29,33,40,.12); display: flex; flex-direction: column; }
+.line .hd { background: #06c755; color: #fff; font-size: 28px; font-weight: 900; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; }
+.line .hd small { font-size: 22px; font-weight: 700; opacity: .9; }
+.line .bd { background: #dfe8f1; padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 18px; }
+.line .msg { display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: start; }
+.line .av { width: 64px; height: 64px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: var(--accent); font-size: 40px; }
+.line .who { font-size: 20px; color: var(--ink-2); margin-bottom: 4px; }
+.line .bub { position: relative; display: inline-block; font-size: 30px; font-weight: 700; line-height: 1.45; padding: 16px 22px; border-radius: 22px; background: #fff; }
+.line .rd { font-size: 20px; color: var(--ink-2); margin-left: 10px; }
+.line .typing { display: inline-flex; gap: 8px; padding: 14px 20px; border-radius: 22px; background: #fff; }
+.line .typing i { width: 12px; height: 12px; border-radius: 50%; background: #9aa3ae; animation: typ 1.2s ease-in-out infinite; }
+.line .typing i:nth-child(2) { animation-delay: .2s; } .line .typing i:nth-child(3) { animation-delay: .4s; }
+@keyframes typ { 0%, 100% { transform: none; opacity: .4; } 50% { transform: translateY(-6px); opacity: 1; } }
+.thinks { display: flex; gap: 22px; flex-wrap: wrap; }
+.thinks span { position: relative; font-size: 32px; font-weight: 700; padding: 18px 28px; border-radius: 28px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); animation: float 4s ease-in-out infinite; }
+.thinks span:nth-child(2) { animation-delay: -1.3s; } .thinks span:nth-child(3) { animation-delay: -2.6s; }
+.thinks span::after { content: ""; position: absolute; left: 40px; bottom: -16px; border: 11px solid transparent; border-top: 14px solid var(--surface); }
+@keyframes float { 0%, 100% { transform: none; } 50% { transform: translateY(-8px); } }
+.stamp-pub { display: inline-flex; align-items: center; gap: 16px; font-size: 44px; font-weight: 900; color: var(--danger); border: 5px solid var(--danger); border-radius: 14px; padding: 6px 26px; transform: rotate(-4deg); background: #fff; }
+
+/* 04 アンケート */
+.stack { display: flex; height: 64px; border-radius: 12px; overflow: hidden; }
+.stack > span { display: grid; place-items: center; font-size: 24px; font-weight: 900; color: #fff; }
+.bars { display: flex; flex-direction: column; gap: 12px; }
+.bars .r { display: grid; grid-template-columns: 400px 1fr; align-items: center; gap: 20px; }
+.bars .r > span { font-size: 26px; font-weight: 700; line-height: 1.3; }
+.bars .bb { display: flex; flex-direction: column; gap: 6px; }
+.bars .b { display: flex; align-items: center; gap: 12px; }
+.bars .b i { height: 24px; width: calc(var(--v) * 28px); border-radius: 6px; background: var(--accent); }
+.bars .b.w i { background: #aab2bd; }
+.bars .b em { white-space: nowrap; font-style: normal; font-size: 24px; font-weight: 900; }
+.legend { display: flex; gap: 24px; font-size: 22px; color: var(--ink-2); font-weight: 700; }
+.legend i { display: inline-block; width: 22px; height: 14px; border-radius: 4px; margin-right: 8px; background: var(--accent); }
+.legend i.w { background: #aab2bd; }
+
+/* 04 実際に届いている相談 */
+.consult { display: flex; flex-direction: column; gap: 12px; }
+.consult li { display: grid; grid-template-columns: 64px 1fr; gap: 18px; align-items: center; font-size: 32px; font-weight: 700; padding: 14px 24px; background: var(--surface); border-radius: 14px; box-shadow: 0 6px 18px rgba(29,33,40,.05); }
+.consult li .ico { width: 56px; height: 56px; font-size: 30px; border-radius: 14px; }
+
+/* 05 差の表 */
+.gapt { display: grid; grid-template-columns: 300px 1fr 1fr; gap: 10px; }
+.gapt > div { background: var(--surface); padding: 16px 22px; font-size: 28px; line-height: 1.4; border-radius: 12px; display: flex; align-items: center; }
+.gapt > .h { background: none; font-size: 24px; font-weight: 700; color: var(--ink-2); padding: 0 22px; }
+.gapt > .k { font-weight: 900; font-size: 32px; color: var(--accent-ink); }
+.gapt > .k small { font-size: 20px; color: var(--ink-2); font-weight: 700; display: block; }
+.gapt > .k > span { display: block; }
+.gapt > .wide { background: var(--danger-soft); font-weight: 700; }
+.wv { transform-box: fill-box; transform-origin: left center; animation: wv 2.4s ease-out infinite; }
+@keyframes wv { from { opacity: .9; transform: scale(.4); } to { opacity: 0; transform: scale(1.6); } }
+.sun { animation: wx 8s ease-in-out infinite; }
+.storm { animation: wx 8s ease-in-out -4s infinite; }
+@keyframes wx { 0%, 40% { opacity: 1; } 50%, 90% { opacity: 0; } 100% { opacity: 1; } }
+.rain { animation: rain .8s linear infinite; }
+@keyframes rain { from { transform: translateY(-10px); } to { transform: translateY(14px); } }
+.talk { display: flex; flex-direction: column; gap: 16px; }
+.talk .t { display: flex; align-items: center; gap: 18px; }
+.talk .t.r { justify-content: flex-end; }
+.talk .t .ico { width: 72px; height: 72px; font-size: 42px; border-radius: 50%; }
+.talk .t p { font-size: 34px; font-weight: 900; padding: 16px 26px; border-radius: 22px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); }
+.talk .t.r p { background: var(--accent-soft); }
+.split2 { display: flex; height: 120px; border-radius: 16px; overflow: hidden; }
+.split2 > div { display: flex; flex-direction: column; justify-content: center; padding: 0 28px; color: #fff; }
+.split2 b { font-size: 40px; }
+.split2 small { font-size: 24px; font-weight: 700; }
+
+/* 06 失うもの */
+.kind.inhouse { background: var(--surface-2); color: var(--ink-2); }
+.kind.career { background: var(--accent-soft); color: var(--accent-ink); }
+.lose2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.lose2 .card { gap: 14px; padding: 28px 32px; }
+.lose2 .card p { font-size: 28px; line-height: 1.5; }
+.repup { animation: repup 4s ease-in infinite; }
+@keyframes repup { 0% { transform: translateY(40px); opacity: 0; } 15% { opacity: 1; } 55%, 100% { transform: translateY(-6px); opacity: 0; } }
+.cases { display: flex; flex-direction: column; gap: 16px; }
+.cases li { display: grid; grid-template-columns: 1fr 400px; gap: 24px; align-items: center; padding: 20px 28px; background: var(--surface); border-radius: 16px; box-shadow: 0 6px 18px rgba(29,33,40,.05); font-size: 32px; line-height: 1.45; }
+.cases li b.res { justify-self: end; font-size: 30px; color: var(--danger); background: var(--danger-soft); padding: 8px 22px; border-radius: 20px; text-align: center; line-height: 1.35; white-space: nowrap; }
+
+/* 07 ふるい・つまみ */
+.pass { animation: pass 3.6s ease-in infinite; }
+@keyframes pass { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(230px); opacity: 0; } }
+.stop { animation: stop 3.6s ease-in infinite; }
+@keyframes stop { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 40%, 80% { transform: translateY(92px); opacity: 1; } 100% { transform: translateY(92px); opacity: 0; } }
+.knob { transform-box: view-box; transform-origin: 200px 150px; animation: knob 6s ease-in-out infinite; }
+@keyframes knob { 0%, 100% { transform: rotate(-100deg); } 45%, 60% { transform: rotate(40deg); } }
+.arcseg { animation: arcseg 6s ease-in-out infinite; }
+@keyframes arcseg { 0%, 100% { opacity: .2; } 45%, 60% { opacity: 1; } }
+
+/* 08 フィルター */
+.filters { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.filters .card { display: grid; grid-template-columns: 120px 1fr; gap: 8px 22px; padding: 22px 26px; align-items: start; }
+.filters .card svg { grid-row: span 3; width: 120px; height: 120px; }
+.filters .card h3 { font-size: 34px; }
+.filters .card h3 small { font-size: 22px; color: var(--ink-2); font-weight: 700; }
+.filters .card .q { font-size: 29px; line-height: 1.4; font-weight: 900; color: var(--accent-ink); }
+.filters .card .e { font-size: 22px; line-height: 1.5; color: var(--ink-2); }
+.cp2 { animation: cp 4s ease infinite; } .cp3 { animation: cp 4s ease .5s infinite; }
+@keyframes cp { 0%, 20% { opacity: 0; transform: translateX(-14px); } 35%, 85% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.beat { transform-box: fill-box; transform-origin: center; animation: beat 1.4s ease-in-out infinite; }
+@keyframes beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.15); } 30% { transform: scale(1); } 45% { transform: scale(1.1); } }
+.rec { animation: rec 1.2s steps(1) infinite; }
+@keyframes rec { 50% { opacity: 0; } }
+.nob { transform-box: fill-box; transform-origin: center; animation: nob 3s ease-in-out infinite; }
+@keyframes nob { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1) rotate(-4deg); } }
+
+/* クイズ（4択・いちばん当てはまるもの） */
+.quiz.q4 { gap: 20px; }
+.quiz.q4 .qz-lead { font-size: 30px; font-weight: 700; color: var(--ink-2); }
+.quiz.q4 .qz-q { font-size: 42px; }
+.quiz.q4 .opt { padding: 12px 26px; font-size: 30px; }
+.quiz.q4 .opt .k { width: 54px; height: 54px; font-size: 28px; }
+.quiz.q4 .opt b { flex: none; width: 260px; font-size: 32px; }
+.quiz.q4 .opt small { font-size: 24px; font-weight: 500; color: var(--ink-2); }
+
+/* 09 アジャスター */
+.adj { display: grid; grid-template-columns: 480px 1fr; gap: 40px; align-items: center; }
+.adjl { display: flex; flex-direction: column; gap: 12px; }
+.adjl .card { display: grid; grid-template-columns: 64px 1fr; gap: 4px 20px; padding: 16px 24px; }
+.adjl .card .badge { font-size: 48px; grid-row: span 2; }
+.adjl .card h3 { font-size: 32px; }
+.adjl .card h3 small { font-size: 24px; color: var(--accent-ink); }
+.adjl .card p { font-size: 25px; line-height: 1.45; }
+.adjl .card p .ng { color: var(--danger); font-weight: 700; }
+.adjl .card p .okk { color: var(--ok); font-weight: 700; }
+.clean { animation: wx 6s ease-in-out infinite; }
+.noisy { animation: wx 6s ease-in-out -3s infinite; }
+.am { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+.am .card { padding: 22px 24px; gap: 10px; align-items: center; text-align: center; }
+.am .card svg { width: 200px; height: 150px; }
+.am .card h3 { font-size: 40px; justify-content: center; }
+.am .card h3 small { font-size: 24px; color: var(--ink-2); }
+.am .card p { font-size: 24px; line-height: 1.45; text-align: left; }
+.breath { transform-box: fill-box; transform-origin: center; animation: breath 6s ease-in-out infinite; }
+@keyframes breath { 0%, 100% { transform: scale(1); } 50% { transform: scale(.62); } }
+.exh { animation: wx2 6s steps(1) infinite; } .inh { animation: wx2 6s steps(1) -3s infinite; }
+@keyframes wx2 { 0% { opacity: 1; } 50% { opacity: 0; } }
+.d6 { animation: d6 6s steps(1) infinite; }
+@keyframes d6 { 0% { fill: var(--accent); } 16.6%, 100% { fill: #dfe3e9; } }
+.lvl { transform-box: fill-box; transform-origin: right center; animation: lvl 5s ease-in-out infinite; }
+@keyframes lvl { 0%, 100% { transform: scaleX(.8); } 45%, 60% { transform: scaleX(.2); } }
+.beki-a { animation: wx2 6s steps(1) infinite; } .beki-b { animation: wx2 6s steps(1) -3s infinite; }
+
+/* 11 記録 */
+.rec3 { display: flex; flex-direction: column; gap: 14px; }
+.rec3 li { display: grid; grid-template-columns: 60px 1fr; gap: 18px; align-items: center; font-size: 30px; font-weight: 700; padding: 14px 24px; background: var(--surface); border-radius: 14px; box-shadow: 0 6px 18px rgba(29,33,40,.05); }
+.rec3 li .badge { font-family: var(--f-num); font-size: 40px; color: var(--accent); text-align: center; }
+.contact.tbd { border: 3px dashed color-mix(in srgb, var(--ink-2) 40%, transparent); box-shadow: none; background: rgba(255,255,255,.6); }
+
+/* 13 修了レポート */
+.report { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; flex: 1; }
+.report-cards { display: flex; flex-direction: column; gap: 10px; }
+.report-cards .card { flex-direction: row; align-items: center; gap: 28px; padding: 14px 30px; }
+.report-cards .lead { font-size: 34px; }
+.report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.report-qr .ph { width: 260px; height: 260px; }
+</style>
+
+<div class="deck" data-chapter="第3-2章　ハラスメント防止" data-accent="violet">
+
+  <!-- 01 タイトル -->
+  <section class="slide glow cover" data-min="2" data-no-footer>
+    <div class="split" style="align-items:center;grid-template-columns:1fr 620px;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <div class="chapter" data-in style="--d:0">第3-2章</div>
+        <h1 data-in style="--d:1;font-size:140px">ハラスメント<br>防止</h1>
+        <p class="sub" data-in style="--d:2">ハラスメントから<br>アジャストメントへ</p>
+        <p class="cap" data-in style="--d:3;font-size:30px">圧倒的な力をもつリーダーの影響力とマネジメント</p>
+      </div>
+      <svg class="illus" viewBox="0 0 620 480" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+        <rect x="10" y="10" width="600" height="460" rx="32" fill="#fff" stroke="#e1e5ea" stroke-width="4"/>
+        <g class="eq">
+          <rect x="60" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-.2s"/><rect x="96" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-.7s"/><rect x="132" y="40" width="26" height="80" rx="6" fill="#6b5ce7" style="animation-delay:-1.1s"/><rect x="168" y="40" width="26" height="80" rx="6" fill="#6b5ce7" style="animation-delay:-.4s"/><rect x="204" y="40" width="26" height="80" rx="6" fill="#6b5ce7" style="animation-delay:-.9s"/><rect x="240" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-1.3s"/><rect x="276" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-.1s"/><rect x="312" y="40" width="26" height="80" rx="6" fill="#6b5ce7" style="animation-delay:-.6s"/><rect x="348" y="40" width="26" height="80" rx="6" fill="#6b5ce7" style="animation-delay:-1s"/><rect x="384" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-.3s"/><rect x="420" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-.8s"/><rect x="456" y="40" width="26" height="80" rx="6" fill="#6b5ce7" style="animation-delay:-1.2s"/><rect x="492" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-.5s"/><rect x="528" y="40" width="26" height="80" rx="6" fill="#9d92ff" style="animation-delay:-1.4s"/>
+        </g>
+        <g fill="#eef1f5"><rect x="111" y="160" width="10" height="240" rx="5"/><rect x="241" y="160" width="10" height="240" rx="5"/><rect x="371" y="160" width="10" height="240" rx="5"/><rect x="501" y="160" width="10" height="240" rx="5"/></g>
+        <g class="fader"><rect x="76" y="340" width="80" height="40" rx="10" fill="#6b5ce7"/><path d="M90 360h52" stroke="#fff" stroke-width="4"/></g>
+        <g class="fader" style="animation-delay:-1.5s"><rect x="206" y="340" width="80" height="40" rx="10" fill="#6b5ce7"/><path d="M220 360h52" stroke="#fff" stroke-width="4"/></g>
+        <g class="fader" style="animation-delay:-3s"><rect x="336" y="340" width="80" height="40" rx="10" fill="#6b5ce7"/><path d="M350 360h52" stroke="#fff" stroke-width="4"/></g>
+        <g class="fader" style="animation-delay:-4.5s"><rect x="466" y="340" width="80" height="40" rx="10" fill="#6b5ce7"/><path d="M480 360h52" stroke="#fff" stroke-width="4"/></g>
+        <g font-size="22" fill="#4f5661"><text x="116" y="446">シグナル</text><text x="246" y="446">ノイズ</text><text x="376" y="446">タイミング</text><text x="506" y="446">自分</text></g>
+      </g></svg>
+    </div>
+    <aside class="notes">今日はお集まりいただきありがとうございます。第3-2章、ハラスメント防止です。
+今回の開催に至ったのは、相談窓口への相談が増えてきていることが背景にあります。ハラスメント関連のトラブルが、ここ最近、訴訟へと発展するケースが世の中的にも増えてきており、改めてこのような場を設けさせていただきました。
+今日のタイトルは「ハラスメントからアジャストメントへ」です。ハラスメントをしない、ではなく、アジャストメント（調整）していく技術を確認していきます。</aside>
+  </section>
+
+  <!-- 02 まず、お答えください -->
+  <section class="slide" data-min="8">
+    <div class="phase" data-until="0">
+      <div class="eyebrow" data-in>まず、お答えください</div>
+      <h2 class="title" data-in style="--d:1">Zoomに表示される質問に答えてください</h2>
+      <div class="qa">
+        <ol class="qlist" data-in style="--d:2">
+          <li><span class="qn">Q1</span><div><p>「これはハラスメントになるのか」と迷ったことはありますか。どんな場面でしたか。</p></div><span class="qk">記述</span></li>
+          <li><span class="qn">Q2</span><div><p>かつて自分が受けたことがある、ハラスメントだと思うことはありますか。</p></div><span class="qk">記述</span></li>
+          <li><span class="qn">Q3</span><div><p>スタッフから相談を受けたことがある方。どんな相談内容でしたか。</p></div><span class="qk">記述</span></li>
+          <li><span class="qn">Q4</span><div><p>「今日この人、機嫌が悪いな」「感じが悪いな」と思った経験はありますか。</p><small>よくある ／ たまにある ／ ほとんどない</small></div><span class="qk">選択</span></li>
+        </ol>
+        <div class="howto" data-in style="--d:3">
+          <h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>回答のしかた</h3>
+          <ol>
+            <li><span>画面に表示される<b>「投票」</b>を見る</span></li>
+            <li><span>Q1〜Q3は<b>記入欄に書く</b>、Q4は<b>1つ選ぶ</b></span></li>
+            <li><span>最後に<b>「送信」</b>を押す</span></li>
+          </ol>
+          <p class="ex">この投票は匿名です</p>
+          <p class="cap">誰が何を書いたかは、こちらにもわかりません。思い当たらない場合は「特にない」で構いません。</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="1" style="justify-content:center">
+      <div class="split" style="grid-template-columns:1fr 480px;gap:60px">
+        <div style="display:flex;flex-direction:column;gap:36px">
+          <span class="poll" data-q="Q4" style="align-self:flex-start">「よくある」「たまにある」 <b contenteditable="true">◯</b>割</span>
+          <p class="lead">機嫌が悪いスタッフがいたら、<br>皆さんは注意されますよね。</p>
+          <h2 class="statement">では、<span class="hl2">皆さん自身</span>は、<br>どうですか。<small>常に機嫌よく、笑顔でいられていますか。</small></h2>
+        </div>
+        <svg class="illus" viewBox="0 0 480 520" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="70" y="20" width="340" height="440" rx="170" fill="#e9e6fd" stroke="#9d92ff" stroke-width="10"/>
+          <rect x="220" y="460" width="40" height="40" fill="#9d92ff"/><rect x="160" y="496" width="160" height="16" rx="8" fill="#9d92ff"/>
+          <circle cx="240" cy="230" r="110" fill="#fff"/>
+          <circle cx="200" cy="210" r="11" fill="#1d2128"/><circle cx="280" cy="210" r="11" fill="#1d2128"/>
+          <path class="mood-a" d="M195 265q45 40 90 0" fill="none" stroke="#1d2128" stroke-width="9" stroke-linecap="round"/>
+          <g class="mood-b"><path d="M195 285q45-36 90 0" fill="none" stroke="#1d2128" stroke-width="9" stroke-linecap="round"/><path d="M180 186l36 10M300 186l-36 10" stroke="#1d2128" stroke-width="8" stroke-linecap="round"/></g>
+        </g></svg>
+      </div>
+    </div>
+    <aside class="notes">早速ですが、これから4つ質問をします。Zoomに表示される質問に答えてください。
+この投票は匿名です。誰が何を書いたかは、こちらにもわかりません。思い当たらない場合は「特にない」で構いません。
+（進行役：Zoomの投票を起動。必ず匿名に設定する。質問を読み上げる）
+では、5分ほど時間を取ります。どうぞ。
+（回答がそろったら）
+（進行役：投票結果を画面共有し、拾って話す）
+⚠️ 進行上の最重要注意：Q2・Q3には、過去の辛い経験や、相談してきたスタッフの情報が含まれる可能性がある。個人や店舗が特定されうる具体的な内容は読み上げない。迷ったら読み上げない。「こういう回答がありました」という程度に留め、深掘りしない。
+ありがとうございます。皆さんの回答を見てみましょう。
+［Q1・判断に迷った場面］（拾い方の例）「飲みに誘うこと、LINEを送る時間帯、といった回答が複数ありますね」「迷った経験がある方が、これだけいらっしゃいます。迷うのは、皆さんだけではありません。」
+今日の後半で、この「迷ったとき」に使える道具をお渡しします。
+［Q2・自分が受けたこと］（内容の読み上げは最小限に）「書いてくださった方、ありがとうございます」
+ここで一つだけ、覚えておいてください。皆さんが今、思い出したことは、それをした相手に、そのつもりがあったかどうかに関係なく、皆さんの記憶に残っています。
+［Q3・受けた相談の内容］「◯◯に関する相談、という回答がありました。これは後半でもう一度出てきます」
+（相談を受けたことがない、という回答があれば）「相談を受けたことがない、というのも、それ自体が悪いことではありません」
+［Q4・機嫌が悪いと思った経験］「『よくある』『たまにある』が◯割ですね」
+［クリック］機嫌が悪いスタッフがいたら、皆さんは注意されますよね。
+では、逆にお聞きします。皆さん自身は、どうですか。
+常に機嫌よく、笑顔でいられていますか。
+（進行役：ここで回答は求めない。投票も取らない。3秒ほど間を取って、次のスライド〈ワーク①〉へ進む。この問いは、後半のアジャスターで回収する）</aside>
+  </section>
+
+  <!-- ワーク① -->
+  <section class="slide" data-min="2">
+    <div class="quiz work" style="flex:1">
+      <div class="qz-top" data-in><span class="qz-no">ワーク ①</span><span class="qz-how">お手元のワークシートに書き出す</span><span class="qz-timer"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:120s"><span class="bar"><i></i></span><b data-countdown="120" data-fmt="mmss">2:00</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">普段から、スタッフとの関係や、指導で、<span class="hl">気をつけていること</span>を、できるだけ具体的に書き出してください</h2>
+      <div class="wk">
+        <div style="display:flex;flex-direction:column;gap:26px">
+          <div class="wk-ex" data-in style="--d:2"><span class="ex-tag" style="align-self:flex-start">例</span><p>プライベートの話は、自分からしないようにしている</p><p>指導するときは、個別に、時間を設けてする</p></div>
+          <div class="rules" data-in style="--d:3"><span><svg class="i"><use href="#i-x"/></svg>発表しません</span><span><svg class="i"><use href="#i-x"/></svg>提出しません</span><span><svg class="i"><use href="#i-check"/></svg>正直に</span></div>
+        </div>
+        <svg class="illus" viewBox="0 0 560 420" data-in style="--d:2" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+          <rect x="60" y="20" width="440" height="380" rx="18" fill="#fff" stroke="#d5dae1" stroke-width="4"/>
+          <text x="96" y="76" font-size="26" fill="#5243c9">気をつけていること</text>
+          <path d="M96 96h368" stroke="#e1e5ea" stroke-width="3"/>
+          <path d="M96 170h368M96 230h368M96 290h368M96 350h368" stroke="#eef1f5" stroke-width="3"/>
+          <path class="wl" d="M100 158h300" stroke="#4f5661" stroke-width="6" stroke-linecap="round"/>
+          <path class="wl" d="M100 218h300" stroke="#4f5661" stroke-width="6" stroke-linecap="round" style="animation-delay:.9s"/>
+          <path class="wl" d="M100 278h240" stroke="#4f5661" stroke-width="6" stroke-linecap="round" style="animation-delay:1.8s"/>
+          <g class="pen"><g transform="translate(100 158)"><path d="M0 0l14-40 24 10-14 40z" fill="#f2be3d"/><path d="M0 0l14-40" stroke="#c98a00" stroke-width="3"/><path d="M0 0l3-10 8 4z" fill="#1d2128"/><rect x="16" y="-56" width="26" height="16" rx="4" transform="rotate(22 29 -48)" fill="#f27a9c"/></g></g>
+        </g></svg>
+      </div>
+    </div>
+    <aside class="notes">ここで、少しだけ、手を動かしていただきます。
+皆さんが、普段から、スタッフとの関係や、指導で、気をつけていることを、お手元のワークシートに、書き出してください。できるだけ、具体的にお願いします。
+たとえば、「プライベートの話は、自分からしないようにしている」。「指導するときは、個別に、時間を設けてする」。こういったことです。2分、時間を取ります。
+これは、発表も、提出もしません。あとで、ご自身で見返します。正直に、書いてください。
+［クリック］（2分のカウントダウンが始まる。0:00で「時間です」と表示）
+（進行役：書いている間は、話しかけない。沈黙を恐れない。書いたものは、集めない。チャットにも書かせない）</aside>
+  </section>
+
+  <!-- 04 事例 -->
+  <section class="slide" data-min="6">
+    <div class="phase" data-until="1">
+      <div class="eyebrow" data-in>事例　全体LINEでの「効率的な」注意</div>
+      <h2 class="title" data-in style="--d:1">店舗で、こんな光景はありませんか</h2>
+      <div class="split" style="grid-template-columns:760px 1fr;gap:56px;align-items:start">
+        <div class="line" data-in style="--d:2">
+          <div class="hd"><span>◯◯店　全体</span><small>メンバー 18</small></div>
+          <div class="bd">
+            <div class="msg"><span class="av"><svg class="i"><use href="#i-person"/></svg></span><div><p class="who">店長</p><span class="bub">何度も言ってるけど、確認してから発注して</span><span class="rd">既読 17</span></div></div>
+            <div class="msg" data-step="1"><span class="av"><svg class="i"><use href="#i-person"/></svg></span><div><p class="who">店長</p><span class="bub">来週のリコメンドメニュー、いつになったら提出されますか？何度も言わせないでください</span><span class="rd">既読 17</span></div></div>
+            <div class="msg"><span class="av" style="color:#9aa3ae"><svg class="i"><use href="#i-person"/></svg></span><div><span class="typing"><i></i><i></i><i></i></span></div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:30px">
+          <p class="lead" data-in style="--d:3">名前は出さないけれど、<br><b>誰のミスか、全員がわかっている</b>。</p>
+          <div data-in style="--d:4;display:flex;flex-direction:column;gap:14px"><p class="cap">送る側は、こう思っているかもしれない</p><div class="thinks"><span>効率的に、全員に注意喚起した</span><span>教育だ</span></div></div>
+          <div data-step="1" style="display:flex;flex-direction:column;gap:18px;margin-top:10px">
+            <span class="stamp-pub" style="align-self:flex-start"><svg class="i"><use href="#i-alert"/></svg>公開叱責</span>
+            <p class="text">相談窓口にも実際に届いている、<b>ハラスメントになる可能性が高い</b>事例です</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="2" data-until="3">
+      <div class="eyebrow">自社のアンケート（2026年8〜9月・店舗内での言動・回答97件／10月7日時点）</div>
+      <h2 class="title">「受けた」「目撃した」は、約4割</h2>
+      <div class="split" style="grid-template-columns:560px 1fr;gap:56px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <div class="stat"><span class="v"><span data-count="38">38</span><small>名</small></span><span class="k">「受けた」または「目撃した」<br>回答97件のうち、約4割</span></div>
+          <div class="stack"><span style="width:20.6%;background:var(--accent)">20</span><span style="width:18.6%;background:#aab2bd">18</span><span style="width:60.8%;background:#dfe3e9;color:var(--ink-2)">59</span></div>
+          <div class="legend"><span><i></i>受けた 20名</span><span><i class="w"></i>目撃のみ 18名</span><span>どちらもない 59名</span></div>
+          <p class="cap">※「どちらもない」は、無回答1名を含む</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px" data-step="3">
+          <div style="display:flex;justify-content:space-between;align-items:center"><p style="font-size:30px;font-weight:900">多かった類型</p><div class="legend"><span><i></i>受けた</span><span><i class="w"></i>目撃</span></div></div>
+          <div class="bars">
+            <div class="r"><span>指示・態度の波<br><b>（気分屋な言動）</b></span><div class="bb"><span class="b" style="--v:17"><i class="grow"></i><em>17名</em></span><span class="b w" style="--v:14"><i class="grow"></i><em>14名</em></span></div></div>
+            <div class="r"><span>人前での叱責（LINE内を含む）</span><div class="bb"><span class="b" style="--v:10"><i class="grow"></i><em>10名</em></span><span class="b w" style="--v:16"><i class="grow"></i><em>16名</em></span></div></div>
+            <div class="r"><span>暴言・威圧的な態度</span><div class="bb"><span class="b" style="--v:10"><i class="grow"></i><em>10名</em></span><span class="b w" style="--v:15"><i class="grow"></i><em>15名</em></span></div></div>
+            <div class="r"><span>溜息・舌打ち・睨む・<br>小バカにした態度</span><div class="bb"><span class="b" style="--v:9"><i class="grow"></i><em>9名</em></span><span class="b w" style="--v:13"><i class="grow"></i><em>13名</em></span></div></div>
+            <div class="r"><span>休日の業務連絡・飲み会の誘い</span><div class="bb"><span class="b" style="--v:8"><i class="grow"></i><em>8名</em></span><span class="b w" style="--v:3"><i class="grow"></i><em>3名</em></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="4" data-until="5">
+      <div class="eyebrow">実際に届いている相談</div>
+      <h2 class="title">どれも、よくある「いつもの光景」</h2>
+      <div class="split" style="grid-template-columns:1fr 620px;gap:48px;align-items:center">
+        <ul class="consult">
+          <li data-step="4" class="slide-in"><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>営業後や休みに、食事や飲みに誘う</li>
+          <li data-step="4" class="slide-in"><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>場を和ませるための「いじり」や「軽口」</li>
+          <li data-step="4" class="slide-in"><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span>熱心さゆえの「休日・深夜のLINE」</li>
+          <li data-step="4" class="slide-in"><span class="ico"><svg class="i"><use href="#i-alert"/></svg></span>気分で態度が変わりすぎる</li>
+          <li data-step="4" class="slide-in"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>抽象的な指示を受けて、やったら怒られる</li>
+        </ul>
+        <div class="card is-accent" data-step="5" style="padding:34px 36px;gap:18px">
+          <p style="font-size:40px;font-weight:900;line-height:1.4">これらは「性格の悪い人」の話ではありません</p>
+          <p style="font-size:28px">裁判で負けて、キャリアを失い、数百万円の支払いを命じられたリーダーの多くが、<b>「熱心で、店を良くしたい、スタッフと仲良くしたい」</b>と思っていた人たちです</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="6">
+      <div class="eyebrow">気遣いが、認識のズレを生む</div>
+      <h2 class="title">送る側は「気遣い」のつもり</h2>
+      <div class="split" style="grid-template-columns:1fr 600px;gap:48px;align-items:center">
+        <div class="cols cols-2" style="gap:18px">
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">「家族のような関係性」の強要</p></div>
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">良かれと思っての「プライベートな誘い」</p></div>
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">場を和ませるつもりの「おちゃらけ・いじり」</p></div>
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">熱心さゆえの「休日LINEの送信」</p></div>
+        </div>
+        <svg class="illus" viewBox="0 0 600 360" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <use href="#i-person" x="20" y="120" width="140" height="210" style="color:#6b5ce7"/>
+          <use href="#i-person" x="440" y="120" width="140" height="210" style="color:#9aa3ae"/>
+          <g class="a-bob"><path d="M60 20h130a18 18 0 0 1 18 18v40a18 18 0 0 1-18 18h-80l-24 22v-22h-26a18 18 0 0 1-18-18v-40a18 18 0 0 1 18-18z" fill="#e9e6fd"/><text x="125" y="70" font-size="28" fill="#5243c9">大丈夫！</text></g>
+          <g class="a-bob" style="animation-delay:-1.2s"><path d="M410 20h130a18 18 0 0 1 18 18v40a18 18 0 0 1-18 18h-26v22l-24-22h-80a18 18 0 0 1-18-18v-40a18 18 0 0 1 18-18z" fill="#f9e3e0"/><text x="475" y="72" font-size="34" fill="#c23a2e">……</text></g>
+          <path d="M190 250h220" stroke="#d5dae1" stroke-width="6" stroke-dasharray="14 12"/>
+          <text x="300" y="236" font-size="28" fill="#c23a2e">ズレ</text>
+        </g></svg>
+      </div>
+      <div class="alert" data-step="7"><svg class="i"><use href="#i-alert"/></svg><p>本人は「大丈夫だ」と思っていても、受け手との間には、<b>決定的な認識のズレ</b>がある</p></div>
+    </div>
+    <aside class="notes">（スライド：店舗の全体LINEグループ。名指しはしないが誰のことか特定できる状態で「何度も言ってるけど、確認してから発注して」というメッセージ）
+店舗でこんな光景はありませんか。
+「あえて名前は出さないけれど、誰のミスか全員がわかっている状態」で、全体LINEに注意を流す。送る側は「効率的に全員に注意喚起した」「教育だ」と思っているかもしれません。
+頭の中で、自分のお店に当てはめてみてください。
+［クリック］（2〜3秒待ってから）実はこれ、相談窓口にも実際に届いている、「公開叱責」というハラスメントになる可能性が高い事例です。「来週のリコメンドメニュー、いつになったら提出されますか。何度も言わせないでください」といった連絡も、同じです。
+［クリック］当社でも、職場環境に関するアンケートを取りました。2026年8月から9月の、店舗内での言動についてです。回答は97件でした。
+ハラスメントを「受けた」、または「目撃した」と答えた人は、38人、約4割です。内訳は、「受けた」が20人、「目撃のみ」が18人です。
+［クリック］いちばん多かったのは、指示・態度の波、いわゆる気分屋な言動です。「受けた」と答えた20人のうち、17人が、これを挙げています。次に多いのが、人前での叱責、LINEの中も含みます。それから、暴言・威圧的な態度。この2つは、それぞれ10人です。溜息や舌打ち、睨むといった態度が、9人。休日の業務連絡・飲み会の誘いも、8人います。
+［クリック］ほかにも、実際にこんな相談が届いています。
+営業後や休みに、食事や飲みに誘う。場を和ませるためであろう「いじり」や「軽口」。熱心さゆえの「休日・深夜のLINE」。気分で態度が変わりすぎる。抽象的な指示を受けて、やったら怒られる。
+［クリック］これらの事例は、「性格の悪い人」の話ではありません。裁判で負けて、キャリアを失い、数百万円の支払いを命じられたリーダーたちの多くが、皆さんと同じように「熱心で、店を良くしたい、スタッフと仲良くしたい」と思っていた人たちです。
+では、なぜ、「熱心で、店を良くしたい」人たちが、ハラスメントと言われてしまうのか。ここに、認識のズレがあります。
+［クリック］「家族のような関係性」を求める。良かれと思って、プライベートな誘いをする。場を和ませるつもりで、おちゃらけたり、いじったりする。熱心さゆえに、休日にLINEを送る。どれも、送る側は気遣いのつもりです。
+［クリック］でも、本人が「大丈夫だ」と思っていても、受け手との間には、決定的な認識のズレがあります。</aside>
+  </section>
+
+  <!-- 05 なぜ起きるのか -->
+  <section class="slide" data-min="6">
+    <div class="phase" data-until="1">
+      <div class="eyebrow" data-in>なぜ起きるのか</div>
+      <h2 class="title" data-in style="--d:1">ハラスメントの構造は、「差」が生む</h2>
+      <div class="gapt" data-in style="--d:2">
+        <div class="h">差</div><div class="h">差が小さいと</div><div class="h" data-step="1" style="color:var(--danger)">差が広がると</div>
+        <div class="k">年齢の差</div><div>同い年なら、断りやすい・誘いやすい・言いやすい</div><div class="wide" data-step="1">断れない・言えない</div>
+        <div class="k">経験の差</div><div>同じ経験なら、語りやすい・伝えやすい・読み取りやすい</div><div class="wide" data-step="1">伝わらない・読み取れない</div>
+        <div class="k">立場の差</div><div>同じ立場なら、相談しやすい・参考にしやすい・聞きやすい</div><div class="wide" data-step="1">相談できない・聞けない</div>
+        <div class="k"><span>力の差<small>評価・シフトなどを左右できる力</small></span></div><div>対等に、言い返せる</div><div class="wide" data-step="1">断ると、自分の立場に響く</div>
+      </div>
+      <div class="alert" data-step="1"><svg class="i"><use href="#i-alert"/></svg><p><b>差を感じるほど、差が広がるほど、意思を伝えられなくなる</b></p></div>
+    </div>
+    <div class="phase" data-step="2" data-until="2">
+      <div class="eyebrow">上から見ると</div>
+      <h2 class="title">あなたの手には「高性能のマイク」がある</h2>
+      <div class="split" style="grid-template-columns:860px 1fr;gap:48px">
+        <svg class="illus" viewBox="0 0 860 440" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="0" y="330" width="860" height="14" rx="7" fill="#e1e5ea"/>
+          <use href="#i-person" x="20" y="120" width="140" height="210" style="color:#6b5ce7"/>
+          <rect x="146" y="150" width="22" height="50" rx="10" fill="#4f5661" transform="rotate(30 157 175)"/><circle cx="170" cy="150" r="16" fill="#1d2128"/>
+          <path class="wv" d="M200 120a60 60 0 0 1 0 70" fill="none" stroke="#6b5ce7" stroke-width="7" stroke-linecap="round"/>
+          <path class="wv" d="M200 100a90 90 0 0 1 0 110" fill="none" stroke="#6b5ce7" stroke-width="7" stroke-linecap="round" style="animation-delay:.8s"/>
+          <path class="wv" d="M200 80a120 120 0 0 1 0 150" fill="none" stroke="#6b5ce7" stroke-width="7" stroke-linecap="round" style="animation-delay:1.6s"/>
+          <use href="#i-person" x="440" y="210" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="540" y="210" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="640" y="210" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="740" y="210" width="80" height="120" style="color:#9aa3ae"/>
+          <text x="780" y="384" font-size="22" fill="#4f5661">店舗の端まで届く</text>
+          <g transform="translate(600 40)">
+            <g class="sun"><circle cx="60" cy="60" r="34" fill="#f2be3d"/><path d="M60 8v14M60 98v14M8 60h14M98 60h14M23 23l10 10M87 87l10 10M97 23l-10 10M33 87l-10 10" stroke="#f2be3d" stroke-width="7" stroke-linecap="round"/></g>
+            <g class="storm"><path d="M24 80a24 24 0 0 1 6-47 34 34 0 0 1 64 8 20 20 0 0 1 2 39z" fill="#8d9bb5"/><g class="rain"><path d="M40 96l-6 16M64 96l-6 16M88 96l-6 16" stroke="#5d7fb8" stroke-width="6" stroke-linecap="round"/></g></g>
+            <text x="60" y="160" font-size="24" fill="#4f5661">機嫌＝店の天気</text>
+          </g>
+        </g></svg>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <ul class="points plain">
+            <li><div style="font-size:32px">あなたの言葉は<b>「店の法律」</b>、スタッフにとって<b>「絶対的な正解」</b>になる</div></li>
+            <li><div style="font-size:32px">小さい声でも、<b>店舗の端まで届く</b></div></li>
+            <li><div style="font-size:32px">あなたの<b>「機嫌」は、その店の「天気」</b>になる</div></li>
+          </ul>
+          <div class="card is-accent" style="padding:22px 28px"><p style="font-size:30px"><b>差があるぶん、</b>あなたの言動は、思っている以上に<span class="hl">増幅されて届く</span></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="3" data-until="4">
+      <div class="eyebrow">下から見ると</div>
+      <h2 class="title">断ったら、損をするかもしれない</h2>
+      <div class="split" style="grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <div class="talk">
+            <div class="t"><span class="ico"><svg class="i"><use href="#i-person"/></svg></span><p>仕事終わりに、一杯行こうか</p></div>
+            <div class="t r"><p>今日は疲れているので、帰りたいです</p><span class="ico gray"><svg class="i"><use href="#i-person"/></svg></span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px"><p class="cap">断ったスタッフの頭の中では</p>
+          <div class="thinks"><span>「ノリが悪い」と評価が下がるのでは？</span><span>明日の仕込みで、冷たくされるのでは？</span><span>仲間外れにされるのでは？</span></div></div>
+        </div>
+        <div class="card is-accent" data-step="4" style="padding:30px 34px;gap:18px">
+          <h3 style="font-size:46px"><span class="ico"><svg class="i"><use href="#i-alert"/></svg></span>拒絶コスト</h3>
+          <p style="font-size:30px">「断ったことで、自分が損をするかもしれない不安」</p>
+          <p style="font-size:34px;font-weight:900;color:var(--accent-ink)">拒絶コストは、差が大きいほど、大きくなる</p>
+          <p style="font-size:28px">スタッフの「はい！」は、喜んでいるからではなく、<b>断るリスクを背負い切れない</b>だけかもしれません</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="5" data-until="6">
+      <div class="eyebrow">差が「コスト」になるのは、いつか</div>
+      <h2 class="title">差があれば、誰に対しても断れなくなるのか</h2>
+      <div class="cols cols-2">
+        <div class="card" style="padding:28px 32px">
+          <svg class="illus" viewBox="0 0 700 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="0" y="180" width="700" height="10" rx="5" fill="#e1e5ea"/><rect x="560" y="30" width="10" height="150" fill="#9aa3ae"/><path d="M540 30h60" stroke="#9aa3ae" stroke-width="10" stroke-linecap="round"/><circle cx="590" cy="44" r="14" fill="#f2be3d" class="a-pulse"/>
+            <use href="#i-person" x="140" y="60" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="320" y="60" width="80" height="120" style="color:#6b5ce7"/>
+            <g class="a-bob"><rect x="380" y="10" width="150" height="50" rx="16" fill="#ddf2e7"/><text x="455" y="45" font-size="26" fill="#22915c">お断りです</text></g>
+          </g></svg>
+          <h3>街角で、全く知らない人に誘われたら</h3>
+          <p>断れる。「ふざけるな」と言い返せるかもしれない。<b>何を思われても、自分の立場には影響しない</b></p>
+        </div>
+        <div class="card is-accent" style="padding:28px 32px">
+          <svg class="illus" viewBox="0 0 700 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="0" y="180" width="700" height="10" rx="5" fill="#e1e5ea"/><path d="M440 60l120-40 120 40v120H440z" fill="#e9e6fd"/><rect x="530" y="110" width="60" height="70" fill="#fff"/>
+            <use href="#i-person" x="140" y="60" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="320" y="60" width="80" height="120" style="color:#6b5ce7"/>
+            <g class="a-bob"><rect x="230" y="10" width="90" height="50" rx="16" fill="#f9e3e0"/><text x="275" y="45" font-size="26" fill="#c23a2e">……</text></g>
+          </g></svg>
+          <h3>同じ人が、同じ職場にいたら</h3>
+          <p>自分の立場、働く環境、人間関係がある。<b>断ったあとの評価や空気が気になる</b></p>
+        </div>
+      </div>
+      <div class="alert" data-step="6"><svg class="i"><use href="#i-alert"/></svg><p>差が、<b>自分のポジションに影響するとき</b>、差は「コスト」になる。だから、ハラスメントは<b>店・会社という「コミュニティ」の中で起きる</b></p></div>
+    </div>
+    <div class="phase" data-step="7">
+      <div class="eyebrow">自社のアンケート（2026年8〜9月・店舗内での言動・回答97件／10月7日時点）</div>
+      <h2 class="title">約6割が、相談できなかった</h2>
+      <p class="text">ハラスメントを受けた・目撃したと答え、相談の設問にも答えた<b>26名</b>のうち</p>
+      <div class="split2">
+        <div style="width:42%;background:var(--ok)"><b>11名（42%）</b><small>相談できた</small></div>
+        <div style="width:58%;background:var(--danger)"><b>15名（58%）</b><small>相談できなかった</small></div>
+      </div>
+      <div class="card is-soft" data-step="8" style="padding:26px 32px;gap:10px">
+        <p style="font-size:34px;font-weight:900">どれだけ仲が良くても、フラットな関係だと思っていても、差はなくならない</p>
+        <p style="font-size:28px">「嫌なら言ってね」と気を遣っても、言えない構造は残る。距離を近づけても（「家族のように」「仲間としてカジュアルに」）、<b>差は消えない</b></p>
+      </div>
+    </div>
+    <aside class="notes">なぜ、ハラスメントは起きるのか。それは、「差」があるからです。
+その差には、いくつかの種類があります。年齢の差。経験の差。立場の差。そして、力の差です。力の差とは、評価やシフトなどを左右できる力の差です。
+差が小さいと、言いやすいのです。同い年なら、断りやすい。誘いやすい。言いやすい。経験が同じなら、語りやすい。伝えやすい。相手の言いたいことも、読み取りやすい。立場が同じなら、相談しやすい。参考にしやすい。聞きやすい。
+［クリック］逆に、差が広がると、どうなるか。下の立場の人は、自分の意思が言えなくなります。そして、差を感じれば感じるほど、差が広がれば広がるほど、意思を伝えられなくなります。これが、ハラスメントの構造です。
+皆さんは、店の中で、一番上にいます。スタッフとの間には、年齢も、経験も、立場も、力も、差があります。この差を、上から と、下から、両方見てみましょう。
+［クリック］まず、上から。皆さんの手には、「高性能のマイク」があります。
+厨房において、皆さんの言葉はただの会話ではありません。それは「店の法律」であり、スタッフにとっては「絶対的な正解」になります。「いやいや、自分はそんな大したことない」と思っていても、小さい声で喋ったとしても、店舗の端にまで届くのです。また、皆さんの「機嫌」は、その店の「天気」になります。皆さんが不機嫌なら、店中が嵐になり、スタッフは萎縮してしまいます。差があるぶん、皆さんの言動は、自分が思っている以上に、増幅されて届きます。
+［クリック］次に、下から。
+例えば、皆さんが仕事終わりに「一杯行こうか」と誘ったとします。スタッフが「今日は疲れているので帰りたいです」と断ったとき、その後に何が起きるでしょうか。
+「あいつはノリが悪い」と評価が下がるのではないか。明日の仕込みの時、シェフが不機嫌になって冷たくされるのではないか。仲間外れにされるのではないか。
+「そんなことないよ」と思うのが、影響力がある立場の人です。そして、影響を受ける側の人の心理が、これです。
+［クリック］この、「断ったことで自分が損をするかもしれない不安」を、「拒絶コスト」と言います。拒絶コストは、差が大きいほど、大きくなります。スタッフが笑って「はい！」と言っているのは、喜んでいるからではなく、断るリスクを背負い切れないからかもしれない、ということです。
+［クリック］ここで、一つ考えてみてください。差があれば、誰に対しても、断れなくなるのでしょうか。
+街角で、全然知らない人に、「一杯行こうよ」と誘われたら、どうでしょう。断れますよね。「ふざけるな」と言い返せるかもしれません。その人に何を思われても、自分の立場には、何の影響もないからです。自分に影響しない人なら、差を感じることもないので、言い返せるし、聞かなくていいし、反論もできます。
+でも、同じ人が、同じ職場にいたらどうでしょう。自分の立場があり、働く環境があり、人間関係があります。断ったあとの、評価や、空気が気になります。
+［クリック］差が、自分のポジションに影響するとき、はじめて、差は「コスト」になるのです。だから、ハラスメントは、店や会社という、コミュニティの中で起きるのです。
+［クリック］実際、当社のアンケートでも、こうした「言えなさ」が表れています。ハラスメントを「受けた」または「目撃した」と答え、相談の設問にも答えた26人のうち、相談できたのは11人、約4割です。15人、約6割は、相談できなかったと答えています。
+［クリック］どれだけ仲が良いと思っていても、どれだけフラットな関係だと思っていても、スタッフの側から見れば、差はなくなっていません。「嫌なら言ってね」「無理なら断っていいよ」と気を遣っていても、差があるかぎり、言えない構造は残ります。
+一方で、この力を理解したうえで、「だからこそ、相手に寄り添って、家族のように親身になろう」「仲間として、カジュアルに接しよう」と、距離を近づけようとする。それもまた、トラブルに発展するケースがあります。距離を近づけても、差がなくなるわけではないからです。</aside>
+  </section>
+
+  <!-- ワーク② -->
+  <section class="slide" data-min="2">
+    <div class="quiz work" style="flex:1">
+      <div class="qz-top" data-in><span class="qz-no">ワーク ②</span><span class="qz-how">ワークシートに書き足す</span><span class="qz-timer"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:120s"><span class="bar"><i></i></span><b data-countdown="120" data-fmt="mmss">2:00</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">気をつけていたつもりだったけれど、<span class="hl">見落としていたかもしれないこと</span>があれば、追加で書き足してください</h2>
+      <div class="wk">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <p class="cap" data-in style="--d:2">さきほどの事例を、思い出して。<b>相手から見たら、どう見えていたか</b>を想像しながら</p>
+          <div class="chips" data-in style="--d:2;gap:12px">
+            <span style="font-size:28px;font-weight:700;color:var(--ink)">全体LINEでの注意</span><span style="font-size:28px;font-weight:700;color:var(--ink)">食事や飲みの誘い</span><span style="font-size:28px;font-weight:700;color:var(--ink)">いじりや軽口</span><span style="font-size:28px;font-weight:700;color:var(--ink)">休日・深夜のLINE</span><span style="font-size:28px;font-weight:700;color:var(--ink)">気分で態度が変わる</span><span style="font-size:28px;font-weight:700;color:var(--ink)">曖昧な指示</span><span style="font-size:28px;font-weight:700;color:var(--ink)">「嫌なら断っていいよ」</span><span style="font-size:28px;font-weight:700;color:var(--ink)">「わかった？できる？」</span>
+          </div>
+          <div class="alert is-ok" data-in style="--d:3"><svg class="i"><use href="#i-check"/></svg><p>自分を責めるためではなく、<b>気づくためのワーク</b>です</p></div>
+        </div>
+        <svg class="illus" viewBox="0 0 560 420" data-in style="--d:2" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <use href="#i-person" x="40" y="150" width="150" height="230" style="color:#6b5ce7"/>
+          <use href="#i-person" x="370" y="150" width="150" height="230" style="color:#9aa3ae"/>
+          <g class="a-nudge"><circle cx="280" cy="150" r="54" fill="#fff" stroke="#6b5ce7" stroke-width="10"/><path d="M318 190l46 46" stroke="#6b5ce7" stroke-width="16" stroke-linecap="round"/><path d="M250 150q30-30 60 0q-30 30-60 0z" fill="#e9e6fd" stroke="#6b5ce7" stroke-width="4"/><circle cx="280" cy="150" r="10" fill="#5243c9"/></g>
+          <text x="445" y="130" font-size="24" fill="#4f5661">相手から見ると？</text>
+        </g></svg>
+      </div>
+    </div>
+    <aside class="notes">もう一度、手を動かしていただきます。
+さきほど書いた、「普段から気をつけていること」を、見てください。そのうえで、気をつけていたつもりだったけれど、見落としていたかもしれない、と感じることがあれば、追加で書き足してください。
+さきほどの事例を、思い出してみてください。全体LINEでの注意。食事や飲みの誘い。いじりや、軽口。休日や深夜のLINE。気分で、態度が変わること。曖昧な指示。そして、「嫌なら断っていいよ」「わかった？できる？」と、確認していたこと。相手から見たら、どう見えていたか。それを、想像しながら、書いてください。2分です。
+これは、自分を責めるためのものではありません。気づくためのものです。気づけた、ということが、一番の成果です。
+［クリック］（2分のカウントダウンが始まる。0:00で「時間です」と表示）
+（進行役：書いている間は、話しかけない。共有も、回収もしない）</aside>
+  </section>
+
+  <!-- 06 何を失うか -->
+  <section class="slide" data-min="3">
+    <div class="phase" data-until="2">
+      <div class="eyebrow" data-in>何を失うか</div>
+      <h2 class="title" data-in style="--d:1">店も、あなた個人も、大きな代償を負う</h2>
+      <div class="lose2">
+        <div class="card" data-step="1">
+          <h3><span class="ico gray"><svg class="i"><use href="#i-store"/></svg></span>会社・店舗が失うもの</h3>
+          <div style="display:grid;grid-template-columns:1fr 220px;gap:20px;align-items:center">
+            <p><b>隠蔽体質になる。</b>スタッフが責任者に怯え、報告が上がってこなくなる</p>
+            <svg class="illus" viewBox="0 0 220 170" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+              <use href="#i-person" x="70" y="10" width="80" height="110" style="color:#6b5ce7"/><rect x="20" y="118" width="180" height="12" rx="6" fill="#c23a2e"/>
+              <g class="repup"><rect x="40" y="134" width="56" height="30" rx="6" fill="#fff" stroke="#d5dae1" stroke-width="3"/><rect x="124" y="134" width="56" height="30" rx="6" fill="#fff" stroke="#d5dae1" stroke-width="3"/></g>
+            </g></svg>
+          </div>
+          <div class="chips"><span>打刻のズレ</span><span>金銭ミス</span><span>体調不良</span><span>食材の誤表記</span></div>
+          <p>公になれば、SNS等で拡散。<b>求人応募の減少、顧客離れ</b></p>
+        </div>
+        <div class="card is-accent" data-step="2">
+          <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
+          <p><span class="kind civil">民事</span>スタッフがメンタル疾患・休職・自殺に至った場合、<b>会社だけでなく店長・シェフ個人にも損害賠償が命じられた判例</b>がある</p>
+          <p><span class="kind inhouse">社内</span>懲戒処分（降格・減給・懲戒解雇等）の対象</p>
+          <p><span class="kind career">キャリア</span>録音・録画がSNSで拡散されれば、処分の有無にかかわらず<b>実質的に終わる</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="3">
+      <div class="eyebrow">自社の実例（匿名化）</div>
+      <h2 class="title">役職の高さは、免罪符にならない</h2>
+      <ul class="cases">
+        <li data-step="3" class="slide-in"><span>取締役自身によるパワーハラスメントが発覚</span><b class="res">辞任</b></li>
+        <li data-step="4" class="slide-in"><span>経営陣全体のハラスメント防止責任が問われた</span><b class="res">代表取締役・取締役全員の<br>報酬減額</b></li>
+        <li data-step="5" class="slide-in"><span>執行役員・店長によるセクシャルハラスメントと、従業員によるパワハラ・セクハラが複合的に発覚</span><b class="res">複数名が<br>減給・諭旨退職</b></li>
+      </ul>
+    </div>
+    <aside class="notes">では、この調整を誤ると、何が起きるか。
+［クリック］【会社・店舗が失うもの】
+一番怖いのは、店が「隠蔽体質」になることです。スタッフが責任者に怯えるようになると、打刻のズレ、金銭ミス、体調不良、食材の誤表記。そういった報告が、上がってこなくなります。ハラスメントは、ハラスメントだけの問題では終わりません。
+そして、公になれば、SNS等で拡散され、求人応募の減少や顧客離れにつながります。
+［クリック］【あなた個人が負うもの】
+スタッフがメンタル疾患を発症したり、休職や自殺に追い込まれたりした場合、裁判で会社だけでなく、店長・シェフ個人にも損害賠償が命じられた判例があります。社内でも、懲戒処分の対象になります。
+そして、録音・録画がSNSで拡散されれば、法的な処分の有無にかかわらず、キャリアが実質的に終わります。
+［クリック］【自社の実例（匿名化）】
+取締役自身によるパワーハラスメントが発覚し、辞任に至った事案。
+［クリック］代表取締役・取締役全員の報酬減額という形で、経営陣全体のハラスメント防止責任が問われた事案。
+［クリック］執行役員・店長によるセクシャルハラスメントと、従業員によるパワハラ・セクハラが複合的に発覚し、複数名が減給・諭旨退職となった事案。
+役職の高さは、免罪符になりません。</aside>
+  </section>
+
+  <!-- 07 アジャストメントの2つの道具 -->
+  <section class="slide" data-min="2">
+    <div class="eyebrow" data-in>アジャストメントの2つの道具</div>
+    <h2 class="title" data-in style="--d:1">性格を変えるのではなく、出力を調整する</h2>
+    <div class="cols cols-2" style="flex:1">
+      <div class="card" data-step="1" style="align-items:center;text-align:center;gap:14px">
+        <svg class="illus" viewBox="0 0 400 300" style="height:290px;width:auto" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+          <circle class="pass" cx="160" cy="30" r="8" fill="#9d92ff"/><circle class="pass" cx="230" cy="20" r="7" fill="#9d92ff" style="animation-delay:1.2s"/><circle class="pass" cx="190" cy="10" r="8" fill="#9d92ff" style="animation-delay:2.4s"/>
+          <rect class="stop" x="236" y="2" width="44" height="34" rx="8" fill="#c23a2e" style="animation-delay:.6s"/><rect class="stop" x="120" y="6" width="40" height="30" rx="8" fill="#c23a2e" style="animation-delay:2s"/>
+          <path d="M60 130h280l-40 90H100z" fill="#e9e6fd" stroke="#6b5ce7" stroke-width="8" stroke-linejoin="round"/>
+          <path d="M60 130h280" stroke="#6b5ce7" stroke-width="10" stroke-linecap="round"/>
+          <path d="M100 150h200M110 172h180M120 194h160M140 130v80M180 130v90M220 130v90M260 130v80" stroke="#9d92ff" stroke-width="3"/>
+          <path d="M20 130h40M340 130h40" stroke="#6b5ce7" stroke-width="10" stroke-linecap="round"/>
+        </g></svg>
+        <h3 style="font-size:46px;justify-content:center"><span class="badge" style="font-size:56px">1</span>フィルター<small style="font-size:30px;color:var(--ink-2)">（ふるい）</small></h3>
+        <p style="font-size:40px;font-weight:900;color:var(--accent-ink)">それ、言って〈やって〉いいか？</p>
+        <p>4つの視点で、言う前・やる前に検品する</p>
+      </div>
+      <div class="card is-accent" data-step="2" style="align-items:center;text-align:center;gap:14px">
+        <svg class="illus" viewBox="0 0 400 300" style="height:290px;width:auto" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+          <g stroke-width="14" stroke-linecap="round" fill="none">
+            <path class="arcseg" d="M106 214a110 110 0 0 1-12-60" stroke="#9d92ff" style="animation-delay:-5.4s"/><path class="arcseg" d="M98 130a110 110 0 0 1 34-48" stroke="#9d92ff" style="animation-delay:-4.8s"/><path class="arcseg" d="M152 66a110 110 0 0 1 58-26" stroke="#6b5ce7" style="animation-delay:-4.2s"/><path class="arcseg" d="M234 42a110 110 0 0 1 54 30" stroke="#6b5ce7" style="animation-delay:-3.6s"/><path class="arcseg" d="M304 92a110 110 0 0 1 14 58" stroke="#5243c9" style="animation-delay:-3s"/>
+          </g>
+          <circle cx="200" cy="150" r="80" fill="#fff" stroke="#d5dae1" stroke-width="6"/>
+          <g class="knob"><circle cx="200" cy="150" r="64" fill="#e9e6fd"/><path d="M200 150V96" stroke="#5243c9" stroke-width="12" stroke-linecap="round"/></g>
+        </g></svg>
+        <h3 style="font-size:46px;justify-content:center"><span class="badge" style="font-size:56px">2</span>アジャスター<small style="font-size:30px;color:var(--ink-2)">（つまみ）</small></h3>
+        <p style="font-size:40px;font-weight:900;color:var(--accent-ink)">どう言えば、伝わるか？</p>
+        <p>何を・どう・いつ伝えるか。自分の感情をどう整えるか</p>
+      </div>
+    </div>
+    <aside class="notes">ハラスメントというと、「これをしてはいけない」という禁止事項や法律を思い浮かべるかもしれません。でも、大事なのはそこではありません。
+皆さんが持つその強い力を、今の時代、今の相手に合わせて最適に調整する。それがアジャストメントです。性格を変えるのではなく、出力を調整する。これは、皆さん自身を守るための防衛術でもあります。
+そのための道具が、2つあります。
+［クリック］一つ目は、フィルター。言う前、やる前に通す、ふるいです。「それ、言って〈やって〉いいか？」を確かめます。4つの視点で、言う前・やる前に検品します。
+［クリック］二つ目は、アジャスター。伝え方を整える、つまみです。「どう言えば、伝わるか？」を整えます。何を・どう・いつ伝えるか。そして、自分の感情をどう整えるか、です。</aside>
+  </section>
+
+  <!-- 08 フィルター -->
+  <section class="slide" data-min="5">
+    <div class="phase" data-until="4" style="gap:24px">
+      <div class="eyebrow" data-in>① フィルター（ふるい）｜言う前に、4つで検品する</div>
+      <h2 class="title" data-in style="--d:1">迷ったときは、4つの問いに答える</h2>
+      <div class="filters">
+        <div class="card" data-step="1">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><use href="#i-person" x="10" y="26" width="44" height="74" style="color:#6b5ce7"/><use class="cp2" href="#i-person" x="40" y="26" width="44" height="74" style="color:#9d92ff"/><use class="cp3" href="#i-person" x="68" y="26" width="44" height="74" style="color:#c5bdff"/></svg>
+          <h3>コピー<small>フィルター</small></h3>
+          <p class="q">新人も、スタッフ全員も、あなたの真似をしたら、誇れる店か？</p>
+          <p class="e">特定のスタッフを「姫」扱いする／鍋を叩きつけ、包丁を放るように置く／ミスの多いスタッフを皆の前でネタにする／業者を怒鳴る</p>
+        </div>
+        <div class="card" data-step="2">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><g class="nob"><path d="M22 28h76a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H54l-18 16V82H22a10 10 0 0 1-10-10V38a10 10 0 0 1 10-10z" fill="#fff" stroke="#6b5ce7" stroke-width="5"/><text x="60" y="68" font-size="30" font-weight="900" text-anchor="middle" fill="#5243c9" font-family="Dela Gothic One, sans-serif">NO</text></g></svg>
+          <h3>リスク<small>フィルター</small></h3>
+          <p class="q">相手が「NO」と言っても、評価も空気も変わらないか？</p>
+          <p class="e">「わかった？できる？」→「はい」→できていない→「できるって言ったよね？」／「急だけど出られる？嫌ならいいんだけど」／後出しジャンケン／休日・深夜のLINE</p>
+        </div>
+        <div class="card" data-step="3">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><path class="beat" d="M60 96L26 62a20 20 0 0 1 34-26 20 20 0 0 1 34 26z" fill="#f27a9c"/></svg>
+          <h3>大切な人<small>フィルター</small></h3>
+          <p class="q">自分の大切な人が、他所で同じことをされても平気か？</p>
+          <p class="e">「今日かわいいね」「彼氏とはどうなの？」／二人きりの飲みに何度も誘う／断れない相手を、業務外の場に誘い続ける</p>
+        </div>
+        <div class="card" data-step="4">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><rect x="18" y="40" width="62" height="46" rx="10" fill="#4f5661"/><path d="M80 54l22-12v40l-22-12z" fill="#4f5661"/><circle class="rec" cx="32" cy="28" r="9" fill="#c23a2e"/><text x="64" y="34" font-size="18" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">REC</text></svg>
+          <h3>レコーディング<small>フィルター</small></h3>
+          <p class="q">録音・録画されて世間に流れても、プロの誇りを保てるか？</p>
+          <p class="e">個室で「お前は馬鹿か」「死ぬ気でやれ」と怒鳴る／壁を叩く、机を蹴る、舌打ちを繰り返す</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="5">
+      <div class="eyebrow">① フィルター（ふるい）</div>
+      <h2 class="title">1枚でも破れたら、調整が必要なサイン</h2>
+      <div class="cols cols-3" style="gap:24px">
+        <div class="card" style="padding:28px 30px"><p class="cap">コピー</p><p style="font-size:32px;font-weight:700">あなたが許している「例外」は、新人が真似しても良い<b class="hl">「基準」</b>になる</p></div>
+        <div class="card" style="padding:28px 30px"><p class="cap">リスク</p><p style="font-size:32px;font-weight:700">「できるって言ったよね？」と叱る前に。スタッフが「はい」と言うしかなかった、<b class="hl">出口を塞いでいませんか？</b></p></div>
+        <div class="card" style="padding:28px 30px"><p class="cap">リスク</p><p style="font-size:32px;font-weight:700">「NO」と言っても、評価も空気も変わらない。<b class="hl">その安全を保証できて、はじめて「合意」</b></p></div>
+      </div>
+      <div class="alert" data-step="6"><svg class="i"><use href="#i-alert"/></svg><p>4枚のうち、<b>1枚でもフィルターが破れたら</b>、それはアジャストメント（調整）が必要なサイン</p></div>
+    </div>
+    <aside class="notes">冒頭のQ1で、「迷った場面」を書いてくださった方がたくさんいました。迷ったときに使っていただきたいのが、この4つのフィルターです。それぞれ、一つの問いに答えるだけです。
+［クリック］① コピーフィルター
+問い：新人も、スタッフ全員も、あなたの真似をしたら、誇れる店か？
+特定の女性スタッフを「姫」のように扱い、肩を組んだり、自分専用のコーヒーを淹れさせたりする。忙しい時に鍋を叩きつけたり、包丁を放るように置いたりする。盛り上げようとして、ミスが多いスタッフを皆の前でネタにする。ミスをした業者さんに、スタッフの前で「仕事なめてんのか」と怒鳴る。
+昨日入ったばかりの新人が、同じことをしていたら、皆さんは怒るはずです。つまり、あなたが許している「例外」は、新人が真似しても良い「基準」になるのです。
+リーダーの言動は、お店の「レシピ」です。あなたが誰かをバカにすれば、店中が、誰かをバカにしても良い空気になります。あなたが業者さんを怒鳴れば、スタッフは、アルバイトやお客様を怒鳴るようになります。
+「愛のあるいじり」のつもりでも、繰り返されれば、重大な結果につながりえます。先輩の継続的ないじめで後輩が自殺に至り、いじめた本人と、防げなかった病院の両方の責任が認められた判例もあります。
+［クリック］② リスクフィルター
+問い：相手が「NO」と言っても、評価も空気も変わらないか？
+こんな場面が、ありませんか。
+「わかった？できる？」。確認して任せる。「はい！」と返事が来たのに、できていない。「できるって言ったよね？」と叱る。でも、スタッフの頭の中では、「ここでわからないと言ったら、また長々と説教が始まる……武勇伝が始まる……皆に迷惑がかかる……」と起きています。だから「はい」と言うしかなかった。出口を塞いでいたのは、あなたかもしれません。
+「嫌ならいいんだけど」。「明日、急だけど出られる？嫌ならいいんだけど」。厳しく指導した最後に「わかった？これできるな？」と詰め寄る。相手が「無理です」と言った瞬間に、不機嫌な顔をしていませんか。それは教育ではなく、恐怖による「Yesの強要」です。
+後出しジャンケン。指示は曖昧なまま、やったら「そうじゃない」と後から叱る。どう動いても叱られる状況は、指導の範囲を逸脱した「精神的な攻撃」になりえます。
+休日・深夜のLINE。「返信不要」のつもりでも、対応が事実上求められていれば、労働時間とみなされ、賃金の未払いが問題になりうるリスクがあります。
+スタッフが「NO」と言っても、評価も店の空気も変わらない。その安全を保証できて、初めて「合意」と言えます。
+［クリック］③ 大切な人フィルター
+問い：自分の大切な人が、他所で同じことをされても平気か？
+「今日かわいいね」「彼氏とはどうなの？」。「相談に乗るから」と、二人きりでの飲みに何度も誘う。
+あなたの大切な人が、バイト先の上司から同じことを言われて、困っていたら、どう思いますか。家族でも、パートナーでも、友人でも構いません。そこで感じる猛烈な不快感が、アジャストミスの正体です。
+断れない立場の相手を、仕事と関係のない場に誘い続けることは、立場を背景にした、業務外の同席の強要になりえます。「嫌なら断っていいよ」と伝えていても、拒絶コストがある前提で考えてください。
+［クリック］④ レコーディングフィルター
+問い：録音・録画されて世間に流れても、プロの誇りを保てるか？
+個室に呼び出して「お前は馬鹿か」「死ぬ気でやれ」と怒鳴りつける。言葉は丁寧でも、壁を叩く、机を蹴る、舌打ちを繰り返す。その音声や映像がSNSで拡散された瞬間、キャリアは終わります。常にカメラがある前提で、自分を検品してください。
+［クリック］（振り返り）あなたが許している「例外」は、新人が真似しても良い「基準」になる。「はい」と言うしかなかった出口を塞いでいないか。「NO」と言っても評価も空気も変わらない。その安全を保証できて、はじめて「合意」です。
+［クリック］4枚のうち、1枚でもフィルターが破れたら、それはアジャストメント、調整が必要なサインです。
+（進行役：Q3で挙がった相談内容のうち、読み上げても特定につながらないものがあれば、「先ほど挙がった◯◯という相談、これはまさに◯◯フィルターの話です」と接続する）</aside>
+  </section>
+
+  <!-- クイズ① 1問目 -->
+  <section class="slide" data-min="2">
+    <div class="quiz q4">
+      <div class="qz-top" data-in><span class="qz-no">クイズ ①</span><span class="qz-how">Zoomの投票で回答（匿名・4択）</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
+      <p class="qz-lead" data-in style="--d:1">これは何フィルター？　いちばん当てはまるものを選んでください（1問目）</p>
+      <h2 class="qz-q" data-in style="--d:1">ミスの多いスタッフを、皆の前で「またかよ！」とネタにして、場を盛り上げた。数日後、他のスタッフも、同じようにそのスタッフをからかうようになっていた。</h2>
+      <div class="qz-opts">
+        <div class="opt ok"><span class="k">A</span><b>コピー</b><small>新人も、スタッフ全員も、あなたの真似をしたら、誇れる店か？</small><span class="ok-tag">正解</span></div>
+        <div class="opt"><span class="k">B</span><b>リスク</b><small>相手が「NO」と言っても、評価も空気も変わらないか？</small></div>
+        <div class="opt"><span class="k">C</span><b>大切な人</b><small>自分の大切な人が、他所で同じことをされても平気か？</small></div>
+        <div class="opt"><span class="k">D</span><b>レコーディング</b><small>録音・録画されて世間に流れても、プロの誇りを保てるか？</small></div>
+      </div>
+      <i class="reveal" data-step="2"></i>
+      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>リーダーの言動は、お店の<b>「レシピ」</b>になる</p></div>
+    </div>
+    <aside class="notes">ここで、2問、お聞きします。次の場面は、4つのフィルターの、どれに、いちばん当てはまるでしょうか。1つの言動が、複数のフィルターに引っかかることもありますが、いちばん当てはまるものを、選んでください。
+A、コピーフィルター。B、リスクフィルター。C、大切な人フィルター。D、レコーディングフィルター。（4つの問いは、画面に出しています）
+一問目。ミスの多いスタッフを、皆の前で、「またかよ！」とネタにして、場を盛り上げた。数日後、他のスタッフも、同じように、そのスタッフを、からかうようになっていた。
+（進行役：Zoomの投票を起動〈匿名・4択〉）
+［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
+（投票を締め切り、結果を共有）
+［クリック］正解は、A、コピーフィルターです。リーダーの言動は、お店の「レシピ」になります。あなたがやったことは、店中が、真似をしてよいことになります。</aside>
+  </section>
+
+  <!-- クイズ② 2問目 -->
+  <section class="slide" data-min="1">
+    <div class="quiz q4">
+      <div class="qz-top" data-in><span class="qz-no">クイズ ②</span><span class="qz-how">Zoomの投票で回答（匿名・4択）</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
+      <p class="qz-lead" data-in style="--d:1">これは何フィルター？　いちばん当てはまるものを選んでください（2問目）</p>
+      <h2 class="qz-q" data-in style="--d:1">「明日、急だけど、出られる？ 無理ならいいから」と声をかけた。「予定があって……」と断られると、翌日から、そのスタッフへの対応が、素っ気なくなった。</h2>
+      <div class="qz-opts">
+        <div class="opt"><span class="k">A</span><b>コピー</b><small>新人も、スタッフ全員も、あなたの真似をしたら、誇れる店か？</small></div>
+        <div class="opt ok"><span class="k">B</span><b>リスク</b><small>相手が「NO」と言っても、評価も空気も変わらないか？</small><span class="ok-tag">正解</span></div>
+        <div class="opt"><span class="k">C</span><b>大切な人</b><small>自分の大切な人が、他所で同じことをされても平気か？</small></div>
+        <div class="opt"><span class="k">D</span><b>レコーディング</b><small>録音・録画されて世間に流れても、プロの誇りを保てるか？</small></div>
+      </div>
+      <i class="reveal" data-step="2"></i>
+      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>「無理ならいいから」と言っても、断ったあとに評価や空気が変わるなら、<b>実質、断れない</b></p></div>
+    </div>
+    <aside class="notes">二問目。「明日、急だけど、出られる？ 無理ならいいから」と声をかけた。「予定があって……」と断られると、翌日から、そのスタッフへの対応が、素っ気なくなった。
+（進行役：Zoomの投票を起動〈匿名・4択〉）
+［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
+（投票を締め切り、結果を共有）
+［クリック］正解は、B、リスクフィルターです。「無理ならいいから」と言っても、断ったあとに、評価や、空気が変わるなら、実質、断れません。
+（進行役：Cと答えた人がいても、間違いとは言わない。「自分の大切な人が、同じことをされたら、と考えるのも、大事な見方です。複数のフィルターに引っかかることもあります。ただ、この場面でいちばん当てはまるのは、Bです」と受ける）</aside>
+  </section>
+
+  <!-- ワーク③ -->
+  <section class="slide" data-min="3">
+    <div class="quiz work" style="flex:1">
+      <div class="qz-top" data-in><span class="qz-no">ワーク ③</span><span class="qz-how">ワークシートの表にチェックを入れる</span><span class="qz-timer"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:180s"><span class="bar"><i></i></span><b data-countdown="180" data-fmt="mmss">3:00</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">最初に書いたメモと、追加で書いたものを、<span class="hl">4つのフィルターに当てはめて</span>ください</h2>
+      <div class="wk" style="grid-template-columns:1fr 680px">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <ul class="points plain" data-in style="--d:2">
+            <li><div style="font-size:32px">「これは、<b>どのフィルターに引っかかるか</b>」</div></li>
+            <li><div style="font-size:32px">「<b>どのフィルターも、通り抜けているか</b>」</div></li>
+            <li><div style="font-size:32px">思い出したこと、「これって、どうだろう」と思ったことは、新しく書き足してよい</div></li>
+          </ul>
+          <div class="rules" data-in style="--d:3"><span><svg class="i"><use href="#i-x"/></svg>発表しません</span><span><svg class="i"><use href="#i-check"/></svg>正直に</span></div>
+          <div class="alert" data-step="2"><svg class="i"><use href="#i-alert"/></svg><p>1枚でも、フィルターが破れたものがあれば、<b>調整が必要なサイン</b></p></div>
+        </div>
+        <svg class="illus" viewBox="0 0 680 400" data-in style="--d:2" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="0" y="0" width="680" height="400" rx="18" fill="#fff" stroke="#d5dae1" stroke-width="4"/>
+          <g font-size="20" fill="#5243c9"><text x="120" y="48">メモ</text><text x="320" y="48">コピー</text><text x="420" y="48">リスク</text><text x="520" y="48">大切な人</text><text x="616" y="48">録音録画</text></g>
+          <path d="M20 66h640M20 146h640M20 226h640M20 306h640M270 20v370M370 20v370M470 20v370M570 20v370" stroke="#e1e5ea" stroke-width="3"/>
+          <g stroke="#cfd4da" stroke-width="7" stroke-linecap="round"><path d="M40 106h190"/><path d="M40 186h160"/><path d="M40 266h200"/><path d="M40 346h140"/></g>
+          <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+            <path class="ck" d="M300 106l14 14 26-28" stroke="#c23a2e" style="animation-delay:0s"/>
+            <path class="ck" d="M400 186l14 14 26-28" stroke="#c23a2e" style="animation-delay:.8s"/>
+            <path class="ck" d="M500 186l14 14 26-28" stroke="#c23a2e" style="animation-delay:1.6s"/>
+            <path class="ck" d="M596 266l14 14 26-28" stroke="#c23a2e" style="animation-delay:2.4s"/>
+          </g>
+          <g class="ck" style="animation-delay:3.2s"><rect x="290" y="324" width="356" height="44" rx="22" fill="#ddf2e7"/><text x="468" y="354" font-size="22" fill="#22915c">すべて通り抜けている</text></g>
+        </g></svg>
+      </div>
+    </div>
+    <aside class="notes">では、最初に書き出したメモを、見てください。そして、追加で書いたものも。
+それぞれを、4つのフィルターに、当てはめてみてください。「これは、どのフィルターに、引っかかるか」。「どのフィルターも、通り抜けているか」。ワークシートの表に、チェックを入れていってください。
+記入されていなくても、思い出したことや、「これって、どうだろう」と思ったことがあれば、新しく書き込んでも大丈夫です。3分です。発表はしませんので、正直に、お答えください。
+［クリック］（3分のカウントダウンが始まる。0:00で「時間です」と表示）
+（進行役：共有も、回収もしない）
+［クリック］1枚でも、フィルターが破れたものがあれば、調整が必要なサインです。
+引っかかったものは、やめれば終わり、ではありません。では、どう伝えれば、伝わるのか。ここからは、アジャスターの話に入ります。</aside>
+  </section>
+
+  <!-- 09 アジャスター -->
+  <section class="slide" data-min="8">
+    <div class="phase" data-until="4" style="gap:24px">
+      <div class="eyebrow" data-in>② アジャスター（つまみ）｜4つで、出力を調整する</div>
+      <h2 class="title" data-in style="--d:1">「どう言えば、伝わるか」を整える</h2>
+      <div class="adj">
+        <svg class="illus" viewBox="0 0 480 520" data-in style="--d:2" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="10" y="10" width="460" height="500" rx="30" fill="#fff" stroke="#e1e5ea" stroke-width="4"/>
+          <g fill="#eef1f5"><rect x="75" y="60" width="10" height="360" rx="5"/><rect x="185" y="60" width="10" height="360" rx="5"/><rect x="295" y="60" width="10" height="360" rx="5"/><rect x="405" y="60" width="10" height="360" rx="5"/></g>
+          <g class="fader"><rect x="45" y="300" width="70" height="40" rx="10" fill="#6b5ce7"/></g>
+          <g class="fader" style="animation-delay:-1.5s"><rect x="155" y="300" width="70" height="40" rx="10" fill="#6b5ce7"/></g>
+          <g class="fader" style="animation-delay:-3s"><rect x="265" y="300" width="70" height="40" rx="10" fill="#6b5ce7"/></g>
+          <g class="fader" style="animation-delay:-4.5s"><rect x="375" y="300" width="70" height="40" rx="10" fill="#6b5ce7"/></g>
+          <g font-size="22" fill="#4f5661"><text x="80" y="462">何を</text><text x="190" y="462">どう</text><text x="300" y="462">いつ</text><text x="410" y="462">自分</text></g>
+        </g></svg>
+        <div class="adjl">
+          <div class="card" data-step="1"><span class="badge">1</span><h3>シグナル<small>（何を）</small></h3><p><b>何が起きたか（事実）と、次にどうしてほしいか（行動）だけ</b>を、具体的に。<br><span class="ng">✗「やる気」「センス」「盛り付けが雑だ」</span>　<span class="okk">○「このハーブは、中心から1cm左に置いてほしい」</span></p></div>
+          <div class="card" data-step="2"><span class="badge">2</span><h3>ノイズ<small>（どう）</small></h3><p>伝えたい内容の<b>邪魔になるもの</b>（怒鳴り声・威圧感・過去の持ち出し・<b>不機嫌</b>）を取り除く。混じると、相手は内容より、身を守ることに集中してしまう</p></div>
+          <div class="card" data-step="3"><span class="badge">3</span><h3>タイミング<small>（いつ）</small></h3><p><b>相手が聞ける状態のとき</b>に伝える。失敗直後・営業中のピークは「緊急の指示」だけ。自分の怒りの点数が高いときも、伝えない</p></div>
+          <div class="card is-accent" data-step="4"><span class="badge">4</span><h3>アンガーマネジメント<small>（自分を整える）</small></h3><p><b>気づく・待つ・測る・見直す</b></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="5" data-until="5">
+      <div class="eyebrow">冒頭のQ4を思い出してください</div>
+      <h2 class="title">機嫌が悪くなること自体は、避けられない</h2>
+      <div class="split" style="grid-template-columns:1fr 760px;gap:48px">
+        <div style="display:flex;flex-direction:column;gap:26px">
+          <span class="poll" data-q="Q4" style="align-self:flex-start">「よくある」「たまにある」 <b contenteditable="true">◯</b>割</span>
+          <p class="lead">問題は、それが<b>ノイズとして、出力に混じってしまう</b>こと。</p>
+          <p class="text">伝える内容が正しくても、ノイズが混じれば、相手には違うものとして届く。</p>
+          <div class="card is-accent" style="padding:22px 28px"><p style="font-size:34px;font-weight:900">では、その機嫌や怒りを、どう整えるか</p></div>
+        </div>
+        <svg class="illus" viewBox="0 0 760 400" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="0" y="0" width="760" height="400" rx="24" fill="#fff" stroke="#e1e5ea" stroke-width="4"/>
+          <path d="M40 200h680" stroke="#eef1f5" stroke-width="4"/>
+          <g class="clean"><path d="M40 200c45-90 90-90 135 0s90 90 135 0 90-90 135 0 90 90 135 0 90-90 135 0" fill="none" stroke="#6b5ce7" stroke-width="9" stroke-linecap="round"/></g>
+          <g class="noisy"><path d="M40 200l20-60 14 80 18-120 16 150 20-90 14 40 20-110 18 160 16-70 20 30 18-140 14 170 20-100 16 40 18-80 14 120 20-150 16 90 18-30 20 110 14-160 18 140 16-60 20 30 14-90 18 120 16-70 20 40 18-110 14 90 20-20 16 50 18-90 14 70 22-20" fill="none" stroke="#c23a2e" stroke-width="6" stroke-linejoin="round"/></g>
+        <g font-size="26"><rect x="150" y="340" width="40" height="10" rx="5" fill="#6b5ce7"/><text x="290" y="354" fill="#5243c9">伝えたいこと</text><rect x="430" y="340" width="40" height="10" rx="5" fill="#c23a2e"/><text x="570" y="354" fill="#c23a2e">不機嫌（ノイズ）</text></g>
+        </g></svg>
+      </div>
+    </div>
+    <div class="phase" data-step="6" style="gap:24px">
+      <div class="eyebrow">④ アンガーマネジメント｜自分を整える</div>
+      <h2 class="title" style="font-size:52px">怒らない人になるのではなく、<br>必要なことは上手に伝え、必要のない怒りは出さない</h2>
+      <div class="am">
+        <div class="card" data-step="6">
+          <svg viewBox="0 0 200 150" aria-hidden="true"><path d="M10 80h50l14-40 20 80 16-50 12 10h68" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" class="wl" style="animation-duration:2.4s"/></svg>
+          <h3>気づく<small>サイン</small></h3>
+          <p>心拍が上がる／声が大きくなる／考えが単純になる</p>
+        </div>
+        <div class="card" data-step="7">
+          <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <circle class="d6" cx="100" cy="12" r="8"/><circle class="d6" cx="158" cy="44" r="8" style="animation-delay:1s"/><circle class="d6" cx="158" cy="106" r="8" style="animation-delay:2s"/><circle class="d6" cx="100" cy="138" r="8" style="animation-delay:3s"/><circle class="d6" cx="42" cy="106" r="8" style="animation-delay:4s"/><circle class="d6" cx="42" cy="44" r="8" style="animation-delay:5s"/>
+            <circle class="breath" cx="100" cy="75" r="44" fill="#e9e6fd"/>
+            <text class="exh" x="100" y="84" font-size="24" fill="#5243c9">吐く</text><text class="inh" x="100" y="84" font-size="24" fill="#5243c9">吸う</text>
+          </g></svg>
+          <h3>待つ<small>6秒</small></h3>
+          <p>3秒で吐き、3秒で吸う。怒りを消す魔法ではなく、衝動的に言わないための<b>「時間稼ぎ」</b></p>
+        </div>
+        <div class="card" data-step="8">
+          <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Dela Gothic One, sans-serif" text-anchor="middle">
+            <g><rect x="10" y="50" width="16" height="50" rx="3" fill="#22915c"/><rect x="29" y="50" width="16" height="50" rx="3" fill="#22915c"/><rect x="48" y="50" width="16" height="50" rx="3" fill="#4cc38a"/><rect x="67" y="50" width="16" height="50" rx="3" fill="#4cc38a"/><rect x="86" y="50" width="16" height="50" rx="3" fill="#f2be3d"/><rect x="105" y="50" width="16" height="50" rx="3" fill="#f2be3d"/><rect x="124" y="50" width="16" height="50" rx="3" fill="#f27a9c"/><rect x="143" y="50" width="16" height="50" rx="3" fill="#f27a9c"/><rect x="162" y="50" width="16" height="50" rx="3" fill="#c23a2e"/><rect x="181" y="50" width="16" height="50" rx="3" fill="#c23a2e"/></g>
+            <rect class="lvl" x="8" y="46" width="192" height="58" fill="#fff" opacity=".88"/>
+            <text x="20" y="130" font-size="20" fill="#4f5661">1</text><text x="188" y="130" font-size="20" fill="#4f5661">10</text>
+          </g></svg>
+          <h3>測る<small>点数</small></h3>
+          <p>10段階で、今いくつか。<b>高いときは、指導しない</b>（→ タイミング）</p>
+        </div>
+        <div class="card" data-step="9">
+          <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <g class="beki-a"><rect x="20" y="40" width="160" height="64" rx="16" fill="#f9e3e0"/><text x="100" y="82" font-size="26" fill="#c23a2e">〜するべき</text></g>
+            <g class="beki-b"><rect x="4" y="30" width="92" height="84" rx="16" fill="#e9e6fd"/><text x="50" y="80" font-size="24" fill="#5243c9">事実</text><rect x="104" y="30" width="92" height="84" rx="16" fill="#ddf2e7"/><text x="150" y="68" font-size="22" fill="#22915c">次の</text><text x="150" y="96" font-size="22" fill="#22915c">指示</text></g>
+          </g></svg>
+          <h3>見直す<small>「べき」</small></h3>
+          <p>自分の「べき」と相手の「べき」は違う。<b>事実と、次の指示に言い換える</b>（→ シグナル）</p>
+        </div>
+      </div>
+      <div class="row" data-step="10">
+        <div class="alert is-info" style="flex:1"><svg class="i"><use href="#i-search"/></svg><p>怒りの裏には、<b>疲れ・焦り・不安</b>がある</p></div>
+        <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>怒りに任せないことは、<b>指導をやめることではない</b></p></div>
+      </div>
+    </div>
+    <aside class="notes">4つのフィルターは、「言っていいか」を確かめる道具でした。ここからは、「どう言えば、伝わるか」を整える、4つのアジャスターです。音声にたとえると、伝えたい声（シグナル）に、雑音（ノイズ）が混じらないようにして、聞こえるタイミングに合わせて、自分の調子を整える。そんなイメージです。
+［クリック］① シグナル：何を伝えるか
+何が起きたか（事実）と、次にどうしてほしいか（行動）。この2つだけを、具体的に伝えます。「やる気」「センス」「盛り付けが雑だ」では、何を直せばよいかわかりません。「このハーブは、中心から1cm左に置いてほしい」「これとこれは僕がやるから、君はこれとこれを、ここまでやっておいて」。これが、伝わるシグナルです。
+［クリック］② ノイズ：どう伝えるか
+伝えたい内容の邪魔になるものが、ノイズです。怒鳴り声、威圧感、過去の持ち出し、そして不機嫌。これらが混じると、相手は、内容よりも、身を守ることに集中してしまいます。取り除いて、要点だけを伝えます。
+［クリック］③ タイミング：いつ伝えるか
+相手が聞ける状態のときに伝えます。失敗直後や、営業中のピークは、緊急の指示だけにとどめる。振り返りの指導は、心が落ち着いてからです。
+［クリック］④ アンガーマネジメント：自分を整える。（詳しくは、このあと）
+［クリック］冒頭のQ4を思い出してください。「皆さん自身は、どうですか」とお聞きしました。
+機嫌が悪くなること自体は、人間なので避けられません。問題は、それがノイズとして、出力に混じってしまうことです。伝える内容が正しくても、ノイズが混じれば、相手には違うものとして届きます。では、その機嫌や怒りを、どう整えるか。それが、4つ目のアジャスターです。
+［クリック］アンガーマネジメントは、怒らない人になることではありません。怒る必要のあることは、上手に伝える。怒る必要のないことは、怒らなくて済むようにする。そのための、心のトレーニングです。怒りは、自然な感情です。問題は、その表し方です。
+方法は、4つ。覚え方は、気づく、待つ、測る、見直すです。
+一つ目、気づく。自分の怒りのサインに、気づきます。心拍が上がる。声が大きくなる。考えが単純になる。自分のサインを知っておくことが、最初の一歩です。
+［クリック］二つ目、待つ。6秒、待ちます。怒りの衝動のピークは、数秒でくる、といわれています。その間に、言動に出さない。深呼吸を、3秒で吐いて、3秒で吸う。これで6秒です。怒りを消す魔法ではありません。衝動的に言ってしまわないための、時間稼ぎです。
+［クリック］三つ目、測る。怒りに、点数をつけます。10段階で、今いくつか。点数が高いときは、指導をしない。さきほどの、タイミングにつながります。
+［クリック］四つ目、見直す。自分の「べき」を、見直します。怒りの原因は、自分の「べき」にあることが多いのです。「新人は、言われなくても確認するべき」。でも、自分の「べき」と、相手の「べき」は、違います。「べき」を、事実と、次の指示に言い換える。これが、最初のシグナルにつながります。
+［クリック］怒りの裏には、疲れや、焦り、不安があることが多い、といわれています。忙しい営業中は、特にそうです。
+なお、怒りに任せないことは、指導をやめることではありません。業務上必要で、相当な範囲の指導は、必要です。</aside>
+  </section>
+
+  <!-- 10 禁忌事項 -->
+  <section class="slide" data-min="3">
+    <div class="eyebrow" data-in>禁忌事項</div>
+    <h2 class="title" data-in style="--d:1">絶対にやってはいけない、5つのこと</h2>
+    <ul class="xlist" style="gap:12px">
+      <li data-step="1" class="slide-in"><div><b>立場の優位性を利用した、高圧的な指示・暴言・無視</b><small>本質は、性格や相性ではなく、立場の優位性が生む構造の問題</small></div></li>
+      <li data-step="2" class="slide-in"><div><b>相談を受けたときの、個人判断でのもみ消し・放置</b></div></li>
+      <li data-step="3" class="slide-in"><div><b>相談者・通報者への報復・不利益取扱い</b><small>シフト削減・降格等は、それ自体が新たな違法行為</small></div></li>
+      <li data-step="4" class="slide-in"><div><b>「そんなつもりはなかった」という自覚のなさ</b><small>判断基準は、やった側の意図ではなく、受けた側がどう感じたか</small></div></li>
+      <li data-step="5" class="slide-in"><div><b>拒絶コストを見誤った誘い・詰問の繰り返し</b><small>「嫌なら言ってね」と伝えていても、本当にNOと言える状態ではない前提で</small></div></li>
+    </ul>
+    <aside class="notes">ここまでを踏まえて、絶対にやってはいけないことを確認します。
+［クリック］1つ目、立場の優位性を利用した、高圧的な指示・暴言・無視。ハラスメントの本質は、性格や相性ではなく、立場の優位性が生む構造の問題です。
+［クリック］2つ目、相談を受けたときの、個人判断でのもみ消し・放置。
+［クリック］3つ目、相談者・通報者への報復・不利益取扱い。シフトを減らす、降格させる。これは、それ自体が新たな違法行為になります。
+［クリック］4つ目、「そんなつもりはなかった」という自覚のなさ。ハラスメントは、やった側の意図ではなく、受けた側がどう感じたかで判断されます。冒頭のQ2で思い出したことを、もう一度思い出してください。
+［クリック］5つ目、拒絶コストを見誤った誘い・詰問の繰り返し。「嫌なら言ってね」と伝えていても、相手が本当にNOと言える状態ではない、という前提で行動してください。</aside>
+  </section>
+
+  <!-- 11 初動対応と記録 -->
+  <section class="slide" data-min="5">
+    <div class="phase" data-until="5">
+      <div class="eyebrow" data-in>それでも起きたら：初動対応</div>
+      <h2 class="title" data-in style="--d:1">スタッフから相談を受けたら</h2>
+      <div class="row" style="gap:36px;align-items:flex-start">
+        <ol class="timeline compact" style="flex:1">
+          <li data-n="1" data-step="1" class="slide-in"><h3>その場で個人の判断で処理しない</h3><p>速やかに本部の相談窓口へ報告する</p></li>
+          <li data-n="2" data-step="2" class="slide-in"><h3>報復・不利益取扱いは、絶対に行わない</h3><p>相談者を守る</p></li>
+          <li data-n="3" data-step="3" class="slide-in"><h3>事実関係は、本部と連携して確認・記録する</h3><p>当事者双方から、公正に</p></li>
+          <li data-n="4" data-step="4" class="slide-in"><h3>本部の指示に従う</h3><p>独断で「示談」「口頭注意のみ」で終わらせない</p></li>
+        </ol>
+        <div class="card is-accent" data-step="5" style="width:600px;padding:26px 30px;gap:12px">
+          <svg class="illus" viewBox="0 0 540 170" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <g class="a-nudge"><use href="#i-person" x="60" y="20" width="90" height="140" style="color:#6b5ce7"/></g>
+            <path d="M190 90h150" stroke="#d5dae1" stroke-width="8" stroke-dasharray="14 10"/>
+            <circle cx="265" cy="90" r="34" fill="#c23a2e"/><path d="M251 76l28 28M279 76l-28 28" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+            <use href="#i-person" x="390" y="20" width="90" height="140" style="color:#9aa3ae"/><text x="435" y="168" font-size="20" fill="#4f5661">相手とされる人</text>
+          </g></svg>
+          <p style="font-size:30px;font-weight:900">本部への報告前に、自分の判断で、相手とされる人に<span class="hl">直接確認しない</span></p>
+          <p class="cap">よかれと思っての行動でも、証拠の隠滅や、相談者への報復・圧力につながるリスク</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="6">
+      <div class="eyebrow">それでも起きたら：記録</div>
+      <h2 class="title">「言った・言わない」は、どんなやり取りでも起こる</h2>
+      <div class="split" style="grid-template-columns:1fr 1fr;gap:40px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <p class="cap">記録に残す理由</p>
+          <ul class="rec3">
+            <li><span class="badge">1</span>後から、事実関係を正確に確認するため</li>
+            <li><span class="badge">2</span>相談者を、「言った・言わない」から守るため</li>
+            <li><span class="badge">3</span>対応した自分自身が、適切に対応したことを示すため</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px" data-step="7">
+          <div class="alert is-ok"><svg class="i"><use href="#i-check"/></svg><p>記録を残すことを本人に伝え、<b>書いた内容を本人と一緒に確認する</b></p></div>
+          <div class="alert"><svg class="i"><use href="#i-alert"/></svg><p>誰でも見られる場所に置かない。<b>本人の同意なく、第三者に共有しない</b></p></div>
+        </div>
+      </div>
+      <div class="card" data-step="8" style="padding:22px 30px;gap:16px">
+        <p class="cap">本部への緊急連絡</p>
+        <div class="chain"><span>担当役員へ連絡</span><i class="grow"></i><span>担当役員から代表へ報告</span><i class="grow"></i><span>総務人事部へ連携</span></div>
+        <div class="contact tbd" style="align-self:flex-start"><svg class="i"><use href="#i-phone"/></svg><span>相談窓口：<b>確定次第記載</b></span></div>
+      </div>
+    </div>
+    <aside class="notes">スタッフから、ハラスメントの相談を受けたとき。
+［クリック］一つ目、その場で個人の判断で処理しない。速やかに本部の相談窓口へ報告する。
+［クリック］二つ目、相談者への報復や不利益取扱いは、絶対に行わない。
+［クリック］三つ目、事実関係は、本部と連携して、当事者双方から公正に確認し、記録する。
+［クリック］四つ目、本部の指示に従って対応する。独断で「示談」にしたり、「口頭注意だけ」で終わらせたりしない。
+［クリック］特に気をつけていただきたいのが、本部に報告する前に、自分の判断で、相手とされる人に直接確認しに行くことです。よかれと思っての行動でも、証拠の隠滅や、相談者への報復・圧力につながるリスクがあります。
+［クリック］そして、記録に残してください。指導した内容、相談を受けた内容。こうしたやり取りは、ハラスメントに限らず、「言った・言わない」が、どんなやり取りでも起こります。
+記録が必要な理由は3つあります。後から、事実関係を正確に確認するため。相談者を、「言った・言わない」から守るため。対応した皆さん自身が、適切に対応したことを示すため。
+［クリック］相談を受けたときは、記録を残すことを本人に伝え、書いた内容を本人と一緒に確認してください。自分の話がどう残されるのかわかっていることは、相談者の安心にもつながります。ただし、記録には相談者のプライバシーに関わる情報が含まれます。誰でも見られる場所に置かない。本人の同意なく、第三者に共有しない。この配慮が必要です。
+［クリック］本部への緊急連絡は、担当役員へ連絡 → 担当役員から代表へ報告 → 総務人事部へ連携の順です。
+（進行役：相談窓口の連絡先を案内する）
+※要確認：相談窓口の具体的な運用（受付方法・対応部署・担当者）は未確定。確定次第、スライドに記載する</aside>
+  </section>
+
+  <!-- 12 事後対応 -->
+  <section class="slide" data-min="2">
+    <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
+    <h2 class="title" data-in style="--d:1">本部の調査のあとも、役割は続く</h2>
+    <div class="cols cols-2" style="flex:1">
+      <div class="card" data-step="1"><span class="badge">1</span><h3>処分の執行</h3><p>調査結果に基づき、<b>本部人事と連携</b>して対応する</p></div>
+      <div class="card is-accent" data-step="2"><span class="badge">2</span><h3>相談者へのフォロー</h3><p>処分後も、相談者が<b>安心して働ける環境か</b>を継続的に確認する</p></div>
+      <div class="card" data-step="3"><span class="badge">3</span><h3>再発防止策の周知</h3><p><b>個人情報に配慮したうえで</b>、再発防止の方針を店舗全体に共有する</p></div>
+      <div class="card" data-step="4"><span class="badge">4</span><h3>行政対応</h3><p>労働局等から指導・調査があった場合は、<b>本部・法務と連携</b>して対応する</p></div>
+    </div>
+    <aside class="notes">本部の調査のあとも、皆さんの役割は続きます。
+［クリック］一つ目、処分の執行。調査結果に基づき、本部人事と連携して対応する。
+［クリック］二つ目、相談者へのフォロー。処分後も、相談者が安心して働ける環境かを継続的に確認する。
+［クリック］三つ目、再発防止策の周知。個人情報に配慮したうえで、再発防止の方針を店舗全体に共有する。
+［クリック］四つ目、行政対応。労働局等から指導・調査があった場合は、本部・法務と連携して対応する。</aside>
+  </section>
+
+  <!-- 13 修了レポート -->
+  <section class="slide light" data-min="3">
+    <div class="eyebrow" data-in>研修修了レポートについて</div>
+    <h2 class="title" data-in style="--d:1">レポートの提出をもって「受講完了」となります</h2>
+    <div class="report" data-in style="--d:2">
+      <div class="report-cards">
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
+        <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>研修中に書いたワークシートを見ながら記入</b></p></div></div>
+      </div>
+      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
+    </div>
+    <p class="lead" data-step="1" style="font-size:36px">このレポートは、<b>誰かを評価するためのものではありません</b>。自分の言動を振り返るための記録です。</p>
+    <div class="row" data-step="2">
+      <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
+      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>正直に書いていただくことが、<b>一番大事</b>です</p></div>
+    </div>
+    <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
+（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
+提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
+［クリック］このレポートは、誰かを評価するためのものではありません。自分の言動を振り返るための記録です。
+［クリック］正直に書いていただくことが、一番大事です。
+レポートは、研修中に書いたワークシートを見ながら、書いてください。まず、自分の「アウト」の境界線を書き出してもらいます。そのうえで、直近1週間の自分の言動を4つのフィルターにかけ、自分以外の人の言動で思い当たることも書いてもらいます。冒頭の投票で書いた「迷った場面」も、もう一度振り返っていただきます。それから、自分の機嫌の波や怒りを、アジャスター（アンガーマネジメントを含む）でどう調整するか。相談を受けたときに何を記録するか。自店の相談窓口を、スタッフが知っているか。こういったことを確認します。</aside>
+  </section>
+
+  <!-- 14 クロージング -->
+  <section class="slide glow" data-min="3">
+    <div class="split" style="grid-template-columns:1fr 520px;align-items:center;flex:1;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div class="eyebrow" data-in>最後に</div>
+        <p class="lead" data-step="1">アジャストメントは、優しさでも、遠慮でもない。<br>力を狙い通りに届けるための<b>「出力調整技術」</b>です。</p>
+        <p class="lead" data-step="2">誰も注意してくれないからこそ、<br>このフィルターが、あなたを守る<b>「盾」</b>になります。</p>
+        <div class="chips" data-step="3" style="gap:18px">
+          <span style="font-size:32px;font-weight:900;color:var(--ink);padding:12px 28px">今日から1週間、4つのフィルターを重ねる</span>
+          <span style="font-size:32px;font-weight:900;color:var(--ink);padding:12px 28px">イライラしたら、6秒待つ</span>
+        </div>
+        <p class="quote" data-step="4" style="font-size:72px">ハラスメントから、<br><span class="hl2">アジャストメントへ。</span></p>
+      </div>
+      <svg class="illus" viewBox="0 0 520 480" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+        <path d="M260 20l200 56v120c0 140-100 220-200 260-100-40-200-120-200-260V76z" fill="#e9e6fd"/>
+        <g stroke-width="16" stroke-linecap="round" fill="none">
+          <path class="arcseg" d="M166 330a130 130 0 0 1-30-70" stroke="#9d92ff" style="animation-delay:-5.4s"/><path class="arcseg" d="M136 220a130 130 0 0 1 40-62" stroke="#9d92ff" style="animation-delay:-4.8s"/><path class="arcseg" d="M206 132a130 130 0 0 1 70-14" stroke="#6b5ce7" style="animation-delay:-4.2s"/><path class="arcseg" d="M312 126a130 130 0 0 1 60 46" stroke="#6b5ce7" style="animation-delay:-3.6s"/><path class="arcseg" d="M388 206a130 130 0 0 1 0 70" stroke="#5243c9" style="animation-delay:-3s"/>
+        </g>
+        <circle cx="260" cy="250" r="96" fill="#fff" stroke="#d5dae1" stroke-width="6"/>
+        <g class="knob" style="transform-origin:260px 250px"><circle cx="260" cy="250" r="76" fill="#fff"/><path d="M260 250v-62" stroke="#5243c9" stroke-width="14" stroke-linecap="round"/></g>
+      </g></svg>
+    </div>
+    <aside class="notes">アジャストメントとは、優しくなることでも、遠慮することでもありません。
+［クリック］皆さんが持つ強大な力を、狙い通りに正しく届けるための、出力調整技術です。
+［クリック］皆さんはトップです。間違っていても、店舗では誰も注意してくれる人がいない環境にいると思います。だからこそ、このフィルターとアジャスターを使いながら、自分の今までと、これからの言動を検品してみてください。このフィルターは、皆さん自身を守る「盾」にもなります。
+皆さんの言動が、そのままお店の品格となり、基準になります。
+［クリック］今日から1週間、すべての言動に、この4つのフィルターを重ねてみてください。そして、イライラしたときは、6秒、待ってみてください。
+［クリック］ハラスメントから、アジャストメントへ。ありがとうございました。</aside>
+  </section>
+
+  <!-- 15 質疑応答 -->
+  <section class="slide center" data-min="0" data-no-footer>
+    <span class="ico pulse" data-in style="width:120px;height:120px;font-size:68px;border-radius:50%"><svg class="i"><use href="#i-chat"/></svg></span>
+    <h2 class="statement" data-in style="--d:1">質疑応答</h2>
+    <p class="lead muted" data-in style="--d:2">ご質問があれば、チャットまたは挙手でお願いします。</p>
+    <aside class="notes">ご質問があれば、チャットまたは挙手でお願いします。
+（進行役：質問がない場合も、10〜15秒は間を取る。法的な根拠〈パワハラ3要素、根拠条文、判例等〉に関する質問には、マスターデータを根拠に回答する）</aside>
+  </section>
+
+</div>
+<script src="assets/deck.js"></script>
