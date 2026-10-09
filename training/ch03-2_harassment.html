@@ -300,6 +300,8 @@
 .rec3 { display: flex; flex-direction: column; gap: 14px; }
 .rec3 li { display: grid; grid-template-columns: 60px 1fr; gap: 18px; align-items: center; font-size: 30px; font-weight: 700; padding: 14px 24px; background: var(--surface); border-radius: 14px; box-shadow: 0 6px 18px rgba(29,33,40,.05); }
 .rec3 li .badge { font-family: var(--f-num); font-size: 40px; color: var(--accent); text-align: center; }
+.mailfly { animation: mailfly 4s ease-in-out infinite; }
+@keyframes mailfly { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 55% { transform: translate(150px, -90px); } 85% { transform: translate(300px, -20px); opacity: 1; } 100% { transform: translate(300px, -20px); opacity: 0; } }
 .contact.tbd { border: 3px dashed color-mix(in srgb, var(--ink-2) 40%, transparent); box-shadow: none; background: rgba(255,255,255,.6); }
 
 /* 13 修了レポート */
@@ -1106,7 +1108,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         </div>
       </div>
     </div>
-    <div class="phase" data-step="6">
+    <div class="phase" data-step="6" data-until="8">
       <div class="eyebrow">それでも起きたら：記録</div>
       <h2 class="title">「言った・言わない」は、どんなやり取りでも起こる</h2>
       <div class="split" style="grid-template-columns:1fr 1fr;gap:40px;align-items:start">
@@ -1126,7 +1128,33 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <div class="card" data-step="8" style="padding:22px 30px;gap:16px">
         <p class="cap">本部への緊急連絡</p>
         <div class="chain"><span>担当役員へ連絡</span><i class="grow"></i><span>担当役員から代表へ報告</span><i class="grow"></i><span>総務人事部へ連携</span></div>
-        <div class="contact tbd" style="align-self:flex-start"><svg class="i"><use href="#i-phone"/></svg><span>相談窓口：<b>確定次第記載</b></span></div>
+      </div>
+    </div>
+    <div class="phase" data-step="9">
+      <div class="eyebrow">ハラスメント相談窓口</div>
+      <h2 class="title">スタッフが、直接相談できる窓口がある</h2>
+      <div class="split" style="grid-template-columns:1fr 760px;gap:48px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <div class="card is-accent" style="padding:30px 34px;gap:10px">
+            <p class="cap" style="margin-top:0">社員・アルバイトが、直接相談できる窓口</p>
+            <p style="display:flex;align-items:center;gap:18px;font-size:54px;font-weight:900;color:var(--accent-ink);letter-spacing:.02em"><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>soudan@garb.co.jp</p>
+          </div>
+          <ul class="rec3" data-step="10">
+            <li><span class="badge">1</span>窓口を、スタッフ全員に知らせる</li>
+            <li><span class="badge">2</span>窓口に相談したことを理由に、不利益な扱いをしない</li>
+          </ul>
+          <div class="alert is-ok" data-step="10"><svg class="i"><use href="#i-check"/></svg><p>窓口を広く知らせることが、<b>風通しの良い店</b>をつくる。シェフ・店長は、<b>窓口を伝える側</b></p></div>
+        </div>
+        <svg class="illus" viewBox="0 0 760 460" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <use href="#i-person" x="20" y="200" width="100" height="160" style="color:#9aa3ae"/><use href="#i-person" x="110" y="200" width="100" height="160" style="color:#9d92ff"/><use href="#i-person" x="200" y="200" width="100" height="160" style="color:#c98a00"/>
+          <text x="160" y="400" font-size="24" fill="#4f5661">社員・アルバイト</text>
+          <path d="M300 250C400 150 480 150 560 220" fill="none" stroke="#d5dae1" stroke-width="5" stroke-dasharray="12 10"/>
+          <g class="mailfly"><rect x="270" y="226" width="70" height="48" rx="6" fill="#fff" stroke="#6b5ce7" stroke-width="4"/><path d="M270 230l35 26 35-26" fill="none" stroke="#6b5ce7" stroke-width="4"/></g>
+          <path d="M560 150l90-40 90 40v190H560z" fill="#e9e6fd"/><rect x="620" y="250" width="60" height="90" fill="#fff"/>
+          <rect x="580" y="170" width="140" height="44" rx="22" fill="#6b5ce7"/><text x="650" y="200" font-size="22" fill="#fff">相談窓口</text>
+          <rect x="0" y="360" width="760" height="8" rx="4" fill="#e1e5ea"/>
+          <g class="a-bob"><rect x="430" y="40" width="250" height="56" rx="28" fill="#ddf2e7"/><text x="555" y="77" font-size="24" fill="#22915c">風通しの良い店へ</text></g>
+        </g></svg>
       </div>
     </div>
     <aside class="notes">スタッフから、ハラスメントの相談を受けたとき。
@@ -1139,8 +1167,9 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 記録が必要な理由は3つあります。後から、事実関係を正確に確認するため。相談者を、「言った・言わない」から守るため。対応した皆さん自身が、適切に対応したことを示すため。
 ［クリック］相談を受けたときは、記録を残すことを本人に伝え、書いた内容を本人と一緒に確認してください。自分の話がどう残されるのかわかっていることは、相談者の安心にもつながります。ただし、記録には相談者のプライバシーに関わる情報が含まれます。誰でも見られる場所に置かない。本人の同意なく、第三者に共有しない。この配慮が必要です。
 ［クリック］本部への緊急連絡は、担当役員へ連絡 → 担当役員から代表へ報告 → 総務人事部へ連携の順です。
-（進行役：相談窓口の連絡先を案内する）
-※要確認：相談窓口の具体的な運用（受付方法・対応部署・担当者）は未確定。確定次第、スライドに記載する</aside>
+［クリック］そして、ハラスメントの相談窓口です。soudan@garb.co.jp。これは、皆さんが使う窓口というより、社員やアルバイトが、直接相談できる窓口です。
+［クリック］この窓口を、スタッフ全員に知らせてください。窓口を広く知らせることが、風通しの良い店をつくります。シェフ・店長である皆さんは、窓口を伝える側です。そして、窓口に相談したことを理由に、不利益な扱いをすることは、絶対にあってはなりません。
+（進行役：チャットにも窓口のアドレスを貼る）</aside>
   </section>
 
   <!-- 12 事後対応 -->
