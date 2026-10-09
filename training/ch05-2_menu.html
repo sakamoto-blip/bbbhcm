@@ -1,0 +1,774 @@
+<meta charset="utf-8">
+<title>第5-2章 メニューコンプライアンス</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+/* 第5-2章だけで使う部品 */
+.illus { width: 100%; height: auto; display: block; overflow: visible; }
+.fb { transform-box: fill-box; transform-origin: center; }
+@keyframes float { 0%, 100% { transform: none; } 50% { transform: translateY(-8px); } }
+@keyframes wx { 0%, 40% { opacity: 1; } 50%, 90% { opacity: 0; } 100% { opacity: 1; } }
+
+/* 表紙：メニューを虫眼鏡がなぞる */
+.lens { animation: lens 7s ease-in-out infinite; }
+@keyframes lens { 0%, 6% { transform: translate(0, 0); } 28%, 34% { transform: translate(0, 86px); } 56%, 62% { transform: translate(0, 172px); } 84%, 100% { transform: translate(0, 0); } }
+.tick { opacity: 0; transform-box: fill-box; transform-origin: center; animation: tick 7s ease infinite; }
+@keyframes tick { 0% { opacity: 0; transform: scale(.4); } 6%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.cover .chips span { font-size: 28px; color: var(--ink); background: #fff; }
+
+/* 04 事例：24件 */
+.cases24 { display: flex; flex-direction: column; gap: 8px; }
+.cases24 li { display: grid; grid-template-columns: 500px 86px 470px 1fr; align-items: center; gap: 0 16px; padding: 10px 22px; background: var(--surface); border-radius: 14px; box-shadow: 0 4px 14px rgba(29,33,40,.05); }
+.cases24 li.hd { background: none; box-shadow: none; padding: 0 22px; font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.cases24 .c-m { font-size: 30px; font-weight: 900; }
+.cases24 .c-a { font-size: 28px; font-weight: 900; color: var(--danger); }
+.cases24 .c-p { font-size: 21px; line-height: 1.35; color: var(--ink-2); }
+.cases24.big li { padding: 14px 22px; }
+.cases24.big .c-m { font-size: 34px; }
+.cases24.big .c-a { font-size: 32px; }
+.cases24.big .c-p { font-size: 23px; }
+.arr { position: relative; height: 10px; margin-right: 16px; background: repeating-linear-gradient(90deg, var(--accent) 0 10px, transparent 10px 18px); background-size: 18px 100%; animation: arr .9s linear infinite; }
+.arr::after { content: ""; position: absolute; right: -16px; top: -9px; border: 14px solid transparent; border-left: 16px solid var(--accent); border-right: 0; }
+@keyframes arr { to { background-position: 18px 0; } }
+.cases24 li.hd i { visibility: hidden; }
+.genre { display: inline-flex; gap: 10px; }
+.genre span { font-size: 24px; font-weight: 900; padding: 6px 18px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
+
+/* クイズ（10択） */
+.quiz.q10 { gap: 18px; }
+.quiz.q10 .qz-q { font-size: 42px; }
+.quiz .qz-opts.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+.quiz.q10 .opt { padding: 12px 22px; font-size: 27px; gap: 18px; }
+.quiz.q10 .opt .k { width: 52px; height: 52px; font-size: 28px; }
+
+/* 05 なぜ悪気なく起きるのか */
+.why3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+.why3 .card { padding: 30px 30px; gap: 16px; }
+.why3 .card .badge { font-size: 64px; }
+.why3 .card h3 { font-size: 36px; }
+.defs { display: flex; flex-direction: column; gap: 10px; }
+.defs li { display: grid; grid-template-columns: 300px 1fr 1.3fr; gap: 18px; align-items: center; padding: 14px 24px; border-radius: 14px; background: var(--surface); box-shadow: 0 4px 14px rgba(29,33,40,.05); }
+.defs li.hd { background: none; box-shadow: none; padding: 0 24px; font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.defs .w { font-size: 34px; font-weight: 900; }
+.defs .feel { font-size: 26px; color: var(--ink-2); }
+.defs .feel s { text-decoration-color: var(--danger); text-decoration-thickness: 3px; }
+.defs .law { font-size: 28px; font-weight: 700; color: var(--accent-ink); }
+.alike { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.alike .card { padding: 26px 28px; gap: 16px; align-items: center; text-align: center; }
+.alike .tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+.alike .tags span { font-size: 32px; font-weight: 900; padding: 10px 20px; border-radius: 12px; background: var(--surface-2); border: 3px solid var(--line); animation: shuffle 4s ease-in-out infinite; }
+.alike .tags span:nth-child(3) { animation-delay: -1.3s; } .alike .tags span:nth-child(5) { animation-delay: -2.6s; }
+.alike .tags i { font-style: normal; font-family: var(--f-num); font-size: 36px; color: var(--danger); }
+.alike .tags small { display: block; font-size: 20px; color: var(--ink-2); font-weight: 700; }
+@keyframes shuffle { 0%, 100% { transform: none; } 25% { transform: rotate(-3deg) translateY(-4px); } 75% { transform: rotate(3deg) translateY(2px); } }
+.peek { animation: peek 3s ease-in-out infinite; }
+@keyframes peek { 0%, 30%, 100% { transform: translateY(0); } 50%, 80% { transform: translateY(-34px); } }
+
+/* 06 何を失うか */
+.kind.inhouse { background: var(--surface-2); color: var(--ink-2); }
+.kind.adm { background: #fdf0d8; color: #b06b00; }
+.lose2 { display: grid; grid-template-columns: 1fr 1.25fr; gap: 28px; }
+.lose2 .card { gap: 14px; padding: 26px 30px; }
+.lose2 .card p { font-size: 26px; line-height: 1.5; }
+.lose2 .card p .cap { font-size: 22px; }
+.pct { display: flex; align-items: baseline; gap: 14px; }
+.pct .num { font-size: 104px; color: var(--accent); line-height: .9; }
+.pct p { font-size: 26px; font-weight: 700; }
+
+/* 07 プラン */
+.std5 { display: flex; flex-direction: column; gap: 10px; }
+.std5 li { display: grid; grid-template-columns: 64px 1fr; gap: 18px; align-items: center; padding: 14px 24px; border-radius: 14px; background: var(--surface); box-shadow: 0 4px 14px rgba(29,33,40,.05); font-size: 30px; font-weight: 700; }
+.std5 li .ico { width: 56px; height: 56px; font-size: 30px; border-radius: 14px; }
+.cls3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.cls3 .card { padding: 24px 26px; gap: 14px; }
+.cls3 .card h3 { font-size: 34px; }
+.cls3 .chips { gap: 8px; }
+.cls3 .chips span { font-size: 23px; padding: 6px 14px; border: 0; border-radius: 10px; font-weight: 700; color: var(--ink); }
+.cls3 .ng { border-color: var(--danger); }
+.cls3 .ng h3 { color: var(--danger); }
+.cls3 .ng .chips span { background: var(--danger-soft); text-decoration: line-through; text-decoration-color: rgba(194,58,46,.6); }
+.cls3 .ev h3 { color: #b06b00; }
+.cls3 .ev .chips span { background: #fdf0d8; }
+.cls3 .mx h3 { color: var(--accent-ink); }
+.cls3 .mx .chips span { background: var(--accent-soft); }
+.cls3 .todo { margin-top: auto; font-size: 25px; font-weight: 900; padding-top: 10px; border-top: 2px dashed var(--line); }
+.bob { animation: float 3s ease-in-out infinite; }
+
+/* 08 キープ */
+.kcards .card { padding: 22px 28px; gap: 10px; }
+.kcards .card h3 { font-size: 34px; }
+.kcards .card p, .kcards .card li { font-size: 25px; line-height: 1.5; }
+.flash { animation: flash 3s ease-out infinite; }
+@keyframes flash { 0%, 40% { opacity: 0; } 45% { opacity: .95; } 60%, 100% { opacity: 0; } }
+.shrink { transform-box: fill-box; transform-origin: bottom; animation: shrink 5s ease-in-out infinite; }
+@keyframes shrink { 0%, 30% { transform: none; } 55%, 85% { transform: scale(.55); } 100% { transform: none; } }
+.wk8 { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+.wk8 span { height: 70px; border-radius: 10px; background: var(--surface-2); display: grid; place-items: center; font-size: 20px; font-weight: 900; color: var(--ink-2); }
+.wk8 span.on4 { animation: wkfill 6s steps(1) infinite; }
+.wk8 span.on4:nth-child(2) { animation-delay: .4s; } .wk8 span.on4:nth-child(4) { animation-delay: .8s; } .wk8 span.on4:nth-child(5) { animation-delay: 1.2s; } .wk8 span.on4:nth-child(7) { animation-delay: 1.6s; }
+@keyframes wkfill { 0% { background: var(--surface-2); color: var(--ink-2); } 10%, 90% { background: var(--ok); color: #fff; } }
+
+/* 09 アクト */
+.flame { transform-box: fill-box; transform-origin: bottom; animation: a-flick 1s ease-in-out infinite alternate; }
+.juice { transform-box: fill-box; transform-origin: bottom; animation: juice 5s ease-in-out infinite; }
+@keyframes juice { 0% { transform: scaleY(.1); } 50%, 90% { transform: scaleY(1); } 100% { transform: scaleY(.1); } }
+.okng2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.okng2 p { font-size: 24px; line-height: 1.45; padding: 12px 16px; border-radius: 12px; }
+.okng2 .o { background: var(--ok-soft); }
+.okng2 .x { background: var(--danger-soft); }
+
+/* 10 年3回のチェック */
+.cal12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+.cal12 span { height: 74px; border-radius: 12px; background: var(--surface); box-shadow: 0 4px 12px rgba(29,33,40,.05); display: grid; place-items: center; font-size: 26px; font-weight: 900; color: var(--ink-2); }
+.cal12 span.on { background: var(--accent); color: #fff; animation: d-pulse 2.4s ease-in-out infinite; }
+.flow4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+.flow4 > li { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 20px 22px; border-radius: 16px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); }
+.flow4 > li + li::before { content: ""; position: absolute; left: -32px; top: 50%; width: 24px; height: 24px; margin-top: -12px; background: var(--accent); clip-path: polygon(0 18%, 55% 18%, 55% 0, 100% 50%, 55% 100%, 55% 82%, 0 82%); }
+.flow4 .d { font-family: var(--f-num); font-size: 30px; color: var(--accent-ink); }
+.flow4 .who { font-size: 22px; font-weight: 900; color: var(--ink-2); }
+.flow4 p { font-size: 23px; line-height: 1.45; }
+.flow4 li.me { background: var(--accent-soft); box-shadow: 0 0 0 4px var(--accent); }
+.sub3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.sub3 .card { padding: 22px 26px; gap: 10px; }
+.sub3 .card h3 { font-size: 30px; }
+.sub3 .card li { font-size: 23px; line-height: 1.5; }
+
+/* 13 修了レポート */
+.report { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; flex: 1; }
+.report-cards { display: flex; flex-direction: column; gap: 10px; }
+.report-cards .card { flex-direction: row; align-items: center; gap: 28px; padding: 14px 30px; }
+.report-cards .lead { font-size: 34px; }
+.report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.report-qr .ph { width: 260px; height: 260px; }
+
+/* 14 クロージング */
+.eq { animation: a-pulse 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
+/* 調整 */
+.alike .tags i { font-family: var(--f-body); font-weight: 900; }
+.alike .card { padding: 40px 30px; gap: 26px; justify-content: center; min-height: 420px; }
+.alike .tags span { font-size: 40px; padding: 14px 24px; }
+.alike .card p { font-size: 30px; }
+.cls3 .card { padding: 20px 22px; gap: 10px; }
+.cls3 .card h3 { font-size: 30px; }
+.cls3 .chips span { font-size: 22px; }
+.cls3 .todo { font-size: 23px; }
+.kcards .points li > div, .sub3 .points li > div { font-size: 23px; line-height: 1.5; }
+.sub3 .card { padding: 18px 24px; }
+.okng2 p { font-size: 21px; padding: 10px 14px; }
+.quiz.q10 .qz-q { font-size: 38px; }
+.sub3 .points li > div { font-size: 26px; }
+</style>
+
+<div class="deck" data-chapter="第5-2章　メニューコンプライアンス" data-accent="water">
+
+  <!-- 01 タイトル -->
+  <section class="slide glow cover" data-min="3" data-no-footer>
+    <div class="split" style="align-items:center;grid-template-columns:1fr 560px;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <div class="chapter" data-in style="--d:0">第5-2章</div>
+        <h1 data-in style="--d:1;font-size:112px">メニュー<br>コンプライアンス</h1>
+        <p class="sub" data-in style="--d:2">書いてあることと、<br>出すものを、一致させる</p>
+        <div class="chips" data-in style="--d:3"><span><svg class="i"><use href="#i-doc"/></svg>お手元に、自店のメニューをご用意ください</span></div>
+      </div>
+      <svg class="illus" viewBox="0 0 560 520" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+        <rect x="70" y="20" width="400" height="480" rx="20" fill="#fff" stroke="#d5dae1" stroke-width="5"/>
+        <text x="270" y="86" font-size="34" fill="#1f5bb5" text-anchor="middle">MENU</text>
+        <path d="M130 108h280" stroke="#e1e5ea" stroke-width="4"/>
+        <g font-size="28" fill="#1d2128"><text x="120" y="172">ビーフステーキ</text><text x="120" y="258">自家製パン</text><text x="120" y="344">九条ねぎの〜</text></g>
+        <g stroke="#e1e5ea" stroke-width="6" stroke-linecap="round"><path d="M120 196h200"/><path d="M120 282h160"/><path d="M120 368h220"/><path d="M120 430h260M120 460h180"/></g>
+        <g class="tick" style="animation-delay:1.6s"><circle cx="430" cy="164" r="22" fill="#22915c"/><path d="M420 164l7 7 13-14" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g class="tick" style="animation-delay:3.6s"><circle cx="430" cy="250" r="22" fill="#22915c"/><path d="M420 250l7 7 13-14" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g class="tick" style="animation-delay:5.5s"><circle cx="430" cy="336" r="22" fill="#22915c"/><path d="M420 336l7 7 13-14" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <g class="lens"><circle cx="230" cy="162" r="58" fill="#e0ebfb" fill-opacity=".45" stroke="#2f74d9" stroke-width="10"/><path d="M272 204l50 50" stroke="#2f74d9" stroke-width="18" stroke-linecap="round"/></g>
+      </g></svg>
+    </div>
+    <aside class="notes">本日はお集まりいただきありがとうございます。第5-2章、メニューコンプライアンスです。
+他の章は、火災への備えや、労務の管理など、皆さんの「動き」に関する話でした。この章は、毎日お客様の手に渡る、「メニュー」そのものの話です。
+メニューに書いてある言葉は、単なる言葉ではありません。お客様との約束であり、法律上の「表示」でもあります。
+そして、「これくらいなら」という感覚で書いた一言が、産地偽装や優良誤認として、会社の信用を一瞬で壊すことがあります。
+今日、一つお願いがあります。お手元に、自店のメニューをご用意ください。グランドメニューでも、手書きのおすすめでも、日替わりでも構いません。
+話を聞きながら、「あ、これ、うちにもある」と思った表記に、印をつけていってください。その印が、あとで書いていただくレポートの材料になり、次のメニューコンプライアンスチェックの下準備にもなります。</aside>
+  </section>
+
+  <!-- 02 まず、お答えください -->
+  <section class="slide" data-min="8">
+    <div class="eyebrow" data-in>まず、お答えください</div>
+    <h2 class="title" data-in style="--d:1">Zoomに表示される質問に答えてください</h2>
+    <div class="qa">
+      <ol class="qlist" data-in style="--d:2">
+        <li><span class="qn">Q1</span><div><p>店舗に「自家製」と記載しているメニューはありますか。</p><small>はい ／ いいえ</small></div><span class="qk">選択</span></li>
+        <li><span class="qn">Q2</span><div><p>メニューコンプライアンスチェックは、何月にありますか。</p><small>3月・9月 ／ 2月・6月・10月 ／ 1月・4月・7月・10月</small></div><span class="qk">選択</span></li>
+        <li><span class="qn">Q3</span><div><p>自店のメニューにある食材で、産地の確認が必要なものを、1つ書いてください。</p></div><span class="qk">記述</span></li>
+        <li><span class="qn">Q4</span><div><p>100%の濃縮還元ジュースを販売する場合、メニューに「100%ジュース」と表記できますか。</p><small>できる ／ できない ／ わからない</small></div><span class="qk">選択</span></li>
+      </ol>
+      <div class="howto" data-in style="--d:3">
+        <h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>回答のしかた</h3>
+        <ol>
+          <li><span>画面に表示される<b>「投票」</b>を見る</span></li>
+          <li><span>Q3は<b>記入欄に書く</b>、ほかは<b>1つ選ぶ</b></span></li>
+          <li><span>最後に<b>「送信」</b>を押す</span></li>
+        </ol>
+        <p class="cap">「わからない」も、そのまま答えてください。確認する場であって、責める場ではありません。</p>
+      </div>
+    </div>
+    <aside class="notes">早速ですが、これから4つ質問をします。Zoomに表示される質問に答えてください。
+今わかる範囲で、正直にお答えください。「わからない」と答えていただいて構いません。この場は、確認する場であって、責める場ではありません。むしろ、正直に書けることの方が大事です。
+（進行役：Zoomの投票を起動。質問を読み上げる）
+では、5分ほど時間を取ります。どうぞ。
+（回答がそろったら）
+（進行役：投票結果を画面共有し、拾って話す）
+ありがとうございます。皆さんの回答を見てみましょう。
+［Q1・「自家製」と書いているメニューがあるか］「『はい』が◯％。『自家製』は、この章でいちばん、定義が厳しい言葉の一つです。のちほど、もう一度出てきます」
+［Q2・メニューコンプライアンスチェックの月］（正解はまだ言わない。割合だけ示す）「選択肢ごとの割合は、こうなりました。答えは、後半でお伝えします」
+［Q3・自店のメニューで、産地の確認が必要な食材］（店名・メニュー名は読み上げず、食材の種類だけを拾う）「牛肉、と書かれた方が多いですね。鶏肉、野菜、魚介も挙がっています」「皆さん、産地の確認が必要な食材を、ちゃんと意識されていることがわかります。この食材が、のちほど、お話しする『該当項目』、つまり、根拠（エビデンス）が必要な項目です」
+［Q4・100%の濃縮還元ジュースを「100%ジュース」と表記できるか］（正解はまだ言わない）「『できる』が◯％、『できない』が◯％、『わからない』が◯％。答えは、後半でお伝えします」
+普段、何気なく使っている言葉にも、実は、法律上の厳密な定義があります。今の回答を頭の片隅に置いたまま、次の話を聞いてください。</aside>
+  </section>
+
+  <!-- 04 事例：他社の24件 -->
+  <section class="slide" data-min="5">
+    <div class="phase" data-until="0" style="gap:20px">
+      <div class="eyebrow" data-in>事例　他社で実際に問題になった24件</div>
+      <h2 class="title" data-in style="--d:1">メニューの言葉と、実際に使っていたもの</h2>
+      <div class="genre" data-in style="--d:2"><span>お肉</span><span>店で作ったように見せる言葉</span></div>
+      <ul class="cases24" data-in style="--d:3"><li class="hd"><span>メニュー表記</span><i></i><span>実際に使っていたもの</span><span>確認・摘発リスクのポイント</span></li><li><span class="c-m">ビーフステーキ／ステーキ</span><i class="arr"></i><span class="c-a">牛の成形肉</span><span class="c-p">成形肉使用の未表記（景表法不当表示）</span></li><li><span class="c-m">霜降り・サシ入りビーフステーキ</span><i class="arr"></i><span class="c-a">牛脂注入加工肉</span><span class="c-p">牛脂注入加工肉の未表記</span></li><li><span class="c-m">国産和牛のステーキ</span><i class="arr"></i><span class="c-a">オーストラリア産牛肉</span><span class="c-p">産地・品種偽装（優良誤認）</span></li><li><span class="c-m">大和肉鶏</span><i class="arr"></i><span class="c-a">ブラジルブロイラー（銘柄どり）</span><span class="c-p">銘柄・産地偽装</span></li><li><span class="c-m">自家製パン</span><i class="arr"></i><span class="c-a">市販のパン</span><span class="c-p">既製品の「自家製」不当表示</span></li><li><span class="c-m">手打ち麺</span><i class="arr"></i><span class="c-a">機械打ち麺</span><span class="c-p">調理製法偽称</span></li></ul>
+    </div>
+    <div class="phase" data-step="1" data-until="1" style="gap:16px">
+      <div class="eyebrow">事例　他社で実際に問題になった24件</div>
+      <div class="genre"><span>魚介</span></div>
+      <ul class="cases24"><li class="hd"><span>メニュー表記</span><i></i><span>実際に使っていたもの</span><span>確認・摘発リスクのポイント</span></li><li><span class="c-m">車エビ</span><i class="arr"></i><span class="c-a">ブラックタイガー</span><span class="c-p">魚介類の品種偽称（バナメイ等含む）</span></li><li><span class="c-m">伊勢海老</span><i class="arr"></i><span class="c-a">オーストラリアミナミイセエビ</span><span class="c-p">品種・産地不当表示</span></li><li><span class="c-m">芝エビ</span><i class="arr"></i><span class="c-a">ざこ海老</span><span class="c-p">品種偽称</span></li><li><span class="c-m">サザエ</span><i class="arr"></i><span class="c-a">赤西貝</span><span class="c-p">貝類の品種偽称</span></li><li><span class="c-m">鮑</span><i class="arr"></i><span class="c-a">ロコ貝</span><span class="c-p">品種偽称</span></li><li><span class="c-m">房総あわび</span><i class="arr"></i><span class="c-a">蝦夷あわび</span><span class="c-p">産地・ブランド偽称</span></li><li><span class="c-m">キングサーモン</span><i class="arr"></i><span class="c-a">サーモントラウト</span><span class="c-p">魚種の偽称</span></li><li><span class="c-m">取れたて　鮮魚のムニエル</span><i class="arr"></i><span class="c-a">冷凍魚</span><span class="c-p">解凍品・冷凍品の鮮魚表記</span></li><li><span class="c-m">キャビア</span><i class="arr"></i><span class="c-a">ランプフィッシュ卵</span><span class="c-p">代用品の不当表示</span></li></ul>
+    </div>
+    <div class="phase" data-step="2" data-until="2" style="gap:16px">
+      <div class="eyebrow">事例　他社で実際に問題になった24件</div>
+      <div class="genre"><span>産地・野菜</span><span>乳製品・飲み物</span></div>
+      <ul class="cases24"><li class="hd"><span>メニュー表記</span><i></i><span>実際に使っていたもの</span><span>確認・摘発リスクのポイント</span></li><li><span class="c-m">○○産野菜／有機野菜</span><i class="arr"></i><span class="c-a">複数の野菜を使用</span><span class="c-p">割合・混在の不当表示</span></li><li><span class="c-m">九条ネギ</span><i class="arr"></i><span class="c-a">一般的なネギ</span><span class="c-p">ブランド品種偽称</span></li><li><span class="c-m">フランス産の栗</span><i class="arr"></i><span class="c-a">中国産の栗</span><span class="c-p">原産国偽装</span></li><li><span class="c-m">新潟産　コシヒカリ</span><i class="arr"></i><span class="c-a">国産ブレンド米</span><span class="c-p">米トレーサビリティ・産地偽装</span></li><li><span class="c-m">生クリーム</span><i class="arr"></i><span class="c-a">植物性油脂の「ホイップクリーム」</span><span class="c-p">乳製品規格不当表示</span></li><li><span class="c-m">牛乳</span><i class="arr"></i><span class="c-a">低脂肪乳・加工乳</span><span class="c-p">乳製品表示規約違反（「ミルク」と表記が必要）</span></li><li><span class="c-m">純米酒</span><i class="arr"></i><span class="c-a">純米酒に該当しない清酒</span><span class="c-p">酒類不当表示</span></li><li><span class="c-m">シャンパン</span><i class="arr"></i><span class="c-a">スパークリングワイン</span><span class="c-p">原産地呼称違反（シャンパーニュ地方限定）</span></li><li><span class="c-m">フレッシュジュース</span><i class="arr"></i><span class="c-a">既製品や紙パックのジュース</span><span class="c-p">濃縮還元・既製品の「フレッシュ」表記</span></li></ul>
+    </div>
+    <div class="phase" data-step="3" style="justify-content:center">
+      <div class="split" style="grid-template-columns:1fr 520px;gap:60px">
+        <div style="display:flex;flex-direction:column;gap:30px">
+          <p class="lead">特別に悪質な言葉ではなく、<br>どこの店にもありそうな言葉ばかり。</p>
+          <h2 class="statement" style="font-size:72px">すべて、<br><span class="hl2">「よくある表現」</span>です。</h2>
+          <p class="lead"><b>自店のメニューに、似た表現はありませんか。</b></p>
+        </div>
+        <svg class="illus" viewBox="0 0 520 480" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+          <rect x="60" y="20" width="400" height="440" rx="20" fill="#fff" stroke="#d5dae1" stroke-width="5"/>
+          <text x="260" y="84" font-size="32" fill="#1f5bb5" text-anchor="middle">自店のメニュー</text>
+          <g stroke="#e1e5ea" stroke-width="8" stroke-linecap="round"><path d="M110 150h240"/><path d="M110 210h200"/><path d="M110 270h260"/><path d="M110 330h180"/><path d="M110 390h220"/></g>
+          <g class="tick" style="animation-delay:.5s"><rect x="100" y="132" width="270" height="36" rx="8" fill="none" stroke="#c23a2e" stroke-width="5"/></g>
+          <g class="tick" style="animation-delay:2.5s"><rect x="100" y="252" width="290" height="36" rx="8" fill="none" stroke="#c23a2e" stroke-width="5"/></g>
+          <g class="tick" style="animation-delay:4.5s"><rect x="100" y="372" width="250" height="36" rx="8" fill="none" stroke="#c23a2e" stroke-width="5"/></g>
+          <g class="bob"><circle cx="440" cy="60" r="44" fill="#f9e3e0"/><text x="440" y="76" font-size="44" fill="#c23a2e" text-anchor="middle">?</text></g>
+        </g></svg>
+      </div>
+    </div>
+    <aside class="notes">まず、他社で実際に問題になった表記を見ていただきます。左が、メニューに書かれていた言葉。右が、実際に使っていたものです。
+（進行役：全部は読まない。いくつかをピックアップして読む。右端の列は、「確認・摘発リスクのポイント」。何が問題だったかを、一言で示している）
+お肉から見ていきます。「ビーフステーキ」と書いて、牛の成形肉。「霜降りビーフステーキ」と書いて、牛脂注入加工肉。「国産和牛のステーキ」と書いて、オーストラリア産の牛肉でした。
+店で作ったように見せる言葉もあります。「自家製パン」と書いて市販のパン。「手打ち麺」と書いて機械打ち麺。
+「ビーフステーキ」は、成形肉を使っているのに、それを書いていない。景品表示法の不当表示です。
+［クリック］魚介です。「車エビ」と書いて、ブラックタイガー。「伊勢海老」と書いて、オーストラリアミナミイセエビ。「サザエ」は赤西貝、「鮑」はロコ貝。「キングサーモン」と書いて、サーモントラウトでした。「取れたて　鮮魚のムニエル」と書いて、使っていたのは冷凍魚です。
+［クリック］産地も同じです。「九条ネギ」と書いて一般的なネギ。「フランス産の栗」と書いて中国産の栗。「新潟産コシヒカリ」と書いて国産のブレンド米でした。「新潟産コシヒカリ」は、米トレーサビリティと、産地偽装の問題になります。
+乳製品や飲み物です。「生クリーム」と書いて、植物性油脂のホイップクリーム。「牛乳」と書いて、低脂肪乳や加工乳。「フレッシュジュース」と書いて、既製品や紙パックのジュース。「シャンパン」と書いて、スパークリングワインでした。
+「牛乳」は、加工乳なのに「牛乳」と書いた。乳製品の表示のルールに反します。「ミルク」と書く必要があります。「シャンパン」は、フランスのシャンパーニュ地方のものだけが名乗れます。
+［クリック］ここで、気づいていただきたいことがあります。
+これらはすべて、「よくある表現」です。特別に悪質な言葉が並んでいるわけではありません。どこの店のメニューにも、ありそうな言葉ばかりです。
+だからこそ、ここで問いたいのです。自店のメニューに、似た表現はありませんか。お手元のメニューを、見てみてください。</aside>
+  </section>
+
+  <!-- クイズ① -->
+  <section class="slide" data-min="2">
+    <div class="quiz q10">
+      <div class="qz-top" data-in><span class="qz-no">クイズ ①</span><span class="qz-how">Zoomの投票で回答（複数回答）</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">自店のメニューで、事例と似た表現を使っているのは、どれですか？（あてはまるものを、すべて）</h2>
+      <div class="qz-opts grid2"><div class="opt"><span class="k">A</span><span>ビーフステーキ／霜降り・サシ入りステーキ</span></div><div class="opt"><span class="k">B</span><span>国産和牛／大和肉鶏など、銘柄・産地をうたう肉</span></div><div class="opt"><span class="k">C</span><span>車エビ／伊勢海老／芝エビ</span></div><div class="opt"><span class="k">D</span><span>サザエ／鮑／キングサーモン／キャビア</span></div><div class="opt"><span class="k">E</span><span>取れたて・鮮魚の料理</span></div><div class="opt"><span class="k">F</span><span>〇〇産野菜／有機野菜／九条ネギ／フランス産の栗／新潟産コシヒカリ</span></div><div class="opt"><span class="k">G</span><span>自家製パン／手打ち麺</span></div><div class="opt"><span class="k">H</span><span>生クリーム／牛乳／フレッシュジュース</span></div><div class="opt"><span class="k">I</span><span>純米酒／シャンパン</span></div><div class="opt"><span class="k">J</span><span>似た表現はない</span></div></div>
+      <div class="qz-after" data-step="2"><p>正解はありません。「似た表現はない」を選んだ方も、<b>お手元のメニューを、もう一度</b></p><span class="poll qz" data-q="">「似た表現はない」<b contenteditable="true">◯</b>%</span></div>
+    </div>
+    <aside class="notes">ここで一問、お聞きします。自店のメニューで、事例と似た表現を使っているのは、どれでしょうか。あてはまるものを、すべて選んでください。
+A、ビーフステーキ／霜降り・サシ入りステーキ。B、国産和牛／大和肉鶏など、銘柄・産地をうたう肉。C、車エビ／伊勢海老／芝エビ。D、サザエ／鮑／キングサーモン／キャビア。E、取れたて・鮮魚の料理。F、〇〇産野菜／有機野菜／九条ネギ／フランス産の栗／新潟産コシヒカリ。G、自家製パン／手打ち麺。H、生クリーム／牛乳／フレッシュジュース。I、純米酒／シャンパン。J、似た表現はない。
+（進行役：Zoomの投票を起動〈複数回答〉）
+［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
+（投票を締め切り、結果を共有）
+［クリック］これは、正解・不正解を問うものではありません。「似た表現はない」を選ばれた方も、お手元のメニューを、もう一度、見てみてください。「ない」と思っていても、確認したことがなかった、ということは、よくあります。</aside>
+  </section>
+
+  <!-- 05 なぜ、悪気なく起きるのか -->
+  <section class="slide" data-min="4">
+    <div class="phase" data-until="0">
+      <div class="eyebrow" data-in>なぜ、悪気なく起きるのか</div>
+      <h2 class="title" data-in style="--d:1">だますつもりがなくても、起きる。理由は3つ</h2>
+      <div class="why3" data-in style="--d:2">
+        <div class="card"><span class="badge">1</span><h3>日常の言葉と、法律上の「定義」がズレている</h3></div>
+        <div class="card"><span class="badge">2</span><h3>似た名前の「別物」を、取り違える</h3></div>
+        <div class="card"><span class="badge">3</span><h3>仕入れ先の表示を、そのまま信じてしまう</h3></div>
+      </div>
+    </div>
+    <div class="phase" data-step="1" data-until="1" style="gap:22px">
+      <div class="eyebrow">理由 ①</div>
+      <h2 class="title">日常の言葉と、法律上の「定義」がズレている</h2>
+      <ul class="defs">
+        <li class="hd"><span>言葉</span><span>日常の感覚</span><span>実際の定義</span></li>
+        <li><span class="w">自家製</span><span class="feel"><s>最後に店で仕上げれば</s></span><span class="law">原材料から全行程を店舗内で（<b>自社製の商品も不可</b>）</span></li>
+        <li><span class="w">バター</span><span class="feel"><s>バター風味なら</s></span><span class="law">乳脂肪80%以上</span></li>
+        <li><span class="w">生クリーム</span><span class="feel"><s>白いホイップなら</s></span><span class="law">乳脂肪のみを原料としたもの</span></li>
+        <li><span class="w">牛乳</span><span class="feel"><s>牛の乳なら</s></span><span class="law">生乳100%・成分無調整</span></li>
+        <li><span class="w">フレッシュジュース</span><span class="feel"><s>果汁のジュースなら</s></span><span class="law">オーダーごとに絞ったもの</span></li>
+      </ul>
+      <span class="poll" data-q="Q1" style="align-self:flex-start">「自家製」と書いているメニューが「ある」 <b contenteditable="true">◯</b>%</span>
+    </div>
+    <div class="phase" data-step="2" data-until="2">
+      <div class="eyebrow">理由 ②</div>
+      <h2 class="title">似た名前の「別物」を、取り違える</h2>
+      <div class="alike">
+        <div class="card"><div class="tags"><span>大山どり</span><i>≠</i><span>大山鶏</span><i>≠</i><span>匠の大山鶏</span></div><p>似ていても、それぞれ別物</p></div>
+        <div class="card"><div class="tags"><span>淡路牛<small>交雑牛</small></span><i>≠</i><span>淡路ビーフ<small>和牛</small></span></div><p>一文字の違いで、品種が違う</p></div>
+        <div class="card"><div class="tags"><span>地鶏</span><i>≠</i><span>銘柄鶏</span></div><p>「地鶏」には、定められた基準がある</p></div>
+      </div>
+    </div>
+    <div class="phase" data-step="3">
+      <div class="eyebrow">理由 ③</div>
+      <h2 class="title">仕入れ先の表示を、そのまま信じてしまう</h2>
+      <div class="split" style="grid-template-columns:900px 1fr;gap:48px">
+        <svg class="illus" viewBox="0 0 900 400" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="0" y="330" width="900" height="10" rx="5" fill="#e1e5ea"/>
+          <g class="peek"><path d="M70 230l20-90M110 230l10-100M150 230l-6-96" stroke="#4cc38a" stroke-width="12" stroke-linecap="round"/><rect x="120" y="96" width="76" height="34" rx="8" fill="#c23a2e"/><text x="158" y="120" font-size="20" fill="#fff">中国産</text></g>
+          <rect x="30" y="180" width="220" height="150" rx="10" fill="#d9c6aa"/><rect x="60" y="214" width="160" height="60" rx="8" fill="#fff"/><text x="140" y="240" font-size="18" fill="#4f5661">原産地</text><text x="140" y="264" font-size="24" fill="#1d2128">京都府</text>
+          <text x="140" y="372" font-size="22" fill="#4f5661">卸売会社</text>
+          <path d="M270 260h150" stroke="#2f74d9" stroke-width="8" stroke-dasharray="14 10"/><path d="M420 244l26 16-26 16z" fill="#2f74d9"/>
+          <rect x="470" y="110" width="200" height="220" rx="14" fill="#fff" stroke="#d5dae1" stroke-width="5"/><text x="570" y="160" font-size="22" fill="#1f5bb5">MENU</text><text x="570" y="214" font-size="28" fill="#1d2128">九条ねぎの〜</text><path d="M510 246h120M510 276h90" stroke="#e1e5ea" stroke-width="6" stroke-linecap="round"/>
+          <text x="570" y="372" font-size="22" fill="#4f5661">飲食店</text>
+          <g class="bob"><path d="M700 60h170a18 18 0 0 1 18 18v60a18 18 0 0 1-18 18h-110l-30 26v-26h-30a18 18 0 0 1-18-18V78a18 18 0 0 1 18-18z" fill="#f9e3e0"/><text x="785" y="104" font-size="24" fill="#c23a2e">根拠を</text><text x="785" y="138" font-size="24" fill="#c23a2e">保管していたか</text></g>
+        </g></svg>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="card" style="padding:24px 28px;gap:10px"><p class="cap" style="margin-top:0">2026年6月　京都「九条ねぎ」産地偽装事件</p><p style="font-size:28px">卸売会社の元社長が、中国産のネギ等を混ぜて「原産地 京都府」と表示し、逮捕</p></div>
+          <p class="text">偽装したのは仕入れ先。でも、使った飲食店にも<b>「根拠を保管していたか」</b>が問われる</p>
+        </div>
+      </div>
+      <div class="alert" data-step="4"><svg class="i"><use href="#i-alert"/></svg><p><b>「書いた言葉の根拠を、いつでも出せる」</b>状態にしておく</p></div>
+    </div>
+    <aside class="notes">では、なぜこういうことが起きるのか。だますつもりがなくても、起きます。理由は3つあります。
+［クリック］一つ目、日常の言葉と、法律上の「定義」がズレている。
+たとえば「自家製」。お店で最後に仕上げれば自家製、と思っていませんか。実は、原材料から全行程を店舗内で作ったものだけです。しかも、自社製の商品も不可です。グループのパン屋で焼いたパンも、「自家製パン」とは書けません。
+冒頭の投票で、「自家製」と書いているメニューが「ある」と答えた方が、◯％いらっしゃいました。
+「バター」は、乳脂肪80%以上のものだけ。「生クリーム」は、乳脂肪のみを原料としたもの。「牛乳」は、生乳100%で成分無調整のもの。「フレッシュジュース」は、オーダーごとに絞ったものです。普段使っている言葉と、法律上の定義が、ズレているんです。
+［クリック］二つ目、似た名前の「別物」を、取り違える。
+「大山どり」「大山鶏」「匠の大山鶏」。似ていますが、それぞれ別物です。「淡路牛」と「淡路ビーフ」も、淡路牛は交雑牛、淡路ビーフは和牛。そして、「地鶏」と「銘柄鶏」も別物です。
+［クリック］三つ目、仕入れ先の表示を、そのまま信じてしまう。
+2026年6月、京都の「九条ねぎ」で、産地偽装事件がありました。卸売会社の元社長が、中国産のネギなどを混ぜて、「原産地　京都府」と表示して販売し、逮捕されています。
+偽装したのは、仕入れ先です。でも、それを「九条ねぎ」としてメニューに使っていた飲食店には、「根拠を保管していたか」が問われます。
+［クリック］ですから、大事なのは、「書いた言葉の根拠を、いつでも出せる」状態にしておくことです。</aside>
+  </section>
+
+  <!-- 06 何を失うか -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>何を失うか</div>
+    <h2 class="title" data-in style="--d:1">会社も、あなた個人も、大きな代償を負う</h2>
+    <div class="lose2">
+      <div class="card" data-step="1">
+        <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
+        <p><b>措置命令。企業名・店名が全国に公表</b>される。SNSでの炎上、顧客離れ</p>
+        <div class="pct"><span class="num"><span data-count="3">3</span>%</span><p>売上の課徴金<br><span class="cap">不当表示をしていた期間の、対象商品の売上総額の3%</span></p></div>
+        <p>酒税法違反（無免許のサングリア製造・未開栓のお酒の販売）→ <b>営業停止・免許の取消し</b></p>
+      </div>
+      <div class="card is-accent" data-step="2">
+        <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
+        <p><span class="kind">刑事</span><b>酒税法</b>（無免許製造：自家製サングリア等）　10年以下の拘禁刑または100万円以下の罰金</p>
+        <p><span class="kind">刑事</span><b>酒税法</b>（無免許販売：未開栓のお酒の販売）　1年以下の拘禁刑または50万円以下の罰金</p>
+        <p><span class="kind">刑事</span><b>不正競争防止法</b>　意図的な産地偽装等は、逮捕の対象になりうる</p>
+        <p><span class="kind adm">行政</span><b>景品表示法</b>　措置命令。刑事罰ではないが、<b>企業名・店名が公表</b>される</p>
+        <p class="cap"><span class="kind inhouse">社内</span>コンプライアンスチェックの提出の放置等、著しい管理怠慢は、懲戒解雇を含む処分の対象</p>
+      </div>
+    </div>
+    <aside class="notes">では、不当表示が発覚した場合、何を失うのか。
+［クリック］【会社が負うもの】
+まず、措置命令です。企業名、店名が、メディアや全国に公表されます。SNSでの炎上、顧客離れにつながります。
+そして、売上の3%の課徴金。不当表示をしていた期間の、対象商品の売上総額の3%を、国に納めることになります。
+さらに、酒税法違反。無免許でのサングリアの製造や、未開栓のお酒の販売が発覚した場合は、営業停止や免許の取消しです。
+［クリック］【あなた個人が負うもの】
+酒税法の無免許製造、自家製サングリアなど。10年以下の拘禁刑、または100万円以下の罰金です。無免許販売、つまり未開栓のお酒の販売は、1年以下の拘禁刑、または50万円以下の罰金。
+景品表示法は、措置命令であって、刑事罰ではありません。ただ、企業名・店名が公表されることによるブランドへのダメージは、致命的です。
+意図的な産地偽装などは、不正競争防止法違反として、刑事罰、つまり逮捕の対象になりえます。
+そして、コンプライアンスチェックの提出の放置など、著しい管理怠慢によって会社に損害を与えた場合は、社内規程に基づき、懲戒解雇を含む処分の対象になります。</aside>
+  </section>
+
+  <!-- クイズ② -->
+  <section class="slide" data-min="2">
+    <div class="quiz q10">
+      <div class="qz-top" data-in><span class="qz-no">クイズ ②</span><span class="qz-how">Zoomの投票で回答（複数回答）</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">根拠や条件をそろえても、メニューに<span class="hl">使えない言葉</span>はどれですか？（すべて選んでください。4つあります）</h2>
+      <div class="qz-opts grid2"><div class="opt"><span class="k">A</span><span>地鶏</span></div><div class="opt ok"><span class="k">B</span><span>こだわり</span><span class="ok-tag">正解</span></div><div class="opt"><span class="k">C</span><span>有機</span></div><div class="opt ok"><span class="k">D</span><span>無農薬・農薬不使用</span><span class="ok-tag">正解</span></div><div class="opt"><span class="k">E</span><span>生パスタ</span></div><div class="opt ok"><span class="k">F</span><span>カジキマグロ</span><span class="ok-tag">正解</span></div><div class="opt"><span class="k">G</span><span>焼き立て</span></div><div class="opt"><span class="k">H</span><span>特別栽培</span></div><div class="opt ok"><span class="k">I</span><span>自家製サングリア</span><span class="ok-tag">正解</span></div><div class="opt"><span class="k">J</span><span>削り立て</span></div></div>
+      <i class="reveal" data-step="2"></i>
+      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>残りの6つは、<b>条件を満たしていれば使える言葉</b></p></div>
+    </div>
+    <aside class="notes">ここで一問、お聞きします。次のうち、根拠や条件をそろえても、メニューに使えない言葉は、どれでしょうか。すべて選んでください。4つあります。
+A、地鶏。B、こだわり。C、有機。D、無農薬・農薬不使用。E、生パスタ。F、カジキマグロ。G、焼き立て。H、特別栽培。I、自家製サングリア。J、削り立て。
+（進行役：Zoomの投票を起動〈複数回答〉）
+［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
+（投票を締め切り、結果を共有）
+［クリック］正解は、B、D、F、I。「こだわり」「無農薬・農薬不使用」「カジキマグロ」「自家製サングリア」の4つです。
+「こだわり」は、抽象的で、根拠を示せません。「無農薬」「農薬不使用」は、会社として、一律に使いません。「カジキマグロ」は、実在しない名称です。「自家製サングリア」は、お酒の作り置きにあたるため、書けません。
+それ以外の、「地鶏」「有機」「生パスタ」「焼き立て」「特別栽培」「削り立て」は、条件を満たしていれば、使える言葉です。では、プランの内容に入ります。</aside>
+  </section>
+
+  <!-- 07 プラン -->
+  <section class="slide" data-min="6">
+    <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）｜表記を設計する</b></div>
+    <div class="phase" data-until="1" style="top:190px">
+      <h2 class="title">① 判断の「正解」は、公的な基準</h2>
+      <ul class="std5">
+        <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>メニュー・料理等の食品表示に係る景品表示法上の考え方</li>
+        <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>魚介類名称のガイドライン</li>
+        <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>外食の原産地表示ガイドライン</li>
+        <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>青果標準商品コード</li>
+        <li data-step="1" class="slide-in"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>食品表示に関する公正競争規約</li>
+      </ul>
+      <p class="cap" data-step="1">外食特有の判断は1つ目の資料。正しい魚種名（「カジキマグロ」のような俗称を避ける）は、魚介類名称のガイドライン</p>
+    </div>
+    <div class="phase" data-step="2" data-until="4" style="top:190px;gap:22px">
+      <h2 class="title">② メニューの言葉を、3つに分けて見極める</h2>
+      <div class="cls3">
+        <div class="card ng" data-step="2"><h3>✕ 使えない言葉</h3><div class="chips"><span>こだわり</span><span>食べごろ</span><span>美味しい</span><span>いろいろ</span><span>和野菜</span><span>無農薬・農薬不使用</span><span>カジキマグロ</span><span>自家製サングリア・梅酒</span><span>朝どれ・採れたて（原則）</span></div><p class="todo">→ 具体的な名称・産地に言い換える<br><span class="cap">例：「いろいろキノコ」→「アワビ茸、エリンギ、大黒しめじ」</span></p></div>
+        <div class="card ev" data-step="3"><h3>根拠が要る言葉</h3><div class="chips"><span>〇〇産</span><span>地鶏</span><span>〇〇牛・和牛</span><span>天然</span><span>鮮魚</span><span>有機</span><span>特別栽培</span><span>自家製</span><span>生パスタ</span><span>焼き立て</span><span>削り立て</span><span>長期熟成</span><span>無添加</span></div><p class="todo">→ 納品書・規格書・レシピで裏付ける</p></div>
+        <div class="card mx" data-step="4"><h3>取り違えやすい名前</h3><div class="chips"><span>地鶏 ≠ 銘柄鶏</span><span>大山どり・大山鶏・匠の大山鶏</span><span>淡路牛 ≠ 淡路ビーフ</span><span>パルミジャーノ ≠ パルメザン</span><span>タリアテッレ ≠ フェットチーネ</span><span>平政 ≠ ぶり</span></div><p class="todo">→ 使っているものと、表記が一致しているか確認</p></div>
+      </div>
+      <div class="alert is-info" data-step="4"><svg class="i"><use href="#i-search"/></svg><p><b>全部覚える必要はありません。</b>ジャンル別の全項目は「該当項目一覧」で。迷ったら、開いて確認</p></div>
+    </div>
+    <div class="phase" data-step="5" style="top:190px;gap:22px">
+      <h2 class="title">③ 酒税法の「絶対厳禁」2つ ／ ④ 迷ったら、事前に確認</h2>
+      <div class="cols cols-2 kcards">
+        <div class="card" data-step="5">
+          <svg class="illus" viewBox="0 0 700 170" style="height:170px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="60" y="20" width="120" height="140" rx="20" fill="#f3e3ea" stroke="#c9ced6" stroke-width="5"/><rect x="70" y="70" width="100" height="80" rx="12" fill="#b0284f" opacity=".75"/><g class="bob"><circle cx="100" cy="100" r="14" fill="#f2be3d"/><circle cx="140" cy="118" r="12" fill="#f27a9c"/></g>
+            <circle cx="190" cy="34" r="24" fill="#c23a2e"/><path d="M180 24l20 20M200 24l-20 20" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+            <text x="120" y="190" font-size="0">.</text>
+            <rect x="400" y="50" width="70" height="110" rx="12" fill="#2a2e39"/><rect x="420" y="20" width="30" height="36" rx="6" fill="#2a2e39"/><rect x="410" y="86" width="50" height="40" rx="6" fill="#fff"/>
+            <path d="M490 110h80" stroke="#c9ced6" stroke-width="6" stroke-dasharray="10 8"/><path d="M570 98l18 12-18 12z" fill="#c9ced6"/>
+            <circle cx="620" cy="80" r="24" fill="#c23a2e"/><path d="M610 70l20 20M630 70l-20 20" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          </g></svg>
+          <h3>③ 酒税法の「絶対厳禁」</h3>
+          <ul class="points plain"><li><div><b>自家製サングリア・梅酒等の作り置き</b>は、無免許製造。注文を受けてから、その場で混ぜて出すのはOK</div></li><li><div><b>未開栓のお酒のテイクアウト・物販</b>には、酒類小売業免許が必要</div></li></ul>
+        </div>
+        <div class="card is-accent" data-step="6">
+          <h3>④ 迷ったら、事前に確認</h3>
+          <div class="chain" style="gap:0"><span style="font-size:26px;padding:12px 20px">企画書を作成</span><i class="grow" style="width:44px"></i><span style="font-size:26px;padding:12px 20px">事業開発部 岡井 のチェック</span><i class="grow" style="width:44px"></i><span style="font-size:26px;padding:12px 20px">告知</span></div>
+          <p>期間限定・産直表記のメニューは、この順で</p>
+          <p>メニュー・差し替えPOP・SNS広告は、店長とシェフ等で<b>クロスチェック</b>してから出す。判断に迷う表現は、独断で進めず、本部・法務に事前に確認</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">まず、プラン。メニューの表記を、設計する段階です。
+［クリック］一つ目、判断の「正解」は、公的な基準です。
+行政が、景品表示法違反かどうかを判断するときの正解は、5つあります。「メニュー・料理等の食品表示に係る景品表示法上の考え方」、「魚介類名称のガイドライン」、「外食の原産地表示ガイドライン」、「青果標準商品コード」、「食品表示に関する公正競争規約」。
+「加工品を鮮魚と呼んでいいか」といった、外食特有の判断は、一つ目の資料に示されています。「カジキマグロ」のような俗称を避けて、正しい魚種名を確認するときは、魚介類名称のガイドラインです。
+［クリック］二つ目、メニューの言葉を、3つに分けて見極めます。全部の言葉を覚える必要はありません。次の3つに分けて考えてください。
+一つ目の分類、「使えない言葉」。「こだわり」「食べごろ」「美味しい」「いろいろ」「和野菜」。これらは、客観的な根拠がなく、定義もないため、表記できません。「無農薬」「農薬不使用」も、使えません。「カジキマグロ」は、そもそも実在しない名称です。「朝どれ」「採れたて」も、原則、表記できません。使えるのは、当日朝に収穫・処理して、その日のうちに提供した場合に限ります。「自家製サングリア」「自家製梅酒」も、後でお話しする酒税法の問題で、書けません。
+こうした言葉は、具体的な名称や産地に言い換えてください。たとえば、「いろいろキノコのソテー」ではなく、「アワビ茸、エリンギ、大黒しめじのソテー」です。
+［クリック］二つ目の分類、「根拠が要る言葉」。「〇〇産」「地鶏」「〇〇牛、和牛」「天然」「鮮魚」「有機」「特別栽培」「自家製」「生パスタ」「焼き立て」「削り立て」「長期熟成」「無添加」。使うなら、納品書や規格書、レシピで裏付けます。
+［クリック］三つ目の分類、「取り違えやすい名前」。地鶏と銘柄鶏、大山どり・大山鶏・匠の大山鶏、淡路牛と淡路ビーフ、パルミジャーノとパルメザン、タリアテッレとフェットチーネ、平政とぶり。使っているものと、表記が一致しているかを確認します。
+ジャンル別の全項目は、「該当項目一覧」にあります。迷ったら、そこを開いて確認してください。
+［クリック］三つ目、酒税法の「絶対厳禁」2つ。
+一つ目は、自家製サングリア、梅酒など、お酒の作り置きです。あらかじめ、お酒にフルーツなどを漬け込んでおく行為は、無免許での酒類製造にあたります。アルコール度数が低くても、関係ありません。ただし、お客様の注文を受けてから、その場でワインとフルーツを混ぜて提供するのは、問題ありません。
+二つ目は、未開栓のお酒のテイクアウト、物販です。ふたを開けないままお客様に販売するには、酒類小売業免許が必要です。
+［クリック］四つ目、迷ったら、事前に確認。
+期間限定、産直表記のメニューは、事前に企画書を作成し、事業開発部の岡井さんのチェックを受けてから告知してください。メニューや、差し替えのPOP、SNSの広告は、店長とシェフなどでクロスチェックをしてから出します。判断に迷う表現は、独断で進めず、本部・法務に事前に確認してください。</aside>
+  </section>
+
+  <!-- クイズ③-1 -->
+  <section class="slide" data-min="2">
+    <div class="quiz">
+      <div class="qz-top" data-in><span class="qz-no">クイズ ③-1</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">ダンボールに記載されている産地は、根拠資料として、保存対象になりますか？</h2>
+      <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>なる。納品書に産地の記載がない場合は、産地が書かれた外装（ダンボール）を撮影して保存する</span><span class="ok-tag">正解</span></div><div class="opt"><span class="k">B</span><span>ならない。根拠になるのは納品書だけで、ダンボールは保存対象にならない</span></div><div class="opt"><span class="k">C</span><span>納品書に産地の記載がある場合に限り、ダンボールの写真を保存する</span></div></div>
+      <i class="reveal" data-step="2"></i>
+      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>納品書に産地の記載がないときは、<b>産地が書かれた外装を撮影して残す</b></p></div>
+    </div>
+    <aside class="notes">ここで二問、続けてお聞きします。
+一問目。ダンボールに記載されている産地は、根拠資料として、保存対象になるでしょうか。
+A、なる。納品書に産地の記載がない場合は、産地が書かれた外装、ダンボールを撮影して保存する。B、ならない。根拠になるのは納品書だけで、ダンボールは保存対象にならない。C、納品書に産地の記載がある場合に限り、ダンボールの写真を保存する。
+（進行役：Zoomの投票を起動）
+［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
+（投票を締め切り、結果を共有）
+［クリック］正解は、Aです。納品書に産地の記載がないときは、産地が書かれた外装を撮影して残します。</aside>
+  </section>
+
+  <!-- クイズ③-2 -->
+  <section class="slide" data-min="1">
+    <div class="quiz">
+      <div class="qz-top" data-in><span class="qz-no">クイズ ③-2</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">「通常価格4,000円を、今だけ2,500円」と表示する場合、セール開始から遡る8週間のうち、通常価格で販売していた期間は、何週間以上必要ですか？</h2>
+      <div class="qz-opts"><div class="opt"><span class="k">A</span><span>2週間以上</span></div><div class="opt ok"><span class="k">B</span><span>4週間以上</span><span class="ok-tag">正解</span></div><div class="opt"><span class="k">C</span><span>8週間（すべて）</span></div></div>
+      <i class="reveal" data-step="2"></i>
+      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p><b>8週間のうち、4週間以上</b>。では、キープの内容に入ります</p></div>
+    </div>
+    <aside class="notes">二問目。「通常価格4,000円を、今だけ2,500円」と表示する場合、セール開始から遡る8週間のうち、通常価格で販売していた期間は、何週間以上必要でしょうか。
+A、2週間以上。B、4週間以上。C、8週間、つまりすべて。
+（進行役：Zoomの投票を起動）
+［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
+（投票を締め切り、結果を共有）
+［クリック］正解は、Bです。8週間のうち、4週間以上です。では、キープの内容に入ります。</aside>
+  </section>
+
+  <!-- 08 キープ -->
+  <section class="slide" data-min="4">
+    <div class="tracker" data-in><span>P</span><em></em><span class="on">K</span><em></em><span>A</span><b>キープ（維持）｜根拠を保管する</b></div>
+    <div class="phase" data-until="2" style="top:190px">
+      <h2 class="title">根拠を残す。写真と実物をそろえる</h2>
+      <div class="cols cols-2 kcards">
+        <div class="card" data-step="1">
+          <h3><span class="badge" style="font-size:40px">1</span>根拠（エビデンス）の保管</h3>
+          <svg class="illus" viewBox="0 0 700 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="40" y="30" width="170" height="160" rx="8" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="125" y="70" font-size="22" fill="#1f5bb5">納品書</text><path d="M66 96h118M66 124h118M66 152h80" stroke="#e1e5ea" stroke-width="6" stroke-linecap="round"/><rect x="60" y="140" width="130" height="30" rx="6" fill="#e0ebfb"/><text x="125" y="162" font-size="18" fill="#1f5bb5">産地：〇〇県</text>
+            <rect x="280" y="70" width="200" height="120" rx="8" fill="#d9c6aa"/><rect x="310" y="96" width="140" height="44" rx="6" fill="#fff"/><text x="380" y="126" font-size="20" fill="#1d2128">産地 〇〇県</text>
+            <rect x="530" y="70" width="120" height="86" rx="14" fill="#2a2e39"/><circle cx="590" cy="113" r="26" fill="#5d7fb8" stroke="#fff" stroke-width="5"/><rect x="550" y="58" width="36" height="16" rx="4" fill="#2a2e39"/>
+            <path class="flash" d="M500 40l30 30M640 30l-20 34M680 110h-26" stroke="#f2be3d" stroke-width="7" stroke-linecap="round"/>
+          </g></svg>
+          <p>産地・品質を限定する言葉は、<b>納品書等を店舗で保管</b>。和牛は<b>個体識別番号</b>。納品書に産地がなければ、<b>外装（ダンボール等）を撮影</b></p>
+        </div>
+        <div class="card" data-step="2">
+          <h3><span class="badge" style="font-size:40px">2</span>写真と実物の一致</h3>
+          <svg class="illus" viewBox="0 0 700 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="40" y="20" width="250" height="170" rx="10" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="165" y="50" font-size="20" fill="#4f5661">メニューの写真</text><ellipse cx="165" cy="140" rx="100" ry="36" fill="#eef1f5"/><path d="M95 140q70-90 140 0z" fill="#f2be3d"/><circle cx="130" cy="112" r="12" fill="#22915c"/><circle cx="190" cy="106" r="12" fill="#c23a2e"/>
+            <text x="350" y="118" font-size="44" fill="#c23a2e">≠</text>
+            <rect x="410" y="20" width="250" height="170" rx="10" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="535" y="50" font-size="20" fill="#4f5661">実際に出したもの</text><ellipse cx="535" cy="140" rx="100" ry="36" fill="#eef1f5"/><path class="shrink" d="M465 140q70-90 140 0z" fill="#f2be3d"/>
+          </g></svg>
+          <p>いちばんトラブルになり、SNSで拡散されやすい。「写真はイメージです」と書いてあっても、<b>著しく違えば不当表示</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="3" style="top:190px">
+      <h2 class="title">二重価格の実績。仕入れ先を鵜呑みにしない</h2>
+      <div class="cols cols-3 kcards">
+        <div class="card" data-step="3">
+          <h3><span class="badge" style="font-size:40px">3</span>二重価格の販売実績</h3>
+          <p>「通常価格5,000円 → 今だけ2,500円」と並べるなら</p>
+          <div class="wk8"><span class="on4">1</span><span class="on4">2</span><span>3</span><span class="on4">4</span><span class="on4">5</span><span>6</span><span>7</span><span>8</span></div>
+          <p><b>直近8週間のうち4週間以上</b>、その通常価格で販売した実績が必要</p>
+        </div>
+        <div class="card" data-step="4">
+          <h3><span class="badge" style="font-size:40px">4</span>仕入れ先の表示を、鵜呑みにしない</h3>
+          <p>九条ねぎの事例のように、仕入れ先の表示が違っていても、<b>使った店の責任</b>が問われる</p>
+          <p><b>納品書と、現物を突き合わせる</b></p>
+        </div>
+        <div class="card" data-step="5">
+          <h3><span class="badge" style="font-size:40px">5</span>提出に向けて、日頃から整理</h3>
+          <p>納品伝票・証明書は、日頃から整理・保管。コンプライアンスチェックに、そのまま使う</p>
+          <p class="cap" style="margin-top:0">💡「旬の」「季節の」は、<b>旬の食材一覧（BBB図書館）</b>で判断</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">次に、キープ。決めた表記を維持し、根拠を保管し続ける段階です。
+［クリック］一つ目、根拠の保管。
+「天然」「地鶏」「〇〇牛」「〇〇産」。産地や品質が限定された言葉を書くときは、それが真実であることを示す納品書などを、店舗で保管してください。
+和牛は、個体識別番号の管理が必須です。そして、納品書に産地の記載がない場合は、産地が書かれた外装、ダンボールや箱、パッケージを写真に撮って残しておきます。
+冒頭の投票で、産地の確認が必要な食材を書いていただきました。皆さんが書いた食材は、納品書に、産地まで記載されているか。まず、これを確認してください。それが、自店の「該当項目」の出発点です。
+［クリック］二つ目、写真と実物の一致。
+いちばんトラブルになり、SNSで拡散されやすいのが、写真と実物のズレです。ボリューム、トッピングの有無、大きさ。「写真はイメージです」と書いてあっても、著しく違えば、不当表示になります。
+［クリック］三つ目、二重価格の販売実績。
+「通常価格5,000円、今だけ2,500円」のように、比較を並べて表示するときは、その通常価格で、直近8週間のうち4週間以上、実際に販売した実績が必要です。実績のない高い価格を並べるのは、有利誤認になります。
+［クリック］四つ目、仕入れ先の表示を、鵜呑みにしない。
+先ほどの九条ねぎのように、仕入れ先の表示が違っていても、使った店の責任が問われます。納品書と、現物を、突き合わせて確認してください。
+［クリック］五つ目、提出に向けて、日頃から整理。
+納品伝票や証明書は、日頃から整理して保管してください。このあと説明するコンプライアンスチェックに、そのまま使います。
+なお、「旬の」「季節の」といった表記は、「旬の食材一覧」、BBB図書館のものを見て判断します。</aside>
+  </section>
+
+  <!-- クイズ④ -->
+  <section class="slide" data-min="2">
+    <div class="quiz">
+      <div class="qz-top" data-in><span class="qz-no">クイズ ④</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
+      <h2 class="qz-q" data-in style="--d:1">低温調理で中まで火入れした鶏肉を、炭火で焼き上げた場合、メニューに「炭火焼き」と表記できますか？</h2>
+      <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>できる</span><span class="ok-tag">正解</span></div><div class="opt"><span class="k">B</span><span>できない</span></div><div class="opt"><span class="k">C</span><span>わからない</span></div></div>
+      <i class="reveal" data-step="2"></i>
+      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>基準は、<b>実際に炭火を使い、風味や焼き目が料理に出ているか</b></p></div>
+    </div>
+    <aside class="notes">最後にもう一問です。低温調理で中まで火入れした鶏肉を、炭火で焼き上げた場合、メニューに「炭火焼き」と表記できるでしょうか。
+A、できる。B、できない。C、わからない。
+（進行役：Zoomの投票を起動）
+［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
+（投票を締め切り、結果を共有）
+［クリック］正解は、A、できるです。
+「炭火焼き」と書けるかどうかの基準は、実際に炭火を使い、その効果、つまり風味や焼き目が、食品にしっかり出ているかです。低温調理は、中まで火を通す「火入れ」の工程です。表面に焼き目と香ばしさをつける「焼き」を、炭火が担っているなら、「炭火焼き」と書けます。
+逆に、書けないのは、ガスや電気だけで焼いている場合。炭火の網をさっと通しただけで、炭火の効果が出ていない場合。炭火の香りの香料などで、風味をつけた場合です。その場合は、実態に合う書き方にしてください。では、アクトの内容に入ります。</aside>
+  </section>
+
+  <!-- 09 アクト -->
+  <section class="slide" data-min="3">
+    <div class="tracker" data-in><span>P</span><em></em><span>K</span><em></em><span class="on">A</span><b>アクト（実行）｜書いた通りに出す</b></div>
+    <div class="phase" style="top:190px;gap:22px">
+      <h2 class="title">書いてあることと、出すものを、一致させる</h2>
+      <div class="cols cols-3 kcards">
+        <div class="card" data-step="1">
+          <svg class="illus" viewBox="0 0 400 150" style="height:110px" aria-hidden="true"><g>
+            <rect x="80" y="96" width="240" height="40" rx="8" fill="#4f5661"/><path d="M90 90h220" stroke="#9aa3ae" stroke-width="6"/>
+            <g class="flame"><path d="M130 96c-10-20 4-30 10-44 6 14 20 24 10 44z" fill="#f27a1a"/></g><g class="flame" style="animation-delay:-.4s"><path d="M190 96c-12-24 4-36 12-52 8 16 24 28 12 52z" fill="#f2a43a"/></g><g class="flame" style="animation-delay:-.7s"><path d="M256 96c-10-20 4-30 10-44 6 14 20 24 10 44z" fill="#f27a1a"/></g>
+            <rect x="140" y="62" width="120" height="22" rx="10" fill="#c98a5a"/><path d="M160 66l10 14M190 66l10 14M220 66l10 14" stroke="#6b3d1f" stroke-width="4"/>
+          </g></svg>
+          <h3>① 書いた通りの調理法</h3>
+          <div class="okng2"><p class="o">○ 炭火で焼き、炭火の風味・焼き目が出ている（低温調理のあとに炭火で焼き上げるのも可）</p><p class="x">✕ ガス火で焼いて、香りをつけただけ</p></div>
+          <p>「手打ち」「自家製」は、その通りに作る。「焼き立て」「削り立て」は<b>提供の直前</b>に</p>
+        </div>
+        <div class="card" data-step="2">
+          <svg class="illus" viewBox="0 0 400 150" style="height:110px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <path d="M150 20h100l-14 120h-72z" fill="#fff" stroke="#9aa3ae" stroke-width="5"/><path class="juice" d="M156 52h88l-10 84h-68z" fill="#f2a43a"/>
+            <rect x="268" y="40" width="96" height="40" rx="20" fill="#2f74d9"/><text x="316" y="68" font-size="22" fill="#fff">100%</text>
+          </g></svg>
+          <h3>② 「100%」と書くなら、100%</h3>
+          <div class="okng2"><p class="o">○ 100%の濃縮還元 →「100%ジュース」と書ける</p><p class="x">✕ 濃縮還元・既製品 →「フレッシュジュース」</p></div>
+          <p>フレッシュは<b>オーダーごとに絞った</b>ものだけ。絞りおきは「生絞りジュース」</p>
+          <span class="poll" data-q="Q4" style="align-self:flex-start">「できる」と答えた方 <b contenteditable="true">◯</b>%</span>
+        </div>
+        <div class="card" data-step="3">
+          <div class="alike" style="grid-template-columns:1fr"><div class="tags" style="padding:20px 0"><span>大山どり</span><i>≠</i><span>匠の大山鶏</span></div></div>
+          <h3>③ 使っているものと、表記が一致しているか</h3>
+          <p>「大山どり」と書いて、「匠の大山鶏」を使っていないか。使用品と表記を確認する</p>
+        </div>
+      </div>
+      <div class="alert" data-step="4"><svg class="i"><use href="#i-alert"/></svg><p><b>書いてあることと、出すものが違えば、それが「偽装」。</b></p></div>
+    </div>
+    <aside class="notes">最後に、アクト。メニューに書いた通りに、出す段階です。
+［クリック］一つ目、書いた通りの調理法を、現場で100%実践する。
+「炭火焼き」と書いたなら、実際に炭火で焼いて、炭火の風味や焼き目が料理に出ていること。ガス火で焼いて、香りをつけただけは、NGです。低温調理で中まで火を通してから、炭火で焼き上げるのは、問題ありません。「手打ち」「自家製」と書いたなら、その通りに作る。既製品を温めて盛っただけ、市販のパックジュースを注いだだけで、「自家製」と呼んではいけません。「焼き立て」「削り立て」は、提供の直前に焼き、削ったものです。
+［クリック］二つ目、「100%」と書くなら、100%。
+砂糖や香料が添加された既製の飲み物を、「オレンジ100%ジュース」と偽ってはいけません。純粋な果汁、濃縮還元を含みます、のみを提供します。
+冒頭の投票の、答え合わせです。100%の濃縮還元ジュースは、「100%ジュース」と書いて構いません。◯％の方が、正解でした。
+ただし、「フレッシュジュース」とは書けません。「フレッシュ」は、オーダーごとに、生のフルーツを絞った場合に限ります。絞りおきの場合は、「生絞りジュース」と書きます。既製品や紙パックのジュースは、「フレッシュ」とは書けません。
+［クリック］三つ目、使っているものと、表記が一致しているか。
+先ほどの「大山どり」の表記で、「匠の大山鶏」を使っていないか、など。使用品と表記が違っていないか、確認してください。
+［クリック］書いてあることと、出すものが違えば、それが「偽装」です。</aside>
+  </section>
+
+  <!-- 10 年3回のメニューコンプライアンスチェック -->
+  <section class="slide" data-min="4">
+    <div class="phase" data-until="2" style="gap:22px">
+      <div class="eyebrow" data-in>年3回の「メニューコンプライアンスチェック」</div>
+      <h2 class="title" data-in style="--d:1">2月・6月・10月。オープン前日までにも</h2>
+      <div class="cal12" data-in style="--d:2"><span>1月</span><span class="on">2月</span><span>3月</span><span>4月</span><span>5月</span><span class="on">6月</span><span>7月</span><span>8月</span><span>9月</span><span class="on">10月</span><span>11月</span><span>12月</span></div>
+      <div class="row" data-in style="--d:2;align-items:center;gap:20px;flex-wrap:wrap"><span class="poll" data-q="Q2">「2月・6月・10月」と答えた方 <b contenteditable="true">◯</b>%</span><p class="cap">＋新規オープン時・大規模リニューアル時（<b>オープン前日までに完了</b>）　担当：営業本部　北奥</p></div>
+      <ol class="flow4">
+        <li data-step="1"><span class="d">① 1〜5日</span><span class="who">各店グラフィック担当</span><p>すべてのメニュー・プラン（PDF）を、Google Driveの所定フォルダへ</p></li>
+        <li data-step="1" class="me"><span class="d">② 1〜25日</span><span class="who">店長・シェフ</span><p><b>A</b> Googleフォーム（東・西）に回答<br><b>B</b> 該当項目チェック表（Excel・手書き不可）<br><b>C</b> 証拠書類をマキトリの自店フォルダへ</p></li>
+        <li data-step="1"><span class="d">③ 〜翌月末</span><span class="who">営業部</span><p>不備チェック。不備があれば「再提出」フォルダと<b>期日</b>を連絡</p></li>
+        <li data-step="1" class="me"><span class="d">④ 〜期日</span><span class="who">店長・シェフ</span><p>不備を解消して、再提出</p></li>
+      </ol>
+      <div class="alert" data-step="2"><svg class="i"><use href="#i-alert"/></svg><p><b>最終締切は、翌々月末日。それ以降は、一切受け付けない</b>（2月分→4月末／6月分→8月末／10月分→12月末）</p></div>
+    </div>
+    <div class="phase" data-step="3" style="gap:22px">
+      <div class="eyebrow">年3回の「メニューコンプライアンスチェック」</div>
+      <h2 class="title">提出するものと、証拠として使えるもの</h2>
+      <div class="sub3">
+        <div class="card" data-step="3"><h3>提出するもの</h3><ul class="points plain"><li><div><b>A Googleフォーム</b>：店で作ったメニューの写真・国産米の掲示写真・国産米の納品書・個体識別番号・検食の写真</div></li><li><div><b>B 該当項目チェック表</b>（Excel・手書き不可）</div></li><li><div><b>C 証拠書類</b>：インフォマートの納品伝票（受領書等は不可）／業者発行の納品伝票／現物写真。納品伝票は<b>当月</b>のもの</div></li></ul></div>
+        <div class="card" data-step="4"><h3>証拠として使えるもの</h3><ul class="points plain"><li><div>季節感・限定感 → <b>使っている食材と、その納品書</b></div></li><li><div>「自家製」→ <b>原材料の明記（レシピ可）</b>、または原材料の納品書</div></li><li><div>産地 → <b>産地まで記載された納品書</b>（なければ、外装の写真）</div></li></ul></div>
+        <div class="card" data-step="5"><h3>よくある質問</h3><ul class="points plain"><li><div>1年以上発注のないお酒 → 納品書がなければ<b>受領伝票でもOK</b>（備考欄に理由を書く）</div></li><li><div>「牛フィレ肉」とだけ表記 → <b>個体識別番号のついているものは、すべて提出</b></div></li></ul></div>
+      </div>
+      <div class="alert is-ok" data-step="5"><svg class="i"><use href="#i-check"/></svg><p>今日、自店のメニューから書き出す「該当項目」は、<b>このチェックの下準備</b>になる</p></div>
+    </div>
+    <aside class="notes">ここからは、実務の話です。当社では、年3回、メニューの表記が正しいかを確認する「メニューコンプライアンスチェック」を行っています。2月、6月、10月です。それとは別に、新規オープンや、大規模リニューアルのときも行い、オープン前日までに、すべてのチェックを完了させます。担当は、営業本部の北奥さんです。
+冒頭の投票で、チェックの月を伺いました。答え合わせです。2月、6月、10月。◯％の方が、正解でした。
+［クリック］流れは、4ステップです。
+①、1日から5日まで。各店のグラフィック担当が、提供中の、すべてのメニュー・プランのデータを、Google Driveの所定のフォルダに入れます。
+②、1日から25日まで。ここが、皆さんの出番です。店長と、シェフが、3つのことをします。A、Googleフォームの提出。東と西で、フォームが分かれていて、毎回、内容が変わります。回答して、必要なデータを添付します。B、該当項目チェック表の作成。店内のすべてのメニュー・プランから、該当項目を、自分たちで抜き出して、チェック表に書きます。Excelで、手書きは不可です。C、証拠書類の提出。該当項目の、納品書や写真を集めて、「マキトリ」の、自店のフォルダに入れます。
+③、翌月末まで。営業部が、提出物の不備をチェックします。不備があれば、マキトリの同じフォルダに、「再提出」フォルダを作って、不備の有無と、再提出の期日を、店舗に知らせます。
+④、その期日まで。不備があれば、皆さんが解消して、再提出します。
+［クリック］ここで、大事なことがあります。最終の締切は、翌々月の末日です。それ以降は、一切、受け付けません。2月分は4月末、6月分は8月末、10月分は12月末です。
+［クリック］提出するものは、Googleフォームの内容、該当項目チェック表、証拠書類です。フォームでは、お店で作ったメニューの写真、国産米の掲示写真、国産米の納品書、個体識別番号、検食の写真を出します。
+証拠書類は、インフォマートの納品伝票、業者発行の納品伝票、現物の写真です。納品伝票は、当月のものを出します。インフォマートの伝票は、受領書などは、不可です。
+［クリック］証拠として使えるものを、整理します。季節感、限定感を連想させる表現は、使っている食材と、その納品書。「自家製」は、原材料の明記、レシピでも構いません。または、原材料の納品書。産地は、産地まで記載された納品書。記載がなければ、産地が書かれた外装の写真です。
+［クリック］よくある質問を、2つ。一年以上、発注のないお酒は、納品書が出せません。その場合は、受領伝票でもOKですが、備考欄に、納品書がない理由を書いてください。「牛フィレ肉」とだけ書いて、国産牛とは書いていない場合も、個体識別番号は必要です。個体識別番号のついているものは、すべて提出します。ほかの質問は、手元資料に載せています。
+今日、皆さんが自店のメニューから書き出す「該当項目」は、このチェックの下準備になります。</aside>
+  </section>
+
+  <!-- 11 初動対応 -->
+  <section class="slide" data-min="4">
+    <div class="eyebrow" data-in>それでも起きたら：初動対応</div>
+    <h2 class="title" data-in style="--d:1">止める、遡る、すぐ本部へ</h2>
+    <ol class="timeline" style="gap:14px">
+      <li data-n="1" data-step="1" class="slide-in"><h3>提供を止め、現状を保存する</h3><p>メニューブック・差し替えPOP・黒板の記述を<b>すべて回収・消去</b>し、提供を一時停止。スクリーンショット等で証拠を保存</p></li>
+      <li data-n="2" data-step="2" class="slide-in"><h3>仕入伝票・根拠を遡って確認する</h3><p>過去の仕入伝票・納品書・個体識別番号を遡り、<b>誤表記の期間と、対象の数量・金額</b>を特定</p></li>
+      <li data-n="3" data-step="3" class="slide-in"><h3>本部へ即時報告する</h3><p>各社の代表・役員・営業本部・事業開発部・管理本部等へ。<b>独断で、示談や判断をしない</b></p></li>
+      <li data-n="4" data-step="4" class="slide-in"><h3>訂正・対応は、本部の承認のもとで</h3><p>HP等での訂正・謝罪、返金対応など、お客様への誠実な対応</p></li>
+    </ol>
+    <aside class="notes">メニューの誤表記や、産地偽装などのトラブルが発覚した場合の対応です。
+［クリック］一つ目、提供を止め、現状を保存する。該当のメニューブック、差し替えのPOP、黒板の記述を、すべて回収、消去し、対象の商品の提供を一時停止します。そして、メニューや画面のスクリーンショットなど、証拠を保存してください。
+［クリック］二つ目、仕入伝票・根拠を遡って確認する。該当の食材の、過去の仕入伝票、納品書、個体識別番号などをすべて遡って確認し、誤表記の期間と、対象の数量・金額を特定します。
+［クリック］三つ目、本部へ即時報告。特定した事実を、直ちに本部へ報告し、指示を仰いでください。各社の代表、役員、営業本部、事業開発部、管理本部などです。責任者の独断で、示談や判断をしてはいけません。
+［クリック］四つ目、訂正・対応は、本部の承認のもとで。HPなどでの訂正、謝罪、返金対応など、お客様への誠実な対応は、本部の承認を得てから行います。</aside>
+  </section>
+
+  <!-- 12 事後対応 -->
+  <section class="slide" data-min="3">
+    <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
+    <h2 class="title" data-in style="--d:1">対応は、本部と一緒に</h2>
+    <div class="cols cols-3" style="flex:1">
+      <div class="card" data-step="1"><span class="badge">1</span><h3>行政指導・措置命令への対応</h3><p>消費者庁・都道府県から措置命令が下された場合、本部・法務の指示のもと、期限内に是正措置・再発防止策を報告</p></div>
+      <div class="card is-accent" data-step="2"><span class="badge">2</span><h3>SNS炎上・報道への対応</h3><p>店舗責任者が、個別にSNSやメディアに対応・発言することは<b>厳禁</b>。<b>本部・広報に一本化</b></p></div>
+      <div class="card" data-step="3"><span class="badge">3</span><h3>再発防止の実行と記録</h3><p>事前申請・エビデンス保管・クロスチェックの仕組みを見直し、<b>実行状況を記録</b>に残す</p></div>
+    </div>
+    <aside class="notes">［クリック］一つ目、行政指導・措置命令への対応。消費者庁や都道府県から、措置命令が下された場合は、本部・法務の指示のもと、期限内に、是正措置と再発防止策を報告します。
+［クリック］二つ目、SNS炎上・報道への対応。産地偽装や不当表示が、報道やSNSで広がった場合、店舗責任者が、個別にSNSやメディアに対応、発言することは厳禁です。必ず、本部・広報に一本化します。
+［クリック］三つ目、再発防止の実行と記録。原因を踏まえて、事前申請、エビデンスの保管、クロスチェックの仕組みを見直し、実行状況を記録に残します。</aside>
+  </section>
+
+  <!-- 13 修了レポート -->
+  <section class="slide light" data-min="3">
+    <div class="eyebrow" data-in>研修修了レポートについて</div>
+    <h2 class="title" data-in style="--d:1">レポートの提出をもって「受講完了」となります</h2>
+    <div class="report" data-in style="--d:2">
+      <div class="report-cards">
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
+        <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>自店のメニューを見ながら記入</b></p></div></div>
+      </div>
+      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
+    </div>
+    <p class="lead" data-step="1" style="font-size:36px">今日、メニューに印をつけた表記が、<b>レポートと、次のコンプライアンスチェックの下準備</b>になります。</p>
+    <div class="row" data-step="2">
+      <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
+      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>該当しないものは「なし」で構いません</p></div>
+    </div>
+    <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
+（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
+提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
+このレポートは、自店のメニューを見ながら記入してください。
+［クリック］冒頭にお願いした、自店のメニューから「該当項目」を書き出し、証拠書類がそろっているかを確認します。次に、使えない言葉が、メニュー、POP、黒板に残っていないか。「自家製」「天然」「地鶏」など、根拠が要る言葉の確認状況。酒税法、つまり自家製サングリアや梅酒の作り置き、未開栓のお酒の販売がないか。二重価格の販売実績。今日お話しした内容を、自店のメニューに当てはめて書いていただきます。
+［クリック］最後に、店に戻って、実際に確認したこと・対応したことを書いていただきます。
+自店に該当しないものは「なし」で構いません。確認して気づいたことがあれば、あわせて書いてください。</aside>
+  </section>
+
+  <!-- 14 クロージング -->
+  <section class="slide glow" data-min="3">
+    <div class="split" style="grid-template-columns:1fr 560px;align-items:center;flex:1;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div class="eyebrow" data-in>最後に</div>
+        <p class="lead" data-step="1"><b>メニューの言葉は、お客様との約束です。</b><br>「これくらいなら」と書いた一言が、会社の信用を一瞬で壊すことがあります。</p>
+        <p class="lead" data-step="2">だからこそ、<b>書く前に確認する。</b><br><b>書いた後は、根拠を保管する。</b></p>
+        <p class="quote" data-step="3" style="font-size:68px">書いてあることと、<br><span class="hl2">出すものを、一致させる。</span></p>
+      </div>
+      <svg class="illus" viewBox="0 0 560 400" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+        <rect x="20" y="60" width="200" height="270" rx="16" fill="#fff" stroke="#d5dae1" stroke-width="5"/><text x="120" y="110" font-size="24" fill="#1f5bb5">MENU</text><text x="120" y="170" font-size="24" fill="#1d2128">炭火焼き</text><path d="M60 210h120M60 250h90M60 290h110" stroke="#e1e5ea" stroke-width="7" stroke-linecap="round"/>
+        <g class="eq"><rect x="244" y="170" width="70" height="14" rx="7" fill="#2f74d9"/><rect x="244" y="200" width="70" height="14" rx="7" fill="#2f74d9"/></g>
+        <ellipse cx="440" cy="250" rx="110" ry="46" fill="#fff" stroke="#d5dae1" stroke-width="5"/><ellipse cx="440" cy="244" rx="74" ry="26" fill="#eef1f5"/><rect x="390" y="222" width="100" height="26" rx="12" fill="#c98a5a"/><path d="M410 226l10 14M440 226l10 14M470 226l10 14" stroke="#6b3d1f" stroke-width="4"/>
+        <g class="tick"><circle cx="500" cy="150" r="30" fill="#22915c"/><path d="M486 150l10 10 18-20" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+      </g></svg>
+    </div>
+    <aside class="notes">最後に、もう一度お伝えします。
+［クリック］メニューの言葉は、お客様との約束です。
+「これくらいなら」という感覚で書いた一言が、産地偽装や優良誤認として、会社の信用を一瞬で壊すことがあります。
+［クリック］だからこそ、書く前に確認する。書いた後は、根拠を保管する。
+［クリック］そして、書いてあることと、出すものを、一致させる。
+それが、お客様に対する、店の誠実さそのものです。
+本日は以上です。ありがとうございました。</aside>
+  </section>
+
+  <!-- 15 質疑応答 -->
+  <section class="slide center" data-min="0" data-no-footer>
+    <span class="ico pulse" data-in style="width:120px;height:120px;font-size:68px;border-radius:50%"><svg class="i"><use href="#i-chat"/></svg></span>
+    <h2 class="statement" data-in style="--d:1">質疑応答</h2>
+    <p class="lead muted" data-in style="--d:2">ご質問があれば、チャットまたは挙手でお願いします。</p>
+    <aside class="notes">ご質問があれば、チャットまたは挙手でお願いします。
+（進行役：質問がない場合も、10〜15秒は間を取る）</aside>
+  </section>
+
+</div>
+<script src="assets/deck.js"></script>
