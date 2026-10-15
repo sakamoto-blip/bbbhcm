@@ -103,6 +103,47 @@
 .copyx { opacity: 0; animation: copyx 6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes copyx { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 20% { opacity: 1; } 70%, 92% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1); } 100% { opacity: 0; } }
 
+/* 05x 守るべき情報 */
+.info3 .card { padding: 26px 28px; gap: 14px; }
+.info3 .card .badge { font-size: 56px; }
+.info3 .card h3 { font-size: 34px; flex-wrap: wrap; }
+.info3 .card h3 small { font-size: 22px; color: var(--ink-2); }
+.info3 .card h3 .ico { width: 64px; height: 64px; font-size: 36px; }
+.info3 .card p { font-size: 27px; }
+.info3 .card .law { margin-top: auto; font-size: 24px; font-weight: 900; padding: 10px 16px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-ink); }
+.rules3 .points li > div { font-size: 26px; }
+.flowl { stroke-dasharray: 12 12; animation: flowl 1s linear infinite; }
+@keyframes flowl { to { stroke-dashoffset: -24; } }
+.pulse-c { transform-box: fill-box; transform-origin: center; animation: pulsec 2.4s ease-out infinite; }
+@keyframes pulsec { from { transform: scale(1); opacity: .8; } to { transform: scale(1.3); opacity: 0; } }
+/* 05 実例3つ */
+.case3 .card h3 { font-size: 28px; }
+.case3 .card svg.illus { height: 190px !important; }
+.case3 .card p { font-size: 24px; line-height: 1.5; }
+.dmfly { animation: dmfly 4s ease-in-out infinite; }
+@keyframes dmfly { 0%, 10% { transform: translateX(-30px); opacity: 0; } 25% { opacity: 1; } 60%, 85% { transform: translateX(40px); opacity: 1; } 100% { transform: translateX(40px); opacity: 0; } }
+/* 09 アクト3枚 */
+.act3 .card svg.illus { height: 190px !important; }
+.act3 .card h3 { font-size: 28px; }
+.act3 .card p { font-size: 23px; }
+.bccline { animation: ccl2 4s ease-in-out infinite; }
+@keyframes ccl2 { 0%, 30% { fill: #fff; } 45%, 90% { fill: #ddf2e7; } 100% { fill: #fff; } }
+.kcards .points li > div { font-size: 24px; line-height: 1.5; }
+/* 10x 私的に使わない */
+.priv { display: flex; flex-direction: column; gap: 8px; }
+.priv li { display: grid; grid-template-columns: 48px 640px 1fr; gap: 18px; align-items: center; padding: 12px 22px; border-radius: 14px; background: var(--surface); box-shadow: 0 4px 14px rgba(29,33,40,.05); }
+.priv li.hd { background: none; box-shadow: none; padding: 0 22px; font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.priv .ng-x { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--danger-soft); color: var(--danger); font-weight: 900; font-size: 24px; }
+.priv .act { font-size: 25px; font-weight: 700; line-height: 1.4; }
+.priv .why { font-size: 22px; line-height: 1.45; color: var(--ink-2); }
+.priv .why b { color: var(--ink); }
+/* 初動6つ */
+.lose2 .points li > div { font-size: 23px; line-height: 1.45; }
+.lose2 .points.plain { gap: 4px; }
+.timeline.tight > li { padding: 8px 24px; }
+.timeline.tight h3 { font-size: 29px; }
+.timeline.tight p { font-size: 22px; }
+
 /* 12 修了レポート */
 .report { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; flex: 1; }
 .report-cards { display: flex; flex-direction: column; gap: 10px; }
@@ -233,7 +274,7 @@
 ［クリック］店側はアルバイトの大学生らに計1,385万円の損害賠償を求めて裁判を起こし、最終的に約200万円で和解が成立しました。</aside>
   </section>
   <!-- 04 投稿しようと思う前に -->
-  <section class="slide" data-min="4">
+  <section class="slide" data-min="2">
     <div class="eyebrow" data-in>なぜ、投稿前のチェックが効かないのか</div>
     <h2 class="title" data-in style="--d:1">「投稿しよう」と思う前に、投稿されている</h2>
     <div class="split" style="grid-template-columns:380px 1fr;gap:36px;align-items:center">
@@ -265,6 +306,37 @@ BeRealは、通知が来たら数分以内に、前後のカメラで同時に�
 そして、これは「BeRealだけの問題」ではありません。今後も、同じように反射的に投稿させる仕組みのアプリは出てきます。
 ［クリック］だからこそ、投稿の内容をチェックするのではなく、そもそも業務エリアにスマホを持ち込まないという設計が必要になります。</aside>
   </section>
+
+  <!-- 05x 守るべき情報は、SNSだけではない -->
+  <section class="slide" data-min="3">
+    <div class="phase" data-until="3">
+      <div class="eyebrow" data-in>守るべき情報は、SNSだけではない</div>
+      <h2 class="title" data-in style="--d:1">お店には、守るべき情報が3種類ある</h2>
+      <div class="cols cols-3 info3">
+        <div class="card" data-step="1"><span class="badge">1</span><h3><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>個人情報<small>お客様・スタッフ</small></h3><p>予約リスト（氏名・電話番号）、顧客リスト、名刺、履歴書、シフト表、顔写真</p><p class="law">個人情報保護法</p></div>
+        <div class="card" data-step="2"><span class="badge">2</span><h3><span class="ico"><svg class="i"><use href="#i-building"/></svg></span>会社・取引先の情報</h3><p>仕入先・仕入価格、取引条件、契約内容、レシピ、未公開の企画</p><p class="law">NDA（秘密保持契約）・不正競争防止法（営業秘密）</p></div>
+        <div class="card" data-step="3"><span class="badge">3</span><h3><span class="ico"><svg class="i"><use href="#i-eye"/></svg></span>顔や姿・来店の情報</h3><p>お客様の顔や姿の写真・動画、有名人の来店、お客様のエピソード</p><p class="law">肖像権・プライバシー</p></div>
+      </div>
+    </div>
+    <div class="phase" data-step="4">
+      <div class="eyebrow">守るべき情報は、SNSだけではない</div>
+      <h2 class="title">情報が外に出ていく道は、SNSだけではない</h2>
+      <svg class="illus" viewBox="0 0 1664 500" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+        <path class="flowl" d="M722 250 L520 80" stroke="#d6406a" stroke-width="5" fill="none" style="animation-delay:-0.0s"/><rect x="40" y="30" width="480" height="100" rx="18" fill="#fff" stroke="#f3c3d2" stroke-width="3"/><text x="280" y="90" font-size="30" fill="#1d2128">SNSへの投稿・写真の写り込み</text><path class="flowl" d="M722 250 L520 250" stroke="#d6406a" stroke-width="5" fill="none" style="animation-delay:-0.2s"/><rect x="40" y="200" width="480" height="100" rx="18" fill="#fff" stroke="#f3c3d2" stroke-width="3"/><text x="280" y="260" font-size="30" fill="#1d2128">メールの誤送信（Cc・Bcc）</text><path class="flowl" d="M722 250 L520 420" stroke="#d6406a" stroke-width="5" fill="none" style="animation-delay:-0.4s"/><rect x="40" y="370" width="480" height="100" rx="18" fill="#fff" stroke="#f3c3d2" stroke-width="3"/><text x="280" y="430" font-size="30" fill="#1d2128">書類の放置・そのままの廃棄</text><path class="flowl" d="M942 250 L1144 80" stroke="#d6406a" stroke-width="5" fill="none" style="animation-delay:-0.6000000000000001s"/><rect x="1144" y="30" width="480" height="100" rx="18" fill="#fff" stroke="#f3c3d2" stroke-width="3"/><text x="1384" y="90" font-size="30" fill="#1d2128">電話での問い合わせ</text><path class="flowl" d="M942 250 L1144 250" stroke="#d6406a" stroke-width="5" fill="none" style="animation-delay:-0.8s"/><rect x="1144" y="200" width="480" height="100" rx="18" fill="#fff" stroke="#f3c3d2" stroke-width="3"/><text x="1384" y="260" font-size="30" fill="#1d2128">私物のスマホ・PCへの保存</text><path class="flowl" d="M942 250 L1144 420" stroke="#d6406a" stroke-width="5" fill="none" style="animation-delay:-1.0s"/><rect x="1144" y="370" width="480" height="100" rx="18" fill="#fff" stroke="#f3c3d2" stroke-width="3"/><text x="1384" y="430" font-size="30" fill="#1d2128">退職・異動のときの持ち出し</text>
+        <circle cx="832" cy="250" r="120" fill="#fbe2ea"/><circle class="pulse-c" cx="832" cy="250" r="120" fill="none" stroke="#d6406a" stroke-width="4"/>
+        <text x="832" y="236" font-size="34" fill="#b0284f">お店の</text><text x="832" y="280" font-size="34" fill="#b0284f">情報</text>
+      </g></svg>
+      <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p>この章は、<b>3種類の情報を守る話</b>。SNSは、その出口のひとつ</p></div>
+    </div>
+    <aside class="notes">ここまで、SNSの事例を中心にお話ししてきました。ただ、この章で守るべきものは、SNSだけではありません。
+お店には、守るべき情報が、三種類あります。
+［クリック］一つ目は、個人情報。予約リストの氏名と電話番号、お客様の名刺、顧客リスト、スタッフの履歴書やシフト表、そして顔写真です。個人情報保護法で守られています。
+［クリック］二つ目は、会社や取引先の情報。仕入先、仕入価格、取引条件、契約内容、レシピ、未公開の企画。取引先とは、NDA、秘密保持契約を結んでいて、不正競争防止法の「営業秘密」としても守られています。
+［クリック］三つ目は、お客様の顔や姿、来店の情報。有名人の来店や、お客様のエピソードも含みます。肖像権やプライバシーの問題です。
+［クリック］そして、これらが外に出ていく道は、SNSだけではありません。
+SNSへの投稿、写真の写り込み。メールの誤送信。書類の放置や、そのままの廃棄。電話での問い合わせ。私物のスマホやPCへの保存。そして、退職や異動のときの持ち出し。
+［クリック］この章では、この三種類の情報を、どう守るかをお話しします。SNSは、その出口のひとつです。</aside>
+  </section>
   <!-- 05 何を失うか -->
   <section class="slide" data-min="5">
     <div class="phase" data-until="2">
@@ -278,11 +350,16 @@ BeRealは、通知が来たら数分以内に、前後のカメラで同時に�
             <li><div>未公開のプロジェクト・仕入価格・契約内容の漏洩 → <b>数千万〜数億円規模の違約金</b></div></li>
             <li><div><b>一発で契約解除</b>。仕入ルートやビジネスの仕組みそのものが崩れる</div></li>
           </ul>
+          <p><b>個人情報が漏えいしたら</b></p>
+          <ul class="points plain">
+            <li><div>会社には、<b>個人情報保護委員会への報告と、本人への通知</b>の義務</div></li>
+            <li><div>店舗から本部への<b>報告が遅れると、会社の法令違反</b>に直結</div></li>
+          </ul>
         </div>
         <div class="card is-accent" data-step="2">
           <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
           <p><span class="kind">刑事</span><b>不正競争防止法</b>（営業秘密侵害罪）　10年以下の拘禁刑または2,000万円以下の罰金<br><span class="cap">秘密として管理された情報を、不正に持ち出し・使用・開示した場合。法人は5億円以下の罰金</span></p>
-          <p><span class="kind">刑事</span><b>個人情報保護法</b>　1年以下の拘禁刑または50万円以下の罰金<br><span class="cap">不正な利益を図る目的で、個人情報データベース等を提供・盗用した場合。法人は1億円以下の罰金</span></p>
+          <p><span class="kind">刑事</span><b>個人情報保護法</b>　1年以下の拘禁刑または50万円以下の罰金<br><span class="cap">不正な利益を図る目的で、個人情報データベース等を提供・盗用した場合。法人は1億円以下の罰金。<b>従業者・元従業者が対象</b></span></p>
           <p><span class="kind civil">民事</span>会社に与えた損害の賠償<br><span class="cap">軽率な投稿や漏洩で会社に損害を与えた場合、本人（未成年なら保護者）へ請求されることも</span></p>
           <p class="cap"><span class="kind inhouse">社内</span>懲戒解雇の対象。管理を形骸化させた店長・シェフも処分の対象</p>
         </div>
@@ -290,8 +367,8 @@ BeRealは、通知が来たら数分以内に、前後のカメラで同時に�
     </div>
     <div class="phase" data-step="3">
       <div class="eyebrow">自社の実例</div>
-      <h2 class="title">悪意のない1通も、返さなかった1本の鍵も、被害になる</h2>
-      <div class="cols cols-2">
+      <h2 class="title">ミスも、私的な1通も、鍵の回収漏れも、被害になる</h2>
+      <div class="cols cols-3 case3">
         <div class="card" data-step="3" style="padding:24px 30px">
           <h3><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>Ccに入れたまま一斉送信</h3>
           <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
@@ -302,9 +379,20 @@ BeRealは、通知が来たら数分以内に、前後のカメラで同時に�
             <path d="M44 160h360M44 186h240" stroke="#cfd8e3" stroke-width="8" stroke-linecap="round"/>
             <g class="leak"><use href="#i-person" x="470" y="60" width="60" height="90" style="color:#5b6b84"/><use href="#i-person" x="542" y="60" width="60" height="90" style="color:#8d7bc7"/><use href="#i-person" x="614" y="60" width="60" height="90" style="color:#c98a00"/><text x="580" y="186" font-size="22" fill="#c23a2e" text-anchor="middle">他のお客様のアドレスが見える</text></g>
           </g></svg>
-          <p>悪意のない単純なミスでも、<b>立派な情報漏洩</b>。お客様に送るときは Bcc</p>
+          <p>悪意のない単純なミスでも、<b>立派な情報漏洩</b></p>
         </div>
         <div class="card" data-step="4" style="padding:24px 30px">
+          <h3><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>お客様の投稿から特定し、DM</h3>
+          <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="40" y="10" width="170" height="200" rx="22" fill="#fff" stroke="#4f5661" stroke-width="5"/><rect x="56" y="40" width="138" height="90" rx="8" fill="#fbe2ea"/><circle cx="125" cy="85" r="22" fill="#f27a9c"/><path d="M60 150h120M60 176h90" stroke="#e1e5ea" stroke-width="8" stroke-linecap="round"/>
+            <text x="125" y="34" font-size="0">.</text>
+            <g class="dmfly"><rect x="270" y="80" width="150" height="70" rx="16" fill="#d6406a"/><text x="345" y="125" font-size="26" fill="#fff">DM</text></g>
+            <rect x="490" y="10" width="170" height="200" rx="22" fill="#fff" stroke="#4f5661" stroke-width="5"/><use href="#i-person" x="535" y="50" width="80" height="120" style="color:#9aa3ae"/>
+            <circle cx="650" cy="30" r="26" fill="#c23a2e"/><path d="M640 20l20 20M660 20l-20 20" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          </g></svg>
+          <p>業務で知り得たお客様を、<b>私的な接触</b>に。不安・不信感、苦情・炎上・信用失墜につながる</p>
+        </div>
+        <div class="card" data-step="5" style="padding:24px 30px">
           <h3><span class="ico"><svg class="i"><use href="#i-door"/></svg></span>退職者が鍵を返さないまま</h3>
           <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
             <use href="#i-person" x="40" y="40" width="110" height="160" style="color:#9aa3ae"/><text x="95" y="216" font-size="22" fill="#4f5661">元スタッフ</text>
@@ -313,7 +401,7 @@ BeRealは、通知が来たら数分以内に、前後のカメラで同時に�
             <rect x="530" y="110" width="60" height="100" fill="#eef1f5" stroke="#d5dae1" stroke-width="3"/><circle cx="578" cy="160" r="5" fill="#4f5661"/>
             <path d="M600 46a26 26 0 1 0 0 52 20 20 0 1 1 0-52z" fill="#8d9bb5"/><text x="560" y="24" font-size="20" fill="#4f5661">閉店後</text>
           </g></svg>
-          <p>その鍵で閉店後の店舗に侵入し、窃盗（現行犯逮捕）。<b>鍵の回収漏れは、物理的な被害にも直結</b></p>
+          <p>その鍵で閉店後に侵入し、窃盗（現行犯逮捕）。<b>物理的な被害にも直結</b></p>
         </div>
       </div>
     </div>
@@ -322,27 +410,29 @@ BeRealは、通知が来たら数分以内に、前後のカメラで同時に�
 まず、NDA、秘密保持契約の違反です。
 私たちは、取引先や提携先と秘密保持契約を結んでいます。未公開のプロジェクト、仕入価格、契約内容。これらを漏洩させた場合、契約条項に基づいて、数千万円から数億円規模の違約金を請求される可能性があります。
 そして、一発で契約を解除されます。仕入ルートやビジネススキームそのものが崩壊するということです。
+もう一つ。個人情報が漏えいした場合、会社には、個人情報保護委員会への報告と、本人への通知の義務があります。店舗から本部への報告が遅れると、それだけで、会社の法令違反に直結します。
 ［クリック］【あなた個人が負うもの】
-不正競争防止法違反、営業秘密侵害罪。レシピ、仕入価格、企画、システムのノウハウ等、秘密として管理されている情報を不正に持ち出した場合、10年以下の拘禁刑または2,000万円以下の罰金。法人にも5億円以下の罰金が科されます。
-個人情報保護法違反。個人情報データベース等を不正に提供した場合、1年以下の拘禁刑または50万円以下の罰金。法人には1億円以下の罰金です。
+不正競争防止法違反、営業秘密侵害罪。レシピ、仕入価格、企画、システムのノウハウ等、秘密として管理されている情報を持ち出した場合、10年以下の拘禁刑または2,000万円以下の罰金。法人にも5億円以下の罰金が科されます。
+個人情報保護法違反。従業者や、元従業者が、不正な利益を図る目的で、個人情報データベース等を提供したり、盗用したりした場合、1年以下の拘禁刑または50万円以下の罰金。法人には1億円以下の罰金です。
 民事では、軽率な投稿や情報漏洩によって会社に損害を与えた場合、本人に損害賠償が請求されることがあります。先ほどのそば店の事例が、まさにそれです。
 社内では懲戒解雇の対象です。そして、ルールを形骸化させて漏洩を招いた店長・シェフも、監督責任として処分の対象になります。
 ［クリック］【自社の実例】
 ある店舗で、個人アドレスをCcに入れたまま一斉送信してしまい、情報漏洩が発生した事例があります。悪意のない単純なミスですが、意図せず他のお客様のメールアドレスが第三者に晒される、立派な情報漏洩です。
-［クリック］もう一つ。退職した元スタッフが鍵を返却しないまま保持していて、その鍵を使って閉店後の店舗に不法侵入し、窃盗を行った事例があります。現行犯逮捕されています。
+［クリック］もう一つ、お客様に関わる事例です。お客様がSNSに投稿した内容から、そのお客様を特定して、個人のSNSでDMを送ったという事案がありました。お客様は、お店を信頼して来店しています。業務で知り得たお客様を、私的な接触に使えば、お客様に不安や不信感を与え、苦情や炎上、お店の信用失墜につながります。
+［クリック］さらにもう一つ。退職した元スタッフが鍵を返却しないまま保持していて、その鍵を使って閉店後の店舗に不法侵入し、窃盗を行った事例があります。現行犯逮捕されています。
 鍵の回収を怠ることは、情報漏洩だけでなく、物理的な被害にも直結するということです。</aside>
   </section>
   <!-- クイズ① -->
   <section class="slide" data-min="1">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ①</span><span class="qz-how">Zoomの投票で回答（匿名）</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
-      <h2 class="qz-q" data-in style="--d:1">自店舗で、公式・プライベート問わず設けているSNS利用ルールはありますか？</h2>
+      <h2 class="qz-q" data-in style="--d:1">自店舗で、SNSの利用ルールや、お客様の個人情報・会社の情報の取り扱いルールを、<span class="hl">アルバイトを含む全員に周知</span>していますか？</h2>
       <div class="qz-opts two"><div class="opt">はい</div><div class="opt">いいえ</div></div>
       <i class="reveal" data-step="2"></i>
       <div class="qz-after" data-step="2"><p>正解はありません。「いいえ」の場合、ルールがない、または<b>周知されていない</b>状態です</p><span class="poll qz" data-q="">「はい」<b contenteditable="true">◯</b>%　「いいえ」<b contenteditable="true">◯</b>%</span></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
-    <aside class="notes">ここで一問、お聞きします。自店舗で、公式・プライベート問わず設けているSNS利用ルールはありますか。「はい」か「いいえ」でお答えください。
+    <aside class="notes">ここで一問、お聞きします。自店舗で、SNSの利用ルールや、お客様の個人情報・会社の情報の取り扱いルールを、アルバイトを含む全員に周知していますか。「はい」か「いいえ」でお答えください。
 （進行役：Zoomの投票を起動）
 ［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
 （投票を締め切り、結果を共有）
@@ -385,34 +475,58 @@ BeRealは、通知が来たら数分以内に、前後のカメラで同時に�
   <section class="slide" data-min="1">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ②</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
-      <h2 class="qz-q" data-in style="--d:1">店舗の公式SNSアカウントについて、正しい運用はどれですか？</h2>
-      <div class="qz-opts"><div class="opt"><span class="k">A</span><span>運用担当者が、ID・パスワードを一人で管理する</span></div><div class="opt"><span class="k">B</span><span>新しいアカウントを店舗の判断で開設し、後から本部へ報告する</span></div><div class="opt ok"><span class="k">C</span><span>ID・パスワードを本部（ウェブチーム）にも共有し、新規開設は事前に本部の許可を得る</span><span class=ok-tag>正解</span></div></div>
+      <h2 class="qz-q" data-in style="--d:1">予約のために預かったお客様の連絡先を使って、キャンペーンの案内を送りたい。正しい対応はどれですか？</h2>
+      <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>店舗の判断では行わず、専門部署（セールスソリューション部）に依頼・連携する</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">B</span><span>予約のために預かった連絡先なので、店舗の判断で自由に使ってよい</span></div><div class="opt"><span class="k">C</span><span>一斉メールがだめなら、スタッフの個人のLINEやSMSで、1人ずつ連絡すれば問題ない</span></div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>このあと、詳しく見ていきます</p></div>
+      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>Cは、私物の端末にお客様の情報を保存し、<b>預かった目的以外</b>に使うことになる</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
-    <aside class="notes">ここで一問、お聞きします。店舗の公式SNSアカウントについて、正しい運用はどれでしょうか。
-A、運用担当者が、ID・パスワードを一人で管理する。B、新しいアカウントを店舗の判断で開設し、後から本部へ報告する。C、ID・パスワードを本部（ウェブチーム）にも共有し、新規開設は事前に本部の許可を得る。
+    <aside class="notes">ここで一問、お聞きします。予約のために預かったお客様の連絡先を使って、キャンペーンの案内を送りたい。正しい対応は、どれでしょうか。
+A、店舗の判断では行わず、専門部署、セールスソリューション部に依頼・連携する。B、予約のために預かった連絡先なので、店舗の判断で自由に使ってよい。C、一斉メールがだめなら、スタッフの個人のLINEやSMSで、1人ずつ連絡すれば問題ない。
 （進行役：Zoomの投票を起動）
 ［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
 （投票を締め切り、結果を共有）
-［クリック］正解は、Cです。では、プランの内容に入ります。</aside>
+［クリック］正解は、Aです。Cは、一見よさそうですが、私物の端末にお客様の情報を保存することになり、預かった目的以外での利用にもあたります。では、プランの内容に入ります。</aside>
   </section>
 
   <!-- 07 プラン -->
   <section class="slide" data-min="4">
     <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）</b></div>
-    <div class="phase" data-until="2" style="top:190px">
-      <h2 class="title">発信の範囲と、アカウントの持ち方を決める</h2>
+    <div class="phase" data-until="1" style="top:190px">
+      <h2 class="title">① 情報の種類ごとに、ルールを決める</h2>
+      <div class="cols cols-3 info3 rules3">
+        <div class="card" data-step="1"><h3><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>個人情報</h3><p class="cap" style="margin-top:0">予約リスト・顧客リスト・名刺・履歴書・シフト表</p><ul class="points plain"><li><div>お預かりした<b>目的の範囲内</b>でだけ使う（予約・来店の対応）</div></li><li><div><b>本人の同意なく、第三者に教えない</b>（電話での問い合わせも）</div></li><li><div><b>私物のスマホ・PCに、保存しない</b></div></li></ul></div>
+        <div class="card" data-step="1"><h3><span class="ico"><svg class="i"><use href="#i-building"/></svg></span>会社・取引先の情報</h3><p class="cap" style="margin-top:0">仕入価格・契約内容・未公開の企画</p><ul class="points plain"><li><div>公式・個人を問わず、<b>口外しない・投稿しない</b></div></li><li><div>入社時に、アルバイトを含む<b>全員から誓約</b>を取る</div></li></ul></div>
+        <div class="card" data-step="1"><h3><span class="ico"><svg class="i"><use href="#i-eye"/></svg></span>来店情報・お客様の話題</h3><p class="cap" style="margin-top:0">有名人の来店・お客様のエピソード</p><ul class="points plain"><li><div>公式・個人を問わず、<b>一切発信しない</b></div></li></ul></div>
+      </div>
+    </div>
+    <div class="phase" data-step="2" data-until="3" style="top:190px">
+      <h2 class="title">② 顧客データの販促 ／ ③ 公式SNSアカウントの設計</h2>
       <div class="cols cols-2 kcards">
-        <div class="card" data-step="1">
-          <h3><span class="badge" style="font-size:40px">1</span>公式SNSは、原則1店舗1アカウント</h3>
+        <div class="card" data-step="2">
+          <h3><span class="badge" style="font-size:40px">2</span>顧客データを使った販促は、専門部署へ</h3>
+          <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="40" y="50" width="170" height="120" rx="12" fill="#fff" stroke="#d5dae1" stroke-width="4"/><path d="M40 60l85 60 85-60" fill="none" stroke="#d5dae1" stroke-width="4"/>
+            <text x="125" y="200" font-size="22" fill="#4f5661">一斉メール・DM</text>
+            <circle cx="210" cy="50" r="24" fill="#c23a2e"/><path d="M200.4 40.4l19.200000000000003 19.200000000000003M219.6 40.4l-19.200000000000003 19.200000000000003" stroke="#fff" stroke-width="5" stroke-linecap="round"/><text x="300" y="70" font-size="22" fill="#c23a2e">店舗単独では</text><text x="300" y="98" font-size="22" fill="#c23a2e">しない</text>
+            <path d="M260 140h140" stroke="#d6406a" stroke-width="6"/><path d="M400 126l22 14-22 14z" fill="#d6406a"/>
+            <rect x="440" y="80" width="230" height="110" rx="14" fill="#fbe2ea"/><text x="555" y="126" font-size="24" fill="#b0284f">セールス</text><text x="555" y="160" font-size="24" fill="#b0284f">ソリューション部</text>
+          </g></svg>
+          <p>店舗の判断で顧客データを使った<b>一斉メール配信やDM郵送</b>は、法律上の制限がある。必ず依頼・連携する</p>
+        </div>
+        <div class="card" data-step="3">
+          <h3><span class="badge" style="font-size:40px">3</span>公式SNSは、原則1店舗1アカウント</h3>
           <div class="okng"><span class="ok"><svg class="i"><use href="#i-check"/></svg>自店のメニュー</span><span class="ok"><svg class="i"><use href="#i-check"/></svg>イベント情報</span></div>
           <div class="okng"><span class="ng"><svg class="i"><use href="#i-x"/></svg>有名人の来店</span><span class="ng"><svg class="i"><use href="#i-x"/></svg>一般のお客様の話題</span><span class="ng"><svg class="i"><use href="#i-x"/></svg>他社との取引・未公開の企画</span></div>
           <p>NGは<b>公式・個人を問わず</b>一切発信しない。新しいアカウントの開設は、<b>必ず事前に本部の許可</b>を</p>
         </div>
-        <div class="card" data-step="2">
-          <h3><span class="badge" style="font-size:40px">2</span>ID・パスワードを1人で抱えない</h3>
+      </div>
+    </div>
+    <div class="phase" data-step="4" style="top:190px">
+      <h2 class="title">③ ID・パスワードを共有する ／ ④ 撮影端末を決める</h2>
+      <div class="cols cols-2 kcards">
+        <div class="card" data-step="4">
+          <h3><span class="badge" style="font-size:40px">3</span>ID・パスワードを1人で抱えない</h3>
           <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
             <text x="170" y="26" font-size="24" fill="#c23a2e">1人だけが知っている</text>
             <g class="leave"><use href="#i-person" x="60" y="50" width="90" height="130" style="color:#c98a00"/></g>
@@ -426,13 +540,8 @@ A、運用担当者が、ID・パスワードを一人で管理する。B、新�
           </g></svg>
           <span class="poll" data-q="Q2" style="align-self:flex-start">「1人だけ」 <b contenteditable="true">◯</b>件</span>
         </div>
-      </div>
-    </div>
-    <div class="phase" data-step="3" style="top:190px">
-      <h2 class="title">撮る端末と、顧客データの使い方を決める</h2>
-      <div class="cols cols-2 kcards">
-        <div class="card" data-step="3">
-          <h3><span class="badge" style="font-size:40px">3</span>撮影は、店舗支給の業務用端末で</h3>
+        <div class="card" data-step="5">
+          <h3><span class="badge" style="font-size:40px">4</span>撮影は、店舗支給の業務用端末で</h3>
           <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
             <rect x="110" y="20" width="120" height="190" rx="20" fill="#fff" stroke="#22915c" stroke-width="6"/><rect x="126" y="50" width="88" height="120" rx="6" fill="#ddf2e7"/><text x="170" y="118" font-size="22" fill="#22915c">業務用</text>
             <g class="pop-g"><circle cx="230" cy="30" r="26" fill="#22915c"/><path d="M218 30l8 8 16 -16" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
@@ -441,32 +550,20 @@ A、運用担当者が、ID・パスワードを一人で管理する。B、新�
           </g></svg>
           <p>原則、<b>業務用端末または許可された撮影ルートのみ</b>。個人端末を無制限に使わせない</p>
         </div>
-        <div class="card" data-step="4">
-          <h3><span class="badge" style="font-size:40px">4</span>顧客データを使った販促は、専門部署へ</h3>
-          <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-            <rect x="40" y="50" width="170" height="120" rx="12" fill="#fff" stroke="#d5dae1" stroke-width="4"/><path d="M40 60l85 60 85-60" fill="none" stroke="#d5dae1" stroke-width="4"/>
-            <text x="125" y="200" font-size="22" fill="#4f5661">一斉メール・DM</text>
-            <circle cx="210" cy="50" r="24" fill="#c23a2e"/><path d="M200.4 40.4l19.200000000000003 19.200000000000003M219.6 40.4l-19.200000000000003 19.200000000000003" stroke="#fff" stroke-width="5" stroke-linecap="round"/><text x="300" y="70" font-size="22" fill="#c23a2e">店舗単独では</text><text x="300" y="98" font-size="22" fill="#c23a2e">しない</text>
-            <path d="M260 140h140" stroke="#d6406a" stroke-width="6"/><path d="M400 126l22 14-22 14z" fill="#d6406a"/>
-            <rect x="440" y="80" width="230" height="110" rx="14" fill="#fbe2ea"/><text x="555" y="126" font-size="24" fill="#b0284f">セールス</text><text x="555" y="160" font-size="24" fill="#b0284f">ソリューション部</text>
-          </g></svg>
-          <p>店舗の判断で顧客データを使った<b>一斉メール配信やDM郵送</b>は、法律上の制限がある。必ず依頼・連携する</p>
-        </div>
       </div>
     </div>
     <aside class="notes">まず、プラン。ルールと権限を設計する段階です。
-［クリック］一つ目、公式SNSアカウントの設計。
-原則、1店舗1アカウントです。発信内容は「自店のメニューやイベント情報」のみに限定します。
-有名人の来店、一般のお客様に関する話題、他社との取引内容や未公開プロジェクト。これらは公式・個人を問わず、一切発信しないというルールを設計してください。
-そして、新しいSNSアカウントを店舗の判断で勝手に開設することは禁止です。必ず事前に本部の許可を得てください。
-［クリック］二つ目、アカウント情報の共有と引き継ぎ。
-ここで、冒頭の投票を思い出してください。公式SNSアカウントのIDとパスワードを知っている人数を伺いました。「1人」という回答が複数ありました。
-運用担当者一人だけがアカウント情報を抱え込むことは禁止です。必ずウェブチーム、つまり本部にも共有してください。
-その担当者が退職や異動をしたとき、アカウントが事実上失われる、引き継げなくなるというリスクがあるためです。
-［クリック］三つ目、撮影端末の制限。
-SNS用の写真や動画を撮影する際は、原則として店舗支給の業務用端末、または許可された撮影ルートのみを使用します。個人端末の無制限な使用を抑止する体制を設計してください。
-［クリック］四つ目、顧客データを使った販促の制限。
-店舗単独の判断で、顧客データを用いた一斉メール配信やDM郵送を行うことは、法律上制限されています。販促を設計する際は、必ず専門部署であるセールスソリューション部へ依頼・連携してください。</aside>
+［クリック］一つ目、情報の種類ごとに、ルールを決めます。
+個人情報。予約リスト、顧客リスト、名刺、履歴書、シフト表。これらは、お客様やスタッフからお預かりした目的の範囲内でだけ使います。予約の対応、来店の対応。それ以外には使いません。本人の同意なく、第三者に教えない。電話での問い合わせも同じです。そして、私物のスマホやPCには保存しないでください。
+会社や取引先の情報。仕入価格、契約内容、未公開の企画。公式・個人を問わず、口外しない、投稿しない。入社時に、アルバイトを含む全員から、誓約を取ってください。
+来店情報やお客様の話題。有名人の来店、お客様のエピソード。これらは、公式・個人を問わず、一切発信しないというルールにします。
+［クリック］二つ目、顧客データを使った販促の制限。
+店舗単独の判断で、顧客データを用いた一斉メール配信やDM郵送を行うことは、法律上制限されています。先ほどのクイズのとおり、販促を設計する際は、必ず専門部署であるセールスソリューション部へ依頼・連携してください。
+［クリック］三つ目、公式SNSアカウントの設計。
+原則、1店舗1アカウント。発信内容は「自店のメニューやイベント情報」のみです。新しいアカウントを店舗の判断で勝手に開設することは禁止で、必ず事前に本部の許可を得てください。
+［クリック］そして、冒頭の投票を思い出してください。公式SNSアカウントのIDとパスワードを知っている人数を伺いました。「1人」という回答が複数ありました。運用担当者一人だけが抱え込むことは禁止です。必ずウェブチーム、つまり本部にも共有してください。担当者が退職や異動をしたとき、アカウントが事実上失われるリスクがあるためです。
+［クリック］四つ目、撮影端末の制限。
+SNS用の写真や動画を撮影する際は、原則として店舗支給の業務用端末、または許可された撮影ルートのみを使用します。</aside>
   </section>
   <!-- クイズ③ -->
   <section class="slide" data-min="1">
@@ -503,7 +600,7 @@ A、見た目が乱雑になり、お客様の印象が悪くなるから。B、
             <g class="det" style="animation-delay:1.2s"><path d="M232 126V104H254M366 104H388V126M388 170V192H366M254 192H232V170" fill="none" stroke="#d6406a" stroke-width="5" stroke-linecap="round"/><rect x="232" y="68" width="120" height="30" rx="8" fill="#d6406a"/><text x="242" y="90" font-size="20" fill="#fff">予約リスト</text></g>
             <g class="det" style="animation-delay:2.4s"><path d="M422 54V32H444M576 32H598V54M598 126V148H576M444 148H422V126" fill="none" stroke="#d6406a" stroke-width="5" stroke-linecap="round"/><rect x="440" y="0" width="100" height="30" rx="8" fill="#d6406a"/><text x="452" y="22" font-size="20" fill="#fff">シフト表</text></g>
           </g></svg>
-          <p>契約書・見積書・顧客リストを机に置かない。<b>何気ない写真の背景に写るだけで漏洩</b>になる</p>
+          <p>予約リスト・名刺・履歴書・契約書・仕入価格表を、<b>机上やレジ周辺に置かない</b>。放置自体がリスク。<b>写真の背景に写るだけで漏洩</b></p>
         </div>
         <div class="card" data-step="2">
           <h3><span class="badge" style="font-size:40px">2</span>退職・異動者の鍵を、台帳と照合</h3>
@@ -519,10 +616,21 @@ A、見た目が乱雑になり、お客様の印象が悪くなるから。B、
       </div>
     </div>
     <div class="phase" data-step="3" style="top:190px">
-      <h2 class="title">撮影の場面で止める。持ち込まない。話さない</h2>
+      <h2 class="title">話さない、答えない。撮影の場面で止める</h2>
       <div class="cols cols-2 kcards">
         <div class="card" data-step="3">
-          <h3><span class="badge" style="font-size:40px">3</span>撮影を見かけたら、その場で確認</h3>
+          <h3><span class="badge" style="font-size:40px">3</span>電話でも、店内でも、話さない</h3>
+          <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <use href="#i-person" x="60" y="50" width="90" height="140" style="color:#c98a00"/><use href="#i-person" x="170" y="50" width="90" height="140" style="color:#5b6b84"/>
+            <g class="mute"><path d="M140 20h130a16 16 0 0 1 16 16v34a16 16 0 0 1-16 16h-80l-24 20v-20h-26a16 16 0 0 1-16-16v-34a16 16 0 0 1 16-16z" fill="#f9e3e0"/><text x="205" y="62" font-size="22" fill="#c23a2e">有名人が来てる…</text></g>
+            <path d="M190 40l30 30M220 40l-30 30" stroke="#c23a2e" stroke-width="0"/>
+            <use href="#i-person" x="500" y="70" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="590" y="70" width="80" height="120" style="color:#9aa3ae"/><text x="585" y="214" font-size="22" fill="#4f5661">ほかのお客様</text>
+            <path d="M330 110c30-20 60-20 90 0M345 130c20-12 40-12 60 0" stroke="#9aa3ae" stroke-width="5" fill="none" stroke-linecap="round"/>
+          </g></svg>
+          <ul class="points plain"><li><div>「〇〇さんは来ていますか」に<b>答えない</b>（第三者提供にあたりうる）</div></li><li><div>予約時の復唱に注意。<b>病歴など要配慮個人情報</b>を話題にしない</div></li><li><div>有名人の来店・お客様の話題を、店内でしない</div></li></ul>
+        </div>
+        <div class="card" data-step="4">
+          <h3><span class="badge" style="font-size:40px">4</span>撮影を見かけたら、その場で確認</h3>
           <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
             <g class="locker-ph"><rect x="80" y="60" width="70" height="120" rx="12" fill="#fff" stroke="#4f5661" stroke-width="5"/><rect x="90" y="76" width="50" height="80" rx="4" fill="#eef1f5"/></g>
             <text x="115" y="214" font-size="22" fill="#4f5661">私物スマホ</text>
@@ -532,31 +640,19 @@ A、見た目が乱雑になり、お客様の印象が悪くなるから。B、
           </g></svg>
           <p>投稿してから止めるのでは遅い。ただし<b>BeRealのようなアプリでは、検問が効かない</b>。だから持ち込ませない</p>
         </div>
-        <div class="card" data-step="4">
-          <h3><span class="badge" style="font-size:40px">4</span>お客様の話を、店内でしない</h3>
-          <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-            <use href="#i-person" x="60" y="50" width="90" height="140" style="color:#c98a00"/><use href="#i-person" x="170" y="50" width="90" height="140" style="color:#5b6b84"/>
-            <g class="mute"><path d="M140 20h130a16 16 0 0 1 16 16v34a16 16 0 0 1-16 16h-80l-24 20v-20h-26a16 16 0 0 1-16-16v-34a16 16 0 0 1 16-16z" fill="#f9e3e0"/><text x="205" y="62" font-size="22" fill="#c23a2e">有名人が来てる…</text></g>
-            <path d="M190 40l30 30M220 40l-30 30" stroke="#c23a2e" stroke-width="0"/>
-            <use href="#i-person" x="500" y="70" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="590" y="70" width="80" height="120" style="color:#9aa3ae"/><text x="585" y="214" font-size="22" fill="#4f5661">ほかのお客様</text>
-            <path d="M330 110c30-20 60-20 90 0M345 130c20-12 40-12 60 0" stroke="#9aa3ae" stroke-width="5" fill="none" stroke-linecap="round"/>
-          </g></svg>
-          <p>有名人の来店、お客様のプライベートな話題は、店内で話題にしない。<b>ほかのお客様に聞かれている</b></p>
-        </div>
       </div>
     </div>
     <aside class="notes">次に、キープ。日々の管理です。
 ［クリック］一つ目、書類の物理的管理。
-契約書、見積書、顧客リスト。これらを机上に置いたままにしないでください。鍵付きの場所に保管します。
-なぜか。写真に写り込むからです。スタッフがバックヤードで撮った何気ない写真の背景に、契約書が写っている。それだけで漏洩になります。
+予約リスト、顧客リスト、お客様の名刺、スタッフの履歴書、契約書、見積書、仕入価格表。これらを机上やレジ周辺に置いたままにしないでください。鍵付きの場所に保管します。
+なぜか。置いたままにすること自体が、漏えいのリスクです。そして、写真に写り込むからです。スタッフがバックヤードで撮った何気ない写真の背景に、契約書や予約リストが写っている。それだけで漏洩になります。
 ［クリック］二つ目、鍵とアクセス権限の管理。
-退職・異動したスタッフからは、店舗の鍵を確実に回収し、台帳と照合してください。
-冒頭の投票で、回収状況を伺いました。「把握していない」という回答がありました。先ほどの不法侵入・窃盗の事例は、まさにここから起きています。
-［クリック］三つ目、責任者による検問。
-スタッフが業務エリアで撮影している場面を見かけたら、その場で確認してください。投稿してから止めるのでは遅いんです。
-ただし、先ほどお話しした通り、BeRealのようなアプリでは、この検問が機能しません。だからこそ、そもそも業務エリアに私物スマホを持ち込まないという設計が重要になります。
-［クリック］四つ目、接客・会話における配慮。
-有名人の来店、お客様のプライベートな話題。これらを店内で話題にすること自体を避けてください。他のお客様に聞かれています。</aside>
+退職・異動したスタッフからは、店舗の鍵を確実に回収し、台帳と照合してください。冒頭の投票で、回収状況を伺いました。「把握していない」という回答がありました。先ほどの不法侵入・窃盗の事例は、まさにここから起きています。
+［クリック］三つ目、接客・会話における配慮。
+まず、電話です。「〇〇さんは来ていますか」「何時に予約していますか」と聞かれても、答えてはいけません。家族や知人を名乗っていても、本人の同意なく予約の有無や内容を伝えることは、個人情報の第三者提供にあたりえます。
+予約時にお客様の情報を復唱するときも、細心の注意を払ってください。スタッフ同士の会話で、病歴や健康診断の結果など、要配慮個人情報を話題にすることも厳禁です。そして、有名人の来店、お客様のプライベートな話題を、店内で話題にすること自体を避けてください。他のお客様に聞かれています。
+［クリック］四つ目、責任者による検問。
+スタッフが業務エリアで撮影している場面を見かけたら、その場で確認してください。投稿してから止めるのでは遅いんです。ただし、BeRealのようなアプリでは、この検問が機能しません。だからこそ、そもそも業務エリアに私物スマホを持ち込まないという設計が重要になります。</aside>
   </section>
   <!-- クイズ④ -->
   <section class="slide" data-min="1">
@@ -579,9 +675,9 @@ A、笑顔で写っていれば、承諾は不要。B、口頭で確認してい
   <!-- 09 アクト -->
   <section class="slide" data-min="4">
     <div class="tracker" data-in><span>P</span><em></em><span>K</span><em></em><span class="on">A</span><b>アクト（実行）</b></div>
-    <div class="phase" data-until="2" style="top:190px">
-      <h2 class="title">確実に処分し、承諾は書面で取る</h2>
-      <div class="cols cols-2 kcards">
+    <div class="phase" data-until="3" style="top:190px">
+      <h2 class="title">確実に処分し、宛先を確かめ、承諾は書面で取る</h2>
+      <div class="cols cols-3 kcards act3">
         <div class="card" data-step="1">
           <h3><span class="badge" style="font-size:40px">1</span>不要な書類は、シュレッダーへ</h3>
           <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -591,10 +687,20 @@ A、笑顔で写っていれば、承諾は不要。B、口頭で確認してい
             <text x="500" y="70" font-size="24" fill="#1d2128">契約書・顧客情報</text><text x="500" y="106" font-size="24" fill="#1d2128">シフト表・予約リスト</text>
             <circle cx="420" cy="160" r="20" fill="#c23a2e"/><path d="M412.0 152.0l16.0 16.0M428.0 152.0l-16.0 16.0" stroke="#fff" stroke-width="4" stroke-linecap="round"/><text x="530" y="168" font-size="22" fill="#c23a2e">そのままゴミ箱へ</text>
           </g></svg>
-          <p>そのまま捨てるのは厳禁。<b>シュレッダー等で、復元できない状態に</b>して処分する</p>
+          <p>契約書・顧客情報・予約リスト・シフト表・履歴書は、<b>シュレッダーや保護スタンプ</b>で。そのまま廃棄は厳禁</p>
         </div>
         <div class="card" data-step="2">
-          <h3><span class="badge" style="font-size:40px">2</span>顔写真の掲載は、「承諾書」で</h3>
+          <h3><span class="badge" style="font-size:40px">2</span>社外への一斉送信は、Bcc</h3>
+          <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
+            <rect x="60" y="10" width="580" height="200" rx="14" fill="#fff" stroke="#d5dae1" stroke-width="4"/>
+            <text x="90" y="62" font-size="28" fill="#4f5661">To</text><rect x="170" y="36" width="440" height="38" rx="6" fill="#eef1f5"/><text x="190" y="64" font-size="22" fill="#4f5661">自分のアドレス</text>
+            <text x="90" y="118" font-size="28" fill="#4f5661">Cc</text><rect x="170" y="92" width="440" height="38" rx="6" fill="#eef1f5"/>
+            <text x="90" y="174" font-size="28" fill="#22915c">Bcc</text><rect class="bccline" x="170" y="148" width="440" height="40" rx="6" fill="#ddf2e7" stroke="#22915c" stroke-width="3"/><text x="190" y="176" font-size="22" fill="#1d2128">a@… b@… c@… d@…</text>
+          </g></svg>
+          <p><b>To・Ccにアドレスを並べない</b>。送信前に、宛先と添付ファイルを確認</p>
+        </div>
+        <div class="card" data-step="3">
+          <h3><span class="badge" style="font-size:40px">3</span>顔写真の掲載は、「承諾書」で</h3>
           <svg class="illus" viewBox="0 0 700 220" style="height:250px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
             <path d="M40 40h200a18 18 0 0 1 18 18v50a18 18 0 0 1-18 18h-140l-30 24v-24h-30a18 18 0 0 1-18-18v-50a18 18 0 0 1 18-18z" fill="#fff" stroke="#d5dae1" stroke-width="4"/>
             <text x="140" y="92" font-size="26" fill="#4f5661">「いいですよ〜」</text><circle cx="250" cy="40" r="22" fill="#c23a2e"/><path d="M241.2 31.2l17.6 17.6M258.8 31.2l-17.6 17.6" stroke="#fff" stroke-width="4" stroke-linecap="round"/><text x="140" y="190" font-size="22" fill="#4f5661">口頭だけ</text>
@@ -606,7 +712,7 @@ A、笑顔で写っていれば、承諾は不要。B、口頭で確認してい
         </div>
       </div>
     </div>
-    <div class="phase" data-step="3" style="top:190px">
+    <div class="phase" data-step="4" style="top:190px">
       <h2 class="title">全員に、ルールを「理由ごと」伝える</h2>
       <div class="split" style="grid-template-columns:720px 1fr;gap:40px;align-items:center">
         <svg class="illus" viewBox="0 0 720 420" role="img" aria-label="ルールと理由をセットで、アルバイトや新しいスタッフにも伝える"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -618,35 +724,67 @@ A、笑顔で写っていれば、承諾は不要。B、口頭で確認してい
         </g></svg>
         <div style="display:flex;flex-direction:column;gap:18px">
           <p class="lead">ルールを作っても、<b>アルバイトを含めた全員</b>が知らなければ意味がない</p>
-          <div class="card" style="padding:20px 24px;gap:8px"><p style="font-size:27px">「なぜ業務エリアで撮影してはいけないのか」<br>「なぜお客様の話題を店内でしてはいけないのか」</p></div>
-          <div class="alert" data-step="4"><svg class="i"><use href="#i-alert"/></svg><p><b>理由がわからないルールは、守られません。</b>新しく入ったスタッフにも、必ず同じことを</p></div>
+          <div class="card" style="padding:20px 24px;gap:8px"><p style="font-size:27px">「なぜ業務エリアで撮影してはいけないのか」<br>「なぜお客様の話題を店内でしてはいけないのか」<br>「<b>なぜ、お客様や会社の情報を、私的に使ってはいけないのか</b>」</p></div>
+          <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p><b>理由がわからないルールは、守られません。</b>新しく入ったスタッフにも、必ず同じことを</p></div>
         </div>
       </div>
     </div>
     <aside class="notes">最後に、アクト。実行の段階です。
 ［クリック］一つ目、書類の確実な処分。
-不要になった契約書や顧客情報は、シュレッダー等で確実に処分します。そのまま廃棄することは厳禁です。
-［クリック］二つ目、お客様の顔写真掲載時の承諾書。
-冒頭の投票で伺いました。承諾書を「取っていない」「口頭で確認している」という回答が◯％ありました。
-お客様の顔写真をSNSやHPに掲載する場合は、必ず事前に「承諾書」を得てください。口頭では不十分です。
-「笑顔で写ってくれたから大丈夫だろう」ではありません。後から削除を求められたとき、承諾書がなければ、こちらに正当性がありません。
-［クリック］三つ目、スタッフへの教育と周知。
+不要になった契約書や顧客情報、予約リスト、シフト表、履歴書は、シュレッダーや保護スタンプで確実に処分します。そのまま廃棄することは厳禁です。
+［クリック］二つ目、メールの送信。
+複数の社外の方に一斉送信するときは、Bccを使ってください。ToやCcにメールアドレスを並べない。送信前に、宛先と添付ファイルを確認します。先ほどの実例、個人アドレスをCcに入れたまま一斉送信してしまった件は、悪意のない単純なミスでも、立派な情報漏洩でした。
+［クリック］三つ目、お客様の顔写真掲載時の承諾書。
+冒頭の投票で伺いました。承諾書を「取っていない」「口頭で確認している」という回答が◯％ありました。お客様の顔写真をSNSやHPに掲載する場合は、必ず事前に「承諾書」を得てください。口頭では不十分です。後から削除を求められたとき、承諾書がなければ、こちらに正当性がありません。
+［クリック］四つ目、スタッフへの教育と周知。
 これが、この章でいちばん重要なアクトです。
-ルールを作っても、アルバイトを含めた全員が知らなければ、意味がありません。
-「なぜ業務エリアで撮影してはいけないのか」「なぜお客様の話題を店内でしてはいけないのか」。理由とセットで伝えてください。
+ルールを作っても、アルバイトを含めた全員が知らなければ、意味がありません。「なぜ業務エリアで撮影してはいけないのか」「なぜお客様の話題を店内でしてはいけないのか」「なぜ、お客様の情報や会社の情報を、私的に使ってはいけないのか」。理由とセットで伝えてください。
 ［クリック］理由がわからないルールは、守られません。そして、新しく入ったスタッフにも、必ず同じことを伝えてください。</aside>
+  </section>
+  <!-- 10x 会社の情報を、私的に使わない -->
+  <section class="slide" data-min="3">
+    <div class="phase" data-until="5" style="gap:18px">
+      <div class="eyebrow" data-in>会社の情報を、私的に使わない</div>
+      <h2 class="title" data-in style="--d:1">お預かりした情報は、「業務のため」にだけ使う</h2>
+      <div class="alert" data-in style="--d:2"><svg class="i"><use href="#i-chat"/></svg><p><b>自社の実例</b>　お客様が投稿したSNSから、お客様を特定し、個人のSNSでDMを送った。お客様は、お店を信頼して来店している</p></div>
+      <ul class="priv">
+        <li class="hd"><span></span><span>私的な利用・持ち出し</span><span>なぜダメか</span></li>
+        <li data-step="1" class="slide-in"><span class="ng-x">✕</span><span class="act">お客様の連絡先を、個人のスマホ・LINEに控えて、私的な連絡や勧誘に使う</span><span class="why">お預かりした<b>目的（予約・来店の対応）の範囲内</b>でしか使えない。私物端末への保存も禁止</span></li><li data-step="2" class="slide-in"><span class="ng-x">✕</span><span class="act">顧客リストや仕入先の情報を、転職先・知人・独立後に持ち出して使う</span><span class="why"><span class="kind">刑事</span>個人情報データベース等の不正な提供・盗用：<b>1年以下の拘禁刑または50万円以下の罰金</b>（従業者・元従業者が対象）／営業秘密：<b>10年以下の拘禁刑または2,000万円以下の罰金</b></span></li><li data-step="3" class="slide-in"><span class="ng-x">✕</span><span class="act">取引条件・仕入価格を、知人に話す・個人SNSに書く</span><span class="why"><b>NDA違反</b>。数千万〜数億円規模の違約金、取引停止</span></li><li data-step="4" class="slide-in"><span class="ng-x">✕</span><span class="act">業務の画面・書類・データを、私物のスマホ・PCに保存する</span><span class="why">原則禁止。私物端末に店舗の裏側のデータがあること自体が、<b>大きな穴</b></span></li><li data-step="5" class="slide-in"><span class="ng-x">✕</span><span class="act">退職・異動のあとも、店舗のSNS・システムにログインする</span><span class="why"><b>不正アクセス禁止法違反</b>になりうる</span></li>
+      </ul>
+    </div>
+    <div class="phase" data-step="6" style="gap:22px">
+      <div class="eyebrow">会社の情報を、私的に使わない</div>
+      <h2 class="title">責任者がやること</h2>
+      <div class="cols cols-3">
+        <div class="card" style="padding:28px 30px"><span class="badge">1</span><h3>入社時の誓約</h3><p>機密情報を<b>口外・投稿しない誓約</b>を、アルバイトを含む全員から取る</p></div>
+        <div class="card" style="padding:28px 30px"><span class="badge">2</span><h3>理由とセットで周知</h3><p><b>私的利用・持ち出しの禁止</b>を、なぜダメなのかと一緒に伝える</p></div>
+        <div class="card is-accent" style="padding:28px 30px"><span class="badge">3</span><h3>退職・異動の日に</h3><p><b>鍵・アカウントの権限・パスワード</b>を、その日のうちに回収・変更する</p></div>
+      </div>
+      <div class="alert" data-step="7"><svg class="i"><use href="#i-alert"/></svg><p>「自分のためだけ」「ちょっとだけ」でも、会社の情報の私的利用は、<b>処分の対象</b>になりうる</p></div>
+    </div>
+    <aside class="notes">もう一つ、大事なことがあります。お客様からお預かりしている情報と、会社の情報は、「業務のため」にだけ使うということです。
+自社でも、先ほどお話しした、お客様がSNSに投稿した内容から、お客様を特定して、個人のSNSでDMを送ったという事案がありました。お客様は、お店を信頼して来店しています。業務で知り得たお客様を、私的な接触に使うことは、許されません。
+次のような行為は、私的な利用、持ち出しにあたります。
+［クリック］お客様の連絡先を、個人のスマホやLINEに控えて、私的な連絡や勧誘に使う。お客様の個人情報は、予約や来店の対応という、お預かりした目的の範囲内でしか使えません。私物の端末への保存も禁止です。
+［クリック］顧客リストや、仕入先の情報を、転職先や知人に持ち出して使う。不正な利益を図る目的で、個人情報データベース等を提供したり、盗用したりした場合は、1年以下の拘禁刑または50万円以下の罰金。これは、従業者だけでなく、元従業者も対象です。営業秘密を不正に取得、使用、開示した場合は、10年以下の拘禁刑または2,000万円以下の罰金です。
+［クリック］取引先との取引条件や仕入価格を、知人に話す、個人のSNSに書く。NDA違反です。数千万円から数億円規模の違約金、そして取引停止につながります。
+［クリック］業務の画面や書類、データを、私物のスマホやPCに保存する。私物の端末に、店舗の裏側のデータが保存されること自体が、セキュリティ上の大きな穴になります。
+［クリック］退職や異動のあとも、店舗のSNSやシステムにログインする。知っているID・パスワードで入れば、不正アクセス禁止法違反になりえます。
+［クリック］責任者の皆さんがやることは、三つです。入社時に、機密情報を口外・投稿しないという誓約を、全員から取ること。私的利用と持ち出しが禁止であることを、理由とセットで周知すること。そして、退職・異動のときに、鍵、アカウントの権限、パスワードを、その日のうちに回収・変更すること。
+［クリック］「自分のためだけ」「ちょっとだけ」でも、会社の情報の私的利用は、処分の対象になりえます。</aside>
   </section>
   <!-- 10 初動対応 -->
   <section class="slide" data-min="5">
     <div class="eyebrow" data-in>それでも起きたら：初動対応</div>
     <h2 class="title" data-in style="--d:1">残す、消さない、すぐ本部へ</h2>
     <div class="split" style="grid-template-columns:1fr 560px;gap:32px;align-items:start">
-      <ol class="timeline compact" style="gap:10px">
+      <ol class="timeline compact tight" style="gap:8px">
         <li data-n="1" data-step="1" class="slide-in"><h3>証拠を保存する</h3><p>まず、投稿のスクリーンショット（魚拓）を保存</p></li>
         <li data-n="2" data-step="2" class="slide-in"><h3>独断で削除しない</h3><p>すでに誰かが保存している。<b>独断での削除は「隠蔽」</b>と受け取られ、事態を悪化させる</p></li>
         <li data-n="3" data-step="3" class="slide-in"><h3>本部へ即時報告</h3><p>本部（各社の代表・役員・営業本部・管理本部・LR部・法務担当 等）に報告し、指示を仰ぐ</p></li>
         <li data-n="4" data-step="4" class="slide-in"><h3>個人アカウントで反論しない</h3><p>対応は<b>本部・広報に一本化</b></p></li>
         <li data-n="5" data-step="5" class="slide-in"><h3>相手企業への直接謝罪・示談を、独断でしない</h3><p>不利な条件での合意や、法的トラブルの悪化を招く</p></li>
+        <li data-n="6" data-step="6" class="slide-in"><h3>個人情報が漏れたら、その日のうちに本部へ</h3><p>会社には<b>個人情報保護委員会への報告と本人への通知</b>の義務。報告の遅れは、法令違反に直結</p></li>
       </ol>
       <div class="card" data-step="2" style="padding:20px 24px">
         <svg class="illus" viewBox="0 0 670 230" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -667,7 +805,9 @@ SNSは、すでに誰かが保存しています。消しても消えません�
 ［クリック］四つ目、個人アカウントで反論しない。
 炎上している状況で、事実と違う点について、個人のアカウントで反論する。これは新たなトラブルを招きます。対応は本部・広報に一本化してください。
 ［クリック］五つ目、相手企業への直接謝罪・示談を独断でしない。
-NDA違反等で相手企業に迷惑をかけた場合も、店舗の判断で直接謝罪したり、示談を進めたりしないでください。会社に不利な条件での合意や、法的トラブルの悪化を招くリスクがあります。</aside>
+NDA違反等で相手企業に迷惑をかけた場合も、店舗の判断で直接謝罪したり、示談を進めたりしないでください。会社に不利な条件での合意や、法的トラブルの悪化を招くリスクがあります。
+［クリック］六つ目、個人情報が漏れたら、その日のうちに本部へ。
+個人情報が漏えいした、あるいは、そのおそれがある場合、会社には、個人情報保護委員会への報告と、本人への通知の義務があります。店舗から本部への報告が遅れると、会社の法令違反に直結します。気づいたら、その日のうちに、本部へ報告してください。</aside>
   </section>
   <!-- 11 事後対応 -->
   <section class="slide" data-min="4">
