@@ -440,16 +440,16 @@
 #gap-slide .g2-gap path { transition: d 1.2s; }
 #gap-slide .g2-dark, #gap-slide .g2-storm { opacity: 0; transition: opacity 1.6s ease 1.4s; }
 #gap-slide .g2-sun { transition: opacity 1.6s ease 1.4s; }
-#gap-slide[data-at="2"] .g2-dark, #gap-slide[data-at="2"] .g2-storm { opacity: 1; }
-#gap-slide[data-at="2"] .g2-sun { opacity: 0; }
-#gap-slide[data-at="2"] .g2-staff { animation: trem .5s ease-in-out 3s infinite; }
+#gap-slide[data-at="3"] .g2-dark, #gap-slide[data-at="3"] .g2-storm { opacity: 1; }
+#gap-slide[data-at="3"] .g2-sun { opacity: 0; }
+#gap-slide[data-at="3"] .g2-staff { animation: trem .5s ease-in-out 3s infinite; }
 .nod { transform-box: fill-box; transform-origin: bottom center; animation: nod 1.6s ease-in-out infinite; }
 @keyframes nod { 0%, 100% { transform: none; } 50% { transform: rotate(4deg); } }
 .g2-push { transform-box: fill-box; transform-origin: bottom center; animation: push 1.2s ease-in-out infinite; }
 @keyframes push { 0%, 100% { transform: none; } 50% { transform: translateX(-10px) rotate(-5deg); } }
 .g2-meter { padding: 20px; }
-#gap-slide[data-at="4"] .gmeter .tube i { height: 40%; background: #f2a43a; }
-#gap-slide[data-at="5"] .gmeter .tube i { height: 94%; background: var(--danger); }
+#gap-slide[data-at="5"] .gmeter .tube i { height: 40%; background: #f2a43a; }
+#gap-slide[data-at="6"] .gmeter .tube i { height: 94%; background: var(--danger); }
 .g2-band { height: 150px; }
 .g2-band > div { width: 0; overflow: hidden; white-space: nowrap; transition: width 1.4s cubic-bezier(.5,0,.2,1) .4s; }
 .g2-band > div:nth-child(2) { transition-delay: 1.4s; transition-duration: 2.2s; }
@@ -751,30 +751,40 @@
 
   <!-- 05 なぜ起きるのか -->
   <section class="slide" data-min="7" id="gap-slide">
-    <div class="phase" data-until="1" style="gap:20px">
+    <div class="phase" data-until="2" style="gap:24px">
       <div class="eyebrow" data-in>なぜ起きるのか</div>
-      <h2 class="title" data-in style="--d:1">「差」が、言えなくする</h2>
-      <div class="card g2-card" data-in style="--d:2">
-        <svg class="illus" viewBox="0 0 1300 580" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-          <rect x="0" y="556" width="1300" height="10" rx="5" fill="#e1e5ea"/>
-          <g class="g2-dn"><use href="#i-person" x="150" y="320" width="240" height="240" style="color:#2f74d9"/>
-            <g class="g2-x"><circle cx="330" cy="352" r="26" fill="#c23a2e"/><path d="M319 341l22 22M341 341l-22 22" stroke="#fff" stroke-width="6" stroke-linecap="round"/></g></g>
-          <g class="a-bob">
-            <g class="g2-s0"><rect x="60" y="200" width="320" height="76" rx="24" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="220" y="250" font-size="32" fill="#4f5661">今日は、その……</text></g>
-            <g class="g2-s1"><rect x="130" y="200" width="180" height="76" rx="24" fill="#f9e3e0"/><text x="220" y="252" font-size="38" fill="#c23a2e">はい！</text></g>
+      <h2 class="title" data-in style="--d:1">差が広がるほど、言えなくなる</h2>
+      <div class="gcap" data-in style="--d:2">
+        <p data-until="0"><b>アルバイト同士</b>　言いやすい</p>
+        <p data-step="1" data-until="1"><b>1年目と3年目</b>　<span class="hl">年齢・経験</span>の差</p>
+        <p data-step="2"><b>シェフと1年目</b>　<span class="hl">立場・力</span>の差</p>
+      </div>
+      <div class="gapfig" data-in style="--d:3">
+        <svg class="illus" viewBox="0 0 1420 500" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="0" y="450" width="1420" height="10" rx="5" fill="#e1e5ea"/>
+          <g class="lb s0 a-bob"><path d="M90 70h330a20 20 0 0 1 20 20v60a20 20 0 0 1-20 20H300l-30 30v-30H90a20 20 0 0 1-20-20V90a20 20 0 0 1 20-20z" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="255" y="134" font-size="36" fill="#1d2128">今日は帰りたいです</text></g>
+          <g class="lb s1 a-bob"><path d="M130 96h250a18 18 0 0 1 18 18v44a18 18 0 0 1-18 18H300l-26 24v-24H130a18 18 0 0 1-18-18v-44a18 18 0 0 1 18-18z" fill="#fff" stroke="#d5dae1" stroke-width="4"/><text x="255" y="146" font-size="28" fill="#9aa3ae">今日は、その……</text></g>
+          <g class="lb s2 a-bob"><path d="M170 96h170a18 18 0 0 1 18 18v44a18 18 0 0 1-18 18h-40l-26 24v-24h-104a18 18 0 0 1-18-18v-44a18 18 0 0 1 18-18z" fill="#f9e3e0"/><text x="255" y="150" font-size="36" fill="#c23a2e">はい！</text><text x="378" y="88" font-size="24" fill="#c23a2e" class="s2">（本当は帰りたい）</text></g>
+          <g class="trem"><use href="#i-person" x="180" y="210" width="150" height="240" style="color:#9d92ff"/><path class="sweat" d="M322 230q10 16 0 24q-10-8 0-24z" fill="#5fa8ff"/></g>
+          <text class="s0" x="255" y="490" font-size="26" fill="#4f5661">アルバイト</text><text class="s12" x="255" y="490" font-size="26" fill="#4f5661">社員1年目</text>
+          <g class="rp">
+            <rect class="blk b1" x="545" y="395" width="180" height="55" rx="8" fill="#c5bdff"/><text class="blk b1" x="635" y="432" font-size="26" fill="#fff">年齢</text>
+            <rect class="blk b2" x="545" y="340" width="180" height="55" rx="8" fill="#9d92ff"/><text class="blk b2" x="635" y="377" font-size="26" fill="#fff">経験</text>
+            <rect class="blk b3" x="545" y="285" width="180" height="55" rx="8" fill="#5243c9"/><text class="blk b3" x="635" y="322" font-size="26" fill="#fff">立場</text>
+            <g class="rpp">
+              <g class="a-bob"><path d="M380 230h150a16 16 0 0 1 16 16v40a16 16 0 0 1-16 16h-10v20l-22-20H380a16 16 0 0 1-16-16v-40a16 16 0 0 1 16-16z" fill="#e9e6fd"/><text x="455" y="276" font-size="26" fill="#5243c9">一杯行こうか</text></g>
+              <use href="#i-person" x="560" y="210" width="150" height="240" style="color:#6b5ce7"/>
+              <g class="s0"><rect x="565" y="160" width="140" height="40" rx="20" fill="#eef1f5"/><text x="635" y="189" font-size="24" fill="#4f5661">アルバイト</text></g>
+              <g class="s1"><rect x="545" y="160" width="180" height="40" rx="20" fill="#e9e6fd"/><text x="635" y="189" font-size="24" fill="#5243c9">3年目の先輩</text></g>
+              <g class="s2"><rect x="575" y="160" width="120" height="40" rx="20" fill="#6b5ce7"/><text x="635" y="189" font-size="24" fill="#fff">シェフ</text></g>
+              <g class="s2 pw"><rect x="720" y="250" width="96" height="44" rx="10" fill="#fff" stroke="#c23a2e" stroke-width="4"/><text x="768" y="281" font-size="22" fill="#c23a2e">評価</text><rect x="720" y="306" width="96" height="44" rx="10" fill="#fff" stroke="#c23a2e" stroke-width="4"/><text x="768" y="337" font-size="22" fill="#c23a2e">シフト</text></g>
+            </g>
           </g>
-          <g class="g2-bk">
-            <g class="b1"><rect x="820" y="501" width="230" height="55" rx="8" fill="#c5bdff"/><text x="935" y="538" font-size="28" fill="#fff">年齢</text></g>
-            <g class="b2"><rect x="820" y="446" width="230" height="55" rx="8" fill="#9d92ff"/><text x="935" y="483" font-size="28" fill="#fff">経験</text></g>
-            <g class="b3"><rect x="820" y="391" width="230" height="55" rx="8" fill="#6b5ce7"/><text x="935" y="428" font-size="28" fill="#fff">立場</text></g>
-            <g class="b4"><rect x="820" y="336" width="230" height="55" rx="8" fill="#5243c9"/><text x="935" y="373" font-size="28" fill="#fff">力</text><text x="1120" y="373" font-size="22" fill="#5243c9">評価・シフト</text></g>
-          </g>
-          <g class="g2-up"><use href="#i-person" x="815" y="320" width="240" height="240" style="color:#6b5ce7"/></g>
-          <g class="g2-gap"><path d="M560 300v250" stroke="#c23a2e" stroke-width="6" stroke-dasharray="10 10"/><text x="620" y="420" font-size="72" fill="#c23a2e" font-family="Dela Gothic One, sans-serif">差</text></g>
         </g></svg>
+        <div class="gmeter"><p>言いにくい<br>断れない</p><div class="tube"><i></i></div><span>強</span></div>
       </div>
     </div>
-    <div class="phase" data-step="2" data-until="2" style="gap:22px">
+    <div class="phase" data-step="3" data-until="3" style="gap:22px">
       <div class="eyebrow">上から見ると</div>
       <h2 class="title">手には、高性能のマイク</h2>
       <div class="card g2-card">
@@ -792,7 +802,7 @@
       </div>
       <div class="row" style="justify-content:center"><span class="pill-k">機嫌 ＝ 店の天気</span></div>
     </div>
-    <div class="phase" data-step="3" data-until="3" style="gap:22px">
+    <div class="phase" data-step="4" data-until="4" style="gap:22px">
       <div class="eyebrow">上から見ると</div>
       <h2 class="title">「言えば従うはず」</h2>
       <div class="card g2-card">
@@ -815,7 +825,7 @@
       </div>
       <div class="row" style="justify-content:center"><span class="pill-k red">設計ミス</span></div>
     </div>
-    <div class="phase" data-step="4" data-until="5" style="gap:22px">
+    <div class="phase" data-step="5" data-until="6" style="gap:22px">
       <div class="eyebrow">下から見ると</div>
       <h2 class="title">拒絶リスク</h2>
       <div class="split" style="grid-template-columns:1fr 300px;gap:30px;align-items:stretch;flex:1;min-height:0">
@@ -833,9 +843,9 @@
           <div class="gmeter" style="max-height:none;flex:1"><p>拒絶<br>リスク</p><div class="tube"><i></i></div><span>差が大きいほど</span></div>
         </div>
       </div>
-      <div class="row" data-step="5" style="justify-content:center"><span class="pill-k red">心理的安全性が低い</span></div>
+      <div class="row" data-step="6" style="justify-content:center"><span class="pill-k red">心理的安全性が低い</span></div>
     </div>
-    <div class="phase" data-step="6" data-until="6">
+    <div class="phase" data-step="7" data-until="7">
       <div class="eyebrow">差が「リスク」になるのは、いつか</div>
       <h2 class="title">同じ誘いでも、断れるか</h2>
       <div class="cols cols-2">
@@ -860,7 +870,7 @@
       </div>
       <div class="row" style="justify-content:center"><span class="pill-k">差 → リスク</span></div>
     </div>
-    <div class="phase" data-step="7" style="gap:28px">
+    <div class="phase" data-step="8" style="gap:28px">
       <div class="eyebrow">自社アンケート（97件）</div>
       <h2 class="title">相談できなかった、58%</h2>
       <p class="cap" style="margin-top:0">受けた・目撃した26名</p>
@@ -868,7 +878,7 @@
         <div style="--w:42%;background:var(--ok)"><b>42%</b><small>相談できた（11名）</small></div>
         <div style="--w:58%;background:var(--danger)"><b>58%</b><small>できなかった（15名）</small></div>
       </div>
-      <div class="row" data-step="8" style="gap:40px;align-items:center;justify-content:center">
+      <div class="row" data-step="9" style="gap:40px;align-items:center;justify-content:center">
         <svg viewBox="0 0 420 220" style="width:420px" aria-hidden="true"><rect x="0" y="206" width="420" height="8" rx="4" fill="#e1e5ea"/><rect x="230" y="130" width="140" height="76" rx="8" fill="#e9e6fd"/><g class="g2-near"><use href="#i-person" x="20" y="96" width="110" height="110" style="color:#2f74d9"/></g><use href="#i-person" x="245" y="20" width="110" height="110" style="color:#6b5ce7"/><path class="g2-arr" d="M120 70h60l-12-12M180 70l-12 12" stroke="#9d92ff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
         <p class="statement" style="font-size:80px">差は、なくならない</p>
       </div>
@@ -879,7 +889,8 @@
 - 同い年なら、断りやすい。誘いやすい。言いやすい。
 - 経験が同じなら、語りやすい。伝えやすい。相手の言いたいことも、読み取りやすい。
 - 立場が同じなら、相談しやすい。参考にしやすい。聞きやすい。
-［クリック］逆に、差が広がると、どうなるか。下の立場の人は、自分の意思が言えなくなります。 そして、差を感じれば感じるほど、差が広がれば広がるほど、意思を伝えられなくなります。 これが、ハラスメントの構造です。
+［クリック］逆に、差が広がると、どうなるか。下の立場の人は、自分の意思が言えなくなります。
+［クリック］そして、差を感じれば感じるほど、差が広がれば広がるほど、意思を伝えられなくなります。 これが、ハラスメントの構造です。
 皆さんは、店の中で、一番上にいます。スタッフとの間には、年齢も、経験も、立場も、力も、差があります。この差を、上からと、下から、両方見てみましょう。
 ［クリック］まず、上から。皆さんの手には、「高性能のマイク」があります。
 厨房において、皆さんの言葉はただの会話ではありません。それは「店の法律」であり、スタッフにとっては「絶対的な正解」になります。「いやいや、自分はそんな大したことない」と思っていても、小さい声で喋ったとしても、店舗の端にまで届くのです。また、皆さんの「機嫌」は、その店の「天気」になります。皆さんが不機嫌なら、店中が嵐になり、スタッフは萎縮してしまいます。差があるぶん、皆さんの言動は、自分が思っている以上に、増幅されて届きます。
