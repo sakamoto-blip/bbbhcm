@@ -135,6 +135,38 @@
 #line-mid.is-dim { opacity: .35; transform: scale(.96); }
 .roles .draw { stroke-dashoffset: var(--len); }
 .roles.on .draw { stroke-dashoffset: 0; }
+
+/* 12 事後対応：避難後の5つの仕事 */
+.ev { display: grid; grid-template-columns: 380px 1fr; gap: 36px; flex: 1; min-height: 0; align-items: center; }
+.ev-scene { max-height: 600px; }
+.ev-fire { transform-box: fill-box; transform-origin: bottom center; animation: evf 1.2s ease-in-out infinite alternate; }
+@keyframes evf { from { transform: scale(.92); } to { transform: scale(1.08); } }
+.ev-go { animation: evgo .9s linear infinite; }
+@keyframes evgo { to { stroke-dashoffset: -24; } }
+.ev-list { display: flex; flex-direction: column; gap: 12px; }
+.ev-list li { display: grid; grid-template-columns: 92px 1fr; gap: 20px; align-items: center; padding: 10px 22px; border-radius: 16px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); }
+.ev-ic svg { width: 88px; height: 88px; overflow: visible; }
+.ev-list b { display: inline-flex; align-items: center; gap: 12px; font-size: 32px; }
+.ev-list .n { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--f-num); font-size: 24px; font-weight: 400; }
+.ev-list p { font-size: 27px; line-height: 1.45; color: var(--ink-2); font-weight: 700; }
+.ev-list p b { font-size: inherit; display: inline; }
+.ev-tag { display: inline-block; margin-left: 12px; font-size: 22px; font-weight: 900; padding: 2px 14px; border-radius: 999px; background: var(--danger); color: #fff; vertical-align: .3em; }
+.ev-chain { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.ev-chain span { display: inline-flex; align-items: center; gap: 6px; font-size: 24px; font-weight: 900; padding: 6px 14px; border-radius: 12px; background: var(--surface-2); color: var(--ink-2); }
+.ev-chain .i { font-size: 26px; }
+.ev-chain i { width: 26px; height: 8px; background: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 10px); }
+.on .ev-chain span { animation: evlit .5s ease both; animation-delay: calc(var(--k) * .5s + .4s); }
+@keyframes evlit { to { background: var(--accent-soft); color: var(--accent-ink); } }
+.ev-x { transform-box: fill-box; transform-origin: center; }
+.on .ev-x { animation: d-in .5s ease .5s both; }
+
+.ev { grid-template-columns: 420px 1fr; }
+.ev-list { gap: 14px; }
+.ev-list li { grid-template-columns: 104px 1fr; padding: 12px 24px; }
+.ev-ic svg { width: 100px; height: 100px; }
+.ev-list b { font-size: 36px; }
+.ev-list p { font-size: 30px; }
+.ev-chain span { font-size: 27px; padding: 8px 16px; }
 </style>
 
 <div class="deck" data-chapter="第1章　防災管理" data-accent="flame">
@@ -187,7 +219,7 @@
 ［Q3・消防訓練の実施］
 「直近で実施された店舗もあれば、『わからない』『していない』という回答もあります」
 ［Q4・消火器の設置場所］
-「『いいえ』が◯％。この数字は、後半でもう一度出てきます」
+「『いいえ』が◯％。この話は、後半でもう一度出てきます」
 日々の火の元には気をつけている。でも、計画書や訓練のことは意外と把握していない。これは、決して珍しいことではありません。今の回答を頭の片隅に置いたまま、次の話を聞いてください。</aside>
   </section>
 
@@ -376,13 +408,13 @@
   </section>
 
   <!-- クイズ① -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ①</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
-      <h2 class="qz-q" data-in style="--d:1">命を守るための備えは？</h2>
+      <h2 class="qz-q" data-in style="--d:1">命を守るための備えは、どれでしょうか。</h2>
       <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>見つける・消す・逃げる</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">B</span><span>防ぐ・直す・逃げる</span></div><div class="opt"><span class="k">C</span><span>点検・記録・報告</span></div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>このあと、詳しく見ていきます</p></div>
+      <div class="qz-after" data-step="2"><p>このあと、詳しく見ていきます</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
     <aside class="notes">ここで一問、お聞きします。命を守るための備えは、どれでしょうか。予想で構いません。
@@ -413,13 +445,13 @@ A、見つける・消す・逃げる。B、防ぐ・直す・逃げる。C、�
   </section>
 
   <!-- クイズ② -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ②</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
-      <h2 class="qz-q" data-in style="--d:1">2つが揃わないと営業ができない届出は？</h2>
+      <h2 class="qz-q" data-in style="--d:1">2つが揃わないと営業ができない届出は、どれでしょうか。</h2>
       <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>防火管理者選任届出書と消防計画作成届出書</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">B</span><span>防災訓練報告書と防火管理責任者選任届</span></div><div class="opt"><span class="k">C</span><span>防災訓練実施報告書と消防計画届出書</span></div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>このあと、詳しく見ていきます</p></div>
+      <div class="qz-after" data-step="2"><p>このあと、詳しく見ていきます</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
     <aside class="notes">もう一問、お聞きします。2つが揃わないと営業ができない届出は、どれでしょうか。
@@ -461,13 +493,13 @@ A、防火管理者選任届出書と消防計画作成届出書。B、防災訓
   </section>
 
   <!-- クイズ③ -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ③</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
-      <h2 class="qz-q" data-in style="--d:1">「見つける」「消す」を機能させるためにやることは？</h2>
+      <h2 class="qz-q" data-in style="--d:1">「見つける」「消す」を機能させるためにやることは、どれでしょうか。</h2>
       <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>機器点検・総合点検</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">B</span><span>消防訓練・消防計画の見直し</span></div><div class="opt"><span class="k">C</span><span>消防計画の見直し・設備点検</span></div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>このあと、詳しく見ていきます</p></div>
+      <div class="qz-after" data-step="2"><p>このあと、詳しく見ていきます</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
     <aside class="notes">ここで一問、お聞きします。「見つける」「消す」を機能させるためにやることは、どれでしょうか。
@@ -513,13 +545,13 @@ A、機器点検・総合点検。B、消防訓練・消防計画の見直し。
   </section>
 
   <!-- クイズ④ -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ④</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
-      <h2 class="qz-q" data-in style="--d:1">消防訓練は年何回の実施が義務？</h2>
+      <h2 class="qz-q" data-in style="--d:1">消防訓練は、年何回の実施が義務でしょうか。</h2>
       <div class="qz-opts"><div class="opt"><span class="k">A</span><span>年1回</span></div><div class="opt ok"><span class="k">B</span><span>年2回</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">C</span><span>毎年消防の日に実施</span></div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>このあと、詳しく見ていきます</p></div>
+      <div class="qz-after" data-step="2"><p>このあと、詳しく見ていきます</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
     <aside class="notes">最後にもう一問です。消防訓練は年何回の実施が義務でしょうか。
@@ -667,17 +699,28 @@ C火災、電気火災。コンセント、厨房機器、配線、分電盤な�
   </section>
 
   <!-- 13 事後対応 -->
-  <section class="slide" data-min="3">
+  <section class="slide" data-min="3" id="post1-slide">
     <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
     <h2 class="title" data-in style="--d:1">避難後も、あなたの仕事は終わりません</h2>
-    <ol class="timeline compact">
-      <li data-n="1" data-step="1" class="slide-in"><h3>現場保存</h3><p>消防・警察の実況見分に協力。勝手に物を動かさない</p></li>
-      <li data-n="2" data-step="2" class="slide-in"><h3>本部への連絡</h3><p>担当役員 → 代表 → 総務人事部</p></li>
-      <li data-n="3" data-step="3" class="slide-in"><h3>保険会社への連絡</h3><p>双日インシュランス／社内担当：田部井</p></li>
-      <li data-n="4" data-step="4" class="slide-in"><h3>被災者ケア</h3><p>負傷の有無に関わらず、当日中に体調確認</p></li>
-      <li data-n="5" data-step="5" class="slide-in"><h3>広報対応</h3><p>SNS・メディア対応は個人で行わず、本部に一本化</p></li>
-    </ol>
-  <aside class="notes">避難が終われば、それで終わりではありません。ここからの処理も、皆さんの仕事です。
+    <div class="ev">
+      <svg class="illus ev-scene" viewBox="0 0 420 560" data-in style="--d:2" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+        <path d="M40 120l70-50 70 50v110H40z" fill="#eef1f5"/><g class="ev-fire"><path d="M110 180c-26-20-14-52 0-70 4 18 22 24 22 46 0 14-10 24-22 24z" fill="#e2600f"/><path d="M110 184c-12-8-8-24 0-32 4 10 12 14 10 22-2 6-5 10-10 10z" fill="#f5a524"/></g>
+        <text x="110" y="268" font-size="28" fill="#c23a2e">火災</text>
+        <path d="M210 160h120" stroke="#e2600f" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 22" class="ev-go"/><path d="M322 140l26 20-26 20z" fill="#e2600f"/>
+        <rect x="20" y="520" width="380" height="10" rx="5" fill="#e1e5ea"/>
+        <use href="#i-person" x="40" y="330" width="190" height="190" style="color:#2f74d9"/><use href="#i-person" x="190" y="330" width="190" height="190" style="color:#5fa8ff"/>
+        <rect x="90" y="292" width="240" height="46" rx="23" fill="#ddf2e7"/><text x="210" y="324" font-size="26" fill="#22915c">避難完了</text>
+      </g></svg>
+      <ol class="ev-list">
+        <li data-step="1"><span class="ev-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><g transform="rotate(-10 50 50)"><rect x="4" y="38" width="92" height="22" fill="#f2be3d"/><path d="M14 38l14 22M34 38l14 22M54 38l14 22M74 38l14 22" stroke="#1d2128" stroke-width="7"/></g><g class="ev-x"><circle cx="78" cy="22" r="16" fill="#c23a2e"/><path d="M71 15l14 14M85 15l-14 14" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g></svg></span><div><b><span class="n">1</span>現場保存</b><p>消防・警察の実況見分に協力。勝手に物を動かさない</p></div></li>
+        <li data-step="2"><span class="ev-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="a-ring" style="transform-origin:50px 50px"><rect x="30" y="12" width="40" height="76" rx="10" fill="#fff" stroke="#4f5661" stroke-width="6"/></g></svg></span><div><b><span class="n">2</span>本部への連絡</b>
+          <div class="ev-chain"><span style="--k:0"><svg class="i"><use href="#i-person"/></svg>店長・シェフ</span><i></i><span style="--k:1"><svg class="i"><use href="#i-person"/></svg>担当役員</span><i></i><span style="--k:2"><svg class="i"><use href="#i-person"/></svg>代表</span><i></i><span style="--k:3"><svg class="i"><use href="#i-users"/></svg>総務人事部</span></div></div></li>
+        <li data-step="3"><span class="ev-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="14" width="52" height="70" rx="6" fill="#fff" stroke="#4f5661" stroke-width="5"/><path d="M20 32h32M20 46h32M20 60h20" stroke="#c9ced6" stroke-width="5"/><g class="a-ring" style="transform-origin:76px 60px"><rect x="62" y="36" width="28" height="50" rx="7" fill="#fde8d9" stroke="#e2600f" stroke-width="5"/></g></svg></span><div><b><span class="n">3</span>保険会社への連絡</b><p>双日インシュランス／社内担当：田部井</p></div></li>
+        <li data-step="4"><span class="ev-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-person" x="0" y="20" width="70" height="70" style="color:#2f74d9"/><path class="beat" d="M74 46L60 32a9 9 0 0 1 14-10 9 9 0 0 1 14 10z" fill="#f27a9c"/></svg></span><div><b><span class="n">4</span>被災者のケア</b><span class="ev-tag">当日中</span><p>負傷の有無に関わらず、当日中に体調確認</p></div></li>
+        <li data-step="5"><span class="ev-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="14" y="20" width="44" height="64" rx="8" fill="#fff" stroke="#4f5661" stroke-width="5"/><path d="M24 40h24M24 52h24" stroke="#c9ced6" stroke-width="5"/><circle cx="72" cy="30" r="18" fill="#c23a2e"/><path d="M64 22l16 16M80 22l-16 16" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M62 70h26" stroke="#e2600f" stroke-width="6" stroke-linecap="round"/><path d="M82 62l10 8-10 8" fill="none" stroke="#e2600f" stroke-width="6" stroke-linecap="round"/></svg></span><div><b><span class="n">5</span>広報対応</b><p>SNS・メディア対応は個人で行わず、<b class="hl">本部に一本化</b></p></div></li>
+      </ol>
+    </div>
+    <aside class="notes">避難が終われば、それで終わりではありません。ここからの処理も、皆さんの仕事です。
 ［クリック］一つ目、現場保存。消防と警察の実況見分に協力します。勝手に物を動かさないでください。
 ［クリック］二つ目、本部への連絡。担当役員に連絡し、そこから代表、総務人事部へと伝わる流れです。
 ［クリック］三つ目、保険会社への連絡。当社は双日インシュランスと契約しており、社内の担当は田部井です。
