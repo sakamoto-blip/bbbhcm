@@ -167,6 +167,99 @@
 .ev-list b { font-size: 36px; }
 .ev-list p { font-size: 30px; }
 .ev-chain span { font-size: 27px; padding: 8px 16px; }
+
+/* 5 何を失うか（絵と数字） */
+.lz { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; min-height: 0; }
+.lz-box { display: flex; flex-direction: column; gap: 14px; padding: 22px 26px; border-radius: 22px; background: var(--surface); box-shadow: 0 10px 30px rgba(29,33,40,.07); }
+.lz-box.me { background: var(--accent-soft); }
+.lz-h { display: flex; align-items: center; gap: 14px; font-size: 34px; font-weight: 900; }
+.lz-co { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+.lz-t { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px; border-radius: 16px; background: var(--surface-2); text-align: center; }
+.lz-t svg { width: 120px; height: 108px; }
+.lz-t b { font-size: 32px; }
+.lz-t small { font-size: 24px; color: var(--ink-2); font-weight: 700; }
+.lz-co > *, .lz-me > * { opacity: 0; }
+.on.lz-co > *, .on.lz-me > * { animation: d-in .5s both; animation-delay: calc(var(--k) * .45s + .1s); }
+.stamp1 { transform-box: fill-box; transform-origin: center; }
+.on .stamp1 { animation: stamp1 .5s cubic-bezier(.3,1.6,.5,1) .7s both; }
+@keyframes stamp1 { from { transform: scale(2); opacity: 0; } to { transform: none; opacity: 1; } }
+.on .out { animation: outw 2.4s ease-in-out 1s infinite; }
+@keyframes outw { 0% { transform: none; opacity: 1; } 70%, 100% { transform: translateX(14px); opacity: 0; } }
+.lz-me { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+.lz-c { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 18px 22px; border-radius: 16px; background: #fff; font-size: 28px; }
+.lz-c > b { font-size: 34px; }
+.lz-ic { width: 64px; height: 64px; }
+.lz-c .tagx { font-size: 22px; font-weight: 900; padding: 2px 12px; border-radius: 999px; background: var(--danger); color: #fff; }
+.big2 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 12px; width: 100%; font-size: 26px; font-weight: 700; color: var(--ink-2); }
+.big2 em { font-style: normal; font-family: var(--f-num); font-size: 68px; color: var(--accent-ink); margin-right: 4px; }
+.big2 i { font-style: normal; font-size: 22px; }
+.cs3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; flex: 1; min-height: 0; }
+.cs3 li { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 26px 22px; border-radius: 22px; background: var(--surface); box-shadow: 0 10px 30px rgba(29,33,40,.07); text-align: center; opacity: 0; }
+.on .cs3 li { animation: d-in .6s both; animation-delay: calc(var(--k) * .5s + .2s); }
+.cs-ic { display: grid; place-items: center; width: 150px; height: 150px; border-radius: 50%; background: var(--accent-soft); }
+.cs-ic svg { width: 110px; height: 110px; }
+.cs3 b { font-size: 34px; }
+.cs3 small { display: block; font-size: 24px; color: var(--ink-2); font-weight: 700; }
+.cs-res { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.cs-res span { font-size: 25px; font-weight: 900; padding: 8px 16px; border-radius: 12px; background: var(--danger-soft); color: var(--danger); }
+.cs-res span.r { background: #fdf0d8; color: #b06b00; }
+.ev-fire2 { transform-box: fill-box; transform-origin: bottom center; animation: evf2 1.2s ease-in-out infinite alternate; }
+@keyframes evf2 { from { transform: scale(.92); } to { transform: scale(1.06); } }
+.gas { animation: gas 1.6s ease-in-out infinite; }
+@keyframes gas { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+/* 9 ルールを決める */
+.ru { display: grid; grid-template-columns: 1.05fr 1fr; gap: 34px; flex: 1; min-height: 0; }
+.ru-must { display: flex; flex-direction: column; gap: 16px; justify-content: center; padding: 24px 28px; border-radius: 22px; background: var(--surface); box-shadow: 0 10px 30px rgba(29,33,40,.07); }
+.ru-h { display: flex; align-items: center; gap: 14px; font-size: 30px; font-weight: 900; }
+.ru-tag { display: inline-block; font-size: 24px; font-weight: 900; padding: 4px 16px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); white-space: nowrap; }
+.ru-tag.ok { background: var(--accent); color: #fff; }
+.ru-tag.ng { background: var(--danger); color: #fff; }
+.ru-docs { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.ru-doc, .ru-open { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.ru-doc svg { width: 120px; height: 140px; }
+.ru-open svg { width: 140px; height: 140px; }
+.ru-doc b, .ru-open b { font-size: 28px; line-height: 1.3; }
+.ru-open b { color: var(--ok); font-size: 32px; }
+.ru-doc small { font-size: 20px; color: var(--ink-2); font-weight: 700; }
+.ru-plus, .ru-eq { font-size: 56px; font-weight: 900; color: var(--accent); }
+.ru-stamp { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.on .ru-stamp { animation: stamp1 .5s cubic-bezier(.3,1.6,.5,1) .9s both; }
+.ru-sign { opacity: 0; }
+.on .ru-sign { animation: d-in .5s ease 2.2s both; }
+.ru-side { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.ru-r { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; padding: 16px 22px; border-radius: 20px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); }
+.ru-r svg { width: 120px; height: 120px; overflow: visible; }
+.ru-r b { display: block; font-size: 32px; margin-top: 6px; }
+.ru-r small { display: block; font-size: 24px; color: var(--ink-2); font-weight: 700; }
+.ru-r.ng { background: var(--danger-soft); box-shadow: inset 6px 0 0 var(--danger); }
+.ru-r.ng b { color: var(--danger); }
+.ru-shake { transform-box: fill-box; transform-origin: bottom center; animation: rushake 2.4s ease-in-out infinite; }
+@keyframes rushake { 0%, 60%, 100% { transform: none; } 70% { transform: translateX(6px); } 80% { transform: translateX(-3px); } 90% { transform: translateX(2px); } }
+.ru-drop { animation: rudrop 1.4s linear infinite; }
+@keyframes rudrop { from { transform: translateY(-6px); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(12px); opacity: 0; } }
+
+.cs3 li { justify-content: center; gap: 18px; }
+.cs-ic { width: 190px; height: 190px; }
+.cs-ic svg { width: 140px; height: 140px; }
+.cs3 b { font-size: 38px; }
+.cs-res span { font-size: 28px; padding: 10px 18px; }
+.lz-c { font-size: 30px; }
+.lz-c > b { font-size: 36px; }
+.lz-ic { width: 76px; height: 76px; }
+.big2 { font-size: 28px; }
+.big2 em { font-size: 76px; }
+.ru-h { font-size: 34px; }
+.ru-doc svg { width: 160px; height: 186px; }
+.ru-open svg { width: 190px; height: 190px; }
+.ru-doc b { font-size: 32px; }
+.ru-open b { font-size: 38px; }
+.ru-doc small { font-size: 22px; }
+.ru-must .cap { font-size: 24px; }
+.ru-plus, .ru-eq { font-size: 64px; }
+.ru-r { grid-template-columns: 140px 1fr; padding: 18px 24px; }
+.ru-r svg { width: 140px; height: 140px; }
+.ru-r b { font-size: 36px; }
+.ru-r small { font-size: 25px; }
 </style>
 
 <div class="deck" data-chapter="第1章　防災管理" data-accent="flame">
@@ -340,28 +433,38 @@
 
   <!-- 06 何を失うか -->
   <section class="slide" data-min="4" id="loss-slide">
-    <div class="phase" data-until="2">
+    <div class="phase" data-until="2" style="gap:22px">
       <div class="eyebrow" data-in>何を失うか</div>
       <h2 class="title" data-in style="--d:1">責任は、会社だけでなく<span class="hl">個人</span>にも及びます</h2>
-      <div class="cols cols-2">
-        <div class="card" data-step="1">
-          <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
-          <ul class="points plain"><li><div>営業停止＋全国実名公表</div></li><li><div>テナント契約解除・即退去</div></li><li><div>数千万〜数億円の損害賠償</div></li><li><div>融資停止・上場廃止リスク</div></li></ul>
+      <div class="lz">
+        <div class="lz-box" data-in style="--d:2">
+          <p class="lz-h"><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</p>
+          <div class="lz-co" data-step="1">
+            <div class="lz-t" style="--k:0"><svg viewBox="0 0 120 110" aria-hidden="true"><rect x="10" y="16" width="100" height="86" rx="12" fill="#fff" stroke="#4f5661" stroke-width="5"/><rect x="10" y="16" width="100" height="22" rx="10" fill="#4f5661"/><circle class="stamp1" cx="60" cy="70" r="24" fill="none" stroke="#c23a2e" stroke-width="6"/><text x="60" y="79" font-size="22" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif" class="stamp1">停止</text></svg><b>営業停止</b><small>全国で実名公表</small></div>
+            <div class="lz-t" style="--k:1"><svg viewBox="0 0 120 110" aria-hidden="true"><rect x="16" y="14" width="56" height="86" rx="4" fill="#eef1f5" stroke="#4f5661" stroke-width="5"/><circle cx="60" cy="58" r="4" fill="#4f5661"/><g class="out"><use href="#i-person" x="62" y="40" width="54" height="54" style="color:#9aa3ae"/></g><path d="M80 30h26" stroke="#c23a2e" stroke-width="6" stroke-linecap="round"/><path d="M98 22l10 8-10 8" fill="none" stroke="#c23a2e" stroke-width="6" stroke-linecap="round"/></svg><b>契約解除</b><small>テナントから即退去</small></div>
+            <div class="lz-t" style="--k:2"><svg viewBox="0 0 120 110" aria-hidden="true"><rect x="12" y="30" width="96" height="66" rx="14" fill="#c23a2e"/><rect x="70" y="50" width="44" height="28" rx="8" fill="#f9e3e0"/><circle cx="84" cy="64" r="5" fill="#c23a2e"/><text x="40" y="74" font-size="28" font-weight="900" text-anchor="middle" fill="#fff" font-family="Zen Kaku Gothic New, sans-serif">億</text></svg><b>損害賠償</b><small>数千万〜数億円</small></div>
+            <div class="lz-t" style="--k:3"><svg viewBox="0 0 120 110" aria-hidden="true"><path d="M14 92h92" stroke="#4f5661" stroke-width="5"/><rect x="22" y="40" width="16" height="52" fill="#c9ced6"/><rect x="48" y="54" width="16" height="38" fill="#c9ced6"/><rect x="74" y="70" width="16" height="22" fill="#c9ced6"/><path class="dn-line" d="M18 26l30 16 26-4 32 30" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M94 70h14V56" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round"/></svg><b>融資停止</b><small>上場廃止のリスク</small></div>
+          </div>
         </div>
-        <div class="card is-accent" data-step="2">
-          <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
-          <ul class="points plain"><li><div><span class="kind">刑事</span><b>業務上過失致死傷罪</b><small class="cap" style="display:block">逮捕・5年以下の拘禁刑または100万円以下の罰金・前科</small></div></li><li><div><span class="kind civil">民事</span><b>重過失は保険適用外</b><small class="cap" style="display:block">億単位の求償（自己破産しても消えない）</small></div></li></ul>
+        <div class="lz-box me" data-in style="--d:3">
+          <p class="lz-h"><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</p>
+          <div class="lz-me" data-step="2">
+            <div class="lz-c" style="--k:0"><svg class="lz-ic" viewBox="0 0 80 80" aria-hidden="true"><circle cx="24" cy="48" r="16" fill="none" stroke="#4f5661" stroke-width="6"/><circle cx="56" cy="48" r="16" fill="none" stroke="#4f5661" stroke-width="6"/><path d="M38 48h4" stroke="#4f5661" stroke-width="6"/></svg><span class="kind">刑事</span><b>業務上過失致死傷罪</b><span class="tagx">逮捕・前科</span>
+              <div class="big2"><span><em>5</em>年以下の拘禁刑</span><i>または</i><span><em>100</em>万円以下の罰金</span></div></div>
+            <div class="lz-c" style="--k:1"><svg class="lz-ic" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 6l28 10v22c0 20-12 32-28 38-16-6-28-18-28-38V16z" fill="#eef1f5" stroke="#4f5661" stroke-width="5"/><path d="M28 30l24 24M52 30L28 54" stroke="#c23a2e" stroke-width="7" stroke-linecap="round"/></svg><span class="kind civil">民事</span><b>重過失は、保険の適用外</b>
+              <div class="big2"><span><em>億</em>単位の求償</span><i>／</i><span>自己破産しても消えない</span></div></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="phase" data-step="3" data-until="3">
+    <div class="phase" data-step="3" data-until="3" style="gap:24px">
       <div class="eyebrow">自社の実例</div>
       <h2 class="title">実際に、社内でも処分が行われています</h2>
-      <ul class="timeline">
-        <li data-n="1"><h3>コンロの火の不始末（未事故）</h3><p>商業施設から罰金。代表・取締役の報酬減額、店長・シェフへの文書注意</p></li>
-        <li data-n="2"><h3>ガス漏れ</h3><p>代表・担当取締役の報酬減額、店長の減給</p></li>
-        <li data-n="3"><h3>同一店舗で火災が2回発生</h3><p>担当役員の報酬減額</p></li>
-      </ul>
+      <ol class="cs3">
+        <li style="--k:0"><span class="cs-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="14" y="58" width="72" height="22" rx="6" fill="#4f5661"/><g class="ev-fire2"><path d="M50 56c-16-12-8-32 0-42 3 11 14 15 14 28 0 8-6 14-14 14z" fill="#e2600f"/><path d="M50 58c-7-5-5-14 0-19 2 6 7 8 6 13-1 4-3 6-6 6z" fill="#f5a524"/></g></svg></span><div><b>コンロの火の不始末</b><small>事故には至らず</small><div class="cs-res"><span class="r">商業施設から罰金</span><span>代表・取締役の報酬減額</span><span>店長・シェフへの文書注意</span></div></div></li>
+        <li style="--k:1"><span class="cs-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="30" y="20" width="40" height="66" rx="12" fill="#e0ebfb" stroke="#2f74d9" stroke-width="5"/><rect x="40" y="10" width="20" height="14" rx="3" fill="#2f74d9"/><g class="gas"><path d="M74 40c8 4 8 12 0 16M80 32c14 8 14 24 0 32" fill="none" stroke="#9aa3ae" stroke-width="5" stroke-linecap="round"/></g></svg></span><div><b>ガス漏れ</b><div class="cs-res"><span>代表・担当取締役の報酬減額</span><span>店長の減給</span></div></div></li>
+        <li style="--k:2"><span class="cs-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="ev-fire2"><path d="M32 80c-16-12-8-34 0-46 3 12 14 16 14 30 0 9-6 16-14 16z" fill="#e2600f"/><path d="M68 80c-16-12-8-34 0-46 3 12 14 16 14 30 0 9-6 16-14 16z" fill="#c23a2e"/></g><text x="50" y="26" font-size="22" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">×2</text></svg></span><div><b>同一店舗で、火災が2回</b><div class="cs-res"><span>担当役員の報酬減額</span></div></div></li>
+      </ol>
     </div>
     <div class="phase" data-step="4" style="gap:20px">
       <div class="eyebrow">何よりも重いもの</div>
@@ -466,21 +569,23 @@ A、防火管理者選任届出書と消防計画作成届出書。B、防災訓
   <section class="slide" data-min="3">
     <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）</b></div>
     <h2 class="title" data-in style="--d:1">ルールを決める</h2>
-    <div class="row" style="gap:56px">
-      <div style="flex:1.1;display:flex;flex-direction:column;gap:20px">
-        <p class="text" data-step="1"><b>営業の絶対条件</b><br>この2つがなければ、そもそも営業できません</p>
-        <div class="cols cols-2" data-step="1">
-          <div class="card is-accent"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><h3>防火管理者<br>選任届出書</h3><p class="cap">消防法8条／所轄消防署へ提出<br>店長またはシェフが対象</p></div>
-          <div class="card is-accent"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><h3>消防計画<br>作成届出書</h3><p class="cap">消防法8条／所轄消防署へ提出</p></div>
+    <div class="ru">
+      <div class="ru-must" data-step="1">
+        <p class="ru-h"><span class="ru-tag ok">営業の絶対条件</span>2つが揃って、はじめて営業できる</p>
+        <div class="ru-docs">
+          <div class="ru-doc" style="--k:0"><svg viewBox="0 0 120 140" aria-hidden="true"><rect x="12" y="8" width="96" height="124" rx="10" fill="#fff" stroke="#e2600f" stroke-width="6"/><path d="M30 40h60M30 60h60M30 80h40" stroke="#f6c3a3" stroke-width="6" stroke-linecap="round"/><g class="ru-stamp"><circle cx="84" cy="108" r="18" fill="none" stroke="#c23a2e" stroke-width="4"/><text x="84" y="114" font-size="14" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">受理</text></g></svg><b>防火管理者<br>選任届出書</b><small>店長またはシェフが対象</small></div>
+          <span class="ru-plus">＋</span>
+          <div class="ru-doc" style="--k:1"><svg viewBox="0 0 120 140" aria-hidden="true"><rect x="12" y="8" width="96" height="124" rx="10" fill="#fff" stroke="#e2600f" stroke-width="6"/><path d="M30 40h60M30 60h60M30 80h40" stroke="#f6c3a3" stroke-width="6" stroke-linecap="round"/><g class="ru-stamp" style="animation-delay:1.4s"><circle cx="84" cy="108" r="18" fill="none" stroke="#c23a2e" stroke-width="4"/><text x="84" y="114" font-size="14" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">受理</text></g></svg><b>消防計画<br>作成届出書</b><small>&nbsp;</small></div>
+          <span class="ru-eq">＝</span>
+          <div class="ru-open"><svg viewBox="0 0 140 140" aria-hidden="true"><path d="M14 56L70 18l56 38v70H14z" fill="#fde8d9"/><rect x="50" y="80" width="40" height="46" fill="#fff"/><g class="ru-sign"><rect x="34" y="44" width="72" height="28" rx="6" fill="#22915c"/><text x="70" y="64" font-size="16" font-weight="900" text-anchor="middle" fill="#fff" font-family="Zen Kaku Gothic New, sans-serif">営業中</text></g></svg><b>営業できる</b></div>
         </div>
+        <p class="cap" style="margin-top:0">消防法8条／所轄の消防署へ提出。どちらか欠けると、営業自体が違法状態</p>
       </div>
-      <div style="flex:.9;display:flex;flex-direction:column;gap:20px">
-    <p class="text" data-step="2"><b>そのうえで</b></p>
-    <ul class="points" style="gap:12px">
-      <li data-step="2" class="slide-in" style="padding:12px 24px"><span class="ico"><svg class="i"><use href="#i-extinguisher"/></svg></span><div>消火器の移動厳禁</div></li>
-      <li data-step="3" class="slide-in" style="padding:12px 24px"><span class="ico"><svg class="i"><use href="#i-users"/></svg></span><div>収容人員・防炎物品ルールの明文化<small>特に貸切パーティー・周年祭時は要注意</small></div></li>
-      <li data-step="4" class="slide-in" style="padding:12px 24px"><span class="ico"><svg class="i"><use href="#i-search"/></svg></span><div>自動消火装置の有無を確認</div></li>
-    </ul>
+      <div class="ru-side">
+        <p class="ru-h" data-step="2"><span class="ru-tag">そのうえで</span></p>
+        <div class="ru-r ng" data-step="2"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="ru-shake"><rect x="40" y="34" width="34" height="70" rx="10" fill="#c23a2e"/><rect x="48" y="20" width="18" height="16" rx="3" fill="#4f5661"/><path d="M66 26h22l8 10" fill="none" stroke="#4f5661" stroke-width="5" stroke-linecap="round"/></g><path d="M86 70h26" stroke="#4f5661" stroke-width="6" stroke-linecap="round"/><path d="M104 62l10 8-10 8" fill="none" stroke="#4f5661" stroke-width="6" stroke-linecap="round"/><circle cx="96" cy="96" r="20" fill="#c23a2e"/><path d="M88 88l16 16M104 88l-16 16" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><div><span class="ru-tag ng">禁止</span><b>消火器を、動かさない</b><small>決められた場所から移動しない</small></div></div>
+        <div class="ru-r" data-step="3"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M10 30h100" stroke="#c23a2e" stroke-width="5" stroke-dasharray="8 6"/><text x="104" y="22" font-size="14" font-weight="900" text-anchor="end" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">上限</text><g class="ru-fill"><use href="#i-person" x="4" y="50" width="40" height="60" style="color:#2f74d9"/><use href="#i-person" x="30" y="50" width="40" height="60" style="color:#5fa8ff"/><use href="#i-person" x="56" y="50" width="40" height="60" style="color:#2f74d9"/></g><path d="M92 40v70" stroke="#e2600f" stroke-width="5"/><path d="M92 40q14 18 0 36q14 18 0 34" fill="#fde8d9" stroke="#e2600f" stroke-width="4"/></svg><div><span class="ru-tag ok">決める</span><b>収容人員・防炎物品のルール</b><small>貸切パーティー・周年祭は、特に要注意</small></div></div>
+        <div class="ru-r" data-step="4"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M14 30h92l-16 26H30z" fill="#eef1f5" stroke="#4f5661" stroke-width="5" stroke-linejoin="round"/><g class="ru-drop"><path d="M40 70q-6 10 0 14q6-4 0-14zM60 76q-6 10 0 14q6-4 0-14zM80 70q-6 10 0 14q6-4 0-14z" fill="#5fa8ff"/></g><circle cx="96" cy="96" r="18" fill="#22915c"/><path d="M88 96l6 6 12-12" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><div><span class="ru-tag ok">確認</span><b>自動消火装置の有無</b><small>自店の厨房で確かめる</small></div></div>
       </div>
     </div>
   <aside class="notes">まず、プラン。計画を立てて、ルールを決める段階です。
