@@ -272,6 +272,34 @@
 .am .card svg { width: 180px !important; height: 120px !important; }
 .am .card p { font-size: 23px !important; }
 .am .card h3 { font-size: 36px; }
+/* 試作：文字を減らした版 */
+.domi { display: grid; grid-template-columns: 1fr; gap: 14px; flex: 1; min-height: 0; }
+.domi .dg { display: grid; grid-template-columns: 200px 1fr; align-items: end; gap: 20px; }
+.domi .dh { display: flex; align-items: center; gap: 12px; font-size: 30px; font-weight: 900; color: var(--ink-2); margin-bottom: 30px; }
+.domi .me .dh { color: var(--accent-ink); }
+.domi .row3 { display: flex; gap: 22px; align-items: flex-end; height: 200px; padding-bottom: 10px; border-bottom: 8px solid #d5dae1; }
+.domi .dm[data-step] { flex: 1; height: 168px; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 18px 16px; border-radius: 14px; background: #fff; border: 4px solid #d5dae1; text-align: center; opacity: 1; transform-origin: 15% 100%; transform: none; animation: dmw 3s ease-in-out infinite; transition: transform .7s cubic-bezier(.5,0,.3,1) calc(var(--k) * .28s), background-color .4s ease calc(var(--k) * .28s), border-color .4s ease calc(var(--k) * .28s); }
+@keyframes dmw { 0%, 100% { translate: 0 0; } 50% { translate: 0 -4px; } }
+.domi .dm b { font-size: 31px; line-height: 1.3; }
+.domi .dm small { font-size: 21px; line-height: 1.45; color: var(--ink-2); font-weight: 700; }
+.domi .dm.on { transform: rotate(-6deg); background: var(--danger-soft); border-color: var(--danger); animation: none; }
+.domi .dm.on b { color: var(--danger); }
+.fchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.fchips span { font-size: 22px; font-weight: 700; padding: 6px 14px; border-radius: 10px; background: var(--surface-2); color: var(--ink); }
+.filters .card .q { font-size: 31px; }
+.am .card p.am1 { font-size: 26px !important; text-align: center; line-height: 1.5; }
+.bk { opacity: 0; animation: bk 8s steps(1) infinite; }
+@keyframes bk { 0% { opacity: 1; } 25%, 100% { opacity: 0; } }
+.famv { display: grid; grid-template-columns: 560px 1fr; gap: 36px; align-items: center; flex: 1; min-height: 0; }
+.fam3 { display: flex; flex-direction: column; gap: 14px; }
+.fb1 { display: grid; grid-template-columns: 64px 1fr; gap: 18px; align-items: center; padding: 16px 24px; border-radius: 18px; background: #fff; box-shadow: 0 6px 18px rgba(29,33,40,.06); }
+.fb1 .n { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--f-num); font-size: 30px; }
+.fb1 b { display: block; font-size: 36px; line-height: 1.3; }
+.fb1 small { display: block; font-size: 21px; line-height: 1.5; color: var(--ink-2); font-weight: 700; margin-top: 4px; }
+.fb1.law { background: var(--danger-soft); }
+.fb1.law .n { background: var(--danger); }
+.fb1.law b { font-size: 28px; color: var(--danger); }
+
 /* 06 失うもの */
 .kind.inhouse { background: var(--surface-2); color: var(--ink-2); }
 .kind.career { background: var(--accent-soft); color: var(--accent-ink); }
@@ -781,25 +809,23 @@
 
   <!-- 06 何を失うか -->
   <section class="slide" data-min="4" id="lose-x">
-    <div class="phase" data-until="3" style="gap:18px">
+    <div class="phase" data-until="3" style="gap:22px">
       <div class="eyebrow" data-in>何を失うか</div>
-      <p class="nowq" data-in style="--d:1">怒りを、差が大きい相手（アルバイトも、社員も）にそのままぶつけた結果、<span class="hl">ハラスメントとして訴えられるリスクが、かなり高くなっている</span></p>
-      <div class="lose2">
-        <div class="card" data-step="1">
-          <h3><span class="ico gray"><svg class="i"><use href="#i-store"/></svg></span>会社・店舗が失うもの</h3>
-          <p><b>隠蔽体質</b>：スタッフが責任者に怯え、打刻のズレ・金銭ミス・体調不良・誤表記の報告が上がらなくなる</p>
-          <p><b>企業イメージの失墜</b>：SNSでの拡散、求人応募の減少、顧客離れ</p>
-          <p><b>家族・外部が動く</b>：本人が家で話し、家族が会社に連絡。<b>労基署への通報の示唆、店長・シェフの交代の要求</b>に発展することも</p>
-        </div>
-        <div class="card is-accent" data-step="2">
-          <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
-          <p><span class="kind">負担</span><b>訴えられた時点で、負担が生じる</b>。認定されるほどでないケースでも、事実確認・ヒアリングへの対応、資料の準備、弁護士費用、精神的な負担が、個人にかかる</p>
-          <p><span class="kind civil">民事</span>メンタル疾患・休職・自殺に至った場合、<b>店長・シェフ個人にも損害賠償</b>が命じられた判例がある</p>
-          <p><span class="kind inhouse">社内</span>懲戒処分（降格・減給・懲戒解雇等）。家族から<b>交代を要求</b>されることも</p>
-          <p><span class="kind career">キャリア</span>録音・録画がSNSで拡散されれば、処分の有無にかかわらず<b>実質的に終わる</b></p>
-        </div>
+      <h2 class="title" data-in style="--d:1">怒りをぶつけた先で、崩れていくもの</h2>
+      <div class="domi" data-in style="--d:2">
+        <div class="dg"><p class="dh"><svg class="i"><use href="#i-store"/></svg>会社・店舗</p><div class="row3">
+          <div class="dm" data-step="1" style="--k:0"><b>隠蔽体質</b><small>報告が上がらない（打刻・金銭・体調・誤表記）</small></div>
+          <div class="dm" data-step="1" style="--k:1"><b>信用の失墜</b><small>SNS拡散<br>求人減・顧客離れ</small></div>
+          <div class="dm" data-step="1" style="--k:2"><b>家族・外部が動く</b><small>労基署への通報の示唆<br>店長・シェフの交代要求</small></div>
+        </div></div>
+        <div class="dg me"><p class="dh"><svg class="i"><use href="#i-person"/></svg>あなた個人</p><div class="row3">
+          <div class="dm" data-step="2" style="--k:0"><b>訴えられた時点で負担</b><small>対応・資料・弁護士費用<br>精神的な負担</small></div>
+          <div class="dm" data-step="2" style="--k:1"><b>損害賠償</b><small>個人に命じられた<br>判例あり</small></div>
+          <div class="dm" data-step="2" style="--k:2"><b>懲戒・交代要求</b><small>降格・減給<br>懲戒解雇</small></div>
+          <div class="dm" data-step="2" style="--k:3"><b>キャリア</b><small>録音・録画の拡散で<br>実質的に終わる</small></div>
+        </div></div>
       </div>
-      <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p><b>「認定されなければ大丈夫」ではありません。</b>訴えられた時点で、あなたの時間・労力・お金が、奪われます</p></div>
+      <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p><b>「認定されなければ大丈夫」ではない。</b>訴えられた時点で、時間・労力・お金が奪われる</p></div>
     </div>
     <div class="phase" data-step="4">
       <div class="eyebrow">自社の実例（匿名化）</div>
@@ -877,25 +903,25 @@
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><use href="#i-person" x="10" y="26" width="44" height="74" style="color:#6b5ce7"/><use class="cp2" href="#i-person" x="40" y="26" width="44" height="74" style="color:#9d92ff"/><use class="cp3" href="#i-person" x="68" y="26" width="44" height="74" style="color:#c5bdff"/></svg>
           <h3>コピー<small>フィルター</small></h3>
           <p class="q">新人も、スタッフ全員も、あなたの真似をしたら、誇れる店か？</p>
-          <p class="e">特定のスタッフを「姫」扱いする／鍋を叩きつけ、包丁を放るように置く／ミスの多いスタッフを皆の前でネタにする／業者を怒鳴る</p>
+          <div class="fchips"><span>「姫」扱い</span><span>鍋・包丁に当たる</span><span>皆の前でネタに</span><span>業者を怒鳴る</span></div>
         </div>
         <div class="card" data-step="2">
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><g class="nob"><path d="M22 28h76a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H54l-18 16V82H22a10 10 0 0 1-10-10V38a10 10 0 0 1 10-10z" fill="#fff" stroke="#6b5ce7" stroke-width="5"/><text x="60" y="68" font-size="30" font-weight="900" text-anchor="middle" fill="#5243c9" font-family="Dela Gothic One, sans-serif">NO</text></g></svg>
           <h3>リスク<small>フィルター｜拒絶リスクを、ゼロにする問い</small></h3>
           <p class="q">相手が「NO」と言っても、評価も空気も変わらないか？</p>
-          <p class="e">「わかった？できる？」→「はい」→できていない→「できるって言ったよね？」／「急だけど出られる？嫌ならいいんだけど」／後出しジャンケン／休日・深夜のLINE</p>
+          <div class="fchips"><span>「わかった？できる？」</span><span>「嫌ならいいんだけど」</span><span>後出しジャンケン</span><span>休日・深夜のLINE</span></div>
         </div>
         <div class="card" data-step="3">
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><path class="beat" d="M60 96L26 62a20 20 0 0 1 34-26 20 20 0 0 1 34 26z" fill="#f27a9c"/></svg>
           <h3>大切な人<small>フィルター</small></h3>
           <p class="q">自分の大切な人が、他所で同じことをされても平気か？</p>
-          <p class="e"><b>スタッフの大切な人＝親</b>。その言葉を、親が聞いても平気か／「今日かわいいね」「彼氏とはどうなの？」／二人きりの飲みに何度も誘う／断れない相手を、業務外の場に誘い続ける</p>
+          <div class="fchips"><span><b>大切な人＝スタッフの親</b></span><span>容姿・恋愛の話</span><span>二人きりの飲み</span><span>業務外の同席の強要</span></div>
         </div>
         <div class="card" data-step="4">
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><rect x="18" y="40" width="62" height="46" rx="10" fill="#4f5661"/><path d="M80 54l22-12v40l-22-12z" fill="#4f5661"/><circle class="rec" cx="32" cy="28" r="9" fill="#c23a2e"/><text x="64" y="34" font-size="18" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">REC</text></svg>
           <h3>レコーディング<small>フィルター</small></h3>
           <p class="q">録音・録画されて世間に流れても、プロの誇りを保てるか？</p>
-          <p class="e"><b>怒りにまかせた言動</b>：怒鳴る、「お前は馬鹿か」「何度言ったらわかるんだ」、壁を叩く、机を蹴る、物に当たる、舌打ち。<b>矜持から出た怒りでも、流れれば「パワハラ」</b></p>
+          <div class="fchips"><span>怒鳴る・強い言葉</span><span>物に当たる・舌打ち</span><span><b>矜持の怒りも→「パワハラ」</b></span></div>
         </div>
       </div>
     </div>
@@ -1075,7 +1101,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         <div class="card" data-step="4">
           <svg viewBox="0 0 200 150" aria-hidden="true"><path d="M10 80h50l14-40 20 80 16-50 12 10h68" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" class="wl" style="animation-duration:2.4s"/></svg>
           <h3>気づく<small>サイン</small></h3>
-          <p>心拍が上がる／声が大きくなる／考えが単純になる</p>
+          <p class="am1">心拍 ↑　声 ↑<br>考えが単純に</p>
         </div>
         <div class="card" data-step="5">
           <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -1084,7 +1110,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <text class="exh" x="100" y="84" font-size="24" fill="#5243c9">吐く</text><text class="inh" x="100" y="84" font-size="24" fill="#5243c9">吸う</text>
           </g></svg>
           <h3>待つ<small>6秒</small></h3>
-          <p>3秒で吐き、3秒で吸う。怒りを消す魔法ではなく、衝動的に言わないための<b>「時間稼ぎ」</b></p>
+          <p class="am1">3秒吐いて、3秒吸う<br><b>＝時間稼ぎ</b></p>
         </div>
         <div class="card" data-step="6">
           <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Dela Gothic One, sans-serif" text-anchor="middle">
@@ -1093,20 +1119,22 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <text x="20" y="130" font-size="20" fill="#4f5661">1</text><text x="188" y="130" font-size="20" fill="#4f5661">10</text>
           </g></svg>
           <h3>測る<small>点数</small></h3>
-          <p>10段階で、今いくつか。<b>高いときは、指導しない</b>（→ ④タイミング）</p>
+          <p class="am1">10段階で今いくつ？<br><b>高いときは指導しない</b>（→④）</p>
         </div>
         <div class="card" data-step="7">
           <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-            <g class="beki-a"><rect x="20" y="40" width="160" height="64" rx="16" fill="#f9e3e0"/><text x="100" y="82" font-size="26" fill="#c23a2e">〜するべき</text></g>
-            <g class="beki-b"><rect x="4" y="30" width="92" height="84" rx="16" fill="#e9e6fd"/><text x="50" y="80" font-size="24" fill="#5243c9">事実</text><rect x="104" y="30" width="92" height="84" rx="16" fill="#ddf2e7"/><text x="150" y="68" font-size="22" fill="#22915c">次の</text><text x="150" y="96" font-size="22" fill="#22915c">指示</text></g>
+            <g class="bk" style="animation-delay:0s"><rect x="10" y="40" width="180" height="64" rx="16" fill="#f9e3e0"/><text x="100" y="80" font-size="22" fill="#c23a2e">部下は従うべき</text></g>
+            <g class="bk" style="animation-delay:2s"><rect x="10" y="40" width="180" height="64" rx="16" fill="#f9e3e0"/><text x="100" y="80" font-size="22" fill="#c23a2e">年下は敬うべき</text></g>
+            <g class="bk" style="animation-delay:4s"><rect x="10" y="40" width="180" height="64" rx="16" fill="#f9e3e0"/><text x="100" y="80" font-size="19" fill="#c23a2e">一度言ったらわかるべき</text></g>
+            <g class="bk" style="animation-delay:6s"><rect x="4" y="30" width="92" height="84" rx="16" fill="#e9e6fd"/><text x="50" y="80" font-size="24" fill="#5243c9">事実</text><rect x="104" y="30" width="92" height="84" rx="16" fill="#ddf2e7"/><text x="150" y="68" font-size="22" fill="#22915c">次の</text><text x="150" y="96" font-size="22" fill="#22915c">指示</text></g>
           </g></svg>
           <h3>見直す<small>「べき」</small></h3>
-          <p>「部下は従うべき」「年下は敬うべき」「一度言ったらわかるべき」。<b>従順な人は、そんなにいない</b>。事実と次の指示に（→ ②シグナル）</p>
+          <p class="am1">従順な人は、そんなにいない<br><b>→ 事実と次の指示</b>（→②）</p>
         </div>
       </div>
       <div class="row" data-step="8">
-        <div class="alert is-info" style="flex:1"><svg class="i"><use href="#i-search"/></svg><p>怒りの裏には、<b>プロの矜持</b>と、疲れ・焦り・不安。矛先が<b>いちばん言い返せない相手</b>に向いていないか、点検する</p></div>
-        <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>怒りに任せないことは、<b>指導をやめることではない</b></p></div>
+        <div class="alert is-info" style="flex:1"><svg class="i"><use href="#i-search"/></svg><p>怒りの裏に<b>プロの矜持</b>・疲れ・焦り・不安。矛先が<b>言い返せない相手</b>に向いていないか</p></div>
+        <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>怒りに任せない ≠ <b>指導をやめる</b></p></div>
       </div>
     </div>
     <aside class="notes">① アンガーマネジメント。まず、自分を整える。
@@ -1252,29 +1280,26 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         <div class="chain"><span>担当役員へ連絡</span><i class="grow"></i><span>担当役員から代表へ報告</span><i class="grow"></i><span>総務人事部へ連携</span></div>
       </div>
     </div>
-    <div class="phase" data-step="9" data-until="10" style="gap:20px">
-      <div class="eyebrow">親・家族から連絡が来たら（電話・来店・SNSなど。アルバイト・社員を問わない）</div>
-      <h2 class="title">その場で答えず、記録して、本部へ</h2>
-      <div class="split" style="grid-template-columns:1fr 440px;gap:36px;align-items:start">
-        <ol class="fam6">
-          <li><span class="badge">1</span><div><b>その場で、反論・謝罪の確約・約束をしない</b>。独断で対応しない</div></li>
-          <li><span class="badge">2</span><div><b>傾聴して、記録する</b>（誰が・いつ・何を・どうしてほしいか、連絡先）</div></li>
-          <li><span class="badge">3</span><div>本人の同意なく、<b>勤務状況・シフト・評価・相談内容を伝えない</b>（成年のスタッフは、親でも第三者）</div></li>
-          <li><span class="badge">4</span><div><b>店長・シェフの交代など、人事は現場で答えない</b>。「会社として確認し、本部から連絡します」</div></li>
-          <li><span class="badge">5</span><div><b>速やかに、本部へ報告</b>（担当役員と総務へ）</div></li>
-          <li class="ng"><span class="badge">6</span><div><span class="kind">刑事</span>労基署等への申告・相談を理由に、<b>本人に不利益な取扱いをしない</b>（労働基準法104条。6か月以下の拘禁刑または30万円以下の罰金）</div></li>
-        </ol>
-        <div style="display:flex;flex-direction:column;gap:18px">
-          <svg class="illus" viewBox="0 0 440 220" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-            <g class="a-ring" style="transform-origin:120px 110px"><rect x="70" y="40" width="100" height="150" rx="18" fill="#fff" stroke="#4f5661" stroke-width="6"/><rect x="84" y="62" width="72" height="100" rx="6" fill="#e9e6fd"/></g>
-            <path class="wv" d="M190 80a40 40 0 0 1 0 60" fill="none" stroke="#6b5ce7" stroke-width="6" stroke-linecap="round"/><path class="wv" d="M210 64a64 64 0 0 1 0 92" fill="none" stroke="#6b5ce7" stroke-width="6" stroke-linecap="round" style="animation-delay:.8s"/>
-            <use href="#i-person" x="290" y="50" width="90" height="140" style="color:#9aa3ae"/><text x="335" y="212" font-size="22" fill="#4f5661">家族</text>
-          </g></svg>
-          <div class="card is-soft" data-step="10" style="padding:20px 24px;gap:8px"><p style="font-size:26px;font-weight:900">備え：調べられても困らない状態に</p><p style="font-size:23px">指導の記録・勤怠・休憩・シフトを整える。<b>記録は、認定されるかどうかにかかわらず、あなた自身を守る</b>。18歳未満のスタッフは、本部に確認</p></div>
+    <div class="phase" data-step="9" data-until="12" style="gap:20px">
+      <div class="eyebrow">親・家族から連絡が来たら（電話・来店・SNS／アルバイト・社員を問わない）</div>
+      <h2 class="title">答えない。記録する。本部へ。</h2>
+      <div class="famv">
+        <svg class="illus" viewBox="0 0 520 440" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <use href="#i-person" x="20" y="150" width="150" height="240" style="color:#9aa3ae"/><text x="95" y="420" font-size="24" fill="#4f5661">家族</text>
+          <g class="a-ring" style="transform-origin:300px 200px"><rect x="240" y="110" width="120" height="190" rx="22" fill="#fff" stroke="#4f5661" stroke-width="7"/><rect x="256" y="138" width="88" height="128" rx="8" fill="#e9e6fd"/></g>
+          <path class="wv" d="M380 160a50 50 0 0 1 0 80" fill="none" stroke="#6b5ce7" stroke-width="7" stroke-linecap="round"/><path class="wv" d="M404 138a80 80 0 0 1 0 124" fill="none" stroke="#6b5ce7" stroke-width="7" stroke-linecap="round" style="animation-delay:.8s"/>
+          <g class="a-bob"><path d="M40 30h220a18 18 0 0 1 18 18v50a18 18 0 0 1-18 18H130l-30 26v-26H40a18 18 0 0 1-18-18V48a18 18 0 0 1 18-18z" fill="#f9e3e0"/><text x="150" y="82" font-size="24" fill="#c23a2e">店長を変えて！</text></g>
+        </g></svg>
+        <div class="fam3">
+          <div class="fb1" data-step="9"><span class="n">1</span><div><b>その場で答えない</b><small>反論・謝罪の確約・約束をしない／人事（交代）は「本部から連絡します」／本人の同意なく、勤務・シフト・評価・相談内容を伝えない（成年は親でも第三者）</small></div></div>
+          <div class="fb1" data-step="10"><span class="n">2</span><div><b>傾聴して、記録する</b><small>誰が・いつ・何を・どうしてほしいか・連絡先</small></div></div>
+          <div class="fb1" data-step="11"><span class="n">3</span><div><b>すぐ本部へ</b><small>担当役員と総務へ報告</small></div></div>
+          <div class="fb1 law" data-step="12"><span class="n">!</span><div><b>申告・相談を理由に、不利益な取扱いをしない</b><small><span class="kind">刑事</span>労働基準法104条：6か月以下の拘禁刑または30万円以下の罰金</small></div></div>
         </div>
       </div>
+      <p class="cap" data-step="12" style="margin-top:0">備え：指導の記録・勤怠・休憩・シフトを整える。記録は、認定の有無にかかわらず、あなたを守る（18歳未満のスタッフは、本部に確認）</p>
     </div>
-    <div class="phase" data-step="11">
+    <div class="phase" data-step="13">
       <div class="eyebrow">ハラスメント相談窓口</div>
       <h2 class="title">スタッフが、直接相談できる窓口がある</h2>
       <div class="split" style="grid-template-columns:1fr 760px;gap:48px;align-items:center">
@@ -1283,12 +1308,12 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <p class="cap" style="margin-top:0">社員・アルバイトが、直接相談できる窓口</p>
             <p style="display:flex;align-items:center;gap:18px;font-size:54px;font-weight:900;color:var(--accent-ink);letter-spacing:.02em"><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>soudan@garb.co.jp</p>
           </div>
-          <ul class="rec3" data-step="12">
+          <ul class="rec3" data-step="14">
             <li><span class="badge">1</span>窓口を、スタッフ全員に知らせる</li>
             <li><span class="badge">2</span>窓口に相談したことを理由に、不利益な扱いをしない</li>
           </ul>
-          <p class="cap" data-step="12" style="margin-top:0">相談の受付：本部・総務・店舗のどこに入っても、同じ流れ（次のスライド）</p>
-          <div class="alert is-ok" data-step="12"><svg class="i"><use href="#i-check"/></svg><p>窓口を広く知らせることが、<b>風通しの良い店</b>をつくる。シェフ・店長は、<b>窓口を伝える側</b></p></div>
+          <p class="cap" data-step="14" style="margin-top:0">相談の受付：本部・総務・店舗のどこに入っても、同じ流れ（次のスライド）</p>
+          <div class="alert is-ok" data-step="14"><svg class="i"><use href="#i-check"/></svg><p>窓口を広く知らせることが、<b>風通しの良い店</b>をつくる。シェフ・店長は、<b>窓口を伝える側</b></p></div>
         </div>
         <svg class="illus" viewBox="0 0 760 460" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
           <use href="#i-person" x="20" y="200" width="100" height="160" style="color:#9aa3ae"/><use href="#i-person" x="110" y="200" width="100" height="160" style="color:#9d92ff"/><use href="#i-person" x="200" y="200" width="100" height="160" style="color:#c98a00"/>
@@ -1312,10 +1337,12 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 記録が必要な理由は3つあります。後から、事実関係を正確に確認するため。相談者を、「言った・言わない」から守るため。対応した皆さん自身が、適切に対応したことを示すため。
 ［クリック］相談を受けたときは、記録を残すことを本人に伝え、書いた内容を本人と一緒に確認してください。自分の話がどう残されるのかわかっていることは、相談者の安心にもつながります。ただし、記録には相談者のプライバシーに関わる情報が含まれます。誰でも見られる場所に置かない。本人の同意なく、第三者に共有しない。この配慮が必要です。
 ［クリック］本部への緊急連絡は、担当役員へ連絡 → 担当役員から代表へ報告 → 総務人事部へ連携の順です。
-［クリック］もう一つ。親や家族から連絡が来たときです。電話、来店、SNSなど。アルバイト・社員を問いません。
-一つ目、その場で、反論や、謝罪の確約、約束をしない。独断で対応しないでください。二つ目、傾聴して、記録する。誰が、いつ、何を、どうしてほしいか、連絡先。三つ目、本人の同意なく、勤務状況、シフト、評価、本人の相談内容を伝えない。成年のスタッフは、親であっても第三者です。四つ目、店長・シェフの交代など、人事は、現場で答えない。「会社として確認し、本部から連絡します」と伝えてください。五つ目、速やかに、本部へ報告。担当役員と総務へ。その後の流れは、次のスライドでお話しします。
-そして六つ目。労基署等への申告や相談を理由に、本人に不利益な取扱いをしてはなりません。労働基準法104条。6か月以下の拘禁刑または30万円以下の罰金です。
-［クリック］備えとして、調べられても困らない状態にしておいてください。指導の記録、勤怠、休憩、シフトを整える。記録は、ハラスメントと認定されるかどうかにかかわらず、あなた自身を守ります。18歳未満のスタッフについては、本部に確認してください。
+［クリック］もう一つ。親御さん、ご家族から、連絡が来たとき。電話でも、来店でも、SNSでも、同じです。アルバイトでも、社員でも、同じです。
+一つ目、その場で答えない。反論したり、謝罪を約束したり、何かを約束したりしない。店長やシェフの交代など、人事のことは、現場で答えない。「会社として確認して、本部から連絡します」と伝えてください。本人の同意なく、勤務状況、シフト、評価、本人の相談内容を、伝えない。成年のスタッフであれば、親御さんでも、第三者です。
+［クリック］二つ目、傾聴して、記録する。誰が、いつ、何を、どうしてほしいのか。連絡先も、控えます。
+［クリック］三つ目、速やかに、本部へ報告する。担当役員と、総務へ。その後の流れは、次のスライドでお話しします。
+［クリック］そして、もう一つ、大事なことがあります。労基署などへの申告や相談を理由に、本人に、不利益な取扱いをしてはいけません。労働基準法104条で禁止されていて、6か月以下の拘禁刑、または30万円以下の罰金の定めがあります。
+備えとして、調べられても、困らない状態にしておきましょう。指導の記録、勤怠、休憩、シフト。これらの記録は、ハラスメントと認定されるかどうかにかかわらず、あなた自身を守ります。18歳未満のスタッフの場合は、本部に確認してください。
 ［クリック］そして、ハラスメントの相談窓口です。soudan@garb.co.jp。これは、皆さんが使う窓口というより、社員やアルバイトが、直接相談できる窓口です。
 ［クリック］この窓口を、スタッフ全員に知らせてください。窓口を広く知らせることが、風通しの良い店をつくります。シェフ・店長である皆さんは、窓口を伝える側です。そして、窓口に相談したことを理由に、不利益な扱いをすることは、絶対にあってはなりません。
 相談は、本部・総務・店舗のどこに入っても、同じ流れで対応します。次のスライドで説明します。
