@@ -101,6 +101,136 @@
 .report-cards .lead { font-size: 38px; }
 .report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .report-qr .ph { width: 300px; height: 300px; }
+
+/* 10/27 改修：デッキ6（何を失うか）・デッキ15（事後対応） */
+.lz { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; min-height: 0; }
+.lz-box { display: flex; flex-direction: column; gap: 14px; padding: 22px 26px; border-radius: 22px; background: var(--surface); box-shadow: 0 10px 30px rgba(29,33,40,.07); }
+.lz-box.me { background: var(--accent-soft); }
+.lz-h { display: flex; align-items: center; gap: 14px; font-size: 36px; font-weight: 900; }
+.lz-co { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; flex: 1; align-content: start; }
+.lz-t { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 6px; border-radius: 14px; background: var(--surface-2); text-align: center; }
+.lz-t svg { width: 96px; height: 88px; }
+.lz-t b { font-size: 26px; }
+.lz-t small { font-size: 19px; color: var(--ink-2); font-weight: 700; }
+.lz-close { grid-column: 1 / -1; display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: center; padding: 10px 16px; border-radius: 14px; background: var(--danger-soft); }
+.lz-close svg { width: 150px; height: 100px; }
+.lz-close p { font-size: 26px; line-height: 1.45; }
+.lz-close small { display: block; font-size: 20px; color: var(--ink-2); }
+.lz-co > *, .lz-me > * { opacity: 0; }
+.on.lz-co > *, .on.lz-me > * { animation: d-in .5s both; animation-delay: calc(var(--k) * .45s + .1s); }
+.stp circle { opacity: 0; }
+.on .stp circle { animation: stp .3s ease both; animation-delay: calc(var(--s) * .18s + .6s); }
+@keyframes stp { from { opacity: 0; transform: scale(1.8); transform-origin: center; transform-box: fill-box; } to { opacity: 1; transform: none; } }
+.sign { transform-box: fill-box; transform-origin: top center; }
+.on .sign { animation: sign 1.6s ease-out 2.2s both; }
+@keyframes sign { 0% { transform: translateY(-40px); opacity: 0; } 30% { opacity: 1; transform: rotate(8deg); } 60% { transform: rotate(-5deg); } 100% { transform: none; opacity: 1; } }
+.coin2 { animation: coin2 1.8s ease-in infinite; }
+@keyframes coin2 { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-14px) translateX(30px); opacity: 0; } }
+.lz-me { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.lz-c { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 14px 18px; border-radius: 14px; background: #fff; font-size: 26px; line-height: 1.45; }
+.lz-c > b { font-size: 28px; }
+.lz-c > small { font-size: 20px; color: var(--ink-2); font-weight: 700; }
+.lz-c .tagx { font-size: 20px; font-weight: 900; padding: 2px 12px; border-radius: 999px; background: var(--danger); color: #fff; }
+.big2 { display: flex; align-items: baseline; gap: 12px; width: 100%; font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.big2 em { font-style: normal; font-family: var(--f-num); font-size: 52px; color: var(--accent-ink); margin-right: 4px; }
+.big2 i { font-style: normal; font-size: 20px; }
+.lz-flow { display: flex; align-items: center; gap: 8px; width: 100%; font-size: 20px; font-weight: 700; }
+.lz-flow span { padding: 6px 12px; border-radius: 10px; background: var(--surface-2); line-height: 1.3; }
+.lz-flow span small { display: block; font-size: 16px; color: var(--ink-2); }
+.lz-flow span.last { background: var(--danger-soft); color: var(--danger); }
+.lz-flow i { width: 22px; height: 8px; background: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 10px); }
+.yk { display: grid; grid-template-columns: 200px 1fr 300px; gap: 26px; align-items: center; }
+.yk-tl { display: flex; flex-direction: column; align-items: center; gap: 6px; font-family: var(--f-num); font-size: 44px; color: var(--accent); }
+.yk-tl small { display: block; font-family: var(--f-body, inherit); font-size: 20px; color: var(--ink-2); text-align: center; }
+.yk-tl i { width: 8px; height: 40px; background: repeating-linear-gradient(180deg, var(--accent) 0 8px, transparent 8px 14px); }
+.yk-p { display: flex; flex-direction: column; gap: 10px; }
+.ppl { display: grid; grid-template-columns: repeat(31, 1fr); gap: 2px; }
+.ppl svg { width: 100%; height: 30px; color: #9aa3ae; opacity: 0; }
+.ppl svg.dead { color: var(--danger); }
+.on .ppl svg { animation: d-in .4s both; animation-delay: calc(var(--k) * 30ms + .2s); }
+.yk-cap { font-size: 28px; font-weight: 700; }
+.yk-cap .red, .red { color: var(--danger); }
+.yk-m { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.07); text-align: center; }
+.yk-m b { font-family: var(--f-num); font-weight: 400; font-size: 64px; color: var(--danger); line-height: 1.1; }
+.yk-m small { font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.yk-row { display: grid; grid-template-columns: 1fr 520px; gap: 26px; flex: 1; min-height: 0; }
+.yk-doors { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 54px 22px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.07); }
+.stamp-ng { position: absolute; top: 12px; left: 22px; font-size: 26px; font-weight: 700; }
+.stamp-ng b { color: var(--ok); font-size: 30px; padding: 0 8px; }
+.door { display: grid; grid-template-columns: 70px 1fr; gap: 14px; align-items: center; padding: 10px 14px; border-radius: 14px; background: var(--surface-2); }
+.door svg { width: 70px; height: 96px; }
+.door p { font-size: 26px; line-height: 1.45; }
+.door.hi { background: var(--ok-soft); }
+.yk-shield { display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: center; padding: 16px 22px; border-radius: 20px; background: var(--ok-soft); }
+.yk-shield svg { width: 180px; height: 180px; }
+.yk-shield p { font-size: 30px; line-height: 1.4; }
+.yk-shield p small { display: block; font-size: 22px; color: var(--danger); font-weight: 700; margin-top: 8px; }
+.crack { stroke-dasharray: 120; stroke-dashoffset: 120; }
+.yk-shield.on .crack { stroke-dashoffset: 0; transition: stroke-dashoffset .8s ease 1.6s; }
+.eel { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--danger-soft); color: var(--danger); font-size: 48px; }
+.pz { display: grid; grid-template-columns: 500px 1fr; gap: 40px; flex: 1; min-height: 0; align-items: center; }
+.pz-scene { max-height: 560px; }
+.pz-in { animation: pzin 1.4s cubic-bezier(.3,1,.5,1) .4s both; }
+@keyframes pzin { from { transform: translateX(-120px); opacity: 0; } to { transform: none; opacity: 1; } }
+.pz-list { display: flex; flex-direction: column; gap: 14px; }
+.pz-list li { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: center; padding: 12px 22px; border-radius: 18px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); }
+.pz-ic svg { width: 96px; height: 96px; overflow: visible; }
+.pz-list b { display: flex; align-items: center; gap: 12px; font-size: 32px; }
+.pz-list .n { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--f-num); font-size: 22px; font-weight: 400; }
+.pz-list p { font-size: 26px; line-height: 1.45; color: var(--ink-2); font-weight: 700; }
+.pz-list li.key { padding: 18px 24px; background: var(--danger-soft); box-shadow: inset 6px 0 0 var(--danger); }
+.pz-list li.key b { font-size: 38px; color: var(--danger); }
+.pz-list li.key .n { background: var(--danger); }
+.pz-list li.key p { color: var(--ink); font-size: 28px; }
+.pz-list li.key small { font-size: 22px; color: var(--ink-2); font-weight: 700; }
+.pz-list li.key .pz-ic svg { width: 110px; height: 110px; }
+.hand-in { animation: handin 3s ease-in-out infinite; }
+@keyframes handin { 0%, 100% { transform: none; } 50% { transform: translate(-6px, 6px); } }
+.bow { transform-box: view-box; animation: bow 3s ease-in-out infinite; }
+@keyframes bow { 0%, 100% { transform: none; } 40%, 70% { transform: rotate(18deg); } }
+.bub circle { animation: bubs 2s ease-in-out infinite; }
+.bub circle:nth-child(2) { animation-delay: .6s; } .bub circle:nth-child(3) { animation-delay: 1.2s; }
+@keyframes bubs { 0%, 100% { transform: none; opacity: 1; } 50% { transform: translateY(-6px); opacity: .6; } }
+@media (prefers-reduced-motion: reduce) { .lz-co > *, .lz-me > *, .ppl svg, .stp circle { opacity: 1 !important; animation: none !important; } }
+
+.lz-co { align-content: stretch; grid-template-rows: 1fr auto; }
+.lz-t { justify-content: center; gap: 8px; }
+.lz-t svg { width: 130px; height: 118px; }
+.lz-t b { font-size: 29px; white-space: nowrap; }
+.lz-t small { font-size: 24px; }
+.lz-close { padding: 16px 20px; }
+.lz-close svg { width: 170px; height: 116px; }
+.lz-close p { font-size: 34px; }
+.lz-me { justify-content: space-between; }
+.lz-c { padding: 18px 22px; font-size: 30px; }
+.lz-c > b { font-size: 34px; }
+.lz-c .tagx { font-size: 24px; }
+.big2 { font-size: 26px; }
+.big2 em { font-size: 70px; }
+.big2 i { font-size: 24px; }
+.lz-flow { font-size: 24px; }
+.lz-flow span small { font-size: 19px; }
+.door { grid-template-columns: 90px 1fr; }
+.door svg { width: 90px; height: 124px; }
+.door p { font-size: 32px; }
+.stamp-ng { font-size: 30px; }
+.stamp-ng b { font-size: 36px; }
+.yk-doors { padding-top: 66px; }
+.yk-shield p { font-size: 34px; }
+.yk-shield p small { font-size: 24px; }
+.yk-cap { font-size: 32px; }
+
+.pz { grid-template-columns: 560px 1fr; }
+.pz-list { gap: 14px; }
+.pz-list li { grid-template-columns: 120px 1fr; padding: 16px 26px; }
+.pz-ic svg { width: 116px; height: 116px; }
+.pz-list b { font-size: 38px; }
+.pz-list .n { width: 46px; height: 46px; font-size: 26px; }
+.pz-list p { font-size: 30px; }
+.pz-list li.key b { font-size: 42px; }
+.pz-list li.key p { font-size: 29px; }
+.pz-list li.key small { font-size: 24px; }
+.pz-list li.key .pz-ic svg { width: 130px; height: 130px; }
 </style>
 
 <div class="deck" data-chapter="第2章　衛生管理" data-accent="green">
@@ -249,48 +379,73 @@ A、栄養・水分・温度。B、光・空気・乾燥。C、圧力・温度�
   </section>
 
   <!-- 06 何を失うか -->
-  <section class="slide" data-min="5" data-pun="6" data-life="7">
-    <div class="phase" data-until="2">
+  <section class="slide" data-min="5" data-pun="6" data-life="7" id="lose2-slide">
+    <div class="phase" data-until="2" style="gap:22px">
       <div class="eyebrow" data-in>何を失うか</div>
       <h2 class="title" data-in style="--d:1">会社も、あなた個人も、責任を負います</h2>
-      <div class="cols cols-2">
-        <div class="card" data-step="1">
-          <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
-          <ul class="points plain">
-            <li><div>営業停止処分（通常3〜7日）＋行政による公表</div></li>
-            <li><div>治療費・休業損害・慰謝料などの損害賠償</div></li>
-            <li><div>ブランドの失墜、顧客離れ</div></li>
-            <li><div>閉店すれば、内装・設備・什器への投資は回収できない<small class="cap" style="display:block">冒頭の事例は、2ヶ月後に再開せず閉店</small></div></li>
-          </ul>
-        </div>
-        <div class="card is-accent" data-step="2">
-          <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人が負うもの</h3>
-          <p><span class="kind">刑事</span><b>業務上過失致死傷罪</b>　死者が出なくても、負傷の段階で対象<br><span class="cap">5年以下の拘禁刑または100万円以下の罰金</span></p>
-          <p style="margin-top:2px"><span class="kind">刑事</span><b>食品衛生法違反</b><span class="cap">　対象は食品衛生責任者個人</span></p>
-          <div class="lawflow">
-            <div>HACCPの未実施など<br><span class="cap" style="font-size:22px">これ自体に直接の罰則はない</span></div><i>→</i>
-            <div>保健所の改善命令・営業停止命令</div><i>→</i>
-            <div class="last">従わない場合<br>3年以下の拘禁刑または300万円以下の罰金</div>
+      <div class="lz">
+        <div class="lz-box" data-in style="--d:2">
+          <p class="lz-h"><span class="ico gray"><svg class="i"><use href="#i-store"/></svg></span>会社</p>
+          <div class="lz-co" data-step="1">
+            <div class="lz-t" style="--k:0">
+              <svg viewBox="0 0 120 110" aria-hidden="true"><rect x="10" y="16" width="100" height="86" rx="12" fill="#fff" stroke="#4f5661" stroke-width="5"/><rect x="10" y="16" width="100" height="22" rx="10" fill="#4f5661"/><g fill="#eef1f5"><rect x="20" y="46" width="18" height="16" rx="3"/><rect x="42" y="46" width="18" height="16" rx="3"/><rect x="64" y="46" width="18" height="16" rx="3"/><rect x="86" y="46" width="18" height="16" rx="3"/><rect x="20" y="68" width="18" height="16" rx="3"/><rect x="42" y="68" width="18" height="16" rx="3"/><rect x="64" y="68" width="18" height="16" rx="3"/></g><g class="stp" fill="none" stroke="#c23a2e" stroke-width="4"><circle cx="29" cy="54" r="9" style="--s:0"/><circle cx="51" cy="54" r="9" style="--s:1"/><circle cx="73" cy="54" r="9" style="--s:2"/><circle cx="95" cy="54" r="9" style="--s:3"/><circle cx="29" cy="76" r="9" style="--s:4"/><circle cx="51" cy="76" r="9" style="--s:5"/><circle cx="73" cy="76" r="9" style="--s:6"/></g></svg>
+              <b>営業停止</b><small>通常3〜7日</small>
+            </div>
+            <div class="lz-t" style="--k:1">
+              <svg viewBox="0 0 120 110" aria-hidden="true"><rect x="8" y="16" width="104" height="80" rx="10" fill="#fff" stroke="#4f5661" stroke-width="5"/><path d="M8 34h104" stroke="#4f5661" stroke-width="5"/><circle cx="20" cy="25" r="3" fill="#4f5661"/><circle cx="30" cy="25" r="3" fill="#4f5661"/><rect x="20" y="44" width="80" height="14" rx="4" fill="#f9e3e0"/><path d="M20 70h64M20 82h48" stroke="#c9ced6" stroke-width="6" stroke-linecap="round"/></svg>
+              <b>公表</b>
+            </div>
+            <div class="lz-t" style="--k:2">
+              <svg viewBox="0 0 120 110" aria-hidden="true"><rect x="12" y="28" width="96" height="66" rx="14" fill="#22915c"/><rect x="70" y="48" width="44" height="28" rx="8" fill="#ddf2e7"/><circle cx="84" cy="62" r="5" fill="#22915c"/><g class="coin2"><circle cx="40" cy="18" r="12" fill="#f2be3d"/></g></svg>
+              <b>損害賠償</b>
+            </div>
+            <div class="lz-t" style="--k:3">
+              <svg viewBox="0 0 120 110" aria-hidden="true"><path d="M14 30l30 26 22-18 40 42" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" class="dn-line"/><path d="M90 80h18V62" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <b>ブランド失墜</b>
+            </div>
+            <div class="lz-close" style="--k:4">
+              <svg viewBox="0 0 160 110" aria-hidden="true"><path d="M20 44L80 14l60 30v58H20z" fill="#eef1f5"/><rect x="62" y="62" width="36" height="40" fill="#fff"/><g class="sign"><path d="M60 40l20-14 20 14" fill="none" stroke="#4f5661" stroke-width="3"/><rect x="44" y="38" width="72" height="30" rx="6" fill="#c23a2e"/><text x="80" y="60" font-size="18" font-weight="900" text-anchor="middle" fill="#fff" font-family="Zen Kaku Gothic New, sans-serif">閉店</text></g></svg>
+              <p>投資は<b>回収できない</b></p>
+            </div>
           </div>
-          <p style="margin-top:6px"><span class="kind civil">民事</span>体調不良の黙認や隠蔽など、<b>重大な過失</b>があった場合は、会社から損害賠償を請求されるおそれ</p>
+        </div>
+        <div class="lz-box me" data-in style="--d:3">
+          <p class="lz-h"><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>あなた個人</p>
+          <div class="lz-me" data-step="2">
+            <div class="lz-c" style="--k:0"><span class="kind">刑事</span><b>業務上過失致死傷罪</b><span class="tagx">負傷でも対象</span>
+              <div class="big2"><span><em>5</em>年以下の拘禁刑</span><i>または</i><span><em>100</em>万円以下の罰金</span></div></div>
+            <div class="lz-c" style="--k:1"><span class="kind">刑事</span><b>食品衛生法違反</b>
+              <div class="lz-flow"><span>HACCP未実施<small>直接の罰則はない</small></span><i></i><span>改善命令</span><i></i><span class="last">従わなければ</span></div>
+              <div class="big2"><span><em>3</em>年以下の拘禁刑</span><i>または</i><span><em>300</em>万円以下の罰金</span></div></div>
+            <div class="lz-c" style="--k:2"><span class="kind civil">民事</span><b>重大な過失</b> → <b>損害賠償の請求</b></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="phase" data-step="3" data-until="5" style="gap:20px">
+    <div class="phase" data-step="3" data-until="5" style="gap:18px">
       <div class="eyebrow">過去の重大事例</div>
-      <h2 class="title">2011年　焼肉チェーンのユッケ食中毒</h2>
-      <p class="text">腸管出血性大腸菌（O-157）により、<b>181人が発症、5名が死亡</b>。遺族が運営会社と元社長個人を提訴。</p>
-      <div class="verdict2">
-        <div class="card ok"><span class="tag">2018年 東京地裁</span><h3>運営会社</h3><p class="lead"><b>約1億6,900万円</b>の支払いを命令</p><p class="cap">運営会社は2023年に破産</p></div>
-        <div class="card no" data-step="4"><span class="tag">請求は棄却</span><h3>元社長・元店長（個人）</h3>
-          <ul class="points plain"><li><div>理由①　当時は国の衛生基準が周知されていなかった</div></li><li><div>理由②　元店長は<b class="hl">会社のマニュアルに従って</b>調理していた</div></li></ul>
+      <h2 class="title">焼肉チェーンのユッケ食中毒</h2>
+      <div class="yk">
+        <div class="yk-tl"><span>2011</span><i></i><span>2018<small>東京地裁</small></span></div>
+        <div class="yk-p"><div class="ppl"><svg class="" style="--k:0"><use href="#i-person"/></svg><svg class="" style="--k:1"><use href="#i-person"/></svg><svg class="" style="--k:2"><use href="#i-person"/></svg><svg class="" style="--k:3"><use href="#i-person"/></svg><svg class="" style="--k:4"><use href="#i-person"/></svg><svg class="" style="--k:5"><use href="#i-person"/></svg><svg class="" style="--k:6"><use href="#i-person"/></svg><svg class="" style="--k:7"><use href="#i-person"/></svg><svg class="" style="--k:8"><use href="#i-person"/></svg><svg class="" style="--k:9"><use href="#i-person"/></svg><svg class="" style="--k:10"><use href="#i-person"/></svg><svg class="" style="--k:11"><use href="#i-person"/></svg><svg class="" style="--k:12"><use href="#i-person"/></svg><svg class="" style="--k:13"><use href="#i-person"/></svg><svg class="dead" style="--k:14"><use href="#i-person"/></svg><svg class="" style="--k:15"><use href="#i-person"/></svg><svg class="" style="--k:16"><use href="#i-person"/></svg><svg class="" style="--k:17"><use href="#i-person"/></svg><svg class="" style="--k:18"><use href="#i-person"/></svg><svg class="" style="--k:19"><use href="#i-person"/></svg><svg class="" style="--k:20"><use href="#i-person"/></svg><svg class="" style="--k:21"><use href="#i-person"/></svg><svg class="" style="--k:22"><use href="#i-person"/></svg><svg class="" style="--k:23"><use href="#i-person"/></svg><svg class="" style="--k:24"><use href="#i-person"/></svg><svg class="" style="--k:25"><use href="#i-person"/></svg><svg class="" style="--k:26"><use href="#i-person"/></svg><svg class="" style="--k:27"><use href="#i-person"/></svg><svg class="" style="--k:28"><use href="#i-person"/></svg><svg class="" style="--k:29"><use href="#i-person"/></svg><svg class="" style="--k:30"><use href="#i-person"/></svg><svg class="" style="--k:0"><use href="#i-person"/></svg><svg class="" style="--k:1"><use href="#i-person"/></svg><svg class="" style="--k:2"><use href="#i-person"/></svg><svg class="" style="--k:3"><use href="#i-person"/></svg><svg class="" style="--k:4"><use href="#i-person"/></svg><svg class="" style="--k:5"><use href="#i-person"/></svg><svg class="" style="--k:6"><use href="#i-person"/></svg><svg class="" style="--k:7"><use href="#i-person"/></svg><svg class="" style="--k:8"><use href="#i-person"/></svg><svg class="" style="--k:9"><use href="#i-person"/></svg><svg class="" style="--k:10"><use href="#i-person"/></svg><svg class="" style="--k:11"><use href="#i-person"/></svg><svg class="" style="--k:12"><use href="#i-person"/></svg><svg class="" style="--k:13"><use href="#i-person"/></svg><svg class="" style="--k:14"><use href="#i-person"/></svg><svg class="" style="--k:15"><use href="#i-person"/></svg><svg class="dead" style="--k:16"><use href="#i-person"/></svg><svg class="" style="--k:17"><use href="#i-person"/></svg><svg class="" style="--k:18"><use href="#i-person"/></svg><svg class="" style="--k:19"><use href="#i-person"/></svg><svg class="" style="--k:20"><use href="#i-person"/></svg><svg class="" style="--k:21"><use href="#i-person"/></svg><svg class="" style="--k:22"><use href="#i-person"/></svg><svg class="" style="--k:23"><use href="#i-person"/></svg><svg class="" style="--k:24"><use href="#i-person"/></svg><svg class="" style="--k:25"><use href="#i-person"/></svg><svg class="" style="--k:26"><use href="#i-person"/></svg><svg class="" style="--k:27"><use href="#i-person"/></svg><svg class="" style="--k:28"><use href="#i-person"/></svg><svg class="" style="--k:29"><use href="#i-person"/></svg><svg class="" style="--k:30"><use href="#i-person"/></svg><svg class="" style="--k:0"><use href="#i-person"/></svg><svg class="" style="--k:1"><use href="#i-person"/></svg><svg class="" style="--k:2"><use href="#i-person"/></svg><svg class="" style="--k:3"><use href="#i-person"/></svg><svg class="" style="--k:4"><use href="#i-person"/></svg><svg class="" style="--k:5"><use href="#i-person"/></svg><svg class="" style="--k:6"><use href="#i-person"/></svg><svg class="" style="--k:7"><use href="#i-person"/></svg><svg class="" style="--k:8"><use href="#i-person"/></svg><svg class="" style="--k:9"><use href="#i-person"/></svg><svg class="" style="--k:10"><use href="#i-person"/></svg><svg class="" style="--k:11"><use href="#i-person"/></svg><svg class="" style="--k:12"><use href="#i-person"/></svg><svg class="" style="--k:13"><use href="#i-person"/></svg><svg class="" style="--k:14"><use href="#i-person"/></svg><svg class="" style="--k:15"><use href="#i-person"/></svg><svg class="" style="--k:16"><use href="#i-person"/></svg><svg class="" style="--k:17"><use href="#i-person"/></svg><svg class="" style="--k:18"><use href="#i-person"/></svg><svg class="" style="--k:19"><use href="#i-person"/></svg><svg class="" style="--k:20"><use href="#i-person"/></svg><svg class="" style="--k:21"><use href="#i-person"/></svg><svg class="" style="--k:22"><use href="#i-person"/></svg><svg class="" style="--k:23"><use href="#i-person"/></svg><svg class="" style="--k:24"><use href="#i-person"/></svg><svg class="" style="--k:25"><use href="#i-person"/></svg><svg class="" style="--k:26"><use href="#i-person"/></svg><svg class="" style="--k:27"><use href="#i-person"/></svg><svg class="" style="--k:28"><use href="#i-person"/></svg><svg class="" style="--k:29"><use href="#i-person"/></svg><svg class="dead" style="--k:30"><use href="#i-person"/></svg><svg class="" style="--k:0"><use href="#i-person"/></svg><svg class="" style="--k:1"><use href="#i-person"/></svg><svg class="" style="--k:2"><use href="#i-person"/></svg><svg class="" style="--k:3"><use href="#i-person"/></svg><svg class="" style="--k:4"><use href="#i-person"/></svg><svg class="" style="--k:5"><use href="#i-person"/></svg><svg class="" style="--k:6"><use href="#i-person"/></svg><svg class="" style="--k:7"><use href="#i-person"/></svg><svg class="" style="--k:8"><use href="#i-person"/></svg><svg class="" style="--k:9"><use href="#i-person"/></svg><svg class="" style="--k:10"><use href="#i-person"/></svg><svg class="" style="--k:11"><use href="#i-person"/></svg><svg class="" style="--k:12"><use href="#i-person"/></svg><svg class="" style="--k:13"><use href="#i-person"/></svg><svg class="" style="--k:14"><use href="#i-person"/></svg><svg class="" style="--k:15"><use href="#i-person"/></svg><svg class="" style="--k:16"><use href="#i-person"/></svg><svg class="" style="--k:17"><use href="#i-person"/></svg><svg class="" style="--k:18"><use href="#i-person"/></svg><svg class="" style="--k:19"><use href="#i-person"/></svg><svg class="" style="--k:20"><use href="#i-person"/></svg><svg class="" style="--k:21"><use href="#i-person"/></svg><svg class="" style="--k:22"><use href="#i-person"/></svg><svg class="" style="--k:23"><use href="#i-person"/></svg><svg class="" style="--k:24"><use href="#i-person"/></svg><svg class="" style="--k:25"><use href="#i-person"/></svg><svg class="" style="--k:26"><use href="#i-person"/></svg><svg class="" style="--k:27"><use href="#i-person"/></svg><svg class="" style="--k:28"><use href="#i-person"/></svg><svg class="" style="--k:29"><use href="#i-person"/></svg><svg class="" style="--k:30"><use href="#i-person"/></svg><svg class="" style="--k:0"><use href="#i-person"/></svg><svg class="" style="--k:1"><use href="#i-person"/></svg><svg class="" style="--k:2"><use href="#i-person"/></svg><svg class="" style="--k:3"><use href="#i-person"/></svg><svg class="" style="--k:4"><use href="#i-person"/></svg><svg class="" style="--k:5"><use href="#i-person"/></svg><svg class="" style="--k:6"><use href="#i-person"/></svg><svg class="dead" style="--k:7"><use href="#i-person"/></svg><svg class="" style="--k:8"><use href="#i-person"/></svg><svg class="" style="--k:9"><use href="#i-person"/></svg><svg class="" style="--k:10"><use href="#i-person"/></svg><svg class="" style="--k:11"><use href="#i-person"/></svg><svg class="" style="--k:12"><use href="#i-person"/></svg><svg class="" style="--k:13"><use href="#i-person"/></svg><svg class="" style="--k:14"><use href="#i-person"/></svg><svg class="" style="--k:15"><use href="#i-person"/></svg><svg class="" style="--k:16"><use href="#i-person"/></svg><svg class="" style="--k:17"><use href="#i-person"/></svg><svg class="" style="--k:18"><use href="#i-person"/></svg><svg class="" style="--k:19"><use href="#i-person"/></svg><svg class="" style="--k:20"><use href="#i-person"/></svg><svg class="" style="--k:21"><use href="#i-person"/></svg><svg class="" style="--k:22"><use href="#i-person"/></svg><svg class="" style="--k:23"><use href="#i-person"/></svg><svg class="" style="--k:24"><use href="#i-person"/></svg><svg class="" style="--k:25"><use href="#i-person"/></svg><svg class="" style="--k:26"><use href="#i-person"/></svg><svg class="" style="--k:27"><use href="#i-person"/></svg><svg class="" style="--k:28"><use href="#i-person"/></svg><svg class="" style="--k:29"><use href="#i-person"/></svg><svg class="" style="--k:30"><use href="#i-person"/></svg><svg class="" style="--k:0"><use href="#i-person"/></svg><svg class="" style="--k:1"><use href="#i-person"/></svg><svg class="" style="--k:2"><use href="#i-person"/></svg><svg class="" style="--k:3"><use href="#i-person"/></svg><svg class="" style="--k:4"><use href="#i-person"/></svg><svg class="" style="--k:5"><use href="#i-person"/></svg><svg class="" style="--k:6"><use href="#i-person"/></svg><svg class="" style="--k:7"><use href="#i-person"/></svg><svg class="" style="--k:8"><use href="#i-person"/></svg><svg class="" style="--k:9"><use href="#i-person"/></svg><svg class="" style="--k:10"><use href="#i-person"/></svg><svg class="" style="--k:11"><use href="#i-person"/></svg><svg class="" style="--k:12"><use href="#i-person"/></svg><svg class="dead" style="--k:13"><use href="#i-person"/></svg><svg class="" style="--k:14"><use href="#i-person"/></svg><svg class="" style="--k:15"><use href="#i-person"/></svg><svg class="" style="--k:16"><use href="#i-person"/></svg><svg class="" style="--k:17"><use href="#i-person"/></svg><svg class="" style="--k:18"><use href="#i-person"/></svg><svg class="" style="--k:19"><use href="#i-person"/></svg><svg class="" style="--k:20"><use href="#i-person"/></svg><svg class="" style="--k:21"><use href="#i-person"/></svg><svg class="" style="--k:22"><use href="#i-person"/></svg><svg class="" style="--k:23"><use href="#i-person"/></svg><svg class="" style="--k:24"><use href="#i-person"/></svg><svg class="" style="--k:25"><use href="#i-person"/></svg></div>
+          <p class="yk-cap"><b>181人</b>発症（O-157）／<b class="red">5名</b>死亡</p></div>
+        <div class="yk-m"><small>運営会社に</small><b>1.69億円</b><small>2023年 破産</small></div>
+      </div>
+      <div class="yk-row">
+        <div class="yk-doors" data-step="4">
+          <span class="stamp-ng">元社長・元店長への請求は<b>棄却</b></span>
+          <div class="door"><svg viewBox="0 0 80 110" aria-hidden="true"><rect x="8" y="6" width="64" height="100" rx="6" fill="#eef1f5" stroke="#9aa3ae" stroke-width="4"/><circle cx="58" cy="58" r="5" fill="#9aa3ae"/></svg><p><b>①</b> 衛生基準が未周知だった</p></div>
+          <div class="door hi"><svg viewBox="0 0 80 110" aria-hidden="true"><rect x="8" y="6" width="64" height="100" rx="6" fill="#ddf2e7" stroke="#22915c" stroke-width="4"/><g transform="translate(20 26)"><rect width="40" height="52" rx="5" fill="#fff" stroke="#22915c" stroke-width="3"/><path d="M8 14h24M8 24h24M8 34h16" stroke="#22915c" stroke-width="3"/></g></svg><p><b>②</b> 店長は、<b class="hl">マニュアルどおり</b>だった</p></div>
+        </div>
+        <div class="yk-shield" data-step="5">
+          <svg viewBox="0 0 220 220" aria-hidden="true"><path d="M110 14l80 30v64c0 54-36 88-80 102-44-14-80-48-80-102V44z" fill="#ddf2e7" stroke="#22915c" stroke-width="7"/><g transform="translate(86 70)"><rect width="48" height="62" rx="6" fill="#fff" stroke="#22915c" stroke-width="4"/><path d="M10 18h28M10 30h28M10 42h18" stroke="#22915c" stroke-width="4"/></g><path class="crack" d="M150 40l-14 34 16 14-18 30 10 20" fill="none" stroke="#c23a2e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p><b>決められた通りが、個人を守った</b><small>逸脱していたら、判断は違った可能性</small></p>
         </div>
       </div>
-      <div class="alert is-ok" data-step="5"><svg class="i"><use href="#i-shield"/></svg><p><b>決められた通りにやっていたことが、結果として個人を守った。</b>逆に言えば、マニュアルを逸脱していたら、判断は違っていた可能性があります。</p></div>
     </div>
     <div class="phase" data-step="6" style="gap:20px">
       <div class="eyebrow">何よりも重いもの</div>
-      <p class="lead">営業停止、損害賠償、罰金、閉店。処分や罰金は、確かに重いものです。</p>
+      <div class="row" style="gap:22px;align-items:center"><span class="eel"><svg class="i"><use href="#i-person"/></svg></span><p class="lead"><b>2024年</b>　うなぎ弁当　<b class="red">1名</b></p></div>
       <p class="statement" data-step="7" style="font-size:72px">でも、いちばん重いのは、<span class="hl2">命</span>が失われること。<small style="margin-top:12px">お客様の命です。</small></p>
       <svg class="scale" viewBox="0 0 1664 470" role="img" aria-label="天秤の図：左の皿に処分を載せると左に傾くが、右の皿に命を載せると大きく右に傾く">
         <g font-family="Zen Kaku Gothic New, sans-serif" text-anchor="middle">
@@ -566,14 +721,21 @@ A、5名以上の同一メニュー提供時に実施。B、全メニューを�
   </section>
 
   <!-- 12 事後対応 -->
-  <section class="slide" data-min="3">
+  <section class="slide" data-min="3" id="post2-slide">
     <div class="eyebrow" data-in>それでも起きたら：事後対応</div>
     <h2 class="title" data-in style="--d:1">保健所の調査が入った後</h2>
-    <div class="post-grid">
-      <div class="card" data-step="1"><span class="badge">1</span><h3>調査への協力</h3><p>立入調査、そして検食の提出に協力する</p></div>
-      <div class="card" data-step="2"><span class="badge">2</span><h3>誠実な謝罪とサポート</h3><p>医療対応・治療費等の確認を含め、被害を受けた方へ誠実に対応する</p></div>
-      <div class="card" data-step="3"><span class="badge">3</span><h3>是正措置の実行</h3><p>原因食材の完全廃棄、厨房と器具の徹底した洗浄・消毒</p></div>
-      <div class="card is-accent" data-step="4"><span class="badge">4</span><h3>記録の正確性が、命運を分ける</h3><p>日頃の温度記録・体調申告の記録が「管理していた証拠」になる</p><p class="cap">第1章と同じ：日々の記録は、いざという時に自分と店を守る</p></div>
+    <div class="pz">
+      <svg class="illus pz-scene" viewBox="0 0 520 520" data-in style="--d:2" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+        <rect x="0" y="470" width="520" height="10" rx="5" fill="#e1e5ea"/>
+        <path d="M230 200l140-70 140 70v270H230z" fill="#ddf2e7"/><rect x="320" y="330" width="80" height="140" fill="#fff"/><rect x="290" y="170" width="160" height="44" rx="22" fill="#22915c"/><text x="370" y="200" font-size="24" fill="#fff">店舗</text>
+        <g class="pz-in"><use href="#i-person" x="20" y="260" width="210" height="210" style="color:#2f74d9"/><rect x="40" y="226" width="170" height="40" rx="20" fill="#e0ebfb"/><text x="125" y="254" font-size="22" fill="#1f5bb5">保健所</text></g>
+      </g></svg>
+      <ol class="pz-list">
+        <li data-step="1"><span class="pz-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="40" cy="40" r="24" fill="none" stroke="#2f74d9" stroke-width="8"/><path d="M58 58l22 22" stroke="#2f74d9" stroke-width="10" stroke-linecap="round"/><g class="hand-in"><rect x="62" y="20" width="26" height="30" rx="6" fill="#fff" stroke="#22915c" stroke-width="4"/><rect x="62" y="16" width="26" height="8" rx="3" fill="#22915c"/></g></svg></span><div><b><span class="n">1</span>調査への協力</b><p>立入調査・検食の提出に協力する</p></div></li>
+        <li data-step="2"><span class="pz-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="bow" style="transform-origin:30px 90px"><use href="#i-person" x="0" y="20" width="62" height="72" style="color:#22915c"/></g><use href="#i-person" x="48" y="24" width="52" height="66" style="color:#9aa3ae"/><g><rect x="70" y="4" width="26" height="26" rx="6" fill="#f9e3e0"/><path d="M83 10v14M76 17h14" stroke="#c23a2e" stroke-width="4" stroke-linecap="round"/></g></svg></span><div><b><span class="n">2</span>誠実な謝罪とサポート</b><p>治療費等の確認を含め、誠実に対応する</p></div></li>
+        <li data-step="3"><span class="pz-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M18 34h40l-5 54H23z" fill="#eef1f5" stroke="#4f5661" stroke-width="5" stroke-linejoin="round"/><path d="M14 34h48M30 26h16" stroke="#4f5661" stroke-width="5" stroke-linecap="round"/><g class="bub"><circle cx="76" cy="58" r="12" fill="#e0ebfb" stroke="#2f74d9" stroke-width="3"/><circle cx="86" cy="34" r="8" fill="#e0ebfb" stroke="#2f74d9" stroke-width="3"/><circle cx="70" cy="80" r="7" fill="#e0ebfb" stroke="#2f74d9" stroke-width="3"/></g></svg></span><div><b><span class="n">3</span>是正措置の実行</b><p>原因食材の完全廃棄、厨房と器具の徹底した洗浄・消毒</p></div></li>
+        <li data-step="4" class="key"><span class="pz-ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 6l38 14v30c0 26-18 42-38 48-20-6-38-22-38-48V20z" fill="#f9e3e0" stroke="#c23a2e" stroke-width="6"/><g transform="translate(34 30)"><rect width="32" height="40" rx="4" fill="#fff" stroke="#c23a2e" stroke-width="3"/><path d="M7 11h18M7 19h18M7 27h11" stroke="#c23a2e" stroke-width="3"/></g></svg></span><div><b><span class="n">4</span>記録の正確性が、命運を分ける</b><p>日頃の温度記録・体調申告の記録が「管理していた証拠」になる</p><small>第1章と同じ：日々の記録は、自分と店を守る</small></div></li>
+      </ol>
     </div>
     <aside class="notes">保健所の調査が入った後の対応です。
 ［クリック］一つ目、調査への協力。立入調査、そして検食の提出に協力します。
