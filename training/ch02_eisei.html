@@ -278,6 +278,31 @@
 .fz b { font-size: 34px; }
 .fz .fields span { font-size: 24px; }
 .fz p, .fz .ng-say { font-size: 26px; }
+
+/* 5 お客様のクレームと、基準の低下 */
+.gz { display: grid; grid-template-columns: 640px 1fr; gap: 40px; align-items: center; flex: 1; min-height: 0; }
+.gz-scene { max-height: 500px; }
+.gz-germ circle { animation: a-germ 2.4s ease-in-out infinite; }
+@keyframes a-germ { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+.gz-look { animation: gzlook 1s linear infinite; }
+@keyframes gzlook { to { stroke-dashoffset: -18; } }
+.gz-x { opacity: 0; transition: opacity .4s; }
+#germ-slide[data-at="9"] .gz-x { opacity: 1; }
+.gz-r { display: flex; flex-direction: column; gap: 18px; }
+.gz-bub { display: flex; flex-direction: column; gap: 14px; }
+.gz-bub li { display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 700; padding: 16px 26px; border-radius: 26px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.07); opacity: 0; }
+.gz-bub li .i { flex: none; font-size: 40px; color: var(--danger); }
+.gz-bub li b { color: var(--danger); }
+.on .gz-bub li { animation: d-in .5s both; animation-delay: calc(var(--k) * .6s + .3s); }
+.gz-lack { display: flex; gap: 14px; flex-wrap: wrap; }
+.gz-lack span { font-size: 34px; font-weight: 900; padding: 12px 26px; border-radius: 999px; background: var(--danger); color: #fff; }
+.gz-stair { flex: 1; min-height: 0; display: grid; place-items: center; }
+.gz-stair svg { width: 100%; max-height: 440px; }
+.gz-steps { stroke-dasharray: 2400; stroke-dashoffset: 2400; }
+.on .gz-steps { transition: stroke-dashoffset 3s ease .3s; stroke-dashoffset: 0; }
+.gz-keep { opacity: 0; transition: opacity .8s ease .3s; }
+#germ-slide[data-at="11"] .gz-keep { opacity: 1; }
+#germ-slide[data-at="11"] .gz-down { opacity: .12; transition: opacity .6s; }
 </style>
 
 <div class="deck" data-chapter="第2章　衛生管理" data-accent="green">
@@ -382,7 +407,7 @@ A、栄養・水分・温度。B、光・空気・乾燥。C、圧力・温度�
   </section>
 
   <!-- 05 見えない菌 -->
-  <section class="slide" data-germs="160" data-min="4">
+  <section class="slide" data-germs="160" data-min="5" id="germ-slide">
     <div class="phase" data-until="3">
       <div class="eyebrow" data-in>見えない菌と、時間の勝負</div>
       <h2 class="title" data-in style="--d:1">食中毒菌は、目に見えません。<br>においも、味もしません。</h2>
@@ -407,11 +432,53 @@ A、栄養・水分・温度。B、光・空気・乾燥。C、圧力・温度�
         </div>
       </div>
     </div>
-    <div class="phase" data-step="4" style="justify-content:center;gap:40px">
+    <div class="phase" data-step="4" data-until="7" style="justify-content:center;gap:40px">
       <p class="voice">「いつも、いつも、<br>なんで毎日、こんな面倒なことを」</p>
       <p class="lead" data-step="5">その「いつもやっていること」を<b class="hl">1回省いただけ</b>で、菌は増えます。</p>
       <div class="bubbles" data-step="6"><span>今日は忙しいから、手袋なしでいいか</span><span>これくらいなら、少し常温に置いても大丈夫だろう</span></div>
       <p class="statement" data-step="7" style="font-size:80px">その1回が、<span class="hl2">命</span>に関わります。</p>
+    </div>
+    <div class="phase" data-step="8" data-until="9" style="gap:22px">
+      <div class="eyebrow">お客様のクレームから</div>
+      <h2 class="title">「1回の省略」は、見えている</h2>
+      <div class="gz">
+        <svg class="illus gz-scene" viewBox="0 0 700 520" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <rect x="0" y="490" width="700" height="10" rx="5" fill="#e1e5ea"/>
+          <rect x="20" y="300" width="330" height="190" rx="12" fill="#eef1f5"/><rect x="20" y="290" width="330" height="22" rx="8" fill="#c9ced6"/>
+          <use href="#i-person" x="60" y="70" width="240" height="240" style="color:#22915c"/>
+          <g class="gz-germ"><circle cx="110" cy="230" r="9" fill="#f2be3d"/><circle cx="96" cy="212" r="6" fill="#f2be3d"/><circle cx="208" cy="92" r="8" fill="#f2be3d"/><circle cx="226" cy="104" r="5" fill="#f2be3d"/><circle cx="250" cy="230" r="7" fill="#f2be3d"/></g>
+          <g transform="translate(232 214)"><rect width="28" height="46" rx="6" fill="#4f5661"/></g>
+          <use href="#i-person" x="470" y="260" width="200" height="200" style="color:#2f74d9"/><rect x="430" y="420" width="250" height="16" rx="8" fill="#c9ced6"/>
+          <g class="gz-eye"><ellipse cx="570" cy="200" rx="64" ry="38" fill="#fff" stroke="#2f74d9" stroke-width="7"/><circle cx="570" cy="200" r="17" fill="#2f74d9"/></g>
+          <path class="gz-look" d="M500 200C440 190 380 180 320 170" fill="none" stroke="#2f74d9" stroke-width="5" stroke-dasharray="6 12"/>
+          <g class="gz-x"><circle cx="630" cy="160" r="30" fill="#c23a2e"/><path d="M618 148l24 24M642 148l-24 24" stroke="#fff" stroke-width="6" stroke-linecap="round"/></g>
+        </g></svg>
+        <div class="gz-r">
+          <ul class="gz-bub">
+            <li style="--k:0"><svg class="i"><use href="#i-phone"/></svg><span>スマホを触った手で、<b>食材を触る</b></span></li>
+            <li style="--k:1"><svg class="i"><use href="#i-person"/></svg><span><b>髪を触る</b></span></li>
+            <li style="--k:2"><svg class="i"><use href="#i-eye"/></svg><span>顔を触った手で、そのまま<b>お皿を触る</b></span></li>
+          </ul>
+          <p class="cap" style="margin-top:0">手・髪・スマホの表面には、黄色ブドウ球菌などが付いている</p>
+          <div class="gz-lack" data-step="9"><span>見られている意識の欠如</span><span>衛生への意識の欠如</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="10" style="gap:22px">
+      <div class="eyebrow">いつも通りの基準</div>
+      <h2 class="title">「このくらい、いいか」で、基準が下がる</h2>
+      <div class="gz-stair">
+        <svg class="illus" viewBox="0 0 1600 440" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <g class="gz-down"><path class="gz-steps" d="M40 70h300v80h300v80h300v80h300v80h260" fill="none" stroke="#c23a2e" stroke-width="10" stroke-linejoin="round"/>
+            <g font-size="26" fill="#c23a2e"><text x="340" y="50">このくらい、いいか</text><text x="640" y="130">このくらい、いいか</text><text x="940" y="210">このくらい、いいか</text></g>
+            <g transform="translate(1440 270)"><path d="M0 -70l70 120h-140z" fill="#c23a2e"/><text x="0" y="36" font-size="64" fill="#fff">!</text><text x="-90" y="20" font-size="36" fill="#c23a2e" text-anchor="end">食中毒</text></g></g>
+          <g class="gz-keep"><path d="M40 70h1520" stroke="#22915c" stroke-width="12" stroke-linecap="round"/>
+            <g transform="translate(800 230)"><path d="M0 -100l90 34v66c0 62-40 98-90 114-50-16-90-52-90-114v-66z" fill="#ddf2e7" stroke="#22915c" stroke-width="8"/><path d="M-36 4l26 26 50-56" fill="none" stroke="#22915c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="300" y="44" font-size="28" fill="#17744a">いつも通り</text></g>
+        </g></svg>
+      </div>
+      <p class="lead gz-t1" data-until="10">毎日の衛生レベルが、下がる。<b>いつも通りの基準が下がっていった結果、食中毒は起こる</b></p>
+      <p class="statement gz-t2" data-step="11" style="font-size:64px">「いつも通り」を、<span class="hl2">高いまま</span>保つ</p>
     </div>
     <aside class="notes">ここで、なぜこんなことが起きるのかを考えてみたいと思います。
 食中毒菌は、目に見えません。においもしないし、味も変わりません。
@@ -422,7 +489,18 @@ A、栄養・水分・温度。B、光・空気・乾燥。C、圧力・温度�
 そう思うことが、あると思います。手洗い、手袋、温度チェック、記録。毎日毎日、同じことの繰り返しです。
 ［クリック］でも、その「いつもやっていること」を1回省いただけで、菌は増えます。
 ［クリック］「今日は忙しいから、手袋なしでいいか」「これくらいなら、少し常温に置いても大丈夫だろう」
-［クリック］その1回が、命に関わります。</aside>
+［クリック］その1回が、命に関わります。
+［クリック］そして、この「1回の省略」は、お客様から、見えています。
+実際に、お客様からのクレームの中にも、こういうものがあります。
+- キッチンのスタッフが、スマホを触った手で、そのまま食材を触っている。
+- スタッフが、髪を触っている。
+- 顔を触った手で、そのままお皿を触っている。
+手の平や、髪の毛、スマートフォンの表面には、黄色ブドウ球菌など、食中毒の原因になる菌が、たくさん付いています。無意識の動作が、そのまま、食材や皿への汚染につながります。
+［クリック］ただ、ここで、いちばん大事なのは、動作そのものより、その奥にあるものです。
+見られている、という意識の欠如。衛生への意識の欠如。 これは、その日、その1回だけの問題ではありません。毎日の、衛生レベルを、少しずつ、下げていきます。
+［クリック］「このくらい、いいか」が、1つ許される。すると、次の日の「いつも通り」の基準が、ひとつ、下がります。それが、また、許される。基準は、下がり続けます。
+いつも通りの基準が、下がっていった結果、食中毒は、起こります。
+［クリック］だから、「いつも通り」を、高いまま、保ち続けることが、この章の、いちばん大事なところです。</aside>
   </section>
 
   <!-- 06 何を失うか -->
