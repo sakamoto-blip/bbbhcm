@@ -169,7 +169,9 @@
 .rk-case.ct .lbl { color: var(--danger); }
 .rk-case.tr { background: #fdf0d8; }
 .rk-case.tr .lbl { color: #b06b00; }
-.rk-case .tx { font-size: 25px; }
+.rk-case .tx { font-size: 30px; }
+.rk-d .voices span { font-size: 28px; }
+.rk-d { gap: 22px; }
 
 /* 05 上から・下から */
 .view2 { display: grid; grid-template-columns: 1fr 110px 1fr; gap: 20px 0; align-items: stretch; }
@@ -501,16 +503,16 @@
           <div class="hd"><span>◯◯店　全体</span><small>メンバー 18</small></div>
           <div class="bd">
             <div class="msg"><span class="av"><svg class="i"><use href="#i-person"/></svg></span><div><p class="who">店長</p><span class="bub">何度も言ってるけど、確認してから発注して</span><span class="rd">既読 17</span></div></div>
-            <div class="msg" data-step="1"><span class="av"><svg class="i"><use href="#i-person"/></svg></span><div><p class="who">店長</p><span class="bub">来週のリコメンドメニュー、いつになったら提出されますか？何度も言わせないでください</span><span class="rd">既読 17</span></div></div>
+            <div class="msg" data-step="1"><span class="av"><svg class="i"><use href="#i-person"/></svg></span><div><p class="who">店長</p><span class="bub">いつになったら提出されますか？何度も言わせないで</span><span class="rd">既読 17</span></div></div>
             <div class="msg"><span class="av" style="color:#9aa3ae"><svg class="i"><use href="#i-person"/></svg></span><div><span class="typing"><i></i><i></i><i></i></span></div></div>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:30px">
-          <p class="lead" data-in style="--d:3">名前は出さないけれど、<br><b>誰のミスか、全員がわかっている</b>。</p>
-          <div data-in style="--d:4;display:flex;flex-direction:column;gap:14px"><p class="cap">送る側は、こう思っているかもしれない</p><div class="thinks"><span>効率的に、全員に注意喚起した</span><span>教育だ</span></div></div>
+          <p class="lead" data-in style="--d:3">名前はなくても、<br><b>全員がわかっている</b></p>
+          <div data-in style="--d:4;display:flex;flex-direction:column;gap:14px"><p class="cap">送る側の気持ち</p><div class="thinks"><span>効率的</span><span>教育だ</span></div></div>
           <div data-step="1" style="display:flex;flex-direction:column;gap:18px;margin-top:10px">
             <span class="stamp-pub" style="align-self:flex-start"><svg class="i"><use href="#i-alert"/></svg>公開叱責</span>
-            <p class="text">相談窓口にも実際に届いている、<b>ハラスメントになる可能性が高い</b>事例です</p>
+            <p class="text">相談窓口に、<b>実際に届いている</b></p>
           </div>
         </div>
       </div>
@@ -525,46 +527,40 @@
             <li><span class="no">1</span><div><b>指示・態度の波（気分屋な言動）</b><span class="b" style="--v:17"><i class="grow"></i><em>17名</em></span><span class="b w" style="--v:14"><i class="grow"></i><em>14名</em></span></div></li>
             <li><span class="no">2</span><div><b>人前での叱責（LINE内を含む）</b><span class="b" style="--v:10"><i class="grow"></i><em>10名</em></span><span class="b w" style="--v:16"><i class="grow"></i><em>16名</em></span></div></li>
             <li><span class="no">3</span><div><b>暴言・威圧的な態度</b><span class="b" style="--v:10"><i class="grow"></i><em>10名</em></span><span class="b w" style="--v:15"><i class="grow"></i><em>15名</em></span></div></li>
-            <li><span class="no">4</span><div><b>溜息・舌打ち・睨む・小バカにした態度</b><span class="b" style="--v:9"><i class="grow"></i><em>9名</em></span><span class="b w" style="--v:13"><i class="grow"></i><em>13名</em></span></div></li>
+            <li><span class="no">4</span><div><b>溜息・舌打ち・小バカにした態度</b><span class="b" style="--v:9"><i class="grow"></i><em>9名</em></span><span class="b w" style="--v:13"><i class="grow"></i><em>13名</em></span></div></li>
             <li><span class="no">5</span><div><b>休日の業務連絡・飲み会の誘い</b><span class="b" style="--v:8"><i class="grow"></i><em>8名</em></span><span class="b w" style="--v:3"><i class="grow"></i><em>3名</em></span></div></li>
           </ol>
         </div>
         <div class="rk-right">
           <div class="rk-d rk-intro" data-until="2">
-            <div class="stat"><span class="v"><span data-count="38">38</span><small>名</small></span><span class="k">「受けた」または「目撃した」<br>回答97件のうち、約4割</span></div>
+            <div class="stat"><span class="v"><span data-count="38">38</span><small>名</small></span><span class="k">受けた・目撃した<br>（97件中、約4割）</span></div>
             <div class="stack"><span style="width:20.6%;background:var(--accent)">20</span><span style="width:18.6%;background:#aab2bd">18</span><span style="width:60.8%;background:#dfe3e9;color:var(--ink-2)">59</span></div>
             <div class="legend"><span><i></i>受けた 20名</span><span><i class="w"></i>目撃のみ 18名</span><span>どちらもない 59名</span></div>
-            <p class="cap">※「どちらもない」は、無回答1名を含む</p>
-          </div>
+                      </div>
           <div class="rk-d" data-step="3" data-until="3">
             <div class="rk-h"><span class="ico"><svg class="i"><use href="#i-alert"/></svg></span><h3><span class="hl">1位</span>　指示・態度の波<br>（気分屋な言動）</h3><span class="cnt">受けた 17名<br>目撃 14名</span></div>
-            <div><p class="lbl">たとえば</p><p class="tx">昨日はOKだったことが、今日は叱られる。機嫌によって、指示も態度も変わる</p></div>
-            <div><p class="lbl">届いている声</p><div class="voices"><span>「気分で態度が変わりすぎる」</span><span>「抽象的な指示を受けて、やったら怒られる」</span></div></div>
-            <div class="rk-case tr"><p class="lbl"><svg class="i"><use href="#i-alert"/></svg>トラブルになると</p><p class="tx">スタッフは仕事より、<b>顔色をうかがうこと</b>に力を使うようになる。指示が曖昧なまま、やったら叱る「後出しジャンケン」は、指導の範囲を逸脱した<b>「精神的な攻撃」</b>になりえる</p></div>
+            <div class="voices"><span>「気分で態度が変わりすぎる」</span><span>「やったら怒られる」</span></div>
+            <div class="rk-case tr"><p class="lbl"><svg class="i"><use href="#i-alert"/></svg>トラブルになると</p><p class="tx">後出しジャンケンは<b>「精神的な攻撃」</b>になりえる</p></div>
           </div>
           <div class="rk-d" data-step="4" data-until="4">
             <div class="rk-h"><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span><h3><span class="hl">2位</span>　人前での叱責<br>（LINE内を含む）</h3><span class="cnt">受けた 10名<br>目撃 16名</span></div>
-            <div><p class="lbl">たとえば</p><p class="tx">皆の前で叱る。名指ししなくても、誰のことか全員がわかる全体LINEで注意する</p></div>
-            <div><p class="lbl">届いている声</p><div class="voices"><span>冒頭の事例：全体LINEでの「何度も言ってるけど」</span></div></div>
-            <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判に発展した事例</p><p class="tx">保険会社の上司が、部下を叱責するメール（「やる気がないなら、会社を辞めるべき」等）を、本人だけでなく<b>職場の同僚十数名にも送信</b>。名誉感情を害するとして、<b>上司個人に慰謝料</b>の支払いが命じられた（東京高裁・2005年）</p></div>
+            <div class="voices"><span>冒頭の全体LINE</span></div>
+            <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判（東京高裁・2005年）</p><p class="tx">叱責メールを<b>同僚十数名にも送信</b> → <b>上司個人に慰謝料</b></p></div>
           </div>
           <div class="rk-d" data-step="5" data-until="5">
             <div class="rk-h"><span class="ico"><svg class="i"><use href="#i-volume"/></svg></span><h3><span class="hl">3位</span>　暴言・威圧的な態度</h3><span class="cnt">受けた 10名<br>目撃 15名</span></div>
-            <div><p class="lbl">たとえば</p><p class="tx">怒鳴る。「お前は馬鹿か」「死ぬ気でやれ」。壁を叩く、机を蹴る</p></div>
-            <div><p class="lbl">届いている声</p><div class="voices"><span>営業中の怒鳴り声</span><span>個室に呼び出しての叱責</span></div></div>
-            <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判に発展した事例</p><p class="tx">ホテル運営会社の上司が、部下に深夜、<b>「ぶっ殺すぞ」などの留守電</b>を残した。酒に弱い部下への飲酒の強要などとあわせて違法とされ、<b>上司と会社に慰謝料</b>の支払いが命じられた（東京高裁・2013年）</p></div>
+            <div class="voices"><span>営業中の怒鳴り声</span><span>個室での叱責</span></div>
+            <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判（東京高裁・2013年）</p><p class="tx">深夜の<b>「ぶっ殺すぞ」の留守電</b> → <b>上司と会社に慰謝料</b></p></div>
           </div>
           <div class="rk-d" data-step="6" data-until="6">
             <div class="rk-h"><span class="ico"><svg class="i"><use href="#i-eye"/></svg></span><h3><span class="hl">4位</span>　溜息・舌打ち・睨む・<br>小バカにした態度</h3><span class="cnt">受けた 9名<br>目撃 13名</span></div>
-            <div><p class="lbl">たとえば</p><p class="tx">言葉にしなくても、態度で伝わる。場を和ませるつもりの「いじり」や「軽口」も、繰り返されれば同じ</p></div>
-            <div><p class="lbl">届いている声</p><div class="voices"><span>「場を和ませるための『いじり』や『軽口』」</span></div></div>
-            <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判に発展した事例</p><p class="tx">病院で、先輩が後輩を<b>日常的にからかい、いじめ続け</b>、後輩が自殺。いじめた本人と、<b>防げなかった病院の両方</b>に賠償責任が認められた（さいたま地裁・2004年）</p></div>
+            <div class="voices"><span>「いじり」「軽口」</span></div>
+            <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判（さいたま地裁・2004年）</p><p class="tx">日常的ないじめで後輩が自殺 → <b>本人と病院</b>に賠償責任</p></div>
           </div>
           <div class="rk-d" data-step="7">
             <div class="rk-h"><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span><h3><span class="hl">5位</span>　休日の業務連絡・<br>飲み会の誘い</h3><span class="cnt">受けた 8名<br>目撃 3名</span></div>
-            <div><p class="lbl">たとえば</p><p class="tx">熱心さゆえの、休日・深夜のLINE。営業後や休みの日の、食事や飲みの誘い</p></div>
-            <div><p class="lbl">届いている声</p><div class="voices"><span>「営業後や休みに、食事や飲みに誘う」</span><span>「熱心さゆえの、休日・深夜のLINE」</span></div></div>
-            <div class="rk-case tr"><p class="lbl"><svg class="i"><use href="#i-alert"/></svg>トラブルになると</p><p class="tx">「返信不要」のつもりでも、対応が事実上求められていれば<b>労働時間</b>とみなされ、賃金の未払いが問題になりうる。断れない相手を誘い続けることは、<b>業務外の同席の強要</b>になりえる（③の事例でも、飲酒の強要が違法とされた）</p></div>
+            <div class="voices"><span>休日・深夜のLINE</span><span>営業後の飲みの誘い</span></div>
+            <div class="rk-case tr"><p class="lbl"><svg class="i"><use href="#i-alert"/></svg>トラブルになると</p><p class="tx">休日LINEは<b>労働時間</b>に、誘い続けは<b>同席の強要</b>に</p></div>
           </div>
         </div>
       </div>
@@ -573,27 +569,27 @@
       <div class="eyebrow">実際に届いている相談</div>
       <h2 class="title">入口は、2つある</h2>
       <div class="cols cols-2 gate2">
-        <div class="card"><h3><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>① 良かれと思って、近づきすぎる</h3><ul class="points plain"><li><div>営業後や休みに、食事や飲みに誘う</div></li><li><div>場を和ませるための「いじり」や「軽口」</div></li><li><div>熱心さゆえの「休日・深夜のLINE」</div></li></ul></div>
-        <div class="card is-accent"><h3><span class="ico"><svg class="i"><use href="#i-alert"/></svg></span>② 怒りと強い言葉が、出てしまう</h3><ul class="points plain"><li><div>気分で態度が変わりすぎる</div></li><li><div>抽象的な指示を受けて、やったら怒られる</div></li><li><div>人前での叱責（全体LINEを含む）</div></li><li><div>強い言葉遣い・威圧的な態度</div></li></ul></div>
+        <div class="card"><h3><span class="ico"><svg class="i"><use href="#i-users"/></svg></span>① 近づきすぎる</h3><ul class="points plain"><li><div>飲みの誘い</div></li><li><div>いじり・軽口</div></li><li><div>休日・深夜のLINE</div></li></ul></div>
+        <div class="card is-accent"><h3><span class="ico"><svg class="i"><use href="#i-alert"/></svg></span>② 怒り・強い言葉</h3><ul class="points plain"><li><div>気分で態度が変わる</div></li><li><div>人前での叱責</div></li><li><div>威圧的な態度</div></li></ul></div>
       </div>
-      <div class="alert"><svg class="i"><use href="#i-search"/></svg><p><b>自社のアンケートでも、上位は②</b>（気分屋な言動17名、人前での叱責・暴言・威圧が各10名）</p></div>
+      <div class="alert"><svg class="i"><use href="#i-search"/></svg><p><b>アンケートの上位は、②</b></p></div>
     </div>
     <div class="phase" data-step="9" data-until="10" style="gap:22px">
       <div class="eyebrow">今、現場で起きていること</div>
-      <p class="nowq">怒りを、<b>無意識に、無責任に、無自覚に</b>、差が大きい相手（アルバイトも、社員も）にそのままぶつけた結果、<span class="hl">ハラスメントとして訴えられるリスクが、かなり高くなっている</span></p>
-      <ol class="fchain" data-step="9"><li><b>疲れ・焦り・不安</b></li><i></i><li class="hot"><b>怒り</b></li><i></i><li><b>いちばん言い返せない相手</b><small>アルバイトも、若手の社員も</small></li></ol>
-      <ol class="fchain" data-step="10"><li><b>言えなかったスタッフが、家で話す</b></li><i></i><li class="hot"><b>家族が動く</b><small>19〜23歳のスタッフの家族から、会社への連絡が増えている</small></li><i></i><li><b>親がAIで調べ、労基署への通報を仄めかし、店長・シェフの交代を要求</b></li></ol>
+      <p class="nowq">怒りを、<b>無自覚に</b>ぶつけた結果、<span class="hl">訴えられるリスクが高まっている</span></p>
+      <ol class="fchain" data-step="9"><li><b>疲れ・焦り・不安</b></li><i></i><li class="hot"><b>怒り</b></li><i></i><li><b>言い返せない相手</b><small>アルバイトも、社員も</small></li></ol>
+      <ol class="fchain" data-step="10"><li><b>家で話す</b></li><i></i><li class="hot"><b>家族が動く</b><small>19〜23歳のスタッフの家族から、連絡が増えている</small></li><i></i><li><b>労基署・交代要求</b></li></ol>
     </div>
     <div class="phase" data-step="11">
       <div class="eyebrow">これらは「性格の悪い人」の話ではない</div>
       <h2 class="title">送る側は「気遣い」のつもり</h2>
-      <p class="text">裁判で負けたリーダーの多くも、<b>「熱心で、店を良くしたい、スタッフと仲良くしたい」</b>と思っていた人たち</p>
+      <p class="text">多くは、<b>熱心なリーダー</b>だった</p>
       <div class="split" style="grid-template-columns:1fr 600px;gap:48px;align-items:center">
         <div class="cols cols-2" style="gap:18px">
-          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">「家族のような関係性」の強要</p></div>
-          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">良かれと思っての「プライベートな誘い」</p></div>
-          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">場を和ませるつもりの「おちゃらけ・いじり」</p></div>
-          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">熱心さゆえの「休日LINEの送信」</p></div>
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">「家族のように」</p></div>
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">プライベートな誘い</p></div>
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">いじり</p></div>
+          <div class="card" style="padding:24px 28px"><p style="font-size:30px;font-weight:700">休日LINE</p></div>
         </div>
         <svg class="illus" viewBox="0 0 600 360" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
           <use href="#i-person" x="20" y="120" width="140" height="210" style="color:#6b5ce7"/>
@@ -604,7 +600,7 @@
           <text x="300" y="236" font-size="28" fill="#c23a2e">ズレ</text>
         </g></svg>
       </div>
-      <div class="alert" data-step="12"><svg class="i"><use href="#i-alert"/></svg><p>本人は「大丈夫だ」と思っていても、受け手との間には、<b>決定的な認識のズレ</b>がある</p></div>
+      <div class="alert" data-step="12"><svg class="i"><use href="#i-alert"/></svg><p>送る側と受け手に、<b>認識のズレ</b></p></div>
     </div>
     <aside class="notes">（スライド：店舗の全体LINEグループ。名指しはしないが誰のことか特定できる状態で「何度も言ってるけど、確認してから発注して」というメッセージ）
 店舗でこんな光景はありませんか。
@@ -639,10 +635,10 @@
       <div class="eyebrow" data-in>なぜ起きるのか</div>
       <h2 class="title" data-in style="--d:1">差が広がるほど、言えなくなる</h2>
       <div class="gcap" data-in style="--d:2">
-        <p data-until="0"><b>アルバイト同士</b>　差が小さいと、言いやすい・断りやすい</p>
-        <p data-step="1" data-until="1"><b>入社1年目の社員と、3年目の先輩</b>　<span class="hl">年齢</span>と<span class="hl">経験</span>の差が広がる</p>
-        <p data-step="2" data-until="2"><b>シェフと、社員1年目</b>　さらに<span class="hl">立場</span>と、評価・シフトを左右する<span class="hl">力</span>の差</p>
-        <p data-step="3" class="warn"><svg class="i"><use href="#i-alert"/></svg>差を感じるほど、差が広がるほど、意思を伝えられなくなる</p>
+        <p data-until="0"><b>アルバイト同士</b>　言いやすい</p>
+        <p data-step="1" data-until="1"><b>1年目と3年目</b>　<span class="hl">年齢・経験</span>の差</p>
+        <p data-step="2" data-until="2"><b>シェフと1年目</b>　<span class="hl">立場・力</span>の差</p>
+        <p data-step="3" class="warn"><svg class="i"><use href="#i-alert"/></svg>意思を、伝えられなくなる</p>
       </div>
       <div class="gapfig" data-in style="--d:3">
         <svg class="illus" viewBox="0 0 1420 500" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -673,45 +669,44 @@
       <div class="eyebrow">同じ言動でも、見え方が違う</div>
       <h2 class="title">上から見た景色と、下から見た景色</h2>
       <div class="view2">
-        <div class="vh up"><svg viewBox="0 0 90 90" aria-hidden="true"><circle cx="45" cy="45" r="45" fill="#fff"/><rect x="26" y="24" width="18" height="34" rx="9" fill="#5243c9"/><path d="M35 58v14M25 72h20" stroke="#5243c9" stroke-width="5" stroke-linecap="round"/><path class="wv" d="M54 30a20 20 0 0 1 0 26" fill="none" stroke="#6b5ce7" stroke-width="5" stroke-linecap="round"/><path class="wv" d="M60 22a32 32 0 0 1 0 42" fill="none" stroke="#6b5ce7" stroke-width="5" stroke-linecap="round" style="animation-delay:.8s"/></svg><div><b>上から（あなた）</b><small>手には「高性能のマイク」。言葉は店の法律になり、機嫌は店の天気になる</small></div></div>
+        <div class="vh up"><svg viewBox="0 0 90 90" aria-hidden="true"><circle cx="45" cy="45" r="45" fill="#fff"/><rect x="26" y="24" width="18" height="34" rx="9" fill="#5243c9"/><path d="M35 58v14M25 72h20" stroke="#5243c9" stroke-width="5" stroke-linecap="round"/><path class="wv" d="M54 30a20 20 0 0 1 0 26" fill="none" stroke="#6b5ce7" stroke-width="5" stroke-linecap="round"/><path class="wv" d="M60 22a32 32 0 0 1 0 42" fill="none" stroke="#6b5ce7" stroke-width="5" stroke-linecap="round" style="animation-delay:.8s"/></svg><div><b>上から（あなた）</b><small>高性能のマイク。機嫌＝店の天気</small></div></div>
         <i></i>
-        <div class="vh down"><svg viewBox="0 0 90 90" aria-hidden="true"><circle cx="45" cy="45" r="45" fill="#fff"/><use href="#i-person" x="20" y="26" width="40" height="58" style="color:#9aa3ae"/><g class="a-bob"><circle cx="66" cy="24" r="14" fill="#f9e3e0"/><text x="66" y="32" font-size="22" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">?</text></g></svg><div><b>下から（スタッフ）</b><small>断ったら、損をするかもしれない。差が大きいほど、その不安は大きくなる</small></div></div>
-        <div class="vu" data-step="4"><span class="bub">最近どう？</span><p><b>軽い雑談</b>のつもり</p></div>
+        <div class="vh down"><svg viewBox="0 0 90 90" aria-hidden="true"><circle cx="45" cy="45" r="45" fill="#fff"/><use href="#i-person" x="20" y="26" width="40" height="58" style="color:#9aa3ae"/><g class="a-bob"><circle cx="66" cy="24" r="14" fill="#f9e3e0"/><text x="66" y="32" font-size="22" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">?</text></g></svg><div><b>下から（スタッフ）</b><small>断ったら、損をするかも</small></div></div>
+        <div class="vu" data-step="4"><span class="bub">最近どう？</span><p><b>軽い雑談</b></p></div>
         <i class="varr" data-step="4"></i>
-        <div class="vd" data-step="4"><span class="thk">何て答えるのが正解……？</span><p><b>正解を答えるクイズ</b></p></div>
-        <div class="vu" data-step="5"><span class="bub">相談乗るよ。一杯行こうか</span><p><b>相談に乗る</b>スタンス</p></div>
+        <div class="vd" data-step="4"><span class="thk">何が正解……？</span><p><b>正解を答えるクイズ</b></p></div>
+        <div class="vu" data-step="5"><span class="bub">一杯行こうか</span><p><b>相談に乗る</b></p></div>
         <i class="varr" data-step="5"></i>
-        <div class="vd" data-step="5"><span class="thk">断ったら、評価が下がるかも……</span><p><b>断れない誘い</b></p></div>
-        <div class="vu" data-step="6"><span class="bub">ちょっと話そうか</span><p><b>1on1</b>のつもり</p></div>
+        <div class="vd" data-step="5"><span class="thk">断ったら……？</span><p><b>断れない誘い</b></p></div>
+        <div class="vu" data-step="6"><span class="bub">ちょっと話そうか</span><p><b>1on1</b></p></div>
         <i class="varr" data-step="6"></i>
-        <div class="vd" data-step="6"><span class="thk">今日の機嫌は……？</span><p><b>機嫌を伺いながら</b>整える</p></div>
+        <div class="vd" data-step="6"><span class="thk">今日の機嫌は……？</span><p><b>機嫌を伺う</b></p></div>
       </div>
-      <div class="alert" data-step="7"><svg class="i"><use href="#i-alert"/></svg><p><b>差があるぶん、</b>あなたの言動は、思っている以上に<b>増幅されて届く</b></p></div>
+      <div class="alert" data-step="7"><svg class="i"><use href="#i-alert"/></svg><p>あなたの言動は、<b>増幅されて届く</b></p></div>
     </div>
     <div class="phase" data-step="8" data-until="10" style="gap:20px">
       <div class="eyebrow">上から見ると</div>
       <h2 class="title">差があるほど、「下に見る」が起きる</h2>
-      <ol class="fchain" data-step="8"><li><b>差が大きい</b></li><i></i><li><b>強い言葉が、言いやすくなる</b><small>言い返されない</small></li><i></i><li class="hot"><b>「言えば従うはず」</b><small>という期待が生まれる</small></li></ol>
-      <ol class="fchain" data-step="9"><li><b>でも、従順な人は、そんなにいない</b><small>言えないだけ（拒絶リスク）／反発する</small></li><i></i><li class="hot"><b>期待とのギャップ → 怒り</b></li><i></i><li><b>矛先は、いちばん言い返せない相手</b><small>アルバイトも、若手の社員も</small></li></ol>
-      <div class="alert" data-step="10"><svg class="i"><use href="#i-alert"/></svg><p><b>「従順なはず」という前提そのものが、設計ミス。</b>差が大きい人に、そのままぶつけるリスクが、上がっている</p></div>
+      <ol class="fchain" data-step="8"><li><b>差が大きい</b></li><i></i><li><b>強い言葉が出やすい</b></li><i></i><li class="hot"><b>「言えば従うはず」</b></li></ol>
+      <ol class="fchain" data-step="9"><li><b>従順な人は、少ない</b><small>言えないだけ／反発する</small></li><i></i><li class="hot"><b>ギャップ → 怒り</b></li><i></i><li><b>言い返せない相手へ</b></li></ol>
+      <div class="alert" data-step="10"><svg class="i"><use href="#i-alert"/></svg><p><b>「従順なはず」が、設計ミス</b></p></div>
     </div>
     <div class="phase" data-step="11" data-until="12" style="gap:22px">
       <div class="eyebrow">下から見ると</div>
-      <h2 class="title">言えば損をするかもしれない。だから、言わない</h2>
+      <h2 class="title">損をするかも。だから、言わない</h2>
       <div class="split" style="grid-template-columns:1fr 640px;gap:40px;align-items:center">
         <div class="card is-accent" style="padding:28px 32px;gap:16px">
           <h3 style="font-size:44px"><span class="ico"><svg class="i"><use href="#i-alert"/></svg></span>拒絶リスク</h3>
-          <p style="font-size:29px">言ったとき、断ったとき、否定したとき、自分の考えを伝えたときに、どうなるか。<b>その想像でマイナスになる可能性があるから、言わない。</b></p>
-          <p style="font-size:34px;font-weight:900;color:var(--accent-ink)">拒絶リスクは、差が大きいほど、高くなる</p>
-          <p class="cap" style="margin-top:0">スタッフの「はい！」は、喜んでいるからではなく、断るリスクを背負い切れないだけかもしれない</p>
+          <p style="font-size:34px;font-weight:900;color:var(--accent-ink)">差が大きいほど、高くなる</p>
+          <p class="cap" style="margin-top:0">「はい！」は、断れないだけかもしれない</p>
         </div>
         <div class="risk4"><span>言う</span><span>断る</span><span>否定する</span><span>考えを伝える</span></div>
       </div>
-      <div class="card is-soft" data-step="12" style="padding:22px 30px;gap:8px"><p style="font-size:30px;font-weight:900">💡 拒絶リスクが高い店は、「心理的安全性」が低い店</p><p style="font-size:26px">心理的安全性とは、<b>「言っても大丈夫」と皆が思える状態</b>。指導をやめることではありません</p></div>
+      <div class="card is-soft" data-step="12" style="padding:22px 30px;gap:8px"><p style="font-size:30px;font-weight:900">💡 拒絶リスクが高い店 ＝ 心理的安全性が低い店</p><p style="font-size:26px">「言っても大丈夫」な状態。<b>指導をやめることではない</b></p></div>
     </div>
     <div class="phase" data-step="13" data-until="14">
       <div class="eyebrow">差が「リスク」になるのは、いつか</div>
-      <h2 class="title">差があれば、誰に対しても断れなくなるのか</h2>
+      <h2 class="title">同じ誘いでも、断れるか</h2>
       <div class="cols cols-2">
         <div class="card" style="padding:28px 32px">
           <svg class="illus" viewBox="0 0 700 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -719,8 +714,8 @@
             <use href="#i-person" x="140" y="60" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="320" y="60" width="80" height="120" style="color:#6b5ce7"/>
             <g class="a-bob"><rect x="380" y="10" width="150" height="50" rx="16" fill="#ddf2e7"/><text x="455" y="45" font-size="26" fill="#22915c">お断りです</text></g>
           </g></svg>
-          <h3>街角で、全く知らない人に誘われたら</h3>
-          <p>断れる。「ふざけるな」と言い返せるかもしれない。<b>何を思われても、自分の立場には影響しない</b></p>
+          <h3>街角（知らない人）</h3>
+          <p><b>断れる</b>。立場に影響しない</p>
         </div>
         <div class="card is-accent" style="padding:28px 32px">
           <svg class="illus" viewBox="0 0 700 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -728,23 +723,23 @@
             <use href="#i-person" x="140" y="60" width="80" height="120" style="color:#9aa3ae"/><use href="#i-person" x="320" y="60" width="80" height="120" style="color:#6b5ce7"/>
             <g class="a-bob"><rect x="230" y="10" width="90" height="50" rx="16" fill="#f9e3e0"/><text x="275" y="45" font-size="26" fill="#c23a2e">……</text></g>
           </g></svg>
-          <h3>同じ人が、同じ職場にいたら</h3>
-          <p>自分の立場、働く環境、人間関係がある。<b>断ったあとの評価や空気が気になる</b></p>
+          <h3>職場（同じ人）</h3>
+          <p><b>断れない</b>。評価・空気が気になる</p>
         </div>
       </div>
-      <div class="alert" data-step="14"><svg class="i"><use href="#i-alert"/></svg><p>差が、<b>自分のポジションに影響するとき</b>、差は「リスク」になる。だから、ハラスメントは<b>店・会社という「コミュニティ」の中で起きる</b></p></div>
+      <div class="alert" data-step="14"><svg class="i"><use href="#i-alert"/></svg><p>立場に影響するとき、<b>差は「リスク」になる</b></p></div>
     </div>
     <div class="phase" data-step="15">
       <div class="eyebrow">自社のアンケート（2026年8〜9月・店舗内での言動・回答97件／10月7日時点）</div>
       <h2 class="title">約6割が、相談できなかった</h2>
-      <p class="text">ハラスメントを受けた・目撃したと答え、相談の設問にも答えた<b>26名</b>のうち</p>
+      <p class="text">受けた・目撃した<b>26名</b>のうち</p>
       <div class="split2">
         <div style="width:42%;background:var(--ok)"><b>11名（42%）</b><small>相談できた</small></div>
         <div style="width:58%;background:var(--danger)"><b>15名（58%）</b><small>相談できなかった</small></div>
       </div>
       <div class="card is-soft" data-step="16" style="padding:26px 32px;gap:10px">
-        <p style="font-size:34px;font-weight:900">どれだけ仲が良くても、フラットな関係だと思っていても、差はなくならない</p>
-        <p style="font-size:28px">「嫌なら言ってね」と気を遣っても、言えない構造は残る。距離を近づけても（「家族のように」「仲間としてカジュアルに」）、<b>差は消えない</b></p>
+        <p style="font-size:40px;font-weight:900">仲が良くても、差はなくならない</p>
+        <p style="font-size:28px">距離を近づけても、<b>差は消えない</b></p>
       </div>
     </div>
     <aside class="notes">なぜ、ハラスメントは起きるのか。それは、「差」があるからです。
@@ -814,28 +809,28 @@
       <h2 class="title" data-in style="--d:1">怒りをぶつけた先で、崩れていくもの</h2>
       <div class="domi" data-in style="--d:2">
         <div class="dg"><p class="dh"><svg class="i"><use href="#i-store"/></svg>会社・店舗</p><div class="row3">
-          <div class="dm" data-step="1" style="--k:0"><b>隠蔽体質</b><small>報告が上がらない（打刻・金銭・体調・誤表記）</small></div>
-          <div class="dm" data-step="1" style="--k:1"><b>信用の失墜</b><small>SNS拡散<br>求人減・顧客離れ</small></div>
-          <div class="dm" data-step="1" style="--k:2"><b>家族・外部が動く</b><small>労基署への通報の示唆<br>店長・シェフの交代要求</small></div>
+          <div class="dm" data-step="1" style="--k:0"><b>隠蔽体質</b><small>報告が上がらない</small></div>
+          <div class="dm" data-step="1" style="--k:1"><b>信用の失墜</b><small>SNS拡散</small></div>
+          <div class="dm" data-step="1" style="--k:2"><b>家族が動く</b><small>労基署・交代要求</small></div>
         </div></div>
         <div class="dg me"><p class="dh"><svg class="i"><use href="#i-person"/></svg>あなた個人</p><div class="row3">
-          <div class="dm" data-step="2" style="--k:0"><b>訴えられた時点で負担</b><small>対応・資料・弁護士費用<br>精神的な負担</small></div>
-          <div class="dm" data-step="2" style="--k:1"><b>損害賠償</b><small>個人に命じられた<br>判例あり</small></div>
-          <div class="dm" data-step="2" style="--k:2"><b>懲戒・交代要求</b><small>降格・減給<br>懲戒解雇</small></div>
-          <div class="dm" data-step="2" style="--k:3"><b>キャリア</b><small>録音・録画の拡散で<br>実質的に終わる</small></div>
+          <div class="dm" data-step="2" style="--k:0"><b>訴えられた時点で</b><small>時間・労力・お金</small></div>
+          <div class="dm" data-step="2" style="--k:1"><b>損害賠償</b><small>個人にも（判例）</small></div>
+          <div class="dm" data-step="2" style="--k:2"><b>懲戒</b><small>降格・減給・解雇</small></div>
+          <div class="dm" data-step="2" style="--k:3"><b>キャリア</b><small>録音・録画の拡散</small></div>
         </div></div>
       </div>
-      <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p><b>「認定されなければ大丈夫」ではない。</b>訴えられた時点で、時間・労力・お金が奪われる</p></div>
+      <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p><b>「認定されなければ大丈夫」ではない</b></p></div>
     </div>
     <div class="phase" data-step="4">
       <div class="eyebrow">自社の実例（匿名化）</div>
       <h2 class="title">役職が高いからこそ、起こりうる</h2>
       <ul class="cases">
-        <li data-step="4" class="slide-in"><span>取締役自身によるパワーハラスメントが発覚</span><b class="res">辞任</b></li>
-        <li data-step="5" class="slide-in"><span>経営陣全体のハラスメント防止責任が問われた</span><b class="res">代表取締役・取締役全員の<br>報酬減額</b></li>
-        <li data-step="6" class="slide-in"><span>執行役員・店長によるセクシャルハラスメントと、従業員によるパワハラ・セクハラが複合的に発覚</span><b class="res">複数名が<br>減給・諭旨退職</b></li>
+        <li data-step="4" class="slide-in"><span>取締役のパワハラ</span><b class="res">辞任</b></li>
+        <li data-step="5" class="slide-in"><span>経営陣の防止責任</span><b class="res">取締役全員の<br>報酬減額</b></li>
+        <li data-step="6" class="slide-in"><span>執行役員・店長のセクハラ ほか</span><b class="res">複数名が<br>減給・諭旨退職</b></li>
       </ul>
-      <div class="alert" data-step="7"><svg class="i"><use href="#i-alert"/></svg><p>役職が高いほど、周りとの<b>差は大きくなる</b>。それだけ、言えない・断れない人が増える。<b>役職の高さは、免罪符ではなく、リスクそのもの</b></p></div>
+      <div class="alert" data-step="7"><svg class="i"><use href="#i-alert"/></svg><p>役職が高いほど、<b>差は大きくなる</b></p></div>
     </div>
     <aside class="notes">では、この調整を誤ると、何が起きるか。
 怒りを、無意識に、無責任に、無自覚に、差が大きい相手、アルバイトにも、社員にも、そのままぶつけた結果、ハラスメントとして訴えられるリスクが、かなり高くなっています。
@@ -902,38 +897,38 @@
         <div class="card" data-step="1">
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><use href="#i-person" x="10" y="26" width="44" height="74" style="color:#6b5ce7"/><use class="cp2" href="#i-person" x="40" y="26" width="44" height="74" style="color:#9d92ff"/><use class="cp3" href="#i-person" x="68" y="26" width="44" height="74" style="color:#c5bdff"/></svg>
           <h3>コピー<small>フィルター</small></h3>
-          <p class="q">新人も、スタッフ全員も、あなたの真似をしたら、誇れる店か？</p>
-          <div class="fchips"><span>「姫」扱い</span><span>鍋・包丁に当たる</span><span>皆の前でネタに</span><span>業者を怒鳴る</span></div>
+          <p class="q">真似されて、誇れる店か？</p>
+          <div class="fchips"><span>「姫」扱い</span><span>皆の前でネタに</span></div>
         </div>
         <div class="card" data-step="2">
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><g class="nob"><path d="M22 28h76a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H54l-18 16V82H22a10 10 0 0 1-10-10V38a10 10 0 0 1 10-10z" fill="#fff" stroke="#6b5ce7" stroke-width="5"/><text x="60" y="68" font-size="30" font-weight="900" text-anchor="middle" fill="#5243c9" font-family="Dela Gothic One, sans-serif">NO</text></g></svg>
-          <h3>リスク<small>フィルター｜拒絶リスクを、ゼロにする問い</small></h3>
-          <p class="q">相手が「NO」と言っても、評価も空気も変わらないか？</p>
-          <div class="fchips"><span>「わかった？できる？」</span><span>「嫌ならいいんだけど」</span><span>後出しジャンケン</span><span>休日・深夜のLINE</span></div>
+          <h3>リスク<small>フィルター</small></h3>
+          <p class="q">NOと言っても、評価も空気も変わらないか？</p>
+          <div class="fchips"><span>「わかった？できる？」</span><span>「嫌ならいいんだけど」</span></div>
         </div>
         <div class="card" data-step="3">
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><path class="beat" d="M60 96L26 62a20 20 0 0 1 34-26 20 20 0 0 1 34 26z" fill="#f27a9c"/></svg>
           <h3>大切な人<small>フィルター</small></h3>
-          <p class="q">自分の大切な人が、他所で同じことをされても平気か？</p>
-          <div class="fchips"><span><b>大切な人＝スタッフの親</b></span><span>容姿・恋愛の話</span><span>二人きりの飲み</span><span>業務外の同席の強要</span></div>
+          <p class="q">大切な人がされても、平気か？</p>
+          <div class="fchips"><span><b>スタッフの親が聞いたら？</b></span><span>容姿・恋愛の話</span></div>
         </div>
         <div class="card" data-step="4">
           <svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" rx="26" fill="#e9e6fd"/><rect x="18" y="40" width="62" height="46" rx="10" fill="#4f5661"/><path d="M80 54l22-12v40l-22-12z" fill="#4f5661"/><circle class="rec" cx="32" cy="28" r="9" fill="#c23a2e"/><text x="64" y="34" font-size="18" font-weight="900" text-anchor="middle" fill="#c23a2e" font-family="Zen Kaku Gothic New, sans-serif">REC</text></svg>
           <h3>レコーディング<small>フィルター</small></h3>
-          <p class="q">録音・録画されて世間に流れても、プロの誇りを保てるか？</p>
-          <div class="fchips"><span>怒鳴る・強い言葉</span><span>物に当たる・舌打ち</span><span><b>矜持の怒りも→「パワハラ」</b></span></div>
+          <p class="q">録画が流れても、誇れるか？</p>
+          <div class="fchips"><span>怒鳴る・物に当たる</span><span><b>矜持の怒りも→パワハラ</b></span></div>
         </div>
       </div>
     </div>
     <div class="phase" data-step="5">
       <div class="eyebrow">① フィルター（ふるい）</div>
-      <h2 class="title">1枚でも破れたら、調整が必要なサイン</h2>
+      <h2 class="title">振り返り：4枚のフィルター</h2>
       <div class="cols cols-3" style="gap:24px">
-        <div class="card" style="padding:28px 30px"><p class="cap">コピー</p><p style="font-size:32px;font-weight:700">あなたが許している「例外」は、新人が真似しても良い<b class="hl">「基準」</b>になる</p></div>
-        <div class="card" style="padding:28px 30px"><p class="cap">リスク</p><p style="font-size:32px;font-weight:700">「できるって言ったよね？」と叱る前に。スタッフが「はい」と言うしかなかった、<b class="hl">出口を塞いでいませんか？</b></p></div>
-        <div class="card" style="padding:28px 30px"><p class="cap">リスク</p><p style="font-size:32px;font-weight:700">「NO」と言っても、評価も空気も変わらない。<b class="hl">その安全を保証できて、はじめて「合意」</b></p></div>
+        <div class="card" style="padding:28px 30px"><p class="cap">コピー</p><p style="font-size:34px;font-weight:700">あなたの「例外」は、<b class="hl">店の「基準」</b>になる</p></div>
+        <div class="card" style="padding:28px 30px"><p class="cap">リスク</p><p style="font-size:34px;font-weight:700">「はい」しかない、<b class="hl">出口を塞いでいないか</b></p></div>
+        <div class="card" style="padding:28px 30px"><p class="cap">リスク</p><p style="font-size:34px;font-weight:700">NOが安全で、<b class="hl">はじめて「合意」</b></p></div>
       </div>
-      <div class="alert" data-step="6"><svg class="i"><use href="#i-alert"/></svg><p>4枚のうち、<b>1枚でもフィルターが破れたら</b>、それはアジャストメント（調整）が必要なサイン</p></div>
+      <div class="alert" data-step="6"><svg class="i"><use href="#i-alert"/></svg><p><b>1枚でも破れたら</b>、調整のサイン</p></div>
     </div>
     <aside class="notes">冒頭のQ1で、「迷った場面」を書いてくださった方がたくさんいました。迷ったときに使っていただきたいのが、この4つのフィルターです。それぞれ、一つの問いに答えるだけです。
 ［クリック］① コピーフィルター
@@ -1066,12 +1061,12 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         </g></svg>
       <div class="adjl big">
         <div class="card is-accent" data-step="1"><span class="badge">1</span><h3>アンガーマネジメント<small>（まず、自分を整える）</small></h3><p>気づく・待つ・測る・見直す</p></div>
-        <div class="card" data-step="2"><span class="badge">2</span><h3>シグナル<small>（何を）</small></h3><p>事実と、次の行動だけを伝える</p></div>
-        <div class="card" data-step="3"><span class="badge">3</span><h3>ノイズ<small>（どう）</small></h3><p>邪魔になるものを取り除く</p></div>
-        <div class="card" data-step="4"><span class="badge">4</span><h3>タイミング<small>（いつ）</small></h3><p>相手が聞ける状態のときに</p></div>
+        <div class="card" data-step="2"><span class="badge">2</span><h3>シグナル<small>（何を）</small></h3><p>事実＋次の行動</p></div>
+        <div class="card" data-step="3"><span class="badge">3</span><h3>ノイズ<small>（どう）</small></h3><p>邪魔を取り除く</p></div>
+        <div class="card" data-step="4"><span class="badge">4</span><h3>タイミング<small>（いつ）</small></h3><p>聞ける状態のとき</p></div>
       </div>
     </div>
-    <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p><b>怒ったら、まず ①整える。</b>そのうえで、②何を、③どう、④いつ、を調整する</p></div>
+    <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p><b>怒ったら、まず ①整える</b></p></div>
     <aside class="notes">4つのフィルターは、「言っていいか」を確かめる道具でした。ここからは、「どう言えば、伝わるか」を整える、4つのアジャスターです。
 ［クリック］① アンガーマネジメント。まず、自分を整える。
 ［クリック］② シグナル。何を伝えるか。
@@ -1085,18 +1080,18 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
   <section class="slide" data-min="4">
     <div class="phase" data-until="3" style="gap:20px">
       <div class="eyebrow" data-in>アジャスター ①　アンガーマネジメント（まず、自分を整える）</div>
-      <h2 class="title" data-in style="--d:1">怒りの原因は、悪い感情ではなく、<span class="hl2">「プロの矜持」</span></h2>
+      <h2 class="title" data-in style="--d:1">怒りの原因は、<span class="hl2">「プロの矜持」</span></h2>
       <ul class="pride" data-step="1">
-        <li><span class="p">クオリティを、落とせない</span><i></i><span class="b">落とす行為を、責めてしまう</span></li>
-        <li><span class="p">お客様に「おいしい」を届けたい</span><i></i><span class="b">そうならないケースを、責めてしまう</span></li>
-        <li><span class="p">ピークタイムのズレが、許せない</span><i></i><span class="b">ズレた瞬間に、責めてしまう</span></li>
+        <li><span class="p">クオリティ</span><i></i><span class="b">落とす行為を責める</span></li>
+        <li><span class="p">「おいしい」を届けたい</span><i></i><span class="b">届かないと責める</span></li>
+        <li><span class="p">ピークタイム</span><i></i><span class="b">ズレた瞬間に責める</span></li>
       </ul>
-      <div class="card is-soft" data-step="2" style="padding:22px 30px;gap:8px"><p style="font-size:32px;font-weight:900">矜持は、守っていい。問題は、矜持を「人を責める形」で出してしまうこと</p><p style="font-size:25px">経験を積むほど、矜持（基準）は高くなり、許せない範囲も、広がりやすい（経験の差）</p></div>
-      <div class="convert" data-step="3"><span class="ng">✕「何やってるんだ」</span><i></i><span class="ok">○「提供が3分遅れている。この2卓を先に」</span><small>矜持は「責める言葉」ではなく、「事実と、次の指示」（②シグナル）に変える</small></div>
+      <div class="card is-soft" data-step="2" style="padding:22px 30px;gap:8px"><p style="font-size:32px;font-weight:900">矜持は守っていい。問題は「責める形」で出すこと</p></div>
+      <div class="convert" data-step="3"><span class="ng">✕「何やってるんだ」</span><i></i><span class="ok">○「3分遅れ。2卓を先に」</span><small>→ 事実と、次の指示（②シグナル）</small></div>
     </div>
     <div class="phase" data-step="4" style="gap:22px">
     <div class="eyebrow">アジャスター ①　アンガーマネジメント（まず、自分を整える）</div>
-    <h2 class="title" style="font-size:46px">怒らない人になるのではなく、<br>必要なことは上手に伝え、必要のない怒りは出さない</h2>
+    <h2 class="title">怒らない人ではなく、怒りを出さない人に</h2>
       <div class="am">
         <div class="card" data-step="4">
           <svg viewBox="0 0 200 150" aria-hidden="true"><path d="M10 80h50l14-40 20 80 16-50 12 10h68" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" class="wl" style="animation-duration:2.4s"/></svg>
@@ -1119,7 +1114,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <text x="20" y="130" font-size="20" fill="#4f5661">1</text><text x="188" y="130" font-size="20" fill="#4f5661">10</text>
           </g></svg>
           <h3>測る<small>点数</small></h3>
-          <p class="am1">10段階で今いくつ？<br><b>高いときは指導しない</b>（→④）</p>
+          <p class="am1">10段階で今いくつ？<br><b>高いときは指導しない</b></p>
         </div>
         <div class="card" data-step="7">
           <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -1129,11 +1124,11 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <g class="bk" style="animation-delay:6s"><rect x="4" y="30" width="92" height="84" rx="16" fill="#e9e6fd"/><text x="50" y="80" font-size="24" fill="#5243c9">事実</text><rect x="104" y="30" width="92" height="84" rx="16" fill="#ddf2e7"/><text x="150" y="68" font-size="22" fill="#22915c">次の</text><text x="150" y="96" font-size="22" fill="#22915c">指示</text></g>
           </g></svg>
           <h3>見直す<small>「べき」</small></h3>
-          <p class="am1">従順な人は、そんなにいない<br><b>→ 事実と次の指示</b>（→②）</p>
+          <p class="am1">「べき」を<br><b>事実と次の指示に</b></p>
         </div>
       </div>
       <div class="row" data-step="8">
-        <div class="alert is-info" style="flex:1"><svg class="i"><use href="#i-search"/></svg><p>怒りの裏に<b>プロの矜持</b>・疲れ・焦り・不安。矛先が<b>言い返せない相手</b>に向いていないか</p></div>
+        <div class="alert is-info" style="flex:1"><svg class="i"><use href="#i-search"/></svg><p>矛先が<b>言い返せない相手</b>に向いていないか</p></div>
         <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>怒りに任せない ≠ <b>指導をやめる</b></p></div>
       </div>
     </div>
@@ -1156,13 +1151,13 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
   <!-- 09-2 シグナル -->
   <section class="slide" data-min="2">
     <div class="eyebrow" data-in>アジャスター ②　シグナル（何を伝えるか）</div>
-    <h2 class="title" data-in style="--d:1">事実と、次の行動。この2つだけを、具体的に</h2>
+    <h2 class="title" data-in style="--d:1">事実と、次の行動だけ</h2>
     <div class="sigf" data-in style="--d:2"><span><small>事実</small>何が起きたか</span><i>＋</i><span><small>行動</small>次にどうしてほしいか</span><i>＝</i><span class="ok"><small>シグナル</small>伝わる</span></div>
     <div class="ngok">
       <div class="card ng" data-step="1">
         <p class="lbl"><svg class="i"><use href="#i-x"/></svg>伝わらない</p>
         <ul><li>「やる気を出せ」</li><li>「センスがない」</li><li>「盛り付けが雑だ」</li></ul>
-        <p class="cap">何を、どう直せばよいか、わからない</p>
+        <p class="cap">何を直せばいい？</p>
       </div>
       <div class="card ok" data-step="2">
         <p class="lbl"><svg class="i"><use href="#i-check"/></svg>伝わる</p>
@@ -1173,7 +1168,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <path d="M126 186h54" stroke="#22915c" stroke-width="4"/><path d="M126 178v16M180 178v16" stroke="#22915c" stroke-width="4"/><text x="153" y="214" font-size="20" fill="#22915c">1cm</text>
             <g class="herb"><path d="M180 120c-14-16-6-34 0-40 6 6 14 24 0 40z" fill="#4cc38a"/><path d="M180 120c16-10 34-4 38 4-8 6-26 8-38-4z" fill="#22915c"/></g>
           </g></svg>
-          <div style="display:flex;flex-direction:column;gap:12px"><p class="say">「このハーブは、中心から1cm左に置いてほしい」</p><p class="say">「これとこれは僕がやるから、君はこれとこれを、ここまでやっておいて」</p></div>
+          <div style="display:flex;flex-direction:column;gap:12px"><p class="say">「このハーブは、中心から1cm左に」</p></div>
         </div>
       </div>
     </div>
@@ -1187,7 +1182,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
   <!-- 09-3 ノイズ -->
   <section class="slide" data-min="2">
     <div class="eyebrow" data-in>アジャスター ③　ノイズ（どう伝えるか）</div>
-    <h2 class="title" data-in style="--d:1">伝えたいことの、邪魔になるものを取り除く</h2>
+    <h2 class="title" data-in style="--d:1">邪魔なものを、取り除く</h2>
     <div class="split" style="grid-template-columns:760px 1fr;gap:48px;align-items:start">
       <div data-in style="--d:2">
         <svg class="illus" viewBox="0 0 760 400" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -1200,11 +1195,11 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       </div>
       <div style="display:flex;flex-direction:column;gap:22px">
         <div class="nz" data-step="1"><span>怒鳴り声</span><span>威圧感</span><span>過去の持ち出し</span><span>不機嫌</span></div>
-        <p class="text" data-step="1">混じると、相手は内容よりも、<b>身を守ること</b>に集中してしまう。取り除いて、要点だけを伝える</p>
+        <p class="text" data-step="1">混じると、相手は<b>身を守ること</b>に集中する</p>
         <div class="card is-accent" data-step="2" style="padding:24px 28px;gap:12px">
           <span class="poll" data-q="Q4" style="align-self:flex-start">「よくある」「たまにある」 <b contenteditable="true">◯</b>割</span>
-          <p style="font-size:30px">機嫌が悪くなること自体は、人間なので避けられない。問題は、それが<b>ノイズとして出力に混じる</b>こと</p>
-          <p class="cap">→ だから、まず ①アンガーマネジメントで、自分を整える</p>
+          <p style="font-size:30px">不機嫌を、<b>出力に混ぜない</b></p>
+          <p class="cap">→ まず ①で整える</p>
         </div>
       </div>
     </div>
@@ -1218,17 +1213,17 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
   <!-- 09-4 タイミング -->
   <section class="slide" data-min="2">
     <div class="eyebrow" data-in>アジャスター ④　タイミング（いつ伝えるか）</div>
-    <h2 class="title" data-in style="--d:1">相手が「聞ける状態」のときに伝える</h2>
+    <h2 class="title" data-in style="--d:1">相手が「聞ける」ときに</h2>
     <div class="tml" data-in style="--d:2">
       <svg viewBox="0 0 1664 330" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
         <rect x="20" y="150" width="520" height="56" rx="28" fill="#f9e3e0"/><rect x="572" y="150" width="520" height="56" rx="28" fill="#fdf0d8"/><rect x="1124" y="150" width="520" height="56" rx="28" fill="#ddf2e7"/>
         <text x="280" y="120" font-size="38" fill="#c23a2e">失敗の直後</text><text x="832" y="120" font-size="38" fill="#b06b00">営業中のピーク</text><text x="1384" y="120" font-size="38" fill="#22915c">落ち着いてから</text>
         <g class="tmk"><circle cx="40" cy="178" r="40" fill="#fff" stroke="#6b5ce7" stroke-width="6"/><path d="M40 156v22l14 10" stroke="#6b5ce7" stroke-width="6" stroke-linecap="round" fill="none"/></g>
         <g font-size="30"><text x="280" y="262" fill="#1d2128">振り返りの指導は、しない</text><text x="832" y="262" fill="#1d2128">「緊急の指示」だけ</text><text x="1384" y="262" fill="#1d2128">ここで、振り返りの指導</text></g>
-        <g font-size="24" fill="#4f5661"><text x="280" y="302">相手は身構えていて、聞けない</text><text x="832" y="302">お互いに余裕がない</text><text x="1384" y="302">心が落ち着き、聞ける状態</text></g>
+        
       </g></svg>
     </div>
-    <div class="alert" data-step="1"><svg class="i"><use href="#i-clock"/></svg><p>自分の怒りの点数が高いときも、伝えない（→ ①アンガーマネジメント）。<b>相手が聞ける状態</b>と、<b>自分が落ち着いた状態</b>がそろったときが、伝えるタイミング</p></div>
+    <div class="alert" data-step="1"><svg class="i"><use href="#i-clock"/></svg><p><b>相手が聞ける</b>＋<b>自分が落ち着いている</b>とき</p></div>
     <aside class="notes">④ タイミング：いつ伝えるか。
 相手が聞ける状態のときに伝えます。失敗直後や、営業中のピークは、緊急の指示だけにとどめる。振り返りの指導は、心が落ち着いてからです。
 ［クリック］そして、自分の怒りの点数が高いときも、伝えない。①アンガーマネジメントの「測る」で、点数を確かめてください。</aside>
@@ -1241,10 +1236,10 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <h2 class="title" data-in style="--d:1">スタッフから相談を受けたら</h2>
       <div class="row" style="gap:36px;align-items:flex-start">
         <ol class="timeline compact" style="flex:1">
-          <li data-n="1" data-step="1" class="slide-in"><h3>その場で個人の判断で処理しない</h3><p>速やかに本部の相談窓口へ報告する</p></li>
-          <li data-n="2" data-step="2" class="slide-in"><h3>報復・不利益取扱いは、絶対に行わない</h3><p>相談者を守る</p></li>
-          <li data-n="3" data-step="3" class="slide-in"><h3>事実関係は、本部と連携して確認・記録する</h3><p>当事者双方から、公正に</p></li>
-          <li data-n="4" data-step="4" class="slide-in"><h3>本部の指示に従う</h3><p>独断で「示談」「口頭注意のみ」で終わらせない</p></li>
+          <li data-n="1" data-step="1" class="slide-in"><h3>独断で処理しない</h3><p>速やかに本部へ</p></li>
+          <li data-n="2" data-step="2" class="slide-in"><h3>報復しない</h3><p>相談者を守る</p></li>
+          <li data-n="3" data-step="3" class="slide-in"><h3>本部と確認・記録</h3><p>双方から、公正に</p></li>
+          <li data-n="4" data-step="4" class="slide-in"><h3>本部の指示に従う</h3><p>示談・口頭注意で終わらせない</p></li>
         </ol>
         <div class="card is-accent" data-step="5" style="width:600px;padding:26px 30px;gap:12px">
           <svg class="illus" viewBox="0 0 540 170" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -1253,31 +1248,31 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <circle cx="265" cy="90" r="34" fill="#c23a2e"/><path d="M251 76l28 28M279 76l-28 28" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
             <use href="#i-person" x="390" y="20" width="90" height="140" style="color:#9aa3ae"/><text x="435" y="168" font-size="20" fill="#4f5661">相手とされる人</text>
           </g></svg>
-          <p style="font-size:30px;font-weight:900">本部への報告前に、自分の判断で、相手とされる人に<span class="hl">直接確認しない</span></p>
-          <p class="cap">よかれと思っての行動でも、証拠の隠滅や、相談者への報復・圧力につながるリスク</p>
+          <p style="font-size:30px;font-weight:900">相手とされる人に、<span class="hl">直接確認しない</span></p>
+          <p class="cap">証拠隠滅・報復につながる</p>
         </div>
       </div>
     </div>
     <div class="phase" data-step="6" data-until="8">
       <div class="eyebrow">それでも起きたら：記録</div>
-      <h2 class="title">「言った・言わない」は、どんなやり取りでも起こる</h2>
+      <h2 class="title">「言った・言わない」に備える</h2>
       <div class="split" style="grid-template-columns:1fr 1fr;gap:40px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:14px">
           <p class="cap">記録に残す理由</p>
           <ul class="rec3">
-            <li><span class="badge">1</span>後から、事実関係を正確に確認するため</li>
-            <li><span class="badge">2</span>相談者を、「言った・言わない」から守るため</li>
-            <li><span class="badge">3</span>対応した自分自身が、適切に対応したことを示すため</li>
+            <li><span class="badge">1</span>事実を確認する</li>
+            <li><span class="badge">2</span>相談者を守る</li>
+            <li><span class="badge">3</span>自分を守る</li>
           </ul>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px" data-step="7">
-          <div class="alert is-ok"><svg class="i"><use href="#i-check"/></svg><p>記録を残すことを本人に伝え、<b>書いた内容を本人と一緒に確認する</b></p></div>
-          <div class="alert"><svg class="i"><use href="#i-alert"/></svg><p>誰でも見られる場所に置かない。<b>本人の同意なく、第三者に共有しない</b></p></div>
+          <div class="alert is-ok"><svg class="i"><use href="#i-check"/></svg><p><b>本人と一緒に確認する</b></p></div>
+          <div class="alert"><svg class="i"><use href="#i-alert"/></svg><p><b>同意なく、共有しない</b></p></div>
         </div>
       </div>
       <div class="card" data-step="8" style="padding:22px 30px;gap:16px">
         <p class="cap">本部への緊急連絡</p>
-        <div class="chain"><span>担当役員へ連絡</span><i class="grow"></i><span>担当役員から代表へ報告</span><i class="grow"></i><span>総務人事部へ連携</span></div>
+        <div class="chain"><span>担当役員</span><i class="grow"></i><span>代表</span><i class="grow"></i><span>総務人事部</span></div>
       </div>
     </div>
     <div class="phase" data-step="9" data-until="12" style="gap:20px">
@@ -1291,13 +1286,13 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
           <g class="a-bob"><path d="M40 30h220a18 18 0 0 1 18 18v50a18 18 0 0 1-18 18H130l-30 26v-26H40a18 18 0 0 1-18-18V48a18 18 0 0 1 18-18z" fill="#f9e3e0"/><text x="150" y="82" font-size="24" fill="#c23a2e">店長を変えて！</text></g>
         </g></svg>
         <div class="fam3">
-          <div class="fb1" data-step="9"><span class="n">1</span><div><b>その場で答えない</b><small>反論・謝罪の確約・約束をしない／人事（交代）は「本部から連絡します」／本人の同意なく、勤務・シフト・評価・相談内容を伝えない（成年は親でも第三者）</small></div></div>
-          <div class="fb1" data-step="10"><span class="n">2</span><div><b>傾聴して、記録する</b><small>誰が・いつ・何を・どうしてほしいか・連絡先</small></div></div>
-          <div class="fb1" data-step="11"><span class="n">3</span><div><b>すぐ本部へ</b><small>担当役員と総務へ報告</small></div></div>
-          <div class="fb1 law" data-step="12"><span class="n">!</span><div><b>申告・相談を理由に、不利益な取扱いをしない</b><small><span class="kind">刑事</span>労働基準法104条：6か月以下の拘禁刑または30万円以下の罰金</small></div></div>
+          <div class="fb1" data-step="9"><span class="n">1</span><div><b>その場で答えない</b><small>約束しない／人事は答えない／同意なく伝えない（成年は親でも第三者）</small></div></div>
+          <div class="fb1" data-step="10"><span class="n">2</span><div><b>傾聴・記録</b><small>誰が・何を・連絡先</small></div></div>
+          <div class="fb1" data-step="11"><span class="n">3</span><div><b>すぐ本部へ</b><small>担当役員と総務</small></div></div>
+          <div class="fb1 law" data-step="12"><span class="n">!</span><div><b>申告を理由に、不利益な取扱いをしない</b><small><span class="kind">刑事</span>労基法104条：6か月以下の拘禁刑または30万円以下の罰金</small></div></div>
         </div>
       </div>
-      <p class="cap" data-step="12" style="margin-top:0">備え：指導の記録・勤怠・休憩・シフトを整える。記録は、認定の有無にかかわらず、あなたを守る（18歳未満のスタッフは、本部に確認）</p>
+      <p class="cap" data-step="12" style="margin-top:0">備え：記録・勤怠・休憩・シフトを整える（18歳未満は本部に確認）</p>
     </div>
     <div class="phase" data-step="13">
       <div class="eyebrow">ハラスメント相談窓口</div>
@@ -1305,15 +1300,14 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <div class="split" style="grid-template-columns:1fr 760px;gap:48px;align-items:center">
         <div style="display:flex;flex-direction:column;gap:22px">
           <div class="card is-accent" style="padding:30px 34px;gap:10px">
-            <p class="cap" style="margin-top:0">社員・アルバイトが、直接相談できる窓口</p>
+            <p class="cap" style="margin-top:0">社員・アルバイトの窓口</p>
             <p style="display:flex;align-items:center;gap:18px;font-size:54px;font-weight:900;color:var(--accent-ink);letter-spacing:.02em"><span class="ico"><svg class="i"><use href="#i-chat"/></svg></span>soudan@garb.co.jp</p>
           </div>
           <ul class="rec3" data-step="14">
-            <li><span class="badge">1</span>窓口を、スタッフ全員に知らせる</li>
-            <li><span class="badge">2</span>窓口に相談したことを理由に、不利益な扱いをしない</li>
+            <li><span class="badge">1</span>全員に知らせる</li>
+            <li><span class="badge">2</span>相談を理由に、不利益な扱いをしない</li>
           </ul>
-          <p class="cap" data-step="14" style="margin-top:0">相談の受付：本部・総務・店舗のどこに入っても、同じ流れ（次のスライド）</p>
-          <div class="alert is-ok" data-step="14"><svg class="i"><use href="#i-check"/></svg><p>窓口を広く知らせることが、<b>風通しの良い店</b>をつくる。シェフ・店長は、<b>窓口を伝える側</b></p></div>
+                    <div class="alert is-ok" data-step="14"><svg class="i"><use href="#i-check"/></svg><p>シェフ・店長は、<b>窓口を伝える側</b></p></div>
         </div>
         <svg class="illus" viewBox="0 0 760 460" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
           <use href="#i-person" x="20" y="200" width="100" height="160" style="color:#9aa3ae"/><use href="#i-person" x="110" y="200" width="100" height="160" style="color:#9d92ff"/><use href="#i-person" x="200" y="200" width="100" height="160" style="color:#c98a00"/>
