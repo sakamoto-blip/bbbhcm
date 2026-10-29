@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>バルニバービ 新入社員オリエンテーション</title>
+<style>
+:root{
+  --ink:#1E1C19; --ink-2:#57534C; --ink-3:#8A857C;
+  --paper:#FBFAF7; --card:#FFFFFF; --rule:#E3DFD6; --rule-2:#CFCABF;
+  --amber:#EF9F27; --amber-bg:#FAEEDA; --amber-ink:#854F0B;
+  --navy:#185FA5; --navy-bg:#E6F0FA; --navy-d:#0F3F70;
+  --green:#1D9E75; --green-bg:#E1F5EE; --red:#D6403F; --red-bg:#FCEBEB;
+  --brown:#8A6D4B; --shadow:0 1px 2px rgba(30,28,25,.06),0 6px 18px rgba(30,28,25,.05);
+  --side:220px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --ink:#F2EFE8; --ink-2:#C4BFB3; --ink-3:#8F8A7F; --paper:#161512; --card:#201E1A;
+    --rule:#33302A; --rule-2:#4A463E; --amber-bg:#3A2D14; --amber-ink:#F2C06B;
+    --navy:#6FB0EE; --navy-bg:#182533; --navy-d:#A8D0F5; --green-bg:#12302A; --red-bg:#3A1B1B; --red:#F28B8A;
+    --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.8 "Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Meiryo",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--navy)}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px;border-radius:4px}
+
+/* layout */
+.side{position:fixed;inset:0 auto 0 0;width:var(--side);padding:26px 18px;border-right:1px solid var(--rule);background:var(--paper);display:flex;flex-direction:column;gap:6px;overflow:auto;z-index:20}
+.brand{font-size:11px;letter-spacing:.16em;color:var(--ink-3);font-weight:700;margin-bottom:8px}
+.brand b{display:block;font-size:15px;letter-spacing:.06em;color:var(--ink);margin-top:2px}
+.side a.nv{display:flex;gap:9px;align-items:center;padding:7px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-size:13.5px;line-height:1.4}
+.side a.nv i{font-style:normal;font-size:11px;color:var(--ink-3);width:18px;font-variant-numeric:tabular-nums}
+.side a.nv:hover{background:var(--card)}
+.side a.nv.on{background:var(--ink);color:var(--paper)}
+.side a.nv.on i{color:var(--paper);opacity:.7}
+.tools{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.sw{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.sw input{accent-color:var(--navy)}
+.topbar{display:none}
+main{margin-left:var(--side)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+section.ch{padding:72px 0 8px}
+.eyebrow{font-size:11.5px;letter-spacing:.2em;color:var(--amber-ink);font-weight:700;text-transform:uppercase}
+h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:30px;line-height:1.4;margin:6px 0 8px;letter-spacing:.03em}
+h3{font-size:18px;margin:34px 0 10px;letter-spacing:.03em}
+h3 small{font-weight:400;color:var(--ink-3);font-size:12px;margin-left:8px;letter-spacing:.04em}
+.lead{color:var(--ink-2);max-width:46em;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.muted{color:var(--ink-3);font-size:12.5px}
+.tag{display:inline-block;font-size:11.5px;padding:1px 9px;border-radius:99px;background:var(--amber-bg);color:var(--amber-ink);font-weight:600;margin-right:4px}
+.tag.n{background:var(--navy-bg);color:var(--navy)}
+.tag.g{background:var(--green-bg);color:var(--green)}
+.tag.r{background:var(--red-bg);color:var(--red)}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule-2);border-radius:9px;overflow:hidden;background:var(--card)}
+.seg button{border:0;border-right:1px solid var(--rule);background:none;padding:8px 14px;font-size:13px;color:var(--ink-2)}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--paper)}
+.seg button.on{background:var(--ink);color:var(--paper);font-weight:600}
+
+/* hero */
+.hero{padding:84px 0 40px;border-bottom:1px solid var(--rule)}
+.hero h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:clamp(30px,5vw,50px);line-height:1.35;letter-spacing:.05em;margin:10px 0 14px}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--amber-bg) 62%)}
+.flow{display:flex;gap:0;margin-top:26px;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--card)}
+.flow div{flex:1;padding:14px 16px;border-right:1px solid var(--rule);font-size:13px}
+.flow div:last-child{border:0}
+.flow b{display:block;font-size:12px;color:var(--amber-ink);letter-spacing:.08em}
+.flow div:nth-child(1){flex:6}.flow div:nth-child(2){flex:2}.flow div:nth-child(3){flex:3}
+
+/* stats */
+.stat .k{font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+.stat .v{font-size:30px;font-weight:700;letter-spacing:.01em;line-height:1.3;font-variant-numeric:tabular-nums}
+.stat .v small{font-size:14px;font-weight:500;margin-left:2px}
+.seg-card h4{margin:0 0 4px;font-size:16px}
+.seg-card.r{border-top:4px solid var(--amber)}.seg-card.e{border-top:4px solid var(--navy)}
+.bar{display:flex;height:26px;border-radius:6px;overflow:hidden;margin:12px 0 8px;font-size:11.5px;color:#fff}
+.bar span{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+.kv{display:grid;grid-template-columns:7em 1fr;gap:6px 14px;font-size:14px;margin:0}
+.kv dt{color:var(--ink-3);font-size:12.5px}.kv dd{margin:0}
+
+/* chart */
+.chartbox{position:relative;overflow-x:auto;padding:14px 8px 4px}
+#chart{min-width:680px;width:100%;height:auto;display:block}
+#chart .bar-r{transition:opacity .2s}
+#chart .dim{opacity:.18}
+#chart text{fill:var(--ink-3);font-size:11px}
+#tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);padding:6px 10px;border-radius:8px;font-size:12.5px;line-height:1.5;opacity:0;transform:translate(-50%,-100%);transition:opacity .12s;white-space:nowrap;z-index:5}
+.phase{border-left:5px solid var(--c);padding-left:16px;margin-top:12px}
+.phase h4{margin:0;font-size:17px}
+.events{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.events button{border:1px solid var(--rule-2);background:var(--card);border-radius:99px;padding:4px 12px;font-size:12.5px}
+.events button:hover,.events button.on{background:var(--ink);color:var(--paper)}
+.events b{font-variant-numeric:tabular-nums;margin-right:5px}
+
+/* org */
+.org{display:grid;gap:10px}
+.org-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13.5px}
+.node{border:1.5px solid var(--ink);background:var(--card);border-radius:8px;padding:5px 12px;font-size:13.5px}
+.node.dk{background:var(--ink);color:var(--paper)}
+.arrow{color:var(--ink-3)}
+.hq{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.hq .card{padding:14px 16px}
+.hq h4{margin:0;font-size:14.5px}
+.hq .hd{font-size:12.5px;color:var(--ink-3);margin-bottom:8px}
+.hq ul{margin:0;padding:0;list-style:none;font-size:13px}
+.hq li{padding:5px 0;border-top:1px dashed var(--rule)}
+.hq li span{display:block;color:var(--ink-3);font-size:12px}
+.cos-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0 14px}
+select{font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--rule-2);border-radius:8px;background:var(--card);color:var(--ink)}
+.co{cursor:pointer;text-align:left;width:100%;transition:transform .15s,border-color .15s}
+.co:hover{transform:translateY(-2px);border-color:var(--ink-3)}
+.co h4{margin:0 0 6px;font-size:15px;line-height:1.4}
+.co .nums{display:flex;gap:14px;font-size:12.5px;color:var(--ink-2);margin-bottom:6px}
+.co .nums b{font-size:20px;color:var(--ink)}
+.co .more{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule-2);font-size:13px;color:var(--ink-2)}
+.co.open .more{display:block}
+.co .meter{height:5px;border-radius:3px;background:var(--rule);overflow:hidden}
+.co .meter i{display:block;height:100%;background:var(--amber)}
+
+/* business */
+.step-nav{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:12px}
+.step-nav button{border:1px solid var(--rule-2);background:var(--card);border-radius:10px;padding:9px 4px;font-size:12px;line-height:1.4}
+.step-nav button b{display:block;font-size:11px;color:var(--ink-3);letter-spacing:.08em}
+.step-nav button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.step-nav button.on b{color:#fff;opacity:.8}
+.step-nav button.done{background:var(--navy-bg)}
+.stepbody h4{margin:0 0 4px;font-size:18px;color:var(--navy)}
+.eq{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap}
+.eq>div{flex:1;min-width:200px}
+.eq .op{flex:0;align-self:center;font-size:22px;color:var(--ink-3)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* philosophy */
+.phi{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.phi button{display:flex;gap:12px;align-items:baseline;text-align:left;border:1px solid var(--rule);background:var(--card);border-radius:10px;padding:10px 14px;font-size:14px;line-height:1.55;font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+.phi button i{font:700 11px/1 system-ui;font-style:normal;color:var(--navy);letter-spacing:.08em;min-width:2em}
+.phi button.deep{border-color:var(--navy)}
+.phi button.deep::after{content:"解説あり";margin-left:auto;font:600 10.5px system-ui;color:var(--navy);background:var(--navy-bg);padding:1px 7px;border-radius:99px;white-space:nowrap}
+.phi button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.phi button.on i{color:#fff}
+.phi button.on::after{background:#fff2;color:#fff}
+.phidet{margin-top:14px}
+.phidet h4{font-size:19px;margin:0 0 8px;font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+.essence{background:var(--navy-bg);border-radius:10px;padding:12px 16px;margin:12px 0}
+.question{background:var(--amber-bg);color:var(--amber-ink);border-radius:10px;padding:12px 16px;font-weight:600}
+.essence b,.question b{display:block;font-size:11.5px;letter-spacing:.14em;margin-bottom:2px}
+.flip{perspective:900px;height:178px}
+.flip button{position:relative;width:100%;height:100%;border:0;background:none;padding:0;transform-style:preserve-3d;transition:transform .5s}
+.flip.on button{transform:rotateY(180deg)}
+.flip .f{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;padding:16px 18px;text-align:left;border:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center;gap:6px}
+.flip .f1{background:var(--green-bg)}
+.flip .f2{background:var(--red-bg);transform:rotateY(180deg)}
+.flip .f b{font-size:11px;letter-spacing:.14em}
+.flip .f1 b{color:var(--green)}.flip .f2 b{color:var(--red)}
+.flip h5{margin:0;font-size:13px;color:var(--ink-3);font-weight:600}
+.flip p{margin:0;font-size:14.5px;line-height:1.6;font-weight:600}
+.flip small{font-size:11px;color:var(--ink-3)}
+
+/* career */
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.ladder{display:flex;flex-direction:column;gap:6px}
+.ladder .lv{border-radius:8px;padding:8px 12px;font-size:13px;text-align:center;background:var(--navy);color:#fff;transition:.25s}
+.ladder .lv.off{background:var(--rule);color:var(--ink-3)}
+.ladder .row{display:flex;gap:6px;justify-content:center}
+.ladder .row .lv{flex:1}
+.benefit-list{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;font-size:14px}
+.benefit-list div{border-bottom:1px dashed var(--rule-2);padding:6px 0;display:flex;justify-content:space-between;gap:10px}
+.benefit-list span{color:var(--ink-3);font-size:12.5px;text-align:right}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.pillars button{border:1.5px solid var(--rule-2);background:var(--card);border-radius:12px;padding:14px 8px;text-align:center;font-size:13px;line-height:1.45;transition:.15s}
+.pillars button svg{width:34px;height:34px;stroke:var(--navy);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block;margin:0 auto 8px}
+.pillars button small{display:block;color:var(--ink-3);font-size:11px;margin-top:2px}
+.pillars button:hover{border-color:var(--navy)}
+.pillars button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pillars button.on svg{stroke:#fff}.pillars button.on small{color:#fff;opacity:.8}
+.pane{display:none;margin-top:16px}.pane.on{display:block}
+.pane h3{margin-top:0}
+.pt{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.pt li{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:11px 14px}
+.pt li .big{grid-row:span 2;align-self:center;min-width:5.5em;text-align:center;font-weight:700;font-size:15px;color:var(--navy);background:var(--navy-bg);border-radius:8px;padding:8px 6px;line-height:1.35}
+.pt li b{font-size:14.5px}.pt li span{font-size:13.5px;color:var(--ink-2)}
+.calc{background:var(--amber-bg);border-radius:12px;padding:16px 18px;margin-top:14px;color:var(--ink)}
+.calc h4{margin:0 0 8px;font-size:14px;color:var(--amber-ink)}
+.calc label{display:flex;align-items:center;gap:8px;font-size:13.5px;margin:6px 0}
+.calc input[type=number]{width:90px;font:inherit;padding:5px 8px;border:1px solid var(--rule-2);border-radius:6px;background:var(--card);color:var(--ink)}
+.calc input[type=range]{accent-color:var(--amber-ink);width:200px}
+.calc input[type=checkbox]{accent-color:var(--amber-ink);width:16px;height:16px}
+.res{margin-top:10px;font-weight:700;font-size:16px}
+.res.ok{color:var(--green)}.res.ng{color:var(--red)}
+.check{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.check label{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:14px}
+.check input{accent-color:var(--navy);width:18px;height:18px;margin-top:3px;flex:none}
+.check input:checked+span{color:var(--ink-3);text-decoration:line-through}
+.danger{border:2px solid var(--red);background:var(--red-bg);border-radius:12px;padding:14px 18px;font-weight:600}
+.triage{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.triage button{border:1px solid var(--rule-2);background:var(--card);border-radius:99px;padding:6px 14px;font-size:13px}
+.triage button.on{background:var(--red);border-color:var(--red);color:#fff}
+.mail{display:inline-block;font-size:clamp(20px,3.2vw,30px);font-weight:700;color:var(--navy);padding:14px 22px;border:2px solid var(--navy);border-radius:14px;text-decoration:none;word-break:break-all}
+
+/* quiz */
+.qz .q{font-weight:700;margin:6px 0 10px}
+.qz .opts{display:grid;gap:8px}
+.qz .opts button{text-align:left;border:1px solid var(--rule-2);background:var(--card);border-radius:10px;padding:10px 14px;font-size:14px}
+.qz .opts button:hover:not(:disabled){border-color:var(--navy)}
+.qz .opts button.ok{background:var(--green-bg);border-color:var(--green)}
+.qz .opts button.ng{background:var(--red-bg);border-color:var(--red)}
+.qz .exp{display:none;margin-top:12px;font-size:13.5px;color:var(--ink-2);background:var(--paper);border-radius:8px;padding:10px 14px}
+.qz .exp.on{display:block}
+.prog{height:6px;border-radius:3px;background:var(--rule);overflow:hidden;margin-bottom:12px}
+.prog i{display:block;height:100%;background:var(--navy);width:0;transition:width .3s}
+.nxt{margin-top:12px;border:0;background:var(--ink);color:var(--paper);border-radius:9px;padding:9px 18px;font-weight:600}
+.score{font-size:44px;font-weight:700}
+
+/* script */
+.script{display:none;margin-top:14px;border:1.5px dashed var(--amber);background:var(--amber-bg);border-radius:12px;padding:6px 18px 14px;color:var(--ink)}
+body.teacher .script{display:block}
+.script h5{margin:12px 0 4px;font-size:12px;letter-spacing:.14em;color:var(--amber-ink)}
+.script p{margin:0 0 8px;font-size:14px;line-height:1.85}
+.tl{border-left:2px solid var(--rule-2);margin-left:6px}
+.tl details{margin:0 0 8px 14px;position:relative;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:0 16px}
+.tl details::before{content:"";position:absolute;left:-22px;top:15px;width:11px;height:11px;border-radius:50%;background:var(--amber);border:2px solid var(--paper)}
+.tl summary{cursor:pointer;padding:11px 0;font-weight:700;font-size:14.5px;list-style:none}
+.tl summary::-webkit-details-marker{display:none}
+.tl summary span{font-weight:400;color:var(--ink-3);font-size:12px;margin-left:8px;font-variant-numeric:tabular-nums}
+.tl details p{margin:0 0 10px;font-size:14px}
+footer{margin:80px 0 40px;color:var(--ink-3);font-size:12px;text-align:center}
+#top-btn{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:1px solid var(--rule-2);background:var(--card);box-shadow:var(--shadow);font-size:18px;opacity:0;pointer-events:none;transition:.2s;z-index:15}
+#top-btn.show{opacity:1;pointer-events:auto}
+
+@media (max-width:900px){
+  .side{display:none}
+  main{margin-left:0}
+  .topbar{display:block;position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+  .topbar nav{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;scrollbar-width:none}
+  .topbar a{flex:none;padding:6px 12px;border-radius:99px;font-size:13px;text-decoration:none;color:var(--ink-2);white-space:nowrap}
+  .topbar a.on{background:var(--ink);color:var(--paper)}
+  .topbar .sw{padding:0 14px 8px;font-size:12.5px}
+  .wrap{padding:0 16px}
+  .g4,.hq{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:1fr 1fr}
+  .pillars{grid-template-columns:repeat(5,minmax(104px,1fr));overflow-x:auto}
+}
+@media (max-width:620px){
+  .g2,.g3,.g4,.hq,.phi,.paths,.cmp,.benefit-list{grid-template-columns:1fr}
+  .g4{grid-template-columns:1fr 1fr}
+  .flow{flex-direction:column}.flow div{border-right:0;border-bottom:1px solid var(--rule)}
+  .step-nav{grid-template-columns:repeat(3,1fr)}
+  h2{font-size:24px}
+  section.ch{padding-top:54px}
+}
+</style>
+</head>
+<body>
+
+<aside class="side" aria-label="目次">
+  <div class="brand">BALNIBARBI<b>新入社員オリエンテーション</b></div>
+  <div id="navSide"></div>
+  <div class="tools">
+    <label class="sw"><input type="checkbox" id="teacher"> 講師モード(台本を表示)</label>
+  </div>
+</aside>
+<div class="topbar">
+  <nav id="navTop" aria-label="目次"></nav>
+  <label class="sw"><input type="checkbox" id="teacher2"> 講師モード(台本を表示)</label>
+</div>
+
+<main>
+<div class="wrap">
+
+<header class="hero" id="top">
+  <div class="eyebrow">Welcome to BALNIBARBI</div>
+  <h1>食から始まる<em>日本創再生</em></h1>
+  <p class="lead">食を通して、人々が楽しく豊かに暮らせる世界を創る。そして、ここで働く一人ひとりが「なりたい自分」になる。<br>今日は、会社の全体像・フィロソフィー・キャリア、そして明日からの実務に直結する制度とルールをお話しします。</p>
+  <div class="flow" aria-label="今日の流れ">
+    <div><b>〜60分</b>会社概要・理念・労務ルール・リスク管理<br><span class="muted">途中でSmartHRの操作実習</span></div>
+    <div><b>60-70分</b>確認テスト<br><span class="muted">困りごと入力</span></div>
+    <div><b>70-90分</b>回答と解決策の共有</div>
+  </div>
+  <div class="script"><h5>講師台本</h5><p>まず皆さんに知っていただきたいことは、この会社が何を目指しているのかという『全体像』です。私たちは現在、全国に100店舗以上のレストランを展開し、さらに淡路島や出雲などで、街そのものを創り出す『エステートビルドアップ事業』を手掛けています。私たちの根底にあるのは、規模の拡大ではありません。存在意義は『食から始まる日本創再生』というヴィジョンに集約されています。食という営みを通して、多くの人々が楽しく、豊かに暮らせる世界を創造すること。そして、そこで働く一人一人が、食の仕事を通して『なりたい自分』になっていくこと。今日は、私たちがなぜそこを目指しているのか、その『理由』からお話ししていきます。</p></div>
+</header>
+
+<!-- 1 COMPANY -->
+<section class="ch" id="company" data-nav="会社を知る">
+  <div class="eyebrow">01 · Company</div>
+  <h2>会社の全体像</h2>
+  <p class="lead">1991年、大阪・南船場で創業。レストラン事業とEB(エステートビルドアップ)事業の2本柱で、全国に店舗を展開しています。</p>
+
+  <div class="grid g4" id="stats"></div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card seg-card r">
+      <h4>レストラン事業</h4>
+      <div class="muted">2025年7月期 / 売上高 127.2億円 / 83店舗</div>
+      <div class="bar" id="barR"></div><div class="legend" id="legR"></div>
+    </div>
+    <div class="card seg-card e">
+      <h4>EB(エステートビルドアップ)事業</h4>
+      <div class="muted">2025年7月期 / 売上高 16.1億円 / 19店舗</div>
+      <div class="legend" style="margin-top:14px;display:grid;gap:4px"><span>■ 淡路島西海岸(兵庫)</span><span>■ 島根県出雲市</span><span>■ 兵庫県南あわじ市</span><span>■ 愛媛県伊予市(2028年予定)</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:20px" id="profile">
+    <dl class="kv">
+      <dt>会社名</dt><dd>株式会社バルニバービ</dd>
+      <dt>設立</dt><dd>1991年9月</dd>
+      <dt>代表者</dt><dd>代表取締役会長 佐藤 裕久 / 代表取締役社長 安藤 文豪</dd>
+      <dt>資本金</dt><dd>1,608百万円(2026年1月末)</dd>
+      <dt>従業員数</dt><dd>社員667名 / アルバイト・嘱託373名(2026年1月末)</dd>
+    </dl>
+    <dl class="kv">
+      <dt>本店</dt><dd>大阪市西区南堀江1-14-26</dd>
+      <dt>東京本部</dt><dd>東京都港区蔵海岸3-9-15 LOOP-X 14F</dd>
+      <dt>大阪本部</dt><dd>大阪市西区南堀江1-14-26 中澤唐木ビル6F</dd>
+      <dt>経営理念</dt><dd>「食から始まる日本創再生」<br>多くの人々が楽しく、豊かに暮らせる世界を創造する。</dd>
+    </dl>
+  </div>
+  <div class="card" style="margin-top:14px;background:var(--navy);color:#fff;border:0">
+    <div style="font-size:12px;letter-spacing:.14em;opacity:.8">LONG-TERM GOAL · 2034年7月期</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px 40px;align-items:baseline;margin-top:4px">
+      <div>売上高 <b style="font-size:32px">360</b>億円</div><div>営業利益 <b style="font-size:32px">36</b>億円</div><div>営業利益率 <b style="font-size:32px">10</b>%</div>
+    </div>
+    <div style="opacity:.85;font-size:13.5px;margin-top:2px">「食で人の流れを変え、地域を活性化する企業」を目指しています。</div>
+  </div>
+  <div class="script"><h5>講師台本</h5><p>バルニバービは1991年、大阪・南船場で創業しました。事業は大きく2つのセグメントに分かれています。ひとつは『レストラン事業』。売上高127億円、83店舗。バッドロケーション・不動産デベロッパー・行政・大学と、多様な立地形態で展開しています。もうひとつが『EB(エステートビルドアップ)事業』。売上高16億円、19店舗。淡路島・出雲・南あわじなど、地域に根ざしたエリア開発を行っています。長期目標は、2034年7月期に売上高360億円、営業利益率10%。『食で人の流れを変え、地域を活性化する企業』としての姿を目指しています。この目標を掲げる理由からお話ししていきます。</p></div>
+
+  <h3 id="history">歩み:失敗と再起 <small>売上高の推移(単位:百万円)— 棒にカーソル/タップで詳細</small></h3>
+  <div class="seg" id="phaseSeg" role="tablist"></div>
+  <div class="card chartbox" style="margin-top:12px"><div id="tip"></div><svg id="chart" viewBox="0 0 960 330" role="img" aria-label="1994年から2025年の売上高推移の棒グラフ"></svg></div>
+  <div class="phase" id="phaseBody"></div>
+  <div class="events" id="events"></div>
+  <div class="script"><h5>講師台本</h5>
+    <p>バルニバービの歴史は、ある一つの『原体験』から始まりました。代表の佐藤が、阪神・淡路大震災で被災しました。誰もが明日への希望を失いかけていた時に、炊き出しで振るまったのは、なんでもない一杯の『おかゆ』でした。そのおかゆが冷え切った体を温め、涙を流しながらお互いを励まし合い、生きる力を取り戻していく。その光景を目の当たりにした時、『食には、人の心を動かし、絶望を希望に変える力がある』ことに気づいたのです。この感動を日常の中で届けたい。その純粋な思いだけで、1991年、大阪・南船場に1店舗目をオープンしました。</p>
+    <p>ただ、グラフを見ると途中で大きく落ち込んでいる時期があります。2001年からの約3年間、『拡大』という数に目が眩み、一番大切な『食の体験』を蔑ろにしてしまいました。効率を求め、利益率に目を奪われ、出店を重ねた結果、お客様は離れ、スタッフも去っていきました。この迷走期に作った店は、今、一軒も残っていません。</p>
+    <p>この痛みを一生忘れないと誓い、2005年、東京・芝公園でGARB pintinoをオープンさせ再起しました。駅から決して近くはありません。しかし、見上げる東京タワーを借景に、スタッフ一人ひとりが『最高のおもてなしとは何か』を自ら考え、動く店を作り上げました。『想いを込めた店は、どんな場所でも目的地になれる。人は心で動く』この確信が、その後の爆発的な成長を支える強力なエンジンとなりました。グラフが右肩上がりに転じているのは、まさにここからです。</p></div>
+
+  <h3 id="orgh">組織:本部は「管理する場所」ではなく「サポーター」 <small>クリックで子会社の詳細</small></h3>
+  <div class="org">
+    <div class="org-top"><span class="node dk">株主総会</span><span class="arrow">→</span><span class="node">取締役会</span><span class="arrow">→</span><span class="node">会長 佐藤 裕久</span><span class="node">社長 安藤 文豪</span><span class="node">内部統制・監査室</span><span class="node">監査等委員会 草鹿 升</span><span class="node">事業開発部 水澤 完昭 部長(社長直轄)</span></div>
+    <div class="hq" id="hq"></div>
+  </div>
+  <div class="script"><h5>講師台本</h5><p>一般的に、本部は現場を『管理する場所』ですが、私たちの本部は、現場という主役が個性を発揮するための『サポーターの役割』となりました。特徴的なのは、運営子会社制度をとっていることです。一律のマニュアルで縛るのではなく、その土地、その店のリーダーが『自分たちが誇れる仕事は何か』『この場所にあったら喜ばれるお店はどんなお店か』を、スピード感を持って自ら考え、決めることができるようにしてきました。本部の役割は、リーダーたちが実現したいことを、あらゆる角度から、専門知識を持って支えること。新たな機会を創出することです。</p></div>
+
+  <h3 style="margin-top:28px">店舗運営会社 <small>2025年7月期売上/2026年1月現在の従業員数</small></h3>
+  <div class="cos-ctl">
+    <div class="seg" id="coArea"></div>
+    <label class="muted">並び替え <select id="coSort"><option value="stores">店舗数</option><option value="sales">売上高</option><option value="staff">従業員数</option></select></label>
+  </div>
+  <div class="grid g3" id="cos"></div>
+  <div class="script"><h5>講師台本</h5><p>このページにある各子会社は、それぞれが独自のエリア、マーケット、そして独自のやり方で運営しています。関西・淡路島で多彩な業態に挑む会社、都心部で洗練された空間を創る会社、歴史的建造物を再生させる会社。なぜここまでバラバラなのか。それは、私たちが『どこにでもある店』を作りたいのではないからです。その場所の人々が求めている体験を最も理解しているのは、現場のスタッフです。皆さんの個性が、どのチームでどう輝くのか。この多様性こそが、私たちの強みとなっています。</p></div>
+</section>
+
+<!-- 2 BUSINESS -->
+<section class="ch" id="business" data-nav="事業を知る">
+  <div class="eyebrow">02 · Business</div>
+  <h2>店から、街へ</h2>
+  <p class="lead">「バッドロケーション」で人の流れを生み、その実績が行政・デベロッパーを呼び、やがてエリア全体を再生するEB事業へ。</p>
+
+  <h3 style="margin-top:0">レストラン事業:3つのステージ</h3>
+  <div class="grid g3">
+    <div class="card"><span class="tag">1st Stage</span><h4 style="margin:6px 0">バッドロケーション戦略</h4><div class="muted" style="margin-bottom:6px">BAD LOCATION strategy</div>一般的な外食事業者が注目しない好立地とは言えない場所でも、街並み・水辺・公園など周辺環境に恵まれた絶好のロケーションを選ぶ。<b>家賃が低水準で、競合が少ない</b>のが特徴。<br><span class="tag g" style="margin-top:8px">成果</span>「人流の創出」と「街の形成」</div>
+    <div class="card"><span class="tag">2nd Stage</span><h4 style="margin:6px 0">デベロッパー・大学・行政からの誘致</h4><div class="muted" style="margin-bottom:6px">実績が認められ好条件での物件獲得へ</div>
+      <b>不動産デベロッパー</b>:三井不動産・宮下公園(NEW LIGHT)/三菱地所・丸の内仲通り(GARB TOKYO)<br><b>行政・公共</b>:泉大津市・シーパスパーク(GARB GREEN WALK)/高槻市・安満遺跡公園<br><b>大学</b>:GOOD MORNING CAFE 早稲田 など</div>
+    <div class="card" style="border-color:var(--navy)"><span class="tag n">3rd Stage</span><h4 style="margin:6px 0">EB事業へ</h4><div class="muted" style="margin-bottom:6px">ESTATE BUILD UP BUSINESS</div>レストランで街を活性化 → 地価が上がり、賃料値上げや退去を求められる悔しい経験。<b>ならば自ら土地を持ち、価値向上の成果も自分たちで得る。</b></div>
+  </div>
+  <div class="script"><h5>講師台本</h5><p>私たちの出店戦略は『非常識』と言われます。あえて駅から遠い倉庫街や海辺など、他社が敬遠する『バッドロケーション』を選ぶからです。大切なのは、ただ立地が悪いのではなく、『心地よさや驚きがあり、ここでなら過ごしてみたい』と直感できる場所かどうか。このロケーションを選ぶ力は、数多くの失敗と手痛い経験から身についた特技です。悪い立地だから家賃を相場より抑えられ、その分、食材やデザイン、スタッフに投資する。需要を奪い合うのではなく、自分たちで新たな需要と人流を創り出す。それが、レストラン事業の根幹です。南船場はその最初の証明です。</p><p>上場後、人の流れを生み出せる会社として認められた私たちには、大手デベロッパーや行政からの声がかかるようになりました。三井不動産による渋谷・宮下公園の再開発、三菱地所による丸の内仲通りへの出店。泉大津市・高槻市など、行政との連携も進んでいます。それでも、やることは変わりません。その場所にしかない店を作ること。その思いに、ブレはありません。</p></div>
+
+  <h3>EB事業:イノベーティブシナジー戦略</h3>
+  <div class="card">
+    <div class="eq">
+      <div><span class="tag r">課題①</span> <b>定借リスク</b><br><span class="muted">他者の土地・建物へ投資し、期限付きで回収。期限切れで資産をすべて撤去しなければならない。</span></div>
+      <div class="op">＋</div>
+      <div><span class="tag r">課題②</span> <b>賃料上昇リスク</b><br><span class="muted">エリアを活性化した結果、皮肉にも賃借人として大幅な賃料値上げや退去を求められる。</span></div>
+      <div class="op">→</div>
+      <div style="background:var(--navy-bg);border-radius:10px;padding:10px 14px"><b style="color:var(--navy)">気づき</b><br>飲食は不動産価値を上げられる。ならば自ら不動産を取得し、価値向上の果実を得る。<br><b>レストラン × 不動産の融合</b></div>
+    </div>
+    <h4 style="margin:20px 0 8px">収益モデル</h4>
+    <div class="grid g3">
+      <div class="card" style="box-shadow:none"><b>店舗運営収入</b><div class="muted">レストラン・ホテル・物販・レジャー施設などの運営収益</div></div>
+      <div class="card" style="box-shadow:none"><b>不動産売却収入</b><div class="muted">地方物件は購入した土地の10倍以上を目途にリート等へ売却</div></div>
+      <div class="card" style="box-shadow:none"><b>SPC配当・家賃収入</b><div class="muted">ファンドへの出資・運営による収益、賃貸物件の運用・管理による収益</div></div>
+    </div>
+  </div>
+  <div class="script"><h5>講師台本</h5><p>レストラン一軒が街を変える。その確信をスケールさせたのがEB事業です。かつて、私たちが街を活性化させると地価が上がり、逆に賃料値上げや退去を求められるという悔しい経験をしました。ならば、自分たちで土地を持ち、価値向上の成果も自分たちで得ようと決めたのです。レストランを起爆剤に、ホテルや施設を開発し、エリア全体の不動産価値を上げる。これを『イノベーティブシナジー戦略』と呼んでいます。私たちは食の力を武器に、街の未来をデザインするデベロッパーへと進化しています。</p></div>
+
+  <h3>食から始める地方創再生ロードマップ <small>フェーズをクリック</small></h3>
+  <div class="step-nav" id="stepNav"></div>
+  <div class="card stepbody" id="stepBody"></div>
+  <div class="script"><h5>講師台本</h5><p>EB事業の特徴は、この6段階のロードマップにあります。まず最初にするのは、エリアの選定。地方自治体や地方銀行からの情報収集で、可能性のある場所を見極めます。次に、集客力のある大型飲食店舗でエリアの『きっかけ』を作る。そして宿泊施設を作り、『滞在できるエリア』へ。飲食店を集積させ、雇用を生み出し、人流を増やす。地域のお祭りや施設で地域との融合を促進する。そして最終フェーズで目指すのは、『訪れる場所』から『住みたくなるエリア』へ。私たちが創っているのは観光地ではなく、コミュニティです。皆さんが創る一皿が、その土地に文化を根付かせ、『そこに住みたくなるエリア』を育てていくきっかけになります。</p></div>
+
+  <h3>モデルケース:淡路島「Frogs FARM」</h3>
+  <div class="grid g4" id="frogs"></div>
+  <div class="card" style="margin-top:14px">
+    かつては何もない雑草地。でも、最高に美しい夕日がある場所。その夕日を借景に、2019年4月、レストラン「GARB COSTA ORANGE」を開業。最初の1年は島の人に「なんで来たの？」と首をかしげられたが、今や宿泊施設・ピクニックガーデンと広がり、<b>23施設・年間20万人</b>が訪れるエリアへ。スタッフが島に移住し、農家さんと語らい、お祭りを創り、地域に根を張っています。
+  </div>
+  <div class="script"><h5>講師台本</h5><p>そのモデルケースが淡路島の『Frogs FARM』です。かつては何もない雑草地だった場所。でも、最高に美しい夕日がある場所。その夕日を借景として、レストラン『GARB COSTA ORANGE』をオープンさせました。最初の1年は、島の人々に『なんで来たの？』と首をかしげられた。それが今や、宿泊施設・ピクニックガーデンと広がり、23もの施設が集まる場所に。年間20万人の方が訪れる『滞在するエリア』へと変貌を遂げました。スタッフが島に移住し、農家さんと語らい、お祭りを創り、地域に根を張る。そうしてコミュニティが生まれることで、レストランは『食事をする場所』から『人生を豊かに過ごす場所』へと変わっていきます。何もない場所に一軒の店で火を灯した南船場から30年。私たちは今、人が生涯を送りたくなるような『新しい街の形』を、淡路島で証明し続けています。</p></div>
+</section>
+
+<!-- 3 PHILOSOPHY -->
+<section class="ch" id="philosophy" data-nav="理念">
+  <div class="eyebrow">03 · Philosophy</div>
+  <h2>なりたい自分になる</h2>
+  <p class="lead serif" style="font-size:19px;color:var(--ink)">私たちは、「食べる」「食べていただく」という仕事を通じて、なりたい自分になる。</p>
+  <p class="lead">会社が「なりたい自分にしてあげる」のではありません。「好きで得意で社会に役立つことを懸命に」やる、その泥臭い過程の中でしか本当の自分は見つからない。14のフィロソフィは、迷った時に立ち戻る<b>道標</b>です。</p>
+  <div class="script"><h5>講師台本</h5><p>こうした事業を支えているのは、店舗で日々お客様に向かうひとりひとりの、みなさんの力以外ありません。だから『会社のために頑張ってね』ではなくて、ここから大事なお話しをさせていただきます。私たちの経営理念は『食べる、食べていただく仕事を通してなりたい自分になる』。これはこの会社の存在意義であり、みなさんが、このバルニバービで何のために働くか、の理由になります。みなさんのなりたい自分って何ですか？家族と幸せに過ごしたい？自分のお店を出したい？好きなワインを学びたい？そこを目指して働いていこう、ということになります。</p><p>イタリアンをやりたいというシェフがいてイタリアン業態が生まれたり、居酒屋の女将をやりたいというスタッフがいて居酒屋業態が生まれたり、ピッツァを極めたいスタッフがピッツァコンテストを主催するようになったり。そんな一人一人の思いがバルニバービを作っています。ただ、『なりたい自分になる』とは、会社が皆さんを『なりたい自分にしてあげます』という意味ではありません。お店やりたい！といったからといって、数千万円をポンと出すものでは当然ありません。やりたいことと、それを価値として提供できるかどうか。どこで提供するのが良いか。そのためには何を学ぶ必要があるか。たくさんの失敗の中で学んだノウハウを集結させながら、時に支えられ、支えながら成長していく中で形になってきました。</p><p>『14のフィロソフィ』は、私たちが歩んできた30年の中で、大事にしてきた思いや行動を言葉にしたものです。これらは会社が強いるルールではありません。皆さんが迷った時に立ち戻り、自分の仕事に誇りを持つための『道標』になればと考えています。</p></div>
+
+  <h3>14のフィロソフィー <small>「解説あり」をクリックで今日の4つを深掘り</small></h3>
+  <div class="phi" id="phi"></div>
+  <div class="card phidet" id="phiDet" hidden></div>
+
+  <h3>Do / Don't <small>カードをクリックで裏返す</small></h3>
+  <div class="grid g3" id="dd"></div>
+  <div class="script"><h5>講師台本(フィロソフィーブックを開く)</h5><p>手元にフィロソフィーブックを用意してください。最初のページは、先ほど話したバルニバービが生まれるきっかけとなった原体験と、1号店が生まれた時の思いが綴られています。そして、なりたい自分になる、を目指す上での道標として、14のフィロソフィーのうち、今日は4つのフィロソフィーについての解釈を話していきます。</p></div>
+</section>
+
+<!-- 4 CAREER -->
+<section class="ch" id="career" data-nav="キャリアプラン">
+  <div class="eyebrow">04 · Career</div>
+  <h2>自分をブランドにしていく</h2>
+  <p class="lead">正解ルートも出世コースもありません。スペシャリスト、マネジメント、本部のゼネラリスト。自分だけの仕事になっていくことで評価されます。</p>
+  <div class="paths">
+    <div>
+      <div class="seg" id="pathSeg" style="display:flex"></div>
+      <div class="card" id="pathBody" style="margin-top:12px"></div>
+    </div>
+    <div class="card"><div class="ladder" id="ladder"></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><span class="tag n">成長を促進、加速する</span><h4 style="margin:6px 0 2px">多様な研修制度</h4><span class="muted">ビジネス研修・社会人研修・スキルUP研修 など</span></div>
+    <div class="card"><span class="tag">労働環境を守る</span><h4 style="margin:6px 0 2px">休暇制度</h4><span class="muted">有給休暇・産前産後休暇・育児休暇 など</span></div>
+  </div>
+  <h3>福利厚生の一覧</h3>
+  <div class="card benefit-list">
+    <div>産前産後・育児休業<span>取得者25名(2026年3月現在)</span></div>
+    <div>有給休暇<span>入社6ヶ月後10日付与、以降法定通り</span></div>
+    <div>家族手当<span>1人目 月1万円/2人目〜 月5千円(取得者119名)</span></div>
+    <div>各種研修制度<span>ビジネス・社会人・スキルUP研修</span></div>
+    <div>家賃手当<span>月2万円・直線距離で半径4km圏内 など</span></div>
+    <div>その他<span>資格取得補助/永年勤続報奨/Birthday制度/リファラル紹介/健康診断</span></div>
+    <div>持株会制度<span>1,000円〜積立可能。会社が5%上乗せ</span></div>
+  </div>
+  <div class="script"><h5>講師台本</h5><p>バルニバービには正解ルートというキャリアも出世コースというキャリアもありません。技術を極めるスペシャリストも、チームを率いるマネジメントも、本部で会社を支えるゼネラリストも。私たちが大切にしているのは、『自分をブランドにしていく』という考え方です。つまりは、自分の仕事、自分だけの仕事になっていくことで評価されていきます。ホールからキッチンを経験して、マネージャーになる人。キッチンをずっとやり続けて、代表になる人。一度会社を離れ、外の世界を経験してから本部で働く人。一見食とは関係なさそうなスキルや経験も自分のキャリアとして活かすことができる。同時に、学びたいと思う時に、学ぶ環境として研修を設けています。また、ライフステージによっても働き方が変わってくるので、皆さんが安心して働けるよう、福利厚生などの制度も整えています。なりたい自分を目指す環境と、評価する環境、発揮できる環境。そのプラットフォームとして店舗、会社を使っていってください。</p></div>
+</section>
+
+<!-- 5 RULES -->
+<section class="ch" id="rules" data-nav="制度とルール">
+  <div class="eyebrow">05 · Support &amp; Rules</div>
+  <h2>あなたを支え、守る5つの柱</h2>
+  <p class="lead">現場で理不尽に困ったり、予期せぬトラブルに巻き込まれたりしないための「判断基準」です。入社説明で聞いた人も、大事な部分なので改めて確認しましょう。</p>
+  <div class="pillars" id="pillars" role="tablist"></div>
+  <div id="panes"></div>
+</section>
+
+<!-- 6 QUIZ -->
+<section class="ch" id="quiz" data-nav="確認テスト">
+  <div class="eyebrow">06 · Check</div>
+  <h2>理解度チェック</h2>
+  <p class="lead">今日の内容から8問。本番の確認テスト(10問)の前に、手元でさっと復習できます。</p>
+  <div class="card qz" id="qz"></div>
+  <div class="script"><h5>講師台本(アンケート)</h5><p>QRコードを読み込んで、アンケートに答えてください。スマホで参加している人は、チャット欄のリンクからお答えください。今から10分間で、今日の内容に関する10問のクイズに答えてもらいます。最後の記述欄には<b>「この1ヶ月で正直一番困っていること・焦ったこと」</b>を本音で書いてください。店長に直接言いにくいことでも、SmartHRの操作がわからないといった些細なことでも構いません。ここで出された声は、本部が責任を持って現場環境を改善するために使用します。全体で共有してもらって大丈夫という人は、YESにチェックを入れてください。</p></div>
+</section>
+
+<!-- 7 SCRIPT -->
+<section class="ch" id="scripts" data-nav="講師用:10分台本">
+  <div class="eyebrow">07 · For Instructor</div>
+  <h2>冒頭の会社説明(10分版)</h2>
+  <p class="lead">時間配分つきの通し台本です。見出しをクリックで展開できます。</p>
+  <div class="tl" id="tl"></div>
+</section>
+
+<footer>© BALNIBARBI Co.,Ltd. — 新入社員オリエンテーション資料(HTML版)</footer>
+</div>
+</main>
+<button id="top-btn" aria-label="ページ上部へ">↑</button>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const store={get(k,d){try{return JSON.parse(localStorage.getItem('bbb:'+k))??d}catch{return d}},set(k,v){try{localStorage.setItem('bbb:'+k,JSON.stringify(v))}catch{}}};
+
+/* ---------- nav ---------- */
+const sections=[['top','はじめに'],...$$('section.ch').map(s=>[s.id,s.dataset.nav])];
+sections.forEach(([id,t],i)=>{
+  $('#navSide').append(Object.assign(el('a','nv',`<i>${String(i).padStart(2,'0')}</i>${t}`),{href:'#'+id}));
+  $('#navTop').append(Object.assign(el('a','',t),{href:'#'+id}));
+});
+const links=$$('#navSide a,#navTop a');
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));const a=$('#navTop a.on');a&&a.scrollIntoView({inline:'center',block:'nearest'})}})},{rootMargin:'-30% 0px -65% 0px'});
+sections.forEach(([id])=>io.observe(document.getElementById(id)));
+const tb=$('#top-btn');addEventListener('scroll',()=>tb.classList.toggle('show',scrollY>700),{passive:true});
+tb.onclick=()=>scrollTo({top:0});
+function setTeacher(on){document.body.classList.toggle('teacher',on);$('#teacher').checked=$('#teacher2').checked=on;store.set('teacher',on)}
+$('#teacher').onchange=e=>setTeacher(e.target.checked);$('#teacher2').onchange=e=>setTeacher(e.target.checked);
+setTeacher(store.get('teacher',false));
+function seg(box,items,cur,fn){box.innerHTML='';items.forEach(([k,l])=>{const b=el('button',k===cur?'on':'',l);b.type='button';b.onclick=()=>{$$('button',box).forEach(x=>x.classList.remove('on'));b.classList.add('on');fn(k)};box.append(b)})}
+
+/* ---------- overview ---------- */
+[['グループ店舗数','104','店舗','2026年1月現在'],['社員数','667','名','アルバイト・嘱託 373名'],['売上高(2025年7月期)','143','億円','レストラン127 + EB16'],['創業','1991','年','大阪・南船場']].forEach(([k,v,u,s])=>{
+  $('#stats').append(el('div','card stat',`<div class="k">${k}</div><div class="v">${v}<small>${u}</small></div><div class="muted">${s}</div>`))});
+const rest=[['バッドロケーション',27,'#EF9F27'],['不動産デベロッパー',38,'#D85A30'],['行政・公共',14,'#8A6D4B'],['大学・その他',4,'#B4B2A9']];
+rest.forEach(([n,v,c])=>{$('#barR').append(Object.assign(el('span','',v),{style:`flex:${v};background:${c}`,title:n+' '+v+'店'}));$('#legR').append(el('span','',`<i style="background:${c}"></i>${n} ${v}店`))});
+
+/* ---------- history chart ---------- */
+const sales={1994:15,1995:24,1996:55,1997:164,1998:270,1999:613,2000:731,2001:1679,2002:1858,2003:1616,2004:1604,2005:1584,2006:1778,2007:2191,2008:2462,2009:2655,2010:2729,2011:3030,2012:3640,2013:5185,2014:5950,2015:6642,2016:8468,2017:9824,2018:11185,2019:11512,2020:9433,2021:8046,2022:9969,2023:13363,2024:13452,2025:14332};
+const phases=[
+ {k:'all',l:'全期間'},
+ {k:'a',l:'創業期',r:'1991〜2000',c:'#1D9E75',f:1994,t:2000,d:'1991年創業、レストランプロデュースを手掛ける。阪神・淡路大震災を機に食の力を実感し、大阪・南船場の倉庫街を自らの手で改装してレストラン・カフェをオープン。南船場の仕掛け人として脚光を浴びる。'},
+ {k:'b',l:'迷走期',r:'2001〜2003',c:'#8A6D4B',f:2001,t:2003,d:'株式公開を目指して、マニュアル・均一化したチェーン展開など事業拡大のみを目指した結果、業績不振に。店舗のスクラップ&ビルドを繰り返し、スタッフの離脱を招いた。この時期の店は現在1軒も残っていない。'},
+ {k:'c',l:'拡大期',r:'2004〜2015',c:'#378ADD',f:2004,t:2015,d:'創業時の想いに立ち返り、スタッフがやりたいと思うサービスや料理を提供する、オリジナルな店づくりに回帰。2013年に店舗運営子会社体制へ移行して業績が拡大し、2015年に東証マザーズへ上場。'},
+ {k:'d',l:'深化(進化)期',r:'2016〜',c:'#0F3F70',f:2016,t:2025,d:'上場を機に、行政・自治体などさまざまな事業体との連携を加速。兵庫県・淡路島を舞台に地方創生を開始し、2021年、食で活性化した不動産の流動化で収益化を図るEB事業セグメントを確立。'}];
+const phaseOf=y=>phases.find(p=>p.f&&y>=p.f&&y<=p.t);
+const events=[[1991,'創業・大阪南船場'],[1995,'阪神・淡路大震災(原体験)'],[1998,'CAFÉ GARB オープン(南船場)'],[2004,'第二創業・東京進出'],[2005,'GARB pintino(芝公園)で再起'],[2013,'店舗運営子会社体制へ'],[2015,'東証マザーズ上場'],[2019,'淡路島 GARB COSTA ORANGE'],[2021,'EB事業セグメント確立'],[2023,'島根・出雲 WINDY FARM']];
+const NS='http://www.w3.org/2000/svg';const svg=$('#chart');
+const W=960,H=330,L=46,R=8,T=14,B=30,years=Object.keys(sales).map(Number),bw=(W-L-R)/years.length,max=16000;
+const Y=v=>T+(H-T-B)*(1-v/max);
+for(let v=0;v<=max;v+=4000){const l=document.createElementNS(NS,'line');l.setAttribute('x1',L);l.setAttribute('x2',W-R);l.setAttribute('y1',Y(v));l.setAttribute('y2',Y(v));l.setAttribute('stroke','currentColor');l.setAttribute('opacity','.14');svg.append(l);
+  const t=document.createElementNS(NS,'text');t.setAttribute('x',L-6);t.setAttribute('y',Y(v)+4);t.setAttribute('text-anchor','end');t.textContent=v.toLocaleString();svg.append(t)}
+const bars={};
+years.forEach((y,i)=>{
+  const x=L+i*bw+bw*.16,w=bw*.68,h=(H-B)-Y(sales[y]);
+  const r=document.createElementNS(NS,'rect');r.setAttribute('x',x);r.setAttribute('y',Y(sales[y]));r.setAttribute('width',w);r.setAttribute('height',h);r.setAttribute('rx',2);r.setAttribute('fill',phaseOf(y).c);r.setAttribute('class','bar-r');r.setAttribute('tabindex',0);r.setAttribute('aria-label',`${y}年 売上高${sales[y].toLocaleString()}百万円`);
+  const show=()=>{const bx=svg.getBoundingClientRect(),cb=svg.parentElement.getBoundingClientRect();const k=bx.width/W;const tip=$('#tip');tip.innerHTML=`<b>${y}年</b><br>${sales[y].toLocaleString()}百万円(約${(sales[y]/100).toFixed(1)}億円)`;tip.style.left=(bx.left-cb.left+svg.parentElement.scrollLeft+(x+w/2)*k)+'px';tip.style.top=(bx.top-cb.top+Y(sales[y])*k-6)+'px';tip.style.opacity=1};
+  r.onmouseenter=r.onfocus=show;r.onmouseleave=r.onblur=()=>$('#tip').style.opacity=0;r.onclick=show;
+  svg.append(r);bars[y]=r;
+  if(y%2===1||y===2025||y===1994){const t=document.createElementNS(NS,'text');t.setAttribute('x',x+w/2);t.setAttribute('y',H-10);t.setAttribute('text-anchor','middle');t.textContent=y;svg.append(t)}
+});
+function setPhase(k){
+  const p=phases.find(x=>x.k===k);
+  years.forEach(y=>bars[y].classList.toggle('dim',k!=='all'&&phaseOf(y)!==p));
+  const pb=$('#phaseBody');
+  if(k==='all'){pb.style.setProperty('--c','var(--ink-3)');pb.innerHTML='<h4>全期間</h4><div class="muted">1994年15百万円 → 2025年14,332百万円。2001〜2003年の落ち込みと、2020〜21年(コロナ禍)の減少を経て、過去最高を更新。上のタブで各時代を見てみましょう。</div>'}
+  else{pb.style.setProperty('--c',p.c);pb.innerHTML=`<h4>${p.l} <span class="muted">${p.r}</span></h4><div>${p.d}</div>`}
+}
+seg($('#phaseSeg'),phases.map(p=>[p.k,p.l]),'all',setPhase);setPhase('all');
+events.forEach(([y,t])=>{const b=el('button','',`<b>${y}</b>${t}`);b.type='button';b.onclick=()=>{$$('#events button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const p=phaseOf(Math.max(1994,Math.min(2025,y)));setPhase(p.k);$$('#phaseSeg button').forEach((x,i)=>x.classList.toggle('on',phases[i]===p));const r=bars[Math.max(1994,y)];if(r){r.focus({preventScroll:true})}};$('#events').append(b)});
+
+/* ---------- org ---------- */
+const hq=[
+ ['営業本部','石倉 治 本部長',[['セールス・ソリューション部','石倉 治(兼)'],['パーチェス・ソリューション部','勝間 泰啓'],['ウェブ・ソリューション部','前田 志穂']]],
+ ['企画本部','中島 邦子 本部長',[['建設設計部','柴田 政義','施設管理課/施設設計課/ファシリティー課'],['グラフィックデザイン部','石合 裕樹','関東GD課/関西GD課']]],
+ ['管理本部','宮下 大輔 本部長',[['サステナビリティ推進室','宮下 大輔(兼)'],['経営管理部','須藤 孝晃','経理課/財務課']]],
+ ['総務人事本部','杉本 直也 本部長',[['レイバーリレーションズ部','杉本 直也(兼)'],['ヒューマンクリエイティブマネージメント部','坂本 修武'],['ITシステムコントロール部','奥井 広大']]]];
+hq.forEach(([n,h,ds])=>$('#hq').append(el('div','card',`<h4>${n}</h4><div class="hd">${h}</div><ul>${ds.map(d=>`<li>${d[0]}<span>${d[1]} 部長${d[2]?' ・ '+d[2]:''}</span></li>`).join('')}</ul>`)));
+
+const cos=[
+ ['株式会社バルニバービ オーガスト',26,24.9,77,'kansai','関西・淡路島(EB)','関西の主要都市を広くカバーしつつ、淡路島西海岸「Frogs FARM」のEB事業も担う。レストラン・カフェ・ベーカリーから宿泊施設(カモメスローホテル系4施設)・ホテル・アイスクリーム・ラーメン・回転すしまで多彩。','GARB COSTA ORANGE(淡路島)/KAMOME SLOW HOTEL/THE CALENDAR(滋賀・大津)/THE LOAF CAFE(豊中)'],
+ ['株式会社バルニバービ インターフェイス',12,15.4,56,'kansai','関西・東海','関西を軸に愛媛・東海へも展開。行政連携型立地(泉大津シーパスパーク・名城公園)や観光エリア(嵐山・東山)への出店が特徴。','GARB Green Walk(泉大津)/GARB CASTELLO(名城公園)/BON COCOTTE(名古屋駅)/京抹茶クレープ ARINCO(嵐山)'],
+ ['株式会社バルニバービ コンシスタンス',12,15.5,75,'tokyo','東京・関東・新潟・北海道','東京の大型不動産デベロッパー案件を多く担当。三菱地所・丸の内エリアのGARBブランドを複数展開。スキー場(冬季限定)・スポーツ施設(北海道Fビレッジ)など新業態にも積極的。','GARB Tokyo/GARB PUBLIC/GARB CENTRAL(丸の内・赤坂)/GARB Cheers OTEMACHI/GARB 江ノ島/L\'Antica Pizzeria da Michele 北海道(2025年6月開業)'],
+ ['バルニバービ スピリッツ&カンパニー株式会社',10,17.9,83,'kansai','大阪・京都(関西)','大阪・京都の都市型立地が中心。公園・歴史的建物など行政連携型の立地が多く、ピッツェリア・バー・カフェ・和食など多様な業態。BONSAI 1877(京町家リノベーション)など話題性の高い出店も。','NAKANOSHIMA SOCIAL EAT AWAKE(中之島)/BONSAI 1877(京都・新町御池)/AOI NAPOLI IN THE PARK(天王寺)'],
+ ['株式会社トゥーコンパス',3,6.8,23,'kansai','大阪','大阪の主要繁華街に特化。梅田・南堀江・心斎橋と、異なる商圏に各1店舗ずつ配置。','NORTH tRunk(梅田)/MOULiN(南堀江)/TUFFE(心斎橋)'],
+ ['株式会社バルニバービ ウィルワークス',35,42.6,228,'tokyo','東京・関東・島根(EB)','東京・関東エリアの主力会社。GOOD MORNING CAFEシリーズを複数展開するほか、L\'Antica Pizzeria da Michele(海外名店誘致)、海外ブランドとのコラボなど多様な業態。島根県出雲市「WINDY FARM」のEB事業も担う。','NEW LIGHT(渋谷・宮下公園)/GOOD MORNING CAFE 鍋町・ルミネ池袋・中野/L\'Antica Pizzeria da Michele 横浜・早稲田/WINDY FARM ATMOSPHERE(島根・出雲)'],
+ ['株式会社ピアッティベッラ',9,10.3,52,'kansai','兵庫(南あわじ)・大阪・福岡','大阪・博多・兵庫県南あわじ市でのEB事業(地方創生第3弾)を担う。2026年秋には南あわじ市でのホテル開業に向けて開発を進める。','amarancia(南あわじ)/amarancia cottage HUGGING NATURE HOUSE/L\'Antica Pizzeria da Michele FUKUOKA/GARB weeks'],
+ ['株式会社ヒトハナサカス',3,1.8,6,'kansai','京都・奈良','世界遺産・東大寺周辺という歴史的な観光エリアへの出店が特徴。観光客・地元客の双方をターゲットにした展開。','NARAD(奈良・東大寺)/NARAD parcside(奈良・東大寺)/Hamac de Paradis Latte(京都)'],
+ ['株式会社ジョイパーク',1,0.4,1,'tokyo','東京','東京・蔵前エリアに特化し、TROIS CUIT ASANUMA(トロワキュイ アサヌマ)を運営。蔵前はクラフト系・アート系の店舗が集まる注目エリア。','TROIS CUIT ASANUMA(東京・蔵前)'],
+ ['株式会社トウキョウイット',1,null,10,'tokyo','東京','東京・南青山という高感度エリアのLA & LEを運営(2026年3月店舗オープン)。','LA & LE(東京・南青山)']];
+const areaSeg=[['all','すべて'],['kansai','関西・西日本'],['tokyo','東京・関東']];
+let area='all';
+function renderCos(){
+  const key=$('#coSort').value, idx={stores:1,sales:2,staff:3}[key];
+  const list=cos.filter(c=>area==='all'||c[4]===area).sort((a,b)=>(b[idx]||0)-(a[idx]||0));
+  const mx=Math.max(...cos.map(c=>c[idx]||0));
+  const box=$('#cos');box.innerHTML='';
+  list.forEach(c=>{
+    const b=el('button','card co',`<h4>${c[0]}</h4>
+      <div class="nums"><span><b>${c[1]}</b>店舗</span><span><b>${c[2]==null?'—':c[2]}</b>億円</span><span><b>${c[3]}</b>名</span></div>
+      <div class="meter" aria-hidden="true"><i style="width:${(c[idx]||0)/mx*100}%"></i></div>
+      <div class="muted" style="margin-top:6px">担当: ${c[5]}</div>
+      <div class="more"><p style="margin:0 0 8px">${c[6]}</p><span class="tag">代表店舗</span> ${c[7]}</div>`);
+    b.type='button';b.setAttribute('aria-expanded','false');b.onclick=()=>{const o=b.classList.toggle('open');b.setAttribute('aria-expanded',o)};
+    box.append(b)});
+}
+seg($('#coArea'),areaSeg,'all',k=>{area=k;renderCos()});$('#coSort').onchange=renderCos;renderCos();
+$('#cos').insertAdjacentHTML('afterend','<p class="muted" style="margin-top:10px">運営子会社に加え、事業子会社(アワエナジー/エナビードゥーエ/BALNIBARBI Roots Creation)があります。店舗数は2026年1月現在の公式資料の数値で、グループ合計(104店舗)と一致しない場合があります。</p>');
+
+/* ---------- roadmap ---------- */
+const steps=[
+ ['フェーズ0','エリアの選定','地方自治体・地方銀行からの物件紹介・開拓・情報収集で、可能性のある場所を見極める。'],
+ ['フェーズ1','きっかけの店づくり','起点となる大型飲食店舗を開設。規模がないとエリアへのインパクトが弱く、きっかけにならないため、集客力のある大型店から開発が始まる。(例:GARB COSTA ORANGE)'],
+ ['フェーズ2','滞在できるエリアへ','宿泊施設を開設。わざわざ来ていただくために、エリアには滞在施設が不可欠。(例:KAMOME SLOW HOTEL、Lazy Inn)'],
+ ['フェーズ3','エリア回遊・雇用による人流の創出','食バリエーション・宿泊施設の拡充と集積、エリア回遊を促進する物販店を出店。飲食店の集積で雇用を生み、人流増加を創出する。'],
+ ['フェーズ4','地域との融合・交流の創出','地域コミュニティ施設や地域イベントを開催し、地域の方々とスタッフが交流できる場をつくる。(例:旧尾崎小学校跡「SAKIA」、淡路昭和ナイト)'],
+ ['フェーズ5','そこに住みたくなるエリアへ','訪れ、働き、住まい、暮らしを営みコミュニティが生まれる。私たちが目指す地域・地方の活性化とは「そこに住みたくなるエリアにすること」。']];
+let stp=0;
+function renderStep(){
+  $$('#stepNav button').forEach((b,i)=>{b.classList.toggle('on',i===stp);b.classList.toggle('done',i<stp)});
+  const s=steps[stp];$('#stepBody').innerHTML=`<div class="stepbody"><div class="tag n">${s[0]} / 6</div><h4>${s[1]}</h4><div>${s[2]}</div><div style="margin-top:12px;display:flex;gap:8px"><button class="nxt" style="background:var(--card);color:var(--ink);border:1px solid var(--rule-2)" ${stp?'':'disabled'} id="pv">← 前へ</button><button class="nxt" id="nx" ${stp<5?'':'disabled'}>次へ →</button></div></div>`;
+  $('#pv').onclick=()=>{stp--;renderStep()};$('#nx').onclick=()=>{stp++;renderStep()};
+}
+steps.forEach((s,i)=>{const b=el('button','',`<b>${s[0].toUpperCase().replace('フェーズ','PHASE ')}</b>${s[1].length>9?s[1].slice(0,8)+'…':s[1]}`);b.type='button';b.onclick=()=>{stp=i;renderStep()};$('#stepNav').append(b)});renderStep();
+[['23','施設','2026年3月現在'],['20','万人/年','年間来訪者'],['3','ヘクタール','開発敷地'],['2019','年4月','第1弾レストラン開業']].forEach(([v,u,s])=>$('#frogs').append(el('div','card stat',`<div class="v">${v}<small>${u}</small></div><div class="muted">${s}</div>`)));
+
+/* ---------- philosophy ---------- */
+const phi=['笑顔と元気','食べることは好きですか？お客様の笑顔が見たいですか？','好きで 得意で 社会に役立つことを懸命に','苦楽しい 〜クルタノシイ〜','会社は何のためにあるのか？','楽しい場所に人は集まる。','今、目の前にいらっしゃるお客様にできることを全力で','一皿入魂','お客さま 私たち 取引企業さま 三者がいるからこそ、理想のお店が生まれる。','器ではなく空気をつくる。','目指すお店はお腹だけではなく 心を満たすレストラン','とにかく、楽しむ！','「自分の幸せだけ」を考えることと、「自分だけの幸せ」を考えることは全く違う。','チャンスは常に目の前にある。あとは自分次第。'];
+const deep={
+ 1:{h:'笑顔と元気は、自分から始める',b:'笑顔と元気は、サービス業の基本動作でも、お客様のためだけのものでもありません。気分のいい日や明るい仲間といる時は自然に出てきますが、それは外から与えられている状態です。そうではなく、自分から笑顔でいる。自分から元気でいる。気分のいい日も、そうでない日も、自分で自分のスイッチを入れる、という意思のお話です。誰かに与えてもらったままだと、自分の状態が他人次第になり、自分の人生を他人に握られているのと同じ。だからこのフィロソフィーが、一番最初に置かれています。',e:'笑顔と元気は、誰かから与えられるものではなく、自分から始めるもの。自分から始められるかどうかが、すべての始まりです。',q:'今まで、自分でスイッチを入れた瞬間はどんな時がありましたか。'},
+ 2:{h:'「好き」が先にある',b:'私たちは「好き」「嬉しい」という気持ちから仕事を始めたい。技術や経験ももちろん大事だけれど、その前に「自分が食べたいと思えるか」「自分が嬉しいと感じるか」がある。自分が「これいいな」と思えないものは、人にも差し出さない。それが、自分に嘘をつかずに働くということ。「喜んでもらいたい」も、実は「自分の好き」の続きです。相手を喜ばせている自分が楽しいから、人にも喜んでほしいと思う。',e:'「好き」が先にある。誰かの笑顔は、そのあとからついてくる。バルニバービで一緒にやりたいのは、自分の好きを大事にできる人。',q:'最近、自分の好きなことを誰かに伝えたこと、伝えるために動いたことはありますか。'},
+ 3:{h:'好きで、得意で、社会に役立つこと',b:'好きでも不得意なことを続けると、苦しいだけになる。得意でも好きじゃないことは、続かず作業になる。理想は、好きで得意なことを見つけること。ただ、何が好きで何が得意かは、頭で考えてもわからず、やってみて初めて見えてくる。まず動くことが、見つけるための一歩。そして見つけたら磨く。誰かが「ありがとう」と言ってくれるところまで届いて、初めて「社会に役立つ」につながる。見つけることも磨くことも、どちらも「なりたい自分を目指す」ということ。今、探している人も、もう道の途中にいます。',e:'好きで、得意で、誰かの「ありがとう」につながること。見つけることも、磨くことも、どちらも、なりたい自分への道です。',q:'これまでに、好きなことや得意なことを使って、誰かから「ありがとう」と言われた経験はありますか。'},
+ 14:{h:'チャンスは、声に出した瞬間に立ち上がる',b:'「やってみたい」「こうなりたい」という思いは誰にでもあります。でも、思っているだけでは何も始まりません。思いを声に出す。誰かに話す、相談する、宣言する。声に出した瞬間、思いは初めて自分の外に出ます。そこには「やってみたら」「手伝うよ」「自分もそう思ってた」と応えてくれる人が現れる。声に出さなければ誰も気づかない。声に出すから、誰かが応える。今、発した声が、明日には、自分もお店も、動き出している。それが、バルニバービです。',e:'チャンスは、目の前に「ある」ものではなく、声に出した瞬間に「立ち上がる」もの。思いを、まず声に出すことから、すべては始まります。',q:'今日この研修が終わった後、あなたは店長に何を伝えますか。'}};
+let phiCur=null;
+phi.forEach((t,i)=>{const n=i+1,b=el('button',deep[n]?'deep':'',`<i>${String(n).padStart(2,'0')}</i><span>${t}</span>`);b.type='button';
+  b.onclick=()=>{const d=$('#phiDet');if(!deep[n]){d.hidden=true;$$('#phi button').forEach(x=>x.classList.remove('on'));phiCur=null;return}
+    $$('#phi button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const v=deep[n];
+    d.innerHTML=`<span class="tag n">PHILOSOPHY ${String(n).padStart(2,'0')}</span><h4 style="margin-top:8px">${v.h}</h4><p style="margin:0">${v.b}</p><div class="essence"><b>本質</b>${v.e}</div><div class="question"><b>問い 〜思い出してみてください〜</b>${v.q}</div>`;d.hidden=false};
+  $('#phi').append(b)});
+const dd=[['#01 笑顔','しんどい時こそ、スイッチを入れて笑う','気分が乗らないからと、不機嫌を出す'],['#04 苦楽しい','「難しいですね！燃えますね！」と言う','「面倒くさい」「聞いてない」と逃げる'],['#07 全力','マニュアルになくても、今必要なことをやる','「指示されていないので」と見て見ぬふりをする'],['#10 空気','お客様が「心地よい」と感じる間合いを読む','作業効率だけを考えて、淡々と皿を置く'],['#05 会社','「この店を使って、自分はこれをやりたい」と言う','「会社が何もして…」(資料の記載が途中で終わっています)']];
+dd.forEach(([n,a,b])=>{const f=el('div','flip',`<button type="button" aria-label="${n} Do/Don'tを裏返す"><div class="f f1"><b>DO(バルニバービ流)</b><h5>${n}</h5><p>${a}</p><small>タップで Don't を見る</small></div><div class="f f2"><b>DON'T(やらないこと)</b><h5>${n}</h5><p>${b}</p><small>タップで戻る</small></div></button>`);
+  $('button',f).onclick=()=>f.classList.toggle('on');$('#dd').append(f)});
+
+/* ---------- career ---------- */
+const paths={
+ s:{l:'スペシャリストへ',t:'シェフ / バリスタ / パティシエ / バーテンダー / ソムリエ',d:'特定の高度なスキルを極める。',lv:['sp']},
+ m:{l:'マネジメントへ',t:'ホール・キッチン → 副店長 → 店長 → 統括 → 執行役員 → 取締役',d:'子会社代表への就任も。チームを率いる。',lv:['mg']},
+ h:{l:'本部・その他へ',t:'エリア開発 / デザイン / 人事・採用 / 経営管理',d:'ゼネラリストとして幅広くキャリアをデザイン。',lv:['hq']}};
+const ladder=[['取締役 / 執行役員 / 統括','mg'],['店長 / リーダー / 副店長','mg'],['シェフ / バリスタ / パティシエ / バーテンダー / ソムリエ','sp'],['ホール / キッチン','all'],['新卒入社・中途入社','all']];
+function setPath(k){const p=paths[k];$('#pathBody').innerHTML=`<h4 style="margin:0 0 6px;font-size:17px;color:var(--navy)">${p.l}</h4><div style="font-weight:600">${p.t}</div><div class="muted" style="margin-top:4px">${p.d}</div>`;
+  const L=$('#ladder');L.innerHTML='';const rows=k==='h'?[['本部各部門(営業・企画・管理・総務人事)','hq'],['ホール / キッチン経験を活かす','all'],['入社','all']]:ladder;
+  rows.forEach(([t,g])=>L.append(el('div','lv'+(g==='all'||g===paths[k].lv[0]?'':' off'),t)))}
+seg($('#pathSeg'),Object.entries(paths).map(([k,v])=>[k,v.l]),'s',setPath);setPath('s');
+
+/* ---------- pillars ---------- */
+const ic={
+ gift:'<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4"/><path d="M5 12v9h14v-9M12 8v13M12 8c-2-4-6-3-5 0M12 8c2-4 6-3 5 0"/></svg>',
+ clock:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+ shield:'<svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+ phone:'<svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>',
+ mail:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>'};
+const pil=[['gift','福利厚生・諸手当','働く仲間へのサポート'],['clock','就業ルール・規律','自分と環境を守る盾'],['shield','衛生管理・食中毒予防','プロとしての防衛'],['phone','SmartHR','情報のライフライン'],['mail','グループ相談窓口','安心のための体制']];
+const paneHTML=[
+`<h3>福利厚生・諸手当 <small>働く仲間へのサポート</small></h3>
+<ul class="pt">
+<li><span class="big">月2万円</span><b>家賃補助制度</b><span>給与30万円以下・所属店舗から4km圏内に居住・本人名義の賃貸契約。課税対象外の手当。</span></li>
+<li><span class="big">1万円分<br>+50%OFF</span><b>バースデーチケット</b><span>誕生月に全店舗で使える食事券1万円分と、宿泊施設の50%割引チケット。有効期限は2ヶ月、本人の予約で利用。</span></li>
+<li><span class="big">1万円/<br>5千円</span><b>子ども支援手当</b><span>18歳未満の子がいるスタッフに、1人目 1万円、2人目以降 5千円/人を毎月支給。</span></li>
+<li><span class="big">5・10・<br>20年</span><b>永年勤続報奨</b><span>勤続5年・10年・20年の節目に、勤続年数に応じた報奨を支給。</span></li>
+<li><span class="big">+5%</span><b>従業員持株会</b><span>自社株を1,000円から給与天引きで積立購入。株購入費の5%を会社が補助。</span></li>
+<li><span class="big">その他</span><b>お祝い・健康・保険</b><span>結婚・出産祝い金、年2回の健康診断、会社負担の団体保険、「彫刻リンパ(マッサージ)」の利用(特定サイトから予約)。</span></li></ul>
+<div class="calc"><h4>🏠 家賃補助 判定</h4>
+<label>給与(月額) <input type="number" id="rSal" value="280000" step="10000" min="0"> 円</label>
+<label>所属店舗までの距離 <input type="range" id="rKm" min="0" max="10" step="0.5" value="3"> <b id="rKmV">3 km</b></label>
+<label><input type="checkbox" id="rOwn" checked> 本人名義の賃貸契約である</label>
+<div class="res" id="rRes"></div></div>
+<div class="calc"><h4>👶 子ども支援手当 試算</h4>
+<label>18歳未満のお子さん <input type="number" id="kN" value="2" min="0" max="10"> 人</label>
+<div class="res" id="kRes"></div></div>
+<div class="script"><h5>講師台本</h5><p>生活の基盤を支える制度です。給与30万円以下で、所属店舗から4km圏内に、本人名義で賃貸契約をして住む場合、月額2万円の補助が出ます。住宅補助は課税対象外の手当となります。対象か不安な人は、後でSmartHRから申請状況を確認してください。誕生月には全店で利用できる1万円分の食事券と、宿泊施設の割引チケットが届きます。本人のご予約で利用が可能です。有効期限は2ヶ月となっておりますので、使い漏れがないようお気をつけください。子ども支援手当は、18歳未満の子がいる場合、1人目1万円、2人目以降5千円を毎月支給します。また、1,000円から自社株を積み立てられ、会社が購入額の5%を上乗せする「従業員持株会」や、勤続5年ごとの「永年勤続報奨」もあります。</p></div>`,
+`<h3>就業ルール・規律 <small>自分と環境を守る盾</small></h3>
+<p class="lead">店舗ごとの「なあなあ」を排し、本部のスタンダードとして守る基本原則です。</p>
+<ul class="pt">
+<li><span class="big">1分単位</span><b>勤怠打刻の徹底</b><span>給与は1分単位で計算。業務開始前・終了直後に必ず本人が打刻。自主練習などは必ず<b>退勤打刻の後</b>に。</span></li>
+<li><span class="big">45/60分</span><b>休憩の確保</b><span>6時間以上の勤務で45分以上、8時間以上の勤務で60分以上の休憩が必須。</span></li>
+<li><span class="big">公休8日</span><b>公休と有給</b><span>公休は月8日。有給休暇は6か月以上の継続勤務で10日付与、付与後1年以内に最低5日の取得義務。</span></li>
+<li><span class="big">届出</span><b>届出義務</b><span>住所・連絡先・氏名の変更、結婚・離婚、出産等の際は速やかに届け出る。</span></li>
+<li><span class="big">相談</span><b>相談窓口</b><span>店長・シェフに相談しにくい内容はグループ相談窓口(soudan@garb.co.jp)へ。</span></li></ul>
+<div class="calc"><h4>☕ 休憩 早見</h4><label>1日の勤務時間 <input type="range" id="bH" min="1" max="12" step="0.5" value="8"> <b id="bHV">8 時間</b></label><div class="res" id="bRes"></div></div>
+<p class="muted" style="margin-top:10px">もし現場で休憩や有給が取れていなければ、店長に「本部研修でこう習いました」と冷静に事実を伝えてください。</p>
+<div class="script"><h5>講師台本</h5><p>バルニバービの給与計算は「1分単位」で行われます。残業代も含め、皆さんの労働時間は正確に評価・管理されます。そのため、業務開始前および終了直後の「本人打刻」を徹底してください。特に注意が必要なのは自主的な練習です。これは必ず「退勤打刻の後」に行ってください。休憩時間は、6時間以上の勤務で45分以上、8時間以上なら60分以上が必須です。公休は月8日、さらに勤続6ヶ月で10日の有給休暇が付与されます。付与後1年以内に最低5日は必ず取得する義務があります。</p></div>`,
+`<h3>衛生管理・食中毒予防 <small>プロとしての防衛</small></h3>
+<div class="danger">🚫 牡蠣の摂取は「全面禁止」。ノロウイルスによる食中毒を完全に防ぐため、バルニバービでは全スタッフの牡蠣の摂取をいかなる場合も禁止しています。お客様・お店・自分自身の立場を守る絶対的な規律です。</div>
+<h4 style="margin:22px 0 4px">体調チェック:今日の症状は？ <span class="muted">(該当するものを選択)</span></h4>
+<div class="triage" id="tri"></div><div class="res" id="triRes"></div>
+<ul class="pt" style="margin-top:14px">
+<li><span class="big">手洗い</span><b>衛生行動の徹底</b><span>出勤時・休憩後・お手洗い後にハンドソープで手洗い+アルコール消毒。調理中は髪型・帽子の着用を徹底。</span></li>
+<li><span class="big">マキトリ</span><b>記録の義務</b><span>衛生管理の実施状況は「マキトリ」で記録・管理。10人以上の同料理提供時は検食を実施。</span></li>
+<li><span class="big">SNS<br>厳禁</span><b>舞台裏の投稿はしない</b><span>休憩室の写真(レシピ・機密の写り込み)、未発表のIR情報、お客様のパーティ写真などの無断アップロードは、情報漏洩・信頼喪失につながるため厳禁。</span></li></ul>
+<div class="script"><h5>講師台本</h5><p>バルニバービでは、全スタッフの牡蠣の摂取をいかなる場合も禁止しています。ノロウイルスによる食中毒を完全に防ぎ、お客様、お店、そして自分自身の立場を守るための決まりです。発熱、ひどい咳、下痢、嘔吐がある場合は「出勤不可」です。判断に迷わず、すぐに上司へ報告し指示を仰いでください。また、「マキトリ」による日々の衛生行動の記録管理は義務です。休憩室の写真にレシピや機密情報が写り込むリスク、未発表の企業情報の漏洩、お客様のパーティ写真の無断公開は絶対にしないでください。何気ない投稿が、多大な信頼喪失と情報漏洩を招きます。</p></div>`,
+`<h3>SmartHR <small>情報のライフライン</small></h3>
+<p class="lead">本部とスタッフを繋ぐ基盤ツール。iOS/Android向けの専用アプリを必ず準備してください。</p>
+<div class="grid g3"><div class="card"><b>🧾 手続き</b><div class="muted">給与明細・源泉徴収票の確認/住所・通勤経路の変更申請/扶養家族の追加・削除/育児・介護休業の意向確認</div></div><div class="card"><b>📢 お知らせ・掲示板</b><div class="muted">新機能のリリース、重要事項、規約変更、アンケートなどが届く。定期的な確認が必要。</div></div><div class="card"><b>📱 アプリ</b><div class="muted">スムーズな利用のため、専用アプリのインストールを推奨。</div></div></div>
+<h4 style="margin:22px 0 8px">実習ミッション <span class="muted">(チェックはこの端末に保存されます)</span></h4>
+<ul class="check" id="mis"></ul>
+<div class="script"><h5>講師台本</h5><p>事前にインストールしてもらっているSmartHRを開いてみてください。開けない人がいましたら、チャットで教えてください。ミッション1:掲示板の確認。本部からの重要な通知、規約の変更、アンケートなどは全てここに集約されます。現場の伝達漏れを防ぎ、自分の権利や義務を正しく把握するため、定期的にチェックする習慣をつけてください。ミッション2:プロフィール情報の充実(出身校登録)。会社が皆さんの背景を正しく把握し、適切なコミュニケーションや配置を検討するための重要なデータとなります。未入力の方は、この場で正式名称を入力し、保存してください。ミッション3:用途の確認。今後、給与明細や源泉徴収票の確認、住所や通勤経路の変更申請は全てここで行います。</p></div>`,
+`<h3>グループ相談窓口 <small>安心のための体制</small></h3>
+<p class="lead">店長やシェフには直接言いづらい職場の人間関係、ハラスメント、業務上の悩みなど、どんなことでも相談できる専門窓口です。あなたのプライバシーと立場は本部の手で完全に守られます。</p>
+<a class="mail" href="mailto:soudan@garb.co.jp">soudan@garb.co.jp</a>
+<p class="muted" style="margin-top:12px">悩みや不安は、決してひとりで抱え込まないでください。</p>
+<div class="script"><h5>講師台本</h5><p>店長やシェフには直接言いづらいハラスメントや業務上の悩みがあれば、この専門窓口を頼ってください。あなたのプライバシーと立場は本部の手で完全に守られます。</p></div>`];
+pil.forEach(([i,t,s],n)=>{const b=el('button',n===0?'on':'',`${ic[i]}${t}<small>${s}</small>`);b.type='button';b.setAttribute('role','tab');b.onclick=()=>showPane(n);$('#pillars').append(b);$('#panes').append(el('div','pane'+(n===0?' on':''),paneHTML[n]))});
+function showPane(n){$$('#pillars button').forEach((b,i)=>b.classList.toggle('on',i===n));$$('#panes .pane').forEach((p,i)=>p.classList.toggle('on',i===n))}
+// rent
+function rent(){const s=+$('#rSal').value,k=+$('#rKm').value,o=$('#rOwn').checked;$('#rKmV').textContent=k+' km';
+  const r=$('#rRes'),why=[];if(s>300000)why.push('給与が30万円を超えています');if(k>4)why.push('店舗から4km圏外です');if(!o)why.push('本人名義の賃貸契約ではありません');
+  r.className='res '+(why.length?'ng':'ok');r.textContent=why.length?'対象外:'+why.join(' / '):'✔ 対象になる可能性があります → 月額 20,000円(非課税)。申請状況はSmartHRで確認。'}
+['rSal','rKm','rOwn'].forEach(i=>$('#'+i).addEventListener('input',rent));rent();
+function kid(){const n=Math.max(0,Math.floor(+$('#kN').value||0)),m=n?10000+(n-1)*5000:0;$('#kRes').textContent=`月額 ${m.toLocaleString()}円(年額 ${(m*12).toLocaleString()}円)`}
+$('#kN').addEventListener('input',kid);kid();
+function brk(){const h=+$('#bH').value;$('#bHV').textContent=h+' 時間';$('#bRes').textContent=h>=8?'休憩は 60分以上 が必須':h>=6?'休憩は 45分以上 が必須':'休憩義務の目安(6時間)未満'}
+$('#bH').addEventListener('input',brk);brk();
+// triage
+const sym=['高熱','ひどい咳','下痢','嘔吐','特に症状なし'];let ts=new Set();
+sym.forEach(s=>{const b=el('button','',s);b.type='button';b.onclick=()=>{if(s==='特に症状なし'){ts=new Set()}else ts.has(s)?ts.delete(s):ts.add(s);$$('#tri button').forEach(x=>x.classList.toggle('on',ts.has(x.textContent)));tri()};$('#tri').append(b)});
+function tri(){const r=$('#triRes');if(ts.size){r.className='res ng';r.textContent='⚠ 出勤不可。判断に迷わず、すぐに上司へ報告して指示を仰いでください。(ノロウイルスの場合は結果が陰性になるまで出勤できません)'}else{r.className='res ok';r.textContent='症状がなければ通常どおり。出勤時の手洗いとアルコール消毒を忘れずに。'}}tri();
+// missions
+const mis=['ミッション1:ダッシュボードの「お知らせ」「掲示板」を確認する','ミッション2:個人情報ページに「出身校」(正式名称)を登録して保存する','ミッション3:給与明細・源泉徴収票・住所/通勤経路の変更申請の場所を確認する'];
+const mdone=store.get('mis',[]);
+mis.forEach((m,i)=>{const l=el('li','',`<label><input type="checkbox" ${mdone[i]?'checked':''}><span>${m}</span></label>`);$('input',l).onchange=e=>{mdone[i]=e.target.checked;store.set('mis',mdone)};$('#mis').append(l)});
+
+/* ---------- quiz ---------- */
+const Q=[
+ ['バルニバービの経営理念(存在意義)は？',['食から始まる日本創再生','規模の拡大と効率化','全国100店舗の達成','日本一のチェーン展開'],0,'「食から始まる日本創再生」。規模の拡大ではなく、食を通して人が豊かに暮らせる世界を創ることが目的です。'],
+ ['EB事業の「EB」は何の略？',['エステートビルドアップ','イースト・ビジネス','エクセレント・ブランド','エリア・ベース'],0,'エステートビルドアップ(ESTATE BUILD UP)事業。レストランを起爆剤にエリアの不動産価値を高めます。'],
+ ['家賃補助(月2万円)の条件として正しいものは？',['給与30万円以下・店舗から4km圏内・本人名義の賃貸','給与に関係なく全員','店舗から10km圏内なら誰でも','持ち家でも対象'],0,'給与30万円以下、所属店舗から4km圏内に居住、本人名義の賃貸契約が条件です。'],
+ ['子ども支援手当(18歳未満)の金額は？',['1人目1万円・2人目以降5千円/人','1人につき一律1万円','1人目5千円・2人目以降1万円','2人目から支給'],0,'1人目 1万円、2人目以降 5千円/人を毎月支給します。'],
+ ['8時間以上の勤務で必要な休憩は？',['60分以上','30分以上','45分以上','休憩は任意'],0,'6時間以上で45分以上、8時間以上で60分以上。確実な取得が必須です。'],
+ ['自主的な練習は、いつ行う？',['退勤打刻の後','出勤打刻の前','いつでも良い','打刻は不要'],0,'給与は1分単位で管理。自主練習は必ず退勤打刻の後に行います。'],
+ ['発熱・ひどい咳・下痢・嘔吐がある場合の対応は？',['出勤不可。すぐ上司に報告し指示を仰ぐ','マスクをして出勤する','様子を見て午後から出勤','同僚に代わりを探してもらう'],0,'出勤不可。判断に迷わず、すぐ上司へ報告します。ノロウイルスは陰性になるまで出勤できません。'],
+ ['店長・シェフに言いにくい悩みの相談先は？',['グループ相談窓口(soudan@garb.co.jp)','SNSに投稿する','同僚の私用LINE','相談せず我慢する'],0,'プライバシーと立場は本部が守ります。ひとりで抱え込まないでください。']];
+let qi=0,score=0;
+function showQ(){const box=$('#qz');
+  if(qi>=Q.length){const msg=score===Q.length?'完璧です！':score>=6?'よくできました。間違えた箇所を見直しましょう。':'もう一度、上のセクションを見直してみましょう。';
+    box.innerHTML=`<div class="prog"><i style="width:100%"></i></div><div class="score">${score} / ${Q.length}</div><p>${msg}</p><button class="nxt" id="rt">もう一度</button>`;$('#rt').onclick=()=>{qi=0;score=0;showQ()};return}
+  const [q,o,a,ex]=Q[qi];const order=o.map((t,i)=>[t,i]).sort(()=>Math.random()-.5);
+  box.innerHTML=`<div class="prog"><i style="width:${qi/Q.length*100}%"></i></div><div class="muted">Q${qi+1} / ${Q.length}</div><div class="q">${q}</div><div class="opts"></div><div class="exp"></div>`;
+  order.forEach(([t,i])=>{const b=el('button','',t);b.type='button';b.onclick=()=>{$$('.opts button',box).forEach(x=>x.disabled=true);const ok=i===a;if(ok)score++;b.classList.add(ok?'ok':'ng');if(!ok)$$('.opts button',box).find(x=>x.textContent===o[a]).classList.add('ok');
+    const e=$('.exp',box);e.textContent=(ok?'⭕ 正解。':'❌ 不正解。')+ex;e.classList.add('on');const n=el('button','nxt',qi<Q.length-1?'次の問題 →':'結果を見る');n.type='button';n.onclick=()=>{qi++;showQ()};box.append(n);n.focus()};$('.opts',box).append(b)});}
+showQ();
+
+/* ---------- 10min script ---------- */
+const tl=[
+ ['1. オープニング','0:00 – 1:00','皆さん、株式会社バルニバービへようこそ。まず、全体像をお伝えしていきたいと思います。私たちは現在、全国に100店舗以上のレストランを展開し、淡路島や出雲では街そのものを創り出す「EB(エステートビルドアップ)事業」を手掛けています。しかし、私たちの目的は「規模の拡大」ではありません。私たちの存在意義は、この一文に集約されています。『食から始まる日本創再生』。食という営みを通して、人々が豊かに暮らせる世界を創ること。そして、働く一人ひとりが「食の仕事を通して、なりたい自分になる」こと。なぜ、私たちはそこまで「食」と「なりたい自分」にこだわるのか。その原点からお話しします。'],
+ ['2. 原点:絶望を希望に変えた一杯のおかゆ','1:00 – 3:00','バルニバービの歴史は、代表・佐藤の「震災での原体験」から始まりました。1995年、阪神・淡路大震災。すべてを失い、希望を失いかけていた被災地で、佐藤は一杯の「おかゆ」を振るまいました。塩と胡麻油だけの、なんでもないおかゆ。しかし、それが冷え切った体を温めた瞬間、人々は涙を流し、お互いを励まし合い、一瞬にして生きる力を取り戻しました。その光景を目にした時、「食には、人の心を動かし、希望に変える力がある」ことを知り、なによりも、心から喜んでもらうことがこんなにも自分の心を喜ばせるんだ、ということに気づいたのです。この感動を日常にしたい。その思いだけで、1991年、大阪・南船場の「何もない場所」に1号店をオープンしました。周囲は「100%失敗する」と猛反対しましたが、店に灯がともると、遠方からもお客様がわざわざ目指してやってくるようになりました。これが、今の私たちの誇りである「バッドロケーション戦略」の始まりです。「需要がある場所に出店するのではない。自分たちの手で、そこにしかない需要を創り出す」。この成功が、今の私たちの自信の根底にあります。'],
+ ['3. 失敗と再起:魂なき拡大の全滅','3:00 – 5:00','しかし、順風満帆ではありませんでした。2001年からの3年間、私たちは「拡大」という数字に目を奪われ、最大の失敗を犯します。トレンドに乗って効率と利益を優先し、出店を重ねた結果、お客様もスタッフも離れていきました。この時期に作った店は、現在、一軒も残っていません。文字通りの「全滅」です。私たちはこの痛みを猛烈に反省し、2005年、東京・芝公園の「GARB pintino」で再起をかけました。駅から遠くても、目の前の東京タワーと緑を活かし、「最高のおもてなし」をスタッフ一人ひとりが自ら考え、動く。アルバイトでも誰もが自ら考えて動く。そんなお店を作りました。そのお店は開業半年で予約が困難なお店となり、契約終了までレストランのトレンドを牽引していきました。「想いを込めた店は、どんな場所でも目的地になれる。人は心で動くのだ」。ここから、バルニバービの本当の成長期が始まりました。'],
+ ['4. 事業の進化:店から街へ、そしてコミュニティへ','5:00 – 7:00','私たちは今、その「食の力」をさらに大きなステージで証明しています。その象徴が、淡路島の「Frogs FARM」です。かつては何もない雑草地でしたが、最高に美しい夕日がありました。そこに一軒のレストランを火付け役として作り、今や23もの施設が集まり、年間20万人が訪れる「住みたくなる街」へと変貌を遂げています。なぜ、そこまでやるのか。それはレストランを「食事をする場所」から「人生を豊かにするインフラ」へと変えたいからです。皆さんが創る一皿、皆さんの笑顔が、その土地に文化を創り、コミュニティを創り出す。30年前に南船場の一軒の店から始まった灯が、今、日本の地方を再生させる大きな光となっています。'],
+ ['5. 組織と哲学:なりたい自分を磨く場所','7:00 – 9:00','この挑戦を支えるのが、皆さんに今日お渡しした「14のフィロソフィ」です。これは会社が強いるルールではありません。皆さんが迷った時に立ち返る「道標」です。私たちの理念は「なりたい自分になる」こと。ですが、勘違いしないでください。会社があなたを「なりたい自分」にさせてあげるのではありません。「好きで得意で社会に役立つことを、懸命にやる」。良いことばかりではない毎日の中で、泥臭く、懸命に前へ進む過程でしか、本当の自分は見つかりません。だからこそ、バルニバービは「皆で一緒に」向き合います。一人では到達できない高い壁も、仲間と共鳴し、助け合いながら乗り越えていく。それが私たちのスタイルです。'],
+ ['6. クロージング:自分というブランドを創る','9:00 – 10:00','最後に、皆さんの未来について。バルニバービには「決まったキャリアパス」はありません。キッチンから代表になった人もいれば、一度辞めて戻ってきて本部で活躍する人もいます。大切なのは、「自分をブランドにしていく」という意志です。チャンスは常に目の前にあります。産休・育休、家族手当、家賃補助、持株会。皆さんが安心して挑戦し続けられる環境は全力で整えています。皆さんの歩みが、自分を輝かせ、誰かの幸せに繋がり、そして自分自身の幸せになること。今日から一緒に、新しい物語を創っていきましょう。改めて、バルニバービへようこそ！']];
+tl.forEach(([t,m,p],i)=>{const d=el('details','',`<summary>${t}<span>${m}</span></summary><p>${p}</p>`);if(i===0)d.open=true;$('#tl').append(d)});
+</script>
+</body>
+</html>
