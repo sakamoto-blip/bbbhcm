@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>バルニバービ 新入社員オリエンテーション スライド</title>
+<style>
+:root{--ink:#1E1C19;--amber:#EF9F27;--amber-d:#B86F0A;--navy:#185FA5;--navy-d:#0F3F70;--red:#D6403F;--green:#1D9E75}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0b0d12;overflow:hidden;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Meiryo",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:center;overflow:hidden;background:#fff;border-radius:6px}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:44px 70px 40px;text-align:center;background:linear-gradient(160deg,#FFFDF8,#F6EFE2)}
+.slide.active{display:flex}
+.slide.dark{background:radial-gradient(ellipse at 50% 30%,#22345e,#0b1226 70%);color:#fff}
+.slide.warm{background:linear-gradient(160deg,#FFF6E2,#FBDFAE)}
+.slide.navy{background:linear-gradient(160deg,#0F3F70,#1d70bd);color:#fff}
+.slide.alert{background:linear-gradient(160deg,#FFF5F3,#FFDCD7)}
+.slide.green{background:linear-gradient(160deg,#EAF8F2,#C6EDDD)}
+.kick{position:absolute;left:44px;top:30px;font-size:15px;letter-spacing:.2em;font-weight:700;color:var(--amber-d);opacity:.9}
+.dark .kick,.navy .kick{color:#F6C675}
+.art{position:relative;width:100%;height:410px;display:flex;align-items:center;justify-content:center}
+.msg{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:700;font-size:54px;line-height:1.38;letter-spacing:.04em;margin:6px 0 0;max-width:1120px}
+.msg em{font-style:normal;color:var(--amber-d)}
+.dark .msg em,.navy .msg em{color:#FFC96B}
+.sub{font-size:25px;margin-top:12px;opacity:.78;letter-spacing:.03em}
+.q{display:inline-block;margin-top:14px;background:#FFE8B8;color:#7A4A06;border-radius:99px;padding:8px 24px;font-size:23px;font-weight:700}
+.dark .q,.navy .q{background:#F6C675;color:#3a2603}
+.emo{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;line-height:1}
+.abs{position:absolute}
+.card{background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(30,28,25,.14);padding:22px 26px;color:var(--ink)}
+.chip{display:inline-block;background:#fff;color:var(--ink);border-radius:99px;padding:8px 22px;font-size:23px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.row{display:flex;gap:26px;align-items:stretch;justify-content:center}
+.big{font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+
+/* animation system */
+.slide .a{opacity:0}
+.slide.active .a{animation-duration:.8s;animation-delay:var(--d,0s);animation-fill-mode:both;animation-timing-function:cubic-bezier(.2,.85,.25,1)}
+.active .up{animation-name:up}.active .pop{animation-name:pop}.active .lt{animation-name:lt}.active .rt{animation-name:rt}
+.active .zoom{animation-name:zoom}.active .drop{animation-name:drop}.active .fade{animation-name:fade;animation-duration:1.2s}
+.active .grow{animation-name:grow;animation-duration:1.1s;transform-origin:50% 100%;transform-box:fill-box}
+.active .draw{animation-name:draw;animation-duration:1.4s}
+.active .spin{animation-name:spin}
+@keyframes up{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.2)}70%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:none}}
+@keyframes lt{from{opacity:0;transform:translateX(-140px)}to{opacity:1;transform:none}}
+@keyframes rt{from{opacity:0;transform:translateX(140px)}to{opacity:1;transform:none}}
+@keyframes zoom{from{opacity:0;transform:scale(1.6)}to{opacity:1;transform:none}}
+@keyframes drop{0%{opacity:0;transform:translateY(-260px)}70%{opacity:1;transform:translateY(14px)}100%{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes grow{from{opacity:1;transform:scaleY(0)}to{opacity:1;transform:scaleY(1)}}
+@keyframes draw{from{opacity:1;stroke-dashoffset:1}to{opacity:1;stroke-dashoffset:0}}
+@keyframes spin{from{opacity:0;transform:rotate(-180deg) scale(.2)}to{opacity:1;transform:none}}
+.draw{stroke-dasharray:1;stroke-dashoffset:0}
+.float{animation:float 3.2s ease-in-out infinite}
+.float2{animation:float 4.4s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.glow{animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+.active .fall{animation:fall 1.1s var(--d,0s) both ease-in}
+@keyframes fall{0%{opacity:1;transform:none}100%{opacity:.18;transform:translateY(34px) rotate(14deg) scale(.9);filter:grayscale(1)}}
+.ripple{animation:ripple 3s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes ripple{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.8);opacity:0}}
+.steam{animation:steam 2.6s ease-in infinite;opacity:0}
+@keyframes steam{0%{transform:translateY(20px) scaleX(1);opacity:0}30%{opacity:.8}100%{transform:translateY(-70px) scaleX(1.6);opacity:0}}
+.walk{animation:walk 5s linear infinite}
+@keyframes walk{0%{transform:translateX(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateX(var(--dx,520px));opacity:0}}
+.twinkle{animation:glow 1.6s ease-in-out infinite}
+.orbit{animation:orbit 16s linear infinite}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.orbit>*{animation:orbitInv 16s linear infinite}
+@keyframes orbitInv{to{transform:rotate(-360deg)}}
+.flick{animation:flick 1.2s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes flick{0%,100%{transform:scale(1,1) rotate(-3deg)}50%{transform:scale(.9,1.15) rotate(4deg)}}
+.confetti{position:absolute;top:-40px;animation:conf linear infinite}
+@keyframes conf{to{transform:translateY(760px) rotate(360deg)}}
+.blink{animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+.shake{animation:shake 2.2s ease-in-out infinite}
+@keyframes shake{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(-6deg)}20%,40%{transform:rotate(6deg)}50%{transform:rotate(0)}}
+
+/* ui */
+#hud{position:fixed;left:0;right:0;bottom:0;height:44px;display:flex;align-items:center;gap:10px;padding:0 14px;color:#cfd3dc;font-size:13px;z-index:20;background:linear-gradient(transparent,rgba(0,0,0,.55));opacity:.0;transition:opacity .25s}
+body:hover #hud,#hud:focus-within{opacity:1}
+#hud button{background:#ffffff1a;border:0;color:#fff;border-radius:8px;padding:6px 12px}
+#hud button:hover{background:#ffffff33}
+#bar{position:fixed;left:0;top:0;height:4px;background:var(--amber);width:0;z-index:25;transition:width .3s}
+#cnt{margin-left:auto;font-variant-numeric:tabular-nums}
+#notes{position:fixed;left:0;right:0;bottom:0;max-height:42vh;overflow:auto;background:rgba(14,16,22,.96);color:#f1efe9;padding:16px 28px 56px;font-size:clamp(15px,1.6vw,20px);line-height:1.85;display:none;z-index:18;border-top:2px solid var(--amber)}
+#notes.on{display:block}
+#notes h4{margin:0 0 6px;color:#F6C675;font-size:13px;letter-spacing:.16em}
+#grid{position:fixed;inset:0;background:rgba(8,10,14,.97);z-index:30;display:none;overflow:auto;padding:30px}
+#grid.on{display:block}
+#grid .g{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;max-width:1300px;margin:0 auto}
+#grid button{background:#1b1f2a;color:#e8e6df;border:1px solid #2d3342;border-radius:10px;padding:12px 14px;text-align:left;font-size:14px;line-height:1.5}
+#grid button:hover,#grid button.cur{border-color:var(--amber);background:#262b3a}
+#grid button i{display:block;font-style:normal;color:#F6C675;font-size:12px;letter-spacing:.1em}
+#help{position:fixed;right:14px;top:12px;color:#8a90a0;font-size:12px;z-index:5}
+.hide{display:none}
+.slide.shot{padding:0;background:#000}.slide.shot img{width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+
+<!-- 1 -->
+<section class="slide dark" data-title="Welcome" data-k="">
+  <div class="abs emo float" style="left:130px;top:110px;font-size:70px">🍽️</div>
+  <div class="abs emo float2" style="left:130px;top:520px;font-size:56px">🍷</div>
+  <div class="abs emo float2" style="right:150px;top:100px;font-size:62px">☕</div>
+  <div class="abs emo float" style="right:130px;top:500px;font-size:70px">🍕</div>
+  <div class="abs emo float" style="left:60px;top:300px;font-size:48px">🥖</div>
+  <div class="abs emo float2" style="right:70px;top:290px;font-size:50px">🥂</div>
+  <div class="a fade" style="letter-spacing:.5em;font-size:22px;color:#F6C675;font-weight:700">WELCOME TO BALNIBARBI</div>
+  <div class="msg a up" style="--d:.3s;font-size:76px;margin-top:22px">新入社員<br>オリエンテーション</div>
+  <div class="sub a fade" style="--d:1s">ご入社おめでとうございます</div>
+  <aside class="notes">皆さん、入社おめでとうございます。そして、数ある会社の中からバルニバービを選んでくれてありがとうございます。今日は、皆さんがこれから立つこの「バルニバービ」というステージがどういう場所なのか、そしてここで皆さんがどうやって「なりたい自分」を実現していくのか。そのための「地図」と「コンパス」をお渡しする時間です。まずは、皆さんが入社したこの会社の「正体」についてお話しします。</aside>
+</section>
+
+<!-- 2 agenda -->
+<section class="slide" data-title="今日の流れ" data-k="TODAY">
+  <div class="art" style="height:330px;flex-direction:column;gap:26px">
+    <div class="row" style="width:1060px;gap:8px;height:150px">
+      <div class="card a lt" style="flex:6;background:#185FA5;color:#fff;display:flex;flex-direction:column;justify-content:center"><div class="emo" style="font-size:48px">📖🤝📱</div><div style="font-size:24px;font-weight:700">解説 ＋ SmartHR実習</div></div>
+      <div class="card a up" style="--d:.3s;flex:2;background:#EF9F27;display:flex;flex-direction:column;justify-content:center"><div class="emo" style="font-size:48px">✍️</div><div style="font-size:21px;font-weight:700">確認テスト</div></div>
+      <div class="card a rt" style="--d:.5s;flex:3;background:#1D9E75;color:#fff;display:flex;flex-direction:column;justify-content:center"><div class="emo" style="font-size:48px">💬</div><div style="font-size:21px;font-weight:700">回答・解決策</div></div>
+    </div>
+    <div class="row a fade" style="--d:.9s;width:1060px;gap:8px;font-size:22px;font-weight:700"><div style="flex:6">〜60分</div><div style="flex:2">60-70分</div><div style="flex:3">70-90分</div></div>
+  </div>
+  <div class="msg a up" style="--d:.6s">今日は、90分。</div>
+  <div class="sub a fade" style="--d:1.1s">理不尽に困らないための「判断基準」を、一緒に持ち帰ります</div>
+  <aside class="notes">今日は大きく3つのパートに分かれます。最初の約60分は、会社概要・理念・労務ルール・リスク管理の解説です。途中でSmartHRの操作実習を挟みます。60〜70分は確認テストと、現場での困りごとの入力。70〜90分は、入力してもらった内容への回答と、具体的な解決策の共有です。スマホから参加の方は、画面を横に固定してください。皆さんが現場で理不尽に困ったり、予期せぬトラブルに巻き込まれたりしないための「判断基準」を共有する時間です。</aside>
+</section>
+
+<!-- 3 vision -->
+<section class="slide warm" data-title="食から始まる日本創再生" data-k="01 COMPANY">
+  <div class="art">
+    <svg viewBox="0 0 500 400" width="560" height="410" style="position:absolute">
+      <circle class="ripple" cx="250" cy="215" r="150" fill="none" stroke="#EF9F27" stroke-width="5"/>
+      <circle class="ripple" style="animation-delay:1s" cx="250" cy="215" r="150" fill="none" stroke="#EF9F27" stroke-width="5"/>
+      <circle class="ripple" style="animation-delay:2s" cx="250" cy="215" r="150" fill="none" stroke="#EF9F27" stroke-width="5"/>
+    </svg>
+    <div class="emo a pop float" style="font-size:190px;--d:.2s">🍲</div>
+    <div class="emo a pop" style="position:absolute;left:250px;top:90px;font-size:70px;--d:1.0s">🌾</div>
+    <div class="emo a pop" style="position:absolute;right:250px;top:90px;font-size:70px;--d:1.2s">🏘️</div>
+    <div class="emo a pop" style="position:absolute;left:330px;bottom:30px;font-size:64px;--d:1.4s">😊</div>
+    <div class="emo a pop" style="position:absolute;right:330px;bottom:30px;font-size:64px;--d:1.6s">🌏</div>
+  </div>
+  <div class="msg a up" style="--d:.5s">食から始まる<em>日本創再生</em></div>
+  <div class="sub a fade" style="--d:1s">規模の拡大ではなく、人が豊かに暮らせる世界を創ること</div>
+  <aside class="notes">私たちは現在、全国に100店舗以上のレストランを展開し、さらに淡路島や出雲などで、街そのものを創り出す「エステートビルドアップ事業」を手掛けています。しかし、私たちの根底にあるのは規模の拡大ではありません。存在意義は『食から始まる日本創再生』というヴィジョンに集約されています。食という営みを通して、多くの人々が楽しく、豊かに暮らせる世界を創造すること。そして、そこで働く一人ひとりが、食の仕事を通して「なりたい自分」になっていくこと。今日は、なぜそこを目指しているのか、その「理由」からお話しします。</aside>
+</section>
+
+<!-- 4 numbers -->
+<section class="slide" data-title="数字で見るバルニバービ" data-k="01 COMPANY">
+  <div class="art" style="height:330px"><div class="row" style="gap:34px">
+    <div class="card a up" style="width:320px"><div class="emo" style="font-size:64px">🏁</div><div class="big" style="font-size:84px;color:var(--navy)"><span class="cnt" data-to="1991" data-sep="0">0</span></div><div style="font-size:24px;font-weight:700">年 創業(大阪・南船場)</div></div>
+    <div class="card a up" style="--d:.25s;width:320px"><div class="emo" style="font-size:64px">🏪</div><div class="big" style="font-size:84px;color:var(--amber-d)"><span class="cnt" data-to="104">0</span></div><div style="font-size:24px;font-weight:700">店舗(2026年1月現在)</div></div>
+    <div class="card a up" style="--d:.5s;width:320px"><div class="emo" style="font-size:64px">🧑‍🍳</div><div class="big" style="font-size:84px;color:var(--green)"><span class="cnt" data-to="667">0</span></div><div style="font-size:24px;font-weight:700">名の社員</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:.9s">全国に104店舗。<br>同じ店は、ひとつもない。</div>
+  <aside class="notes">バルニバービは1991年、大阪・南船場で創業しました。現在は全国に約100店舗、社員は667名。最初からこの規模を目指していたわけではありません。一人ひとりが「なりたい自分」を目指し、目の前のお客様を楽しませようと独立した店舗運営を積み重ねてきた。その「結果」として、今の規模になっています。だから、ここは「管理されるための巨大組織」ではなく、「挑戦した証」の集合体なんです。</aside>
+</section>
+
+<!-- 5 two businesses -->
+<section class="slide" data-title="2つの事業" data-k="01 COMPANY">
+  <div class="art" style="height:380px"><div class="row" style="align-items:center;gap:20px">
+    <div class="card a lt" style="width:430px;border-top:10px solid var(--amber)"><div class="emo float" style="font-size:90px">🍽️</div><div style="font-size:30px;font-weight:800;margin-top:6px">レストラン事業</div><div class="big" style="font-size:72px;color:var(--amber-d)"><span class="cnt" data-to="83">0</span><small style="font-size:28px">店舗</small></div><div style="font-size:22px;opacity:.75">売上 127億円</div></div>
+    <div class="a pop big" style="--d:.7s;font-size:90px;color:var(--ink)">×</div>
+    <div class="card a rt" style="width:430px;border-top:10px solid var(--navy)"><div class="emo float2" style="font-size:90px">🏗️</div><div style="font-size:30px;font-weight:800;margin-top:6px">EB(エステートビルドアップ)事業</div><div class="big" style="font-size:72px;color:var(--navy)"><span class="cnt" data-to="19">0</span><small style="font-size:28px">店舗</small></div><div style="font-size:22px;opacity:.75">売上 16億円 / 淡路島・出雲・南あわじ</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:1s">店の力で、街をつくる。</div>
+  <aside class="notes">事業は大きく2つ。ひとつは『レストラン事業』。売上高127億円、83店舗。バッドロケーション・不動産デベロッパー・行政・大学と、多様な立地形態で展開しています。もうひとつが『EB(エステートビルドアップ)事業』。売上高16億円、19店舗。淡路島・出雲・南あわじなど、地域に根ざしたエリア開発を行っています。(2025年7月期)</aside>
+</section>
+
+<!-- 6 goal -->
+<section class="slide navy" data-title="長期目標" data-k="01 COMPANY">
+  <div class="art" style="height:380px;align-items:flex-end;gap:90px;padding-bottom:10px">
+    <div style="text-align:center"><div class="big a up" style="font-size:54px"><span class="cnt" data-to="143">0</span><small style="font-size:24px">億円</small></div><div class="a grow" style="width:180px;height:128px;background:#7fb6ee;border-radius:12px 12px 0 0;margin-top:8px"></div><div style="font-size:22px;margin-top:8px">2025年7月期</div></div>
+    <div class="a pop emo" style="--d:1.2s;font-size:80px;align-self:center">➡️</div>
+    <div style="text-align:center"><div class="big a up" style="--d:1.5s;font-size:80px;color:#FFC96B"><span class="cnt" data-to="360" data-delay="1500">0</span><small style="font-size:30px">億円</small></div><div class="a grow" style="--d:1.3s;width:180px;height:320px;background:linear-gradient(#FFC96B,#EF9F27);border-radius:12px 12px 0 0;margin-top:8px"></div><div style="font-size:22px;margin-top:8px">2034年7月期</div></div>
+  </div>
+  <div class="msg a up" style="--d:1.8s;font-size:46px">食で人の流れを変え、<em>地域を活性化する企業</em>へ</div>
+  <div class="sub a fade" style="--d:2.2s">営業利益率 10%</div>
+  <aside class="notes">長期目標は、2034年7月期に売上高360億円、営業利益率10%。『食で人の流れを変え、地域を活性化する企業』としての姿を目指しています。この目標を掲げる理由からお話ししていきます。</aside>
+</section>
+
+<!-- 7 okayu -->
+<section class="slide dark" data-title="原点:一杯のおかゆ" data-k="02 ORIGIN">
+  <div class="art">
+    <svg viewBox="0 0 700 410" width="700" height="410" style="position:absolute"><defs><radialGradient id="gl"><stop offset="0" stop-color="#FFC96B" stop-opacity=".8"/><stop offset="1" stop-color="#FFC96B" stop-opacity="0"/></radialGradient></defs>
+      <circle class="glow" cx="350" cy="240" r="190" fill="url(#gl)"/>
+      <g stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"><path class="steam" d="M310 150c-20-25 20-40 0-65" style="animation-delay:0s"/><path class="steam" d="M350 150c-20-25 20-40 0-65" style="animation-delay:.8s"/><path class="steam" d="M390 150c-20-25 20-40 0-65" style="animation-delay:1.6s"/></g></svg>
+    <div class="emo a pop" style="font-size:170px;--d:.2s;margin-top:40px">🍚</div>
+    <div class="emo a up" style="position:absolute;left:120px;bottom:30px;font-size:70px;--d:1s;filter:grayscale(.8)">😢</div>
+    <div class="emo a up" style="position:absolute;right:120px;bottom:30px;font-size:70px;--d:1.3s;filter:grayscale(.8)">😢</div>
+    <div class="emo a pop" style="position:absolute;left:250px;bottom:10px;font-size:70px;--d:2.4s">😭</div>
+    <div class="emo a pop" style="position:absolute;right:250px;bottom:10px;font-size:70px;--d:2.7s">🥹</div>
+  </div>
+  <div class="msg a up" style="--d:.6s">一杯のおかゆが、<em>希望</em>になった。</div>
+  <div class="sub a fade" style="--d:1s">1995年 阪神・淡路大震災 ― 塩と胡麻油だけのおかゆ</div>
+  <aside class="notes">バルニバービの歴史は、ある一つの「原体験」から始まりました。代表の佐藤が、阪神・淡路大震災で被災しました。街が壊れ、誰もが明日への希望を失いかけていた時に、炊き出しで振るまったのは、なんでもない一杯の「おかゆ」でした。そのおかゆが冷え切った体を温め、涙を流しながらお互いを励まし合い、生きる力を取り戻していく。その光景を目の当たりにした時、「食には、人の心を動かし、絶望を希望に変える力がある」ことに気づいたのです。そして、心から喜んでもらうことが、こんなにも自分の心を喜ばせるんだ、ということにも。この食の力はバルニバービの源泉です。</aside>
+</section>
+
+<!-- 8 first shop -->
+<section class="slide dark" data-title="1号店 南船場" data-k="02 ORIGIN">
+  <div class="art">
+    <svg viewBox="0 0 1000 410" width="1000" height="410" style="position:absolute">
+      <defs><radialGradient id="lamp"><stop offset="0" stop-color="#FFD58A" stop-opacity=".95"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></radialGradient></defs>
+      <rect y="330" width="1000" height="80" fill="#10182e"/>
+      <g class="twinkle" fill="#fff"><circle cx="120" cy="60" r="3"/><circle cx="300" cy="110" r="2.5"/><circle cx="700" cy="50" r="3"/><circle cx="880" cy="120" r="2.5"/><circle cx="560" cy="80" r="2"/></g>
+      <circle class="a fade" style="--d:1s" cx="500" cy="270" r="230" fill="url(#lamp)"/>
+    </svg>
+    <div class="emo a pop" style="--d:.8s;font-size:150px;margin-top:70px;filter:drop-shadow(0 0 30px #FFC96B)">🏠</div>
+    <div class="emo a pop" style="position:absolute;left:480px;top:90px;font-size:50px;--d:1.1s">💡</div>
+    <div class="card a lt" style="position:absolute;left:60px;top:60px;font-size:26px;font-weight:800;color:var(--red);border-radius:22px 22px 22px 4px;animation-name:lt,fade;--d:.3s">「100%失敗する」</div>
+    <div class="emo a rt" style="position:absolute;right:130px;bottom:12px;font-size:60px;--d:2s">🚶</div>
+    <div class="emo a rt" style="position:absolute;right:230px;bottom:12px;font-size:60px;--d:2.4s">🚶‍♀️</div>
+    <div class="emo a lt" style="position:absolute;left:200px;bottom:12px;font-size:60px;--d:2.8s">🚶‍♂️</div>
+    <div class="emo a lt" style="position:absolute;left:330px;bottom:12px;font-size:60px;--d:3.2s">🚶‍♀️</div>
+  </div>
+  <div class="msg a up" style="--d:.5s">何もない場所に、<em>灯</em>をともした。</div>
+  <div class="sub a fade" style="--d:1.2s">1991年 大阪・南船場 1号店。やがて遠方からも人が訪れるようになった</div>
+  <aside class="notes">この感動を日常の中で届けたい。その純粋な思いだけで、1991年、大阪・南船場の「何もない場所」に1店舗目をオープンしました。周囲は「100%失敗する」と猛反対しました。ですが佐藤は信じていました。その建物が醸し出す空気、ヨーロッパで感じた心地よい空間とお料理、喜んでもらいたいからこその接客、そして食が持つ力を。店に灯がともると、遠方からもお客様がわざわざ目指してやってくるようになりました。</aside>
+</section>
+
+<!-- 9 sales chart -->
+<section class="slide" data-title="売上の推移" data-k="02 ORIGIN">
+  <div class="art" style="height:430px"><svg id="sales" viewBox="0 0 1100 430" width="1100" height="430"></svg></div>
+  <div class="msg a up" style="--d:2.4s;font-size:46px">失敗の先に、<em>成長</em>があった。</div>
+  <aside class="notes">グラフを見てください。途中で大きく落ち込んでいる時期があります。2001年からの約3年間、「拡大」という数に目が眩み、一番大切な「食の体験」を蔑ろにしてしまいました。そして2005年、東京・芝公園のGARB pintinoで再起。グラフが右肩上がりに転じているのは、まさにここからです。2013年に店舗運営子会社体制へ移行、2015年に東証マザーズ上場、2019年に淡路島、2023年に島根・出雲で地方創生を開始。2025年7月期は売上143億円です。(単位:百万円)</aside>
+</section>
+
+<!-- 10 failure -->
+<section class="slide alert" data-title="魂なき拡大の全滅" data-k="02 ORIGIN">
+  <div class="art" style="height:380px;flex-direction:column;gap:20px">
+    <div class="row" style="gap:20px;font-size:34px;font-weight:800;color:var(--red)"><span class="a up">拡大 ↗</span><span class="a up" style="--d:.2s">効率 ↗</span><span class="a up" style="--d:.4s">利益 ↗</span></div>
+    <div class="row" style="gap:16px;margin-top:24px">
+      <div class="emo fall" style="--d:1.2s;font-size:96px">🏪</div><div class="emo fall" style="--d:1.6s;font-size:96px">🏬</div><div class="emo fall" style="--d:2s;font-size:96px">🏪</div>
+      <div class="emo fall" style="--d:2.4s;font-size:96px">🏬</div><div class="emo fall" style="--d:2.8s;font-size:96px">🏪</div><div class="emo fall" style="--d:3.2s;font-size:96px">🏬</div>
+    </div>
+    <div class="row" style="gap:16px;margin-top:-118px"><div class="emo a zoom" style="--d:1.6s;font-size:96px;opacity:.9">❌</div><div class="emo a zoom" style="--d:2.4s;font-size:96px">❌</div><div class="emo a zoom" style="--d:3s;font-size:96px">❌</div><div class="emo a zoom" style="--d:3.4s;font-size:96px">❌</div></div>
+  </div>
+  <div class="msg a up" style="--d:.8s;margin-top:60px">魂なき拡大で、<em style="color:var(--red)">全滅</em>した。</div>
+  <div class="sub a fade" style="--d:3.4s">2001〜2003年。この時期に作った店は、いま1軒も残っていない</div>
+  <aside class="notes">2001年からの約3年間、私たちは「拡大」という数字に目を奪われ、最大の失敗を犯します。トレンドに乗って効率と利益を優先し、出店を重ねた結果、お客様もスタッフも離れていきました。衝撃的な事実ですが、この迷走期に作った店は、現在、一軒も残っていません。文字通りの「全滅」です。この痛みを一生忘れないと誓いました。</aside>
+</section>
+
+<!-- 11 pintino -->
+<section class="slide dark" data-title="再起:GARB pintino" data-k="02 ORIGIN">
+  <div class="art">
+    <svg viewBox="0 0 400 410" width="400" height="410" style="position:absolute">
+      <defs><radialGradient id="tg"><stop offset="0" stop-color="#FF8A5B" stop-opacity=".6"/><stop offset="1" stop-color="#FF8A5B" stop-opacity="0"/></radialGradient></defs>
+      <circle class="glow" cx="200" cy="230" r="190" fill="url(#tg)"/>
+      <g fill="none" stroke="#FF7A4A" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+        <path class="a draw" pathLength="1" d="M200 14L136 396M200 14L264 396"/>
+        <path class="a draw" pathLength="1" style="--d:.5s" d="M178 140H222M160 230H240M140 340H260M178 140L240 230M222 140L160 230M160 230L260 340M240 230L140 340"/>
+        <rect class="a pop" style="--d:1.2s" x="170" y="118" width="60" height="22" rx="3" fill="#FF7A4A"/>
+        <rect class="a pop" style="--d:1.4s" x="150" y="206" width="100" height="24" rx="3" fill="#FF7A4A"/>
+      </g>
+      <g class="twinkle" fill="#fff"><circle cx="40" cy="60" r="3"/><circle cx="340" cy="90" r="3"/><circle cx="70" cy="200" r="2"/><circle cx="360" cy="260" r="2.5"/></g>
+    </svg>
+    <div class="emo a up" style="position:absolute;left:230px;bottom:20px;font-size:62px;--d:1.8s">🌳</div>
+    <div class="emo a up" style="position:absolute;right:230px;bottom:20px;font-size:62px;--d:2s">🌳</div>
+    <div class="emo a pop" style="position:absolute;right:360px;top:100px;font-size:60px;--d:2.4s">🧑‍🍳</div>
+    <div class="emo a pop" style="position:absolute;left:360px;top:100px;font-size:60px;--d:2.7s">🙋</div>
+  </div>
+  <div class="msg a up" style="--d:.5s;font-size:46px">想いを込めた店は、<br>どんな場所でも<em>目的地</em>になれる。</div>
+  <div class="sub a fade" style="--d:1.5s">2005年 東京・芝公園「GARB pintino」― 人は、心で動く</div>
+  <aside class="notes">2005年、東京・芝公園のGARB pintinoで再起をかけました。駅から決して近くはありません。しかし、見上げる東京タワーを借景に、スタッフ一人ひとりが「最高のおもてなしとは何か」を自ら考え、動く店を作り上げました。アルバイトでも誰もが自ら考えて動く。そのお店は開業半年で予約が困難な店になりました。かつて見失った「魂」を、この店でもう一度取り戻したのです。「想いを込めた店は、どんな場所でも目的地になれる。人は心で動く」。この確信が、その後の成長を支える強力なエンジンとなりました。</aside>
+</section>
+
+<!-- 12 bad location -->
+<section class="slide warm" data-title="バッドロケーション戦略" data-k="03 BUSINESS">
+  <div class="art">
+    <svg viewBox="0 0 1000 410" width="1000" height="410" style="position:absolute">
+      <path class="a draw" pathLength="1" d="M150 300C300 300 380 190 560 230S780 300 850 250" fill="none" stroke="#B86F0A" stroke-width="6" stroke-dasharray="1 0" style="stroke-dasharray:.03 .02"/>
+    </svg>
+    <div class="abs" style="left:90px;top:230px;text-align:center"><div class="emo a pop" style="font-size:80px">🚉</div><div style="font-size:20px;font-weight:700;opacity:.7">駅</div></div>
+    <div class="abs" style="right:70px;top:160px;text-align:center"><div class="emo a pop float" style="font-size:120px;--d:1s">🏡</div><div style="font-size:22px;font-weight:700">その店</div></div>
+    <div class="emo abs walk" style="left:180px;top:250px;font-size:48px;--dx:560px;animation-delay:1.2s">🚶</div>
+    <div class="emo abs walk" style="left:180px;top:250px;font-size:48px;--dx:560px;animation-delay:2.6s">🚶‍♀️</div>
+    <div class="emo abs walk" style="left:180px;top:250px;font-size:48px;--dx:560px;animation-delay:4s">🚶‍♂️</div>
+    <div class="chip a up abs" style="--d:.5s;left:420px;top:60px">家賃が低い</div>
+    <div class="chip a up abs" style="--d:.8s;left:600px;top:30px">競合が少ない</div>
+  </div>
+  <div class="msg a up" style="--d:.4s">あえて、他社が選ばない場所へ。</div>
+  <div class="sub a fade" style="--d:1.2s">需要を奪い合わず、自分たちで需要と人の流れを創り出す</div>
+  <aside class="notes">私たちの出店戦略は「非常識」と言われます。あえて駅から遠い倉庫街や海辺など、他社が敬遠する「バッドロケーション」を選ぶからです。大切なのは、ただ立地が悪いのではなく、「心地よさや驚きがあり、ここでなら過ごしてみたい」と直感できる場所かどうか。このロケーションを選ぶ力は、数多くの失敗と手痛い経験から身についた特技です。立地が悪いから家賃を相場より抑えられ、その分、食材やデザイン、スタッフに投資する。需要を奪い合うのではなく、自分たちで新たな需要と人流を創り出す。それがレストラン事業の根幹です。</aside>
+</section>
+
+<!-- 13 town -->
+<section class="slide green" data-title="一軒が、街になる" data-k="03 BUSINESS">
+  <div class="art">
+    <svg viewBox="0 0 1000 410" width="1000" height="410" style="position:absolute"><rect y="320" width="1000" height="90" fill="#9fd9bd" rx="10"/></svg>
+    <div class="emo abs a pop" style="left:440px;top:170px;font-size:130px">🏪</div>
+    <div class="emo abs a pop" style="--d:1s;left:270px;top:215px;font-size:84px">☕</div>
+    <div class="emo abs a pop" style="--d:1.4s;left:660px;top:215px;font-size:84px">🥐</div>
+    <div class="emo abs a pop" style="--d:1.8s;left:130px;top:200px;font-size:100px">🏢</div>
+    <div class="emo abs a pop" style="--d:2.2s;left:780px;top:190px;font-size:104px">🏨</div>
+    <div class="emo abs a pop" style="--d:2.6s;left:30px;top:235px;font-size:70px">🌳</div>
+    <div class="emo abs a pop" style="--d:2.8s;left:880px;top:240px;font-size:70px">🌳</div>
+    <div class="emo abs a up" style="--d:3s;left:340px;top:330px;font-size:50px">🚶‍♀️</div><div class="emo abs a up" style="--d:3.2s;left:520px;top:330px;font-size:50px">🚶</div><div class="emo abs a up" style="--d:3.4s;left:720px;top:330px;font-size:50px">🧑‍🤝‍🧑</div>
+    <div class="emo abs float" style="left:480px;top:60px;font-size:60px">✨</div>
+  </div>
+  <div class="msg a up" style="--d:.4s">一軒の店が、<em>街</em>になる。</div>
+  <div class="sub a fade" style="--d:1s">「人流の創出」と「街の形成」― 南船場が、その最初の証明</div>
+  <aside class="notes">バッドロケーション戦略の成果は、魅力的な食の空間による「人流の創出」を起こし、周辺にライフスタイルを提案する店が集まり、街が形成されていくことです。南船場はその最初の証明です。</aside>
+</section>
+
+<!-- 14 2nd stage -->
+<section class="slide" data-title="実績が声をかけさせた" data-k="03 BUSINESS">
+  <div class="art" style="height:380px"><div class="row" style="gap:30px">
+    <div class="card a up" style="width:340px"><div class="emo float" style="font-size:96px">🏢</div><div style="font-size:30px;font-weight:800;margin:6px 0">不動産デベロッパー</div><div style="font-size:20px;opacity:.75;line-height:1.6">宮下公園(渋谷)<br>丸の内仲通り</div></div>
+    <div class="card a up" style="--d:.3s;width:340px"><div class="emo float2" style="font-size:96px">🏛️</div><div style="font-size:30px;font-weight:800;margin:6px 0">行政・公共機関</div><div style="font-size:20px;opacity:.75;line-height:1.6">泉大津市<br>高槻市</div></div>
+    <div class="card a up" style="--d:.6s;width:340px"><div class="emo float" style="font-size:96px">🎓</div><div style="font-size:30px;font-weight:800;margin:6px 0">大学</div><div style="font-size:20px;opacity:.75;line-height:1.6">GOOD MORNING CAFE<br>早稲田</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:1s">実績が、声をかけさせた。</div>
+  <div class="sub a fade" style="--d:1.4s">それでも、やることは変わらない ― その場所にしかない店を作る</div>
+  <aside class="notes">上場後、人の流れを生み出せる会社として認められた私たちには、大手デベロッパーや行政、大学からの声がかかるようになりました。三井不動産による渋谷・宮下公園の再開発、三菱地所による丸の内仲通りへの出店。泉大津市・高槻市など、地方創生・エリア活性化を目的とした行政との連携も進んでいます。それでも、やることは変わりません。その場所にしかない店を作ること。その思いに、ブレはありません。</aside>
+</section>
+
+<!-- 15 EB why -->
+<section class="slide" data-title="EB事業が生まれた理由" data-k="03 BUSINESS">
+  <div class="art" style="height:400px"><div class="row" style="align-items:center;gap:24px">
+    <div class="card a lt" style="width:430px;background:#FFF1EE"><div class="emo" style="font-size:80px">🏪📈</div><div style="font-size:28px;font-weight:800;margin-top:8px">街が活性化 → 賃料アップ</div><div class="emo shake" style="font-size:70px;margin-top:6px">😣</div><div style="font-size:22px;opacity:.8">値上げ・退去を求められる</div></div>
+    <div class="emo a pop" style="--d:1s;font-size:80px">💡</div>
+    <div class="card a rt" style="--d:1.4s;width:430px;background:#E6F0FA"><div class="emo" style="font-size:80px">🔑🏝️</div><div style="font-size:28px;font-weight:800;margin-top:8px">土地を、自分で持つ</div><div class="emo pulse" style="font-size:70px;margin-top:6px">😎</div><div style="font-size:22px;opacity:.8">価値向上の成果も自分たちへ</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:1.8s;font-size:40px">レストラン × 不動産 ＝ <em>イノベーティブシナジー戦略</em></div>
+  <aside class="notes">レストラン一軒が街を変える。その確信をスケールさせたのがEB事業です。かつて、私たちが街を活性化させると地価が上がり、逆に賃料値上げや退去を求められるという悔しい経験をしました。ならば、自分たちで土地を持ち、価値向上の成果も自分たちで得ようと決めたのです。レストランを起爆剤に、ホテルや施設を開発し、エリア全体の不動産価値を上げる。これを「イノベーティブシナジー戦略」と呼んでいます。食の力を武器に、街の未来をデザインするデベロッパーへと進化しています。</aside>
+</section>
+
+<!-- 16 roadmap -->
+<section class="slide navy" data-title="6段階のロードマップ" data-k="03 BUSINESS">
+  <div class="art" style="height:400px"><div class="row" style="gap:0;align-items:flex-start;width:1160px">
+    <div class="a pop" style="width:193px"><div class="emo" style="font-size:80px">🗺️</div><b style="color:#FFC96B">PHASE 0</b><div style="font-size:21px">エリア選定</div></div>
+    <div class="a pop" style="--d:.5s;width:193px"><div class="emo" style="font-size:80px">🍽️</div><b style="color:#FFC96B">PHASE 1</b><div style="font-size:21px">きっかけの<br>大型店</div></div>
+    <div class="a pop" style="--d:1s;width:193px"><div class="emo" style="font-size:80px">🏨</div><b style="color:#FFC96B">PHASE 2</b><div style="font-size:21px">滞在できる<br>エリアへ</div></div>
+    <div class="a pop" style="--d:1.5s;width:193px"><div class="emo" style="font-size:80px">🛍️</div><b style="color:#FFC96B">PHASE 3</b><div style="font-size:21px">回遊・雇用で<br>人流を創る</div></div>
+    <div class="a pop" style="--d:2s;width:193px"><div class="emo" style="font-size:80px">🎪</div><b style="color:#FFC96B">PHASE 4</b><div style="font-size:21px">地域との<br>融合・交流</div></div>
+    <div class="a pop" style="--d:2.6s;width:193px"><div class="emo pulse" style="font-size:96px;margin-top:-10px">🏡</div><b style="color:#FFC96B">PHASE 5</b><div style="font-size:21px;font-weight:800">住みたくなる<br>エリアへ</div></div>
+  </div>
+  <svg viewBox="0 0 1160 40" width="1160" height="40" style="position:absolute;left:60px;top:230px"><path class="a draw" pathLength="1" style="animation-duration:2.6s;--d:.2s" d="M60 20H1100" stroke="#FFC96B" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ar)"/></svg></div>
+  <div class="msg a up" style="--d:3s;font-size:48px">「訪れる場所」から、<br><em>「住みたくなる場所」</em>へ。</div>
+  <aside class="notes">EB事業の特徴は、この6段階のロードマップにあります。まず最初にするのは、エリアの選定。地方自治体や地方銀行からの情報収集で、可能性のある場所を見極めます。次に、集客力のある大型飲食店舗でエリアの「きっかけ」を作る。そして宿泊施設を作り、「滞在できるエリア」へ。飲食店を集積させ、雇用を生み、人流を増やす。地域のお祭りや施設で地域との融合を促進する。そして最終フェーズで目指すのは、「訪れる場所」から「住みたくなるエリア」へ。私たちが創っているのは観光地ではなく、コミュニティです。</aside>
+</section>
+
+<!-- 17 Frogs FARM -->
+<section class="slide" data-title="Frogs FARM" data-k="03 BUSINESS" style="background:linear-gradient(#ffd9a0,#ffb36b 55%,#5b8fc4 56%,#2d5f95)">
+  <div class="art" style="height:400px">
+    <svg viewBox="0 0 1100 400" width="1100" height="400" style="position:absolute">
+      <defs><radialGradient id="sun"><stop offset="0" stop-color="#fff6d6"/><stop offset="1" stop-color="#ffb347"/></radialGradient></defs>
+      <circle cx="550" cy="170" r="70" fill="url(#sun)"><animate attributeName="cy" from="90" to="215" dur="6s" fill="freeze"/></circle>
+      <rect y="225" width="1100" height="175" fill="#3b78b0" opacity=".85"/>
+      <path d="M0 330 Q300 300 600 330 T1100 320 V400 H0Z" fill="#c9a66b"/>
+      <path class="glow" d="M480 232h140M500 246h100M520 260h60" stroke="#ffe3a6" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div class="emo abs a pop" style="left:140px;top:250px;font-size:64px;--d:1s">🏨</div><div class="emo abs a pop" style="left:260px;top:262px;font-size:54px;--d:1.3s">🍽️</div><div class="emo abs a pop" style="left:360px;top:258px;font-size:58px;--d:1.6s">🏠</div>
+    <div class="emo abs a pop" style="left:690px;top:258px;font-size:58px;--d:1.9s">⛺</div><div class="emo abs a pop" style="left:790px;top:250px;font-size:64px;--d:2.2s">🍦</div><div class="emo abs a pop" style="left:900px;top:258px;font-size:58px;--d:2.5s">🍜</div>
+    <div class="emo abs a pop" style="left:520px;top:262px;font-size:60px;--d:.6s">🍽️</div>
+  </div>
+  <div class="row" style="gap:50px;margin-top:-22px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35)">
+    <div class="a up" style="--d:2s"><span class="big" style="font-size:78px"><span class="cnt" data-to="23" data-delay="2000">0</span></span><span style="font-size:26px;font-weight:700"> 施設</span></div>
+    <div class="a up" style="--d:2.4s"><span class="big" style="font-size:78px"><span class="cnt" data-to="20" data-delay="2400">0</span></span><span style="font-size:26px;font-weight:700"> 万人 / 年</span></div>
+  </div>
+  <div class="msg a up" style="--d:2.8s;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.35);font-size:46px">雑草地が、<em style="color:#fff3c4">住みたくなる街</em>になった。</div>
+  <aside class="notes">そのモデルケースが淡路島の「Frogs FARM」です。かつては何もない雑草地だった場所。でも、最高に美しい夕日がある場所。その夕日を借景として、2019年にレストラン「GARB COSTA ORANGE」をオープンさせました。最初の1年は、島の人々に「なんで来たの？」と首をかしげられました。それが今や、宿泊施設・ピクニックガーデンと広がり、23もの施設が集まり、年間20万人が訪れる「滞在するエリア」へと変貌を遂げました。スタッフが島に移住し、農家さんと語らい、お祭りを創り、地域に根を張る。レストランは「食事をする場所」から「人生を豊かに過ごす場所」へと変わっていきます。何もない場所に一軒の店で火を灯した南船場から30年。私たちは今、人が生涯を送りたくなるような「新しい街の形」を、淡路島で証明し続けています。</aside>
+</section>
+
+<!-- 18 org -->
+<section class="slide" data-title="本部はサポーター" data-k="04 ORGANIZATION">
+  <div class="art" style="flex-direction:column;height:400px;gap:6px">
+    <div class="row" style="gap:36px"><div class="emo a pop float" style="font-size:90px">🏪</div><div class="emo a pop float2" style="--d:.2s;font-size:90px">🏨</div><div class="emo a pop float" style="--d:.4s;font-size:90px">🍕</div><div class="emo a pop float2" style="--d:.6s;font-size:90px">☕</div><div class="emo a pop float" style="--d:.8s;font-size:90px">🏪</div></div>
+    <div class="row" style="gap:62px;font-size:44px;color:var(--amber-d)"><span class="a up pulse" style="--d:1s">⬆</span><span class="a up pulse" style="--d:1.2s">⬆</span><span class="a up pulse" style="--d:1.4s">⬆</span><span class="a up pulse" style="--d:1.6s">⬆</span><span class="a up pulse" style="--d:1.8s">⬆</span></div>
+    <div class="card a up" style="--d:1.2s;width:900px;background:var(--navy);color:#fff;border-radius:16px"><div style="font-size:30px;font-weight:800">本部</div><div style="font-size:21px;opacity:.9">営業・企画・管理・総務人事 ― 専門知識で、現場を支える</div></div>
+  </div>
+  <div class="msg a up" style="--d:2s">本部は、管理する場所ではなく<br><em>サポーター</em>。</div>
+  <aside class="notes">一軒も店が残らなかったあの頃と、今、何が違うのか。その答えがこの組織図にあります。効率化やトレンドを追わず、食の持つ力とスタッフの想いを大事にしていける形を作ろうと考えました。一般的に、本部は現場を「管理する場所」ですが、私たちの本部は、現場という主役が個性を発揮するための「サポーターの役割」となりました。本部の役割は、リーダーたちが実現したいことを、あらゆる角度から、専門知識を持って支えること。新たな機会を創出することです。</aside>
+</section>
+
+<!-- 19 subsidiaries -->
+<section class="slide warm" data-title="運営子会社制度" data-k="04 ORGANIZATION">
+  <div class="art" style="height:430px" id="bubbles"></div>
+  <div class="msg a up" style="--d:1.6s;font-size:48px">リーダーが、自ら考え、決める。</div>
+  <div class="sub a fade" style="--d:2s">運営子会社制度 ― 一律のマニュアルでは縛らない</div>
+  <aside class="notes">特徴的なのは、私たちが運営子会社制度をとっていることです。一律のマニュアルで縛るのではなく、その土地、その店のリーダーが「自分たちが誇れる仕事は何か」「この場所にあったら喜ばれるお店はどんなお店か」を、スピード感を持って自ら考え、決めることができるようにしてきました。各子会社は、それぞれが独自のエリア、マーケット、そして独自のやり方で運営しています。なぜここまでバラバラなのか。それは、私たちが「どこにでもある店」を作りたいのではないからです。その場所の人々が求めている体験を最も理解しているのは、現場のスタッフです。皆さんの個性が、どのチームでどう輝くのか。この多様性こそが、私たちの強みです。</aside>
+</section>
+
+<!-- 20 purpose -->
+<section class="slide dark" data-title="なりたい自分になる" data-k="05 PHILOSOPHY">
+  <div class="art">
+    <svg viewBox="0 0 900 410" width="900" height="410" style="position:absolute"><g fill="#2d4a85" stroke="#6f93d6" stroke-width="3">
+      <rect class="a grow" x="60" y="330" width="150" height="60"/><rect class="a grow" style="--d:.2s" x="210" y="280" width="150" height="110"/><rect class="a grow" style="--d:.4s" x="360" y="230" width="150" height="160"/><rect class="a grow" style="--d:.6s" x="510" y="180" width="150" height="210"/><rect class="a grow" style="--d:.8s" x="660" y="130" width="150" height="260"/></g></svg>
+    <div class="emo abs" style="font-size:70px;left:90px;top:225px;animation:climb 5s 1s both ease-in-out">🚶</div>
+    <div class="emo abs pulse" style="font-size:96px;right:70px;top:10px">⭐</div>
+  </div>
+  <div class="msg a up" style="--d:.4s"><em>なりたい自分</em>になる。</div>
+  <div class="sub a fade" style="--d:1s">「食べる」「食べていただく」仕事を通して</div>
+  <style>@keyframes climb{0%{transform:translate(0,0)}20%{transform:translate(150px,-50px)}40%{transform:translate(300px,-100px)}60%{transform:translate(450px,-150px)}100%{transform:translate(600px,-200px) scale(1.2)}}</style>
+  <aside class="notes">私たちの経営理念は「食べる、食べていただく仕事を通してなりたい自分になる」。これはこの会社の存在意義であり、皆さんがこのバルニバービで何のために働くか、の理由になります。皆さんのなりたい自分って何ですか？家族と幸せに過ごしたい？自分のお店を出したい？好きなワインを学びたい？そこを目指して働いていこう、ということになります。イタリアンをやりたいというシェフがいてイタリアン業態が生まれたり、居酒屋の女将をやりたいというスタッフがいて居酒屋業態が生まれたり、ピッツァを極めたいスタッフがピッツァコンテストを主催するようになったり。そんな一人一人の思いがバルニバービを作っています。</aside>
+</section>
+
+<!-- 21 not done for you -->
+<section class="slide" data-title="してあげる、ではない" data-k="05 PHILOSOPHY">
+  <div class="art" style="height:380px"><div class="row" style="align-items:center;gap:50px">
+    <div class="card a lt" style="width:430px;position:relative;opacity:.8"><div class="emo" style="font-size:96px">🎁</div><div style="font-size:30px;font-weight:800;margin-top:8px">会社が「してあげる」</div>
+      <div class="emo abs a zoom" style="--d:1.2s;left:130px;top:0;font-size:190px;opacity:.9">❌</div></div>
+    <div class="card a rt" style="--d:.5s;width:430px;border:5px solid var(--green)"><div class="emo float" style="font-size:96px">👟💦</div><div style="font-size:30px;font-weight:800;margin-top:8px">自分で、懸命に進む</div><div class="emo a pop" style="--d:1.6s;font-size:56px">🌟</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:1.4s;font-size:48px">本当の自分は、泥臭く<em>前に進む</em>過程で見つかる。</div>
+  <aside class="notes">ただ、「なりたい自分になる」とは、会社が皆さんを「なりたい自分にしてあげます」という意味ではありません。お店やりたい！といったからといって、数千万円をポンと出すものでは当然ありません。やりたいことと、それを価値として提供できるかどうか。どこで提供するのが良いか。そのためには何を学ぶ必要があるか。たくさんの失敗の中で学んだノウハウを集結させながら、時に支えられ、支えながら成長していく中で形になってきました。必ずしも良いことばかりではない毎日の中でも、懸命に前へ進む。その泥臭い過程の中でしか、本当の自分は見つからないことを、私たちは知っています。</aside>
+</section>
+
+<!-- 22 14 philosophies -->
+<section class="slide navy" data-title="14のフィロソフィ" data-k="05 PHILOSOPHY">
+  <div class="art" style="height:400px"><div id="tiles" style="display:grid;grid-template-columns:repeat(7,130px);gap:14px"></div></div>
+  <div class="msg a up" style="--d:1.8s;font-size:48px">14のフィロソフィは、<em>迷った時の道標</em>。</div>
+  <div class="sub a fade" style="--d:2.2s">ルールではありません。今日は4つを読み解きます</div>
+  <aside class="notes">ここに記されている「14のフィロソフィ」は、私たちが歩んできた30年の中で、大事にしてきた思いや行動を言葉にしたものです。これらは会社が強いるルールではありません。皆さんが迷った時に立ち戻り、自分の仕事に誇りを持つための「道標」になればと考えています。手元にフィロソフィーブックを用意してください。最初のページは、バルニバービが生まれるきっかけとなった原体験と、1号店が生まれた時の思いが綴られています。14のうち、今日は4つについての解釈を話していきます。</aside>
+</section>
+
+<!-- book -->
+<section class="slide dark" data-title="フィロソフィーブックを開く" data-k="05 PHILOSOPHY">
+  <img src="img/12.jpg" alt="" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+  <div class="abs" style="inset:0;background:linear-gradient(rgba(8,12,26,.35),rgba(8,12,26,.85))"></div>
+  <div class="art" style="position:relative;height:340px"><div class="emo a pop float" style="font-size:200px;filter:drop-shadow(0 0 40px #FFC96B)">📖</div><div class="emo abs a rt" style="--d:.8s;right:300px;top:20px;font-size:70px">🧭</div><div class="emo abs a lt" style="--d:1s;left:300px;top:20px;font-size:70px">🔍</div></div>
+  <div class="msg a up" style="--d:.4s;position:relative;font-size:52px">フィロソフィーブックを、<em>開いてみよう</em>。</div>
+  <div class="sub a fade" style="--d:1.2s;position:relative">迷った時に立ち返る、自分を映す鏡 ― 今日は4つを読み解きます</div>
+  <aside class="notes">ではフィロソフィーブックを見ていきましょう。手元にフィロソフィーブックを用意してください。最初のページは、先ほど話したバルニバービが生まれるきっかけとなった原体験と、1号店が生まれた時の思いが綴られています。そして、なりたい自分になる、を目指す上での道標として、14のフィロソフィーのうち、今日は4つのフィロソフィーについての解釈を話していきます。</aside>
+</section>
+
+<!-- 23 #1 -->
+<section class="slide warm" data-title="#1 笑顔と元気" data-k="05 PHILOSOPHY · 01">
+  <div class="art">
+    <div class="abs" style="left:230px;top:60px;text-align:center"><div style="width:240px;height:120px;border-radius:60px;margin:0 auto;position:relative;animation:track 1.2s 1s both;background:#c9c4b8"><div style="position:absolute;top:10px;left:10px;width:100px;height:100px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3);animation:knob 1.2s 1s both"></div></div><div style="font-size:26px;font-weight:800;margin-top:14px" class="a fade">自分で、スイッチを入れる</div></div>
+    <div class="abs" style="right:230px;top:30px;width:200px;height:200px;text-align:center"><div class="emo abs" style="left:0;top:0;width:200px;font-size:170px;animation:fadeOut .6s 1.6s both">😐</div><div class="emo abs" style="left:0;top:0;width:200px;font-size:170px;opacity:0;animation:pop 1s 1.8s both">😄</div></div>
+    <div class="abs glow" style="right:170px;top:0;width:320px;height:320px;border-radius:50%;background:radial-gradient(#ffd76a88,transparent 70%);opacity:0;animation:fade 1s 1.8s both"></div>
+  </div>
+  <style>@keyframes track{to{background:#EF9F27}}@keyframes knob{to{transform:translateX(120px)}}@keyframes fadeOut{to{opacity:0}}.slide.active .abs[style*=animation]{}</style>
+  <div class="msg a up" style="--d:.3s;font-size:50px">笑顔と元気は、<em>自分から</em>始めるもの。</div>
+  <div class="q a fade" style="--d:2.4s">問い:今までの人生で、自分でスイッチを入れた瞬間は？</div>
+  <aside class="notes">一つ目は「笑顔と元気」。サービス業の基本動作でも、お客様のためだけのものでもありません。気分のいい日や、明るい仲間と一緒にいる時、笑顔と元気は自然に出てきます。でも、それは外から与えられている状態です。そうではなく、自分から笑顔でいる。自分から元気でいる。気分のいい日も、そうでない日も、自分で自分のスイッチを入れていこう、という意思のお話です。これを誰かに与えてもらっているままでいると、自分の状態が他人次第になってしまいます。それは自分の人生を他人に握られているのと同じです。だからこのフィロソフィーが、一番最初に置かれています。【問い】思い出してみてください。今まで、自分でスイッチを入れた瞬間はどんな時がありましたか。</aside>
+</section>
+
+<section class="slide shot" data-title="マンガ:笑顔と元気" data-k=""><img src="img/13.jpg" alt="マンガ:笑顔と元気"><aside class="notes">マンガを一緒に読みます。「自分から始める」「自分から、笑顔で元気に」。サービス業の基本だから、お客様のためだから、だけではない。明るい仲間といる時は自然と笑顔になるけれど、それでは自分の人生も他人次第。自分から始めることが、すべての始まり。思い出してみてください。今までの人生で、自分でスイッチを入れた瞬間はどんな時？</aside></section>
+
+<!-- 24 #2 -->
+<section class="slide warm" data-title="#2 好きが先にある" data-k="05 PHILOSOPHY · 02">
+  <div class="art"><div class="row" style="align-items:center;gap:30px">
+    <div class="emo a pop pulse" style="font-size:150px">💗</div>
+    <div class="emo a pop" style="--d:.8s;font-size:70px">➡️</div>
+    <div class="emo a pop float" style="--d:1.2s;font-size:150px">🍽️</div>
+    <div class="emo a pop" style="--d:1.8s;font-size:70px">➡️</div>
+    <div class="emo a pop float2" style="--d:2.2s;font-size:150px">😊</div>
+  </div>
+  <div class="abs a fade" style="--d:.4s;left:210px;bottom:18px;font-size:24px;font-weight:800">好き・嬉しい</div><div class="abs a fade" style="--d:2.4s;right:210px;bottom:18px;font-size:24px;font-weight:800">誰かの笑顔</div></div>
+  <div class="msg a up" style="--d:.3s;font-size:50px">「好き」が<em>先</em>にある。笑顔は、そのあと。</div>
+  <div class="q a fade" style="--d:2.8s">問い:好きなことを誰かに伝えた・伝えるために動いた経験は？</div>
+  <aside class="notes">「食べることが好きですか。お客様の笑顔がみたいですか。」私たちは、「好き」「嬉しい」という気持ちから、仕事を始めたい。技術や経験ももちろん大事だけれど、その前に「自分が食べたいと思えるか」「自分が嬉しいと感じるか」があります。自分が「これいいな」と思えないものは、人にも差し出さない。それが、自分に嘘をつかずに働くということです。「喜んでもらいたい」も、実は「自分の好き」の続きです。相手を喜ばせている自分が楽しいから、人にも喜んでほしいと思う。バルニバービで一緒にやりたいのは、自分の好きを大事にできる人。【問い】最近、自分の好きなことを誰かに伝えたこと、伝えるために動いたことはありますか。</aside>
+</section>
+
+<section class="slide shot" data-title="マンガ:好きが先にある" data-k=""><img src="img/14.jpg" alt="マンガ:好きが先にある"><aside class="notes">マンガを一緒に読みます。「『好き』が先にある。笑顔は、そのあとから」。自分が「いい」と思えないものは出さない。『好き』から始まる。自分が食べたいと思えるか。喜んでもらいたい、も自分の『好き』。思い出してみてください。自分の好きなことを誰かに伝えたこと、伝えるために動いたことはありますか。</aside></section>
+
+<!-- 25 #3 venn -->
+<section class="slide" data-title="#3 好きで得意で社会に役立つ" data-k="05 PHILOSOPHY · 03">
+  <div class="art" style="height:420px"><svg viewBox="0 0 620 420" width="620" height="420">
+    <g style="mix-blend-mode:multiply">
+    <circle class="a pop" cx="230" cy="160" r="120" fill="#F5A3B7" fill-opacity=".75"/>
+    <circle class="a pop" style="--d:.5s" cx="390" cy="160" r="120" fill="#7FB6EE" fill-opacity=".75"/>
+    <circle class="a pop" style="--d:1s" cx="310" cy="285" r="120" fill="#8ADBB9" fill-opacity=".75"/></g>
+    <g font-size="30" font-weight="800" text-anchor="middle" fill="#1E1C19"><text class="a fade" style="--d:.4s" x="175" y="140">好き</text><text class="a fade" style="--d:.9s" x="445" y="140">得意</text><text class="a fade" style="--d:1.4s" x="310" y="350" font-size="26">ありがとう</text></g>
+    <text class="emo a pop" style="--d:2s;font-size:70px" x="310" y="230" text-anchor="middle">⭐</text></svg></div>
+  <div class="msg a up" style="--d:1.6s;font-size:40px">好きで、得意で、誰かの<em>「ありがとう」</em>につながること。</div>
+  <div class="q a fade" style="--d:2.4s">問い:好き・得意で「ありがとう」と言われた経験は？</div>
+  <aside class="notes">「好きで得意で社会に役立つことを懸命に」というフィロソフィーを、少しほどいて考えてみます。好きが大事。でも、好きでも不得意なことを続けようとすると、結果的に苦しいだけになります。得意が大事。でも、得意なだけで好きじゃないことをやっていると、それは続きません。作業になってしまいます。ただ、何が好きで何が得意かは、頭で考えてもなかなかわかりません。やってみて、初めて見えてくるものです。まず動いてみることが、見つけるための一歩になります。そして、見つけたら磨いていく。誰かが「ありがとう」と言ってくれるところまで届いて、初めて「社会に役立つ」につながります。見つけることも、磨くことも、どちらも「なりたい自分を目指す」ということ。今、探している人も、もう道の途中にいます。【問い】これまでに、好きなことや得意なことを使って、誰かから「ありがとう」と言われた経験はありますか。</aside>
+</section>
+
+<section class="slide shot" data-title="マンガ:好きで得意で社会に役立つ" data-k=""><img src="img/15.jpg" alt="マンガ:好きで得意で社会に役立つ"><aside class="notes">マンガを一緒に読みます。やってみないと、わからない。好きでも不得意だと苦しい。得意でも好きじゃないと作業。磨くと「ありがとう」につながる。見つけることも、磨くことも、なりたい自分への道。思い出してみてください。これまでに、好きなことや得意なことを使って、誰かから「ありがとう」と言われた経験はありますか。</aside></section>
+
+<!-- 26 #14 -->
+<section class="slide dark" data-title="#14 声に出す" data-k="05 PHILOSOPHY · 14">
+  <div class="art">
+    <svg viewBox="0 0 700 410" width="700" height="410" style="position:absolute"><g fill="none" stroke="#F6C675" stroke-width="4"><circle class="ripple" cx="350" cy="205" r="130"/><circle class="ripple" style="animation-delay:1s" cx="350" cy="205" r="130"/><circle class="ripple" style="animation-delay:2s" cx="350" cy="205" r="130"/></g></svg>
+    <div class="emo a pop" style="font-size:130px">🙋</div>
+    <div class="chip a pop abs" style="--d:1.2s;left:80px;top:60px">やってみたら</div>
+    <div class="chip a pop abs" style="--d:1.8s;right:60px;top:90px">手伝うよ</div>
+    <div class="chip a pop abs" style="--d:2.4s;left:150px;bottom:40px">自分もそう思ってた</div>
+    <div class="emo abs a pop" style="--d:3s;right:200px;bottom:30px;font-size:70px">✨</div>
+  </div>
+  <div class="msg a up" style="--d:.3s;font-size:48px">声に出した瞬間、<em>チャンス</em>が立ち上がる。</div>
+  <div class="q a fade" style="--d:3.2s;font-size:26px">問い:今日、あなたは店長に何を伝えますか。</div>
+  <aside class="notes">「やってみたい」「こうなりたい」と思うことは、誰にでもあります。でも、思っているだけでは、何も始まりません。思いを、声に出す。これが、すべての始まりです。誰かに話してみる、相談してみる、宣言してみる。声に出した瞬間に、思いは初めて、自分の外に出ます。声に出した思いには、応えてくれる人が現れます。「やってみたら」「手伝うよ」「自分もそう思ってた」。チャンスは、最初から目の前に「ある」のではなく、声に出した瞬間に「立ち上がる」ものです。今、発した声が、明日には、自分もお店も、動き出している。それが、バルニバービです。【問い】今日この研修が終わった後、あなたは店長に何を伝えますか。</aside>
+</section>
+
+<section class="slide shot" data-title="マンガ:チャンスは目の前にある" data-k=""><img src="img/16.jpg" alt="マンガ:チャンスは目の前にある"><aside class="notes">マンガを一緒に読みます。声に出すと、チャンスは立ち上がる。応えてくれる人が現れる。思っただけでは、何も始まらない。だから、一歩踏み出せる。声に出す。それがすべての始まり。今日、あなたは店長に何を伝えますか。</aside></section>
+
+<!-- 27 career -->
+<section class="slide" data-title="キャリアプラン" data-k="06 CAREER">
+  <div class="art" style="height:420px">
+    <svg viewBox="0 0 1000 420" width="1000" height="420" style="position:absolute"><g fill="none" stroke="#185FA5" stroke-width="6" stroke-linecap="round"><path class="a draw" pathLength="1" style="--d:.6s" d="M500 360C500 260 220 280 190 130"/><path class="a draw" pathLength="1" style="--d:.8s" d="M500 360C500 250 500 220 500 130"/><path class="a draw" pathLength="1" style="--d:1s" d="M500 360C500 260 780 280 810 130"/></g></svg>
+    <div class="card abs a pop" style="left:60px;top:20px;width:260px;padding:14px"><div class="emo" style="font-size:60px">👨‍🍳</div><b style="font-size:24px">スペシャリスト</b><div style="font-size:16px;opacity:.7">シェフ・バリスタ・ソムリエ…</div></div>
+    <div class="card abs a pop" style="--d:.3s;left:370px;top:20px;width:260px;padding:14px"><div class="emo" style="font-size:60px">🧑‍💼</div><b style="font-size:24px">マネジメント</b><div style="font-size:16px;opacity:.7">店長 → 統括 → 取締役</div></div>
+    <div class="card abs a pop" style="--d:.6s;right:60px;top:20px;width:260px;padding:14px"><div class="emo" style="font-size:60px">🏢</div><b style="font-size:24px">本部・ゼネラリスト</b><div style="font-size:16px;opacity:.7">開発・デザイン・人事…</div></div>
+    <div class="card abs a up" style="left:420px;bottom:0;width:160px;padding:10px;background:var(--navy);color:#fff;font-size:24px;font-weight:800">入社</div>
+  </div>
+  <div class="msg a up" style="--d:1.4s;font-size:50px">正解ルートは、ない。<br><em>自分をブランドにしていく。</em></div>
+  <aside class="notes">バルニバービには正解ルートというキャリアも出世コースというキャリアもありません。技術を極めるスペシャリストも、チームを率いるマネジメントも、本部で会社を支えるゼネラリストも。私たちが大切にしているのは、「自分をブランドにしていく」という考え方です。つまりは、自分の仕事、自分だけの仕事になっていくことで評価されていきます。ホールからキッチンを経験して、マネージャーになる人。キッチンをずっとやり続けて、代表になる人。一度会社を離れ、外の世界を経験してから本部で働く人。一見食とは関係なさそうなスキルや経験も、自分のキャリアとして活かすことができます。</aside>
+</section>
+
+<!-- 28 platform -->
+<section class="slide green" data-title="学ぶ環境と守る環境" data-k="06 CAREER">
+  <div class="art" style="height:360px"><div class="row" style="gap:40px">
+    <div class="card a lt" style="width:430px"><div class="emo float" style="font-size:100px">📚</div><div style="font-size:30px;font-weight:800">多様な研修制度</div><div style="font-size:21px;opacity:.7">ビジネス・社会人・スキルUP</div></div>
+    <div class="card a rt" style="width:430px"><div class="emo float2" style="font-size:100px">🛌</div><div style="font-size:30px;font-weight:800">休暇制度</div><div style="font-size:21px;opacity:.7">有給・産前産後・育児休暇</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:.8s;font-size:50px">なりたい自分を目指す環境の<br><em>プラットフォーム</em>として使う。</div>
+  <aside class="notes">学びたいと思う時に、学ぶ環境として研修を設けています。また、成長する以外の働き方や、ライフステージによっても働き方が変わってくるので、皆さんが安心して働けるよう、産前産後・育児休業、家族手当、家賃手当、持株会制度など、福利厚生も整えています。時代に合わせて随時、制度を作り上げていきます。なりたい自分を目指す環境と、評価する環境、発揮できる環境。そのプラットフォームとして、店舗、会社を使っていってください。</aside>
+</section>
+
+<!-- 29 5 pillars -->
+<section class="slide navy" data-title="あなたを支え、守る5つの柱" data-k="07 SUPPORT & RULES">
+  <div class="art" style="height:410px;align-items:flex-end"><div class="row" style="align-items:flex-end;gap:22px;height:100%" id="pil">
+  </div></div>
+  <div class="msg a up" style="--d:2.2s;font-size:50px">あなたを支え、守る<em>5つの柱</em></div>
+  <aside class="notes">ここからは、皆さんに直接関係する制度とルールについてお話しします。特に、前職が別の飲食の方から見ると、バルニバービという会社が特殊に感じることもあるかもしれません。その具体的な仕組みが、この「5つの柱」です。福利厚生から、自分を守るためのルール、そして万が一の相談窓口まで、皆さんが安心して業務に専念できるための土台を本部が用意しています。入社説明の時に説明を受けている人もいるかもしれませんが、大事な部分なので、改めて今日も説明します。</aside>
+</section>
+
+<!-- 30 rent -->
+<section class="slide" data-title="家賃補助制度" data-k="07 · ① 福利厚生">
+  <div class="art" style="height:400px"><div class="row" style="align-items:center;gap:60px">
+    <svg viewBox="0 0 400 400" width="400" height="400"><circle class="ripple" cx="200" cy="200" r="170" fill="none" stroke="#185FA5" stroke-width="5" style="animation-duration:3.5s"/><circle class="a pop" cx="200" cy="200" r="170" fill="#E6F0FA" fill-opacity=".8" stroke="#185FA5" stroke-width="4" stroke-dasharray="14 10"/><text class="emo" x="200" y="232" font-size="84" text-anchor="middle">🏪</text><text class="emo a pop" style="--d:1s" x="120" y="150" font-size="60" text-anchor="middle">🏠</text><text x="290" y="320" font-size="34" font-weight="800" fill="#185FA5" text-anchor="middle" class="a fade" style="--d:1.4s">4km圏内</text></svg>
+    <div style="text-align:left"><div class="a up" style="font-size:28px;font-weight:700;opacity:.7">家賃補助</div><div class="big a pop" style="--d:.6s;font-size:130px;color:var(--navy)">2<span style="font-size:60px">万円</span></div><div style="font-size:26px;font-weight:700;margin-top:-6px" class="a fade">毎月 支給(非課税)</div>
+      <div style="display:grid;gap:10px;margin-top:18px;justify-items:start"><span class="chip a rt" style="--d:1.4s">✔ 給与30万円以下</span><span class="chip a rt" style="--d:1.7s">✔ 店舗から4km圏内</span><span class="chip a rt" style="--d:2s">✔ 本人名義の賃貸</span></div></div>
+  </div></div>
+  <div class="msg a up" style="--d:.4s;font-size:46px">会社の近くに住むと、毎月の生活が楽になる。</div>
+  <aside class="notes">生活の基盤を支える制度です。給与30万円以下で、所属店舗から4km圏内に、本人名義で賃貸契約をして住む場合、月額2万円の補助が出ます。住宅補助は課税対象外の手当となります。対象か不安な人は、後でSmartHRから申請状況を確認してください。</aside>
+</section>
+
+<!-- 31 birthday -->
+<section class="slide warm" data-title="バースデーチケット" data-k="07 · ① 福利厚生">
+  <div class="art">
+    <div class="emo abs" style="font-size:190px;left:50%;margin-left:-95px;top:90px">🎂</div>
+    <div class="emo abs flick" style="font-size:54px;left:50%;margin-left:-27px;top:50px;display:none">🔥</div>
+    <div class="row abs" style="gap:50px;left:0;right:0;bottom:0;justify-content:center"><div class="card a lt" style="--d:.6s;width:340px"><div class="emo" style="font-size:56px">🍽️</div><div style="font-size:28px;font-weight:800">食事券 1万円分</div><div style="font-size:19px;opacity:.7">全店舗で利用OK</div></div><div class="card a rt" style="--d:.9s;width:340px"><div class="emo" style="font-size:56px">🏨</div><div style="font-size:28px;font-weight:800">宿泊 50%OFF</div><div style="font-size:19px;opacity:.7">本人の予約で利用</div></div></div>
+  </div>
+  <div class="msg a up" style="--d:.3s;font-size:50px">誕生月は、会社全体でお祝い。</div>
+  <div class="sub a fade" style="--d:1.4s">有効期限は2ヶ月 ― 使い漏れに注意</div>
+  <div class="confetti emo" style="left:8%;font-size:40px;animation-duration:5s">🎉</div><div class="confetti emo" style="left:22%;font-size:34px;animation-duration:6.5s;animation-delay:1s">✨</div><div class="confetti emo" style="left:40%;font-size:38px;animation-duration:5.5s;animation-delay:2s">🎊</div><div class="confetti emo" style="left:62%;font-size:36px;animation-duration:6s;animation-delay:.5s">✨</div><div class="confetti emo" style="left:80%;font-size:40px;animation-duration:5.2s;animation-delay:1.5s">🎉</div><div class="confetti emo" style="left:92%;font-size:34px;animation-duration:6.8s;animation-delay:2.5s">🎊</div>
+  <aside class="notes">誕生月には、全店で利用できる1万円分の食事券と、宿泊施設の50%割引チケットが届きます。本人のご予約で利用が可能となっております。有効期限は2ヶ月となっておりますので、使い漏れがないよう、お気をつけください。</aside>
+</section>
+
+<!-- 32 long-term -->
+<section class="slide" data-title="長く安心して働ける環境" data-k="07 · ① 福利厚生">
+  <div class="art" style="height:400px"><div class="row" style="gap:28px">
+    <div class="card a up" style="width:350px"><div class="emo float" style="font-size:96px">👨‍👧</div><div style="font-size:28px;font-weight:800;margin:6px 0">子ども支援手当</div><div style="font-size:21px;line-height:1.7">18歳未満の子<br>1人目 <b>1万円</b> / 2人目〜 <b>5千円</b><br>毎月支給</div></div>
+    <div class="card a up" style="--d:.3s;width:350px"><div class="emo float2" style="font-size:96px">🌱</div><div style="font-size:28px;font-weight:800;margin:6px 0">従業員持株会</div><div style="font-size:21px;line-height:1.7">1,000円から積立<br>会社が <b>5%</b> 上乗せ</div></div>
+    <div class="card a up" style="--d:.6s;width:350px"><div class="emo float" style="font-size:96px">🏅</div><div style="font-size:28px;font-weight:800;margin:6px 0">永年勤続報奨</div><div style="font-size:21px;line-height:1.7">勤続 <b>5・10・20年</b> の<br>節目に報奨を支給</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:.9s;font-size:50px">長く、安心して働き続けられる環境。</div>
+  <div class="sub a fade" style="--d:1.3s;font-size:20px">ほかに、結婚・出産祝い金／年2回の健康診断／団体保険／マッサージ利用</div>
+  <aside class="notes">子ども支援手当は、18歳未満の子がいる場合、1人目1万円、2人目以降5千円を毎月支給します。また、1,000円から自社株を積み立てられ、会社が購入額の5%を上乗せする「従業員持株会」や、勤続5年・10年・20年の節目の「永年勤続報奨」もあります。その他、結婚・出産祝い金、年2回の健康診断、会社負担での団体保険加入、「彫刻リンパ(マッサージ)」の利用も可能です。</aside>
+</section>
+
+<!-- 33 clock -->
+<section class="slide dark" data-title="1分単位で管理" data-k="07 · ② 就業ルール">
+  <div class="art" style="height:380px"><div style="border:12px solid #6f93d6;border-radius:30px;padding:30px 70px;background:#0b1226;box-shadow:0 0 70px #3d6fd066"><div class="big" style="font-size:190px;letter-spacing:.04em;color:#7fb6ee;font-family:'SF Mono',Menlo,Consolas,monospace">00<span class="blink">:</span><span id="sec">00</span></div></div></div>
+  <div class="msg a up" style="--d:.3s;font-size:50px">働いた時間は、<em>1分単位</em>で管理される。</div>
+  <div class="sub a fade" style="--d:1s">残業代も含め、すべて正確に評価されます</div>
+  <aside class="notes">バルニバービの給与計算は「1分単位」で行われます。残業代も含め、皆さんの労働時間は正確に評価・管理されます。給与は打刻で管理されるため、業務開始前および業務終了直後の「本人打刻」を徹底してください。</aside>
+</section>
+
+<!-- 34 punch -->
+<section class="slide" data-title="自主練習は退勤打刻のあと" data-k="07 · ② 就業ルール">
+  <div class="art" style="height:380px;flex-direction:column;gap:30px">
+    <div class="row" style="gap:0;width:1100px;align-items:stretch;height:130px">
+      <div class="card a lt" style="width:190px;border-radius:20px 0 0 20px;background:#E6F0FA"><div class="emo" style="font-size:50px">⏱️</div><b style="font-size:22px">出勤打刻</b></div>
+      <div class="card a up" style="--d:.3s;flex:1;border-radius:0;background:#FFF3DC;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800">🍽️ 勤務</div>
+      <div class="card a rt" style="--d:.6s;width:190px;border-radius:0;background:#E6F0FA"><div class="emo" style="font-size:50px">⏱️</div><b style="font-size:22px">退勤打刻</b></div>
+      <div class="card a rt" style="--d:1.2s;width:280px;border-radius:0 20px 20px 0;background:#E1F5EE;border:4px solid var(--green)"><div class="emo" style="font-size:50px">🍳</div><b style="font-size:22px;color:var(--green)">自主練習 ⭕</b></div>
+    </div>
+    <div class="row a fade" style="--d:1.8s;gap:14px;font-size:26px;font-weight:700;color:var(--red)"><span class="emo">⚠️</span> 打刻前の練習は、時間外の扱いになりません</div>
+  </div>
+  <div class="msg a up" style="--d:1.5s;font-size:50px">自主練習は、必ず<em>退勤打刻のあと</em>。</div>
+  <aside class="notes">特に注意が必要なのは自主的な練習です。これは必ず「退勤打刻の後」に行ってください。業務開始前および終了直後の本人打刻を徹底してください。</aside>
+</section>
+
+<!-- 35 break -->
+<section class="slide green" data-title="休憩と休暇" data-k="07 · ② 就業ルール">
+  <div class="art" style="height:400px"><div class="row" style="gap:40px">
+    <div class="card a lt" style="width:480px"><div class="emo float" style="font-size:90px">☕</div><div style="font-size:30px;font-weight:800">毎日の休憩</div><div style="font-size:30px;margin-top:10px;line-height:1.7">6時間以上 ▶ <b style="color:var(--navy)">45分</b>以上<br>8時間以上 ▶ <b style="color:var(--navy)">60分</b>以上</div></div>
+    <div class="card a rt" style="width:480px"><div class="emo float2" style="font-size:90px">📅</div><div style="font-size:30px;font-weight:800">休日と有給</div><div style="font-size:28px;margin-top:10px;line-height:1.7">公休 ▶ 月<b style="color:var(--navy)">8日</b><br>有給 ▶ 6ヶ月後に<b style="color:var(--navy)">10日</b><br><span style="font-size:22px">付与後1年以内に最低5日は取得義務</span></div></div>
+  </div></div>
+  <div class="msg a up" style="--d:.8s;font-size:48px">しっかり休み、最高のパフォーマンスを。</div>
+  <aside class="notes">休憩時間は、6時間以上の勤務で45分以上、8時間以上なら60分以上が必須です。公休は月8日、さらに勤続6ヶ月で10日の有給休暇が付与されます。付与後1年以内に最低5日は必ず取得する義務があります。もし現場でこれが取れていなければ、店長に対し「本部研修でこう習いました」と冷静に事実を伝えてください。</aside>
+</section>
+
+<!-- 36 oyster -->
+<section class="slide alert" data-title="牡蠣の摂取は全面禁止" data-k="07 · ③ 衛生管理">
+  <div class="art"><div class="emo a pop" style="font-size:190px;filter:grayscale(.2)">🦪</div>
+    <svg viewBox="0 0 300 300" width="330" height="330" style="position:absolute" class="pulse"><circle class="a draw" pathLength="1" cx="150" cy="150" r="135" fill="none" stroke="#D6403F" stroke-width="24" style="--d:.6s"/><path class="a draw" pathLength="1" d="M55 245L245 55" stroke="#D6403F" stroke-width="24" stroke-linecap="round" style="--d:1.4s"/></svg></div>
+  <div class="msg a up" style="--d:.4s;color:var(--red)">牡蠣の摂取は、全面禁止。</div>
+  <div class="sub a fade" style="--d:1.6s">ノロウイルスから、お客様・お店・自分自身を守るために</div>
+  <aside class="notes">バルニバービでは、全スタッフの牡蠣の摂取をいかなる場合も禁止しています。ノロウイルスによる食中毒を完全に防ぎ、お客様、お店、そして自分自身の立場を守るための、絶対的な決まりです。</aside>
+</section>
+
+<!-- 37 symptoms -->
+<section class="slide" data-title="異変を感じたら" data-k="07 · ③ 衛生管理">
+  <div class="art" style="height:400px"><div class="row" style="align-items:center;gap:20px">
+    <div class="card a up" style="width:340px"><div class="emo shake" style="font-size:90px">🌡️</div><b style="font-size:26px">① 症状を確認</b><div style="font-size:20px;opacity:.8;line-height:1.6;margin-top:6px">高熱・ひどい咳<br>下痢・嘔吐</div></div>
+    <div class="emo a pop" style="--d:.7s;font-size:56px">➡️</div>
+    <div class="card a up" style="--d:.9s;width:340px;border:4px solid var(--red)"><div class="emo pulse" style="font-size:90px">⛔</div><b style="font-size:26px;color:var(--red)">② 出勤不可・即報告</b><div style="font-size:20px;opacity:.8;line-height:1.6;margin-top:6px">迷わず上司へ<br>ノロは陰性まで出勤不可</div></div>
+    <div class="emo a pop" style="--d:1.6s;font-size:56px">➡️</div>
+    <div class="card a up" style="--d:1.8s;width:340px"><div class="emo float" style="font-size:90px">📋</div><b style="font-size:26px">③ 日々の記録</b><div style="font-size:20px;opacity:.8;line-height:1.6;margin-top:6px">手洗い・消毒・髪型<br>「マキトリ」で記録</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:2.2s;font-size:50px">異変を感じたら、決して<em>無理をしない</em>。</div>
+  <aside class="notes">発熱、ひどい咳、下痢、嘔吐がある場合は「出勤不可」です。判断に迷わず、すぐに上司へ報告し指示を仰いでください。ノロウイルスの場合は結果が陰性となるまで出勤できません。また、出勤時、休憩後、お手洗い後のハンドソープによる手洗いとアルコール消毒、調理中の髪型や帽子の着用を徹底し、「マキトリ」による日々の衛生行動の記録管理は義務です。10人以上の同料理提供時は検食を実施します。</aside>
+</section>
+
+<!-- 38 SNS -->
+<section class="slide" data-title="舞台裏はSNS厳禁" data-k="07 · ③ 衛生管理">
+  <div class="art" style="height:400px"><div class="row" style="align-items:center;gap:40px">
+    <div style="position:relative"><div class="emo a pop float" style="font-size:190px">📱</div><div class="emo a zoom" style="--d:1s;position:absolute;left:70px;top:50px;font-size:100px">🚫</div></div>
+    <div style="display:grid;gap:16px;text-align:left">
+      <div class="card a rt" style="--d:.5s;display:flex;gap:16px;align-items:center;padding:14px 24px"><span class="emo" style="font-size:48px">🍳</span><div><b style="font-size:26px">休憩室の写真</b><div style="font-size:18px;opacity:.7">レシピ・機密の写り込み</div></div></div>
+      <div class="card a rt" style="--d:.9s;display:flex;gap:16px;align-items:center;padding:14px 24px"><span class="emo" style="font-size:48px">📊</span><div><b style="font-size:26px">未発表の企業情報</b><div style="font-size:18px;opacity:.7">IR情報などの漏洩</div></div></div>
+      <div class="card a rt" style="--d:1.3s;display:flex;gap:16px;align-items:center;padding:14px 24px"><span class="emo" style="font-size:48px">🎉</span><div><b style="font-size:26px">お客様のパーティ写真</b><div style="font-size:18px;opacity:.7">無断公開</div></div></div>
+    </div>
+  </div></div>
+  <div class="msg a up" style="--d:1.6s;font-size:50px">何気ない投稿が、信頼を失う。</div>
+  <aside class="notes">休憩室の写真にレシピや機密情報が写り込むリスク、未発表の企業情報の漏洩、お客様のパーティ写真の無断公開は絶対にしないでください。何気ない投稿が、多大な信頼喪失と情報漏洩を招きます。</aside>
+</section>
+
+<!-- 39 SmartHR -->
+<section class="slide navy" data-title="SmartHR" data-k="07 · ④ SmartHR">
+  <div class="art" style="height:430px">
+    <div class="emo abs float" style="font-size:190px">📱</div>
+    <div class="abs orbit" style="width:420px;height:420px;left:50%;top:50%;margin:-210px 0 0 -210px">
+      <div class="emo abs" style="left:170px;top:-30px;font-size:62px">🧾</div><div class="emo abs" style="right:-30px;top:170px;font-size:62px">🏠</div><div class="emo abs" style="left:170px;bottom:-30px;font-size:62px">📢</div><div class="emo abs" style="left:-30px;top:170px;font-size:62px">👪</div></div>
+    <div class="abs orbit" style="width:420px;height:420px;left:50%;top:50%;margin:-210px 0 0 -210px;opacity:0"></div>
+  </div>
+  <div class="msg a up" style="--d:.3s;font-size:50px">会社とのやり取りは、<em>スマホで完結</em>。</div>
+  <div class="sub a fade" style="--d:1s">給与明細・住所変更・扶養申請・お知らせ ― 専用アプリを必ず準備</div>
+  <aside class="notes">SmartHRは、本部とスタッフを繋ぐ基盤ツールです。給与明細・源泉徴収票の確認、住所・通勤経路の変更申請、扶養家族の追加・削除申請、育児・介護休業の意向確認などに使います。お知らせ・掲示板には、新機能のリリースや重要事項、アンケート等の通知が届くので、定期的な確認が必要です。iOS/Android向けの専用アプリのインストールをお願いします。</aside>
+</section>
+
+<!-- smarthr can do -->
+<section class="slide" data-title="SmartHRでできること" data-k="07 · ④ SmartHR">
+  <div class="art" style="height:400px"><div class="row" style="gap:20px">
+    <div class="card a up" style="width:270px"><div class="emo float" style="font-size:80px">🧾</div><b style="font-size:23px">給与明細・<br>源泉徴収票</b><div style="font-size:17px;opacity:.7;margin-top:6px">いつでも確認・ダウンロード</div></div>
+    <div class="card a up" style="--d:.25s;width:270px"><div class="emo float2" style="font-size:80px">📝</div><b style="font-size:23px">各種手続きの<br>申請・更新</b><div style="font-size:17px;opacity:.7;margin-top:6px">扶養・氏名変更もオンラインで</div></div>
+    <div class="card a up" style="--d:.5s;width:270px"><div class="emo float" style="font-size:80px">📢</div><b style="font-size:23px">会社からの<br>お知らせ</b><div style="font-size:17px;opacity:.7;margin-top:6px">重要な連絡をタイムリーに</div></div>
+    <div class="card a pop" style="--d:1.4s;width:270px;border:5px solid var(--red);background:#FFF5F3"><div class="emo shake" style="font-size:80px">🔔</div><b style="font-size:23px;color:var(--red)">通知を<br>オンにする</b><div style="font-size:17px;opacity:.8;margin-top:6px">見逃さないために</div></div>
+  </div></div>
+  <div class="msg a up" style="--d:1.8s;font-size:50px">通知は、必ず<em>オン</em>にする。</div>
+  <aside class="notes">SmartHRアプリでできることは4つです。給与明細・源泉徴収票の確認。過去の分もいつでも確認・ダウンロードできます。各種手続きの申請・更新。扶養家族の追加・削除、氏名変更などの手続きがオンラインで完結します。会社からのお知らせの確認。重要なお知らせや社内情報をタイムリーに確認できます。そして【重要】通知設定。アプリの通知をオンにして、重要な連絡を見逃さないようにしましょう。</aside>
+</section>
+
+<section class="slide shot" data-title="SmartHRアプリでできること(画面)" data-k=""><img src="img/31.jpg" alt="SmartHRアプリでできること(画面)"><aside class="notes">画面で確認します。ベルのマークに通知が届きます。給与明細、手続き、お知らせ。通知はオンにしておいてください。</aside></section>
+
+<!-- 40 missions -->
+<section class="slide" data-title="SmartHR 3つのミッション" data-k="07 · ④ SmartHR">
+  <div class="art" style="height:400px"><div style="display:grid;gap:18px;width:900px">
+    <div class="card a lt" style="display:flex;align-items:center;gap:22px;text-align:left"><span class="emo" style="font-size:60px">📢</span><div style="flex:1"><div style="font-size:19px;color:var(--amber-d);font-weight:800">MISSION 1</div><div style="font-size:30px;font-weight:800">掲示板を確認する</div></div><span class="emo a pop" style="--d:1.2s;font-size:56px">✅</span></div>
+    <div class="card a lt" style="--d:.4s;display:flex;align-items:center;gap:22px;text-align:left"><span class="emo" style="font-size:60px">🎓</span><div style="flex:1"><div style="font-size:19px;color:var(--amber-d);font-weight:800">MISSION 2</div><div style="font-size:30px;font-weight:800">出身校(正式名称)を登録する</div></div><span class="emo a pop" style="--d:1.8s;font-size:56px">✅</span></div>
+    <div class="card a lt" style="--d:.8s;display:flex;align-items:center;gap:22px;text-align:left"><span class="emo" style="font-size:60px">🧭</span><div style="flex:1"><div style="font-size:19px;color:var(--amber-d);font-weight:800">MISSION 3</div><div style="font-size:30px;font-weight:800">明細・各種申請の場所を確認する</div></div><span class="emo a pop" style="--d:2.4s;font-size:56px">✅</span></div>
+  </div></div>
+  <div class="msg a up" style="--d:2.6s;font-size:46px">さあ、SmartHRを開いてみよう。</div>
+  <aside class="notes">それではここからはSmartHRを使ってみます。事前にインストールしてもらっているSmartHRを開いてみてください。開けない人がいましたら、チャットで教えてください。ミッション1:掲示板の確認。ダッシュボードの「お知らせ」または「掲示板」を確認してください。本部からの重要な通知、規約の変更、アンケートなどは全てここに集約されます。ミッション2:プロフィール情報の充実(出身校登録)。個人情報ページから「出身校」を登録してください。会社が皆さんの背景を正しく把握し、適切なコミュニケーションや配置を検討するための重要なデータとなります。ミッション3:用途の確認。今後、給与明細や源泉徴収票の確認、住所や通勤経路の変更申請は全てここで行います。</aside>
+</section>
+
+<section class="slide shot" data-title="SmartHR:従業員情報へのアクセス(画面)" data-k=""><img src="img/29.jpg" alt="SmartHR:従業員情報へのアクセス(画面)"><aside class="notes">画面の上部にある「従業員情報」ボタンをタップしてください。ご自身の詳細な登録情報を確認および更新することができます。</aside></section>
+
+<!-- steps -->
+<section class="slide navy" data-title="出身校・趣味・資格の登録" data-k="07 · ④ SmartHR">
+  <div class="art" style="height:380px"><div class="row" style="gap:14px;align-items:flex-start">
+    <div class="a up" style="width:222px"><div class="card" style="padding:16px 10px"><div class="emo float" style="font-size:66px">👆</div><b style="font-size:20px;display:block;margin-top:6px">① 「従業員情報」<br>ボタンをタップ</b></div></div>
+    <div class="emo a pop" style="--d:.5s;font-size:36px;margin-top:80px">▶</div>
+    <div class="a up" style="--d:.7s;width:222px"><div class="card" style="padding:16px 10px"><div class="emo float2" style="font-size:66px">📜</div><b style="font-size:20px;display:block;margin-top:6px">② 一番下まで<br>スクロール</b></div></div>
+    <div class="emo a pop" style="--d:1.2s;font-size:36px;margin-top:80px">▶</div>
+    <div class="a up" style="--d:1.4s;width:222px"><div class="card" style="padding:16px 10px"><div class="emo float" style="font-size:66px">🪪</div><b style="font-size:20px;display:block;margin-top:6px">③ タレント<br>プロファイル</b></div></div>
+    <div class="emo a pop" style="--d:1.9s;font-size:36px;margin-top:80px">▶</div>
+    <div class="a up" style="--d:2.1s;width:222px"><div class="card" style="padding:16px 10px"><div class="emo float2" style="font-size:66px">👉</div><b style="font-size:20px;display:block;margin-top:6px">④「この項目を<br>編集」をタップ</b></div></div>
+    <div class="emo a pop" style="--d:2.6s;font-size:36px;margin-top:80px">▶</div>
+    <div class="a pop" style="--d:2.8s;width:222px"><div class="card pulse" style="padding:16px 10px;border:5px solid #FFC96B"><div class="emo" style="font-size:66px">✍️</div><b style="font-size:20px;display:block;margin-top:6px">⑤ 出身校・趣味・<br>資格を入力</b></div></div>
+  </div></div>
+  <div class="msg a up" style="--d:3s;font-size:48px">あなたの<em>「好き」と「得意」</em>を、教えてください。</div>
+  <div class="sub a fade" style="--d:3.4s;font-size:22px">情報をもとに、親和性の高い事業計画が動く時にお声がけすることがあります</div>
+  <aside class="notes">ミッション2、プロフィールの充実です。画面上部の「従業員情報」ボタンをタップし、画面を一番下までスクロールすると「タレントプロファイル」という項目が出てきます。「この項目を編集」をタップして、出身校、趣味、資格などを入力してください。こちらの情報を元に、親和性が高い事業計画が動きそうな時にお声かけさせていただくことがあります。まさに、フィロソフィーの「声に出す」「好きで得意なことを活かす」と、つながっています。</aside>
+</section>
+
+<section class="slide shot" data-title="SmartHR:タレントプロファイルの編集(画面)" data-k=""><img src="img/30.jpg" alt="SmartHR:タレントプロファイルの編集(画面)"><aside class="notes">画面で手順を確認します。1.一番下までスクロール。2.タレントプロファイルが出てくる。3.「この項目を編集」をタップ。4.出身校、趣味、資格などを入力。</aside></section>
+
+<!-- 41 consult -->
+<section class="slide green" data-title="グループ相談窓口" data-k="07 · ⑤ 相談窓口">
+  <div class="art" style="height:330px"><svg viewBox="0 0 300 300" width="300" height="300" class="float"><path class="a draw" pathLength="1" d="M150 15L265 55V150C265 220 215 265 150 285C85 265 35 220 35 150V55Z" fill="#fff" stroke="#1D9E75" stroke-width="12" stroke-linejoin="round" style="animation-duration:1.6s"/><text class="emo a pop" style="--d:1.2s" x="150" y="190" font-size="110" text-anchor="middle">✉️</text></svg></div>
+  <div class="card a up" style="--d:1.4s;font-size:50px;font-weight:800;color:var(--navy);padding:12px 40px;margin-top:6px">soudan@garb.co.jp</div>
+  <div class="msg a up" style="--d:1.8s;font-size:50px">悩みは、ひとりで<em>抱え込まない</em>。</div>
+  <div class="sub a fade" style="--d:2.2s">店長・シェフに言いにくいことも、あなたの立場とプライバシーは守られます</div>
+  <aside class="notes">店長やシェフには直接言いづらいハラスメントや業務上の悩みがあれば、この専門窓口(グループ相談窓口)を頼ってください。あなたのプライバシーと立場は本部の手で完全に守られます。悩みや不安は、決してひとりで抱え込まないでください。住所・連絡先・氏名の変更、結婚・離婚、出産等の際の届出もお忘れなく。</aside>
+</section>
+
+<!-- 42 quiz -->
+<section class="slide warm" data-title="確認テストと本音" data-k="08 CHECK">
+  <div class="art" style="height:380px"><div class="row" style="align-items:center;gap:60px">
+    <div class="card a lt" style="width:380px"><div class="emo" style="font-size:90px;display:inline-block;animation:flip 3s ease-in-out infinite">⏳</div><div class="big" style="font-size:72px;color:var(--navy)">10<span style="font-size:30px">分</span></div><div style="font-size:26px;font-weight:800">10問のクイズ</div></div>
+    <div class="emo a pop" style="--d:.6s;font-size:60px">＋</div>
+    <div class="card a rt" style="--d:.9s;width:380px"><div class="emo float" style="font-size:90px">✍️</div><div style="font-size:26px;font-weight:800;margin-top:8px">この1ヶ月で、<br>一番困っていること・<br>焦ったこと</div></div>
+  </div></div>
+  <style>@keyframes flip{0%,40%{transform:rotate(0)}60%,100%{transform:rotate(180deg)}}</style>
+  <div class="msg a up" style="--d:1.2s;font-size:48px">本音を、聞かせてください。</div>
+  <div class="sub a fade" style="--d:1.6s">いただいた声は、本部が責任を持って現場環境の改善に使います</div>
+  <aside class="notes">QRコードを読み込んで、アンケートに答えてください。スマホで参加している人は、チャット欄のリンクからお答えください。今から10分間で、今日の内容に関する10問のクイズに答えてもらいます。そして最後の記述欄には「この1ヶ月で正直一番困っていること・焦ったこと」を本音で書いてください。店長に直接言いにくいことでも、SmartHRの操作がわからないといった些細なことでも構いません。このあとのフィードバックで、あるある の悩みや、皆に知っておいてもらいたい内容を全体で共有したいと考えています。共有して大丈夫という人は、YESにチェックを入れてください。</aside>
+</section>
+
+<!-- 43 close -->
+<section class="slide dark" data-title="Welcome" data-k="">
+  <svg viewBox="0 0 1280 720" width="1280" height="720" style="position:absolute;inset:0"><defs><radialGradient id="rise"><stop offset="0" stop-color="#FFC96B" stop-opacity=".9"/><stop offset="1" stop-color="#FFC96B" stop-opacity="0"/></radialGradient></defs><circle class="glow" cx="640" cy="720" r="520" fill="url(#rise)"/></svg>
+  <div class="emo a pop float" style="font-size:110px">🌅</div>
+  <div class="msg a up" style="--d:.5s;font-size:60px;margin-top:20px">さあ、新しい物語を<br>創っていきましょう。</div>
+  <div class="sub a fade" style="--d:1.2s;letter-spacing:.4em;font-weight:700;color:#F6C675">WELCOME TO BALNIBARBI</div>
+  <div class="confetti emo" style="left:10%;font-size:40px;animation-duration:6s">✨</div><div class="confetti emo" style="left:30%;font-size:36px;animation-duration:7s;animation-delay:1s">🎉</div><div class="confetti emo" style="left:55%;font-size:40px;animation-duration:6.5s;animation-delay:2s">✨</div><div class="confetti emo" style="left:75%;font-size:36px;animation-duration:7.5s;animation-delay:.5s">🎊</div><div class="confetti emo" style="left:90%;font-size:40px;animation-duration:6s;animation-delay:1.5s">✨</div>
+  <aside class="notes">皆さんの歩みが、自分を輝かせ、誰かの幸せに繋がり、そして自分自身の幸せになること。バルニバービには「決まったキャリアパス」はありません。キッチンから代表になった人もいれば、一度辞めて戻ってきて本部で活躍する人もいます。大切なのは、「自分をブランドにしていく」という意志です。チャンスは常に目の前にあります。今日から一緒に、新しい物語を創っていきましょう。改めて、バルニバービへようこそ！</aside>
+</section>
+
+</div><!-- /stage -->
+
+<div id="notes"><h4>講師用台本(Nキーで表示/非表示)</h4><div id="noteBody"></div></div>
+<div id="grid"><div class="g" id="gridList"></div></div>
+<div id="hud">
+  <button id="bPrev" aria-label="前へ">◀</button><button id="bNext" aria-label="次へ">▶</button>
+  <button id="bGrid">一覧 (G)</button><button id="bNotes">台本 (N)</button><button id="bFs">全画面 (F)</button><button id="bReplay">再生 (R)</button>
+  <span id="cnt"></span>
+</div>
+<div id="help">← → / スペース:移動 ・ N:台本 ・ G:一覧 ・ F:全画面 ・ R:もう一度</div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const stage=$('#stage');let slides=[],cur=0;
+(async function boot(){
+await Promise.all($$('.slide.shot').map(sl=>new Promise(r=>{const im=$('img',sl);const ok=()=>r(),ng=()=>{sl.remove();r()};if(im.complete){im.naturalWidth?ok():ng()}else{im.onload=ok;im.onerror=ng}})));
+slides=$$('.slide');
+const noteHTML=slides.map(s=>{const a=$('aside.notes',s);const t=a?a.textContent:'';a&&a.remove();return t});
+
+/* scale */
+function fit(){const k=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform=`translate(-50%,-50%) scale(${k})`}
+addEventListener('resize',fit);fit();
+
+/* dynamic builds */
+(function(){
+  // sales chart
+  const D=[15,24,55,164,270,613,731,1679,1858,1616,1604,1584,1778,2191,2462,2655,2729,3030,3640,5185,5950,6642,8468,9824,11185,11512,9433,8046,9969,13363,13452,14332];
+  const svg=$('#sales'),NS='http://www.w3.org/2000/svg',L=30,W=1040,bw=W/D.length,B=360,H=300;
+  const col=y=>y<=2000?'#1D9E75':y<=2003?'#8A6D4B':y<=2015?'#378ADD':'#0F3F70';
+  let h='<line x1="30" x2="1070" y1="360" y2="360" stroke="#c9c4b8" stroke-width="2"/>';
+  D.forEach((v,i)=>{const y=1994+i,x=L+i*bw+4,hh=Math.max(2,v/14332*H);
+    h+=`<rect class="a grow" style="--d:${(i*.05).toFixed(2)}s" x="${x}" y="${B-hh}" width="${bw-8}" height="${hh}" rx="3" fill="${col(y)}"/>`;
+    if(y%4===1||y===2025)h+=`<text x="${x+(bw-8)/2}" y="385" font-size="15" text-anchor="middle" fill="#8a857c">${y}</text>`});
+  const note=(i,txt,c,d,dy)=>{const x=L+i*bw+bw/2;return `<g class="a pop" style="--d:${d}s"><text x="${x}" y="${dy}" font-size="21" font-weight="800" text-anchor="middle" fill="${c}">${txt}</text></g>`};
+  h+=note(8,'迷走期','#D6403F',2.0,260)+note(11,'再起','#1D9E75',2.1,250)+note(21,'上場','#185FA5',2.2,150)+note(25,'淡路島','#185FA5',2.3,60)+note(29,'出雲','#185FA5',2.4,66);
+  h+=`<text class="a fade" style="--d:2.2s" x="1070" y="22" font-size="22" font-weight="800" text-anchor="end" fill="#0F3F70">143億円</text><text x="40" y="22" font-size="14" fill="#8a857c">売上高(百万円)</text>`;
+  svg.innerHTML=h;
+  // bubbles
+  const co=[['ウィルワークス',35,250,70],['オーガスト',26,100,160],['コンシスタンス',12,640,40],['インターフェイス',12,820,200],['スピリッツ',10,470,230],['ピアッティベッラ',9,330,10],['トゥーコンパス',3,690,250],['ヒトハナサカス',3,60,20],['ジョイパーク',1,880,40],['トウキョウイット',1,500,10]];
+  const cols=['#EF9F27','#185FA5','#1D9E75','#D85A30','#7F77DD','#378ADD','#8A6D4B','#D6403F','#1D9E75','#185FA5'];
+  $('#bubbles').style.position='relative';
+  $('#bubbles').innerHTML=co.map((c,i)=>{const s=84+c[1]*3.4;return `<div class="abs a pop" style="--d:${(i*.15).toFixed(2)}s;left:${c[2]+40}px;top:${c[3]}px"><div class="float${i%2?'2':''}" style="width:${s}px;height:${s}px;border-radius:50%;background:${cols[i]};color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:${Math.max(14,s/7)}px;line-height:1.25;box-shadow:0 8px 20px #0003;padding:6px;animation-delay:${i*.3}s">${c[0]}<small style="font-weight:600;opacity:.9">${c[1]}店</small></div></div>`}).join('');
+  // tiles
+  $('#tiles').innerHTML=Array.from({length:14},(_,i)=>{const n=i+1,hl=[1,2,3,14].includes(n);return `<div class="a pop" style="--d:${(i*.08).toFixed(2)}s;height:100px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:800;background:${hl?'#FFC96B':'#ffffff22'};color:${hl?'#3a2603':'#ffffffaa'};${hl?'box-shadow:0 0 30px #FFC96B88':''}">${String(n).padStart(2,'0')}</div>`}).join('');
+  // pillars
+  const P=[['🎁','福利厚生・諸手当','働く仲間へのサポート',250],['⏰','就業ルール・規律','自分と環境を守る盾',290],['🛡️','衛生管理・食中毒予防','プロとしての防衛',250],['📱','SmartHR','情報のライフライン',290],['✉️','グループ相談窓口','安心のための体制',250]];
+  $('#pil').innerHTML=P.map((p,i)=>`<div style="width:215px;text-align:center"><div class="emo a pop" style="--d:${(1.2+i*.2).toFixed(1)}s;font-size:70px;margin-bottom:8px">${p[0]}</div><div class="a grow" style="--d:${(i*.2).toFixed(1)}s;height:${p[3]}px;background:linear-gradient(#fff,#cfe3f7);border-radius:10px 10px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:16px 10px;color:#0F3F70;box-shadow:0 8px 24px #0004"><b style="font-size:21px;line-height:1.35">${p[1]}</b><span style="font-size:15px;opacity:.75;margin-top:8px">${p[2]}</span></div></div>`).join('');
+})();
+
+/* counters */
+function runCounters(s){$$('.cnt',s).forEach(el=>{const to=+el.dataset.to,sep=el.dataset.sep!=='0',delay=+(el.dataset.delay||el.closest('.a')&&parseFloat(getComputedStyle(el.closest('.a')).getPropertyValue('--d'))*1000||0);el.textContent='0';const t0=performance.now()+delay,dur=1300;
+  (function f(t){const p=Math.max(0,Math.min(1,(t-t0)/dur)),e=1-Math.pow(1-p,3),v=Math.round(to*e);el.textContent=sep?v.toLocaleString():v;if(p<1&&s.classList.contains('active'))requestAnimationFrame(f)})(performance.now())})}
+/* seconds ticker */
+let tick;function ticker(on){clearInterval(tick);if(!on)return;let n=0;const e=$('#sec');e.textContent='00';tick=setInterval(()=>{n=(n+1)%60;e.textContent=String(n).padStart(2,'0')},1000)}
+
+/* navigation */
+function go(n,replay){n=Math.max(0,Math.min(slides.length-1,n));if(n===cur&&!replay&&slides[n].classList.contains('active'))return;
+  slides.forEach((s,i)=>s.classList.toggle('active',false));
+  void stage.offsetWidth;
+  const s=slides[n];s.classList.add('active');cur=n;
+  runCounters(s);ticker(s.dataset.title==='1分単位で管理');
+  $('#bar').style.width=((n+1)/slides.length*100)+'%';$('#cnt').textContent=`${n+1} / ${slides.length}  ${s.dataset.title}`;
+  $('#noteBody').textContent=noteHTML[n]||'(この枚の台本はありません)';
+  $$('#gridList button').forEach((b,i)=>b.classList.toggle('cur',i===n));
+  if(!replay)history.replaceState(null,'','#'+(n+1));
+  if(!$('#kick'+n)&&s.dataset.k){const k=document.createElement('div');k.className='kick';k.id='kick'+n;k.textContent=s.dataset.k;s.prepend(k)}
+}
+const next=()=>go(cur+1),prev=()=>go(cur-1);
+addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();$('#grid').classList.contains('on')||next()}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev()}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+  else if(e.key==='n'||e.key==='N')$('#notes').classList.toggle('on');
+  else if(e.key==='g'||e.key==='G')$('#grid').classList.toggle('on');
+  else if(e.key==='f'||e.key==='F')fs();else if(e.key==='r'||e.key==='R')go(cur,true);
+  else if(e.key==='Escape')$('#grid').classList.remove('on')});
+function fs(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+$('#bNext').onclick=next;$('#bPrev').onclick=prev;$('#bGrid').onclick=()=>$('#grid').classList.toggle('on');$('#bNotes').onclick=()=>$('#notes').classList.toggle('on');$('#bFs').onclick=fs;$('#bReplay').onclick=()=>go(cur,true);
+stage.addEventListener('click',e=>{const r=stage.getBoundingClientRect();(e.clientX-r.left)/r.width<.25?prev():next()});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{if(tx==null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)d<0?next():prev();tx=null});
+$('#gridList').innerHTML=slides.map((s,i)=>`<button data-i="${i}"><i>${String(i+1).padStart(2,'0')} ${s.dataset.k||''}</i>${s.dataset.title}</button>`).join('');
+$('#gridList').addEventListener('click',e=>{const b=e.target.closest('button');if(b){go(+b.dataset.i);$('#grid').classList.remove('on')}});
+go((parseInt(location.hash.slice(1))||1)-1,true);
+addEventListener('hashchange',()=>go((parseInt(location.hash.slice(1))||1)-1));
+})();
+</script>
+</body>
+</html>
