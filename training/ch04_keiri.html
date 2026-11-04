@@ -55,6 +55,9 @@
 .react .good .say { background: var(--ok-soft); color: var(--ok); }
 .react .res { font-size: 28px; font-weight: 700; }
 .zure { display: inline-flex; align-items: center; gap: 14px; font-size: 34px; font-weight: 900; padding: 14px 26px; border-radius: 22px; background: #fff; box-shadow: 0 8px 24px rgba(29,33,40,.08); }
+.areas { display: flex; flex-direction: column; gap: 10px; }
+.areas span { display: flex; align-items: baseline; gap: 18px; font-size: 26px; color: var(--ink-2); background: var(--accent-soft); border-radius: 16px; padding: 10px 22px; }
+.areas b { font-size: 30px; color: #1d2128; min-width: 190px; }
 
 .lose2 { display: grid; grid-template-columns: 1fr 1.25fr; gap: 26px; }
 .lose2 .card { gap: 10px; }
@@ -202,7 +205,7 @@
             <g fill="#fff" stroke="#e6dcc3" stroke-width="3">
               <rect x="54" y="20" width="326" height="64" rx="12"/><rect x="54" y="110" width="326" height="64" rx="12"/><rect x="54" y="200" width="326" height="64" rx="12"/><rect x="54" y="290" width="326" height="64" rx="12"/><rect x="54" y="380" width="326" height="64" rx="12"/>
             </g>
-            <g font-size="32" fill="#1d2128" text-anchor="middle"><text x="217" y="63">取締役</text><text x="217" y="153">役員</text><text x="217" y="243">店長</text><text x="217" y="333">社員</text><text x="217" y="423">ホール・キッチン</text></g>
+            <g font-size="32" fill="#1d2128" text-anchor="middle"><text x="217" y="63">代表取締役</text><text x="217" y="153">役員</text><text x="217" y="243">店長</text><text x="217" y="333">社員</text><text x="217" y="423">ホール・キッチン</text></g>
             <g fill="#c98a00">
               <circle class="mk" cx="440" cy="412" r="20" style="animation-delay:.1s,1.3s"/><circle class="mk" cx="440" cy="322" r="20" style="animation-delay:.4s,1.6s"/><circle class="mk" cx="440" cy="232" r="20" style="animation-delay:.7s,1.9s"/><circle class="mk" cx="440" cy="142" r="20" style="animation-delay:1s,2.2s"/><circle class="mk" cx="440" cy="52" r="20" style="animation-delay:1.3s,2.5s"/>
             </g>
@@ -211,38 +214,38 @@
             <text x="480" y="422" font-size="26" fill="#8f6200">着服が繰り返し</text>
           </g>
         </svg>
-        <p class="cap">取締役の横領は、別件のハラスメントで店舗を離れる際の、引き継ぎ作業中に発覚</p>
+        <p class="cap">代表取締役の横領は、別件のハラスメントで店舗を離れる際の、引き継ぎ作業中に発覚</p>
       </div>
     </div>
     <div class="alert" data-step="4"><svg class="i"><use href="#i-alert"/></svg><p><b>役職の高さは、不正の抑止力になりません。</b></p></div>
     <aside class="notes">今日は他社の事例ではなく、私たちの会社で実際に起きたことをお話しします。
 ［クリック］2022年以降、ホール社員・キッチン社員による売上現金の着服は、10件以上、繰り返し発生しています。多くは本人が全額返納したうえで諭旨退職となっていますが、警察への相談、被害届の提出に至ったケースもあります。
 ［クリック］そして、着服は現場のスタッフだけの話ではありません。役員・取締役による着服も、複数件発生しています。
-ある店舗では、取締役自身が売上金を横領していました。しかもこの横領は、別件のハラスメントでその店舗を離れることになり、引き継ぎ作業をしている最中に発覚したという経緯があります。
+ある店舗では、代表取締役自身が売上金を横領していました。しかもこの横領は、別件のハラスメントでその店舗を離れることになり、引き継ぎ作業をしている最中に発覚したという経緯があります。
 ［クリック］さらに、直近では2026年5月に、不正な仕入れの転売が発覚し、社員が全額返済のうえ諭旨退職となった事例もあります。
 ［クリック］役職の高さは、不正の抑止力になりません。</aside>
   </section>
 
   <!-- クイズ① -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ①</span><span class="qz-how">Zoomの投票で回答（記述）</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:60s"><span class="bar"><i></i></span><b data-countdown="60" data-fmt="mmss">1:00</b><em class="up">時間です</em></span></span></div>
       <h2 class="qz-q" data-in style="--d:1">店頭で起こりうる不正には、現金以外にどんなものがありますか？</h2>
       <div class="card" style="padding:26px 32px;gap:14px"><p style="font-size:30px;color:var(--ink-2)">思いつくものを、いくつでも書いてください</p></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><p><b>たとえば</b></p><div class="chips"><span>高額食材（高級ワイン・和牛・キャビア等）</span><span>備品</span><span>業者選定の利益相反</span></div></div>
+      <div class="qz-after" data-step="2"><p>皆さんの回答を見ながら、<b>次のスライドで答え合わせ</b></p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
-    <aside class="notes">ここで一問、お聞きします。店頭で起こりうる不正には、現金以外にどんなものがありますか。思いつくものを挙げてみてください。
+    <aside class="notes">ここで、一問、お聞きします。店頭で起こりうる不正には、現金以外にどんなものがありますか。思いつくものを挙げてみてください。
 （進行役：Zoomの投票を起動。記述式）
 ［クリック］（1分のカウントダウンが始まる。0:00で「時間です」と表示）
-（回答がそろったら画面共有して拾う）
-［クリック］たとえば、高級ワインや和牛、キャビアといった高額食材、備品、そして業者選定における利益相反。では、詳しく見ていきましょう。</aside>
+（進行役：回答がそろったら画面共有して拾う。答え合わせは、次のスライド）
+［クリック］皆さんから挙がったものを見ながら、答え合わせをしていきます。</aside>
   </section>
 
   <!-- 04 現金だけの話ではない -->
   <section class="slide" data-min="4">
-    <div class="eyebrow" data-in>現金だけの話ではない</div>
+    <div class="eyebrow" data-in>答え合わせ｜現金だけの話ではない</div>
     <h2 class="title" data-in style="--d:1">店にあるあらゆる資産と判断に、隙間が潜んでいる</h2>
     <div class="split" style="align-items:center;gap:40px;flex:1">
       <svg class="storemap" viewBox="0 0 860 560" role="img" aria-label="店の見取り図。レジ、ワインセラー、冷蔵庫、備品棚、事務所の発注書に、順に隙間の印が灯る">
@@ -272,6 +275,7 @@
         </g>
       </svg>
       <div style="display:flex;flex-direction:column;gap:22px">
+        <div class="areas" data-in style="--d:2"><span><b>高額食材</b>高級ワイン・和牛・キャビア</span><span><b>備品</b>高価格帯の設備・什器</span><span><b>業務上の判断</b>業者選定での個人的な利害関係</span></div>
         <p class="lead" data-step="1">先ほどの「不正な仕入れの転売」も、<b>現金を抜いたわけではありません。</b></p>
         <p class="text" data-step="1">仕入れという業務の中に、隙間があったということです。</p>
         <div class="bubbles" data-step="2" style="display:flex;gap:18px;flex-wrap:wrap">
@@ -280,10 +284,11 @@
         <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p>その<b>油断と、管理の隙間</b>が、引き金になります。</p></div>
       </div>
     </div>
-    <aside class="notes">ここで一つ、認識を変えていただきたいことがあります。
+    <aside class="notes">先ほどの問いの、答え合わせです。
+ここで一つ、認識を変えていただきたいことがあります。
 店舗で起きる不正は、売上金やレジ金といった「現金」だけで起きるわけではありません。
 高級ワイン、和牛、キャビアといった高額食材。そして備品。さらに、業者選定における個人的な利害関係。
-店舗にあるあらゆる資産、あらゆる判断に、不正のリスクが潜んでいます。（左の見取り図で、隙間の印が順に灯る）
+店舗にあるあらゆる資産、あらゆる判断に、不正のリスクが潜んでいます。
 ［クリック］先ほどの「不正な仕入れの転売」も、現金を抜いたわけではありません。仕入れという業務の中に、隙間があったということです。
 ［クリック］「少しの持ち出しなら」「慣れているから」。
 ［クリック］その油断と、管理の隙間が、引き金になります。</aside>
@@ -293,21 +298,22 @@
   <section class="slide" data-min="5">
     <div class="phase" data-until="2">
       <div class="eyebrow" data-in>何を失うか</div>
-      <h2 class="title" data-in style="--d:1">会社も、不正をした本人も、大きな代償を負う</h2>
+      <h2 class="title" data-in style="--d:1">不正をした本人も、会社も、大きな代償を負う</h2>
       <div class="lose2">
-        <div class="card" data-step="1">
-          <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
-          <ul class="points plain">
-            <li><div><b>重加算税</b>などの追徴課税<small class="cap" style="display:block">売上や在庫の操作で申告が不正確になった場合。過少申告なら35%、無申告なら40%</small></div></li>
-            <li><div>上場企業として<b>信用の失墜</b><small class="cap" style="display:block">内部統制の重大な不備として開示。株価の下落、融資の停止、最悪は上場廃止</small></div></li>
-          </ul>
-        </div>
-        <div class="card is-accent" data-step="2">
+        <div class="card is-accent" data-step="1">
           <h3><span class="ico"><svg class="i"><use href="#i-person"/></svg></span>不正をした本人が負うもの</h3>
           <p><span class="kind">刑事</span><b>業務上横領罪</b>　10年以下の拘禁刑<br><span class="cap"><span class="strike2">罰金</span>　罰金刑の規定がなく、有罪なら必ず拘禁刑</span></p>
-          <p><span class="kind">刑事</span><b>背任罪</b>　5年以下の拘禁刑または50万円以下の罰金<br><span class="cap">取引先から便宜を受けた見返りに、不当な発注をする等</span></p>
+          <p><span class="kind">刑事</span><b>背任罪</b>　5年以下の拘禁刑または50万円以下の罰金</p>
           <p><span class="kind civil">民事</span>会社に与えた損害の賠償</p>
           <p class="cap">社内では、懲戒解雇を含む処分。逮捕・告訴に直結する</p>
+        </div>
+        <div class="card" data-step="2">
+          <h3><span class="ico gray"><svg class="i"><use href="#i-building"/></svg></span>会社が負うもの</h3>
+          <ul class="points plain">
+            <li><div><b>重加算税</b>などの追徴課税<small class="cap" style="display:block">売上の操作（売上除外・不当な取消）で申告が不正確に。過少申告35%／無申告40%＋延滞税</small></div></li>
+            <li><div>在庫・原価の操作は<b>不適切会計</b><small class="cap" style="display:block">架空在庫の計上など。金融商品取引法・内部統制の問題</small></div></li>
+            <li><div>上場企業として<b>信用の失墜</b><small class="cap" style="display:block">有価証券報告書等で開示。株価の急落、融資の停止、最悪は上場廃止</small></div></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -324,11 +330,13 @@
       <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p>本人が着服していなくても、<b>管理体制の不備そのものが処分の対象</b>になります。</p></div>
     </div>
     <aside class="notes">では、不正や著しい管理不備が発生した場合、何を失うのか。
-［クリック］まず会社です。売上や在庫の不正操作によって正しい申告が行われなかった場合、重加算税などの追徴課税を受けます。上場企業として、内部統制に重大な不備があるとみなされれば、信用は失墜し、融資の停止や、最悪の場合は上場廃止にもつながります。
-［クリック］そして、不正を行った本人です。
+［クリック］まず、不正を行った本人です。
 業務上横領、窃盗、背任行為。これらは明確な刑事犯罪です。懲戒解雇や損害賠償請求だけでなく、逮捕や告訴といった刑事責任に直結します。
 業務上横領罪には、罰金刑の規定がありません。つまり、有罪となれば必ず拘禁刑です。
-民事では、会社に与えた損害を賠償する責任を負います。
+［クリック］そして、会社です。
+売上の操作、たとえば、売上を除外したり、不当に売上を取り消したりして、正しい決算や税務申告ができていなかった場合、税務署の調査で、悪質な所得隠しとみなされることがあります。重加算税は、申告済みで過少だった場合は35%、無申告の場合は40%。延滞税も加わり、店舗の利益を一瞬で吹き飛ばします。
+なお、在庫や原価の不正な操作、たとえば、架空の在庫を計上して原価を少なく見せるのは、不適切会計にあたります。会社の決算が、正しく報告されなくなるため、上場企業である当社にとっては、金融商品取引法や内部統制の問題になります。
+さらに、内部統制に重大な不備があるとみなされると、有価証券報告書などで、開示すべき重要な不備として公表されます。株価の急落、銀行からの融資の停止、最悪の場合は上場廃止。すべての取引先から、取引を止められる原因にもなります。
 ［クリック］そして、皆さん個人です。直接不正を行っていなくても、です。
 ここが重要です。自分が不正をしていなくても、管理を怠っていた店舗責任者は処分の対象になります。
 著しい管理怠慢として、降格・減給等の厳しい懲戒処分が下されます。ひとたび事故が起きれば、これまで築いてきたキャリアと、周囲からの信頼を一瞬で失うことになります。
@@ -358,13 +366,13 @@
   </section>
 
   <!-- クイズ② -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ②</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
       <h2 class="qz-q" data-in style="--d:1">接待を受けて仲良くしている業者だからと、他より少し値段が高くても、そのまま発注し続けています。これは何にあたりますか？</h2>
       <div class="qz-opts"><div class="opt"><span class="k">A</span><span>良好な関係維持のための合理的な判断</span></div><div class="opt ok"><span class="k">B</span><span>利益相反（背任罪にあたりうる行為）</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">C</span><span>通常の取引慣行で問題ない</span></div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>このあと、詳しく見ていきます</p></div>
+      <div class="qz-after" data-step="2"><p>このあと、詳しく見ていきます</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
     <aside class="notes">もう一問、お聞きします。接待を受けて仲良くしている業者だからと、他より少し値段が高くても、そのまま発注し続けています。これは何にあたるでしょうか。
@@ -399,7 +407,7 @@ A、良好な関係維持のための合理的な判断。B、利益相反（背
           <div class="quotes"><div class="q"><span>A社</span><span class="bar"><i style="right:18%"></i></span><span>見積①</span></div><div class="q best"><span>B社</span><span class="bar"><i style="right:34%;animation-delay:.2s"></i></span><span>見積②</span></div><div class="q"><span>C社</span><span class="bar"><i style="right:8%;animation-delay:.4s"></i></span><span>見積③</span></div></div>
           <p>個人的な付き合いを排除し、<b>必ず相見積もり</b>。上長・本部の承認を得る</p>
           <p class="cap">取引先からの個人的な接待・金品・ギフトは、禁止・辞退が原則</p>
-          <span class="poll" data-q="Q4" style="align-self:flex-start">接待に誘われたことが「はい」<b contenteditable="true">◯</b>%</span>
+          <span class="poll" data-q="Q4" style="align-self:flex-start">接待に誘われたことがある</span>
         </div>
         <div class="card" data-step="4" style="flex:1"><span class="badge" style="font-size:56px">4</span><h3><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span>大金・高額商品の管理体制</h3><p>パーティーの数百万円規模の現金売上、高額ワイン、高級食材、高価格帯の備品</p><p><b class="hl">誰でも自由に触れられる状態を無くす</b>。金庫での施錠、ワインセラー・鍵付き棚での保管を、ハウスルールに</p></div>
       </div>
@@ -409,27 +417,27 @@ A、良好な関係維持のための合理的な判断。B、利益相反（背
 金銭やレジ業務を扱うスタッフには、アルバイトを含め全員、入社・配属時にSmartHRを通じて同意書を受領させてください。ルールの存在と、責任の所在をあらかじめ明確にしておきます。
 ［クリック］二つ目、アクセス制限と、金庫番号・鍵の管理。
 金庫の暗証番号やレジの管理者権限は、必要最小限の役職者に限定します。異動や退職者が出た場合は、その日のうちに金庫番号を変更してください。
-冒頭の質問で、金庫の暗証番号を知っている人数を伺いました。思った以上に多い、という数字が並んでいました。
+冒頭の投票で、暗証番号を知っている人数を伺いました。その人数の中に、もう店にいない人は含まれていないでしょうか。
 店舗の鍵も同様です。回収と、鍵管理台帳との照合を徹底してください。元スタッフが店舗に侵入できる隙間を、完全に塞ぐということです。
 ［クリック］三つ目、利益相反を排除する業者選定ルール。
 新規業者の選定や、食材・設備の購入にあたっては、個人的な付き合いや過去の人間関係を完全に排除します。必ず複数社から相見積もりを取り、上長および本部の承認を得る。取引先からの個人的な接待や、金品・ギフトの受領は禁止・辞退が原則です。
-冒頭の投票では、◯％の方が「誘われたことがある」と答えていました。誘われること自体は、珍しいことではありません。大事なのは、誘われたときにどう対応するかです。（進行役：スライドの◯をクリックして数字を入力）
+冒頭の投票でも、「誘われたことがある」と答えた方がいました。誘われること自体は、珍しいことではありません。大事なのは、誘われたときにどう対応するかです。
 ［クリック］四つ目、大金・高額商品の管理体制。
 大人数貸切やパーティーで発生する数百万円規模の現金売上、高額ワイン、高級食材、高価格帯の備品。これらが誰でも自由に触れられる状態を無くします。金庫での施錠管理、ワインセラーや鍵付き棚での保管を、ハウスルールとして設定してください。</aside>
   </section>
 
   <!-- クイズ③ -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ③</span><span class="qz-how">Zoomの投票で回答</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
       <h2 class="qz-q" data-in style="--d:1">金銭の不正を防ぐために有効な仕組みはどれですか？</h2>
-      <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>レジ金点検を1日3回、決まったタイミングで行う</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">B</span><span>スタッフ全員に同じ暗証番号を共有する</span></div><div class="opt"><span class="k">C</span><span>繁忙期は点検を省略し、閉店後にまとめて確認する</span></div></div>
+      <div class="qz-opts"><div class="opt ok"><span class="k">A</span><span>レジ金点検を1日3回、決まったタイミングで行う</span><span class=ok-tag>正解</span></div><div class="opt"><span class="k">B</span><span>スタッフ全員に同じ暗証番号を共有する</span></div><div class="opt"><span class="k">C</span><span>繁忙期は、途中の点検を省略し、閉店時のレジ締めの1回にまとめる</span></div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><span class="poll qz" data-q="">正解率 <b contenteditable="true">◯</b>%</span><p>このあと、詳しく見ていきます</p></div>
+      <div class="qz-after" data-step="2"><p>このあと、詳しく見ていきます</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
     <aside class="notes">ここで一問、お聞きします。金銭の不正を防ぐために有効な仕組みは、どれでしょうか。
-A、レジ金点検を1日3回、決まったタイミングで行う。B、スタッフ全員に同じ暗証番号を共有する。C、繁忙期は点検を省略し、閉店後にまとめて確認する。
+A、レジ金点検を1日3回、決まったタイミングで行う。B、スタッフ全員に同じ暗証番号を共有する。C、繁忙期は、途中の点検を省略し、閉店時のレジ締めの1回にまとめる。
 （進行役：Zoomの投票を起動）
 ［クリック］（30秒のカウントダウンが始まる。0:00で「時間です」と表示）
 （投票を締め切り、結果を共有）
@@ -442,15 +450,16 @@ A、レジ金点検を1日3回、決まったタイミングで行う。B、ス�
     <div class="phase" data-until="2" style="top:180px">
       <h2 class="title">1日3回のレジ確認と、任せきりにしない体制</h2>
       <div class="card dayband" data-step="1" style="padding:20px 34px;gap:6px">
-        <svg viewBox="0 0 1560 200" style="height:140px" role="img" aria-label="開店時、ランチ後、ディナー前の3回レジを確認すると、ズレが出た時間帯を特定できる">
+        <svg viewBox="0 0 1560 200" style="height:140px" role="img" aria-label="開店時、ランチ終了時、閉店時のレジ締めの3回レジを確認すると、ズレが出た時間帯を特定できる">
           <g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
             <rect x="20" y="80" width="1520" height="36" rx="18" fill="#f3f5f8"/>
-            <rect class="seg-bad" x="620" y="80" width="540" height="36" fill="#f9e3e0"/>
-            <text class="seg-bad" x="890" y="60" font-size="26" fill="#c23a2e">ズレはこの時間帯で起きた</text>
+            <text x="20" y="40" font-size="28" fill="#8f6200" text-anchor="start">閉店時のレジ締めを入れて、1日3回</text>
+            <rect class="seg-bad" x="780" y="80" width="700" height="36" fill="#f9e3e0"/>
+            <text class="seg-bad" x="1130" y="60" font-size="26" fill="#c23a2e">ズレはこの時間帯で起きた</text>
             <g class="chk" style="animation-delay:0s"><circle cx="80" cy="98" r="34" fill="#c98a00"/><path d="M65 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <g class="chk" style="animation-delay:.6s"><circle cx="620" cy="98" r="34" fill="#c98a00"/><path d="M605 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <g class="chk" style="animation-delay:1.2s"><circle cx="1160" cy="98" r="34" fill="#c98a00"/><path d="M1145 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <text x="80" y="170" font-size="30" fill="#1d2128">開店時</text><text x="620" y="170" font-size="30" fill="#1d2128">ランチ後</text><text x="1160" y="170" font-size="30" fill="#1d2128">ディナー前</text><text x="1480" y="170" font-size="26" fill="#4f5661">閉店・レジ締め</text>
+            <g class="chk" style="animation-delay:.6s"><circle cx="780" cy="98" r="34" fill="#c98a00"/><path d="M765 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="chk" style="animation-delay:1.2s"><circle cx="1480" cy="98" r="34" fill="#c98a00"/><path d="M1465 98l11 11 20 -21" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="80" y="170" font-size="30" fill="#1d2128">開店時</text><text x="780" y="170" font-size="30" fill="#1d2128">ランチ終了時</text><text x="1420" y="170" font-size="30" fill="#1d2128">閉店時のレジ締め</text>
           </g>
         </svg>
       </div>
@@ -474,7 +483,7 @@ A、レジ金点検を1日3回、決まったタイミングで行う。B、ス�
       <div class="alert is-ok" data-step="2" style="padding:12px 28px;font-size:27px"><svg class="i"><use href="#i-shield"/></svg><p>任せきりにしないのは、<b>担当したスタッフを「疑われる立場」から守るため</b>でもあります。</p></div>
     </div>
     <div class="phase" data-step="3" style="top:200px">
-      <h2 class="title">棚卸・使用後の確認・検収を、点検し続ける</h2>
+      <h2 class="title">棚卸・空き瓶・検収・業者取引を、点検し続ける</h2>
       <div class="cols cols-3 kcards">
         <div class="card" data-step="3"><h3><span class="ico"><svg class="i"><use href="#i-search"/></svg></span>棚卸は複数人で</h3>
           <svg class="illus" viewBox="0 0 460 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
@@ -487,7 +496,7 @@ A、レジ金点検を1日3回、決まったタイミングで行う。B、ス�
             <use href="#i-users" x="344" y="132" width="100" height="70" style="color:#c98a00"/>
           </g></svg>
           <p>全品目を複数人で行うのが望ましい。特に<b>高額商品・大量在庫は、必ず複数人で</b>現物と帳簿を照合</p></div>
-        <div class="card" data-step="4"><h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>消費・使用後も確認</h3>
+        <div class="card" data-step="4"><h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>空き瓶確認と、検収</h3>
           <svg class="illus" viewBox="0 0 460 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
             <rect x="78" y="10" width="26" height="54" rx="6" fill="#fff" stroke="#7a2e3a" stroke-width="4"/>
             <rect x="56" y="58" width="70" height="136" rx="16" fill="#fff" stroke="#7a2e3a" stroke-width="4"/>
@@ -498,48 +507,43 @@ A、レジ金点検を1日3回、決まったタイミングで行う。B、ス�
             <use href="#i-person" x="306" y="40" width="120" height="150" style="color:#c98a00"/>
             <g class="pop btl-ok"><circle cx="91" cy="128" r="30" fill="#22915c"/><path d="M78 128l10 10 18 -19" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
           </g></svg>
-          <p>高額ワイン・高額商品は、<b>消費・使用した後も確認</b>。ワインなら空きボトルを責任者が確かめてから破棄・記録</p></div>
-        <div class="card" data-step="5"><h3><span class="ico"><svg class="i"><use href="#i-store"/></svg></span>検収と業者取引</h3>
-          <svg class="illus" viewBox="0 0 460 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900">
-            <rect x="20" y="8" width="160" height="186" rx="12" fill="#fff" stroke="#d5dae1" stroke-width="3"/>
-            <text x="100" y="44" font-size="26" fill="#1d2128" text-anchor="middle">伝票</text>
-            <path d="M42 84h80M42 124h80M42 164h80" stroke="#c9ced6" stroke-width="8" stroke-linecap="round"/>
-            <g class="pop mt"><circle cx="152" cy="84" r="15" fill="#22915c"/><path d="M145 84l5 5 9 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pop mt" style="animation-delay:.8s"><circle cx="152" cy="124" r="15" fill="#22915c"/><path d="M145 124l5 5 9 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pop mt" style="animation-delay:1.6s"><circle cx="152" cy="164" r="15" fill="#22915c"/><path d="M145 164l5 5 9 -9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <g class="pop eq"><path d="M206 108h34M206 124h34" stroke="#c98a00" stroke-width="7" stroke-linecap="round"/></g>
-            <text x="350" y="44" font-size="26" fill="#1d2128" text-anchor="middle">現物</text>
-            <rect x="280" y="96" width="150" height="98" rx="8" fill="#e2c58f" stroke="#c9a560" stroke-width="3"/>
-            <path d="M280 96l-14 -24h80l14 24M430 96l14 -24h-80" fill="#ecd3a3" stroke="#c9a560" stroke-width="3" stroke-linejoin="round"/>
-            <rect x="300" y="60" width="26" height="40" rx="5" fill="#7a2e3a"/><rect x="336" y="68" width="30" height="32" rx="4" fill="#dfe3e9"/><rect x="376" y="56" width="26" height="44" rx="5" fill="#7a2e3a"/>
+          <p>空き瓶は<b>責任者が現物を確かめてから破棄・記録</b>（詰め替え・持ち出し防止）。納品時は<b>伝票と現物をその場で照合</b></p></div>
+        <div class="card" data-step="5"><h3><span class="ico"><svg class="i"><use href="#i-store"/></svg></span>業者取引の検証</h3>
+          <svg class="illus" viewBox="0 0 460 200" style="height:200px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <line x1="30" y1="96" x2="440" y2="96" stroke="#8f6200" stroke-width="3" stroke-dasharray="10 8"/><text x="400" y="84" font-size="22" fill="#8f6200">相場</text>
+            <rect x="60" y="110" width="70" height="60" rx="8" fill="#e6dcc3"/><rect x="170" y="104" width="70" height="66" rx="8" fill="#e6dcc3"/>
+            <rect class="pop" x="280" y="34" width="70" height="136" rx="8" fill="#e8a59d"/>
+            <g class="pop" style="animation-delay:.6s"><circle cx="315" cy="22" r="20" fill="#c23a2e"/><text x="315" y="31" font-size="26" fill="#fff">!</text></g>
+            <text x="95" y="196" font-size="22" fill="#4f5661">A社</text><text x="205" y="196" font-size="22" fill="#4f5661">B社</text><text x="315" y="196" font-size="22" fill="#c23a2e">C社</text>
           </g></svg>
-          <p>納品時は<b>伝票と現物をその場で照合</b>。発注量の偏りや、相場とかけ離れた仕入れがないかも</p></div>
+          <p><b>発注量の不自然な偏り</b>や、<b>市場価格とかけ離れた高額な仕入れ</b>がないか</p></div>
       </div>
     </div>
     <aside class="notes">次に、キープ。決めたことを維持し、点検し続ける段階です。
 ［クリック］一つ目、1日3回のレジ金点検と、任せきりにしない仕組み。
-開店時、ランチ終了時、ディナー前の1日3回、定時でレジ金を確認します。回数を増やすことで、誤差が出たときに「どの時間帯で起きたか」を即座に特定できます。
+開店時、ランチ終了時、そして閉店時のレジ締め。このレジ締めを入れて、1日3回、定時でレジ金を確認します。回数を増やすことで、誤差が出たときに「どの時間帯で起きたか」を即座に特定できます。
 ［クリック］そして、レジ締めや、多額の現金の保管・銀行入金業務について。ここで大事なのは、特定の誰かに任せきりにしないということです。
 方法の一つが、2人体制でのダブルチェックです。相互にサインや確認記録を残せば、確実性は高まります。
 ただ、人数の都合で、どうしても1人で対応せざるを得ないケースもあると思います。その場合でも、同じ人がずっと1人で担当し続ける状態は避けてください。曜日ごとに担当を変える、責任者が後から記録を確認する、といった形でも構いません。
 これは誰かを疑うためのルールではありません。万が一の時に、担当したスタッフを「疑われる立場」から守るためのルールでもあります。任せきりにしないことが、結果的にその人を守ります。
 ［クリック］二つ目、複数人による月末棚卸。
 棚卸を1人に丸投げすると、原価率の調整やロス隠しのための架空在庫の計上といった、データ操作が起きやすくなります。
-本来は、全品目を複数人で確認することが望ましいです。そのうえで、特に高額商品、そして大量に在庫を持っている商品については、必ず複数人で、現物と帳簿を照合してください。
-［クリック］三つ目、消費・使用した後の確認。
-高額ワインや高額商品は、使った後の確認まで行います。ワインであれば、空きボトルの確認です。
+全品目を、複数人で行うのが望ましいです。特に、高額商品、そして大量に在庫を持っている商品については、必ず複数人で確認してください。現物と帳簿を照合します。
+［クリック］三つ目、高額商品の空き瓶確認と、検収の徹底。
 高額ワインの空き瓶は、安価なお酒に詰め替える不正や、未会計での持ち出しを隠すために悪用されるケースがあります。責任者が現物を確認したうえで破棄し、記録を残してください。
-［クリック］四つ目、検収と業者取引の検証。
 納品時には、伝票と現物をその場で照合する検収を徹底します。先ほどお話しした「不正な仕入れの転売」を防ぐためのルールです。
-あわせて、発注量の不自然な偏りや、市場価格と乖離した高額な仕入れが行われていないか。日々チェックしてください。</aside>
+［クリック］四つ目、業者取引の検証。
+発注量の不自然な偏りや、市場価格と乖離した高額な仕入れが行われていないか。日々チェックしてください。</aside>
   </section>
 
   <!-- クイズ④ -->
-  <section class="slide" data-min="1">
+  <section class="slide" data-min="2">
     <div class="quiz">
       <div class="qz-top" data-in><span class="qz-no">クイズ ④</span><span class="qz-how">Zoomの投票で回答（匿名）</span><span class="qz-timer" data-until="1"><small class="hint" data-until="0">クリックでスタート</small><span class="go" data-step="1" style="--qt:30s"><span class="bar"><i></i></span><b data-countdown="30" data-fmt="mmss">0:30</b><em class="up">時間です</em></span></span></div>
       <h2 class="qz-q" data-in style="--d:1">レジ金が多かった時に、その分を売上に入れたことはありますか？</h2>
       <div class="qz-opts two"><div class="opt">はい</div><div class="opt">いいえ</div></div>
       <i class="reveal" data-step="2"></i>
-      <div class="qz-after" data-step="2"><p>正解はありません。「はい」の場合、本来は<b>違算として、そのまま報告</b>が必要です</p><span class="poll qz" data-q="">「はい」<b contenteditable="true">◯</b>%　「いいえ」<b contenteditable="true">◯</b>%</span></div>
+      <div class="qz-after" data-step="2"><p>正解はありません。「はい」の場合、本来は<b>違算として、そのまま報告</b>が必要です</p></div>
       <span class="qz-mark" aria-hidden="true">?</span>
     </div>
     <aside class="notes">最後にもう一問、今度は自己点検です。レジ金が多かった時に、その分を売上に入れたことはありますか。「はい」か「いいえ」でお答えください。
@@ -586,7 +590,7 @@ A、レジ金点検を1日3回、決まったタイミングで行う。B、ス�
 締め日を厳守し、納品書・請求書・領収書とPOSデータの照合を確実に完了させます。伝票の溜め込みや処理の先送りをゼロに。処理の遅れは、不適正な処理を隠蔽する要因になります。
 伝票は溜め込まず、届いたとき、使ったときに、その都度処理してください。締め日の直前にまとめて処理しようとすると、照合漏れや入力ミスが起きやすくなります。適時に処理することが、ミスを防ぐいちばんの方法です。
 ［クリック］二つ目、小口現金・経費精算の適正処理。
-小口現金の使用は必要最小限に留め、明細が明記された領収書と引き換えに即日精算・記録します。領収書のない精算や私的流用は一切認めません。
+小口現金の使用は必要最小限に留め、明細が明記された領収書と引き換えに即日精算・記録します。領収書のない精算や私的流用は一切認めません。小口精算は、バクラク精算で行います。3万円以上の精算には、申請番号が必要です。
 キャッシュレス売上についても、POSデータと決済会社の入金データが一致しているか照合してください。
 ［クリック］三つ目、確定データと現物の「完全一致」確認。
 月次確定では、帳簿上の数値と現物、つまり実際の現金残高や棚卸在庫数が、完全に一致している状態を確認したうえで確定します。
@@ -726,6 +730,7 @@ A、レジ金点検を1日3回、決まったタイミングで行う。B、ス�
 ［クリック］魔が差すことは、役職に関係なく、誰にでもあります。今日お話しした自社の実例が、それを示しています。
 だからこそ、個人の意志の強さに頼らない。仕組みで防ぐ。
 ［クリック］それは会社のお金を守るためだけではありません。店舗で働く仲間全員のキャリアと、皆さん自身の信頼を守ることに、直結しています。
+レジの処理方法、売上日報の出し方、売上現金の入金ルール、バクラクの使い方は、ガイドブックにまとめています。迷ったら、まずガイドブックを開いてください。
 本日は以上です。ありがとうございました。</aside>
   </section>
 
