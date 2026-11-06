@@ -393,6 +393,8 @@
 .report-cards .lead { font-size: 34px; }
 .report-qr { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .report-qr .ph { width: 260px; height: 260px; }
+.report-qr .qr { width: 260px; height: 260px; border-radius: 12px; box-shadow: 0 6px 18px rgba(29,33,40,.08); image-rendering: pixelated; }
+.report-qr .qr-url { font-size: 22px; font-weight: 900; color: var(--accent-ink); }
 
 /* 10/27 改修指示：画面はキーワードと絵（上＝accent／下＝water の2人） */
 .pill-k { display: inline-flex; align-items: center; gap: 12px; font-size: 40px; font-weight: 900; padding: 12px 34px; border-radius: 999px; background: var(--accent); color: #fff; white-space: nowrap; }
@@ -1524,7 +1526,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
         <div class="card"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>研修中に書いたワークシートを見ながら記入</b></p></div></div>
       </div>
-      <div class="report-qr"><div class="ph"><span>フォームの<br>QRコード</span></div><p class="cap">URLはチャットにも貼ります</p></div>
+      <div class="report-qr"><img class="qr" src="assets/img/ch03-2_report_qr.png" alt="研修修了レポートのフォームのQRコード"><p class="qr-url">forms.gle/GhXBop4sna7NfUYk9</p><p class="cap">URLはチャットにも貼ります</p></div>
     </div>
     <p class="lead" data-step="1" style="font-size:36px">このレポートは、<b>誰かを評価するためのものではありません</b>。自分の言動を振り返るための記録です。</p>
     <div class="row" data-step="2">
@@ -1532,7 +1534,11 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>正直に書いていただくことが、<b>一番大事</b>です</p></div>
     </div>
     <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
-（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る）
+（進行役：フォームのQRコードを画面に表示し、下の文をそのままZoomのチャットに貼る）
+【Zoomのチャットに貼る文】
+【研修修了レポート】提出期限：本日から3日以内
+こちらのフォームから回答してください（提出をもって受講完了です）
+https://forms.gle/GhXBop4sna7NfUYk9
 提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
 ［クリック］このレポートは、誰かを評価するためのものではありません。自分の言動を振り返るための記録です。
 ［クリック］正直に書いていただくことが、一番大事です。
