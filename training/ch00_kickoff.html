@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>キックオフ コンプライアンス・ガバナンス研修</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/deck.css">
+<style>
+/* キックオフだけで使う部品 */
+.deck[data-accent="teal"] { --accent: #138a86; --accent-ink: #0d6965; --accent-soft: #daf1ef; --accent-2: #45c2b8; }
+.c1 { --c: #e2600f; --cs: #fde8d9; } .c2 { --c: #22915c; --cs: #ddf2e7; } .c3 { --c: #6b5ce7; --cs: #e9e6fd; }
+.c4 { --c: #c98a00; --cs: #fbf0d3; } .c5 { --c: #2f74d9; --cs: #e0ebfb; } .c6 { --c: #d6406a; --cs: #fbe2ea; }
+.hdr { display: flex; flex-direction: column; gap: 14px; }
+.red { color: var(--danger); }
+
+/* 表紙：8つの研修のタイル */
+.k-tiles { display: grid; grid-template-columns: repeat(4, 150px); gap: 18px; align-self: center; }
+.k-tiles span { height: 150px; border-radius: 22px; background: var(--cs); color: var(--c); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; font-weight: 900; font-size: 24px; box-shadow: 0 8px 24px rgba(29,33,40,.06); animation: kt 6s ease-in-out infinite; }
+.k-tiles span b { font-family: var(--f-num); font-weight: 400; font-size: 40px; }
+.k-tiles span:nth-child(2) { animation-delay: .5s; } .k-tiles span:nth-child(3) { animation-delay: 1s; } .k-tiles span:nth-child(4) { animation-delay: 1.5s; }
+.k-tiles span:nth-child(5) { animation-delay: 2s; } .k-tiles span:nth-child(6) { animation-delay: 2.5s; } .k-tiles span:nth-child(7) { animation-delay: 3s; } .k-tiles span:nth-child(8) { animation-delay: 3.5s; }
+@keyframes kt { 0%, 80%, 100% { transform: none; } 88% { transform: translateY(-10px); } }
+
+/* 自社の実例 */
+.k-big { display: flex; flex-direction: column; gap: 12px; }
+.k-big .v { font-family: var(--f-num); font-size: 200px; line-height: .9; color: var(--danger); }
+.k-big .v small { font-family: var(--f-body); font-size: 56px; font-weight: 900; margin-left: 8px; }
+.k-big .k { font-size: 34px; font-weight: 900; }
+.k-cases { display: flex; flex-direction: column; gap: 18px; }
+.k-cases .card { flex-direction: row; align-items: center; gap: 24px; padding: 22px 28px; }
+.k-cases p { font-size: 30px; }
+
+/* クレームの経過 */
+.k-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+.k-steps li { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 26px 26px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.k-steps li + li::before { content: ""; position: absolute; left: -32px; top: 60px; width: 24px; height: 24px; background: var(--danger); clip-path: polygon(0 18%, 55% 18%, 55% 0, 100% 50%, 55% 100%, 55% 82%, 0 82%); }
+.k-steps .n { font-family: var(--f-num); font-size: 44px; line-height: 1; color: var(--danger); }
+.k-steps b { font-size: 30px; line-height: 1.4; }
+.k-steps p { font-size: 24px; line-height: 1.5; color: var(--ink-2); }
+.k-quote { display: flex; align-items: center; gap: 30px; padding: 26px 36px; border-radius: 18px; background: var(--surface); border-left: 10px solid var(--danger); }
+.k-quote p { font-size: 40px; font-weight: 900; line-height: 1.4; }
+.k-quote small { display: block; font-size: 24px; font-weight: 700; color: var(--ink-2); margin-top: 6px; }
+
+/* クレームのデータ */
+.k-claims { display: grid; grid-template-columns: 560px 1fr; gap: 56px; flex: 1; min-height: 0; }
+.k-yoy { display: flex; align-items: baseline; gap: 18px; }
+.k-yoy .old { font-family: var(--f-num); font-size: 80px; color: #9aa3ae; }
+.k-yoy .new { font-family: var(--f-num); font-size: 170px; line-height: 1; color: var(--danger); }
+.k-yoy small { font-size: 40px; font-weight: 900; }
+.k-yoy i { font-size: 56px; color: #9aa3ae; font-style: normal; }
+.k-up { display: inline-flex; align-items: center; gap: 12px; font-size: 32px; font-weight: 900; color: var(--danger); background: var(--danger-soft); padding: 8px 22px; border-radius: 999px; }
+.k-bars { display: flex; flex-direction: column; gap: 20px; }
+.k-bars .r { display: grid; grid-template-columns: 400px 1fr; gap: 20px; align-items: center; }
+.k-bars .lab { white-space: nowrap; font-size: 25px; font-weight: 700; text-align: right; }
+.k-bars .b { display: flex; flex-direction: column; gap: 6px; }
+.k-bars .b i { display: flex; align-items: center; justify-content: flex-end; height: 30px; padding-right: 10px; border-radius: 6px; font-style: normal; font-size: 22px; font-weight: 900; color: #fff; }
+.k-bars .b i.n { background: var(--danger); }
+.k-bars .b i.o { background: #c9ced6; color: var(--ink); height: 22px; font-size: 18px; }
+.k-legend { display: flex; gap: 28px; justify-content: flex-end; font-size: 22px; color: var(--ink-2); font-weight: 700; }
+.k-legend span::before { content: ""; display: inline-block; width: 18px; height: 18px; border-radius: 4px; margin-right: 8px; vertical-align: -2px; background: var(--danger); }
+.k-legend span.o::before { background: #c9ced6; }
+.k-src { font-size: 18px; color: var(--ink-2); }
+
+/* 外の事例 */
+.k-ext { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.k-ext .card { gap: 14px; padding: 30px 36px; }
+.k-ext .yr { font-size: 26px; font-weight: 900; color: var(--ink-2); letter-spacing: .06em; }
+.k-ext h3 { font-size: 44px; }
+.k-ext .v { font-family: var(--f-num); font-size: 76px; line-height: 1.05; color: var(--danger); }
+.k-ext .v small { font-family: var(--f-body); font-size: 34px; font-weight: 900; margin-left: 6px; color: var(--ink); }
+.k-ext .card { position: relative; }
+.k-ext .card p { padding-right: 230px; }
+.k-ext svg.il { position: absolute; right: 34px; bottom: 26px; height: 120px; width: auto; }
+.k-down { stroke-dasharray: 600; stroke-dashoffset: 600; animation: kdown 4s ease-in-out infinite; }
+@keyframes kdown { 0% { stroke-dashoffset: 600; } 50%, 100% { stroke-dashoffset: 0; } }
+
+/* ガバナンス崩壊 */
+.k-gov { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; min-height: 0; }
+.k-gov .card { gap: 12px; padding: 26px 32px; }
+.k-gov h3 { font-size: 42px; justify-content: space-between; }
+.k-gov h3 small { font-size: 22px; font-weight: 700; color: var(--ink-2); }
+.k-gov dl { display: grid; grid-template-columns: 150px 1fr; gap: 10px 18px; margin: 0; }
+.k-gov dt { font-size: 22px; font-weight: 900; color: var(--danger); padding: 4px 0; border-top: 3px solid var(--danger-soft); }
+.k-gov dd { margin: 0; font-size: 26px; line-height: 1.5; padding: 4px 0; border-top: 3px solid var(--surface-2); }
+.k-gov .money { font-family: var(--f-num); font-size: 40px; color: var(--danger); }
+
+/* 社会の動き */
+.k-soc .card { flex-direction: row; align-items: center; gap: 30px; padding: 26px 34px; }
+.k-soc h3 { font-size: 36px; }
+.k-soc p { font-size: 28px; color: var(--ink-2); }
+.k-soc .tag { font-size: 22px; font-weight: 900; color: var(--accent-ink); background: var(--accent-soft); padding: 4px 14px; border-radius: 999px; margin-left: 12px; white-space: nowrap; }
+
+/* コンプライアンスとガバナンス */
+.k-cg { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.k-cg .card { gap: 18px; padding: 32px 36px; }
+.k-cg .w { font-size: 30px; font-weight: 900; color: var(--accent-ink); letter-spacing: .06em; }
+.k-cg h3 { font-size: 50px; }
+.k-cg .ex { font-size: 24px; color: var(--ink-2); line-height: 1.6; }
+.k-cg .card.gv { background: var(--accent-soft); }
+.k-role { display: flex; align-items: center; gap: 28px; padding: 24px 36px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.k-role b { font-size: 40px; }
+.k-role span { font-size: 32px; font-weight: 700; }
+.k-role .plus { font-family: var(--f-num); font-size: 48px; color: var(--accent); }
+
+/* 方針 */
+.k-pol { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.k-pol .card { flex-direction: row; align-items: center; gap: 26px; padding: 30px 34px; }
+.k-pol .n { font-family: var(--f-num); font-size: 64px; line-height: 1; color: var(--accent); }
+.k-pol p { font-size: 32px; font-weight: 700; line-height: 1.45; }
+.k-pol .card.top { grid-column: span 2; background: var(--accent-soft); }
+.k-pol .card.top p { font-size: 44px; font-weight: 900; }
+
+/* 取締役メッセージ */
+.k-dir { align-items: flex-start; justify-content: center; gap: 28px; }
+.k-dir .who { font-size: 120px; font-weight: 900; letter-spacing: .06em; line-height: 1.1; }
+.k-dir .rule { width: 160px; height: 6px; background: var(--accent); border-radius: 3px; }
+
+/* テスト */
+.k-test { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.k-test .card { gap: 10px; padding: 26px 30px; }
+.k-test .v { font-family: var(--f-num); font-size: 110px; line-height: 1; color: var(--accent); }
+.k-test .v small { font-family: var(--f-body); font-size: 40px; font-weight: 900; margin-left: 6px; }
+.k-test b { font-size: 32px; }
+.k-test p { font-size: 24px; color: var(--ink-2); line-height: 1.5; }
+.k-test .card.ng { border-color: var(--danger); }
+.k-test .card.ng .v { color: var(--danger); }
+.k-qr { display: flex; align-items: center; gap: 36px; padding: 22px 32px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.k-qr svg { width: 210px; height: 210px; flex: none; border-radius: 10px; }
+.k-qr b { display: block; font-size: 34px; }
+.k-qr .url { font-size: 26px; font-weight: 900; color: var(--accent-ink); margin-top: 6px; }
+.k-qr p { font-size: 24px; color: var(--ink-2); line-height: 1.6; margin-top: 8px; }
+.k-qr .att { display: inline-block; margin-top: 10px; padding: 6px 18px; border-radius: 999px; background: var(--danger-soft); color: var(--danger); font-weight: 900; font-size: 24px; }
+
+/* テスト中：30分タイマー */
+.k-timer { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
+.k-timer .msg { font-size: 44px; font-weight: 900; }
+.k-timer .msg2 { font-size: 30px; color: var(--ink-2); font-weight: 700; }
+.k-clock { font-family: var(--f-num); font-size: 300px; line-height: 1; color: var(--accent); letter-spacing: .02em; }
+.k-clock.warn { color: var(--danger); }
+.k-track { width: 1100px; height: 18px; border-radius: 9px; background: var(--surface-2); overflow: hidden; }
+.k-track i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transform-origin: left; transition: transform .9s linear; }
+.k-track.warn i { background: var(--danger); }
+.k-end { font-size: 44px; font-weight: 900; color: var(--danger); visibility: hidden; }
+.k-end.show { visibility: visible; animation: d-pulse 2s ease-in-out infinite; }
+.k-ctrl { display: flex; gap: 20px; }
+.k-ctrl button { font: inherit; font-size: 30px; font-weight: 900; padding: 14px 44px; border-radius: 999px; border: 3px solid var(--accent); background: #fff; color: var(--accent-ink); cursor: pointer; }
+.k-ctrl button.primary { background: var(--accent); color: #fff; }
+.k-ctrl small { align-self: center; font-size: 22px; color: var(--ink-2); }
+.k-badge { position: absolute; top: 34px; right: 40px; z-index: 7; display: none; align-items: center; gap: 12px; padding: 10px 24px; border-radius: 999px; background: #fff; box-shadow: 0 6px 20px rgba(29,33,40,.12); font-size: 26px; font-weight: 900; color: var(--accent-ink); }
+.k-badge b { font-family: var(--f-num); font-weight: 400; font-size: 34px; }
+.k-badge.show { display: inline-flex; }
+.k-badge.warn { color: var(--danger); }
+
+/* 採点結果の見方 */
+.k-res { display: grid; grid-template-columns: 1fr 700px; gap: 48px; flex: 1; min-height: 0; align-items: center; }
+.k-res ol { display: flex; flex-direction: column; gap: 22px; }
+.k-res li { display: flex; gap: 22px; align-items: flex-start; padding: 22px 28px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.k-res li .n { font-family: var(--f-num); font-size: 48px; line-height: 1; color: var(--accent); }
+.k-res li b { display: block; font-size: 32px; line-height: 1.4; }
+.k-res li small { display: block; font-size: 24px; color: var(--ink-2); line-height: 1.5; margin-top: 6px; }
+.k-res li.key { background: var(--accent-soft); }
+.k-dash { background: var(--surface); border-radius: 18px; padding: 26px 30px; box-shadow: 0 8px 24px rgba(29,33,40,.06); display: flex; flex-direction: column; gap: 12px; }
+.k-dash .t { font-size: 24px; font-weight: 900; color: var(--ink-2); }
+.k-dash .r { display: grid; grid-template-columns: 170px 1fr 60px; gap: 14px; align-items: center; font-size: 22px; font-weight: 700; }
+.k-dash .r i { height: 22px; border-radius: 6px; background: var(--accent); display: block; }
+.k-dash .r.low i { background: var(--danger); }
+.k-dash .r.low { color: var(--danger); }
+.k-dash .r span:last-child { font-family: var(--f-num); font-weight: 400; text-align: right; }
+
+/* 8つの研修と5つの視点 */
+.k-five { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; align-items: start; margin-top: 20px; }
+.k-five .col { display: flex; flex-direction: column; gap: 16px; padding: 28px 22px; border-radius: 20px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); align-items: center; text-align: center; }
+.k-five .col .ico { width: 110px; height: 110px; font-size: 64px; border-radius: 28px; }
+.k-five h3 { font-size: 40px; font-weight: 900; }
+.k-five .ch { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.k-five .ch span { padding: 12px 10px; border-radius: 14px; background: var(--cs); color: var(--c); font-size: 26px; font-weight: 900; line-height: 1.3; }
+.k-five .ch span small { display: block; font-family: var(--f-num); font-weight: 400; font-size: 20px; }
+
+/* 章の紹介（2章ずつ） */
+.k-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; min-height: 0; }
+.k-ch { display: flex; flex-direction: column; gap: 14px; padding: 28px 34px; border-radius: 20px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); border-top: 10px solid var(--c); }
+.k-ch .no { font-family: var(--f-num); font-size: 30px; color: var(--c); }
+.k-ch h3 { font-size: 46px; font-weight: 900; line-height: 1.2; }
+.k-ch .theme { font-size: 38px; font-weight: 900; line-height: 1.4; color: var(--c); }
+.k-ch .one { font-size: 26px; line-height: 1.55; color: var(--ink-2); }
+.k-ch ul { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+.k-ch li { display: flex; gap: 16px; align-items: center; font-size: 25px; line-height: 1.45; }
+.k-ch li b { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--cs); color: var(--c); font-family: var(--f-num); font-weight: 400; font-size: 24px; }
+.k-ch li b.ex { width: auto; padding: 0 14px; border-radius: 999px; font-family: var(--f-body); font-weight: 900; font-size: 20px; }
+.k-link { display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 6px 18px; border-radius: 999px; background: var(--surface-2); font-size: 22px; font-weight: 700; color: var(--ink-2); }
+
+/* 受講の進め方 */
+.k-way { --n: 3; }
+.k-way > li { gap: 16px; }
+.k-way h3 { font-size: 36px; line-height: 1.35; }
+.k-way p { font-size: 26px; color: var(--ink-2); }
+
+/* 日程 */
+.k-sch { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.k-sch .card { border-top: 10px solid var(--c); gap: 18px; padding: 30px 38px; }
+.k-sch .tag { align-self: flex-start; font-size: 22px; font-weight: 900; padding: 4px 16px; border-radius: 999px; background: var(--cs); color: var(--c); }
+.k-sch h3 { font-size: 52px; }
+.k-sch .ds { display: flex; gap: 22px; }
+.k-sch .ds span { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 18px 10px; border-radius: 16px; background: var(--cs); }
+.k-sch .ds b { font-family: var(--f-num); font-weight: 400; font-size: 64px; line-height: 1.1; color: var(--c); }
+.k-sch .ds small { font-size: 28px; font-weight: 900; }
+.k-sch .note { font-size: 24px; color: var(--ink-2); line-height: 1.55; }
+.k-when { display: flex; align-items: center; gap: 24px; padding: 20px 34px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); font-size: 34px; font-weight: 900; }
+.k-when .must { margin-left: auto; color: var(--danger); background: var(--danger-soft); padding: 6px 22px; border-radius: 999px; font-size: 28px; }
+
+/* ガイドブック */
+.k-guide { display: grid; grid-template-columns: 1fr 520px; gap: 48px; flex: 1; min-height: 0; align-items: center; }
+.k-guide .pts { display: flex; flex-direction: column; gap: 16px; }
+.k-guide .pts .card { flex-direction: row; align-items: center; gap: 22px; padding: 18px 26px; }
+.k-guide .pts .ico { width: 72px; height: 72px; font-size: 40px; border-radius: 18px; }
+.k-guide .pts p { font-size: 28px; font-weight: 700; }
+.k-gqr { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 30px; border-radius: 20px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.k-gqr svg { width: 300px; height: 300px; }
+.k-gqr b { font-size: 28px; }
+.k-gqr .url { font-size: 22px; font-weight: 900; color: var(--accent-ink); }
+.k-ask { display: flex; gap: 20px; }
+.k-ask > div { flex: 1; display: flex; align-items: center; gap: 18px; padding: 16px 24px; border-radius: 16px; font-size: 26px; font-weight: 700; line-height: 1.45; }
+.k-ask .ok { background: var(--ok-soft); }
+.k-ask .ok .i { color: var(--ok); font-size: 40px; }
+.k-ask .ng { background: var(--danger-soft); }
+.k-ask .ng .i { color: var(--danger); font-size: 40px; }
+@media (prefers-reduced-motion: reduce) { .k-tiles span, .k-down { animation: none; } }
+</style>
+<script>
+/* 発表者ウィンドウ（P）にも、テストのタイマーの操作を出す */
+(function () {
+  const open0 = window.open;
+  window.open = function () {
+    const w = open0.apply(window, arguments);
+    if (w) setTimeout(function () { if (window.kTimerHook) window.kTimerHook(w); }, 400);
+    return w;
+  };
+})();
+</script>
+</head>
+<body>
+<div class="deck" data-chapter="キックオフ　コンプライアンス・ガバナンス研修" data-accent="teal">
+
+  <!-- 01 表紙 -->
+  <section class="slide glow cover" data-min="1" data-no-footer>
+    <div class="split" style="grid-template-columns:1fr auto;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <div class="chapter" data-in style="--d:0">キックオフ</div>
+        <h1 data-in style="--d:1;font-size:104px;line-height:1.2;white-space:nowrap">コンプライアンス・<br>ガバナンス研修</h1>
+        <p class="sub" data-in style="--d:2">バルニバービグループ　全社共通方針</p>
+      </div>
+      <div class="k-tiles" data-in style="--d:3" aria-hidden="true">
+        <span class="c1"><b>1</b>防災</span><span class="c2"><b>2</b>衛生</span><span class="c3"><b>3</b>労務</span><span class="c3"><b>3-2</b>ハラスメント</span>
+        <span class="c4"><b>4</b>経理</span><span class="c5"><b>5</b>法務</span><span class="c5"><b>5-2</b>メニュー</span><span class="c6"><b>6</b>情報管理</span>
+      </div>
+    </div>
+    <aside class="notes">本日はありがとうございます。HCM部の坂本です。
+今日は、コンプライアンス・ガバナンス研修の全体説明会を行わせていただきます。
+コンプライアンス、ガバナンスと聞いても、正直ピンとこない方も多いと思います。
+なぜ今やるのか。何が大事なのか。ここまで皆さんを集めてやる理由はどこにあるのか。
+実際に起きた事例を見ながら、「コンプライアンスとガバナンスって何なのか」を理解していただいた上で、これから行う研修がどういうものかをお伝えしていきます。
+流れとしては、社内の事例、社外の事例、2つの言葉の整理、そして研修の中身の順でお話しします。</aside>
+  </section>
+
+  <!-- 02 自社の実例：処分 -->
+  <section class="slide" data-min="1">
+    <div class="hdr"><div class="eyebrow" data-in>自社の実例</div><h2 class="title" data-in style="--d:1">まず、私たち自身の話から</h2></div>
+    <div class="split" style="grid-template-columns:560px 1fr;align-items:center;gap:56px">
+      <div class="k-big" data-in style="--d:2"><div class="v"><span data-count="40">40</span><small>件以上</small></div><div class="k">懲戒処分に至った事案<br><span class="muted" style="font-size:26px;font-weight:700">過去数年間</span></div></div>
+      <div class="k-cases">
+        <div class="card" data-step="1"><span class="ico danger"><svg class="i"><use href="#i-yen"/></svg></span><p>売上金の着服は、<b>取締役自身によるもの</b>も複数件</p></div>
+        <div class="card" data-step="1"><span class="ico danger"><svg class="i"><use href="#i-person"/></svg></span><p>ハラスメントを理由に、<b>取締役自身が辞任</b>した事案も</p></div>
+        <div class="card" data-step="1"><span class="ico danger"><svg class="i"><use href="#i-building"/></svg></span><p>「未事故」でも、<b>施設からの罰金や役員報酬の減額</b>が発生</p></div>
+      </div>
+    </div>
+    <div class="alert" data-step="2"><svg class="i"><use href="#i-alert"/></svg><p>立場に関係なく、<b>仕組みがなければ起きてしまう</b></p></div>
+    <aside class="notes">では、社内で起きたことから見ていきます。社内でのコンプライアンス違反や、ガバナンスの不備によって懲戒処分に至った事案は、過去数年間で40件以上ありました。
+［クリック］売上金の着服は、取締役自身によるものも複数件。ハラスメントで取締役が辞任した事案もあります。
+［クリック］誰かを責めるための話ではありません。仕組みがなければ、立場に関係なく起きる、ということです。</aside>
+  </section>
+
+  <!-- 03 クレーム：実際の1件 -->
+  <section class="slide" data-min="1">
+    <div class="hdr"><div class="eyebrow" data-in>自社の実例｜お客様からのクレーム</div><h2 class="title" data-in style="--d:1">実際にあった1件</h2></div>
+    <ol class="k-steps">
+      <li data-step="1"><span class="n">1</span><b>スタッフが、お客様に飲み物をかけてしまう</b><p>服は下着まで濡れ、バッグの中のスマートフォンまで濡れた</p></li>
+      <li data-step="1"><span class="n">2</span><b>店長は不在。責任を持って対応できる人がいない</b><p>危うく、そのまま帰されるところだった</p></li>
+      <li data-step="2"><span class="n">3</span><b>補償の話は進まず、メールにも返事がない</b><p>対応は二転三転し、お客様から言い出さないと何も進まない</p></li>
+      <li data-step="2"><span class="n">4</span><b>お客様から本部へ、直接クレーム</b><p>店では終わらず、会社への不信感に</p></li>
+    </ol>
+    <div class="k-quote" data-step="2"><span class="ico danger"><svg class="i"><use href="#i-chat"/></svg></span><p>「責任を持って対応してくださる、他の方にお願いいたします。」<small>― 本部に届いたお客様の言葉</small></p></div>
+    <div class="alert" data-step="3"><svg class="i"><use href="#i-alert"/></svg><p>こぼすことは、どの店でも起こり得る。<b>問題は、その後。</b></p></div>
+    <aside class="notes">次に、お客様からのクレームです。実際にあった1件をお話しします。
+［クリック］ある店舗で、スタッフがお客様に飲み物をかけてしまいました。服は下着まで濡れ、スマートフォンまで濡れてしまいました。
+その日は店長が不在で、責任を持って対応できる人がいませんでした。
+［クリック］その後もメールに返事がなく、最後に本部に届いたのは「責任を持って対応してくださる他の方にお願いします」という言葉でした。
+［クリック］こぼすこと自体は、どの店でも起こり得ます。問題は、起きてからの対応が、店舗によってまちまちになっていることです。</aside>
+  </section>
+
+  <!-- 04 クレーム：データ -->
+  <section class="slide" data-min="1">
+    <div class="hdr"><div class="eyebrow" data-in>自社の実例｜お客様からのクレーム</div><h2 class="title" data-in style="--d:1">クレームは、増えている</h2></div>
+    <div class="k-claims">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <p class="cap" data-in style="--d:2;font-weight:700;color:var(--ink)">1〜9月のクレーム報告件数</p>
+        <div class="k-yoy" data-in style="--d:2"><span class="old">53</span><i>→</i><span class="new" data-count="66">66</span><small>件</small></div>
+        <span class="k-up" data-in style="--d:3;align-self:flex-start">前年同期比 ＋25%</span>
+        <div class="card" data-step="2" style="padding:22px 26px;gap:8px;margin-top:10px"><p style="font-size:28px;font-weight:900">ミスそのものより、その後の対応で大きくなる</p><p class="cap">「責任者に報告しない」「説明がない」といった事後対応で本部クレームに。<b class="red">約7割</b>は後日、本部経由で届いている</p></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;justify-content:center" data-step="1">
+        <p style="font-size:30px;font-weight:900">研修に関わるテーマの件数</p>
+        <div class="k-bars">
+          <div class="r"><span class="lab">衛生・異物・アレルギー</span><span class="b"><i class="n grow" style="width:81%">13</i><i class="o grow" style="width:44%">7</i></span></div>
+          <div class="r"><span class="lab">料金・表記・会計ミス</span><span class="b"><i class="n grow" style="width:94%">15</i><i class="o grow" style="width:38%">6</i></span></div>
+          <div class="r"><span class="lab">接客態度・言葉遣い</span><span class="b"><i class="n grow" style="width:88%">14</i><i class="o grow" style="width:75%">12</i></span></div>
+          <div class="r"><span class="lab">初期対応・責任者対応の不備</span><span class="b"><i class="n grow" style="width:50%">8</i><i class="o grow" style="width:38%">6</i></span></div>
+          <div class="r"><span class="lab">スタッフの私語・身だしなみ</span><span class="b"><i class="n grow" style="width:44%">7</i><i class="o grow" style="width:13%">2</i></span></div>
+        </div>
+        <div class="k-legend"><span>2026年1〜9月</span><span class="o">2025年1〜9月</span></div>
+        <p class="k-src">出典：クレーム報告（2024年8月〜2026年9月）。テーマ別件数はクレーム内容のキーワードによる自動判定の目安で、1件が複数テーマに該当する場合あり。</p>
+      </div>
+    </div>
+    <aside class="notes">そして、これは1件だけではありません。今年1〜9月のクレームは66件。昨年同時期の53件から25%増えています。
+［クリック］衛生や異物、表記のミス、そして「責任者に報告しない」といった、起きた後の対応で大きくなるクレームが増えています。
+［クリック］起きたことが共有されていない。問題が起きたときにどう動くかが決まらないまま、お店が運営されている。これが、私たちの一番の課題です。</aside>
+  </section>
+
+  <!-- 05 現場から始まった不祥事 -->
+  <section class="slide" data-min="0.5">
+    <div class="hdr"><div class="eyebrow" data-in>外の事例</div><h2 class="title" data-in style="--d:1">現場から始まった不祥事</h2></div>
+    <div class="k-ext">
+      <div class="card" data-step="1"><span class="yr">2024年7月</span><h3>うなぎ弁当の食中毒</h3><div class="v">1<small>名死亡（90代の女性）</small></div><p>従業員が<b class="red">素手で作業</b>していた</p>
+        <svg class="il" viewBox="0 0 200 140" aria-hidden="true"><rect x="16" y="40" width="168" height="90" rx="14" fill="#fde8d9" stroke="#e2600f" stroke-width="5"/><path d="M100 40v90" stroke="#e2600f" stroke-width="4"/><rect x="10" y="24" width="180" height="22" rx="10" fill="#fff" stroke="#e2600f" stroke-width="5" class="a-bob"/><g fill="#c23a2e"><circle cx="52" cy="80" r="6" class="a-pulse"/><circle cx="72" cy="104" r="5" class="a-pulse" style="animation-delay:.6s"/><circle cx="136" cy="76" r="6" class="a-pulse" style="animation-delay:1.2s"/><circle cx="150" cy="106" r="5" class="a-pulse" style="animation-delay:.3s"/></g></svg></div>
+      <div class="card" data-step="2"><span class="yr">2019年</span><h3>アルバイトの動画投稿</h3><div class="v">約27億円<small>の下落</small></div><p>1人の投稿で、親会社の株価が<b class="red">1日で</b>下がった</p>
+        <svg class="il" viewBox="0 0 200 140" aria-hidden="true"><path d="M10 130h180M10 130V10" stroke="#c9ced6" stroke-width="4"/><path class="k-down" d="M14 30l40 10 30 -8 30 20 26 50 40 18" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <p class="lead" data-step="3">いずれも、現場の<b>「たった一人」「たった一度の妥協」</b>から始まっている。</p>
+    <aside class="notes">次に、社外の事例です。実際にバルニバービで起きたような小さなほころびが、外では大きな事件になっています。
+［クリック］うなぎ弁当の食中毒では、素手での作業から、90代の女性が亡くなりました。
+［クリック］アルバイト1人の動画投稿で、株価が1日で27億円下がった会社もあります。
+［クリック］どれも、現場の「たった一人」「たった一度の妥協」から始まっています。</aside>
+  </section>
+
+  <!-- 06 ガバナンス崩壊の代償 -->
+  <section class="slide" data-min="1.5">
+    <div class="hdr"><div class="eyebrow" data-in>社会の動き</div><h2 class="title" data-in style="--d:1">ガバナンス崩壊の代償</h2></div>
+    <div class="k-gov">
+      <div class="card" data-step="1"><h3>フジテレビ<small>2024年12月〜</small></h3>
+        <dl><dt>何が問題か</dt><dd>社員の被害を幹部は把握していたのに、<b>社内で報告・共有しなかった</b></dd>
+        <dt>結果</dt><dd>100社以上のスポンサーが離れ、社長・会長が辞任。損害額は<br><span class="money">約453億円</span></dd>
+        <dt>訴訟</dt><dd>会社が元社長らに<b class="red">50億円</b>、株主が旧経営陣に<b class="red">233億円</b>の賠償を求めて提訴</dd></dl></div>
+      <div class="card" data-step="2"><h3>プルデンシャル生命<small>2026年1月公表</small></h3>
+        <dl><dt>何が問題か</dt><dd>売上を上げる人ほど評価され、周りが口を出せず、<b>誰もチェックしていなかった</b></dd>
+        <dt>結果</dt><dd>35年間で107人が<br><span class="money">約31億円</span>を不正受領</dd>
+        <dt>処分</dt><dd>社長辞任・新規販売の自粛。金融庁から業務停止命令</dd></dl></div>
+    </div>
+    <div class="alert" data-step="3" style="padding:18px 30px"><svg class="i"><use href="#i-alert"/></svg><p>報告・共有ができていない。個人任せにしている。<b>それこそが、最大のガバナンスリスクになる。</b></p></div>
+    <aside class="notes">そして、するべき報告や共有、チェックができていなかった事例のうち、会社の規模や社会への影響の大きさから、ニュースで大きく取り上げられたのがこの2つです。
+［クリック］フジテレビでは、女性アナウンサーが、番組に出演していたタレントから性被害を受けたと社内に相談していました。その情報は社長を含む幹部まで上がっていましたが、幹部は「プライベートな男女間のトラブル」と判断し、コンプライアンスの担当部署にも取締役会にも報告・共有しませんでした。被害を受けた社員を守ることより、タレントとの関係や番組を優先し、その番組は1年半近く続けられました。第三者委員会は、これを「業務の延長線上の性暴力」と認定し、会社の対応は被害者への二次加害だったと指摘しています。その結果、100社以上のスポンサーが離れ、社長・会長は辞任しました。会社が被った損害は約453億円にのぼります。さらに、会社は元社長と元専務に50億円の損害賠償を求めて提訴し、株主からも旧経営陣に233億円の賠償を求める株主代表訴訟が起こされています。
+［クリック］プルデンシャル生命では、営業社員や元社員が、お客様に「社員しか買えない株がある」といった架空の投資話を持ちかけたり、個人的にお金を借りて返さなかったりして、お金をだまし取っていました。1991年から2025年まで、およそ35年間で関わった社員・元社員は107人、被害にあったお客様は約500人、金額は約31億円にのぼります。2024年に元社員が逮捕されたことをきっかけに、会社が全顧客を調べて、ようやく全体が明らかになりました。売上を上げる人ほど評価され、周りが口を出せず、誰もチェックしていなかった。会社自身も、営業の制度、経営の管理体制、組織の風土の3つに構造的な問題があったと認めています。社長は辞任し、新規の販売は止まり、金融庁からは3か月を超える業務停止命令を受けました。
+［クリック］報告・共有ができていないこと、個人任せにしていること。これは、私たちのクレームと同じ構造です。</aside>
+  </section>
+
+  <!-- 07 社会の動き -->
+  <section class="slide" data-min="0.5">
+    <div class="hdr"><div class="eyebrow" data-in>社会の動き</div><h2 class="title" data-in style="--d:1">ルールも変わってきている</h2></div>
+    <div class="k-soc" style="display:flex;flex-direction:column;gap:20px">
+      <div class="card" data-step="1"><span class="ico"><svg class="i"><use href="#i-shield"/></svg></span><div><h3>カスタマーハラスメント対策の義務化<span class="tag">2026年10月〜</span></h3><p>お客様からの迷惑行為から、スタッフを守ることが会社の義務に</p></div></div>
+      <div class="card" data-step="2"><span class="ico"><svg class="i"><use href="#i-store"/></svg></span><div><h3>産地偽装<span class="tag">2026年6月　京都「九条ねぎ」</span></h3><p>仕入れ先の偽装を見抜けなかった飲食店の管理責任も問われる</p></div></div>
+      <div class="card" data-step="2"><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span><div><h3>私物スマホの投稿アプリからの情報漏洩<span class="tag">2026年4月</span></h3><p>業務情報・顧客情報が一瞬で拡散</p></div></div>
+    </div>
+    <p class="lead" data-step="3"><b>決して、他業界・他社の話ではない。</b></p>
+    <aside class="notes">社会のルールも変わってきています。
+［クリック］10月から、カスタマーハラスメントからスタッフを守ることが、会社の義務になりました。
+［クリック］産地偽装やSNSでの情報漏洩も、飲食店の責任が問われる時代です。
+［クリック］決して、他社の話ではありません。</aside>
+  </section>
+
+  <!-- 08 コンプライアンスとガバナンス -->
+  <section class="slide" data-min="0.5">
+    <div class="hdr"><div class="eyebrow" data-in>2つの言葉</div><h2 class="title" data-in style="--d:1">コンプライアンスとガバナンス</h2></div>
+    <div class="k-cg">
+      <div class="card" data-step="1"><span class="w">コンプライアンス</span><h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>決まりを守ること</h3>
+        <div class="chips"><span>法律</span><span>会社のルール</span><span>お客様との約束</span></div>
+        <p class="ex">例：手袋をして盛り付ける／表記どおりのものを出す／正しく打刻する</p></div>
+      <div class="card gv" data-step="2"><span class="w">ガバナンス</span><h3><span class="ico" style="background:#fff"><svg class="i"><use href="#i-shield"/></svg></span>決まりが守られる仕組み</h3>
+        <div class="chips"><span>チェックする人がいる</span><span>起きたことが報告・共有される</span><span>迷ったら相談できる</span></div>
+        <p class="ex">例：起きたことを責任者に報告する／レジは2人で確認する／迷ったら本部へ</p></div>
+    </div>
+    <div class="k-role" data-step="3"><b>店長の役割は、両方。</b><span>自分が守る</span><span class="plus">＋</span><span>店で守られる状態をつくる</span></div>
+    <aside class="notes">ここまでの事例を、コンプライアンスとガバナンスという2つの言葉で整理します。
+［クリック］コンプライアンスは、「決まりを守ること」。法律、会社のルール、そしてメニューに書いたものをそのまま出すといった、お客様との約束も含みます。
+［クリック］ガバナンスは、「決まりが守られる仕組み」。チェックする人がいて、起きたことが報告・共有され、迷ったら相談できる状態です。
+［クリック］店長の役割は、この両方です。自分が守ること。そして、店で守られる状態をつくることです。</aside>
+  </section>
+
+  <!-- 09 会社としての方針 -->
+  <section class="slide" data-min="0.5">
+    <div class="hdr"><div class="eyebrow" data-in>会社としての方針</div><h2 class="title" data-in style="--d:1">全員で学び、仕組みにする</h2></div>
+    <div class="k-pol">
+      <div class="card top" data-step="1"><span class="n">1</span><p>コンプライアンス・ガバナンスの徹底は、<span class="hl">最優先の経営課題</span></p></div>
+      <div class="card" data-step="2"><span class="n">2</span><p>全8カテゴリを、店舗責任者・取締役の<b class="hl">全員が必須</b>で受講</p></div>
+      <div class="card" data-step="2"><span class="n">3</span><p>11月から順次開催<br>（各カテゴリ2回）</p></div>
+      <div class="card" data-step="2" style="grid-column:span 2"><span class="n">4</span><p>各カテゴリ、<b class="hl">いずれか1回に必ず参加</b></p></div>
+    </div>
+    <aside class="notes">そこで、会社としての方針です。
+［クリック］コンプライアンス・ガバナンスの徹底は、会社の最優先の経営課題として据えています。
+店舗責任者の皆さん、そして各社の取締役も含めて、コンプライアンスを学び、各社・各店舗・各セクションごとにどう守っていくのかを考え、仕組みにし、そしてスタッフに伝わる形にして伝えてほしいと考えています。
+［クリック］そのために、全8カテゴリの研修を必須で受講していただきます。
+ここまでが、今回の研修の趣旨です。</aside>
+  </section>
+
+  <!-- 10 取締役メッセージ -->
+  <section class="slide glow k-dir" data-min="2.5">
+    <div class="eyebrow" data-in>監査等委員である取締役より</div>
+    <div class="who" data-in style="--d:1">草鹿 取締役</div>
+    <div class="rule" data-in style="--d:2"></div>
+    <p class="lead muted" data-in style="--d:3">監査等委員：会社の経営が正しく行われているかを、取締役の立場からチェックする役割</p>
+    <aside class="notes">【坂本】
+ここで、監査等委員である取締役の草鹿さんから、お話をいただきます。監査等委員は、会社の経営が正しく行われているかを、取締役の立場からチェックする役割です。草鹿さん、よろしくお願いします。
+（草鹿さんよりお話：2〜3分）
+【坂本】
+草鹿さん、ありがとうございました。
+（受け取りの一言：お話の中から一つ拾って、次のテストにつなげる。例：「会社として見ている」「仕組みで守る」など）</aside>
+  </section>
+
+  <!-- 11 今日はまず、実力テストから -->
+  <section class="slide" data-min="0.5">
+    <div class="hdr"><div class="eyebrow" data-in>実力テスト</div><h2 class="title" data-in style="--d:1">今日はまず、実力テストから</h2></div>
+    <div class="split" style="grid-template-columns:1fr 520px;gap:56px;flex:1">
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <p class="lead" data-in style="--d:2">全8カテゴリについて、<br><b>今の皆さんの知識を、まず把握します。</b></p>
+        <p class="statement" data-step="1" style="font-size:68px">評価のためではなく、<br><span class="hl">自分の現在地</span>を知るため。</p>
+      </div>
+      <svg viewBox="0 0 420 440" data-in style="--d:2;width:100%" aria-hidden="true">
+        <g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle" font-size="22">
+          <circle cx="210" cy="210" r="170" fill="#fff" stroke="#d9dee5" stroke-width="4"/>
+          <circle cx="210" cy="210" r="110" fill="none" stroke="#eef1f5" stroke-width="4"/>
+          <path d="M210 40v340M40 210h340" stroke="#eef1f5" stroke-width="4"/>
+          <polygon points="210,70 330,160 300,300 180,262 100,190 150,110" fill="#daf1ef" stroke="#138a86" stroke-width="5"/>
+          <circle cx="180" cy="262" r="14" fill="#c23a2e"/><circle cx="180" cy="262" r="26" fill="none" stroke="#c23a2e" stroke-width="4" class="a-breath"/>
+          <text x="180" y="415" fill="#c23a2e" font-size="28">ここが弱点</text><path d="M180 390v-96" stroke="#c23a2e" stroke-width="3" stroke-dasharray="6 6"/>
+        </g>
+      </svg>
+    </div>
+    <aside class="notes">さて、ここからが今日の本題です。
+全8カテゴリがあるとお伝えしましたが、まず、今の皆さんがどのくらいコンプライアンスについての知識があるかを把握していただきたいと思います。
+得意な分野もあれば、苦手な分野もあるはずです。今現在のご自身のことを理解していきましょう。
+［クリック］これは評価のためのテストではありません。自分の現在地、つまり弱点を知ることが、今日のゴールです。</aside>
+  </section>
+
+  <!-- 12 テストの説明 -->
+  <section class="slide" data-min="1.5">
+    <div class="hdr"><div class="eyebrow" data-in>実力テスト</div><h2 class="title" data-in style="--d:1">テストの説明</h2></div>
+    <div class="k-test">
+      <div class="card" data-in style="--d:2"><div class="v">80<small>問</small></div><b>8章 × 10問</b><p>各カテゴリの基礎知識から現場の判断まで、今の理解度を確認します</p></div>
+      <div class="card ng" data-in style="--d:3"><div class="v">3<small>択</small></div><b class="red">当てずっぽうで答えない</b><p>わからない問題は飛ばして、わからないまま残してください。弱点が正しく見えるようにするためです</p></div>
+      <div class="card" data-in style="--d:4"><div class="v">30<small>分</small></div><b>制限時間</b><p>1問あたり約22秒。現場の判断と同じように、迷いすぎずに進めてください</p></div>
+    </div>
+    <div class="k-qr" data-step="1"><svg role="img" aria-label="QRコード" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" shape-rendering="crispEdges" class="segno"><path fill="#fff" d="M0 0h33v33h-33z"/><path class="qrline" stroke="#111" d="M2 2.5h7m2 0h2m2 0h1m1 0h1m3 0h2m1 0h7m-29 1h1m5 0h1m5 0h4m1 0h2m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m6 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h2m4 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m3 0h1m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h5m2 0h4m3 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h1m-21 1h1m1 0h5m2 0h2m1 0h1m2 0h4m3 0h5m-27 1h3m1 0h1m2 0h1m2 0h2m1 0h2m5 0h1m1 0h3m3 0h1m-28 1h1m3 0h2m1 0h1m1 0h7m3 0h2m1 0h2m-25 1h1m1 0h4m2 0h1m2 0h1m1 0h1m1 0h1m4 0h1m1 0h2m1 0h1m1 0h1m-25 1h2m1 0h1m1 0h5m1 0h4m1 0h1m1 0h1m3 0h2m-25 1h3m4 0h4m2 0h4m1 0h5m3 0h1m-23 1h1m1 0h2m1 0h2m2 0h1m1 0h1m2 0h1m1 0h1m2 0h2m-24 1h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m2 0h1m-28 1h3m3 0h1m2 0h1m2 0h1m4 0h1m1 0h2m2 0h1m1 0h2m-27 1h1m2 0h1m3 0h2m2 0h4m1 0h4m1 0h4m1 0h1m1 0h1m-29 1h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h4m1 0h1m1 0h1m2 0h1m2 0h1m-27 1h1m1 0h1m2 0h1m4 0h1m1 0h2m4 0h3m1 0h2m3 0h1m-28 1h1m1 0h1m3 0h2m3 0h2m1 0h1m2 0h1m1 0h6m1 0h3m-21 1h4m4 0h1m1 0h1m1 0h1m3 0h5m-29 1h7m4 0h2m2 0h2m1 0h3m1 0h1m1 0h3m-27 1h1m5 0h1m1 0h1m1 0h3m1 0h2m4 0h1m3 0h1m3 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m6 0h2m2 0h5m1 0h2m-28 1h1m1 0h3m1 0h1m1 0h1m2 0h4m4 0h1m5 0h4m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h7m-28 1h1m5 0h1m3 0h1m7 0h1m1 0h1m1 0h1m2 0h1m1 0h1m-28 1h7m1 0h2m2 0h1m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1"/></svg>
+      <div><b>このQRコードからテストを開いてください</b><div class="url">forms.gle/9MD1sZ5nharJ9knQ7（チャットにも貼ります）</div>
+      <p>1台のPCで複数人参加の方は、ご自身のスマートフォンで読み込んでください</p><span class="att">今回の出席確認は、このテストの回答をもって行います</span></div></div>
+    <aside class="notes">テストの説明をします。
+全8章、各10問、合計80問です。3択形式で、制限時間は30分です。
+大事なお願いが一つあります。わからない問題は、当てずっぽうで選ばないでください。勘で正解しても、自分の弱点が見えなくなってしまいます。わからない問題は飛ばして、わからないまま残してください。
+【準備：2分】
+［クリック］今からテストを行います。時間は30分間です。画面のQRコードから、テストのフォームを読み込んでください。チャットにもURLを貼っておきますので、そちらからでも大丈夫です。
+1台のPCから複数人で参加している方は、ご自身のスマートフォンで読み込んでいただければ、回答できます。
+また、今回の出席確認は、このテストの回答をもって行います。テストに回答していただいていない方は不参加扱いとしますので、次回以降の日程で参加をお願いします。
+それでは、2分後にカウントダウンを行います。
+（チャットにテストのURLを貼る：https://forms.gle/9MD1sZ5nharJ9knQ7）
+（2分後）それでは始めます。5、4、3、2、1、スタートです。（タイマー開始）</aside>
+  </section>
+
+  <!-- 13 テスト中 -->
+  <section class="slide" data-min="30" id="k-timer-slide">
+    <div class="hdr"><div class="eyebrow" data-in>実力テスト</div><h2 class="title" data-in style="--d:1">テスト中</h2></div>
+    <div class="k-timer">
+      <p class="msg">残り時間は、画面を見てください</p>
+      <p class="msg2">わからない問題は飛ばして、最後まで目を通してください</p>
+      <div class="k-clock" id="k-clock">30:00</div>
+      <div class="k-track" id="k-track"><i id="k-fill"></i></div>
+      <p class="k-end" id="k-end">終了です。回答を終えてください</p>
+      <div class="k-ctrl"><button class="primary" id="k-start" type="button">スタート</button><button id="k-reset" type="button">リセット</button><small>キーボードの T でも開始・停止</small></div>
+    </div>
+    <aside class="notes">（テスト中：30分）
+「スタート」ボタン、またはキーボードの T でタイマーが始まります。台本ウィンドウの「タイマー開始/停止」ボタンからも操作できます。
+スライドを移動してもタイマーは止まりません（ほかのスライドでは右上に残り時間が出ます）。残り5分で数字が赤くなります。
+残り時間は、画面を見てください。わからない問題は飛ばして、最後まで目を通してください。
+【残り8分ごろ：画面をダッシュボードに切り替える】
+今、皆さんの回答は、この画面にリアルタイムで反映されています。全体のスコアランキングと、カテゴリ別の正答率が表示されます。ランキングは上位10名のみ氏名を表示し、それ以外は匿名IDで表示します。カテゴリごとに「最も正答率が低かった問題」も出るので、全体の弱点もその場でわかります。
+残りの時間も、このまま回答を続けてください。
+（終了まではダッシュボードを映したままでよい。残り時間は口頭で伝える）
+（残り5分と終了時に声をかける）</aside>
+  </section>
+
+  <!-- 14 採点結果の見方 -->
+  <section class="slide" data-min="3">
+    <div class="hdr"><div class="eyebrow" data-in>答え合わせ</div><h2 class="title" data-in style="--d:1">採点結果の見方</h2></div>
+    <div class="k-res">
+      <ol>
+        <li data-in style="--d:2"><span class="n">1</span><div><b>回答はその場で集計され、ダッシュボードに表示されます</b><small>全体のスコアランキング（上位10名のみ氏名表示）と、カテゴリ別の正答率・最も正答率が低かった問題</small></div></li>
+        <li data-step="1"><span class="n">2</span><div><b>得意・不得意の分野は、人によって違います</b><small>8章すべてが高得点である必要はありません</small></div></li>
+        <li class="key" data-step="2"><span class="n">3</span><div><b>自分がどこから手をつけるべきかを知ることが大事</b></div></li>
+      </ol>
+      <div class="k-dash" data-in style="--d:3" aria-label="カテゴリ別の正答率の例">
+        <p class="t">カテゴリ別の正答率（イメージ）</p>
+        <div class="r"><span>防災</span><i class="grow on" style="width:78%"></i><span>78</span></div>
+        <div class="r"><span>衛生</span><i class="grow on" style="width:84%"></i><span>84</span></div>
+        <div class="r"><span>労務</span><i class="grow on" style="width:66%"></i><span>66</span></div>
+        <div class="r"><span>ハラスメント</span><i class="grow on" style="width:72%"></i><span>72</span></div>
+        <div class="r"><span>経理</span><i class="grow on" style="width:70%"></i><span>70</span></div>
+        <div class="r low"><span>法務</span><i class="grow on" style="width:48%"></i><span>48</span></div>
+        <div class="r"><span>メニュー</span><i class="grow on" style="width:62%"></i><span>62</span></div>
+        <div class="r"><span>情報管理</span><i class="grow on" style="width:74%"></i><span>74</span></div>
+      </div>
+    </div>
+    <aside class="notes">お疲れさまでした。先ほどお見せしたとおり、回答はその場で集計されています。改めて、全体の結果を見ていきます。
+［クリック］得意・不得意の分野は、人によって違います。8章すべてが高得点である必要はありません。
+［クリック］大事なのは、自分がどこから手をつけるべきかを知ることです。</aside>
+  </section>
+
+  <!-- 15 8つの研修を、5つの視点で -->
+  <section class="slide" data-min="1">
+    <div class="hdr"><div class="eyebrow" data-in>これから受ける8つの研修</div><h2 class="title" data-in style="--d:1">8つの研修を、<span class="hl">5つの視点</span>で</h2></div>
+    <div class="k-five">
+      <div class="col" data-in style="--d:2"><span class="ico danger"><svg class="i"><use href="#i-fire"/></svg></span><h3>命を守る</h3><div class="ch"><span class="c1"><small>1</small>防災</span><span class="c2"><small>2</small>衛生</span></div></div>
+      <div class="col" data-in style="--d:3"><span class="ico" style="background:#e9e6fd;color:#5243c9"><svg class="i"><use href="#i-users"/></svg></span><h3>人を守る</h3><div class="ch"><span class="c3"><small>3</small>労務</span><span class="c3"><small>3-2</small>ハラスメント</span></div></div>
+      <div class="col" data-in style="--d:4"><span class="ico" style="background:#fbf0d3;color:#8f6200"><svg class="i"><use href="#i-yen"/></svg></span><h3>仕組みで守る</h3><div class="ch"><span class="c4"><small>4</small>経理</span></div></div>
+      <div class="col" data-in style="--d:5"><span class="ico water"><svg class="i"><use href="#i-gavel"/></svg></span><h3>法を守る</h3><div class="ch"><span class="c5"><small>5</small>法務</span><span class="c5"><small>5-2</small>メニュー<br>コンプライアンス</span></div></div>
+      <div class="col" data-in style="--d:6"><span class="ico" style="background:#fbe2ea;color:#b0284f"><svg class="i"><use href="#i-shield"/></svg></span><h3>全員で守る</h3><div class="ch"><span class="c6"><small>6</small>情報管理<br>SNS</span></div></div>
+    </div>
+    <aside class="notes">ここからは、皆さんがこれから受講していく8つの研修を、5つの視点で紹介します。
+命を守る、人を守る、仕組みで守る、法を守る、全員で守る。この5つです。</aside>
+  </section>
+
+  <!-- 16 命を守る：防災×衛生 -->
+  <section class="slide" data-min="3">
+    <div class="hdr"><div class="eyebrow" data-in>命を守る</div><h2 class="title" data-in style="--d:1">防災 × 衛生</h2></div>
+    <div class="k-pair">
+      <div class="k-ch c1" data-step="1"><span class="no">第1章</span><h3>防災管理</h3><p class="theme">いつか起きる。<br>その時のための準備。</p><p class="one">「見つける・消す・逃げる」の3つの心構え。一瞬の判断が命を分ける。</p>
+        <ul><li><b>P</b>消防計画・防火管理者の届出（消防法8条）</li><li><b>K</b>点検（6ヶ月／年1回）・ダクト清掃（月1回）</li><li><b>A</b>消防訓練（年2回）・毎日の消火確認</li></ul></div>
+      <div class="k-ch c2" data-step="2"><span class="no">第2章</span><h3>衛生管理</h3><p class="theme">少しの妥協が、<br>惨事につながる。</p><p class="one">いつの間にか、妥協が当たり前になっていませんか？</p><span class="k-link">冒頭の事例：うなぎ弁当の食中毒</span>
+        <ul><li><b>P</b>HACCP計画・検食手順の策定</li><li><b>K</b>温度管理・冷蔵冷凍庫の日次確認</li><li><b>A</b>体調申告・検便の記録</li></ul></div>
+    </div>
+    <aside class="notes">まず、命を守る領域です。
+［クリック］第1章、防災管理。テーマは「いつか起きる。その時のための準備」です。見つける・消す・逃げる、この3つの心構えを持てるかどうかで、一瞬の判断が命を分けます。
+［クリック］第2章、衛生管理。テーマは「少しの妥協が、惨事につながる」です。先ほどの食中毒の事例も、始まりは手袋一つでした。いつの間にか、妥協が当たり前になっていませんか。</aside>
+  </section>
+
+  <!-- 17 人を守る：労務×ハラスメント -->
+  <section class="slide" data-min="3">
+    <div class="hdr"><div class="eyebrow" data-in>人を守る</div><h2 class="title" data-in style="--d:1">労務 × ハラスメント</h2></div>
+    <div class="k-pair">
+      <div class="k-ch c3" data-step="1"><span class="no">第3章</span><h3>労務管理</h3><p class="theme">誤魔化しは犯罪であり、<br>自滅である。</p><p class="one">どんな動機であれ、時間・給与の操作は「工夫」ではなく「犯罪」。</p>
+        <ul><li><b>P</b>適正なシフト・雇用契約の締結</li><li><b>K</b>残業・休憩のリアルタイム管理</li><li><b>A</b>打刻確認・月末の本人確認</li></ul></div>
+      <div class="k-ch c3" data-step="2"><span class="no">第3-2章</span><h3>ハラスメント</h3><p class="theme">影響力を自覚し、<br>出力を調整する技術。</p><p class="one">4つのフィルターと4つのアジャスターで、自分の言動を整える。</p><span class="k-link">外の事例：フジテレビ（相談を受けた後の動き方）</span>
+        <ul><li><b>P</b>影響力の認識・拒絶リスクの理解</li><li><b>K</b>4つのフィルター・4つのアジャスターで検品</li><li><b>A</b>相談対応・記録（独断でもみ消さない）</li></ul></div>
+    </div>
+    <aside class="notes">次に、人を守る領域です。
+［クリック］第3章、労務管理。テーマは「誤魔化しは犯罪であり、自滅である」です。どんな動機であれ、時間や給与の操作は「工夫」ではなく「犯罪」になります。
+［クリック］第3-2章、ハラスメント。テーマは「影響力を自覚し、出力を調整する技術」です。責任者の言葉は、自分が思っている以上に重く届きます。フィルターとアジャスターを使って、自分の言動を整える方法を学びます。フジテレビの事例のように、相談を受けた後の動き方もここで扱います。</aside>
+  </section>
+
+  <!-- 18 仕組みで守る／法を守る：経理×法務 -->
+  <section class="slide" data-min="3">
+    <div class="hdr"><div class="eyebrow" data-in>仕組みで守る／法を守る</div><h2 class="title" data-in style="--d:1">経理 × 法務</h2></div>
+    <div class="k-pair">
+      <div class="k-ch c4" data-step="1"><span class="no">第4章</span><h3>経理管理</h3><p class="theme">魔が差すのは誰にでもある。<br>だから仕組みで防ぐ。</p><p class="one">個人の意志の強さに頼らない。仕組みでスタッフを守る。</p><span class="k-link">外の事例：プルデンシャル生命（個人任せの運営）</span>
+        <ul><li><b>P</b>ルール設計・同意書・業者選定の仕組み化</li><li><b>K</b>1日3回のレジ確認・2人体制</li><li><b>A</b>確定処理の実行・記録</li></ul></div>
+      <div class="k-ch c5" data-step="2"><span class="no">第5章</span><h3>法務</h3><p class="theme">知らなかったでは<br>済まされない領域。</p><p class="one">独断せずに、まず確認。迷ったときは本部を頼る。</p>
+        <ul><li><b class="ex">例</b>契約・取引先とのやりとり</li><li><b class="ex">例</b>景品・キャンペーンの上限</li><li><b class="ex">例</b>イベントでの酒類販売、インフルエンサーのPR表記</li></ul></div>
+    </div>
+    <aside class="notes">続いて、仕組みで守る領域と、法を守る領域です。
+［クリック］第4章、経理管理。テーマは「魔が差すのは誰にでもある。だから仕組みで防ぐ」です。プルデンシャルの事例のように、個人の意志の強さに頼った運営は、いつか破綻します。仕組みが皆さんとスタッフを守ります。
+［クリック］第5章、法務。テーマは「知らなかったでは済まされない」です。独断せず、まず確認する。迷ったときは本部を頼ってください。</aside>
+  </section>
+
+  <!-- 19 法を守る／全員で守る：メニュー×情報管理 -->
+  <section class="slide" data-min="2">
+    <div class="hdr"><div class="eyebrow" data-in>法を守る／全員で守る</div><h2 class="title" data-in style="--d:1">メニューコンプライアンス × 情報管理</h2></div>
+    <div class="k-pair">
+      <div class="k-ch c5" data-step="1"><span class="no">第5-2章</span><h3>メニューコンプライアンス</h3><p class="theme">書いてあることと、<br>出すものを一致させる。</p><p class="one">お客様との約束であり、法的な義務でもある。</p>
+        <ul><li><b>P</b>メニュー表記の設計・事前申請</li><li><b>K</b>エビデンス（納品書等）の保管・写真との一致確認</li><li><b>A</b>正確な調理法の実行</li></ul></div>
+      <div class="k-ch c6" data-step="2"><span class="no">第6章</span><h3>情報管理・SNS運用</h3><p class="theme">自分だけじゃない。<br>皆で自分とお店を守る。</p><p class="one">あなた一人の注意力ではなく、店舗全員の意識が問われる。</p>
+        <ul><li><b>P</b>ルール・アカウント・撮影権限の設計</li><li><b>K</b>物理保管・検問義務</li><li><b>A</b>確実な処分・承諾書の取得</li></ul></div>
+    </div>
+    <aside class="notes">最後に、法を守る領域の続きと、全員で守る領域です。
+［クリック］第5-2章、メニューコンプライアンス。テーマは「書いてあることと、出すものを一致させる」です。メニューの表記は、お客様との約束であり、法律上の「表示」でもあります。
+［クリック］第6章、情報管理・SNS運用。テーマは「自分だけじゃない。社員もアルバイトも、皆で自分とお店を守る」です。あなた一人の注意力ではなく、店舗全員の意識が問われます。</aside>
+  </section>
+
+  <!-- 20 受講の進め方 -->
+  <section class="slide" data-min="1.5">
+    <div class="hdr"><div class="eyebrow" data-in>受講の進め方</div><h2 class="title" data-in style="--d:1">繁忙期の前に、まず2つ</h2></div>
+    <ol class="flow k-way">
+      <li data-step="1"><span class="n">01</span><h3>ハラスメント・衛生管理を先行して実施</h3><p>繁忙期の12月に向けて、11〜12月に開催。そのほかの研修は年明け以降に順次開催します</p></li>
+      <li data-step="2"><span class="n">02</span><h3>各カテゴリ2回開催。いずれか1回に必ず参加</h3><p>各研修のあと、<b class="hl">3日以内に修了レポートを提出</b>して修了です</p></li>
+      <li data-step="3"><span class="n">03</span><h3>年明け以降は、点数の低かった章から</h3><p>今日のテストで<b class="hl">最も点数の低かった章</b>から、優先して受講してください</p></li>
+    </ol>
+    <aside class="notes">受講の進め方を確認します。
+［クリック］繁忙期に入る12月に向けて、特に注意していただきたいハラスメントと衛生管理を、11月から12月にかけて先行して実施します。そのほかの研修は、年明け以降に順次開催します。
+［クリック］各カテゴリ2回ずつ行いますので、いずれか1回に必ず参加してください。
+［クリック］年明け以降の研修は、今日のテストで最も点数の低かった章から、優先して受講してください。
+具体的な日程は、次のページと、別途お送りする案内メールで確認してください。</aside>
+  </section>
+
+  <!-- 21 日程のご案内 -->
+  <section class="slide" data-min="1.5">
+    <div class="hdr"><div class="eyebrow" data-in>日程のご案内</div><h2 class="title" data-in style="--d:1">まず受ける、2つの研修</h2></div>
+    <div class="k-sch">
+      <div class="card c3" data-in style="--d:2"><span class="tag">11〜12月開催</span><h3>ハラスメント</h3><div class="ds"><span><b>11/24</b><small>（火）</small></span><span><b>12/7</b><small>（月）</small></span></div><p class="note">以前ハラスメント研修を受講した方も、<b class="red">内容を変更しているため必ず参加</b>してください</p></div>
+      <div class="card c2" data-in style="--d:3"><span class="tag">11〜12月開催</span><h3>衛生管理</h3><div class="ds"><span><b>11/26</b><small>（木）</small></span><span><b>12/9</b><small>（水）</small></span></div></div>
+    </div>
+    <div class="k-when" data-in style="--d:4"><svg class="i" style="color:var(--accent);font-size:44px"><use href="#i-clock"/></svg>いずれも 15:00〜16:00／Zoom<span class="must">どちらか1回に必ず参加</span></div>
+    <aside class="notes">まず受けていただく2つの研修の日程です。
+年末の繁忙期に向けて、まずは衛生管理とハラスメントの2つを受講していただきます。
+ハラスメント研修は以前も実施していますが、それでもなお、相談が寄せられている内容です。以前受けた方も、内容を変更していますので、必ず参加してください。
+ハラスメントは、11月24日と12月7日。衛生管理は、11月26日と12月9日です。</aside>
+  </section>
+
+  <!-- 22 ガイドブックについて -->
+  <section class="slide" data-min="5">
+    <div class="hdr"><div class="eyebrow" data-in>店舗運営ガイドブック</div><h2 class="title" data-in style="--d:1">迷ったら、まずガイドブック</h2></div>
+    <div class="k-guide">
+      <div class="pts">
+        <div class="card" data-in style="--d:2"><span class="ico"><svg class="i"><use href="#i-search"/></svg></span><p>全8章の内容を「こんな時どうする？」の形で掲載</p></div>
+        <div class="card" data-in style="--d:3"><span class="ico"><svg class="i"><use href="#i-gavel"/></svg></span><p>バルニバービのルールと法的な根拠を、初めて一つに</p></div>
+        <div class="card" data-in style="--d:4"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><p>損害保険対応の手順書・提出期限カレンダーも収録</p></div>
+      </div>
+      <div class="k-gqr" data-in style="--d:3"><svg role="img" aria-label="QRコード" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" shape-rendering="crispEdges" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#111" d="M2 2.5h7m5 0h2m1 0h1m3 0h3m1 0h2m1 0h7m-33 1h1m5 0h1m1 0h1m2 0h2m2 0h3m4 0h3m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m4 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h3m4 0h1m3 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m5 0h2m2 0h3m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m3 0h1m2 0h1m1 0h3m1 0h3m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h1m1 0h1m3 0h1m-23 1h3m1 0h2m3 0h1m3 0h1m2 0h2m2 0h1m8 0h2m-32 1h3m1 0h2m2 0h4m2 0h1m1 0h6m1 0h1m2 0h2m1 0h2m1 0h1m-33 1h1m1 0h6m4 0h2m2 0h1m1 0h1m1 0h2m1 0h1m3 0h3m1 0h2m-33 1h1m4 0h1m1 0h5m2 0h2m1 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m-32 1h6m1 0h5m2 0h2m5 0h1m2 0h1m1 0h3m1 0h2m-30 1h2m2 0h1m1 0h2m2 0h2m2 0h1m1 0h2m3 0h1m2 0h1m1 0h1m1 0h1m-32 1h2m1 0h2m1 0h1m1 0h5m3 0h2m1 0h1m1 0h2m1 0h1m1 0h2m1 0h2m-30 1h1m2 0h1m2 0h1m1 0h1m3 0h1m2 0h1m2 0h3m1 0h1m1 0h3m1 0h2m-30 1h4m1 0h1m2 0h1m2 0h3m1 0h7m2 0h2m1 0h3m-31 1h3m1 0h2m1 0h6m1 0h5m1 0h1m1 0h5m1 0h2m1 0h2m-32 1h1m1 0h2m1 0h2m1 0h4m1 0h1m1 0h1m1 0h1m1 0h2m3 0h4m1 0h1m-31 1h1m1 0h2m4 0h5m1 0h4m2 0h1m1 0h2m1 0h1m2 0h1m2 0h2m-31 1h1m1 0h1m1 0h2m4 0h1m1 0h1m2 0h2m2 0h1m1 0h1m3 0h1m1 0h4m-33 1h1m2 0h2m4 0h2m2 0h1m1 0h1m1 0h7m1 0h2m2 0h1m2 0h1m-30 1h4m1 0h1m3 0h1m3 0h1m6 0h6m1 0h3m-32 1h3m3 0h2m1 0h1m4 0h4m1 0h1m3 0h1m1 0h2m1 0h1m1 0h1m-32 1h1m1 0h3m1 0h2m5 0h2m4 0h1m2 0h7m2 0h2m-25 1h1m3 0h2m1 0h1m3 0h1m3 0h2m3 0h2m-30 1h7m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m3 0h2m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h2m2 0h1m1 0h2m1 0h3m1 0h2m3 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h2m2 0h1m2 0h10m1 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m5 0h1m5 0h4m3 0h1m1 0h4m-33 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h8m1 0h2m-31 1h1m5 0h1m1 0h2m1 0h3m1 0h1m1 0h1m2 0h1m2 0h2m1 0h4m2 0h1m-33 1h7m3 0h1m2 0h1m1 0h1m1 0h1m3 0h1m3 0h1m2 0h1m1 0h1"/></svg><b>カメラで読み取ってください</b><span class="url">guide.balnibarbi.com/shop-operation/</span></div>
+    </div>
+    <div class="k-ask" data-step="1">
+      <div class="ok"><svg class="i"><use href="#i-check"/></svg><span>スマートフォンや店舗PCのショートカットに保存して、すぐ開けるように</span></div>
+      <div class="ng"><svg class="i"><use href="#i-x"/></svg><span>個人情報も入っているため、<b class="red">社外には絶対に共有しない</b></span></div>
+    </div>
+    <aside class="notes">最後に、「店舗運営ガイドブック」をお渡しします。
+このガイドブックには、全8章の内容が、「こんな時どうする？」という形でまとまっています。各部署の協力のもと、バルニバービのルールと、その法的な根拠を初めて一つにまとめたものです。損害保険対応の手順書と、提出期限のカレンダーも入っています。
+［クリック］今、画面のQRコードを読み取ってください。チャットでお送りするURLからも開けます。開くときには、IDとパスワードが必要です。IDは「bbb」、パスワードは「bbb123」です。普段使っているスマートフォンや、店舗のPCのショートカットに保存して、すぐ開けるようにしておいてください。ただし、ブラウザで公開されているもので、個人情報も入っているため、社外には絶対に共有しないでください。これは、バルニバービが長年積み重ねてきた資産です。
+研修中の補足資料としても使いますが、本当の使いどころは、研修のあと、現場で迷ったときです。
+知らないからやらない、できない、ではありません。ここに、必要な決まりや法律が書いてあります。検索に気になるワードを入れると、関連するルールが出てくるようになっています。それぞれに担当部署の連絡先も載っているので、まだ研修を受けていない内容でも、ここで確認できます。迷ったら、まずガイドブック。それでも判断できなければ、記載の担当に連絡してください。
+また、各項目にはチェックシートがあります。自店舗でできているかどうかがわかるので、全項目をチェックして、不備があれば見直してください。
+――――――――
+【ガイドブックを触ってみる（3分）】
+【画面共有：ガイドブックに切り替え】
+では、実際に開いてみます。（3分）
+（開く）IDとパスワードを入れると、この画面になります。タイトルは「Balnibarbi WILL」です。
+（最初の画面：提出期限カレンダー）開くと、まず「提出期限カレンダー」が出ます。今日から見て次の締切が自動で表示されるので、毎月の提出物の漏れを防げます。
+（検索）一番使ってほしいのが、上の検索です。たとえば、冒頭でお話しした「お客様の服を汚してしまった」と入れてみます。……このように、関係するルールと、何をすればいいかが出てきます。言葉はざっくりで大丈夫です。気になる言葉を、そのまま入れてください。
+（章を開く：例 ハラスメント）章は色で分かれています。どの章も、上から「相談先」「ルール・数字」「チェックリスト」「こんな時どうする？」の順に並んでいます。迷ったら、まず相談先と「こんな時どうする？」を見てください。
+（チェックリスト）チェックリストは、自店舗でできているかを確認するためのものです。研修を待たずに、今日から一度、全章チェックしてみてください。
+（スマホ表示に触れる）スマートフォンでは、「章を選ぶ」から章を開けます。お店でも、すぐ手元で確認できます。
+【画面共有：スライドに戻す】
+使い方は以上です。わからないことがあれば、HCM部までご連絡ください。
+※事前確認：本番前に、検索で「お客様の服を汚してしまった」と入れて、損害保険対応などの結果が出ることを確かめておく。出ない場合は、出る言葉（例：アレルギー）に差し替える。
+本日は以上です。ありがとうございました。</aside>
+  </section>
+
+</div>
+<script src="assets/deck.js"></script>
+<script>
+/* テストの30分タイマー：スライドを移動しても止まらない。T キーでも開始・停止 */
+(function () {
+  const TOTAL = 30 * 60;
+  let left = TOTAL, endAt = 0, running = false;
+  const $ = id => document.getElementById(id);
+  const clock = $('k-clock'), fill = $('k-fill'), track = $('k-track'), endm = $('k-end'), bStart = $('k-start'), bReset = $('k-reset');
+  const slide = $('k-timer-slide');
+  const badge = document.createElement('div');
+  badge.className = 'k-badge';
+  badge.innerHTML = 'テスト 残り <b>30:00</b>';
+  const stage = document.querySelector('.d-stage');
+  if (stage) stage.appendChild(badge);
+  const fmt = n => Math.floor(n / 60) + ':' + String(n % 60).padStart(2, '0');
+  let pwBox = null;
+  function draw() {
+    const warn = left <= 300;
+    clock.textContent = fmt(left); clock.classList.toggle('warn', warn);
+    track.classList.toggle('warn', warn);
+    fill.style.transform = 'scaleX(' + (left / TOTAL) + ')';
+    endm.classList.toggle('show', left === 0);
+    bStart.textContent = running ? '一時停止' : (left < TOTAL && left > 0 ? '再開' : 'スタート');
+    badge.querySelector('b').textContent = fmt(left);
+    badge.classList.toggle('warn', warn);
+    badge.classList.toggle('show', (running || left < TOTAL) && !slide.classList.contains('active'));
+    if (pwBox && !pwBox.closed) { try { pwBox.textContent = 'テスト残り ' + fmt(left) + (running ? '' : '（停止中）'); } catch (e) {} }
+  }
+  function tick() {
+    if (running) {
+      left = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+      if (left === 0) running = false;
+    }
+    draw();
+  }
+  function toggle() {
+    if (running) { running = false; left = Math.max(0, Math.ceil((endAt - Date.now()) / 1000)); }
+    else { if (left === 0) left = TOTAL; endAt = Date.now() + left * 1000; running = true; }
+    draw();
+  }
+  function reset() { running = false; left = TOTAL; draw(); }
+  bStart.addEventListener('click', e => { e.stopPropagation(); toggle(); });
+  bReset.addEventListener('click', e => { e.stopPropagation(); reset(); });
+  const isT = e => (e.key === 't' || e.key === 'T') && !e.metaKey && !e.ctrlKey && !e.altKey;
+  document.addEventListener('keydown', e => { if (isT(e) && !(e.target.closest && e.target.closest('[contenteditable], input, textarea'))) { e.preventDefault(); toggle(); } });
+  window.kTimerHook = function (w) {
+    try {
+      const d = w.document;
+      d.addEventListener('keydown', e => { if (isT(e)) { e.preventDefault(); toggle(); } });
+      const bar = d.createElement('div');
+      bar.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9;display:flex;gap:10px;align-items:center;background:#fff;border:2px solid #138a86;border-radius:999px;padding:6px 8px 6px 18px;font:700 15px sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.15)';
+      pwBox = d.createElement('span');
+      const b = d.createElement('button');
+      b.textContent = 'タイマー開始/停止';
+      b.style.cssText = 'font:700 15px sans-serif;border:0;border-radius:999px;background:#138a86;color:#fff;padding:8px 16px;cursor:pointer';
+      b.onclick = toggle;
+      bar.append(pwBox, b); d.body.appendChild(bar);
+      draw();
+    } catch (e) {}
+  };
+  setInterval(tick, 250);
+  draw();
+})();
+</script>
+</body>
+</html>
