@@ -94,12 +94,16 @@
 
 /* コンプライアンスとガバナンス */
 .k-cg { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
-.k-cg .card { gap: 18px; padding: 32px 36px; }
+.k-cg .card { gap: 12px; padding: 24px 32px; }
 .k-cg .w { font-size: 30px; font-weight: 900; color: var(--accent-ink); letter-spacing: .06em; }
-.k-cg h3 { font-size: 50px; }
+.k-cg h3 { font-size: 44px; }
 .k-cg .ex { font-size: 24px; color: var(--ink-2); line-height: 1.6; }
+.k-case { display: flex; flex-direction: column; gap: 6px; padding: 14px 20px; border-radius: 14px; background: var(--danger-soft); }
+.k-case b { font-size: 22px; color: var(--danger); letter-spacing: .06em; }
+.k-case p { font-size: 26px; line-height: 1.5; font-weight: 700; }
+.k-case small { font-size: 22px; color: var(--ink-2); font-weight: 700; }
 .k-cg .card.gv { background: var(--accent-soft); }
-.k-role { display: flex; align-items: center; gap: 28px; padding: 24px 36px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.k-role { display: flex; align-items: center; gap: 28px; padding: 16px 36px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
 .k-role b { font-size: 40px; }
 .k-role span { font-size: 32px; font-weight: 700; }
 .k-role .plus { font-family: var(--f-num); font-size: 48px; color: var(--accent); }
@@ -386,15 +390,17 @@
     <div class="k-cg">
       <div class="card" data-step="1"><span class="w">コンプライアンス</span><h3><span class="ico"><svg class="i"><use href="#i-check"/></svg></span>決まりを守ること</h3>
         <div class="chips"><span>法律</span><span>会社のルール</span><span>お客様との約束</span></div>
-        <p class="ex">例：手袋をして盛り付ける／表記どおりのものを出す／正しく打刻する</p></div>
+        <div class="k-case"><b>店舗でいうと</b><p>売上金の着服、ハラスメント、衛生・異物・表記のミスによるクレーム<br><small>＝決まりが守られなかったことで起きた問題</small></p></div></div>
       <div class="card gv" data-step="2"><span class="w">ガバナンス</span><h3><span class="ico" style="background:#fff"><svg class="i"><use href="#i-shield"/></svg></span>決まりが守られる仕組み</h3>
         <div class="chips"><span>チェックする人がいる</span><span>起きたことが報告・共有される</span><span>迷ったら相談できる</span></div>
-        <p class="ex">例：起きたことを責任者に報告する／レジは2人で確認する／迷ったら本部へ</p></div>
+        <div class="k-case"><b>店舗でいうと</b><p>飲み物をかけてしまった件の「クレームの二次災害」。責任者が対応せず、報告もされず、メールにも返事がない<br><small>＝店舗の中のガバナンスが効いていない</small></p></div></div>
     </div>
     <div class="k-role" data-step="3"><b>店長の役割は、両方。</b><span>自分が守る</span><span class="plus">＋</span><span>店で守られる状態をつくる</span></div>
     <aside class="notes">ここまでの事例を、コンプライアンスとガバナンスという2つの言葉で整理します。
 ［クリック］コンプライアンスは、「決まりを守ること」。法律、会社のルール、そしてメニューに書いたものをそのまま出すといった、お客様との約束も含みます。
+店舗でいうと、売上金の着服やハラスメント、衛生や異物、表記のミスによるクレームが、これにあたります。決まりが守られなかったことで起きた、コンプライアンスの問題です。
 ［クリック］ガバナンスは、「決まりが守られる仕組み」。チェックする人がいて、起きたことが報告・共有され、迷ったら相談できる状態です。
+店舗でいうと、先ほどの、お客様に飲み物をかけてしまった件がそうです。問題は、こぼしたこと自体よりも、その後です。責任者が対応せず、報告もされず、メールにも返事がないまま、お客様をさらに怒らせてしまいました。こうした「クレームの二次災害」は、店舗の中のガバナンスが効いていないことで起きています。
 ［クリック］店長の役割は、この両方です。自分が守ること。そして、店で守られる状態をつくることです。</aside>
   </section>
 
