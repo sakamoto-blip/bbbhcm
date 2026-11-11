@@ -132,6 +132,25 @@
 
 .k-doc { background: #fff; padding: 0; align-items: center; justify-content: flex-start; }
 .k-doc img { height: 960px; width: auto; margin-top: 16px; display: block; }
+.k-srv { display: grid; grid-template-columns: 640px 1fr; gap: 64px; flex: 1; min-height: 0; margin-top: -30px; }
+.k-srv-l { display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.k-srv-l img { width: 100%; height: auto; mix-blend-mode: multiply; animation: kfloat 5s ease-in-out infinite; }
+.k-srv-l .sync { font-style: italic; font-family: Georgia, serif; font-size: 44px; color: #e8551c; text-align: right; }
+@keyframes kfloat { 0%, 100% { transform: rotate(-1deg); } 50% { transform: rotate(1deg) translateY(-6px); } }
+.k-srv-r { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+.k-srv-r .lead { font-size: 32px; }
+.k-when2 { display: flex; align-items: center; gap: 16px; align-self: flex-start; padding: 12px 26px; border-radius: 999px; background: #fde8d9; color: #b44a0a; }
+.k-when2 .i { font-size: 34px; }
+.k-when2 b { font-size: 34px; }
+.k-when2 span { font-size: 24px; font-weight: 700; }
+.k-req { display: flex; flex-direction: column; gap: 14px; }
+.k-req .card { flex-direction: row; align-items: center; gap: 22px; padding: 18px 26px; }
+.k-req .n { flex: none; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: #e8551c; color: #fff; font-family: var(--f-num); font-size: 30px; }
+.k-req b { display: block; font-size: 34px; }
+.k-req small { display: block; font-size: 24px; color: var(--ink-2); font-weight: 700; line-height: 1.45; margin-top: 4px; }
+.k-thx { font-size: 32px; font-weight: 700; }
+.k-thx b { color: #e8551c; }
+@media (prefers-reduced-motion: reduce) { .k-srv-l img { animation: none; } }
 /* テスト */
 .k-test { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
 .k-test .card { gap: 10px; padding: 26px 30px; }
@@ -713,7 +732,37 @@
 （スマホ表示に触れる）スマートフォンでは、「章を選ぶ」から章を開けます。お店でも、すぐ手元で確認できます。
 【画面共有：スライドに戻す】
 使い方は以上です。わからないことがあれば、HCM部までご連絡ください。
-※事前確認：本番前に、検索で「お客様の服を汚してしまった」と入れて、損害保険対応などの結果が出ることを確かめておく。出ない場合は、出る言葉（例：アレルギー）に差し替える。
+※事前確認：本番前に、検索で「お客様の服を汚してしまった」と入れて、損害保険対応などの結果が出ることを確かめておく。出ない場合は、出る言葉（例：アレルギー）に差し替える。</aside>
+  </section>
+
+  <!-- 23 お知らせ：エンゲージメントサーベイ -->
+  <section class="slide" data-min="1">
+    <div class="k-srv">
+      <div class="k-srv-l" data-in>
+        <img src="assets/img/kickoff_survey_copy.png" alt="ホンマのこと言ってもええんやで バルニバビだもの">
+        <p class="sync">Sync Your Vibe.</p>
+      </div>
+      <div class="k-srv-r">
+        <div class="hdr"><div class="eyebrow" data-in>最後にひとつ、お知らせ</div><h2 class="title" data-in style="--d:1">エンゲージメントサーベイ<br>実施中です</h2></div>
+        <div class="k-when2" data-in style="--d:2"><svg class="i"><use href="#i-calendar"/></svg><b>11/9（月）〜11/22（日）</b><span>SmartHRから回答（匿名）</span></div>
+        <p class="lead" data-in style="--d:3">店舗の成績表ではなく、<b>スタッフの今と、お店の今をチューニング</b>するためのアンケートです</p>
+        <div class="k-req">
+          <div class="card" data-step="1"><span class="n">1</span><div><b>まず、ご自身が回答</b><small>まだの方は、回答をお願いします</small></div></div>
+          <div class="card" data-step="2"><span class="n">2</span><div><b>お店に戻ったら、スタッフに一言</b><small>「SmartHRから回答してね」を、全体朝礼・グループLINEなどに一言添えて</small></div></div>
+        </div>
+        <p class="k-thx" data-step="3">この一言で、回答率は大きく変わります。<br><b>よろしくお願いします！</b></p>
+      </div>
+    </div>
+    <aside class="notes">最後にひとつ、お知らせです。
+今、年に2回のエンゲージメントサーベイを実施中です。
+これは店舗の成績表ではなく、スタッフの今と、お店の今をチューニングするためのアンケートです。
+メールでもお伝えしておりますが。
+［クリック］まず、ご自身がまだの方は回答してください。
+［クリック］そしてお店に戻ったら、スタッフに一言かけてください。
+「スマートHRから回答してね」。
+全体朝礼、グループラインなどに一言添えてください。
+［クリック］この一言で、回答率は大きく変わります。
+よろしくお願いします！
 本日は以上です。ありがとうございました。</aside>
   </section>
 
