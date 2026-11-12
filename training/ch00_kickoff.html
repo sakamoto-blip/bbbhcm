@@ -151,6 +151,19 @@
 .k-thx { font-size: 32px; font-weight: 700; }
 .k-thx b { color: #e8551c; }
 @media (prefers-reduced-motion: reduce) { .k-srv-l img { animation: none; } }
+.k-pre { gap: 26px; }
+.k-pre-hd { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+.k-start { display: flex; flex-direction: column; align-items: center; padding: 18px 40px; border-radius: 22px; background: var(--accent); color: #fff; animation: d-pulse 2.4s ease-in-out infinite; }
+.k-start b { font-family: var(--f-num); font-weight: 400; font-size: 96px; line-height: 1; }
+.k-start span { font-size: 30px; font-weight: 900; }
+.k-pre-list { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px 24px; }
+.k-pre-list li { display: flex; align-items: center; gap: 22px; padding: 18px 24px; border-radius: 18px; background: var(--surface); box-shadow: 0 8px 24px rgba(29,33,40,.06); }
+.k-pre-list .ico { width: 72px; height: 72px; font-size: 40px; border-radius: 18px; }
+.k-pre-list b { display: block; font-size: 30px; line-height: 1.4; }
+.k-pre-list small { display: block; font-size: 23px; color: var(--ink-2); font-weight: 700; line-height: 1.45; margin-top: 4px; }
+.k-pre-list li:first-child { grid-column: span 3; }
+.k-pre-list li.att { grid-column: span 3; background: var(--danger-soft); box-shadow: none; }
+.k-pre-list li.att b { color: var(--danger); }
 /* テスト */
 .k-test { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
 .k-test .card { gap: 10px; padding: 26px 30px; }
@@ -280,6 +293,29 @@
 </head>
 <body>
 <div class="deck" data-chapter="キックオフ　コンプライアンス・ガバナンス研修" data-accent="teal">
+
+  <!-- 00 開始前のお願い -->
+  <section class="slide k-pre" data-min="0" data-no-footer>
+    <div class="k-pre-hd">
+      <div class="hdr"><div class="eyebrow" data-in>開始前のお願い</div><h2 class="title" data-in style="--d:1">お集まりいただき、<br>ありがとうございます</h2></div>
+      <div class="k-start" data-in style="--d:2"><b>15:00</b><span>より開始いたします</span></div>
+    </div>
+    <ul class="k-pre-list">
+      <li data-in style="--d:3"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><p><b>資料を投影します。PC・タブレットでの参加がおすすめです</b><small>スマートフォンの場合は、画面を横向きにしてください</small></p></li>
+      <li data-in style="--d:4"><span class="ico"><svg class="i"><use href="#i-eye"/></svg></span><p><b>カメラはオン<br>マイクはオフ</b></p></li>
+      <li data-in style="--d:5"><span class="ico"><svg class="i"><use href="#i-person"/></svg></span><p><b>表示名は<br>「店舗名_氏名」に変更</b></p></li>
+      <li data-in style="--d:6"><span class="ico"><svg class="i"><use href="#i-phone"/></svg></span><p><b>スマートフォンを<br>お手元にご用意ください</b></p></li>
+      <li class="att" data-in style="--d:7"><span class="ico danger"><svg class="i"><use href="#i-clipboard"/></svg></span><p><b>研修の途中で、出席確認を行います</b><small>途中退室や、入室後の離席などで確認できない場合は、再度受講していただきます</small></p></li>
+    </ul>
+    <aside class="notes">（開始前：入室した方から見えるように、このスライドを表示しておく。15:00になったら次のスライド〈表紙〉へ進む）
+【開始前のお願い】
+お集まりいただきありがとうございます。15:00より開始いたします。
+・資料を投影します。PC・タブレットでの参加がおすすめです。スマートフォンの場合は画面を横向きにしてください。
+・カメラはオンにしてください。マイクはオフ。
+・表示名は「店舗名_氏名」に変更してください。
+・スマートフォンをお手元にご用意ください。
+・本日の研修途中に出席確認を行います。途中退室、入室後の離席などで確認できない場合、再度受講していただきます。</aside>
+  </section>
 
   <!-- 01 表紙 -->
   <section class="slide glow cover" data-min="1" data-no-footer>
