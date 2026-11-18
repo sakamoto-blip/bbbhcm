@@ -106,30 +106,32 @@
 .gcap > p { grid-area: 1 / 1; font-size: 36px; font-weight: 700; display: flex; align-items: center; gap: 16px; }
 .gcap > p b { font-size: 38px; padding: 4px 20px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-ink); }
 .gcap > p.warn { color: var(--danger); font-weight: 900; }
+#gap-slide .gcap > p { opacity: 0; transition: opacity .5s ease; }
+#gap-slide:not([data-g]) .gc0, #gap-slide[data-g="0"] .gc0, #gap-slide[data-g="1"] .gc1, #gap-slide[data-g="2"] .gc2 { opacity: 1; }
 .gcap > p.warn .i { font-size: 44px; }
 .gapfig { display: grid; grid-template-columns: 1fr 190px; gap: 30px; align-items: end; flex: 1; min-height: 0; }
 .gapfig svg { max-height: 540px; }
 #gap-slide .rp { transition: transform 1.2s cubic-bezier(.5,0,.2,1); }
 #gap-slide .rpp { transition: transform 1s cubic-bezier(.5,0,.2,1) .4s; }
-#gap-slide[data-at="1"] .rp { transform: translateX(330px); }
-#gap-slide:is([data-at="2"], [data-at="3"]) .rp { transform: translateX(560px); }
-#gap-slide[data-at="1"] .rpp { transform: translateY(-110px); }
-#gap-slide:is([data-at="2"], [data-at="3"]) .rpp { transform: translateY(-165px); }
+#gap-slide[data-g="1"] .rp { transform: translateX(330px); }
+#gap-slide[data-g="2"] .rp { transform: translateX(560px); }
+#gap-slide[data-g="1"] .rpp { transform: translateY(-110px); }
+#gap-slide[data-g="2"] .rpp { transform: translateY(-165px); }
 #gap-slide .blk { opacity: 0; transform: scaleY(0); transform-box: fill-box; transform-origin: bottom; transition: opacity .5s ease .6s, transform .6s cubic-bezier(.3,1.4,.5,1) .6s; }
 #gap-slide .blk.b2 { transition-delay: .9s; }
-#gap-slide:not([data-at="0"]) .blk.b1, #gap-slide:not([data-at="0"]) .blk.b2, #gap-slide:is([data-at="2"], [data-at="3"]) .blk.b3 { opacity: 1; transform: none; }
+#gap-slide:not([data-g="0"]) .blk.b1, #gap-slide:not([data-g="0"]) .blk.b2, #gap-slide[data-g="2"] .blk.b3 { opacity: 1; transform: none; }
 #gap-slide .s0, #gap-slide .s1, #gap-slide .s2 { transition: opacity .5s ease .4s; }
 #gap-slide .s1, #gap-slide .s2 { opacity: 0; }
-#gap-slide:not([data-at="0"]) .s0 { opacity: 0; transition-delay: 0s; }
-#gap-slide[data-at="1"] .s1 { opacity: 1; }
+#gap-slide:not([data-g="0"]) .s0 { opacity: 0; transition-delay: 0s; }
+#gap-slide[data-g="1"] .s1 { opacity: 1; }
 #gap-slide .s12 { opacity: 0; transition: opacity .5s ease .4s; }
-#gap-slide:not([data-at="0"]) .s12 { opacity: 1; }
-#gap-slide:is([data-at="2"], [data-at="3"]) .s2 { opacity: 1; }
+#gap-slide:not([data-g="0"]) .s12 { opacity: 1; }
+#gap-slide[data-g="2"] .s2 { opacity: 1; }
 #gap-slide .lb.s0, #gap-slide .lb.s1, #gap-slide .lb.s2 { transition-delay: 1.2s; }
-#gap-slide:not([data-at="0"]) .lb.s0 { transition-delay: 0s; }
+#gap-slide:not([data-g="0"]) .lb.s0 { transition-delay: 0s; }
 #gap-slide .sweat { opacity: 0; transition: opacity .4s; }
-#gap-slide:is([data-at="2"], [data-at="3"]) .sweat { opacity: 1; }
-#gap-slide:is([data-at="2"], [data-at="3"]) .trem { animation: trem .5s ease-in-out infinite; }
+#gap-slide[data-g="2"] .sweat { opacity: 1; }
+#gap-slide[data-g="2"] .trem { animation: trem .5s ease-in-out infinite; }
 @keyframes trem { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
 #gap-slide .pw { animation: nob 2.4s ease-in-out infinite; }
 .gmeter { display: flex; flex-direction: column; align-items: center; gap: 12px; height: 100%; max-height: 520px; }
@@ -137,8 +139,8 @@
 .gmeter .tube { position: relative; flex: 1; width: 72px; border-radius: 36px; background: var(--surface-2); overflow: hidden; box-shadow: inset 0 0 0 4px #fff; }
 .gmeter .tube i { position: absolute; left: 0; right: 0; bottom: 0; height: 14%; background: var(--ok); transition: height 1.4s cubic-bezier(.5,0,.2,1) .6s, background-color 1s ease .6s; animation: tube 1.6s ease-in-out infinite; }
 @keyframes tube { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
-#gap-slide[data-at="1"] .gmeter .tube i { height: 55%; background: #f2a43a; }
-#gap-slide:is([data-at="2"], [data-at="3"]) .gmeter .tube i { height: 94%; background: var(--danger); }
+#gap-slide[data-g="1"] .gmeter .tube i { height: 55%; background: #f2a43a; }
+#gap-slide[data-g="2"] .gmeter .tube i { height: 94%; background: var(--danger); }
 .gmeter span { font-size: 24px; font-weight: 900; color: var(--ink-2); }
 
 /* 04 上位5つと事例 */
@@ -239,9 +241,18 @@
 .risk4 span { position: relative; display: grid; place-items: center; height: 150px; border-radius: 22px; background: #fff; box-shadow: 0 6px 18px rgba(29,33,40,.06); font-size: 32px; font-weight: 900; }
 .risk4 span::after { content: "？→ −"; position: absolute; right: 14px; top: 10px; font-size: 22px; color: var(--danger); animation: float 3s ease-in-out infinite; }
 .risk4 span:nth-child(2)::after { animation-delay: -.8s; } .risk4 span:nth-child(3)::after { animation-delay: -1.6s; } .risk4 span:nth-child(4)::after { animation-delay: -2.4s; }
-.pride { display: flex; flex-direction: column; gap: 14px; }
+.pride { display: flex; flex-direction: column; gap: 12px; }
+.wave3 { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.wave3 span { display: inline-flex; align-items: center; gap: 10px; font-size: 27px; font-weight: 900; padding: 10px 22px; border-radius: 999px; background: var(--surface); box-shadow: 0 4px 14px rgba(29,33,40,.07); }
+.wave3 span .i { color: var(--accent); font-size: 30px; }
+.wave3 .h { background: var(--accent); color: #fff; }
+.am-now { display: flex; align-items: center; gap: 22px; padding: 18px 30px; border-radius: 16px; background: var(--danger-soft); box-shadow: 0 0 0 4px var(--danger) inset; animation: amNow 2.4s ease-in-out infinite; }
+.am-now .t { flex: none; font-size: 26px; font-weight: 900; color: #fff; background: var(--danger); padding: 6px 16px; border-radius: 10px; }
+.am-now p { font-size: 34px; font-weight: 900; }
+.am-now b { color: var(--danger); font-size: 42px; }
+@keyframes amNow { 50% { box-shadow: 0 0 0 7px var(--danger) inset; } }
 .pride li { display: grid; grid-template-columns: 1fr 90px 1fr; align-items: center; }
-.pride .p, .pride .b { font-size: 31px; font-weight: 900; padding: 20px 26px; border-radius: 16px; }
+.pride .p, .pride .b { font-size: 29px; font-weight: 900; padding: 11px 26px; border-radius: 14px; }
 .pride .p { background: var(--accent-soft); color: var(--accent-ink); }
 .pride .b { background: var(--danger-soft); color: var(--danger); }
 .pride i { position: relative; height: 12px; margin: 0 22px 0 8px; background: repeating-linear-gradient(90deg, var(--accent) 0 10px, transparent 10px 18px); background-size: 18px 100%; animation: varr .9s linear infinite; }
@@ -440,18 +451,23 @@
 #gap-slide .g2-s0 { transition: opacity .4s; }
 #gap-slide[data-at="1"] .g2-s0 { opacity: 0; }
 #gap-slide .g2-gap path { transition: d 1.2s; }
-#gap-slide .g2-dark, #gap-slide .g2-storm { opacity: 0; transition: opacity 1.6s ease 1.4s; }
-#gap-slide .g2-sun { transition: opacity 1.6s ease 1.4s; }
-#gap-slide[data-at="3"] .g2-dark, #gap-slide[data-at="3"] .g2-storm { opacity: 1; }
-#gap-slide[data-at="3"] .g2-sun { opacity: 0; }
-#gap-slide[data-at="3"] .g2-staff { animation: trem .5s ease-in-out 3s infinite; }
+#gap-slide .g2-dark, #gap-slide .g2-storm { opacity: 0; }
+#gap-slide[data-at="2"] .g2-dark, #gap-slide[data-at="2"] .g2-storm { animation: wxOn 8s ease-in-out 2s infinite; }
+#gap-slide[data-at="2"] .g2-sun { animation: wxOff 8s ease-in-out 2s infinite; }
+@keyframes wxOn { 0%, 38% { opacity: 0; } 50%, 88% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes wxOff { 0%, 38% { opacity: 1; } 50%, 88% { opacity: 0; } 100% { opacity: 1; } }
+#gap-slide .g2-good { opacity: 0; transition: opacity .6s ease 1s; }
+#gap-slide[data-at="2"] .g2-good { opacity: 1; }
+.mg-pills { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
+.mg-pills .pill-k { font-size: 34px; padding: 10px 30px; }
+.mg-pills .pill-k.ok { background: var(--ok); }
 .nod { transform-box: fill-box; transform-origin: bottom center; animation: nod 1.6s ease-in-out infinite; }
 @keyframes nod { 0%, 100% { transform: none; } 50% { transform: rotate(4deg); } }
 .g2-push { transform-box: fill-box; transform-origin: bottom center; animation: push 1.2s ease-in-out infinite; }
 @keyframes push { 0%, 100% { transform: none; } 50% { transform: translateX(-10px) rotate(-5deg); } }
 .g2-meter { padding: 20px; }
-#gap-slide[data-at="5"] .gmeter .tube i { height: 40%; background: #f2a43a; }
-#gap-slide[data-at="6"] .gmeter .tube i { height: 94%; background: var(--danger); }
+#gap-slide[data-at="4"] .gmeter .tube i { height: 40%; background: #f2a43a; }
+#gap-slide[data-at="5"] .gmeter .tube i { height: 94%; background: var(--danger); }
 .g2-band { height: 150px; }
 .g2-band > div { width: 0; overflow: hidden; white-space: nowrap; transition: width 1.4s cubic-bezier(.5,0,.2,1) .4s; }
 .g2-band > div:nth-child(2) { transition-delay: 1.4s; transition-duration: 2.2s; }
@@ -546,6 +562,20 @@
 .flow4 svg.fi { width: 60px; height: 60px; }
 #case-slide .court2 { gap: 24px; }
 #case-slide .court2 .tx { font-size: 28px; }
+/* 11/18 事例：最近届いた相談 */
+.cs-note { font-size: 24px; color: var(--ink-2); font-weight: 700; margin-left: 10px; letter-spacing: 0; }
+.cs4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; flex: 1; min-height: 0; }
+.cs4 .card { align-items: center; text-align: center; gap: 10px; padding: 24px 20px; justify-content: center; }
+.cs4 svg { width: 100%; height: 250px; overflow: visible; }
+.cs4 b { font-size: 31px; line-height: 1.3; white-space: nowrap; }
+.cs4 small { font-size: 25px; color: var(--ink-2); font-weight: 700; }
+.cs-quote { display: flex; align-items: center; justify-content: center; gap: 22px; padding: 22px 36px; border-radius: 18px; background: var(--danger-soft); font-size: 46px; font-weight: 900; color: var(--ink); }
+.cs-quote .i { font-size: 52px; color: var(--danger); }
+.cs-quote b { color: var(--danger); }
+.sx-keys { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.sx-keys span { font-size: 24px; font-weight: 900; padding: 6px 18px; border-radius: 999px; background: var(--danger-soft); color: var(--danger); }
+.sx-keys .k { background: var(--danger); color: #fff; }
+.out-keys span { font-size: 30px; padding: 8px 24px; }
 </style>
 
 <div class="deck" data-chapter="第3-2章　ハラスメントからアジャストメントへ" data-accent="violet">
@@ -612,8 +642,11 @@
 ここで一つだけ、覚えておいてください。皆さんが今、思い出したことは、それをした相手に、そのつもりがあったかどうかに関係なく、皆さんの記憶に残っています。
 ［Q3・受けた相談の内容］「◯◯に関する相談、という回答がありました。これは後半でもう一度出てきます」
 （相談を受けたことがない、という回答があれば）「相談を受けたことがない、というのも、それ自体が悪いことではありません」
-［Q4・機嫌が悪いと思った経験］「『よくある』『たまにある』が◯割ですね。これは後半でもう一度出てきます」
-今の回答を頭の片隅に置いたまま、次に進みます。</aside>
+［Q4・機嫌が悪いと思った経験］「『よくある』『たまにある』が◯割ですね」
+機嫌が悪いスタッフがいたら、皆さんは注意されますよね。
+では、逆にお聞きします。皆さん自身は、どうですか。
+常に機嫌よく、笑顔でいられていますか。
+（進行役：ここで回答は求めない。投票も取らない。3秒ほど間を取って、次のスライド（ワーク①）へ進む。この問いは、後半のアジャスターで回収する）</aside>
   </section>
 
   <!-- ワーク① -->
@@ -647,33 +680,57 @@
   </section>
 
   <!-- 04 事例 -->
-  <section class="slide" data-min="7" id="case-slide">
-    <div class="phase" data-until="1">
-      <div class="eyebrow" data-in>事例</div>
-      <h2 class="title" data-in style="--d:1">店舗で、こんな光景はありませんか</h2>
-      <div class="split" style="grid-template-columns:760px 1fr;gap:56px;align-items:start">
-        <div class="line" data-in style="--d:2">
-          <div class="hd"><span>◯◯店　全体</span></div>
-          <div class="bd">
-            <div class="msg"><span class="av"><svg class="i"><use href="#i-person"/></svg></span><div><p class="who">店長</p><span class="bub">確認してから発注しろって何度も言わせんなよ？　わかってんの？</span><span class="rd">既読 17</span></div></div>
-            <div class="msg" data-step="1"><span class="av"><svg class="i"><use href="#i-person"/></svg></span><div><p class="who">店長</p><span class="bub">いつになったら、メニュー案出してくるんだよ？　金もらってんだろ？</span><span class="rd">既読 17</span></div></div>
-            <div class="msg"><span class="av" style="color:#9aa3ae"><svg class="i"><use href="#i-person"/></svg></span><div><span class="typing"><i></i><i></i><i></i></span></div></div>
-          </div>
+  <section class="slide" data-min="5" id="case-slide">
+    <div class="phase" data-until="0" style="gap:24px">
+      <div class="eyebrow" data-in>最近、窓口に届いた相談<small class="cs-note">（内容は一部変えています）</small></div>
+      <h2 class="title" data-in style="--d:1">現場で、何が起きているか</h2>
+      <div class="cs4">
+        <div class="card" data-in style="--d:2">
+          <svg viewBox="0 0 300 210" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="0" y="202" width="300" height="6" rx="3" fill="#e1e5ea"/>
+            <rect x="40" y="6" width="130" height="196" rx="20" fill="#fff" stroke="#4f5661" stroke-width="6"/>
+            <rect x="52" y="24" width="106" height="22" rx="6" fill="#e9e6fd"/><text x="105" y="41" font-size="15" fill="#5243c9">グループ</text>
+            <g class="a-bob"><rect x="56" y="58" width="96" height="74" rx="10" fill="#eef1f5" stroke="#cfd4da" stroke-width="3"/><path d="M64 80h80M64 98h80M64 116h80M88 66v62M112 66v62M136 66v62" stroke="#cfd4da" stroke-width="3"/><rect x="90" y="84" width="20" height="12" fill="#c23a2e"/></g>
+            <rect x="56" y="142" width="96" height="30" rx="12" fill="#e9e6fd"/><text x="104" y="163" font-size="17" fill="#5243c9">変更あります</text>
+            <g class="trem"><use href="#i-person" x="186" y="96" width="106" height="106" style="color:#2f74d9"/></g>
+            <text x="250" y="86" font-size="40" fill="#c23a2e">？</text>
+          </g></svg>
+          <b>写真1枚で、シフト変更</b><small>確認なし・断りなく</small>
         </div>
-        <div style="display:flex;flex-direction:column;gap:22px">
-          <p class="lead" data-in style="--d:3"><b>全員がわかっている</b></p>
-          <svg class="illus" viewBox="0 0 640 330" data-in style="--d:4" aria-hidden="true"><defs><marker id="ah4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c23a2e"/></marker></defs>
-            <rect x="0" y="318" width="640" height="8" rx="4" fill="#e1e5ea"/>
-            <use href="#i-person" x="0" y="40" width="130" height="130" style="color:#9aa3ae"/><use href="#i-person" x="510" y="40" width="130" height="130" style="color:#9aa3ae"/>
-            <use href="#i-person" x="0" y="190" width="130" height="130" style="color:#9aa3ae"/><use href="#i-person" x="510" y="190" width="130" height="130" style="color:#9aa3ae"/>
-            <g class="trem"><use href="#i-person" x="230" y="120" width="200" height="200" style="color:#2f74d9"/></g>
-            <g class="eyel" fill="none" stroke="#c23a2e" stroke-width="6" stroke-linecap="round" stroke-dasharray="4 14" marker-end="url(#ah4)"><path d="M110 100Q200 110 270 170"/><path d="M530 100Q440 110 390 170"/><path d="M110 250Q190 250 270 240"/><path d="M530 250Q450 250 390 240"/></g>
-          </svg>
-          <span class="stamp-pub" data-step="1" style="align-self:flex-start"><svg class="i"><use href="#i-alert"/></svg>公開叱責</span>
+        <div class="card" data-in style="--d:3">
+          <svg viewBox="0 0 300 210" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="0" y="202" width="300" height="6" rx="3" fill="#e1e5ea"/>
+            <use href="#i-person" x="0" y="52" width="150" height="150" style="color:#6b5ce7"/>
+            <g class="burst"><path d="M150 18l9 17 17-9-5 18 18 5-17 9 9 17-18-5-5 18-9-17-17 9 5-18-18-5 17-9-9-17 18 5z" fill="#c23a2e"/></g>
+            <g class="trem"><use href="#i-person" x="176" y="92" width="110" height="110" style="color:#2f74d9"/></g>
+            <use href="#i-person" x="236" y="8" width="60" height="60" style="color:#cfd4da"/><use href="#i-person" x="190" y="14" width="54" height="54" style="color:#cfd4da"/>
+          </g></svg>
+          <b>お客様の前で、怒鳴る</b><small>「そんなこともできないの？」</small>
+        </div>
+        <div class="card" data-in style="--d:4">
+          <svg viewBox="0 0 300 210" aria-hidden="true"><defs><marker id="ah5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c23a2e"/></marker></defs><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <use href="#i-person" x="0" y="82" width="120" height="120" style="color:#6b5ce7"/>
+            <use href="#i-person" x="196" y="4" width="56" height="56" style="color:#cfd4da"/><use href="#i-person" x="244" y="4" width="56" height="56" style="color:#cfd4da"/>
+            <g fill="none" stroke="#c23a2e" stroke-width="6" stroke-linecap="round" marker-end="url(#ah5)" class="eyel"><path d="M104 108Q160 70 196 120"/><path d="M110 140Q160 130 192 146"/><path d="M104 174Q160 196 194 176"/></g>
+            <g font-size="16" fill="#c23a2e"><text x="150" y="80">洗い物</text><text x="150" y="128">掃除</text><text x="150" y="208">ゴミ出し</text></g>
+            <g class="trem"><use href="#i-person" x="196" y="96" width="106" height="106" style="color:#2f74d9"/></g>
+          </g></svg>
+          <b>雑用は、いつも1人に</b><small>「この人がやるからいい」</small>
+        </div>
+        <div class="card" data-in style="--d:5">
+          <svg viewBox="0 0 300 210" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <rect x="0" y="202" width="300" height="6" rx="3" fill="#e1e5ea"/>
+            <use href="#i-person" x="10" y="72" width="130" height="130" style="color:#6b5ce7"/>
+            <g class="a-bob"><path d="M28 64a30 30 0 0 1 26-44 40 40 0 0 1 74 12 25 25 0 0 1-2 50H44a20 20 0 0 1-16-18z" fill="#6f7884"/><path d="M84 82l-12 22h14l-10 20" stroke="#f2be3d" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <g class="trem"><use href="#i-person" x="176" y="92" width="110" height="110" style="color:#2f74d9"/></g>
+            <g class="a-bob" style="animation-delay:-1s"><rect x="174" y="22" width="120" height="50" rx="16" fill="#eef1f5"/><text x="234" y="55" font-size="20" fill="#4f5661">無視・消去</text></g>
+          </g></svg>
+          <b>不機嫌も、その人に</b><small>辞めると伝えたら、無視</small>
         </div>
       </div>
+      <div class="cs-quote" data-in style="--d:7"><svg class="i"><use href="#i-chat"/></svg><p>「店長の<b>機嫌をうかがう</b>ことに、疲れ果てました」</p></div>
     </div>
-    <div class="phase" data-step="2" data-until="3" style="gap:26px">
+    <div class="phase" data-step="1" data-until="2" style="gap:26px">
       <div class="eyebrow">自社アンケート（97件）</div>
       <h2 class="title">受けた・見た人は、約4割</h2>
       <div class="split" style="grid-template-columns:600px 1fr;gap:56px;align-items:center;flex:1;min-height:0">
@@ -685,7 +742,7 @@
           </g><text x="200" y="226" text-anchor="middle" font-family="Dela Gothic One, sans-serif" font-size="84" fill="#1d2128"><tspan data-count="38">38</tspan><tspan font-size="40">人</tspan></text></svg>
           <div class="legend"><span><i></i>受けた 20</span><span><i class="w"></i>目撃のみ 18</span></div>
         </div>
-        <div class="card hbars" data-step="3">
+        <div class="card hbars" data-step="2">
           <p class="cap" style="margin-top:0">受けた人数</p>
           <div class="hb hot" style="--v:17"><b>気分屋</b><span><i class="grow"></i><em>17</em></span></div>
           <div class="hb hot" style="--v:10"><b>叱責</b><span><i class="grow"></i><em>10</em></span></div>
@@ -694,12 +751,8 @@
           <div class="hb" style="--v:8"><b>誘い</b><span><i class="grow"></i><em>8</em></span></div>
         </div>
       </div>
-      <div class="cols cols-2 court2" data-step="3">
-        <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判（東京高裁・2005年）</p><p class="tx">叱責メールを<b>同僚十数名にも送信</b> → <b>上司個人に慰謝料</b></p></div>
-        <div class="rk-case ct"><p class="lbl"><svg class="i"><use href="#i-gavel"/></svg>裁判（さいたま地裁・2004年）</p><p class="tx">日常的ないじめで後輩が自殺 → <b>本人と病院</b>に賠償責任</p></div>
-      </div>
     </div>
-    <div class="phase" data-step="4" data-until="4">
+    <div class="phase" data-step="3" data-until="3">
       <div class="eyebrow">実際に届いている相談</div>
       <h2 class="title">入口は、2つある</h2>
       <div class="cols cols-2" style="flex:1">
@@ -707,6 +760,7 @@
           <svg class="illus" viewBox="0 0 460 260" style="height:260px;width:auto" aria-hidden="true"><rect x="0" y="248" width="460" height="8" rx="4" fill="#e1e5ea"/><g class="lean"><use href="#i-person" x="60" y="40" width="210" height="210" style="color:#6b5ce7"/></g><use href="#i-person" x="210" y="70" width="180" height="180" style="color:#2f74d9"/><path class="beat" d="M300 54L280 34a12 12 0 0 1 20-14 12 12 0 0 1 20 14z" fill="#f27a9c"/></svg>
           <h3 style="font-size:46px;justify-content:center"><span class="badge" style="font-size:52px">1</span>近づきすぎ</h3>
           <p style="font-size:32px;color:var(--ink-2)">仲良くなりたい</p>
+          <div class="sx-keys"><span class="k">その先に、セクハラ</span><span>環境型</span><span>対価型</span><span>同性間も</span></div>
         </div>
         <div class="card is-accent" style="position:relative;align-items:center;text-align:center;gap:14px">
           <span class="flag">上位</span>
@@ -716,18 +770,7 @@
         </div>
       </div>
     </div>
-    <div class="phase" data-step="5" data-until="5" style="gap:36px">
-      <div class="eyebrow">今、現場で起きていること</div>
-      <h2 class="title">家族が動く</h2>
-      <ol class="iflow">
-        <li class="hot"><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path class="burst" d="M50 8l10 22 22-8-6 24 22 8-20 14 12 20-24-2-4 24-14-20-16 18-2-24-24 2 12-20-20-14 22-8-6-24 22 8z" fill="#c23a2e"/></svg></span><b>怒り</b></li>
-        <li><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="trem"><use href="#i-person" x="10" y="10" width="80" height="80" style="color:#2f74d9"/></g></svg></span><b>言い返せない相手</b></li>
-        <li><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M12 48L50 14l38 34v40H12z" fill="#e9e6fd"/><rect x="40" y="62" width="20" height="26" fill="#fff"/></svg></span><b>家で話す</b></li>
-        <li class="hot"><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-person" x="-6" y="18" width="70" height="70" style="color:#9aa3ae"/><g class="a-ring" style="transform-origin:70px 52px"><rect x="56" y="28" width="30" height="48" rx="7" fill="#fff" stroke="#4f5661" stroke-width="4"/></g></svg></span><b>家族が動く</b></li>
-      </ol>
-      <div class="row" style="justify-content:center"><span class="pill-k">アルバイトも、社員も</span></div>
-    </div>
-    <div class="phase" data-step="6" style="justify-content:center;align-items:center;gap:30px">
+    <div class="phase" data-step="4" style="justify-content:center;align-items:center;gap:30px">
       <h2 class="statement" style="text-align:center">「性格の悪い人」の話ではない</h2>
       <svg class="illus" viewBox="0 0 600 300" style="width:720px" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
         <use href="#i-person" x="20" y="110" width="180" height="180" style="color:#6b5ce7"/>
@@ -737,22 +780,23 @@
         <path d="M200 210h200" stroke="#d5dae1" stroke-width="6" stroke-dasharray="14 12"/><text x="300" y="196" font-size="30" fill="#c23a2e">ズレ</text>
       </g></svg>
     </div>
-    <aside class="notes">（スライド：店舗の全体LINEグループ。名指しはしないが誰のことか特定できる状態で「確認してから発注しろって何度も言わせんなよ？　わかってんの？」というメッセージの画像）
-店舗でこんな光景はありませんか。
-「あえて名前は出さないけれど、誰のミスか全員がわかっている状態」で、全体LINEに注意を流す。送る側は「効率的に全員に注意喚起した」「教育だ」と思っているかもしれません。
-頭の中で、自分のお店に当てはめてみてください。
-［クリック］（2〜3秒待ってから）実はこれ、相談窓口にも実際に届いている、「公開叱責」というハラスメントになる可能性が高い事例です。「いつになったら、メニュー案出してくるんだよ？　金もらってんだろ？」といった連絡も、同じです。
-［クリック］当社でも、職場環境に関するアンケートを取りました。2026年8月から9月の、店舗内での言動についてです。回答は97件でした。
+    <aside class="notes">（スライド：最近届いた相談の場面〈スマホのグループLINE・雑用が一人に集まる矢印・不機嫌の雲〉→ 円グラフ。職場環境に関するアンケートの結果）
+最近、本部の窓口に、退職したアルバイトスタッフから、相談が届きました。内容は、少し変えてお話しします。
+シフトは、本人に確認がないまま、グループLINEに「変更があります」と写真が送られてくるだけ。急に減らされたり、出していない日が増やされたりする。
+お客様の前で怒鳴られる。わからないことを聞こうとすると、「そんなこともできないの？」と言われる。
+洗い物、掃除、ゴミ出し。ほかのスタッフの手が空いていても、雑用の指示は、いつもその人に来る。先輩が「代わりにやります」と言っても、「この人がやるからいい」と断られる。
+店長の機嫌が悪い日は、ほかのスタッフへの注意まで、その人に向けられる。
+辞めると伝えてからは、話しかけても無視され、シフトも、断りなく消された。
+本人は、こう書いています。「店長の機嫌をうかがうことに、疲れ果てました」。
+店長に、悪気があったかどうかは、わかりません。忙しかったのかもしれません。でも、受け取った側には、こう届いていました。
+［クリック］当社で、職場環境に関するアンケートを取りました。2026年8月から9月の、店舗内での言動についてです。回答は97件でした。
 ハラスメントを「受けた」、または「目撃した」と答えた人は、38人、約4割です。内訳は、「受けた」が20人、「目撃のみ」が18人です。
 ［クリック］いちばん多かったのは、指示・態度の波、いわゆる気分屋な言動です。「受けた」と答えた20人のうち、17人が、これを挙げています。次に多いのが、人前での叱責、LINEの中も含みます。それから、暴言・威圧的な態度。この2つは、それぞれ10人です。溜息や舌打ち、睨むといった態度が、9人。休日の業務連絡・飲み会の誘いも、8人います。
-裁判に発展した事例もあります。保険会社の上司が、部下を叱責するメールを、本人だけでなく、職場の同僚十数名にも送った。名誉感情を害するとして、上司個人に慰謝料の支払いが命じられています。全体LINEも、同じ構造です。
-また、病院で、先輩が後輩を日常的にからかい、いじめ続け、後輩が自殺した事例では、いじめた本人と、防げなかった病院の両方に、賠償責任が認められています。
 ［クリック］ほかにも、実際にこんな相談が届いています。入口は、二つあります。
 一つ目は、良かれと思って、近づきすぎること。 営業後や休みに、食事や飲みに誘う。場を和ませるつもりの「いじり」や「軽口」。熱心さゆえの「休日・深夜のLINE」。
+近づきすぎの先には、セクハラもあります。性的な冗談、身体への不必要な接触、恋愛や結婚のことをしつこく聞く。相手がその場で笑っていても、職場にいづらくなれば、「環境型」のセクハラです。誘いや冗談を断ったことで、シフトや評価が変わるのは、「対価型」。どちらも、同性どうしでも、同じです。
 二つ目は、怒りと強い言葉が、出てしまうこと。 気分で態度が変わりすぎる。抽象的な指示を受けて、やったら怒られる。人前での叱責。強い言葉遣いや、威圧的な態度。
 さきほどのアンケートを、もう一度見てください。上位は、二つ目です。 気分屋な言動、人前での叱責、暴言・威圧的な態度。仲良くなりたい、という入口よりも、怒りの入口のほうが、多いのです。
-［クリック］そして今、現場で起きていることがあります。怒りを、無意識に、無責任に、無自覚に、差が大きい相手、アルバイトにも、社員にも、そのままぶつけた結果、ハラスメントとして訴えられるリスクが、かなり高くなっている。
-疲れや、焦り、不安から来る怒りが、いちばん言い返せない相手に向かいます。言えなかったスタッフは、家で話します。すると、家族が動きます。 19歳から23歳くらいの、アルバイトも、社員も含むスタッフの、ご家族が、会社に連絡してくるケースが、増えています。差が大きい人に、そのままぶつけるリスクが、上がっています。親御さんが、AIで調べて、労基署への通報をほのめかす。店長やシェフを、変えてほしいと言ってくる。そういうことも、起きています。
 ［クリック］これらの事例は、「性格の悪い人」の話ではありません。裁判で負けて、キャリアを失い、数百万円の支払いを命じられたリーダーたちの多くが、皆さんと同じように「熱心で、店を良くしたい、スタッフと仲良くしたい」と思っていた人たちです。
 では、なぜ、「熱心で、店を良くしたい」人たちが、ハラスメントと言われてしまうのか。ここに、認識のズレがあります。
 「家族のような関係性」を求める。良かれと思って、プライベートな誘いをする。場を和ませるつもりで、おちゃらけたり、いじったりする。熱心さゆえに、休日にLINEを送る。どれも、送る側は気遣いのつもりです。
@@ -760,14 +804,14 @@
   </section>
 
   <!-- 05 なぜ起きるのか -->
-  <section class="slide" data-min="7" id="gap-slide">
-    <div class="phase" data-until="2" style="gap:24px">
+  <section class="slide" data-min="9" id="gap-slide">
+    <div class="phase" data-until="1" style="gap:24px">
       <div class="eyebrow" data-in>なぜ起きるのか</div>
       <h2 class="title" data-in style="--d:1">差が広がるほど、言えなくなる</h2>
       <div class="gcap" data-in style="--d:2">
-        <p data-until="0"><b>アルバイト同士</b>　言いやすい</p>
-        <p data-step="1" data-until="1"><b>1年目と3年目</b>　<span class="hl">年齢・経験</span>の差</p>
-        <p data-step="2"><b>シェフと1年目</b>　<span class="hl">立場・力</span>の差</p>
+        <p class="gc0"><b>アルバイト同士</b>　言いやすい</p>
+        <p class="gc1"><b>1年目と3年目</b>　<span class="hl">年齢・経験</span>の差</p>
+        <p class="gc2"><b>シェフと1年目</b>　<span class="hl">立場・力</span>の差</p>
       </div>
       <div class="gapfig" data-in style="--d:3">
         <svg class="illus" viewBox="0 0 1420 500" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -794,9 +838,9 @@
         <div class="gmeter"><p>言いにくい<br>断れない</p><div class="tube"><i></i></div><span>強</span></div>
       </div>
     </div>
-    <div class="phase" data-step="3" data-until="3" style="gap:22px">
+    <div class="phase" data-step="2" data-until="2" style="gap:22px">
       <div class="eyebrow">上から見ると</div>
-      <h2 class="title">手には、高性能のマイク</h2>
+      <h2 class="title">スイッチの切れない「メガホン」</h2>
       <div class="card g2-card">
         <svg class="illus" viewBox="0 0 1600 560" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
           <rect x="0" y="0" width="1600" height="190" rx="24" fill="#e0ebfb"/><rect class="g2-dark" x="0" y="0" width="1600" height="190" rx="24" fill="#aeb6c2"/>
@@ -805,14 +849,15 @@
           <rect x="0" y="540" width="1600" height="10" rx="5" fill="#e1e5ea"/>
           <rect x="40" y="440" width="300" height="100" rx="10" fill="#e9e6fd"/>
           <use href="#i-person" x="60" y="190" width="260" height="260" style="color:#6b5ce7"/>
-          <g transform="translate(262 260)"><rect width="34" height="58" rx="17" fill="#4f5661"/></g>
-          <g fill="none" stroke="#6b5ce7" stroke-width="8" stroke-linecap="round"><path class="wv" d="M320 250a70 70 0 0 1 0 110"/><path class="wv" d="M340 210a130 130 0 0 1 0 190" style="animation-delay:.6s"/><path class="wv" d="M360 170a190 190 0 0 1 0 270" style="animation-delay:1.2s"/></g>
+          <g><path d="M262 286h22l58-40v116l-58-40h-22z" fill="#4f5661"/><rect x="262" y="314" width="16" height="34" rx="6" fill="#4f5661"/></g>
+          <g fill="none" stroke="#6b5ce7" stroke-width="8" stroke-linecap="round"><path class="wv" d="M372 254a70 70 0 0 1 0 100"/><path class="wv" d="M396 214a130 130 0 0 1 0 180" style="animation-delay:.6s"/><path class="wv" d="M420 174a190 190 0 0 1 0 260" style="animation-delay:1.2s"/></g>
           <g class="g2-staff"><use href="#i-person" x="640" y="380" width="160" height="160" style="color:#2f74d9"/><use href="#i-person" x="880" y="380" width="160" height="160" style="color:#5fa8ff"/><use href="#i-person" x="1120" y="380" width="160" height="160" style="color:#2f74d9"/><use href="#i-person" x="1360" y="380" width="160" height="160" style="color:#5fa8ff"/></g>
+          <g class="g2-good" font-size="30"><g class="a-bob"><rect x="610" y="250" width="220" height="62" rx="22" fill="#ddf2e7"/><text x="720" y="292" fill="#22915c">ありがとう</text></g><g class="a-bob" style="animation-delay:-.9s"><rect x="870" y="220" width="200" height="62" rx="22" fill="#ddf2e7"/><text x="970" y="262" fill="#22915c">助かった</text></g><g class="a-bob" style="animation-delay:-1.8s"><rect x="1110" y="250" width="180" height="62" rx="22" fill="#ddf2e7"/><text x="1200" y="292" fill="#22915c">いいね</text></g><g class="a-bob" style="animation-delay:-2.4s"><rect x="1318" y="214" width="260" height="62" rx="22" fill="#eef1f5"/><text x="1448" y="256" fill="#4f5661">今日は、どっち？</text></g></g>
         </g></svg>
       </div>
-      <div class="row" style="justify-content:center"><span class="pill-k">機嫌 ＝ 店の天気</span></div>
+      <div class="mg-pills"><span class="pill-k">機嫌 ＝ 店の天気</span><span class="pill-k ok">良い言葉も、広がる</span><span class="pill-k red">機嫌で、基準が変わる</span></div>
     </div>
-    <div class="phase" data-step="4" data-until="4" style="gap:22px">
+    <div class="phase" data-step="3" data-until="3" style="gap:22px">
       <div class="eyebrow">上から見ると</div>
       <h2 class="title">「言えば従うはず」</h2>
       <div class="card g2-card">
@@ -835,7 +880,7 @@
       </div>
       <div class="row" style="justify-content:center"><span class="pill-k red">設計ミス</span></div>
     </div>
-    <div class="phase" data-step="5" data-until="6" style="gap:22px">
+    <div class="phase" data-step="4" data-until="5" style="gap:22px">
       <div class="eyebrow">下から見ると</div>
       <h2 class="title">拒絶リスク</h2>
       <div class="split" style="grid-template-columns:1fr 300px;gap:30px;align-items:stretch;flex:1;min-height:0">
@@ -853,9 +898,9 @@
           <div class="gmeter" style="max-height:none;flex:1"><p>拒絶<br>リスク</p><div class="tube"><i></i></div><span>差が大きいほど</span></div>
         </div>
       </div>
-      <div class="row" data-step="6" style="justify-content:center"><span class="pill-k red">心理的安全性が低い</span></div>
+      <div class="row" data-step="5" style="justify-content:center"><span class="pill-k red">心理的安全性が低い</span></div>
     </div>
-    <div class="phase" data-step="7" data-until="7">
+    <div class="phase" data-step="6" data-until="6">
       <div class="eyebrow">差が「リスク」になるのは、いつか</div>
       <h2 class="title">同じ誘いでも、断れるか</h2>
       <div class="cols cols-2">
@@ -880,7 +925,7 @@
       </div>
       <div class="row" style="justify-content:center"><span class="pill-k">差 → リスク</span></div>
     </div>
-    <div class="phase" data-step="8" style="gap:28px">
+    <div class="phase" data-step="7" data-until="7" style="gap:28px">
       <div class="eyebrow">自社アンケート（97件）</div>
       <h2 class="title">相談できなかった、58%</h2>
       <p class="cap" style="margin-top:0">受けた・目撃した26名</p>
@@ -888,10 +933,24 @@
         <div style="--w:42%;background:var(--ok)"><b>42%</b><small>相談できた（11名）</small></div>
         <div style="--w:58%;background:var(--danger)"><b>58%</b><small>できなかった（15名）</small></div>
       </div>
-      <div class="row" data-step="9" style="gap:40px;align-items:center;justify-content:center">
+    </div>
+    <div class="phase" data-step="8" data-until="8" style="gap:30px">
+      <div class="eyebrow">今、現場で起きていること</div>
+      <h2 class="title">言えなかった6割は、どこへ</h2>
+      <ol class="iflow">
+        <li class="hot"><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path class="burst" d="M50 8l10 22 22-8-6 24 22 8-20 14 12 20-24-2-4 24-14-20-16 18-2-24-24 2 12-20-20-14 22-8-6-24 22 8z" fill="#c23a2e"/></svg></span><b>怒り</b><small>差が大きい相手に</small></li>
+        <li><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="trem"><use href="#i-person" x="10" y="10" width="80" height="80" style="color:#2f74d9"/></g></svg></span><b>言えない</b><small>相談できなかった6割</small></li>
+        <li><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M12 48L50 14l38 34v40H12z" fill="#e9e6fd"/><rect x="40" y="62" width="20" height="26" fill="#fff"/></svg></span><b>親に話す</b><small>同僚でも、上司でもなく</small></li>
+        <li class="hot"><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-person" x="-6" y="18" width="70" height="70" style="color:#9aa3ae"/><g class="a-ring" style="transform-origin:70px 52px"><rect x="56" y="28" width="30" height="48" rx="7" fill="#fff" stroke="#4f5661" stroke-width="4"/></g></svg></span><b>親が出てくる</b><small>AIで調べた労基署・弁護士</small></li>
+      </ol>
+      <div class="row" style="justify-content:center;gap:24px;align-items:center"><span class="pill-k">アルバイトも、社員も</span><div class="alert" style="align-items:center;padding:16px 34px;background:var(--danger-soft);font-size:36px;font-weight:700"><svg class="i" style="color:var(--danger)"><use href="#i-clock"/></svg><p>対応に、<b style="color:var(--danger)">1か月、2か月</b>が平気でかかる</p></div></div>
+    </div>
+    <div class="phase" data-step="9" style="justify-content:center;align-items:center;gap:40px">
+      <div class="row" style="gap:40px;align-items:center;justify-content:center">
         <svg viewBox="0 0 420 220" style="width:420px" aria-hidden="true"><rect x="0" y="206" width="420" height="8" rx="4" fill="#e1e5ea"/><rect x="230" y="130" width="140" height="76" rx="8" fill="#e9e6fd"/><g class="g2-near"><use href="#i-person" x="20" y="96" width="110" height="110" style="color:#2f74d9"/></g><use href="#i-person" x="245" y="20" width="110" height="110" style="color:#6b5ce7"/><path class="g2-arr" d="M120 70h60l-12-12M180 70l-12 12" stroke="#9d92ff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
-        <p class="statement" style="font-size:80px">差は、なくならない</p>
+        <p class="statement" style="font-size:96px">差は、なくならない</p>
       </div>
+      <p class="lead" style="text-align:center">「嫌なら言ってね」でも、<b>言えない構造は残る</b></p>
     </div>
     <aside class="notes">なぜ、ハラスメントは起きるのか。それは、「差」があるからです。
 その差には、いくつかの種類があります。年齢の差。経験の差。立場の差。 そして、力の差です。力の差とは、評価やシフトなどを左右できる力の差です。
@@ -899,11 +958,16 @@
 - 同い年なら、断りやすい。誘いやすい。言いやすい。
 - 経験が同じなら、語りやすい。伝えやすい。相手の言いたいことも、読み取りやすい。
 - 立場が同じなら、相談しやすい。参考にしやすい。聞きやすい。
-［クリック］逆に、差が広がると、どうなるか。下の立場の人は、自分の意思が言えなくなります。
-［クリック］そして、差を感じれば感じるほど、差が広がれば広がるほど、意思を伝えられなくなります。 これが、ハラスメントの構造です。
+［クリック］逆に、差が広がると、どうなるか。下の立場の人は、自分の意思が言えなくなります。 そして、差を感じれば感じるほど、差が広がれば広がるほど、意思を伝えられなくなります。 これが、ハラスメントの構造です。
 皆さんは、店の中で、一番上にいます。スタッフとの間には、年齢も、経験も、立場も、力も、差があります。この差を、上からと、下から、両方見てみましょう。
-［クリック］まず、上から。皆さんの手には、「高性能のマイク」があります。
-厨房において、皆さんの言葉はただの会話ではありません。それは「店の法律」であり、スタッフにとっては「絶対的な正解」になります。「いやいや、自分はそんな大したことない」と思っていても、小さい声で喋ったとしても、店舗の端にまで届くのです。また、皆さんの「機嫌」は、その店の「天気」になります。皆さんが不機嫌なら、店中が嵐になり、スタッフは萎縮してしまいます。差があるぶん、皆さんの言動は、自分が思っている以上に、増幅されて届きます。
+［クリック］まず、上から。皆さんは、スイッチの切れない「メガホン」を持っています。
+厨房において、皆さんの言葉はただの会話ではありません。それは「店の法律」であり、スタッフにとっては「絶対的な正解」になります。「いやいや、自分はそんな大したことない」と思っていても、小さい声で喋ったとしても、店舗の端にまで届くのです。言葉だけではありません。ため息も、舌打ちも、黙り込むのも、メガホンを通して、店中に流れます。 皆さんの「機嫌」は、その店の「天気」になります。
+メガホンは、悪いものだけを広げるわけではありません。「ありがとう」「助かった」「いいね」。皆さんのほめ言葉も、笑顔も、落ち着いた声も、同じように、店中に広がります。皆さんは、良い影響も含めて、店全体に及ぼせる力を持っています。 だからこそ、何を流すかを、選ぶ必要があります。
+そして、悪いほうで、いちばん大きく流れるのが、機嫌の波です。
+同じミスに、昨日は笑って、今日は怒鳴る。昨日はよかったやり方が、今日はダメになる。スタッフは、ルールではなく、皆さんの顔色で、今日の正解を探すようになります。出勤したら、まず「今日の店長は、どっちだろう」と見る。機嫌の悪い日は、質問をしない。ミスを言わない。
+冒頭の相談の、「店長の機嫌をうかがうことに、疲れ果てました」は、このことです。
+機嫌が悪くなるのは、人間なので仕方がありません。問題は、機嫌で、言うことや、基準が変わること。 差があるぶん、皆さんの言動は、そしてその波は、自分が思っている以上に、増幅されて届きます。
+では、なぜ、波が出るのか。多くの場合、悪意ではありません。責任者だからこその、熱量です。営業中は、集中している。お客様に、より良いクオリティで届けたい。段取りどおりに進まないと、ストレスがたまる。責任感が強い人ほど、矜持がある人ほど、この波は、強くなりやすいのです。その整え方は、後半のアジャスターで、お話しします。
 ［クリック］もう一つ、上から見たときの落とし穴があります。差が大きいほど、人は、下に見てしまいやすいのです。差が大きいと、強い言葉も言いやすくなります。言い返されないからです。そして、下に見ると、「言えば従うはずだ」という期待が生まれます。
 でも、従順な人は、そんなにいません。
 従順に見える人は、従順なのではなく、言えないだけかもしれません。これが、次にお話しする「拒絶リスク」です。そして、従順でない人は、反発します。期待と現実のギャップが、怒りになります。その怒りは、いちばん言い返せない相手、アルバイトや、若手の社員に向かいやすい。「従順なはずだ」という前提そのものが、設計ミスです。差が大きい人に、そのままぶつけるリスクが、上がっています。
@@ -920,6 +984,10 @@
 でも、同じ人が、同じ職場にいたらどうでしょう。自分の立場があり、働く環境があり、人間関係があります。断ったあとの、評価や、空気が気になります。差が、自分のポジションに影響するとき、はじめて、差は「リスク」になるのです。
 だから、ハラスメントは、店や会社という、コミュニティの中で起きるのです。
 ［クリック］実際、当社のアンケートでも、こうした「言えなさ」が表れています。ハラスメントを「受けた」または「目撃した」と答え、相談の設問にも答えた26人のうち、相談できたのは11人、約4割です。15人、約6割は、相談できなかったと答えています。
+［クリック］そして今、現場で起きていることがあります。怒りを、無意識に、無責任に、無自覚に、差が大きい相手、アルバイトにも、社員にも、そのままぶつけた結果、ハラスメントとして訴えられるリスクが、かなり高くなっている。
+疲れや、焦り、不安から来る怒りは、いちばん言い返せない相手に向かいます。では、言えなかった6割は、どこへ行くのでしょうか。
+最近は、同僚でも、上司でもなく、親に話すケースが増えています。そして、親が出てきます。 親御さんが、AIを使って調べ、労基署のこと、弁護士のことを、具体的に話してくる。店長やシェフを、変えてほしいと言ってくる。アルバイトでも、社員でも、同じです。
+こうなると、その対応には、1か月、2か月が、平気でかかります。 事実確認、ヒアリング、ご家族とのやり取り、本部との相談。その間、店の営業も、皆さんの時間も、削られていきます。言えない構造は、店の中では見えなくても、外で、リスクになって返ってきます。
 ［クリック］どれだけ仲が良いと思っていても、どれだけフラットな関係だと思っていても、スタッフの側から見れば、差はなくなっていません。「嫌なら言ってね」「無理なら断っていいよ」と気を遣っていても、差があるかぎり、言えない構造は残ります。
 一方で、この力を理解したうえで、「だからこそ、相手に寄り添って、家族のように親身になろう」「仲間として、カジュアルに接しよう」と、距離を近づけようとする。それもまた、トラブルに発展するケースがあります。距離を近づけても、差がなくなるわけではないからです。</aside>
   </section>
@@ -948,7 +1016,7 @@
     </div>
     <aside class="notes">もう一度、手を動かしていただきます。
 さきほど書いた、「普段から気をつけていること」を、見てください。そのうえで、気をつけていたつもりだったけれど、見落としていたかもしれない、と感じることがあれば、追加で書き足してください。
-さきほどの事例を、思い出してみてください。全体LINEでの注意。食事や飲みの誘い。いじりや、軽口。休日や深夜のLINE。気分で、態度が変わること。曖昧な指示。強い言葉遣い。理不尽に怒ったこと。「何度言ったらわかる」。怒りを、差が大きい相手、アルバイトにも、若手の社員にも、そのままぶつけていなかったか。そして、「嫌なら断っていいよ」「わかった？できる？」と、確認していたこと。相手から見たら、どう見えていたか。それを、想像しながら、書いてください。2分です。
+さきほどの事例を、思い出してみてください。全体LINEでの注意。食事や飲みの誘い。いじりや、軽口。休日や深夜のLINE。気分で、態度が変わること。曖昧な指示。強い言葉遣い。理不尽に怒ってしまったこと。「何度言ったらわかるんだ」という言葉。そして、「嫌なら断っていいよ」「わかった？できる？」と、確認していたこと。そして、怒りを、差が大きい相手、アルバイトにも、若手の社員にも、そのままぶつけていなかったか。相手から見たら、どう見えていたか。それを、想像しながら、書いてください。2分です。
 これは、自分を責めるためのものではありません。気づくためのものです。気づけた、ということが、一番の成果です。
 ［クリック］（2分のカウントダウンが始まる。0:00で「時間です」と表示）
 （進行役：書いている間は、話しかけない。共有も、回収もしない）</aside>
@@ -965,8 +1033,8 @@
           <div class="dg"><p class="dh"><svg class="i"><use href="#i-store"/></svg>会社・店舗</p><div class="row3">
             <div class="dm" data-step="1" style="--k:0"><svg class="i"><use href="#i-doc"/></svg><b>隠蔽体質</b></div>
             <div class="dm" data-step="1" style="--k:1"><svg class="i"><use href="#i-phone"/></svg><b>SNS拡散</b></div>
-            <div class="dm" data-step="1" style="--k:2"><svg class="i"><use href="#i-users"/></svg><b>家族が動く</b><small>労基署・交代要求</small></div>
-            <div class="dm" data-step="1" style="--k:3"><svg class="i"><use href="#i-gavel"/></svg><b>損害賠償</b><small>安全配慮義務違反</small></div>
+            <div class="dm" data-step="1" style="--k:2"><svg class="i"><use href="#i-users"/></svg><b>家族が動く</b><small>労基署・弁護士・交代</small></div>
+            <div class="dm" data-step="1" style="--k:3"><svg class="i"><use href="#i-clock"/></svg><b>時間と信頼</b><small>対応に1〜2か月</small></div>
           </div></div>
           <div class="dg me"><p class="dh"><svg class="i"><use href="#i-person"/></svg>あなた個人</p><div class="row3">
             <div class="dm" data-step="2" style="--k:0"><svg class="i"><use href="#i-clock"/></svg><b>訴えられた時点で</b><small>時間・労力・お金</small></div>
@@ -993,8 +1061,7 @@
 ［クリック］【会社・店舗が失うもの】
 一番怖いのは、店が「隠蔽体質」になることです。スタッフが責任者に怯えるようになると、打刻のズレ、金銭ミス、体調不良、食材の誤表記。そういった報告が、上がってこなくなります。ハラスメントは、ハラスメントだけの問題では終わりません。
 そして、公になれば、SNS等で拡散され、求人応募の減少や顧客離れにつながります。
-さらに、家族や外部が動きます。 アルバイトでも、社員でも、同じです。本人が家で話し、家族が会社に連絡してくる。労基署への通報をほのめかされる。店長やシェフの交代を、要求される。こうなると、店と本部の時間と信頼が、大きく奪われます。
-そして、会社には、スタッフが安全に働けるように配慮する義務があります。ハラスメントを放置したり、防ぐ措置を取らなかったりすれば、会社が「安全配慮義務違反」として、損害賠償を請求される可能性があります。加害者が従業員であれば、会社は「使用者責任」も問われます。
+さらに、さきほどお話ししたように、家族や外部が動きます。 労基署や弁護士の話が出る。店長やシェフの交代を、要求される。対応は、1か月、2か月と続き、店と本部の時間と信頼が、大きく奪われます。
 ［クリック］【あなた個人が負うもの】
 ［クリック］スタッフがメンタル疾患を発症したり、休職や自殺に追い込まれたりした場合、裁判で会社だけでなく、店長・シェフ個人にも損害賠償が命じられた判例があります。社内でも、懲戒処分の対象になります。家族から、交代を要求されることもあります。
 そして、録音・録画がSNSで拡散されれば、法的な処分の有無にかかわらず、キャリアが実質的に終わります。
@@ -1225,7 +1292,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
   </section>
 
   <!-- 09-1 アンガーマネジメント：矜持 -->
-  <section class="slide" data-min="2">
+  <section class="slide" data-min="2" style="gap:20px">
     <div class="eyebrow" data-in>アジャスター ①　アンガーマネジメント（まず、自分を整える）</div>
     <h2 class="title" data-in style="--d:1">怒りの原因は、<span class="hl2">「プロの矜持」</span></h2>
     <p class="lead" data-in style="--d:2">「怒らない人」になる、のではない</p>
@@ -1233,15 +1300,23 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <li><span class="p">クオリティ</span><i></i><span class="b">責める</span></li>
       <li><span class="p">「おいしい」</span><i></i><span class="b">責める</span></li>
       <li><span class="p">ピークタイム</span><i></i><span class="b">責める</span></li>
+      <li><span class="p">段取り</span><i></i><span class="b">イライラ</span></li>
     </ul>
-    <p class="cap" data-step="1" style="margin-top:0">経験を積むほど、矜持（基準）は高くなる</p>
+    <p class="cap" data-step="1" style="margin-top:0">経験・責任感・矜持があるほど、<b>機嫌の波</b>は強くなる</p>
     <div class="convert" data-step="2"><span class="ng">✕「何やってるんだ」</span><i></i><span class="ok">○「3分遅れ。2卓を先に」</span><small>→ 事実＋次の指示（②シグナル）</small></div>
+    <div class="wave3" data-step="2"><span class="h">波を、店に流さない</span><span><svg class="i"><use href="#i-clipboard"/></svg>基準を、気分で変えない</span><span><svg class="i"><use href="#i-clock"/></svg>急ぎでない注意は、後回し</span><span><svg class="i"><use href="#i-chat"/></svg>メガホンは、入りっぱなし</span></div>
     <aside class="notes">① アンガーマネジメント：まず、自分を整える
 アンガーマネジメントは、怒らない人になることではありません。怒る必要のあることは、上手に伝える。怒る必要のないことは、怒らなくて済むようにする。 そのための、心のトレーニングです。怒りは、自然な感情です。問題は、その表し方です。
 ［クリック］では、皆さんの怒りは、どこから来るのでしょうか。怒りの原因は、悪い感情ではなく、プロの矜持であることが多いと思います。
 クオリティを落とせない。 だから、落とす行為を、責めてしまう。お客様に、「おいしい」を届けたい。 だから、そうならないケースを、責めてしまう。ピークタイムの、ズレが許せない。 だから、ズレた瞬間に、責めてしまう。
+段取りどおりに、進まない。 だから、そのイライラが、言葉や態度に出てしまう。
 これは、プロであれば、誰もが持っている気持ちです。そして、経験を積むほど、矜持、つまり基準は、高くなります。許せない範囲も、広がりやすくなります。 さきほどお話しした、経験の差です。見えているものが違うので、「なぜ、できないんだ」となりやすい。
+責任感が強い人ほど、矜持がある人ほど、この傾向は、強くなりやすい。 前半でお話しした「機嫌の波」の正体の多くは、ここにあります。
 ［クリック］矜持は、守っていいのです。問題は、矜持を、人を責める形で、出してしまうことです。矜持は、責める言葉ではなく、事実と、次の指示、つまり、②のシグナルに変えます。「何やってるんだ」ではなく、「提供が3分遅れている。この2卓を先に」。
+そして、波を、店に流さないために、3つのことを意識してください。
+- 基準を、気分で変えない。 「これはOK、これはNG」を、言葉か紙で決めておく。決めたことは、機嫌に関係なく、同じに扱う
+- 機嫌の悪い日は、急ぎでない注意を、後回しにする。 落ち着いてから伝える。これは、④のタイミングでもお話しします
+- メガホンのスイッチは、入りっぱなし。 ため息も、舌打ちも、無言も、店中に流れていると思ってください
 そして、怒りの裏には、矜持のほかに、疲れや、焦り、不安があることも多い、といわれています。忙しい営業中は、特にそうです。</aside>
   </section>
 
@@ -1285,14 +1360,16 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         </div>
       </div>
     <div class="row" data-in style="--d:6">
-      <div class="alert is-info" style="flex:1"><svg class="i"><use href="#i-search"/></svg><p>怒りの裏には、<b>プロの矜持</b>と、疲れ・焦り・不安</p></div>
+      <div class="am-now" style="flex:1.3"><span class="t">今日から</span><p>熱くなったら、<b>点数</b>をつけて、<b>6秒</b>待つ</p></div>
       <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>怒りに任せない ≠ <b>指導をやめる</b></p></div>
     </div>
     <div class="row" data-step="1" style="justify-content:center"><span class="pill-k">ここから、何を・どう・いつ</span></div>
-    <aside class="notes">方法は、4つ。覚え方は、気づく、待つ、測る、見直すです。
+    <aside class="notes">機嫌の波は、無意識に、無自覚に、出ていることが多いものです。自分では、波があるとは思っていない。だから、気合いではなく、手順にします。
+スタッフに、指摘するとき。熱くなってきたな、と感じたら、まず、点数をつける。今、10のうち、いくつか。そして、6秒、待つ。 これだけは、今日から、やってみてください。
+方法を、もう少し詳しくお話しします。4つあります。覚え方は、気づく、待つ、測る、見直すです。
 一つ目、気づく。 自分の怒りのサインに、気づきます。心拍が上がる。声が大きくなる。考えが単純になる。自分のサインを知っておくことが、最初の一歩です。
 二つ目、待つ。 6秒、待ちます。怒りの衝動のピークは、数秒でくる、といわれています。その間に、言動に出さない。深呼吸を、3秒で吐いて、3秒で吸う。これで6秒です。怒りを消す魔法ではありません。衝動的に言ってしまわないための、時間稼ぎです。
-三つ目、測る。 怒りに、点数をつけます。10段階で、今いくつか。点数が高いときは、指導をしない。④の、タイミングにつながります。
+三つ目、測る。 怒りに、点数をつけます。10段階で、今いくつか。点数をつけるだけで、自分を、少し外から見られます。 無自覚だった波に、気づけます。点数が高いときは、指導をしない。④の、タイミングにつながります。
 四つ目、見直す。 自分の「べき」を、見直します。怒りの原因は、自分の「べき」にあることが多いのです。「新人は、言われなくても確認するべき」。「部下は、従うべき」。「年下は、敬うべき」。「一度言ったら、わかるべき」。でも、自分の「べき」と、相手の「べき」は、違います。そして、従順な人は、そんなにいません。怒りの矛先は、無意識に、いちばん言い返せない相手に向かいます。アルバイトにも、若手の社員にも、向いていないか。ここは、特に点検してください。「べき」を、事実と、次の指示に言い換える。これが、②のシグナルにつながります。
 なお、怒りに任せないことは、指導をやめることではありません。業務上必要で、相当な範囲の指導は、必要です。
 ［クリック］自分を整えたうえで、ここから、何を、どう、いつ、伝えるかを調整します。</aside>
@@ -1386,6 +1463,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         <div class="card" data-in style="--d:4"><span class="oct">STOP</span><b>報復しない</b></div>
         <div class="card is-accent" data-step="1"><span class="oct">STOP</span><b>本人に直接確認しない</b></div>
       </div>
+      <div class="sx-keys out-keys" data-step="1"><span class="k">同意なく、伝えない</span><span>誰が相談したかも</span><span>アウティング ＝ パワハラ</span><span>2026年10月〜 開示の強要・禁止も</span></div>
     </div>
     <div class="phase" data-step="2" data-until="3" style="gap:26px">
       <div class="eyebrow">それでも起きたら：記録</div>
@@ -1457,6 +1535,8 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 3. 事実関係は、本部と連携して、当事者双方から公正に確認し、記録する
 4. 本部の指示に従って対応する。独断で「示談」にしたり、「口頭注意だけ」で終わらせたりしない
 ［クリック］⚠️ 特に気をつけていただきたいのが、本部に報告する前に、自分の判断で、相手とされる人に直接確認しに行くことです。よかれと思っての行動でも、証拠の隠滅や、相談者への報復・圧力につながるリスクがあります。
+冒頭の相談でも、本人は、「本人の同意なく、店長やスタッフに伝えないでほしい」と書いていました。誰が相談したのかが伝わるだけで、相談した人は、さらに追い詰められます。本人の同意なく、相談の内容も、誰が相談したのかも、伝えない。 確認は、本部と一緒に行います。
+相談を受けて聞いた、性的指向・性自認・病歴などを、本人の同意なく、ほかの人に話すこと。これを「アウティング」といい、それ自体がパワハラにあたります。「心配だから、ほかのスタッフにも気にかけてもらおう」という善意でも、同じです。さらに、2026年10月からは、こうした情報を、話すよう強要したり、話すなと禁じたりすることも、パワハラになりうると、指針に明記されました。
 ［クリック］そして、記録に残してください。 指導した内容、相談を受けた内容。こうしたやり取りは、ハラスメントに限らず、「言った・言わない」が、どんなやり取りでも起こります。
 記録が必要な理由は3つあります。
 - 後から、事実関係を正確に確認するため
@@ -1473,9 +1553,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 ［クリック］そして、もう一つ、大事なことがあります。労基署などへの申告や相談を理由に、本人に、不利益な取扱いをしてはいけません。 労働基準法104条で禁止されていて、6か月以下の拘禁刑、または30万円以下の罰金の定めがあります。
 ［クリック］備えとして、調べられても、困らない状態にしておきましょう。指導の記録、勤怠、休憩、シフト。これらの記録は、ハラスメントと認定されるかどうかにかかわらず、あなた自身を守ります。18歳未満のスタッフの場合は、本部に確認してください。
 本部への緊急連絡は、担当役員へ連絡 → 担当役員から代表へ報告 → 総務人事部へ連携の順です。
-［クリック］（進行役：相談窓口の連絡先を案内する）
-ハラスメントの相談窓口です。soudan@garb.co.jp。これは、皆さんが使う窓口というより、社員やアルバイトが、直接相談できる窓口です。この窓口を、スタッフ全員に知らせてください。窓口を広く知らせることが、風通しの良い店をつくります。シェフ・店長である皆さんは、窓口を伝える側です。そして、窓口に相談したことを理由に、不利益な扱いをすることは、絶対にあってはなりません。
-（進行役：チャットにも窓口のアドレスを貼る）</aside>
+［クリック］（進行役：相談窓口の連絡先を案内する。ハラスメント相談窓口は、soudan@garb.co.jp）</aside>
   </section>
 
   <!-- 12 事後対応 -->
@@ -1524,14 +1602,14 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <div class="report-cards">
         <div class="card"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><div><p class="cap">提出方法</p><p class="lead"><b>フォームに回答</b></p></div></div>
         <div class="card is-accent pulse"><span class="ico"><svg class="i"><use href="#i-calendar"/></svg></span><div><p class="cap">提出期限</p><p class="lead"><b>研修実施日から<span class="hl">3日以内</span></b></p></div></div>
-        <div class="card"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><div><p class="cap">記入方法</p><p class="lead"><b>研修中に書いたワークシートを見ながら記入</b></p></div></div>
+        <div class="card"><span class="ico"><svg class="i"><use href="#i-doc"/></svg></span><div><p class="cap">内容</p><p class="lead"><b>知識の確認</b>＋<b>お店で行うこと</b></p></div></div>
       </div>
       <div class="report-qr"><img class="qr" src="assets/img/ch03-2_report_qr.png" alt="研修修了レポートのフォームのQRコード"><p class="qr-url">forms.gle/GhXBop4sna7NfUYk9</p><p class="cap">URLはチャットにも貼ります</p></div>
     </div>
-    <p class="lead" data-step="1" style="font-size:36px">このレポートは、<b>誰かを評価するためのものではありません</b>。自分の言動を振り返るための記録です。</p>
+    <p class="lead" data-step="1" style="font-size:32px"><b>誰かを評価するためのものではありません</b>。振り返りは、今日のワークシートで済んでいます。</p>
     <div class="row" data-step="2">
-      <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
-      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>正直に書いていただくことが、<b>一番大事</b>です</p></div>
+      <div class="alert" style="flex:1;font-size:26px;padding:16px 26px;line-height:1.5"><svg class="i"><use href="#i-search"/></svg><p><b>知識の確認</b><br>3つの要素・断れない理由・家族からの連絡・窓口・相談時の注意</p></div>
+      <div class="alert is-ok" style="flex:1;font-size:26px;padding:16px 26px;line-height:1.5"><svg class="i"><use href="#i-store"/></svg><p><b>お店で</b>　相談窓口を、改めてスタッフへ（いつ・どうやって）<br><b>アンケートの実施希望</b>　はい／いいえ</p></div>
     </div>
     <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
 （進行役：フォームのQRコードを画面に表示し、下の文をそのままZoomのチャットに貼る）
@@ -1540,9 +1618,12 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 こちらのフォームから回答してください（提出をもって受講完了です）
 https://forms.gle/GhXBop4sna7NfUYk9
 提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
-［クリック］このレポートは、誰かを評価するためのものではありません。自分の言動を振り返るための記録です。
-［クリック］正直に書いていただくことが、一番大事です。
-レポートは、研修中に書いたワークシートを見ながら、書いてください。まず、自分の「アウト」の境界線を書き出してもらいます。そのうえで、直近1週間の自分の言動を4つのフィルターにかけ、自分以外の人の言動で思い当たることも書いてもらいます。冒頭の投票で書いた「迷った場面」も、もう一度振り返っていただきます。それから、自分の機嫌の波や怒りを、アジャスター（アンガーマネジメントを含む）でどう調整するか。相談を受けたときに何を記録するか。自店の相談窓口を、スタッフが知っているか。こういったことを確認します。</aside>
+このレポートは、知識を確認する問いと、お店で行っていただくことでできています。
+［クリック］このレポートは、誰かを評価するためのものではありません。 振り返りは、今日のワークシートで、すでにしていただきました。ワークシートは、ときどき見返してください。
+［クリック］知識の確認は、ハラスメントとして認定される3つの要素、スタッフが断れない理由、親や家族から連絡が来たときの対応、相談窓口の連絡先、そして、相談を受けたときの注意点です。
+お店で行っていただくのは、相談窓口を、改めてスタッフに伝えることです。店舗のLINEグループ、朝礼など、方法は問いません。いつ、どうやって伝えたかを書いてください。
+そのうえで、一つ、お伺いします。本部、私たちHCMから、皆さんのお店のスタッフに、職場環境のハラスメントアンケートを実施することを、希望しますか。 はい・いいえで、お答えください。
+最後に、研修を受けての感想と、今後やってみたい研修内容を書いていただきます。</aside>
   </section>
 
   <!-- 14 クロージング -->
@@ -1552,9 +1633,10 @@ https://forms.gle/GhXBop4sna7NfUYk9
         <div class="eyebrow" data-in>最後に</div>
         <p class="lead" data-step="1" style="font-size:34px">アジャストメントは、優しさでも、遠慮でもない。<b>「出力調整技術」</b>です。<br>誰も注意してくれないからこそ、このフィルターが、あなたを守る<b>「盾」</b>になります。</p>
         <p class="lead" data-step="2" style="font-size:34px"><b>怒りの矛先が、いちばん言い返せない相手に、向いていませんか。</b><br>訴えられてからでは、遅い。認定されなくても、時間・労力・お金は奪われます。</p>
+        <p class="lead" data-step="2" style="font-size:34px">メガホンは、<b>良い言葉も、店中に広げる</b>。</p>
         <div class="chips" data-step="3" style="gap:18px">
           <span style="font-size:32px;font-weight:900;color:var(--ink);padding:12px 28px">今日から1週間、4つのフィルターを重ねる</span>
-          <span style="font-size:32px;font-weight:900;color:var(--ink);padding:12px 28px">イライラしたら、6秒待つ</span>
+          <span style="font-size:32px;font-weight:900;color:var(--ink);padding:12px 28px">熱くなったら、点数をつけて、6秒待つ</span>
         </div>
         <p class="quote" data-step="4" style="font-size:60px">ハラスメントから、<br><span class="hl2">アジャストメントへ。</span></p>
       </div>
@@ -1572,8 +1654,9 @@ https://forms.gle/GhXBop4sna7NfUYk9
 皆さんはトップです。間違っていても、店舗では誰も注意してくれる人がいない環境にいると思います。だからこそ、このフィルターとアジャスターを使いながら、自分の今までと、これからの言動を検品してみてください。このフィルターは、皆さん自身を守る「盾」にもなります。
 皆さんの言動が、そのままお店の品格となり、基準になります。
 ［クリック］怒りの矛先が、いちばん言い返せない相手に、向いていませんか。気づくことから、始めてください。
-訴えられてからでは、遅い。認定されなくても、あなたの時間・労力・お金は、奪われます。
-［クリック］今日から1週間、すべての言動に、この4つのフィルターを重ねてみてください。そして、イライラしたときは、6秒、待ってみてください。
+訴えられてからでは、遅いのです。認定されなくても、皆さんの時間と、労力と、お金は、奪われます。
+皆さんのメガホンは、良い言葉も、店中に広げます。皆さんは、良い影響も含めて、店全体を変えられる力を持っています。
+［クリック］今日から1週間、すべての言動に、この4つのフィルターを重ねてみてください。そして、指摘するときに熱くなってきたら、点数をつけて、6秒、待ってみてください。
 ［クリック］ハラスメントから、アジャストメントへ。ありがとうございました。</aside>
   </section>
 
@@ -1588,3 +1671,16 @@ https://forms.gle/GhXBop4sna7NfUYk9
 
 </div>
 <script src="assets/deck.js"></script>
+<script>
+/* 差の図：クリック1で「1年目と3年目」→ 少し置いて「シェフと1年目」へ自動で広がる */
+(() => {
+  const g = document.getElementById('gap-slide'); if (!g) return; let t;
+  const up = () => {
+    const a = +g.dataset.at || 0; clearTimeout(t);
+    if (a === 0) g.dataset.g = '0';
+    else if (a === 1) { if (g.dataset.g !== '2') { g.dataset.g = '1'; t = setTimeout(() => { if (+g.dataset.at === 1) g.dataset.g = '2'; }, 3200); } }
+    else g.dataset.g = '2';
+  };
+  new MutationObserver(up).observe(g, { attributes: true, attributeFilter: ['data-at'] }); up();
+})();
+</script>
