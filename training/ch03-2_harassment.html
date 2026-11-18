@@ -458,6 +458,18 @@
 @keyframes wxOff { 0%, 38% { opacity: 1; } 50%, 88% { opacity: 0; } 100% { opacity: 1; } }
 #gap-slide .g2-good { opacity: 0; transition: opacity .6s ease 1s; }
 #gap-slide[data-at="2"] .g2-good { opacity: 1; }
+.cry { display: flex; align-items: center; gap: 34px; padding: 22px 30px; border-radius: 20px; background: var(--surface); box-shadow: 0 10px 30px rgba(29,33,40,.06); }
+.cry .q { flex: none; font-size: 34px; font-weight: 900; line-height: 1.4; }
+.cry .q b { display: block; color: var(--danger); font-size: 40px; }
+.mflow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 46px; flex: 1; }
+.mflow li { position: relative; display: grid; grid-template-columns: 96px 1fr; grid-template-rows: auto auto; column-gap: 16px; align-items: center; opacity: 0; }
+.on .mflow li { animation: d-in .6s both; animation-delay: 3.6s; }
+.on .mflow li:nth-child(2) { animation-delay: 4.2s; } .on .mflow li:nth-child(3) { animation-delay: 4.8s; }
+.mflow svg { grid-row: 1 / 3; width: 96px; height: 96px; overflow: visible; }
+.mflow b { font-size: 32px; align-self: end; }
+.mflow small { font-size: 21px; color: var(--ink-2); font-weight: 700; align-self: start; line-height: 1.35; }
+.mflow li.hot b { color: var(--danger); }
+.mflow li + li::before { content: ""; position: absolute; left: -38px; top: 30px; width: 28px; height: 28px; background: var(--accent); clip-path: polygon(0 18%, 55% 18%, 55% 0, 100% 50%, 55% 100%, 55% 82%, 0 82%); }
 .mg-pills { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
 .mg-pills .pill-k { font-size: 34px; padding: 10px 30px; }
 .mg-pills .pill-k.ok { background: var(--ok); }
@@ -466,8 +478,8 @@
 .g2-push { transform-box: fill-box; transform-origin: bottom center; animation: push 1.2s ease-in-out infinite; }
 @keyframes push { 0%, 100% { transform: none; } 50% { transform: translateX(-10px) rotate(-5deg); } }
 .g2-meter { padding: 20px; }
-#gap-slide[data-at="4"] .gmeter .tube i { height: 40%; background: #f2a43a; }
-#gap-slide[data-at="5"] .gmeter .tube i { height: 94%; background: var(--danger); }
+#gap-slide[data-at="3"] .gmeter .tube i { height: 40%; background: #f2a43a; }
+#gap-slide[data-at="4"] .gmeter .tube i { height: 94%; background: var(--danger); }
 .g2-band { height: 150px; }
 .g2-band > div { width: 0; overflow: hidden; white-space: nowrap; transition: width 1.4s cubic-bezier(.5,0,.2,1) .4s; }
 .g2-band > div:nth-child(2) { transition-delay: 1.4s; transition-duration: 2.2s; }
@@ -525,6 +537,9 @@
 .fb5 { display: flex; flex-direction: column; gap: 14px; }
 .fb5 span { align-self: flex-start; font-size: 38px; font-weight: 900; padding: 12px 32px; border-radius: 30px; background: #fff; box-shadow: 0 6px 18px rgba(29,33,40,.07); opacity: 0; }
 .fb5 span.go { background: var(--accent); color: #fff; }
+.fb5n { font-size: 28px; font-weight: 700; color: var(--ink-2); padding-left: 8px; opacity: 0; }
+.fb5n b { color: var(--danger); }
+.on .fb5n { animation: d-in .5s both; animation-delay: calc(var(--k) * .45s + .3s); }
 .on .fb5 span { animation: d-in .5s both; animation-delay: calc(var(--k) * .45s + .3s); }
 .ic4s { display: flex; gap: 10px; margin-top: 6px; }
 .ic4s span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 24px; font-weight: 900; padding: 6px 14px; border-radius: 10px; background: var(--surface-2); }
@@ -804,7 +819,7 @@
   </section>
 
   <!-- 05 なぜ起きるのか -->
-  <section class="slide" data-min="9" id="gap-slide">
+  <section class="slide" data-min="8" id="gap-slide">
     <div class="phase" data-until="1" style="gap:24px">
       <div class="eyebrow" data-in>なぜ起きるのか</div>
       <h2 class="title" data-in style="--d:1">差が広がるほど、言えなくなる</h2>
@@ -857,30 +872,7 @@
       </div>
       <div class="mg-pills"><span class="pill-k">機嫌 ＝ 店の天気</span><span class="pill-k ok">良い言葉も、広がる</span><span class="pill-k red">機嫌で、基準が変わる</span></div>
     </div>
-    <div class="phase" data-step="3" data-until="3" style="gap:22px">
-      <div class="eyebrow">上から見ると</div>
-      <h2 class="title">「言えば従うはず」</h2>
-      <div class="card g2-card">
-        <svg class="illus" viewBox="0 0 1600 520" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-          <rect x="0" y="500" width="1600" height="10" rx="5" fill="#e1e5ea"/>
-          <rect x="60" y="380" width="280" height="120" rx="10" fill="#e9e6fd"/>
-          <use href="#i-person" x="70" y="130" width="260" height="260" style="color:#6b5ce7"/>
-          <g class="a-bob"><rect x="40" y="20" width="400" height="90" rx="26" fill="#e9e6fd"/><text x="240" y="80" font-size="40" fill="#5243c9">言えば従うはず</text></g>
-          <path d="M440 330h200" stroke="#d5dae1" stroke-width="8" stroke-dasharray="16 12"/>
-          <g class="nod"><use href="#i-person" x="680" y="300" width="200" height="200" style="color:#2f74d9"/></g>
-          <g class="a-bob"><circle cx="780" cy="270" r="32" fill="#ddf2e7"/><path d="M766 270l10 10 18-20" stroke="#22915c" stroke-width="7" fill="none" stroke-linecap="round"/></g>
-          <text x="780" y="210" font-size="32" fill="#22915c">うなずく</text>
-          <g class="trem"><use href="#i-person" x="1000" y="300" width="200" height="200" style="color:#2f74d9"/></g>
-          <g class="a-bob" style="animation-delay:-.8s"><circle cx="1100" cy="270" r="32" fill="#eef1f5"/><text x="1100" y="284" font-size="40" fill="#4f5661">…</text></g>
-          <text x="1100" y="210" font-size="32" fill="#4f5661">言えないだけ</text>
-          <g class="g2-push"><use href="#i-person" x="1320" y="300" width="200" height="200" style="color:#2f74d9"/></g>
-          <g class="a-bob" style="animation-delay:-1.6s"><circle cx="1420" cy="270" r="32" fill="#f9e3e0"/><text x="1420" y="286" font-size="44" fill="#c23a2e">!</text></g>
-          <text x="1420" y="210" font-size="32" fill="#c23a2e">反発する</text>
-        </g></svg>
-      </div>
-      <div class="row" style="justify-content:center"><span class="pill-k red">設計ミス</span></div>
-    </div>
-    <div class="phase" data-step="4" data-until="5" style="gap:22px">
+    <div class="phase" data-step="3" data-until="4" style="gap:22px">
       <div class="eyebrow">下から見ると</div>
       <h2 class="title">拒絶リスク</h2>
       <div class="split" style="grid-template-columns:1fr 300px;gap:30px;align-items:stretch;flex:1;min-height:0">
@@ -898,9 +890,9 @@
           <div class="gmeter" style="max-height:none;flex:1"><p>拒絶<br>リスク</p><div class="tube"><i></i></div><span>差が大きいほど</span></div>
         </div>
       </div>
-      <div class="row" data-step="5" style="justify-content:center"><span class="pill-k red">心理的安全性が低い</span></div>
+      <div class="row" data-step="4" style="justify-content:center"><span class="pill-k red">心理的安全性が低い</span></div>
     </div>
-    <div class="phase" data-step="6" data-until="6">
+    <div class="phase" data-step="5" data-until="5">
       <div class="eyebrow">差が「リスク」になるのは、いつか</div>
       <h2 class="title">同じ誘いでも、断れるか</h2>
       <div class="cols cols-2">
@@ -925,7 +917,7 @@
       </div>
       <div class="row" style="justify-content:center"><span class="pill-k">差 → リスク</span></div>
     </div>
-    <div class="phase" data-step="7" data-until="7" style="gap:28px">
+    <div class="phase" data-step="6" data-until="6" style="gap:22px">
       <div class="eyebrow">自社アンケート（97件）</div>
       <h2 class="title">相談できなかった、58%</h2>
       <p class="cap" style="margin-top:0">受けた・目撃した26名</p>
@@ -933,19 +925,16 @@
         <div style="--w:42%;background:var(--ok)"><b>42%</b><small>相談できた（11名）</small></div>
         <div style="--w:58%;background:var(--danger)"><b>58%</b><small>できなかった（15名）</small></div>
       </div>
+      <div class="cry">
+        <p class="q">泣き寝入り？　<b>そうではない</b></p>
+        <ol class="mflow">
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M12 48L50 14l38 34v40H12z" fill="#e9e6fd"/><rect x="40" y="62" width="20" height="26" fill="#fff"/></svg><b>親に話す</b><small>同僚でも、上司でもなく</small></li>
+          <li class="hot"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-person" x="-6" y="18" width="70" height="70" style="color:#9aa3ae"/><g class="a-ring" style="transform-origin:70px 52px"><rect x="56" y="28" width="30" height="48" rx="7" fill="#fff" stroke="#4f5661" stroke-width="4"/></g></svg><b>親が出てくる</b><small>AIで調べ、労基署・弁護士</small></li>
+          <li class="hot"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="36" fill="#fff" stroke="#c23a2e" stroke-width="7"/><path d="M50 28v22l15 10" stroke="#c23a2e" stroke-width="7" fill="none" stroke-linecap="round"/></svg><b>対応に1〜2か月</b><small>アルバイトも、社員も</small></li>
+        </ol>
+      </div>
     </div>
-    <div class="phase" data-step="8" data-until="8" style="gap:30px">
-      <div class="eyebrow">今、現場で起きていること</div>
-      <h2 class="title">言えなかった6割は、どこへ</h2>
-      <ol class="iflow">
-        <li class="hot"><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path class="burst" d="M50 8l10 22 22-8-6 24 22 8-20 14 12 20-24-2-4 24-14-20-16 18-2-24-24 2 12-20-20-14 22-8-6-24 22 8z" fill="#c23a2e"/></svg></span><b>怒り</b><small>差が大きい相手に</small></li>
-        <li><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="trem"><use href="#i-person" x="10" y="10" width="80" height="80" style="color:#2f74d9"/></g></svg></span><b>言えない</b><small>相談できなかった6割</small></li>
-        <li><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M12 48L50 14l38 34v40H12z" fill="#e9e6fd"/><rect x="40" y="62" width="20" height="26" fill="#fff"/></svg></span><b>親に話す</b><small>同僚でも、上司でもなく</small></li>
-        <li class="hot"><span class="ic"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-person" x="-6" y="18" width="70" height="70" style="color:#9aa3ae"/><g class="a-ring" style="transform-origin:70px 52px"><rect x="56" y="28" width="30" height="48" rx="7" fill="#fff" stroke="#4f5661" stroke-width="4"/></g></svg></span><b>親が出てくる</b><small>AIで調べた労基署・弁護士</small></li>
-      </ol>
-      <div class="row" style="justify-content:center;gap:24px;align-items:center"><span class="pill-k">アルバイトも、社員も</span><div class="alert" style="align-items:center;padding:16px 34px;background:var(--danger-soft);font-size:36px;font-weight:700"><svg class="i" style="color:var(--danger)"><use href="#i-clock"/></svg><p>対応に、<b style="color:var(--danger)">1か月、2か月</b>が平気でかかる</p></div></div>
-    </div>
-    <div class="phase" data-step="9" style="justify-content:center;align-items:center;gap:40px">
+    <div class="phase" data-step="7" style="justify-content:center;align-items:center;gap:40px">
       <div class="row" style="gap:40px;align-items:center;justify-content:center">
         <svg viewBox="0 0 420 220" style="width:420px" aria-hidden="true"><rect x="0" y="206" width="420" height="8" rx="4" fill="#e1e5ea"/><rect x="230" y="130" width="140" height="76" rx="8" fill="#e9e6fd"/><g class="g2-near"><use href="#i-person" x="20" y="96" width="110" height="110" style="color:#2f74d9"/></g><use href="#i-person" x="245" y="20" width="110" height="110" style="color:#6b5ce7"/><path class="g2-arr" d="M120 70h60l-12-12M180 70l-12 12" stroke="#9d92ff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
         <p class="statement" style="font-size:96px">差は、なくならない</p>
@@ -968,9 +957,6 @@
 冒頭の相談の、「店長の機嫌をうかがうことに、疲れ果てました」は、このことです。
 機嫌が悪くなるのは、人間なので仕方がありません。問題は、機嫌で、言うことや、基準が変わること。 差があるぶん、皆さんの言動は、そしてその波は、自分が思っている以上に、増幅されて届きます。
 では、なぜ、波が出るのか。多くの場合、悪意ではありません。責任者だからこその、熱量です。営業中は、集中している。お客様に、より良いクオリティで届けたい。段取りどおりに進まないと、ストレスがたまる。責任感が強い人ほど、矜持がある人ほど、この波は、強くなりやすいのです。その整え方は、後半のアジャスターで、お話しします。
-［クリック］もう一つ、上から見たときの落とし穴があります。差が大きいほど、人は、下に見てしまいやすいのです。差が大きいと、強い言葉も言いやすくなります。言い返されないからです。そして、下に見ると、「言えば従うはずだ」という期待が生まれます。
-でも、従順な人は、そんなにいません。
-従順に見える人は、従順なのではなく、言えないだけかもしれません。これが、次にお話しする「拒絶リスク」です。そして、従順でない人は、反発します。期待と現実のギャップが、怒りになります。その怒りは、いちばん言い返せない相手、アルバイトや、若手の社員に向かいやすい。「従順なはずだ」という前提そのものが、設計ミスです。差が大きい人に、そのままぶつけるリスクが、上がっています。
 ［クリック］次に、下から。
 例えば、皆さんが仕事終わりに「一杯行こうか」と誘ったとします。スタッフが「今日は疲れているので帰りたいです」と断ったとき、その後に何が起きるでしょうか。
 - 「あいつはノリが悪い」と評価が下がるのではないか
@@ -984,9 +970,7 @@
 でも、同じ人が、同じ職場にいたらどうでしょう。自分の立場があり、働く環境があり、人間関係があります。断ったあとの、評価や、空気が気になります。差が、自分のポジションに影響するとき、はじめて、差は「リスク」になるのです。
 だから、ハラスメントは、店や会社という、コミュニティの中で起きるのです。
 ［クリック］実際、当社のアンケートでも、こうした「言えなさ」が表れています。ハラスメントを「受けた」または「目撃した」と答え、相談の設問にも答えた26人のうち、相談できたのは11人、約4割です。15人、約6割は、相談できなかったと答えています。
-［クリック］そして今、現場で起きていることがあります。怒りを、無意識に、無責任に、無自覚に、差が大きい相手、アルバイトにも、社員にも、そのままぶつけた結果、ハラスメントとして訴えられるリスクが、かなり高くなっている。
-疲れや、焦り、不安から来る怒りは、いちばん言い返せない相手に向かいます。では、言えなかった6割は、どこへ行くのでしょうか。
-最近は、同僚でも、上司でもなく、親に話すケースが増えています。そして、親が出てきます。 親御さんが、AIを使って調べ、労基署のこと、弁護士のことを、具体的に話してくる。店長やシェフを、変えてほしいと言ってくる。アルバイトでも、社員でも、同じです。
+では、この言えなかった58%は、泣き寝入りしているのでしょうか。そうではありません。 ここ最近は、同僚でも、上司でもなく、親に話すケースが増えています。そして、親が出てきます。 親御さんが、AIを使って調べ、労基署のこと、弁護士のことを、具体的に話してくる。店長やシェフを、変えてほしいと言ってくる。アルバイトでも、社員でも、同じです。
 こうなると、その対応には、1か月、2か月が、平気でかかります。 事実確認、ヒアリング、ご家族とのやり取り、本部との相談。その間、店の営業も、皆さんの時間も、削られていきます。言えない構造は、店の中では見えなくても、外で、リスクになって返ってきます。
 ［クリック］どれだけ仲が良いと思っていても、どれだけフラットな関係だと思っていても、スタッフの側から見れば、差はなくなっていません。「嫌なら言ってね」「無理なら断っていいよ」と気を遣っていても、差があるかぎり、言えない構造は残ります。
 一方で、この力を理解したうえで、「だからこそ、相手に寄り添って、家族のように親身になろう」「仲間として、カジュアルに接しよう」と、距離を近づけようとする。それもまた、トラブルに発展するケースがあります。距離を近づけても、差がなくなるわけではないからです。</aside>
@@ -1370,7 +1354,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 一つ目、気づく。 自分の怒りのサインに、気づきます。心拍が上がる。声が大きくなる。考えが単純になる。自分のサインを知っておくことが、最初の一歩です。
 二つ目、待つ。 6秒、待ちます。怒りの衝動のピークは、数秒でくる、といわれています。その間に、言動に出さない。深呼吸を、3秒で吐いて、3秒で吸う。これで6秒です。怒りを消す魔法ではありません。衝動的に言ってしまわないための、時間稼ぎです。
 三つ目、測る。 怒りに、点数をつけます。10段階で、今いくつか。点数をつけるだけで、自分を、少し外から見られます。 無自覚だった波に、気づけます。点数が高いときは、指導をしない。④の、タイミングにつながります。
-四つ目、見直す。 自分の「べき」を、見直します。怒りの原因は、自分の「べき」にあることが多いのです。「新人は、言われなくても確認するべき」。「部下は、従うべき」。「年下は、敬うべき」。「一度言ったら、わかるべき」。でも、自分の「べき」と、相手の「べき」は、違います。そして、従順な人は、そんなにいません。怒りの矛先は、無意識に、いちばん言い返せない相手に向かいます。アルバイトにも、若手の社員にも、向いていないか。ここは、特に点検してください。「べき」を、事実と、次の指示に言い換える。これが、②のシグナルにつながります。
+四つ目、見直す。 自分の「べき」を、見直します。怒りの原因は、自分の「べき」にあることが多いのです。「新人は、言われなくても確認するべき」。「部下は、従うべき」。「年下は、敬うべき」。「一度言ったら、わかるべき」。でも、自分の「べき」と、相手の「べき」は、違います。怒りの矛先は、無意識に、いちばん言い返せない相手に向かいます。アルバイトにも、若手の社員にも、向いていないか。ここは、特に点検してください。「べき」を、事実と、次の指示に言い換える。これが、②のシグナルにつながります。
 なお、怒りに任せないことは、指導をやめることではありません。業務上必要で、相当な範囲の指導は、必要です。
 ［クリック］自分を整えたうえで、ここから、何を、どう、いつ、伝えるかを調整します。</aside>
   </section>
@@ -1484,7 +1468,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
     </div>
     <div class="phase" data-step="4" data-until="6" style="gap:20px">
       <div class="eyebrow">親・家族から連絡が来たら</div>
-      <h2 class="title">答えない。記録する。本部へ。</h2>
+      <h2 class="title">答えない。記録する。担当役員へ。</h2>
       <div class="famv">
         <svg class="illus" viewBox="0 0 520 440" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
           <use href="#i-person" x="0" y="150" width="240" height="240" style="color:#9aa3ae"/>
@@ -1493,11 +1477,11 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
           <g class="a-bob"><rect x="20" y="30" width="260" height="76" rx="20" fill="#f9e3e0"/><text x="150" y="80" font-size="26" fill="#c23a2e">店長を変えて！</text></g>
         </g></svg>
         <div class="fb5">
-          <span style="--k:0">約束しない</span>
-          <span style="--k:1">傾聴・記録</span>
+          <span style="--k:0">その場では、答えない</span>
+          <span style="--k:1">聞いて、まず記録</span>
           <span style="--k:2">本人の同意なく伝えない</span>
-          <span style="--k:3">人事は答えない</span>
-          <span style="--k:4" class="go">本部へ</span>
+          <span style="--k:3" class="go">担当役員へ（人事も含めて）</span>
+          <small class="fb5n" style="--k:4"><b>本部には連絡しない</b>　役員は、断って録音・録画</small>
         </div>
       </div>
       <div class="row" style="gap:20px;align-items:center">
@@ -1545,11 +1529,11 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 ［クリック］相談を受けたときは、記録を残すことを本人に伝え、書いた内容を本人と一緒に確認してください。 自分の話がどう残されるのかわかっていることは、相談者の安心にもつながります。ただし、記録には相談者のプライバシーに関わる情報が含まれます。誰でも見られる場所に置かない。本人の同意なく、第三者に共有しない。この配慮が必要です。
 ［クリック］もう一つ。親御さん、ご家族から、連絡が来たとき。
 電話でも、来店でも、SNSでも、同じです。アルバイトでも、社員でも、同じです。
-一つ目、その場で、反論したり、謝罪を約束したり、何かを約束したりしない。 独断で対応しません。
-二つ目、傾聴して、記録する。 誰が、いつ、何を、どうしてほしいのか。連絡先も、控えます。
+一つ目、その場では、答えない。 反論もしない。謝罪や、何かを約束することもしない。その場で回答したことが、後々、「言った・言わない」になってしまうからです。
+二つ目、言いたいことを、聞いて、まず記録する。 誰が、いつ、何を、どうしてほしいのか。連絡先も、控えます。
 三つ目、本人の同意なく、勤務状況、シフト、評価、本人の相談内容を、伝えない。 成年のスタッフであれば、親御さんでも、第三者です。
-四つ目、店長やシェフの交代など、人事のことは、現場で答えない。 「会社として確認して、本部から連絡します」と伝えてください。
-五つ目、速やかに、本部へ報告する。 担当役員と、総務へ。その後の流れは、次のスライドでお話しします。
+四つ目、担当役員に連絡して、担当役員に、対応を促す。 店長やシェフの交代など、人事のことも含めて、現場では答えません。「担当役員から、改めてご連絡します」と伝えてください。本部には、連絡しないでください。 担当役員が、対応します。
+なお、対応する役員は、必ず相手に断ったうえで、録音・録画をします。 これも、「言った・言わない」を防ぐためです。
 ［クリック］そして、もう一つ、大事なことがあります。労基署などへの申告や相談を理由に、本人に、不利益な取扱いをしてはいけません。 労働基準法104条で禁止されていて、6か月以下の拘禁刑、または30万円以下の罰金の定めがあります。
 ［クリック］備えとして、調べられても、困らない状態にしておきましょう。指導の記録、勤怠、休憩、シフト。これらの記録は、ハラスメントと認定されるかどうかにかかわらず、あなた自身を守ります。18歳未満のスタッフの場合は、本部に確認してください。
 本部への緊急連絡は、担当役員へ連絡 → 担当役員から代表へ報告 → 総務人事部へ連携の順です。
