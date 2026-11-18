@@ -377,6 +377,31 @@
 .gz-keep { opacity: 0; transition: opacity .8s ease .3s; }
 #germ-slide[data-at="11"] .gz-keep { opacity: 1; }
 #germ-slide[data-at="11"] .gz-down { opacity: .12; transition: opacity .6s; }
+.wkd, .wkd2 { font-size: 28px; font-weight: 900; padding: 8px 22px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); }
+.wkd2 { background: var(--accent-soft); color: var(--accent-ink); }
+.kks { display: flex; flex-direction: column; gap: 18px; }
+.kk { display: grid; grid-template-columns: 80px auto 1fr; align-items: center; gap: 22px; padding: 22px 30px; border-radius: 18px; background: var(--surface); box-shadow: 0 6px 18px rgba(29,33,40,.06); }
+.kk .n { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--surface-2); font-family: var(--f-num); font-size: 32px; }
+.kk b { font-size: 48px; }
+.kk small { font-size: 28px; color: var(--ink-2); font-weight: 700; }
+.kk.on { background: var(--ok-soft); box-shadow: 0 0 0 4px var(--ok) inset; }
+.kk.on .n { background: var(--ok); color: #fff; } .kk.on b { color: var(--ok); }
+.rule2 { display: grid; grid-template-columns: 1fr 1.5fr; gap: 28px; flex: 1; min-height: 0; }
+.rule2 .card { padding: 30px 34px; gap: 16px; }
+.r-oy { display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; border: 4px solid var(--danger); }
+.r-oy .oct2 { width: 150px; height: 150px; font-size: 38px; animation: nob 2.4s ease-in-out infinite; }
+.r-oy h3 { font-size: 46px; color: var(--danger); justify-content: center; }
+.r-oy p { font-size: 32px; font-weight: 700; } .r-oy p b { color: var(--danger); }
+.r-oy small { font-size: 23px; color: var(--ink-2); font-weight: 700; }
+.r-al h3 { font-size: 38px; align-items: baseline; } .r-al h3 small { font-size: 24px; color: var(--ink-2); }
+.r-al .nine { font-family: var(--f-num); font-weight: 400; font-size: 60px; color: var(--accent-ink); margin: 0 6px; }
+.al9 { display: flex; flex-wrap: wrap; gap: 12px; }
+.al9 span { font-size: 32px; font-weight: 900; padding: 8px 22px; border-radius: 14px; background: var(--accent-soft); color: var(--accent-ink); }
+.al9 .new { background: var(--danger); color: #fff; position: relative; }
+.al9 .new em { font-style: normal; font-size: 18px; margin-left: 10px; padding: 2px 8px; border-radius: 6px; background: #fff; color: var(--danger); }
+.al-t { display: flex; flex-direction: column; gap: 8px; }
+.al-t span { font-size: 26px; font-weight: 700; } .al-t b { color: var(--accent-ink); }
+.rep-list .fields + .fields { margin-top: 8px; }
 </style>
 
 <div class="deck" data-chapter="第2章　衛生・安全管理" data-accent="green">
@@ -695,7 +720,7 @@ A、栄養・水分・温度。B、光・空気・乾燥。C、圧力・温度�
   </section>
 
   <!-- 07 3原則 -->
-  <section class="slide" data-min="2">
+  <section class="slide" data-min="2" style="gap:22px">
     <div class="eyebrow" data-in>食中毒予防の3原則</div>
     <h2 class="title" data-in style="--d:1">1つでも崩れれば、リスクは一気に高まる</h2>
     <div class="cols cols-3">
@@ -717,12 +742,14 @@ A、栄養・水分・温度。B、光・空気・乾燥。C、圧力・温度�
         </g>
       </svg>
     </div>
+    <div class="row" data-step="4" style="justify-content:center;gap:18px;align-items:center"><span class="wkd">洗う・拭く・乾かす</span><span style="font-size:30px;font-weight:700">は大事な<b>手段</b>。原則ではない</span><span class="wkd2">増やさない＝温度を断つ／やっつける＝菌を殺す</span></div>
     <aside class="notes">では、どうすれば防げるのか。
 食中毒の予防には、3つの原則があります。
 ［クリック］「付けない」──手洗い、器具の使い分け、交差汚染の防止です。
 ［クリック］「増やさない」──温度管理。冷蔵は4℃以下、冷凍は-15℃以下。
 ［クリック］「やっつける」──中心温度75℃で1分以上の、確実な加熱です。これは、菌を死滅させるための基準です。おいしく仕上げるための火入れとは、別の話です。
-［クリック］この3つのうち、1つでも崩れれば、食中毒のリスクは一気に高まります。
+［クリック］「洗う・拭く・乾かす」は、大事な手段ですが、原則ではありません。原則は、付けない・増やさない・やっつける。クイズ①でお答えいただいた、菌が増える3つの条件、栄養・水分・温度。そのうちの温度を断つのが「増やさない」、菌を殺すのが「やっつける」です。
+この3つのうち、1つでも崩れれば、食中毒のリスクは一気に高まります。
 この3つを、日常の業務としてどう組み立てるか。それが、これからお話しするプラン・キープ・アクトです。</aside>
   </section>
 
@@ -745,11 +772,11 @@ A、保健所へ毎月提出する。B、保健所への提出は不要。店舗
   </section>
 
   <!-- 08 プラン -->
-  <section class="slide" data-min="5">
+  <section class="slide" data-min="6">
     <div class="tracker" data-in><span class="on">P</span><em></em><span>K</span><em></em><span>A</span><b>プラン（計画）</b></div>
-    <div class="phase" data-until="3" style="top:200px">
-      <h2 class="title">ルールを決めて、マキトリで回す</h2>
-      <div class="pf">
+    <div class="phase" data-until="2" style="top:200px">
+      <h2 class="title">ルールを決める</h2>
+      <div class="pf" style="grid-template-columns:1fr">
         <div class="pf-in">
           <div class="card pf-c" data-step="1">
             <svg class="pf-sv" viewBox="0 0 180 150" aria-hidden="true"><rect x="12" y="10" width="156" height="120" rx="12" fill="#fff" stroke="#4f5661" stroke-width="5"/><rect x="26" y="24" width="60" height="78" rx="6" fill="#ddf2e7"/><use href="#i-person" x="30" y="30" width="52" height="62" style="color:#22915c"/><path d="M98 34h56M98 52h56M98 70h40" stroke="#c9ced6" stroke-width="6" stroke-linecap="round"/><text x="56" y="120" font-size="14" font-weight="900" text-anchor="middle" fill="#17744a" font-family="Zen Kaku Gothic New, sans-serif">責任者</text><rect x="96" y="88" width="60" height="30" rx="5" fill="#fde8d9"/><text x="126" y="109" font-size="13" font-weight="900" text-anchor="middle" fill="#b44a0a" font-family="Zen Kaku Gothic New, sans-serif">営業許可</text></svg>
@@ -758,24 +785,13 @@ A、保健所へ毎月提出する。B、保健所への提出は不要。店舗
           </div>
           <div class="card pf-c" data-step="2">
             <svg class="pf-sv" viewBox="0 0 180 150" aria-hidden="true"><g transform="translate(14 14)"><rect width="70" height="92" rx="8" fill="#fff" stroke="#22915c" stroke-width="5"/><path d="M14 24h42M14 40h42M14 56h28" stroke="#9fd6b9" stroke-width="5" stroke-linecap="round"/></g><g transform="translate(96 30)"><rect width="70" height="92" rx="8" fill="#fff" stroke="#e2600f" stroke-width="5"/><path d="M14 24h42M14 40h42M14 56h28" stroke="#f6c3a3" stroke-width="5" stroke-linecap="round"/></g><text x="49" y="138" font-size="15" font-weight="900" text-anchor="middle" fill="#17744a" font-family="Zen Kaku Gothic New, sans-serif">一般衛生</text><text x="131" y="146" font-size="15" font-weight="900" text-anchor="middle" fill="#b44a0a" font-family="Zen Kaku Gothic New, sans-serif">重要管理</text></svg>
-            <div><h3>HACCPの2つの計画</h3><p class="cap" style="margin-top:0">一般衛生管理計画・重要管理計画</p>
-              <div class="pf-chips"><span><svg class="i"><use href="#i-users"/></svg>全従業員に<b>周知</b></span><span><svg class="i"><use href="#i-clipboard"/></svg>検食の手順も明確に</span></div></div>
+            <div><h3>HACCP ＝ 決める・確かめる・残す</h3><p class="cap" style="margin-top:0">危ないポイントを先に決め、毎回確かめ、記録に残す仕組み。<b>2021年6月から、すべての飲食店で義務</b></p>
+              <div class="pf-chips"><span><svg class="i"><use href="#i-doc"/></svg>一般衛生管理計画（全メニュー共通）</span><span><svg class="i"><use href="#i-doc"/></svg>重要管理計画（メニューごと）</span><span><svg class="i"><use href="#i-users"/></svg>全従業員に<b>周知</b></span><span><svg class="i"><use href="#i-clipboard"/></svg>検食の手順も明確に</span></div></div>
           </div>
-        </div>
-        <div class="pf-arr" data-step="3"><i></i><i></i></div>
-        <div class="pf-out" data-step="3">
-          <svg viewBox="0 0 360 360" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
-            <circle cx="180" cy="180" r="150" fill="#ddf2e7"/>
-            <g class="pf-spin"><path d="M180 44a136 136 0 0 1 118 68" fill="none" stroke="#22915c" stroke-width="12" stroke-linecap="round"/><path d="M304 98l-4 30-26-14z" fill="#22915c"/><path d="M290 270a136 136 0 0 1-220 0" fill="none" stroke="#22915c" stroke-width="12" stroke-linecap="round"/><path d="M60 286l2-30 26 14z" fill="#22915c"/><path d="M48 150a136 136 0 0 1 60-90" fill="none" stroke="#22915c" stroke-width="12" stroke-linecap="round"/></g>
-            <rect x="90" y="140" width="180" height="80" rx="20" fill="#22915c"/><text x="180" y="192" font-size="40" fill="#fff">マキトリ</text>
-            <text x="180" y="110" font-size="24" fill="#17744a">温度</text><text x="96" y="262" font-size="24" fill="#17744a">衛生</text><text x="264" y="262" font-size="24" fill="#17744a">重要管理点</text>
-          </g></svg>
-          <p class="pf-k"><b>毎日、回す</b>＝法律上の義務を、実務にする仕組み</p>
-          <p class="cap" style="margin-top:0">計画は提出不要。店舗に備え置き、立入検査で提示</p>
         </div>
       </div>
     </div>
-    <div class="phase" data-step="4" data-until="4" style="top:200px;gap:26px">
+    <div class="phase" data-step="3" data-until="3" style="top:200px;gap:26px">
       <h2 class="title" style="font-size:50px;line-height:1.35">重要管理点：メニューごとに「ここを外したら危ない」ポイントを、毎回確認する</h2>
       <div class="ccp">
         <div class="card"><svg class="ccp-ic" viewBox="0 0 220 110" aria-hidden="true"><g stroke="#2f74d9" stroke-width="7" stroke-linecap="round" class="ccp-snow"><path d="M60 22v66M31 38l58 34M31 72l58-34"/></g><rect x="122" y="14" width="76" height="86" rx="10" fill="#e0ebfb" stroke="#2f74d9" stroke-width="5"/><path d="M122 44h76M136 26v10M136 54v14" stroke="#2f74d9" stroke-width="5" stroke-linecap="round"/></svg>
@@ -787,7 +803,39 @@ A、保健所へ毎月提出する。B、保健所への提出は不要。店舗
       </div>
       <div class="ccp-do"><b>結局、何をする？</b><ol><li>自分のお店のメニューが、<b>どれに入るか</b>を知っておく</li><li>それぞれのポイントを、<b>毎日確認</b>する</li><li>確認したことを、<b>マキトリに記録</b>する</li></ol></div>
     </div>
-    <div class="phase" data-step="5" style="top:200px">
+    <div class="phase" data-step="4" data-until="4" style="top:200px">
+      <h2 class="title">「確かめる」と「残す」を、マキトリで毎日回す</h2>
+      <div class="pf">
+        <div class="kks">
+          <div class="kk"><span class="n">1</span><b>決める</b><small>危ないポイント（計画）</small></div>
+          <div class="kk on"><span class="n">2</span><b>確かめる</b><small>毎回、確認する</small></div>
+          <div class="kk on"><span class="n">3</span><b>残す</b><small>記録に残す</small></div>
+        </div>
+        <div class="pf-arr"><i></i><i></i></div>
+        <div class="pf-out">
+          <svg viewBox="0 0 360 360" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+            <circle cx="180" cy="180" r="150" fill="#ddf2e7"/>
+            <g class="pf-spin"><path d="M180 44a136 136 0 0 1 118 68" fill="none" stroke="#22915c" stroke-width="12" stroke-linecap="round"/><path d="M304 98l-4 30-26-14z" fill="#22915c"/><path d="M290 270a136 136 0 0 1-220 0" fill="none" stroke="#22915c" stroke-width="12" stroke-linecap="round"/><path d="M60 286l2-30 26 14z" fill="#22915c"/><path d="M48 150a136 136 0 0 1 60-90" fill="none" stroke="#22915c" stroke-width="12" stroke-linecap="round"/></g>
+            <rect x="90" y="140" width="180" height="80" rx="20" fill="#22915c"/><text x="180" y="192" font-size="40" fill="#fff">マキトリ</text>
+            <text x="180" y="110" font-size="24" fill="#17744a">温度</text><text x="96" y="262" font-size="24" fill="#17744a">衛生</text><text x="264" y="262" font-size="24" fill="#17744a">重要管理点</text>
+          </g></svg>
+          <p class="pf-k"><b>毎日、回す</b>＝法律上の義務を、実務にする仕組み</p>
+          <p class="cap" style="margin-top:0">計画は提出不要。店舗に備え置き、立入検査で提示</p>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="5" data-until="5" style="top:200px;gap:26px">
+      <h2 class="title">ルールを、2つ確認</h2>
+      <div class="rule2">
+        <div class="card r-oy"><span class="oct2">STOP</span><div><h3>牡蠣は、使わない</h3><p><b>生食用も、加熱用も</b>、全面的に使用禁止</p><small>バルニバービ独自のルール（ノロウイルス等のリスクが特に高い）</small></div></div>
+        <div class="card r-al"><h3>アレルギー：特定原材料は<b class="nine">9品目</b><small>（2026年4月〜）</small></h3>
+          <div class="al9"><span>えび</span><span>かに</span><span>くるみ</span><span>小麦</span><span>そば</span><span>卵</span><span>乳</span><span>落花生</span><span class="new">カシューナッツ<em>NEW</em></span></div>
+          <p class="cap" style="margin-top:0">アーモンドは「推奨」で、義務ではない</p>
+          <div class="al-t"><span><b>表示の義務</b>＝容器に入れて売るもの（テイクアウト・物販）</span><span>店内メニューは対象外。<b>でも、聞かれたら答える</b></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase" data-step="6" style="top:200px">
       <h2 class="title">衛生ルールに加えて、ハウスルールを明確にする</h2>
       <svg class="house" viewBox="0 0 1664 470" role="img" aria-label="全体の衛生ルールの円の外に、店舗ごとの事情がはみ出している。そのはみ出した部分をハウスルールとして明文化する">
         <g font-family="Zen Kaku Gothic New, sans-serif" text-anchor="middle" font-weight="900">
@@ -805,18 +853,35 @@ A、保健所へ毎月提出する。B、保健所への提出は不要。店舗
           <text x="410" y="270" font-size="38" fill="#17744a">衛生ルール</text>
         </g>
       </svg>
-      <div class="alert" data-step="6"><svg class="i"><use href="#i-alert"/></svg><p>これがないと、<b>スタッフによって判断がバラバラ</b>になります。</p></div>
+      <div class="alert" data-step="7"><svg class="i"><use href="#i-alert"/></svg><p>これがないと、<b>スタッフによって判断がバラバラ</b>になります。</p></div>
     </div>
     <aside class="notes">まず、プラン。計画を立てて、ルールを決める段階です。
 ［クリック］最初にお伝えしたいのは、食品衛生責任者の設置と掲示です。これは各都道府県等の条例に基づく義務で、施設ごとに1名の設置が必要です。
 変更があった場合は、15日以内に保健所へ届出をしてください。そして、営業許可書と併せて、レジ付近など見えやすい場所に掲示する義務もあります。
 資格の取得については、調理師や栄養士等の有資格者であれば講習会は免除されます。それ以外の方は、都道府県の食品衛生協会が実施する養成講習会を受講することで取得できます。
-［クリック］そのうえで、HACCPに基づく「一般衛生管理計画」と「重要管理計画」を作成し、全従業員に周知すること。そして、検食の実施手順を明確にしておくことです。
-［クリック］ここで一つ、補足しておきます。この計画に沿って、日々実施している内容が、皆さんが使っている「マキトリ」というシステムです。
-［クリック］冷蔵庫の温度、衛生管理の状況、重要管理点のチェック。あれは、単なる社内の記録作業ではありません。HACCPという法律上の義務を、実務として回すための仕組みです。
+［クリック］そのうえで、HACCP（ハサップ）です。名前は難しく聞こえますが、つまり、こういうことです。
+食中毒が起きそうな「危ないポイント」を、先に決めておく。そのポイントを、毎回確かめる。確かめたことを、記録に残す。 決める、確かめる、残す。この仕組みのことです。
+あとから検査して見つけるのではなく、毎日の作り方の中で、事故を防ぐ。2021年6月から、すべての飲食店で、義務になっています。
+危ないポイントは、2種類あります。一つは、どのメニューにも共通するもの。 手洗い、清掃、冷蔵庫の温度、スタッフの体調など。これをまとめたのが「一般衛生管理計画」。もう一つは、メニューごとのもの。 これをまとめたのが「重要管理計画」です。この2つの計画を作って、全従業員に周知すること。そして、検食の実施手順を明確にしておくことです。
+［クリック］重要管理計画で一番大事なのが、「重要管理点」です。難しく聞こえますが、言っていることはシンプルです。メニューごとに、「ここを外したら危ない」というポイントがある。そこを、毎回確認する。 それだけです。
+メニューは、作り方で3つに分けます。
+一つ目は、火を通さないもの。 サラダ、刺身、カルパッチョなど。ポイントは時間です。冷蔵庫から出したら、すぐ作って、冷たいまま出す。
+二つ目は、火を通して、すぐ出すもの。 ハンバーグ、ステーキ、焼き魚、揚げ物など。ポイントは、中まで火が通っているかです。中心温度計などで確認します。
+三つ目は、火を通したあと、冷やしておいて、また温めるもの。 カレー、スープ、ソース、ローストビーフなど。ポイントは、急いで冷やすことと、温め直すときに、もう一度しっかり火を通すことです。
+では、結局、何をすればいいか。
+一つ、自分のお店のメニューが、どれに入るかを知っておく。
+二つ、それぞれのポイントを、毎日確認する。
+三つ、確認したことを、マキトリに記録する。
+これが、重要管理点の管理です。研修修了レポートでも、自分のお店のメニューを伺います。
+［クリック］ここで、最初の話に戻ります。決める、確かめる、残す。この「確かめる」と「残す」を、毎日回しているのが、皆さんが使っている「マキトリ」というシステムです。
+冷蔵庫の温度、衛生管理の状況、重要管理点のチェック。あれは、単なる社内の記録作業ではありません。HACCPという法律上の義務を、実務として回すための仕組みです。
 なお、この計画の作成は法的な義務ですが、保健所へ提出する必要はありません。店舗に備え置いて、立入検査の際に提示できる状態にしておくことが求められます。
+［クリック］ここで、ルールを2つ、確認しておきます。
+一つ目、牡蠣は、使いません。 生食用だけでなく、加熱用も含めて、全面的に使用禁止です。バルニバービ独自のルールです。ノロウイルスなど、食中毒のリスクが特に高い食材だからです。
+二つ目、アレルギーです。 アレルギー表示の義務がある「特定原材料」は、2026年4月から、9品目になりました。えび、かに、くるみ、小麦、そば、卵、乳、落花生、そして、新しくカシューナッツが加わりました。アーモンドは、表示が推奨される品目で、義務ではありません。
+表示の義務があるのは、テイクアウトや物販など、容器に入れて売るものです。店内のメニューには、表示の義務はありません。ただ、今後、消費税率の変更などで、テイクアウトに取り組む機会が、増える可能性があります。 そのときに慌てないよう、この9品目は、今から必ず押さえておいてください。店内でも、お客様に聞かれたときに、答えられるようにしておきます。
 ［クリック］そしてもう一つ、衛生ルールに加えて、ハウスルールを明確にすることです。
-あくまで基準は、バルニバービ全体の衛生ルールです。そのうえで、店舗によって、全体ルールに収まらない部分が出てきます。扱う食材、厨房の広さ、動線。店舗ごとに事情が違いますから。
+あくまで基準は、バルニバービ全体の衛生ルールです。 そのうえで、店舗によって、全体ルールに収まらない部分が出てきます。扱う食材、厨房の広さ、動線。店舗ごとに事情が違いますから。
 その、ルールから漏れる部分を、ちゃんと決めて明文化しておく。
 ［クリック］これがないと、スタッフによって判断がバラバラになります。</aside>
   </section>
@@ -1076,20 +1141,26 @@ A、5名以上の同一メニュー提供時に実施。B、全メニューを�
       <div class="report-qr"><img class="qr" src="assets/img/ch02_report_qr.svg" alt="研修修了レポートのフォームのQRコード"><p class="qr-url">forms.gle/j9kbrdpNSXv6YCfo9</p><p class="cap">URLはチャットにも貼ります</p></div>
     </div>
     <div class="rep-list">
-      <div class="card" data-step="1"><h3>レポートの内容<span class="tag">3択・10問</span></h3><div class="fields"><span>食中毒が起きた時の責任</span><span>検便の提出状況</span><span>HACCP計画</span><span>検食のルール</span><span>マキトリの記録</span><span>アレルギー情報の共有</span><span>「基準が下がっていく」：手の動作を観察し、スタッフに伝えたか</span><span class="q2">冒頭の投票Q2「気になっているが、手がつけられていないこと」：いつまでに、何をするか</span></div></div>
-      <div class="card" data-step="2"><h3>書き出し<span class="tag">3問</span></h3><div class="fields"><span>スタッフ全体に共有する方法</span><span>この3日間で、実際にやったこと（1つ以上）</span><span>感想・今後やってみたい研修内容</span></div></div>
+      <div class="card" data-step="1"><h3>知識の確認<span class="tag">＋</span>お店で確認して書く</h3><div class="fields"><span>食中毒の責任</span><span>菌が増える条件</span><span>検食（何名様以上・1検体何g）</span></div><div class="fields"><span class="q2">今月の検便の提出状況</span><span class="q2">毎月15日の検便の流れ（在庫確認・声かけ・回収場所・提出確認）</span><span class="q2">3つの作り方ごとの代表メニュー</span><span class="q2">検食を保管する冷凍庫</span><span class="q2">けがのリスクがある機械と、手順の置き場所</span></div></div>
+      <div class="card" data-step="2"><h3>ふりかえり・アレルギー</h3><div class="fields"><span>気にかけていたか・気になる動作・何をしていくか</span><span>アレルギー対応フロー：お店のやり方があるか</span><span>感想・今後やってみたい研修内容</span></div></div>
     </div>
     <div class="row" data-step="2">
       <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>未提出の場合、<b>受講済みとして記録されません</b></p></div>
-      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>該当しないものは「なし」で構いません</p></div>
+      <div class="alert is-ok" style="flex:1"><svg class="i"><use href="#i-check"/></svg><p>「気をつける」で終わらせず、<b>いつから・誰に・何をするか</b></p></div>
     </div>
     <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
-（進行役：フォームのURL・QRコードを画面に表示し、チャットにも貼る。URL：https://forms.gle/j9kbrdpNSXv6YCfo9）
+（進行役：フォームのQRコードを画面に表示し、下の文をそのままZoomのチャットに貼る）
+【Zoomのチャットに貼る文】
+【研修修了レポート】提出期限：本日から3日以内
+こちらのフォームから回答してください（提出をもって受講完了です）
+https://forms.gle/j9kbrdpNSXv6YCfo9
 提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
-このレポートは、基本は、3つの選択肢から選ぶ形で、全部で10問です。この3日間のうちに、お店で実際に確認し、行動してから、書いてください。机の上だけで、まとめて書かないでください。
-［クリック］内容は、食中毒の責任、検便の提出状況、HACCP計画、検食のルール、マキトリの記録、アレルギー情報の共有です。そして、「基準が下がっていく」ことについて、お店で、スマホや髪や顔を触った手の動作を、実際に観察していただき、スタッフに伝えたかを伺います。
-冒頭の投票で、「気になっているけれど、手がつけられていないこと」を書いていただきました。それについても、いつまでに、何をするかを、決めたかを伺います。気になっているということは、すでに気づいているということです。あとは、手をつけるだけです。
-［クリック］最後に、研修の内容をスタッフ全体に共有する方法、この3日間のうちに、実際にやったことを、1つ以上、研修を受けての感想、そして、今後やってみたい研修内容を、書いていただきます。「確認した」「気をつける」で終わらせず、いつ、何をしたかまで書いてください。</aside>
+このレポートは、知識を確認する問いと、お店で実際に確認したことを、具体的に書いていただく問いでできています。この3日間のうちに、お店で実際に確認してから、書いてください。 机の上だけで、まとめて書かないでください。
+［クリック］知識の確認は、食中毒の責任、菌が増える条件、そして検食です。検食は、何名様以上のパーティーが対象か、1検体何グラムか、を伺います。
+そのあとは、お店で確認して、書いていただきます。今月の検便の提出状況と、毎月15日の検便の提出の流れ、つまり、キットの在庫確認は誰がするか、声かけは何日にするか、回収場所はどこか、提出の確認は誰がするか。3つの作り方ごとの、お店の代表的なメニュー。検食を保管する冷凍庫。そして、お店にある、けがのリスクがある機械と、その手順をどこに置いているかです。
+［クリック］それから、普段から、スタッフの行動や言動を気にかけていたか。ここ最近、自分も含めて、気になる動作はあったか。そして、お店で防ぐために、何をしていくか。「気をつける」で終わらせず、いつから、誰に、何をするかまで書いてください。
+アレルギーは、ガイドブックの「アレルギー対応フロー」の段階ごとに、お店のやり方があるか、ないかを伺います。ない段階は、フローをもとに、お店のやり方を作ってください。
+最後に、研修を受けての感想と、今後やってみたい研修内容を書いていただきます。</aside>
   </section>
 
   <!-- 15 クロージング -->
