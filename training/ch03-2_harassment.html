@@ -622,6 +622,37 @@
 .k-pre-list li.att b { color: var(--danger); }
 @keyframes attb { 0%, 100% { border-color: transparent; } 50% { border-color: var(--danger); } }
 @media (prefers-reduced-motion: reduce) { .k-pre-list .hi, .k-pre-list .on, .k-pre-list .off, .k-pre-list li.att { animation: none; background-size: 100% 100%; } }
+/* 11/24 */
+.df { display: grid; grid-template-columns: 620px 1fr; gap: 40px; align-items: center; flex: 1; min-height: 0; }
+.df-v svg { width: 100%; height: auto; max-height: 520px; }
+.df-c { opacity: 0; }
+.slide.active .df-c { animation: d-in .6s both; animation-delay: calc(var(--k) * .5s + .4s); }
+.df-r { display: flex; flex-direction: column; gap: 24px; }
+.df-3 { display: flex; flex-direction: column; gap: 14px; }
+.df-3 li { display: grid; grid-template-columns: 56px 1fr; column-gap: 18px; align-items: center; }
+.df-3 .n { grid-row: 1 / 3; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: #fff; font-family: var(--f-num); font-size: 28px; }
+.df-3 b { font-size: 36px; line-height: 1.3; }
+.df-3 small { font-size: 24px; color: var(--ink-2); font-weight: 700; }
+.df-ng { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.df-ng .card { flex-direction: row; align-items: center; gap: 16px; padding: 18px 22px; }
+.df-ng .x { flex: none; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--danger); color: #fff; font-size: 28px; font-weight: 900; }
+.df-ng b { display: block; font-size: 26px; white-space: nowrap; }
+.df-ng small { display: block; font-size: 20px; white-space: nowrap; color: var(--ink-2); font-weight: 700; }
+.df-go { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 30px; border-radius: 20px; background: var(--ok-soft); }
+.df-go .big { font-size: 44px; font-weight: 900; } .df-go .big b { color: var(--ok); }
+.df-go .sm { font-size: 24px; color: var(--ink-2); font-weight: 700; }
+.f4q { display: grid; grid-template-columns: auto 1fr; gap: 12px 20px; align-items: center; }
+.f4q .k { font-size: 30px; font-weight: 900; padding: 8px 20px; border-radius: 12px; background: var(--accent); color: #fff; text-align: center; }
+.f4q span:not(.k) { font-size: 32px; font-weight: 900; }
+.atodashi { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px 26px; border-radius: 16px; background: var(--danger-soft); }
+.atodashi .t { font-size: 28px; font-weight: 900; color: #fff; background: var(--danger); padding: 6px 18px; border-radius: 10px; }
+.atodashi .q { font-size: 30px; font-weight: 900; }
+.atodashi .q.ng { color: var(--danger); }
+.atodashi i { width: 40px; height: 6px; background: var(--ink-2); }
+.atodashi .fix { font-size: 28px; font-weight: 700; } .atodashi .fix b { color: var(--ok); }
+.st-top { position: relative; box-shadow: 0 0 0 5px var(--danger) inset !important; background: var(--danger-soft) !important; }
+.st-top b small { display: block; font-size: 24px; color: var(--danger); }
+.st-tag { position: absolute; top: -22px; left: 24px; font-size: 22px; font-weight: 900; color: #fff; background: var(--danger); padding: 4px 16px; border-radius: 999px; animation: blink2 1.8s ease-in-out infinite; }
 </style>
 
 <div class="deck" data-chapter="第3-2章　ハラスメントからアジャストメントへ" data-accent="violet">
@@ -1114,6 +1145,45 @@
 ［クリック］役職の高さは、免罪符になりません。</aside>
   </section>
 
+  <!-- 06x どこからが、ハラスメントか（11/24） -->
+  <section class="slide" data-min="2" id="def-slide">
+    <div class="eyebrow" data-in>どこからが、ハラスメントか</div>
+    <h2 class="title" data-in style="--d:1">3つがそろって、ハラスメント</h2>
+    <div class="df">
+      <div class="df-v" data-in style="--d:2">
+        <svg viewBox="0 0 700 540" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
+          <g class="df-c" style="--k:0"><circle cx="250" cy="200" r="170" fill="#6b5ce7" fill-opacity=".2" stroke="#6b5ce7" stroke-width="5"/><text x="170" y="150" font-size="54" fill="#5243c9">1</text></g>
+          <g class="df-c" style="--k:1"><circle cx="450" cy="200" r="170" fill="#c23a2e" fill-opacity=".14" stroke="#c23a2e" stroke-width="5"/><text x="530" y="150" font-size="54" fill="#c23a2e">2</text></g>
+          <g class="df-c" style="--k:2"><circle cx="350" cy="360" r="170" fill="#2f74d9" fill-opacity=".16" stroke="#2f74d9" stroke-width="5"/><text x="350" y="480" font-size="54" fill="#1f5bb5">3</text></g>
+          <g class="df-c" style="--k:3"><rect x="255" y="232" width="190" height="64" rx="32" fill="#1d2128"/><text x="350" y="275" font-size="32" fill="#fff">ハラスメント</text></g>
+        </g></svg>
+      </div>
+      <div class="df-r">
+        <ol class="df-3" data-in style="--d:3">
+          <li><span class="n" style="background:#6b5ce7">1</span><b>優越的な関係</b><small>役職・経験・知識の差</small></li>
+          <li><span class="n" style="background:#c23a2e">2</span><b>業務上必要かつ相当な範囲を超える</b></li>
+          <li><span class="n" style="background:#2f74d9">3</span><b>就業環境が害される</b></li>
+        </ol>
+        <div class="df-ng" data-step="1">
+          <div class="card"><span class="x">✖</span><p><b>相手が不快＝即ハラスメント</b><small>基準は、平均的な労働者の感じ方</small></p></div>
+          <div class="card"><span class="x">✖</span><p><b>指導＝ハラスメント</b><small>必要で相当な指導は、パワハラではない</small></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="df-go" data-step="2"><p class="big">指導は、やめなくていい。<b>変えるのは、伝え方</b></p><p class="sm">「悪気はなかった」は通らない（意図ではなく、言動と結果）／詳しくは、ガイドブック</p></div>
+    <aside class="notes">ここで、一度、整理しておきます。どこからが、ハラスメントなのか。
+パワーハラスメントは、法律で、3つの要素が、すべてそろったものとされています。
+一つ目、優越的な関係を背景とした言動。 役職だけでなく、経験や知識の差も含みます。さきほどの「差」の話です。
+二つ目、業務上必要かつ相当な範囲を超えたもの。
+三つ目、労働者の就業環境が害されるもの。
+［クリック］ここで、よくある誤解が、二つあります。
+一つ目。「相手が不快に感じたら、即ハラスメント」ではありません。 就業環境が害されたかどうかは、その人の感じ方だけでなく、平均的な労働者が、同じ立場で、どう感じるかを基準に判断されます。
+二つ目。業務上必要で、やり方も相当な指導は、パワハラではありません。 注意すること、叱ること、やり直しを求めること。それ自体は、責任者の仕事です。指導は、やめなくていいのです。
+［クリック］問われるのは、その指導が、必要か。そして、伝え方が、範囲を超えていないかです。怒鳴る。人格を否定する。人前で、長時間、繰り返し責める。ここで、範囲を超えます。
+一方で、「悪気はなかった」は、通りません。 見られるのは、意図ではなく、言動と、その結果です。
+だから、指導をやめるのではなく、伝え方を調整する。 そのための道具を、このあとお渡しします。詳しくは、ガイドブックに載っています。</aside>
+  </section>
+
   <!-- 07 アジャストメントの2つの道具 -->
   <section class="slide" data-min="2">
     <div class="eyebrow" data-in>アジャストメントの2つの道具</div>
@@ -1153,7 +1223,7 @@
   </section>
 
   <!-- 08 フィルター -->
-  <section class="slide" data-min="5" id="filter-slide">
+  <section class="slide" data-min="3" id="filter-slide">
     <div class="eyebrow" data-in>① フィルター（ふるい）｜言う前に、4つで検品する</div>
     <h2 class="title" data-in style="--d:1">言う前の、4つの問い</h2>
     <div class="filters f4">
@@ -1184,34 +1254,25 @@
         <i class="mesh"></i>
       </div>
     </div>
-    <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p>1枚でも破れたら、<b>調整のサイン</b></p></div>
+    <div class="alert" data-step="5"><svg class="i"><use href="#i-alert"/></svg><p>1枚でも破れたら、<b>調整のサイン</b><span style="margin-left:24px;font-size:24px;color:var(--ink-2)">ほかの例・判例は、ガイドブックへ</span></p></div>
     <aside class="notes">冒頭のQ1で、「迷った場面」を書いてくださった方がたくさんいました。迷ったときに使っていただきたいのが、この4つのフィルターです。それぞれ、一つの問いに答えるだけです。
 ［クリック］① コピーフィルター
 問い：新人も、スタッフ全員も、あなたの真似をしたら、誇れる店か？
-特定の女性スタッフを「姫」のように扱い、肩を組んだり、自分専用のコーヒーを淹れさせたりする。忙しい時に鍋を叩きつけたり、包丁を放るように置いたりする。盛り上げようとして、ミスが多いスタッフを皆の前でネタにする。ミスをした業者さんに、スタッフの前で「仕事なめてんのか」と怒鳴る。
-昨日入ったばかりの新人が、同じことをしていたら、皆さんは怒るはずです。つまり、あなたが許している「例外」は、新人が真似しても良い「基準」になるのです。
-リーダーの言動は、お店の「レシピ」です。あなたが誰かをバカにすれば、店中が、誰かをバカにしても良い空気になります。あなたが業者さんを怒鳴れば、スタッフは、アルバイトやお客様を怒鳴るようになります。
-「愛のあるいじり」のつもりでも、繰り返されれば、重大な結果につながりえます。先輩の継続的ないじめで後輩が自殺に至り、いじめた本人と、防げなかった病院の両方の責任が認められた判例もあります。
+例えば、盛り上げようとして、ミスが多いスタッフを、皆の前でネタにする。昨日入ったばかりの新人が、同じことをしていたら、皆さんは怒るはずです。あなたが許している「例外」は、新人が真似しても良い「基準」になります。 リーダーの言動は、お店の「レシピ」です。
 ［クリック］② リスクフィルター
 問い：相手が「NO」と言っても、評価も空気も変わらないか？
-これは、先ほどの拒絶リスクを、ゼロにするための問いです。
-こんな場面が、ありませんか。
-- 「わかった？できる？」。 確認して任せる。「はい！」と返事が来たのに、できていない。「できるって言ったよね？」と叱る。でも、スタッフの頭の中では、「ここでわからないと言ったら、また長々と説教が始まる……武勇伝が始まる……皆に迷惑がかかる……」と起きています。だから「はい」と言うしかなかった。出口を塞いでいたのは、あなたかもしれません。
-- 「嫌ならいいんだけど」。 「明日、急だけど出られる？嫌ならいいんだけど」。厳しく指導した最後に「わかった？これできるな？」と詰め寄る。相手が「無理です」と言った瞬間に、不機嫌な顔をしていませんか。それは教育ではなく、恐怖による「Yesの強要」です。
-- 後出しジャンケン。 指示は曖昧なまま、やったら「そうじゃない」と後から叱る。どう動いても叱られる状況は、指導の範囲を逸脱した「精神的な攻撃」になりえます。
-- 休日・深夜のLINE。 「返信不要」のつもりでも、対応が事実上求められていれば、労働時間とみなされ、賃金の未払いが問題になりうるリスクがあります。
+先ほどの拒絶リスクを、ゼロにするための問いです。
+「わかった？できる？」と確認して、任せる。「はい！」と返事が来たのに、できていない。でも、スタッフの頭の中では、「ここでわからないと言ったら、また説教が始まる……」と起きています。だから「はい」と言うしかなかった。出口を塞いでいたのは、あなたかもしれません。
 スタッフが「NO」と言っても、評価も店の空気も変わらない。その安全を保証できて、初めて「合意」と言えます。
 ［クリック］③ 大切な人フィルター
 問い：自分の大切な人が、他所で同じことをされても平気か？
-「今日かわいいね」「彼氏とはどうなの？」。「相談に乗るから」と、二人きりでの飲みに何度も誘う。
-あなたの大切な人が、バイト先の上司から同じことを言われて、困っていたら、どう思いますか。家族でも、パートナーでも、友人でも構いません。そこで感じる猛烈な不快感が、アジャストミスの正体です。
-そして、これは「たとえ話」ではありません。スタッフにとって、大切な人は、親です。 皆さんの言葉は、スタッフの口から、家で、親に話されます。親御さんが聞いても、平気な言葉ですか。
-断れない立場の相手を、仕事と関係のない場に誘い続けることは、立場を背景にした、業務外の同席の強要になりえます。「嫌なら断っていいよ」と伝えていても、拒絶リスクがある前提で考えてください。
+「相談に乗るから」と、二人きりでの飲みに、何度も誘う。あなたの大切な人が、バイト先の上司から、同じことをされていたら、どう思いますか。
+そして、スタッフにとって、大切な人は、親です。 皆さんの言葉は、スタッフの口から、家で、親に話されます。親御さんが聞いても、平気な言葉ですか。
 ［クリック］④ レコーディングフィルター
 問い：録音・録画されて世間に流れても、プロの誇りを保てるか？
-ここで見るのは、怒りにまかせた言動です。怒鳴る。「お前は馬鹿か」「何度言ったらわかるんだ」といった、強い言葉。壁を叩く。机を蹴る。物に当たる。舌打ちを繰り返す。言葉が丁寧でも、態度で怒りは伝わります。
-矜持から出た怒りだった、としても、録音や録画で流れれば、「プロの矜持」としては、受け取られません。「パワハラ」として流れます。 その音声や映像がSNSで拡散された瞬間、キャリアは終わります。怒っている自分が、録音・録画されても、プロの誇りを保てるか。常にカメラがある前提で、自分を検品してください。
+怒鳴る。物に当たる。舌打ちを繰り返す。矜持から出た怒りでも、録音や録画で流れれば、「プロの矜持」ではなく、「パワハラ」として流れます。 常にカメラがある前提で、自分を検品してください。
 ［クリック］4枚のうち、1枚でもフィルターが破れたら、それはアジャストメント、調整が必要なサインです。
+ほかの例や、判例は、ガイドブックに載っています。 あとで、確認してください。
 （進行役：Q3で挙がった相談内容のうち、読み上げても特定につながらないものがあれば、「先ほど挙がった◯◯という相談、これはまさに◯◯フィルターの話です」と接続する）</aside>
   </section>
 
@@ -1269,11 +1330,13 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <h2 class="qz-q" data-in style="--d:1">最初に書いたメモと、追加で書いたものを、<span class="hl">4つのフィルターに当てはめて</span>ください</h2>
       <div class="wk" style="grid-template-columns:1fr 680px">
         <div style="display:flex;flex-direction:column;gap:22px">
-          <ul class="points plain" data-in style="--d:2">
-            <li><div style="font-size:32px">「これは、<b>どのフィルターに引っかかるか</b>」</div></li>
-            <li><div style="font-size:32px">「<b>どのフィルターも、通り抜けているか</b>」</div></li>
-            <li><div style="font-size:32px">思い出したこと、「これって、どうだろう」と思ったことは、新しく書き足してよい</div></li>
-          </ul>
+          <div class="f4q" data-in style="--d:2">
+            <span class="k">コピー</span><span>真似されて、誇れる？</span>
+            <span class="k">リスク</span><span>NOと言っても、変わらない？</span>
+            <span class="k">大切な人</span><span>親が聞いても、平気？</span>
+            <span class="k">レコーディング</span><span>流れても、誇れる？</span>
+          </div>
+          <p style="font-size:26px;color:var(--ink-2);font-weight:700">引っかかるか、通り抜けているか。思い出したことは、書き足してよい</p>
           <div class="rules" data-in style="--d:3"><span><svg class="i"><use href="#i-x"/></svg>発表しません</span><span><svg class="i"><use href="#i-check"/></svg>正直に</span></div>
           <div class="alert" data-step="2"><svg class="i"><use href="#i-alert"/></svg><p>1枚でも、フィルターが破れたものがあれば、<b>調整が必要なサイン</b></p></div>
         </div>
@@ -1293,7 +1356,8 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       </div>
     </div>
     <aside class="notes">では、最初に書き出したメモを、見てください。そして、追加で書いたものも。
-それぞれを、4つのフィルターに、当てはめてみてください。「これは、どのフィルターに、引っかかるか」。「どのフィルターも、通り抜けているか」。ワークシートの表に、チェックを入れていってください。
+それぞれを、4つのフィルターに、当てはめてみてください。 画面に、4つの名前と問いを出しています。コピー、真似されて、誇れるか。リスク、NOと言っても、変わらないか。大切な人、親が聞いても、平気か。レコーディング、流れても、誇れるか。
+「これは、どのフィルターに、引っかかるか」。「どのフィルターも、通り抜けているか」。ワークシートの表に、チェックを入れていってください。
 記入されていなくても、思い出したことや、「これって、どうだろう」と思ったことがあれば、新しく書き込んでも大丈夫です。3分です。発表はしませんので、正直に、お答えください。
 ［クリック］（3分のカウントダウンが始まる。0:00で「時間です」と表示）
 （進行役：共有も、回収もしない）
@@ -1329,8 +1393,9 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 機嫌が悪くなること自体は、人間なので避けられません。問題は、それがノイズとして、出力に混じってしまうことです。伝える内容が正しくても、ノイズが混じれば、相手には違うものとして届きます。だから、まず、自分を整えます。 それが、1つ目のアジャスターです。</aside>
   </section>
 
-  <!-- 09-1 アンガーマネジメント：矜持 -->
-  <section class="slide" data-min="2" style="gap:20px">
+  <!-- 09-1 アンガーマネジメント（11/24：2枚を1枚に統合） -->
+  <section class="slide" data-min="3" id="am-slide">
+    <div class="phase" data-until="2" style="gap:20px">
     <div class="eyebrow" data-in>アジャスター ①　アンガーマネジメント（まず、自分を整える）</div>
     <h2 class="title" data-in style="--d:1">怒りの原因は、<span class="hl2">「プロの矜持」</span></h2>
     <p class="lead" data-in style="--d:2">「怒らない人」になる、のではない</p>
@@ -1338,30 +1403,14 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <li><span class="p">クオリティ</span><i></i><span class="b">責める</span></li>
       <li><span class="p">「おいしい」</span><i></i><span class="b">責める</span></li>
       <li><span class="p">ピークタイム</span><i></i><span class="b">責める</span></li>
-      <li><span class="p">段取り</span><i></i><span class="b">イライラ</span></li>
+      <li><span class="p">段取り</span><i></i><span class="b">責める</span></li>
     </ul>
-    <p class="cap" data-step="1" style="margin-top:0">経験・責任感・矜持があるほど、<b>機嫌の波</b>は強くなる</p>
+    <p class="cap" data-step="1" style="margin-top:0">矜持がある人ほど、<b>波が強くなる</b></p>
     <div class="convert" data-step="2"><span class="ng">✕「何やってるんだ」</span><i></i><span class="ok">○「3分遅れ。2卓を先に」</span><small>→ 事実＋次の指示（②シグナル）</small></div>
-    <div class="wave3" data-step="2"><span class="h">波を、店に流さない</span><span><svg class="i"><use href="#i-clipboard"/></svg>基準を、気分で変えない</span><span><svg class="i"><use href="#i-clock"/></svg>急ぎでない注意は、後回し</span><span><svg class="i"><use href="#i-chat"/></svg>メガホンは、入りっぱなし</span></div>
-    <aside class="notes">① アンガーマネジメント：まず、自分を整える
-アンガーマネジメントは、怒らない人になることではありません。怒る必要のあることは、上手に伝える。怒る必要のないことは、怒らなくて済むようにする。 そのための、心のトレーニングです。怒りは、自然な感情です。問題は、その表し方です。
-［クリック］では、皆さんの怒りは、どこから来るのでしょうか。怒りの原因は、悪い感情ではなく、プロの矜持であることが多いと思います。
-クオリティを落とせない。 だから、落とす行為を、責めてしまう。お客様に、「おいしい」を届けたい。 だから、そうならないケースを、責めてしまう。ピークタイムの、ズレが許せない。 だから、ズレた瞬間に、責めてしまう。
-段取りどおりに、進まない。 だから、そのイライラが、言葉や態度に出てしまう。
-これは、プロであれば、誰もが持っている気持ちです。そして、経験を積むほど、矜持、つまり基準は、高くなります。許せない範囲も、広がりやすくなります。 さきほどお話しした、経験の差です。見えているものが違うので、「なぜ、できないんだ」となりやすい。
-責任感が強い人ほど、矜持がある人ほど、この傾向は、強くなりやすい。 前半でお話しした「機嫌の波」の正体の多くは、ここにあります。
-［クリック］矜持は、守っていいのです。問題は、矜持を、人を責める形で、出してしまうことです。矜持は、責める言葉ではなく、事実と、次の指示、つまり、②のシグナルに変えます。「何やってるんだ」ではなく、「提供が3分遅れている。この2卓を先に」。
-そして、波を、店に流さないために、3つのことを意識してください。
-- 基準を、気分で変えない。 「これはOK、これはNG」を、言葉か紙で決めておく。決めたことは、機嫌に関係なく、同じに扱う
-- 機嫌の悪い日は、急ぎでない注意を、後回しにする。 落ち着いてから伝える。これは、④のタイミングでもお話しします
-- メガホンのスイッチは、入りっぱなし。 ため息も、舌打ちも、無言も、店中に流れていると思ってください
-そして、怒りの裏には、矜持のほかに、疲れや、焦り、不安があることも多い、といわれています。忙しい営業中は、特にそうです。</aside>
-  </section>
-
-  <!-- 09-2 アンガーマネジメント：4つの方法 -->
-  <section class="slide" data-min="2">
-    <div class="eyebrow" data-in>アジャスター ①　アンガーマネジメント（まず、自分を整える）</div>
-    <h2 class="title" data-in style="--d:1">気づく・待つ・測る・見直す</h2>
+        </div>
+    <div class="phase" data-step="3" style="gap:24px">
+    <div class="eyebrow">アジャスター ①　アンガーマネジメント（まず、自分を整える）</div>
+    <h2 class="title" style="--d:1">気づく・待つ・測る・見直す</h2>
     <div class="am stg">
         <div class="card">
           <svg viewBox="0 0 200 150" aria-hidden="true"><path d="M10 80h50l14-40 20 80 16-50 12 10h68" fill="none" stroke="#c23a2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" class="wl" style="animation-duration:2.4s"/></svg>
@@ -1384,7 +1433,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
             <text x="20" y="130" font-size="20" fill="#4f5661">1</text><text x="188" y="130" font-size="20" fill="#4f5661">10</text>
           </g></svg>
           <h3>測る<small>（→④）</small></h3>
-          <p class="am1">10段階で今いくつ？<br><b>高いときは指導しない</b></p>
+          <p class="am1">10段階で今いくつ？<br><b>高いときは、後回し</b></p>
         </div>
         <div class="card">
           <svg viewBox="0 0 200 150" aria-hidden="true"><g font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" text-anchor="middle">
@@ -1397,19 +1446,25 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
           <p class="am1">「べき」を<br><b>事実と次の指示に</b></p>
         </div>
       </div>
-    <div class="row" data-in style="--d:6">
-      <div class="am-now" style="flex:1.3"><span class="t">今日から</span><p>熱くなったら、<b>点数</b>をつけて、<b>6秒</b>待つ</p></div>
+    <div class="row" style="--d:6">
+      <div class="am-now" style="flex:1.3"><span class="t">今日から</span><p>熱くなったら、<b>点数</b>をつけて、<b>6秒</b>待つ<small style="display:block;font-size:22px;color:var(--ink-2)">詳しくは、ガイドブック</small></p></div>
       <div class="alert" style="flex:1"><svg class="i"><use href="#i-alert"/></svg><p>怒りに任せない ≠ <b>指導をやめる</b></p></div>
     </div>
-    <div class="row" data-step="1" style="justify-content:center"><span class="pill-k">ここから、何を・どう・いつ</span></div>
-    <aside class="notes">機嫌の波は、無意識に、無自覚に、出ていることが多いものです。自分では、波があるとは思っていない。だから、気合いではなく、手順にします。
-スタッフに、指摘するとき。熱くなってきたな、と感じたら、まず、点数をつける。今、10のうち、いくつか。そして、6秒、待つ。 これだけは、今日から、やってみてください。
-方法を、もう少し詳しくお話しします。4つあります。覚え方は、気づく、待つ、測る、見直すです。
-一つ目、気づく。 自分の怒りのサインに、気づきます。心拍が上がる。声が大きくなる。考えが単純になる。自分のサインを知っておくことが、最初の一歩です。
-二つ目、待つ。 6秒、待ちます。怒りの衝動のピークは、数秒でくる、といわれています。その間に、言動に出さない。深呼吸を、3秒で吐いて、3秒で吸う。これで6秒です。怒りを消す魔法ではありません。衝動的に言ってしまわないための、時間稼ぎです。
-三つ目、測る。 怒りに、点数をつけます。10段階で、今いくつか。点数をつけるだけで、自分を、少し外から見られます。 無自覚だった波に、気づけます。点数が高いときは、指導をしない。④の、タイミングにつながります。
-四つ目、見直す。 自分の「べき」を、見直します。怒りの原因は、自分の「べき」にあることが多いのです。「新人は、言われなくても確認するべき」。「部下は、従うべき」。「年下は、敬うべき」。「一度言ったら、わかるべき」。でも、自分の「べき」と、相手の「べき」は、違います。怒りの矛先は、無意識に、いちばん言い返せない相手に向かいます。アルバイトにも、若手の社員にも、向いていないか。ここは、特に点検してください。「べき」を、事実と、次の指示に言い換える。これが、②のシグナルにつながります。
-なお、怒りに任せないことは、指導をやめることではありません。業務上必要で、相当な範囲の指導は、必要です。
+    <div class="row" data-step="4" style="justify-content:center"><span class="pill-k">ここから、何を・どう・いつ</span></div>
+        </div>
+    <aside class="notes">① アンガーマネジメント：まず、自分を整える
+アンガーマネジメントは、怒らない人になることではありません。怒る必要のあることは、上手に伝える。怒る必要のないことは、怒らなくて済むようにする。 そのための、心のトレーニングです。怒りは、自然な感情です。問題は、その表し方です。
+［クリック］では、皆さんの怒りは、どこから来るのでしょうか。怒りの原因は、悪い感情ではなく、プロの矜持であることが多いと思います。
+クオリティを落とせない。お客様に、「おいしい」を届けたい。ピークタイムの、ズレが許せない。段取りどおりに、進まない。だから、責めてしまう。
+責任感が強い人ほど、矜持がある人ほど、この傾向は、強くなりやすい。 前半でお話しした「機嫌の波」の正体の多くは、ここにあります。
+［クリック］矜持は、守っていいのです。問題は、矜持を、人を責める形で、出してしまうことです。「何やってるんだ」ではなく、「提供が3分遅れている。この2卓を先に」。事実と、次の指示、つまり、②のシグナルに変えます。
+［クリック］機嫌の波は、無意識に、無自覚に出ます。だから、気合いではなく、手順にします。4つです。気づく、待つ、測る、見直す。
+気づく。 自分の怒りのサインを、知っておきます。心拍が上がる。声が大きくなる。考えが単純になる。
+待つ。 6秒、待ちます。3秒で吐いて、3秒で吸う。怒りを消す魔法ではなく、衝動的に言ってしまわないための、時間稼ぎです。
+測る。 10段階で、今いくつか。点数をつけるだけで、自分を、少し外から見られます。点数が高いときは、急ぎでない注意は、後回し。 ④のタイミングにつながります。
+見直す。 自分の「べき」を、見直します。「部下は、従うべき」「一度言ったら、わかるべき」。怒りの矛先は、無意識に、いちばん言い返せない相手に向かいます。「べき」を、事実と次の指示に言い換える。②のシグナルにつながります。
+今日から、これだけは。熱くなったら、点数をつけて、6秒、待つ。 詳しいやり方は、ガイドブックに載っています。
+怒りに任せないことは、指導をやめることではありません。
 ［クリック］自分を整えたうえで、ここから、何を、どう、いつ、伝えるかを調整します。</aside>
   </section>
 
@@ -1437,8 +1492,10 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
         </div>
       </div>
     </div>
+    <div class="atodashi" data-in style="--d:6"><span class="t">後出しジャンケン</span><span class="q">「いい感じに」</span><i></i><span class="q ng">やったら「そうじゃない」✖</span><span class="fix">→ 指示の段階で、<b>事実＋次の行動</b></span></div>
     <aside class="notes">② シグナル：何を伝えるか
-何が起きたか（事実）と、次にどうしてほしいか（行動）。 この2つだけを、具体的に伝えます。「やる気」「センス」「盛り付けが雑だ」では、何を直せばよいかわかりません。「このハーブは、中心から1cm左に置いてほしい」「これとこれは僕がやるから、君はこれとこれを、ここまでやっておいて」。これが、伝わるシグナルです。</aside>
+何が起きたか（事実）と、次にどうしてほしいか（行動）。 この2つだけを、具体的に伝えます。「やる気」「センス」「盛り付けが雑だ」では、何を直せばよいかわかりません。「このハーブは、中心から1cm左に置いてほしい」「これとこれは僕がやるから、君はこれとこれを、ここまでやっておいて」。これが、伝わるシグナルです。
+逆に、よくあるのが、後出しジャンケンです。指示は「ちゃんとやっといて」「いい感じに」と、曖昧なまま。やったら、「そうじゃない」と、後から叱る。どう動いても叱られる状況は、指導の範囲を超えた「精神的な攻撃」になりえます。叱る前に、指示の段階で、事実と次の行動を、具体的に。</aside>
   </section>
 
   <!-- 09-4 ノイズ -->
@@ -1499,7 +1556,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
       <div class="stops">
         <div class="card" data-in style="--d:3"><span class="oct">STOP</span><b>独断で処理しない</b></div>
         <div class="card" data-in style="--d:4"><span class="oct">STOP</span><b>報復しない</b></div>
-        <div class="card is-accent" data-step="1"><span class="oct">STOP</span><b>本人に直接確認しない</b></div>
+        <div class="card is-accent st-top" data-step="1"><span class="st-tag">いちばん間違えてはいけない</span><span class="oct">STOP</span><b>直接確認しない<small>当人同士で話し合わせない</small></b></div>
       </div>
       <div class="sx-keys out-keys" data-step="1"><span class="k">同意なく、伝えない</span><span>誰が相談したかも</span><span>アウティング ＝ パワハラ</span><span>2026年10月〜 開示の強要・禁止も</span></div>
     </div>
@@ -1573,6 +1630,7 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
 3. 事実関係は、本部と連携して、当事者双方から公正に確認し、記録する
 4. 本部の指示に従って対応する。独断で「示談」にしたり、「口頭注意だけ」で終わらせたりしない
 ［クリック］⚠️ 特に気をつけていただきたいのが、本部に報告する前に、自分の判断で、相手とされる人に直接確認しに行くことです。よかれと思っての行動でも、証拠の隠滅や、相談者への報復・圧力につながるリスクがあります。
+ここは、修了レポートでも問います。いちばん間違えてはいけないところです。 相手とされる人に、直接確認しに行かない。当人同士を呼んで、話し合わせることも、しない。 面談の場を設けることも、同じです。相談者は、相手の前では本当のことを言えませんし、誰が相談したのかが、その場で伝わってしまいます。確認は、必ず、担当役員・本部と一緒に行います。
 冒頭の相談でも、本人は、「本人の同意なく、店長やスタッフに伝えないでほしい」と書いていました。誰が相談したのかが伝わるだけで、相談した人は、さらに追い詰められます。本人の同意なく、相談の内容も、誰が相談したのかも、伝えない。 確認は、本部と一緒に行います。
 相談を受けて聞いた、性的指向・性自認・病歴などを、本人の同意なく、ほかの人に話すこと。これを「アウティング」といい、それ自体がパワハラにあたります。「心配だから、ほかのスタッフにも気にかけてもらおう」という善意でも、同じです。さらに、2026年10月からは、こうした情報を、話すよう強要したり、話すなと禁じたりすることも、パワハラになりうると、指針に明記されました。
 ［クリック］そして、記録に残してください。 指導した内容、相談を受けた内容。こうしたやり取りは、ハラスメントに限らず、「言った・言わない」が、どんなやり取りでも起こります。
@@ -1646,8 +1704,8 @@ A、コピーフィルター。B、リスクフィルター。C、大切な人�
     </div>
     <p class="lead" data-step="1" style="font-size:32px"><b>誰かを評価するためのものではありません</b>。振り返りは、今日のワークシートで済んでいます。</p>
     <div class="row" data-step="2">
-      <div class="alert" style="flex:1;font-size:26px;padding:16px 26px;line-height:1.5"><svg class="i"><use href="#i-search"/></svg><p><b>知識の確認</b><br>3つの要素・断れない理由・家族からの連絡・窓口・相談時の注意</p></div>
-      <div class="alert is-ok" style="flex:1;font-size:26px;padding:16px 26px;line-height:1.5"><svg class="i"><use href="#i-store"/></svg><p><b>お店で</b>　相談窓口を、改めてスタッフへ（いつ・どうやって）<br><b>アンケートの実施希望</b>　はい／いいえ</p></div>
+      <div class="alert" style="flex:1;font-size:26px;padding:16px 26px;line-height:1.5"><svg class="i"><use href="#i-search"/></svg><p><b>知識の確認</b><br>3つの要素・起こる構造・家族からの連絡・相談時の注意</p></div>
+      <div class="alert is-ok" style="flex:1;font-size:26px;padding:16px 26px;line-height:1.5"><svg class="i"><use href="#i-store"/></svg><p><b>お店で</b>　相談窓口を、改めてスタッフへ（周知文あり）<br><b>アンケートの実施希望</b>　はい／いいえ　・感想（任意）</p></div>
     </div>
     <aside class="notes">本日の研修は、レポートの提出をもって「受講完了」となります。
 （進行役：フォームのQRコードを画面に表示し、下の文をそのままZoomのチャットに貼る）
@@ -1658,10 +1716,10 @@ https://forms.gle/GhXBop4sna7NfUYk9
 提出期限は、研修実施日から3日以内です。未提出の場合、受講済みとして記録されませんので、ご注意ください。
 このレポートは、知識を確認する問いと、お店で行っていただくことでできています。
 ［クリック］このレポートは、誰かを評価するためのものではありません。 振り返りは、今日のワークシートで、すでにしていただきました。ワークシートは、ときどき見返してください。
-［クリック］知識の確認は、ハラスメントとして認定される3つの要素、スタッフが断れない理由、親や家族から連絡が来たときの対応、相談窓口の連絡先、そして、相談を受けたときの注意点です。
-お店で行っていただくのは、相談窓口を、改めてスタッフに伝えることです。店舗のLINEグループ、朝礼など、方法は問いません。いつ、どうやって伝えたかを書いてください。
+［クリック］知識の確認は、ハラスメントとして認定される3つの要素、ハラスメントが起こる構造、親や家族から連絡が来たときの対応、そして、相談を受けたときの注意点です。
+お店で行っていただくのは、相談窓口を、改めてスタッフに伝えることです。店舗のLINEグループ、朝礼など、方法は問いません。フォームに、そのまま使える周知文を載せていますので、使ってください。どうやって伝えたかを書いてください。
 そのうえで、一つ、お伺いします。本部、私たちHCMから、皆さんのお店のスタッフに、職場環境のハラスメントアンケートを実施することを、希望しますか。 はい・いいえで、お答えください。
-最後に、研修を受けての感想と、今後やってみたい研修内容を書いていただきます。</aside>
+最後に、研修の感想があれば、書いてください。</aside>
   </section>
 
   <!-- 14 クロージング -->
